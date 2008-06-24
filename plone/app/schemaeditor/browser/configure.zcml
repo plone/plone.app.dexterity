@@ -1,0 +1,41 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="plone.app.schemaeditor">
+
+    <!-- ++schema++ namespace traversal -->
+    <adapter
+        name="schema"
+        provides="zope.traversing.interfaces.ITraversable"
+        for="*"
+        factory=".traversal.SchemaTraverser"
+        />
+    <view
+        name="schema" type="*"
+        provides="zope.traversing.interfaces.ITraversable"
+        for="*"
+        factory=".traversal.SchemaTraverser"
+        />
+        
+    <!-- view of a z3 schema -->
+    <browser:page
+        name="schema"
+        for="zope.interface.interfaces.IInterface"
+        class=".traversal.SchemaView"
+        permission="plone.app.schemaeditor.ManageSchemata"
+        />
+        
+    <!-- view of a z3 schema field -->
+    <browser:page
+        name="schemafield"
+        for="zope.schema.interfaces.IField"
+        class=".traversal.FieldView"
+        permission="plone.app.schemaeditor.ManageSchemata"
+        />
+        
+    <!-- data manager for modifying schemata -->
+    <adapter factory=".datamanager.SchemaFieldFormDataManager"/>
+
+    <include package=".field"/>
+
+</configure>

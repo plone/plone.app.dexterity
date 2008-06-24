@@ -1,0 +1,21 @@
+issues:
+[ ] should make sure model isn't serialized multiple times
+
+features:
+[ ] docs
+[ ] tests
+[X] actually read/write values from schemata
+[ ] handle default and missing values
+[ ] handle vocabularies
+[ ] handle widget selection
+[ ] field ordering
+[ ] adding fields
+[ ] breadcrumbs niceties
+[ ] write tests (don't use PloneTestCase)
+
+design issues:
+- integration w/ plone.dexterity vs. decoupling
+- UI design for managing multiple fieldsets / schemata
+- widget selection
+- figure out what to do about vocabularies
+- figure out what to do about Choice item types
