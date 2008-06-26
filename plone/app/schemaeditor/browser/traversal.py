@@ -10,14 +10,14 @@ from zope.traversing.interfaces import ITraversable
 from zope.publisher.browser import BrowserPage
 
 # dexterity
-from plone.app.schemaeditor.interfaces import ISchemaView, IFieldView
+from plone.app.dexterity.interfaces import ISchemaView, IFieldEditingContext
 
 interface_name_re = re.compile(r'^([a-z0-9._]+)\.([a-z0-9._]+)$', re.IGNORECASE)
 
 class FieldView(Acquisition.Implicit, BrowserPage):
     """ wrapper for published zope 3 schema fields
     """
-    implements(IFieldView)
+    implements(IFieldEditingContext)
     
     __allow_access_to_unprotected_subobjects__ = 1
 
@@ -52,6 +52,7 @@ class SchemaTraverser(object):
     def traverse(self, name, ignored):
         m = interface_name_re.match(name)
         try:
+            # XXX security hole?  but this traversal isn't meant to last
             exec "from %s import %s as target_interface" % (m.group(1), m.group(2))
         except ImportError:
             return None

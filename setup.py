@@ -3,7 +3,7 @@ import os
 
 version = '0.1'
 
-setup(name='plone.app.schemaeditor',
+setup(name='plone.app.dexterity',
       version=version,
       description="Experimental through-the-web Zope 3 schema editor",
       long_description=open("README.txt").read() + "\n" +
@@ -17,7 +17,7 @@ setup(name='plone.app.schemaeditor',
       keywords='plone ttw dexterity schema interface',
       author='David Glick',
       author_email='davidglick@onenw.org',
-      url='http://svn.plone.org/svn/plone/plone.app.schemaeditor',
+      url='http://svn.plone.org/svn/plone/plone.app.dexterity',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['plone','plone.app'],
@@ -26,6 +26,7 @@ setup(name='plone.app.schemaeditor',
       install_requires=[
           'setuptools',
           'plone.z3cform',
+          'plone.dexterity',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

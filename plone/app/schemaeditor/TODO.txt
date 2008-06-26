@@ -1,20 +1,22 @@
 issues:
 [ ] should make sure model isn't serialized multiple times
 
-features:
+general:
 [ ] docs
 [ ] tests
+[ ] types control panel
+
+schema editor:
 [X] actually read/write values from schemata
 [ ] handle default and missing values
 [ ] handle vocabularies
 [ ] handle widget selection
-[ ] field ordering
+[ ] field ordering, fieldsets
 [ ] adding fields
+[ ] editing dexterity metadata like permissions
 [ ] breadcrumbs niceties
-[ ] write tests (don't use PloneTestCase)
 
 design issues:
-- integration w/ plone.dexterity vs. decoupling
 - UI design for managing multiple fieldsets / schemata
 - widget selection
 - figure out what to do about vocabularies

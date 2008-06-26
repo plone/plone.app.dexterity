@@ -1,7 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="plone.app.schemaeditor">
+    i18n_domain="plone.app.dexterity">
 
     <!-- ++schema++ namespace traversal -->
     <adapter
@@ -22,7 +22,7 @@
         name="schema"
         for="zope.interface.interfaces.IInterface"
         class=".traversal.SchemaView"
-        permission="plone.app.schemaeditor.ManageSchemata"
+        permission="plone.app.dexterity.ManageSchemata"
         />
         
     <!-- view of a z3 schema field -->
@@ -30,7 +30,7 @@
         name="schemafield"
         for="zope.schema.interfaces.IField"
         class=".traversal.FieldView"
-        permission="plone.app.schemaeditor.ManageSchemata"
+        permission="plone.app.dexterity.ManageSchemata"
         />
         
     <!-- data manager for modifying schemata -->

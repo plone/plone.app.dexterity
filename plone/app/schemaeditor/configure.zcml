@@ -1,12 +1,12 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
-    i18n_domain="plone.app.schemaeditor">
+    i18n_domain="plone.app.dexterity">
 
     <include package="plone.z3cform"/>
 
     <permission
-        id="plone.app.schemaeditor.ManageSchemata"
+        id="plone.app.dexterity.ManageSchemata"
         title="Manage schemata"
         />
 

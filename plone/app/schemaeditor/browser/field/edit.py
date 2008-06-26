@@ -3,11 +3,12 @@ from z3c.form import form, field, button, group, subform
 from zope.schema.interfaces import IField
 from plone.z3cform import base
 
-class EditForm(form.EditForm):
-    
+class FieldEditForm(form.EditForm):
+
     def __init__(self, context, request):
         super(form.EditForm, self).__init__(context, request)
-        self.schema = [s for s in context.field.__provides__.__iro__ if s.isOrExtends(IField)][0]
+        self.field = context.field
+        self.schema = [s for s in self.field.__provides__.__iro__ if s.isOrExtends(IField)][0]
     
     @property
     def fields(self):
