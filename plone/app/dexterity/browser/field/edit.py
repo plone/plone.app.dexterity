@@ -18,7 +18,7 @@ class FieldEditForm(form.EditForm):
 
 # form wrapper to use Plone form template
 class EditView(base.FormWrapper):
-    form = EditForm
+    form = FieldEditForm
 
     def __init__(self, context, request):
         super(EditView, self).__init__(context, request)

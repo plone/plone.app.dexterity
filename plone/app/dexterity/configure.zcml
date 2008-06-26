@@ -12,4 +12,12 @@
 
     <include package=".browser" />
 
+    <!-- Register schema/field modify handlers -->
+    
+    <subscriber
+        for=".interfaces.IFieldEditingContext
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".browser.datamanager.serialize_schema"
+        />
+
 </configure>
