@@ -9,5 +9,10 @@
         for="...interfaces.IFieldEditingContext"
         class=".edit.EditView"
         permission="plone.app.dexterity.ManageSchemata" />
+        
+    <adapter
+        factory=".edit.MetaFieldWidgetDataConverter" />
+    <adapter
+        factory=".edit.MetaFieldValidator" />
 
 </configure>

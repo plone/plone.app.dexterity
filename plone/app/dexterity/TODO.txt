@@ -8,7 +8,7 @@ general:
 
 schema editor:
 [X] actually read/write values from schemata
-[ ] handle default and missing values
+[X] handle default and missing values
 [ ] handle vocabularies
 [ ] handle widget selection
 [ ] field ordering, fieldsets
