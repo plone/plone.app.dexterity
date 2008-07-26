@@ -4,7 +4,7 @@ from z3c.form import form, field, button, group, subform, validator
 from z3c.form.interfaces import IFieldWidget, IDataConverter
 from zope.schema.interfaces import IField
 from zope.schema._bootstrapinterfaces import RequiredMissing
-from plone.z3cform import base
+from plone.z3cform import layout
 from plone.app.dexterity.interfaces import IFieldEditForm, IMetaFieldWidget
 
 class FieldEditForm(form.EditForm):
@@ -28,7 +28,7 @@ class FieldEditForm(form.EditForm):
         return fields
 
 # form wrapper to use Plone form template
-class EditView(base.FormWrapper):
+class EditView(layout.FormWrapper):
     form = FieldEditForm
 
     def __init__(self, context, request):
