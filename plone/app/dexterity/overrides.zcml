@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+    
+    <!-- Override folder_factories to use actions, CMF 2.2 style.
+            XXX: This should be removed when Plone moves to CMF 2.2
+      -->
+
+    <configure package="plone.app.content.browser">
+        <browser:page
+            for="*"
+            name="folder_factories"
+            class="plone.app.dexterity.overrides.ActionAwareFolderFactoriesView"
+            template="folderfactories.pt"
+            permission="cmf.AddPortalContent"
+            />
+    </configure>
+
+    <configure package="plone.app.contentmenu">
+        <adapter
+            for="* *"
+            name="plone.contentmenu.factories"
+            factory="plone.app.dexterity.overrides.ActionAwareFactoriesSubMenuItem"
+            provides=".interfaces.IContentMenuItem"
+            />
+    </configure>
+    
+</configure>

@@ -4,6 +4,8 @@
     i18n_domain="plone.app.dexterity">
 
     <include package="plone.z3cform"/>
+    
+    <five:registerPackage package="." initialize=".initialize" />
 
     <permission
         id="plone.app.dexterity.ManageSchemata"
