@@ -4,6 +4,7 @@
     i18n_domain="plone.app.dexterity">
 
     <include package="plone.z3cform"/>
+    <include package="plone.dexterity" />
     
     <five:registerPackage package="." initialize=".initialize" />
 
