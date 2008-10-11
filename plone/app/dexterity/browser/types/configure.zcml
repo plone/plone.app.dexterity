@@ -7,6 +7,12 @@
     <browser:page
         name="dexterity-types"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".types.TypesListingContext"
+        permission="plone.schemaeditor.ManageSchemata" />
+
+    <browser:page
+        name="edit"
+        for="plone.app.dexterity.interfaces.ITypesEditingContext"
         class=".types.TypesListingPage"
         permission="plone.schemaeditor.ManageSchemata" />
 

@@ -3,28 +3,6 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="plone.app.dexterity">
 
-    <!-- ++schema++ namespace traversal -->
-    <adapter
-        name="schema"
-        provides="zope.traversing.interfaces.ITraversable"
-        for="*"
-        factory=".traversal.SchemaTraverser"
-        />
-    <view
-        name="schema" type="*"
-        provides="zope.traversing.interfaces.ITraversable"
-        for="*"
-        factory=".traversal.SchemaTraverser"
-        />
-
-    <!-- view of a z3 schema field -->
-    <browser:page
-        name="schemafield"
-        for="zope.schema.interfaces.IField"
-        class=".traversal.FieldView"
-        permission="plone.schemaeditor.ManageSchemata"
-        />
-
     <include package=".types"/>
 
 </configure>

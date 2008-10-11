@@ -1,7 +1,7 @@
 import Acquisition
 from OFS.interfaces import IItem
 from zope.interface import Interface, implements
-from zope.component import getAllUtilitiesRegisteredFor, getUtility, getMultiAdapter
+from zope.component import getAllUtilitiesRegisteredFor, getUtility, getMultiAdapter, ComponentLookupError
 from zope.publisher.interfaces.browser import IBrowserPage
 from zope.publisher.browser import BrowserPage
 from zope import schema
@@ -10,6 +10,8 @@ from z3c.form import field
 from plone.z3cform import layout
 from plone.z3cform.crud import crud
 from plone.dexterity.interfaces import IDexterityFTI
+from zope.publisher.browser import BrowserPage
+from plone.app.dexterity.interfaces import ITypesEditingContext
 
 class RemoveOnlyForm(crud.EditForm):
     
@@ -38,12 +40,14 @@ class TypesListing(crud.CrudForm):
             return '%s/@@%s/%s' % (self.context.absolute_url(), self.__name__, item.__name__)
         else:
             return None
-
-class TypesListingPage(layout.FormWrapper, Acquisition.Implicit, BrowserPage):
-    implements(IBrowserPage)
-    
-    form = TypesListing
-    
+            
+TypesListingPage = layout.wrap_form(TypesListing)
+        
+class TypesListingContext(Acquisition.Implicit, BrowserPage):
+    implements(ITypesEditingContext)
+        
+    __allow_access_to_unprotected_subobjects__ = 1
+        
     def publishTraverse(self, request, name):
         try:
             fti = getUtility(IDexterityFTI, name=name)
@@ -58,3 +62,6 @@ class TypesListingPage(layout.FormWrapper, Acquisition.Implicit, BrowserPage):
         schema = model.schema
         
         return getMultiAdapter((schema, self.request), name=u'schema').__of__(self)
+
+    def browserDefault(self, request):
+        return self, ('@@edit',)

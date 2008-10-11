@@ -10,7 +10,7 @@ from zope.traversing.interfaces import ITraversable
 from zope.publisher.browser import BrowserPage
 
 # dexterity
-from plone.schemaeditor.interfaces import ISchemaView, IFieldEditingContext
+from plone.app.dexterity.interfaces import IFieldEditingContext
 
 interface_name_re = re.compile(r'^([a-z0-9._]+)\.([a-z0-9._]+)$', re.IGNORECASE)
 
@@ -26,19 +26,6 @@ class FieldView(Acquisition.Implicit, BrowserPage):
         self.field = self.context
         self.__name__ = self.field.__name__
         
-class SchemaView(Acquisition.Implicit, BrowserPage):
-    """ view of a zope 3 schema
-    """
-    implements(ISchemaView)
-    
-    def __init__(self, context, request):
-        super(SchemaView, self).__init__(context, request)
-        self.schema = self.context
-        self.__name__ = '++schema++%s' % self.schema.__class__
-
-    def publishTraverse(self, request, name):
-        return getMultiAdapter((self.schema[name], self.request), name=u'schemafield').__of__(self)
-
 class SchemaTraverser(object):
     """ traverser for ++schema++ namespace
     """
