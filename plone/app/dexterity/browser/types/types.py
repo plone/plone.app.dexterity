@@ -58,10 +58,11 @@ class TypesListingContext(Acquisition.Implicit, BrowserPage):
             # XXX more verbose error?
             raise TypeError, u'This dexterity type cannot be edited through the web.'
         
-        model = fti.lookup_model()
-        schema = model.schema
+        schema = fti.lookup_schema()
         
-        return getMultiAdapter((schema, self.request), name=u'schema').__of__(self)
+        schema_editing_context = getMultiAdapter((schema, self.request), name=u'schema').__of__(self)
+        schema_editing_context.__name__ = name
+        return schema_editing_context
 
     def browserDefault(self, request):
         return self, ('@@edit',)
