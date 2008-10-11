@@ -1,7 +1,9 @@
 import Acquisition
 from OFS.interfaces import IItem
-from zope.interface import Interface
-from zope.component import getAllUtilitiesRegisteredFor, getUtility
+from zope.interface import Interface, implements
+from zope.component import getAllUtilitiesRegisteredFor, getUtility, getMultiAdapter
+from zope.publisher.interfaces.browser import IBrowserPage
+from zope.publisher.browser import BrowserPage
 from zope import schema
 from zope.schema.interfaces import IField
 from z3c.form import field
@@ -23,7 +25,7 @@ class TypesListing(crud.CrudForm):
     
     def get_items(self):
         ftis = getAllUtilitiesRegisteredFor(IDexterityFTI)
-        return [(fti.__name__, fti) for fti in ftis if fti.has_dynamic_schema]
+        return [(fti.__name__, fti) for fti in ftis]
 
     def add(self, data):
         return None
@@ -32,9 +34,13 @@ class TypesListing(crud.CrudForm):
         return None
 
     def link(self, item, field):
-        return '%s/@@%s/%s/edit' % (self.context.absolute_url(), self.__name__, item.__name__)
+        if item.has_dynamic_schema:
+            return '%s/@@%s/%s' % (self.context.absolute_url(), self.__name__, item.__name__)
+        else:
+            return None
 
-class TypesListingPage(layout.FormWrapper, Acquisition.Implicit):
+class TypesListingPage(layout.FormWrapper, Acquisition.Implicit, BrowserPage):
+    implements(IBrowserPage)
     
     form = TypesListing
     
@@ -46,9 +52,9 @@ class TypesListingPage(layout.FormWrapper, Acquisition.Implicit):
             
         if not fti.has_dynamic_schema:
             # XXX more verbose error?
-            raise TypeError, u'This dexterity type can no longer be edited through the web.'
+            raise TypeError, u'This dexterity type cannot be edited through the web.'
         
         model = fti.lookup_model()
-        schema = model.lookup_schema()
+        schema = model.schema
         
         return getMultiAdapter((schema, self.request), name=u'schema').__of__(self)

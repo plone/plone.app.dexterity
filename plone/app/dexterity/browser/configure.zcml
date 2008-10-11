@@ -16,15 +16,7 @@
         for="*"
         factory=".traversal.SchemaTraverser"
         />
-        
-    <!-- view of a z3 schema -->
-    <browser:page
-        name="schema"
-        for="zope.interface.interfaces.IInterface"
-        class=".traversal.SchemaView"
-        permission="plone.schemaeditor.ManageSchemata"
-        />
-        
+
     <!-- view of a z3 schema field -->
     <browser:page
         name="schemafield"
