@@ -7,7 +7,7 @@
     <browser:page
         name="dexterity-types"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".types.TypesListing"
+        class=".types.TypesListingPage"
         permission="plone.schemaeditor.ManageSchemata" />
 
 </configure>
