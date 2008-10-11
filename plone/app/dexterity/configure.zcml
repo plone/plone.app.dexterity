@@ -5,22 +5,18 @@
 
     <include package="plone.z3cform"/>
     <include package="plone.dexterity" />
+    <include package="plone.schemaeditor" />
     
     <five:registerPackage package="." initialize=".initialize" />
-
-    <permission
-        id="plone.app.dexterity.ManageSchemata"
-        title="Manage schemata"
-        />
 
     <include package=".browser" />
 
     <!-- Register schema/field modify handlers -->
     
     <subscriber
-        for=".interfaces.IFieldEditingContext
+        for="plone.schemaeditor.interfaces.IFieldEditingContext
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".browser.datamanager.serialize_schema"
+        handler=".serialize.serialize_schema"
         />
 
 </configure>

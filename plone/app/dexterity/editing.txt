@@ -1,0 +1,13 @@
+This package, plone.app.dexterity, provides the UI for creating and editing Dexterity content types
+through the Plone control panel.
+
+XXX demonstrate that the types list is registered as a configlet
+
+When Dexterity is installed, you can navigate to a listing of Dexterity content types at
+/@@dexterity-types::
+
+    >>> browser = self.getBrowser(loggedIn=True)
+    >>> browser.handleErrors = False
+    >>> browser.open('http://nohost/plone/@@dexterity-types')
+    >>> 'Dexterity content types' in browser.contents
+    True

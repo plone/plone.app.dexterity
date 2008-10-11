@@ -10,7 +10,7 @@ from zope.traversing.interfaces import ITraversable
 from zope.publisher.browser import BrowserPage
 
 # dexterity
-from plone.app.dexterity.interfaces import ISchemaView, IFieldEditingContext
+from plone.schemaeditor.interfaces import ISchemaView, IFieldEditingContext
 
 interface_name_re = re.compile(r'^([a-z0-9._]+)\.([a-z0-9._]+)$', re.IGNORECASE)
 

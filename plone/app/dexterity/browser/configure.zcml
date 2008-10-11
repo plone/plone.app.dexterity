@@ -22,7 +22,7 @@
         name="schema"
         for="zope.interface.interfaces.IInterface"
         class=".traversal.SchemaView"
-        permission="plone.app.dexterity.ManageSchemata"
+        permission="plone.schemaeditor.ManageSchemata"
         />
         
     <!-- view of a z3 schema field -->
@@ -30,12 +30,9 @@
         name="schemafield"
         for="zope.schema.interfaces.IField"
         class=".traversal.FieldView"
-        permission="plone.app.dexterity.ManageSchemata"
+        permission="plone.schemaeditor.ManageSchemata"
         />
-        
-    <!-- data manager for modifying schemata -->
-    <adapter factory=".datamanager.SchemaFieldFormDataManager"/>
 
-    <include package=".field"/>
+    <include package=".types"/>
 
 </configure>

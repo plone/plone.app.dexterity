@@ -44,9 +44,9 @@ def test_suite():
         #    'README.txt', package='plone.app.dexterity',
         #    test_class=TestCase),
 
-        #ztc.FunctionalDocFileSuite(
-        #    'browser.txt', package='plone.app.dexterity',
-        #    test_class=TestCase),
+        ztc.FunctionalDocFileSuite(
+            'editing.txt', package='plone.app.dexterity',
+            test_class=TestCase),
 
         ])
 
