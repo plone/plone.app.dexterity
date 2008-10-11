@@ -37,17 +37,17 @@ class TypesListing(crud.CrudForm):
 
     def link(self, item, field):
         if item.has_dynamic_schema:
-            return '%s/@@%s/%s' % (self.context.absolute_url(), self.__name__, item.__name__)
+            return '%s/%s' % (self.context.absolute_url(), item.__name__)
         else:
             return None
-            
+
 TypesListingPage = layout.wrap_form(TypesListing)
         
 class TypesListingContext(Acquisition.Implicit, BrowserPage):
     implements(ITypesEditingContext)
-        
+    
     __allow_access_to_unprotected_subobjects__ = 1
-        
+    
     def publishTraverse(self, request, name):
         try:
             fti = getUtility(IDexterityFTI, name=name)
@@ -65,3 +65,6 @@ class TypesListingContext(Acquisition.Implicit, BrowserPage):
 
     def browserDefault(self, request):
         return self, ('@@edit',)
+
+    def absolute_url(self):
+        return '%s/@@%s' % (self.context.absolute_url(), self.__name__)
