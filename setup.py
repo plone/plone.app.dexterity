@@ -25,8 +25,17 @@ setup(name='plone.app.dexterity',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          # Zope 2
+          'zope.interface',
+          'zope.component',
+          'zope.schema',
+          'zope.publisher',
+          'z3c.form',
           'plone.z3cform',
+          'plone.supermodel',
           'plone.dexterity',
+          'plone.schemaeditor',
+          'Products.CMFCore',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

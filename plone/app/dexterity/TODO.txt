@@ -1,24 +1,41 @@
 issues:
 [ ] should make sure model isn't serialized multiple times
-  - 
+  - queue changes in session?
+[ ] need a decoupled way to tweak things like form titles
+[X] need correct field ordering
 
 general:
 [ ] docs
-[ ] tests
-[ ] types control panel
+- tests
+ [ ] roadrunner
+ [ ] doctests for basic walkthrough
+[ ] i18n infrastructure (use message factory from plone.dexterity?)
+[X] register dexterity configlet
+ - how to get Plone control panel wrapper for z3c forms?
+[ ] make sure plone.schemaeditor can be used by some other product like PFG
+ - need to be able to override form template, mutate form fields
 
 schema editor:
-[X] actually read/write values from schemata
-[X] handle default and missing values
-[ ] handle vocabularies
-[ ] handle widget selection
-[ ] field ordering, fieldsets
-[ ] adding fields
-[ ] editing dexterity metadata like permissions
-[ ] breadcrumbs niceties
+- functionality:
+ [X] actually read/write values from schemata
+ [X] handle default and missing values
+ [ ] adding/removing fields
+ [ ] copy/paste or add based on an existing type/field
+ [ ] rename type
+ [ ] handle widget selection
+ [ ] handle vocabularies
+ [ ] field ordering, fieldsets -- including integration with behaviors (weighting?)
+ [ ] editing dexterity metadata like permissions
+- UI:
+ [ ] breadcrumbs niceties
+ [ ] make fields form look more like Trac filtering, have draggable ordering
+ [ ] pop up field editing form in somthing lightbox-y
 
 design issues:
 - UI design for managing multiple fieldsets / schemata
-- widget selection
 - figure out what to do about vocabularies
 - figure out what to do about Choice item types
+
+examples / dogfooding / things to test:
+- build a geolocation behavior
+- handling of pre-existing content
