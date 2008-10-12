@@ -15,6 +15,8 @@ from plone.app.dexterity.interfaces import ITypesEditingContext
 
 class RemoveOnlyForm(crud.EditForm):
     
+    label = None
+    
     def __init__(self, context, request):
         super(crud.EditForm, self).__init__(context, request)
         self.buttons = self.buttons.copy().omit('edit')
@@ -41,12 +43,16 @@ class TypesListing(crud.CrudForm):
         else:
             return None
 
-TypesListingPage = layout.wrap_form(TypesListing)
-        
+TypesListingPage = layout.wrap_form(TypesListing, label=u'Dexterity content types')
+
 class TypesListingContext(Acquisition.Implicit, BrowserPage):
     implements(ITypesEditingContext)
     
     __allow_access_to_unprotected_subobjects__ = 1
+    
+    def __init__(self, context, request):
+        super(TypesListingContext, self).__init__(context, request)
+        request.set('disable_border', 1)
     
     def publishTraverse(self, request, name):
         try:
