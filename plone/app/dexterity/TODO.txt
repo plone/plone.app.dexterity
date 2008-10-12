@@ -28,6 +28,7 @@ schema editor:
  [ ] editing dexterity metadata like permissions
 - UI:
  [ ] breadcrumbs niceties
+ [ ] page title in <head>
  [ ] make fields form look more like Trac filtering, have draggable ordering
  [ ] pop up field editing form in somthing lightbox-y
 
