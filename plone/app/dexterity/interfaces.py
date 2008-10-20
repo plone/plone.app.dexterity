@@ -1,5 +1,5 @@
 from zope.publisher.interfaces.browser import IBrowserPage
 
-class ITypesEditingContext(IBrowserPage):
+class ITypesContext(IBrowserPage):
     """ XXX
     """

@@ -24,7 +24,7 @@
     <!-- Register schema/field modify handlers -->
     
     <subscriber
-        for="plone.schemaeditor.interfaces.IFieldEditingContext
+        for="plone.schemaeditor.interfaces.IFieldContext
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".serialize.serialize_schema"
         />
