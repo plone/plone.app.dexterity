@@ -22,11 +22,25 @@
     <include package=".browser" />
 
     <!-- Register schema/field modify handlers -->
-    
     <subscriber
-        for="plone.schemaeditor.interfaces.IFieldContext
+        for="plone.schemaeditor.interfaces.IField
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".serialize.serialize_schema"
+        handler=".serialize.serialize_schema_on_field_event"
+        />
+    <subscriber
+        for="plone.schemaeditor.interfaces.IField
+             zope.app.container.interfaces.IObjectAddedEvent"
+        handler=".serialize.serialize_schema_on_field_event"
+        />
+    <subscriber
+        for="plone.schemaeditor.interfaces.IField
+             zope.app.container.interfaces.IObjectRemovedEvent"
+        handler=".serialize.serialize_schema_on_field_event"
+        />
+    <subscriber
+        for="plone.schemaeditor.interfaces.IField
+             zope.app.container.interfaces.IObjectMovedEvent"
+        handler=".serialize.serialize_schema_on_field_event"
         />
 
 </configure>

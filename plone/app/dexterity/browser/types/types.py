@@ -3,11 +3,10 @@ from OFS.interfaces import IItem
 from OFS.SimpleItem import Item
 
 from zope.interface import Interface, implements
-from zope.component import getAllUtilitiesRegisteredFor, getUtility, getMultiAdapter, ComponentLookupError
+from zope.component import getAllUtilitiesRegisteredFor, getUtility, ComponentLookupError
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope import schema
-from zope.schema.interfaces import IField
 
 from z3c.form import field
 from plone.z3cform import layout
@@ -101,7 +100,7 @@ class TypesListing(crud.CrudForm):
         """ Generate links to the edit page for each type.
             (But only for types with schemata that can be edited through the web.)
         """
-        if item.has_dynamic_schema:
+        if item.model_source:
             return '%s/%s' % (self.context.absolute_url(), item.__name__)
         else:
             return None
@@ -124,8 +123,6 @@ class TypesContext(Item, Acquisition.Implicit):
     
     def __init__(self, context, request):
         super(TypesContext, self).__init__(context, request)
-        self.context = context
-        self.request = request
         
         # make sure that breadcrumbs will be correct
         self.id = None
@@ -149,7 +146,7 @@ class TypesContext(Item, Acquisition.Implicit):
             raise TypeError, u'This dexterity type cannot be edited through the web.'
         
         schema = fti.lookup_schema()
-        return SchemaContext(schema, self.request, name=name, title=fti.title).__of__(self)
+        return SchemaContext(schema, request, name=name, title=fti.title).__of__(self)
 
     def browserDefault(self, request):
         """ If we aren't traversing to a schema beneath the types configlet, we actually want to

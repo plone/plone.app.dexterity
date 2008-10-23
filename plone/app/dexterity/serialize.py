@@ -1,14 +1,13 @@
 from zope.component import queryUtility
 from plone.supermodel.utils import sync_schema
 from plone.supermodel import serialize_model
-from plone.dexterity.interfaces import IDexteritySchema, IDexterityFTI
+from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.utils import split_schema_name
 
-def serialize_schema(field_editing_context, event):
-    # XXX should batch so we don't do this multiple times if multiple
-    # fields were modified.  but for that, we need to annotate the request or something?
-
-    schema = field_editing_context.schema
+def serialize_schema(schema):
+    """ Finds the FTI and model associated with a schema, and synchronizes
+        the schema to the FTI model_source attribute.
+    """
 
     # determine portal_type
     try:
@@ -18,19 +17,25 @@ def serialize_schema(field_editing_context, event):
         return
 
     # find the FTI and model
-    # (XXX Proof of concept.  Need to think through full use cases involving things
-    # like customizing through the web following filesystem customization, need for
-    # merging, etc.)
     fti = queryUtility(IDexterityFTI, name=portal_type)
-
-    if fti.has_dynamic_schema:
-        try:
-            model = fti.lookup_model()
-        except Exception, e:
-            raise
+    if fti.model_source:
+        model = fti.lookup_model()
 
         # synchronize changes to the model
         sync_schema(schema, model.schemata[schema_name], overwrite=True)
         fti.model_source = serialize_model(model)
     else:
-        raise "Changes to non-dynamic schemata not yet supported."
+        raise TypeError, "Changes to non-dynamic schemata not yet supported."
+
+def serialize_schema_on_field_event(field, event):
+    if hasattr(event, 'oldParent'):
+        # for container events
+        serialize_schema(event.oldParent)
+        if event.newParent is not event.oldParent:
+            serialize_schema(event.newParent)
+    else:
+        # we just have a field
+        serialize_schema(field.interface)
+
+# XXX should batch so we don't do this multiple times if multiple
+# fields were modified?
