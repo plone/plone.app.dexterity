@@ -28,14 +28,20 @@ def serialize_schema(schema):
         raise TypeError, "Changes to non-dynamic schemata not yet supported."
 
 def serialize_schema_on_field_event(field, event):
-    if hasattr(event, 'oldParent'):
+    oldParent = getattr(event, 'oldParent', None)
+    newParent = getattr(event, 'newParent', None)
+    if oldParent or newParent:
         # for container events
-        serialize_schema(event.oldParent)
-        if event.newParent is not event.oldParent:
+        if oldParent:
+            serialize_schema(event.oldParent)
+        if newParent and newParent is not oldParent:
             serialize_schema(event.newParent)
     else:
         # we just have a field
         serialize_schema(field.interface)
+        
+def serialize_schema_on_schema_event(schema, event):
+    serialize_schema(schema)
 
 # XXX should batch so we don't do this multiple times if multiple
 # fields were modified?
