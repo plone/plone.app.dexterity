@@ -1,6 +1,5 @@
-import Acquisition
 from OFS.interfaces import IItem
-from OFS.SimpleItem import Item
+from OFS.SimpleItem import SimpleItem
 
 from zope.interface import Interface, implements
 from zope.component import getAllUtilitiesRegisteredFor, getUtility, ComponentLookupError
@@ -109,13 +108,9 @@ class TypesListing(crud.CrudForm):
 TypesListingPage = layout.wrap_form(TypesListing, label=u'Dexterity content types')
 
 
-class TypesContext(Item, Acquisition.Implicit):
+class TypesContext(SimpleItem):
     """ This class represents the types configlet, and allows us to traverse
         through it to (a wrapper of) the schema of a particular type.
-        
-        We subclass Item so that this behaves correctly for things like
-        absolute_url and the breadcrumbs, and Acquisition.Implicit so that
-        we can acquire skin layer items like main_template through this.
     """
     # IBrowserPublisher tells the Zope 2 traverser to pay attention to the
     # publishTraverse and browserDefault methods.
