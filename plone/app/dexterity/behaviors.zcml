@@ -1,0 +1,27 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone.app.dexterity">
+
+    <plone:behavior
+        title="Dublin Core metadata"
+        description="Adds the ability to edit the Dublin Core metadata fields"
+        interface=".behaviors.metadata.IDexterityDublinCore"
+        factory=".behaviors.metadata.DexterityDublinCore"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <!-- <plone:behavior
+        title="Related items"
+        description="Adds the ability to assign related items"
+        interface=".behaviors.relations.IRelatedItems"
+        factory=".behaviors.relations.IRelatedItems"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        /> -->
+
+    <include package="collective.z3cform.datepicker"/>
+    <!-- <include package="plone.formwidget.relations"/> -->
+    <grok:grok package=".behaviors.metadata" />
+  
+</configure>
