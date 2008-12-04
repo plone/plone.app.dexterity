@@ -20,32 +20,7 @@
         />
 
     <include package=".browser" />
-
-    <!-- Register schema/field modify handlers -->
-    <subscriber
-        for="plone.schemaeditor.interfaces.IField
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".serialize.serialize_schema_on_field_event"
-        />
-    <subscriber
-        for="plone.schemaeditor.interfaces.IField
-             zope.app.container.interfaces.IObjectAddedEvent"
-        handler=".serialize.serialize_schema_on_field_event"
-        />
-    <subscriber
-        for="plone.schemaeditor.interfaces.IField
-             zope.app.container.interfaces.IObjectRemovedEvent"
-        handler=".serialize.serialize_schema_on_field_event"
-        />
-    <subscriber
-        for="plone.schemaeditor.interfaces.IField
-             zope.app.container.interfaces.IObjectMovedEvent"
-        handler=".serialize.serialize_schema_on_field_event"
-        />
-    <subscriber
-        for="zope.interface.interfaces.IInterface
-             zope.app.container.interfaces.IContainerModifiedEvent"
-        handler=".serialize.serialize_schema_on_schema_event"
-        />
+    <include file="behaviors.zcml" />
+    <include file="events.zcml" />
 
 </configure>
