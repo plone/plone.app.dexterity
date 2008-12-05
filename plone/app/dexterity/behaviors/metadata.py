@@ -1,7 +1,7 @@
-from zope.interface import alsoProvides
+from zope.interface import Interface, alsoProvides
 from zope.component import adapts
 from zope import schema
-from plone import dexterity
+from plone.directives import dexterity
 from plone.dexterity.interfaces import IDexterityContent
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 

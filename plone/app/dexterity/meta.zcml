@@ -1,5 +1,6 @@
 <configure xmlns="http://namespaces.zope.org/zope">
   
   <include package="plone.dexterity" file="meta.zcml" />
+  <include package="plone.directives.dexterity" file="meta.zcml" />
   
 </configure>

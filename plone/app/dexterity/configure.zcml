@@ -8,6 +8,8 @@
     <include package="plone.dexterity" />
     <include package="plone.schemaeditor" />
     
+    <include package="plone.directives.dexterity" />
+    
     <five:registerPackage package="." initialize=".initialize" />
 
     <genericsetup:registerProfile
