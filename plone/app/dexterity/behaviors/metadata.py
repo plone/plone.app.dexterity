@@ -1,9 +1,13 @@
-from zope.interface import Interface, alsoProvides
+from zope.interface import alsoProvides
 from zope.component import adapts
 from zope import schema
 from plone.directives import dexterity
 from plone.dexterity.interfaces import IDexterityContent
+from plone.autoform.interfaces import IFormFieldProvider
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty
+
+from z3c.form.browser.textlines import TextLinesFieldWidget
+from collective.z3cform.datepicker.widget import DateTimePickerFieldWidget
 
 class IDexterityDublinCore(dexterity.Schema):
     """ Behavior interface to display Dublin Core metadata fields on Dexterity
@@ -40,8 +44,9 @@ class IDexterityDublinCore(dexterity.Schema):
         description = u'Also known as keywords, tags or labels, these help you categorize your content.',
         value_type = schema.TextLine(),
         required = False,
+        missing_value = (),
         )
-    dexterity.widget(subjects = 'z3c.form.browser.textlines.TextLinesFieldWidget')
+    dexterity.widget(subjects = TextLinesFieldWidget)
 
     language = schema.Choice(
         title = u'Language',
@@ -61,14 +66,14 @@ class IDexterityDublinCore(dexterity.Schema):
         description = u'If this date is in the future, the content will not show up in listings and searches until this date.',
         required = False
         )
-    dexterity.widget(effective = 'collective.z3cform.datepicker.widget.DateTimePickerFieldWidget')
+    dexterity.widget(effective = DateTimePickerFieldWidget)
         
     expires = schema.Datetime(
         title = u'Expiration',
         description = u'When this date is reached, the content will nolonger be visible in listings and searches.',
         required = False
         )
-    dexterity.widget(expires = 'collective.z3cform.datepicker.widget.DateTimePickerFieldWidget')
+    dexterity.widget(expires = DateTimePickerFieldWidget)
 
     # ownership fieldset
     dexterity.fieldset(
@@ -82,16 +87,18 @@ class IDexterityDublinCore(dexterity.Schema):
         description = u'Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first.',
         value_type = schema.TextLine(),
         required = False,
+        missing_value = (),
         )
-    dexterity.widget(creators = 'z3c.form.browser.textlines.TextLinesFieldWidget')
+    dexterity.widget(creators = TextLinesFieldWidget)
 
     contributors = schema.List(
         title = u'Contributors',
         description = u'The names of people that have contributed to this item. Each contributor should be on a separate line.',
         value_type = schema.TextLine(),
         required = False,
+        missing_value = (),
         )
-    dexterity.widget(contributors = 'z3c.form.browser.textlines.TextLinesFieldWidget')
+    dexterity.widget(contributors = TextLinesFieldWidget)
     
     rights = schema.Text(
         title=u'Rights',
@@ -100,7 +107,7 @@ class IDexterityDublinCore(dexterity.Schema):
         )
 
 # Mark this interface as a form field provider
-alsoProvides(IDexterityDublinCore, dexterity.IFormFieldProvider)
+alsoProvides(IDexterityDublinCore, IFormFieldProvider)
 
 class DexterityDublinCore(object):
     """ This adapter uses ProxyFieldProperty to provide an implementation of IDexterityDublinCore
@@ -109,9 +116,14 @@ class DexterityDublinCore(object):
     """
     adapts(IDexterityContent)
     
+    # work around ProxyFieldProperty's assumption of an 'encoding' attribute
+    # on the adapter
+    # XXX revisit this
+    encoding = None
+    
     def __init__(self, context):
         self.context = context
-    
+
     title = ProxyFieldProperty(IDexterityDublinCore['title'], get_name = 'Title', set_name = 'setTitle')
     description = ProxyFieldProperty(IDexterityDublinCore['description'], get_name = 'Description', set_name = 'setDescription')
     subjects = ProxyFieldProperty(IDexterityDublinCore['subjects'], get_name = 'Subject', set_name = 'setSubject')
