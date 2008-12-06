@@ -4,6 +4,13 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="plone.app.dexterity">
 
+    <!-- widgets -->
+    <include package="collective.z3cform.datepicker"/>
+    <!-- <include package="plone.formwidget.relations"/> -->
+
+    <!-- vocabularies -->
+    <include package="plone.app.vocabularies"/>
+
     <plone:behavior
         title="Dublin Core metadata"
         description="Adds the ability to edit the Dublin Core metadata fields"
@@ -19,9 +26,7 @@
         factory=".behaviors.relations.IRelatedItems"
         for="plone.dexterity.interfaces.IDexterityContent"
         /> -->
-
-    <include package="collective.z3cform.datepicker"/>
-    <!-- <include package="plone.formwidget.relations"/> -->
+    
     <grok:grok package=".behaviors.metadata" />
   
 </configure>
