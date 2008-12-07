@@ -1,7 +1,7 @@
 from zope.interface import alsoProvides
 from zope.component import adapts
 from zope import schema
-from plone.directives import dexterity, form
+from plone.directives import form
 from plone.dexterity.interfaces import IDexterityContent
 from plone.autoform.interfaces import IFormFieldProvider
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty
@@ -30,7 +30,7 @@ class IDexterityDublinCore(form.Schema):
         description = u'A short summary of the content.',
         required = False,
         )
-    form.order_before(description = '*')
+    form.order_after(description = 'plone.app.dexterity.behaviors.metadata.IDexterityDublinCore.title')
 
     # categorization fieldset
     form.fieldset(
