@@ -1,7 +1,7 @@
 from zope.interface import alsoProvides
 from zope.component import adapts
 from zope import schema
-from plone.directives import dexterity
+from plone.directives import dexterity, form
 from plone.dexterity.interfaces import IDexterityContent
 from plone.autoform.interfaces import IFormFieldProvider
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty
@@ -9,7 +9,7 @@ from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from collective.z3cform.datepicker.widget import DateTimePickerFieldWidget
 
-class IDexterityDublinCore(dexterity.Schema):
+class IDexterityDublinCore(form.Schema):
     """ Behavior interface to display Dublin Core metadata fields on Dexterity
         content edit forms.
         
@@ -23,17 +23,17 @@ class IDexterityDublinCore(dexterity.Schema):
         title = u'Title',
         required = True
         )
-    dexterity.order_before(title = '*')
+    form.order_before(title = '*')
         
     description = schema.Text(
         title = u'Summary',
         description = u'A short summary of the content.',
         required = False,
         )
-    dexterity.order_before(description = '*')
+    form.order_before(description = '*')
 
     # categorization fieldset
-    dexterity.fieldset(
+    form.fieldset(
         'categorization',
         label=u'Categorization',
         fields=['subjects', 'language'],
@@ -46,7 +46,7 @@ class IDexterityDublinCore(dexterity.Schema):
         required = False,
         missing_value = (),
         )
-    dexterity.widget(subjects = TextLinesFieldWidget)
+    form.widget(subjects = TextLinesFieldWidget)
 
     language = schema.Choice(
         title = u'Language',
@@ -55,7 +55,7 @@ class IDexterityDublinCore(dexterity.Schema):
         )
         
     # dates fieldset
-    dexterity.fieldset(
+    form.fieldset(
         'dates',
         label=u'Dates',
         fields=['effective', 'expires'],
@@ -66,17 +66,17 @@ class IDexterityDublinCore(dexterity.Schema):
         description = u'If this date is in the future, the content will not show up in listings and searches until this date.',
         required = False
         )
-    dexterity.widget(effective = DateTimePickerFieldWidget)
+    form.widget(effective = DateTimePickerFieldWidget)
         
     expires = schema.Datetime(
         title = u'Expiration',
         description = u'When this date is reached, the content will nolonger be visible in listings and searches.',
         required = False
         )
-    dexterity.widget(expires = DateTimePickerFieldWidget)
+    form.widget(expires = DateTimePickerFieldWidget)
 
     # ownership fieldset
-    dexterity.fieldset(
+    form.fieldset(
         'ownership',
         label=u'Ownership',
         fields=['creators', 'contributors', 'rights'],
@@ -89,7 +89,7 @@ class IDexterityDublinCore(dexterity.Schema):
         required = False,
         missing_value = (),
         )
-    dexterity.widget(creators = TextLinesFieldWidget)
+    form.widget(creators = TextLinesFieldWidget)
 
     contributors = schema.List(
         title = u'Contributors',
@@ -98,7 +98,7 @@ class IDexterityDublinCore(dexterity.Schema):
         required = False,
         missing_value = (),
         )
-    dexterity.widget(contributors = TextLinesFieldWidget)
+    form.widget(contributors = TextLinesFieldWidget)
     
     rights = schema.Text(
         title=u'Rights',

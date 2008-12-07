@@ -10,9 +10,9 @@ from zope.annotation import factory
 
 from plone.formwidget.relations.field import Relationships
 
-from plone import dexterity
+from plone.directives import form
 
-class IRelatedItems(dexterity.Schema):
+class IRelatedItems(form.Schema):
     """Behavior interface to make a type support related items.
     """
     
@@ -21,10 +21,10 @@ class IRelatedItems(dexterity.Schema):
         value_type=schema.Choice(vocabulary="plone.formwidget.relations.cmfcontentsearch"),
         required=False,
         )
-    dexterity.widget(relatedItems = 'plone.formwidget.autocomplete.AutocompleteMultiFieldWidget')
-    dexterity.fieldset('categorization', fields=['relatedItems'])
+    form.widget(relatedItems = 'plone.formwidget.autocomplete.AutocompleteMultiFieldWidget')
+    form.fieldset('categorization', label=u"Categorization", fields=['relatedItems'])
 
-alsoProvides(IRelatedItems, dexterity.IFormFieldProvider)
+alsoProvides(IRelatedItems, form.IFormFieldProvider)
 
 class RelatedItemsAnnotations(Persistent):
     """Persistent storage for related items in annotations."""
