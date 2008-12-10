@@ -25,7 +25,45 @@ def TypesTool_listActions(self, info=None, object=None):
 
     return actions
 
-#   2. Monkey patch ActionInfo constructor to work around a bug in CMF 2.1
+#   2. Register the ++add++ traversal adapter from CMF 2.2
+
+from zope.component import adapts
+from zope.component import queryMultiAdapter
+from zope.interface import implements
+from zope.interface import Interface
+from zope.traversing.interfaces import ITraversable
+from zope.traversing.interfaces import TraversalError
+
+from Products.CMFCore.interfaces import IFolderish
+from Products.CMFCore.utils import getToolByName
+
+class AddViewTraverser(object):
+
+    """Add view traverser.
+    """
+
+    adapts(IFolderish, Interface)
+    implements(ITraversable)
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def traverse(self, name, ignored):       
+        ttool = getToolByName(self.context, 'portal_types')
+        ti = ttool.getTypeInfo(name)
+        if ti is not None:
+            add_view = queryMultiAdapter((self.context, self.request, ti),
+                                         name=ti.factory)
+            if add_view is None:
+                add_view = queryMultiAdapter((self.context, self.request, ti))
+            if add_view is not None:
+                add_view.__name__ = ti.factory
+                return add_view.__of__(self.context)
+
+        raise TraversalError(self.context, name)
+
+#   3. Monkey patch ActionInfo constructor to work around a bug in CMF 2.1
 
 from UserDict import UserDict
 def ActionInfo___init__(self, action, ec):
@@ -57,7 +95,7 @@ def ActionInfo___init__(self, action, ec):
     self._lazy_keys = lazy_keys
     self._permissions = permissions
 
-#   3. Register override view for @@folder_factories to use actions instead
+#   4. Register override view for @@folder_factories to use actions instead
 #       of constructing URLs manually
 
 from plone.app.content.browser.folderfactories import _allowedTypes
@@ -148,8 +186,8 @@ class ActionAwareFolderFactoriesView(FolderFactoriesView):
 
         return results
 
-# 4. Register an override adapter for the add menu item used when only one
-#    thing is addable to type folder
+#   5. Register an override adapter for the add menu item used when only one
+#      thing is addable to type folder
 
 from plone.app.contentmenu.menu import FactoriesSubMenuItem
 
@@ -178,6 +216,8 @@ class ActionAwareFactoriesSubMenuItem(FactoriesSubMenuItem):
             return '%s/createObject?type_name=%s' % (baseUrl, quote_plus(fti.getId()),)
         else:
             return '%s/folder_factories' % self.context_state.folder().absolute_url()
+
+
 
 def apply_patches():
     from Products.CMFCore.TypesTool import TypesTool

@@ -2,10 +2,18 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser">
     
+    <!-- Add CMF 2.2's ++add++ traverser.
+            XXX: This should be removed when Plone moves to CMF 2.2
+      -->
+    
+    <adapter
+      name="add"
+      factory=".overrides.AddViewTraverser"
+      />
+    
     <!-- Override folder_factories to use actions, CMF 2.2 style.
             XXX: This should be removed when Plone moves to CMF 2.2
       -->
-
     <configure package="plone.app.content.browser">
         <browser:page
             for="*"
