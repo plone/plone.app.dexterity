@@ -7,7 +7,7 @@ from plone.autoform.interfaces import IFormFieldProvider
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 
 from z3c.form.browser.textlines import TextLinesFieldWidget
-from collective.z3cform.datepicker.widget import DateTimePickerFieldWidget
+# from collective.z3cform.datepicker.widget import DateTimePickerFieldWidget
 
 class IDexterityDublinCore(form.Schema):
     """ Behavior interface to display Dublin Core metadata fields on Dexterity
@@ -66,14 +66,14 @@ class IDexterityDublinCore(form.Schema):
         description = u'If this date is in the future, the content will not show up in listings and searches until this date.',
         required = False
         )
-    form.widget(effective = DateTimePickerFieldWidget)
+    # form.widget(effective = DateTimePickerFieldWidget)
         
     expires = schema.Datetime(
         title = u'Expiration',
         description = u'When this date is reached, the content will nolonger be visible in listings and searches.',
         required = False
         )
-    form.widget(expires = DateTimePickerFieldWidget)
+    # form.widget(expires = DateTimePickerFieldWidget)
 
     # ownership fieldset
     form.fieldset(
