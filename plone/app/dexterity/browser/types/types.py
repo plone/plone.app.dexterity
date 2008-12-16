@@ -12,12 +12,13 @@ from plone.z3cform import layout
 from plone.z3cform.crud import crud
 
 from Products.CMFCore.utils import getToolByName
-from plone.i18n.normalizer.interfaces import IURLNormalizer
+from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.fti import DexterityFTI
 from plone.app.dexterity.interfaces import ITypesContext
 from plone.schemaeditor.browser.schema.schema import SchemaContext
+import plone.schemaeditor.browser
 
 
 class IAddTypeSettings(Interface):
@@ -39,7 +40,7 @@ class TypeAddForm(crud.AddForm):
     """
     
     label = u'Add Content Type'
-    template = ViewPageTemplateFile('../form.pt')
+    template = ViewPageTemplateFile('titledform.pt', _prefix=plone.schemaeditor.browser.__dict__)
 
 
 class TypeEditForm(crud.EditForm):
@@ -77,7 +78,7 @@ class TypesListing(crud.CrudForm):
             A URL normalizer, normally from plone.i18n, is used to sanitize the type's title.
         """
         
-        id = getUtility(IURLNormalizer).normalize(data['title'])
+        id = getUtility(IIDNormalizer).normalize(data['title'])
         # XXX validation
 
         fti = DexterityFTI(id)
