@@ -37,7 +37,7 @@ setup(name='plone.app.dexterity',
           'plone.directives.dexterity',
           'plone.schemaeditor',
           'Products.CMFCore',
-          'collective.z3cform.datepicker',
+#          'collective.z3cform.datepicker',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
