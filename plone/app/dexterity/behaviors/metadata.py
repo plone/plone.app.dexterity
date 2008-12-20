@@ -6,7 +6,10 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.autoform.interfaces import IFormFieldProvider
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 
-from plone.z3cform.textlines.textlines import TextLinesFieldWidget
+try:
+    from z3c.form.browser.textlines import TextLinesFieldWidget
+except ImportError:
+    from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 # from collective.z3cform.datepicker.widget import DateTimePickerFieldWidget
 
 class IDexterityDublinCore(form.Schema):
