@@ -9,6 +9,7 @@ from zope.annotation.interfaces import IAnnotatable
 from zope.annotation import factory
 
 from plone.formwidget.relations.field import Relationships
+from plone.formwidget.autocomplete import AutocompleteMultiFieldWidget
 
 from plone.directives import form
 
@@ -21,7 +22,7 @@ class IRelatedItems(form.Schema):
         value_type=schema.Choice(vocabulary="plone.formwidget.relations.cmfcontentsearch"),
         required=False,
         )
-    form.widget(relatedItems = 'plone.formwidget.autocomplete.AutocompleteMultiFieldWidget')
+    form.widget(relatedItems = AutocompleteMultiFieldWidget)
     form.fieldset('categorization', label=u"Categorization", fields=['relatedItems'])
 
 alsoProvides(IRelatedItems, form.IFormFieldProvider)

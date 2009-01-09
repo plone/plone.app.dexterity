@@ -12,29 +12,30 @@ except ImportError:
     from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 # from collective.z3cform.datepicker.widget import DateTimePickerFieldWidget
 
-class IDexterityDublinCore(form.Schema):
-    """ Behavior interface to display Dublin Core metadata fields on Dexterity
-        content edit forms.
-        
-        This schema duplicates the fields of zope.dublincore.IZopeDublinCore,
-        in order to annotate them with Dexterity form hints and more helpful titles
-        and descriptions.
-    """
+# Behavior interfaces to display Dublin Core metadata fields on Dexterity
+# content edit forms.
+#     
+# These schemata duplicate the fields of zope.dublincore.IZopeDublinCore,
+# in order to annotate them with form hints and more helpful titles
+# and descriptions.
 
+class IBasic(form.Schema):
     # default fieldset
     title = schema.TextLine(
         title = u'Title',
         required = True
         )
-    form.order_before(title = '*')
         
     description = schema.Text(
         title = u'Summary',
         description = u'A short summary of the content.',
         required = False,
         )
-    form.order_after(description = 'plone.app.dexterity.behaviors.metadata.IDexterityDublinCore.title')
+    
+    form.order_before(description = '*')
+    form.order_before(title = '*')
 
+class ICategorization(form.Schema):
     # categorization fieldset
     form.fieldset(
         'categorization',
@@ -56,7 +57,8 @@ class IDexterityDublinCore(form.Schema):
         vocabulary = 'plone.app.vocabularies.AvailableContentLanguages',
         required = False,
         )
-        
+
+class IPublication(form.Schema):
     # dates fieldset
     form.fieldset(
         'dates',
@@ -78,6 +80,7 @@ class IDexterityDublinCore(form.Schema):
         )
     # form.widget(expires = DateTimePickerFieldWidget)
 
+class IOwnership(form.Schema):
     # ownership fieldset
     form.fieldset(
         'ownership',
@@ -94,7 +97,7 @@ class IDexterityDublinCore(form.Schema):
         )
     form.widget(creators = TextLinesFieldWidget)
 
-    contributors = schema.List(
+    contributors = schema.Tuple(
         title = u'Contributors',
         description = u'The names of people that have contributed to this item. Each contributor should be on a separate line.',
         value_type = schema.TextLine(),
@@ -109,13 +112,21 @@ class IDexterityDublinCore(form.Schema):
         required = False,
         )
 
-# Mark this interface as a form field provider
-alsoProvides(IDexterityDublinCore, IFormFieldProvider)
+class IDublinCore(IBasic, ICategorization, IPublication, IOwnership):
+    """ Metadata behavior providing all the DC fields
+    """
+    pass
 
-class DexterityDublinCore(object):
-    """ This adapter uses ProxyFieldProperty to provide an implementation of IDexterityDublinCore
-        that stores metadata directly on the object using the standard CMF DefaultDublinCoreImpl
-        getters and setters.
+# Mark these interfaces as form field providers
+alsoProvides(IBasic, IFormFieldProvider)
+alsoProvides(ICategorization, IFormFieldProvider)
+alsoProvides(IPublication, IFormFieldProvider)
+alsoProvides(IOwnership, IFormFieldProvider)
+alsoProvides(IDublinCore, IFormFieldProvider)
+
+class MetadataBase(object):
+    """ This adapter uses ProxyFieldProperty to store metadata directly on an object
+        using the standard CMF DefaultDublinCoreImpl getters and setters.
     """
     adapts(IDexterityContent)
     
@@ -127,12 +138,22 @@ class DexterityDublinCore(object):
     def __init__(self, context):
         self.context = context
 
-    title = ProxyFieldProperty(IDexterityDublinCore['title'], get_name = 'Title', set_name = 'setTitle')
-    description = ProxyFieldProperty(IDexterityDublinCore['description'], get_name = 'Description', set_name = 'setDescription')
-    subjects = ProxyFieldProperty(IDexterityDublinCore['subjects'], get_name = 'Subject', set_name = 'setSubject')
-    language = ProxyFieldProperty(IDexterityDublinCore['language'], get_name = 'Language', set_name = 'setLanguage')
-    effective = ProxyFieldProperty(IDexterityDublinCore['effective'], get_name = 'effective', set_name = 'setEffectiveDate')
-    expires = ProxyFieldProperty(IDexterityDublinCore['expires'], get_name = 'expires', set_name = 'setExpirationDate')
-    creators = ProxyFieldProperty(IDexterityDublinCore['creators'], get_name = 'listCreators', set_name = 'setCreators')
-    contributors = ProxyFieldProperty(IDexterityDublinCore['contributors'], get_name = 'Contributors', set_name = 'setContributors')
-    rights = ProxyFieldProperty(IDexterityDublinCore['rights'], get_name = 'Rights', set_name = 'setRights')
+class Basic(MetadataBase):
+    title = ProxyFieldProperty(IBasic['title'], get_name = 'Title', set_name = 'setTitle')
+    description = ProxyFieldProperty(IBasic['description'], get_name = 'Description', set_name = 'setDescription')
+    
+class Categorization(MetadataBase):
+    subjects = ProxyFieldProperty(ICategorization['subjects'], get_name = 'Subject', set_name = 'setSubject')
+    language = ProxyFieldProperty(ICategorization['language'], get_name = 'Language', set_name = 'setLanguage')
+    
+class Publication(MetadataBase):
+    effective = ProxyFieldProperty(IPublication['effective'], get_name = 'effective', set_name = 'setEffectiveDate')
+    expires = ProxyFieldProperty(IPublication['expires'], get_name = 'expires', set_name = 'setExpirationDate')
+
+class Ownership(MetadataBase):
+    creators = ProxyFieldProperty(IOwnership['creators'], get_name = 'listCreators', set_name = 'setCreators')
+    contributors = ProxyFieldProperty(IOwnership['contributors'], get_name = 'Contributors', set_name = 'setContributors')
+    rights = ProxyFieldProperty(IOwnership['rights'], get_name = 'Rights', set_name = 'setRights')
+
+class DublinCore(Basic, Categorization, Publication, Ownership):
+    pass

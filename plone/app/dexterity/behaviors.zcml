@@ -12,10 +12,38 @@
     <include package="plone.app.vocabularies"/>
 
     <plone:behavior
+        title="Basic metadata"
+        description="Adds a title and description"
+        interface=".behaviors.metadata.IBasic"
+        factory=".behaviors.metadata.Basic"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+    <plone:behavior
+        title="Categorization"
+        description="Adds keywords and language setting"
+        interface=".behaviors.metadata.ICategorization"
+        factory=".behaviors.metadata.Categorization"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+    <plone:behavior
+        title="Effective range"
+        description="Assign an effective and/or expiration date"
+        interface=".behaviors.metadata.IPublication"
+        factory=".behaviors.metadata.Publication"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+    <plone:behavior
+        title="Ownership"
+        description="Adds creator, contributor, and rights fields"
+        interface=".behaviors.metadata.IOwnership"
+        factory=".behaviors.metadata.Ownership"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+    <plone:behavior
         title="Dublin Core metadata"
-        description="Adds the ability to edit the Dublin Core metadata fields"
-        interface=".behaviors.metadata.IDexterityDublinCore"
-        factory=".behaviors.metadata.DexterityDublinCore"
+        description="Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+        interface=".behaviors.metadata.IDublinCore"
+        factory=".behaviors.metadata.DublinCore"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
