@@ -1,29 +1,20 @@
 import unittest
 
-from zope.testing import doctestunit
-from zope.component import testing
 from Testing import ZopeTestCase as ztc
 
 from Products.Five import zcml
-from Products.Five import fiveconfigure
 from Products.PloneTestCase import PloneTestCase as ptc
-from Products.PloneTestCase.layer import PloneSite
-ptc.setupPloneSite()
+from Products.PloneTestCase.layer import onsetup
 
 import plone.app.dexterity
 
-class TestCase(ptc.PloneTestCase):
-    class layer(PloneSite):
-        @classmethod
-        def setUp(cls):
-            fiveconfigure.debug_mode = True
-            zcml.load_config('configure.zcml',
-                             plone.app.dexterity)
-            fiveconfigure.debug_mode = False
+@onsetup
+def setup_product():
+    zcml.load_config('meta.zcml', plone.app.dexterity)
+    zcml.load_config('configure.zcml', plone.app.dexterity)
 
-        @classmethod
-        def tearDown(cls):
-            pass
+setup_product()
+ptc.setupPloneSite(products=['example.dexterity'])
 
 
 def test_suite():
@@ -46,7 +37,7 @@ def test_suite():
 
         ztc.FunctionalDocFileSuite(
             'editing.txt', package='plone.app.dexterity',
-            test_class=TestCase),
+            test_class=ptc.FunctionalTestCase),
 
         ])
 
