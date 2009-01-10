@@ -14,7 +14,7 @@
 
     <genericsetup:registerProfile
         name="default"
-        title="Dexterity Content Types"
+        title="Dexterity Content Configlet"
         description="Adds support for managing Dexterity content types through the web"
         directory="profiles/default"
         provides="Products.GenericSetup.interfaces.EXTENSION"
