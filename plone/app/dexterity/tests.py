@@ -14,32 +14,19 @@ def setup_product():
     zcml.load_config('configure.zcml', plone.app.dexterity)
 
 setup_product()
-ptc.setupPloneSite(products=['example.dexterity'])
+ptc.setupPloneSite(products=['plone.app.dexterity'])
 
+functional_tests = (
+    'editing.txt',
+    'schema_events.txt',
+    )
 
 def test_suite():
     return unittest.TestSuite([
-
-        # Unit tests
-        #doctestunit.DocFileSuite(
-        #    'README.txt', package='plone.app.dexterity',
-        #    setUp=testing.setUp, tearDown=testing.tearDown),
-
-        #doctestunit.DocTestSuite(
-        #    module='plone.app.dexterity.mymodule',
-        #    setUp=testing.setUp, tearDown=testing.tearDown),
-
-
-        # Integration tests that use PloneTestCase
-        #ztc.ZopeDocFileSuite(
-        #    'README.txt', package='plone.app.dexterity',
-        #    test_class=TestCase),
-
         ztc.FunctionalDocFileSuite(
-            'editing.txt', package='plone.app.dexterity',
-            test_class=ptc.FunctionalTestCase),
-
-        ])
+            'tests/%s' % f, package='plone.app.dexterity',
+            test_class=ptc.FunctionalTestCase)
+        for f in functional_tests])
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')

@@ -1,13 +1,74 @@
-This package, plone.app.dexterity, provides the UI for creating and editing Dexterity content types
-through the Plone control panel.
+Through-the-web content type editing
+====================================
 
-XXX demonstrate that the types list is registered as a configlet
+This package, plone.app.dexterity, provides the UI for creating and editing
+Dexterity content types through the Plone control panel.
 
-When Dexterity is installed, you can navigate to a listing of Dexterity content types at
-/@@dexterity-types::
+To demonstrate this, we'll need a logged in test browser::
 
-    >>> browser = self.getBrowser(loggedIn=True)
-    >>> browser.handleErrors = False
-    >>> browser.open('http://nohost/plone/@@dexterity-types')
-    >>> 'Dexterity content types' in browser.contents
-    True
+  >>> from Products.Five.testbrowser import Browser
+  >>> browser = Browser()
+  >>> browser.handleErrors = False
+  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+  >>> browser.addHeader('Authorization', 'Basic root:secret')
+
+
+Dexterity Types Configlet
+-------------------------
+
+Once the 'Dexterity Content Configlet' product is installed, site managers
+can navigate to the configlet via the control panel::
+
+  >>> browser.open('http://nohost/plone')
+  >>> browser.getLink('Site Setup').click()
+  >>> browser.getLink('Dexterity Content Types').click()
+  >>> browser.url
+  'http://nohost/plone/@@dexterity-types'
+  >>> 'Dexterity content types' in browser.contents
+  True
+
+
+Adding a content type
+---------------------
+
+Let's add a 'Plonista' content type to keep track of members of the Plone
+community::
+
+  >>> browser.getControl('Type Name').value = 'Plonista'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/@@dexterity-types'
+  >>> 'Item added successfully.' in browser.contents
+  True
+
+Now we should also have a 'plonista' FTI in portal_types::
+
+  >>> 'plonista' in self.portal.portal_types
+  True
+
+
+Editing a content type
+----------------------
+
+Editing schemata is handled by the plone.schemaeditor package and is tested
+there.  However, let's at least make sure that we can navigate to the
+schema for the 'plonista' type we just created::
+
+  >>> browser.getLink('Plonista').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista'
+
+
+Removing a content type
+-----------------------
+
+We can also delete a content type via the configlet::
+
+  >>> browser.goBack()
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl('Delete').click()
+
+Now the FTI for the type should no longer be present in portal_types::
+
+  >>> 'plonista' in self.portal.portal_types
+  False
