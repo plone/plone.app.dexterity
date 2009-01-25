@@ -16,17 +16,24 @@ def setup_product():
 setup_product()
 ptc.setupPloneSite(products=['plone.app.dexterity'])
 
+doc_tests = (
+    'schema_events.txt',
+    )
 functional_tests = (
     'editing.txt',
-    'schema_events.txt',
     )
 
 def test_suite():
-    return unittest.TestSuite([
-        ztc.FunctionalDocFileSuite(
+    return unittest.TestSuite(
+        [ztc.FunctionalDocFileSuite(
             'tests/%s' % f, package='plone.app.dexterity',
             test_class=ptc.FunctionalTestCase)
-        for f in functional_tests])
+            for f in functional_tests] + 
+        [ztc.ZopeDocFileSuite(
+            'tests/%s' % f, package='plone.app.dexterity',
+            test_class=ptc.FunctionalTestCase)
+            for f in doc_tests],
+        )
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')
