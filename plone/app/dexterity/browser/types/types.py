@@ -83,6 +83,13 @@ class TypesListing(crud.CrudForm):
 
         fti = DexterityFTI(id)
         fti.id = id
+        data['behaviors'] = 'plone.app.dexterity.behaviors.metadata.IDublinCore'
+        data['model_source'] = """
+<model xmlns="http://namespaces.plone.org/supermodel/schema">
+    <schema>
+    </schema>
+</model>
+"""
         fti.manage_changeProperties(**data)
 
         ttool = getToolByName(self.context, 'portal_types')

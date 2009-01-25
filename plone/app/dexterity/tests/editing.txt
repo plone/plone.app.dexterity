@@ -46,6 +46,11 @@ Now we should also have a 'plonista' FTI in portal_types::
   >>> 'plonista' in self.portal.portal_types
   True
 
+The new type should have the dublin core behavior assigned by default::
+
+  >>> 'plone.app.dexterity.behaviors.metadata.IDublinCore' in self.portal.portal_types.plonista.behaviors
+  True
+
 
 Editing a content type
 ----------------------
