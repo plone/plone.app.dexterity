@@ -47,6 +47,14 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
+    <plone:behavior
+        title="Name from title"
+        description="Automatically generate short URL name for content based on its initial title"
+        interface="plone.app.content.interfaces.INameFromTitle"
+        factory=".behaviors.namefromtitle.NameFromTitle"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
     <!-- <plone:behavior
         title="Related items"
         description="Adds the ability to assign related items"
