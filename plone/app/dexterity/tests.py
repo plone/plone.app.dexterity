@@ -21,6 +21,7 @@ doc_tests = (
     )
 functional_tests = (
     'editing.txt',
+    'namefromtitle.txt',
     )
 
 def test_suite():
