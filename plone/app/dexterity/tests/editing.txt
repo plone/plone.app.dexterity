@@ -64,12 +64,25 @@ schema for the 'plonista' type we just created::
   'http://nohost/plone/dexterity-types/plonista'
 
 
+Enabling a behavior
+-------------------
+
+For each content type, a number of behaviors may be enabled.  Let's disable all
+the behaviors for 'plonista' and make sure that the change is reflected on the
+FTI::
+
+  >>> browser.getControl(name='form.widgets.behaviors:list').value = []
+  >>> browser.getControl('Apply').click()
+  >>> self.portal.portal_types.plonista.behaviors
+  []
+
+
 Removing a content type
 -----------------------
 
 We can also delete a content type via the configlet::
 
-  >>> browser.goBack()
+  >>> browser.open('http://nohost/plone/@@dexterity-types')
   >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
   >>> browser.getControl('Delete').click()
 

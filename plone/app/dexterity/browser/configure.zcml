@@ -3,6 +3,26 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="plone.app.dexterity">
 
-    <include package=".types"/>
+    <browser:page
+        name="dexterity-types"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".types.TypesContext"
+        permission="plone.schemaeditor.ManageSchemata"
+        allowed_interface="OFS.interfaces.IItem" />
+
+    <browser:page
+        name="edit"
+        for="plone.app.dexterity.interfaces.ITypesContext"
+        class=".types.TypesListingPage"
+        permission="plone.schemaeditor.ManageSchemata" />
+    
+    <browser:page
+        name="edit"
+        for="plone.app.dexterity.interfaces.ITypeSchemaContext"
+        class=".edit_type.TypeEditPage"
+        permission="plone.schemaeditor.ManageSchemata" />
+    
+    <adapter
+        factory=".behaviors.BehaviorConfigurationAdapter" />
 
 </configure>

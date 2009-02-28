@@ -62,7 +62,8 @@
         factory=".behaviors.relations.IRelatedItems"
         for="plone.dexterity.interfaces.IDexterityContent"
         /> -->
-    
+
     <grok:grok package=".behaviors.metadata" />
-  
+    <grok:grok package=".behaviors.namefromtitle" />
+
 </configure>

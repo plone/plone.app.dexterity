@@ -1,0 +1,182 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone.z3cform"
+      tal:omit-tag="">
+
+  <head></head>
+
+  <body>
+
+    <div class="form" metal:define-macro="form">
+
+      <h3 tal:condition="view/label | nothing">
+          <span tal:replace="view/label">Form title</span>:</h3>
+
+      <metal:define define-macro="titlelessform">
+
+        <tal:status define="status view/status" condition="status">
+            <dl class="portalMessage error"
+                tal:condition="view/widgets/errors">
+                <dt i18n:translate="">
+                    Error
+                </dt>
+                <dd tal:content="status" />
+            </dl>
+
+            <dl class="portalMessage info"
+                tal:condition="not: view/widgets/errors">
+                <dt i18n:translate="">
+                    Info
+                </dt>
+                <dd tal:content="status" />
+            </dl>
+        </tal:status>
+
+        <tal:comment condition="nothing">
+          <ul tal:define="errors view/widgets/errors"
+              tal:condition="errors">
+            <li tal:repeat="error errors">
+              <tal:block replace="error/widget/label"/>:
+              <tal:block replace="structure error/render" />
+            </li>
+          </ul>
+        </tal:comment>
+
+        <p  class="discreet"
+            tal:define="description view/description | nothing"
+            tal:content="description">
+                Description
+        </p>
+
+
+        <dl class="enableFormTabbing"
+            tal:define="groups view/groups | nothing;
+                        form_name view/form_name | nothing;
+                        default_fieldset_label view/default_fieldset_label | form_name;
+                        has_groups python:bool(groups);
+                        form_tabbing  python:has_groups and 'enableFormTabbing' or '';
+                        show_default_label python:has_groups and default_fieldset_label or form_name;">
+          <!-- Default fieldset -->
+
+          <metal:define define-macro="fields"
+                        tal:define="show_default_label show_default_label|nothing;
+                                    has_groups has_groups|nothing">
+
+            <dt tal:condition="show_default_label"
+                    tal:attributes="id string:fieldsetlegend-default"
+                    tal:content="default_fieldset_label">Form name</dt>
+            <dd id="fieldset-default"
+                      tal:omit-tag="not:show_default_label">
+
+                <form class="rowlike enableUnloadProtection" action="." method="post"
+                    tal:attributes="action request/getURL; enctype view/enctype;
+                                    class python:'rowlike enableUnloadProtection kssattr-formname-%s' % view.__name__;">
+
+                <input type="hidden"
+                     name="fieldset.current"
+                     tal:condition="has_groups"
+                     tal:attributes="value request/fieldset.current | string:" />
+
+                <metal:define define-macro="widget_rendering">
+                    <tal:widgets repeat="widget view/widgets/values">
+                      <div class="row horizontal"
+                           tal:define="hidden python:widget.mode == 'hidden'"
+                           tal:omit-tag="hidden">
+
+                        <metal:field define-macro="field">
+                          <div class="field"
+                               tal:define="error widget/error;
+                                   error_class python:error and ' error' or ' ';
+                                   fieldname_class string:kssattr-fieldname-${widget/name};"
+                               tal:attributes="class string:field ${fieldname_class}${error_class};
+                                       id string:formfield-${widget/id};">
+
+                            <label for="" class="horizontal"
+                                   tal:attributes="for widget/id"
+                                   tal:condition="not:hidden">
+                              <span i18n:translate=""
+                                    tal:content="widget/label">label</span>
+                            </label>
+
+                            <span class="fieldRequired horizontal" title="Required"
+                                  tal:condition="python:widget.required and not hidden"
+                                  i18n:translate="label_required"
+                                  i18n:attributes="title title_required;">
+                              (Required)
+                            </span>
+
+                            <div class="formHelp"
+                                 tal:define="description widget/field/description"
+                                 i18n:translate=""
+                                 tal:content="description"
+                                 tal:condition="python:description and not hidden"
+                                 >field description</div>
+
+                    <div class="fieldErrorBox"
+                         tal:content="structure error/render|nothing">
+                      Error
+                    </div>
+
+                            <div class="widget z3cformInlineValidation horizontal">
+                              <input type="text" tal:replace="structure widget/render" />
+                            </div>
+                          </div>
+                        </metal:field>
+
+                      </div>
+                    </tal:widgets>
+                </metal:define>
+
+                </form>
+
+            </dd>
+
+            <!-- Secondary fieldsets -->
+
+            <tal:subform
+                tal:condition="has_groups"
+                tal:repeat="group groups">
+
+            <dt tal:define="form_name group/label"
+                    tal:condition="form_name"
+                    tal:attributes="id string:fieldsetlegend-${repeat/group/index}"
+                    tal:content="form_name">Form name</dt>
+            <dd
+                class="kssattr-fieldset-0"
+                tal:attributes="id string:fieldset-${repeat/group/index};
+                                class string:kssattr-fieldset-${repeat/group/index}">
+
+                    <p i18n:translate=""
+                       tal:define="group_description group/description|nothing"
+                       tal:condition="group_description"
+                       tal:content="group_description">
+                        Description
+                    </p>
+
+                    <tal:block define="view nocall:group">
+                        <tal:block tal:replace="structure view/render" />
+                    </tal:block>
+
+            </dd>
+            </tal:subform>
+          </metal:define>
+
+          <metal:define define-macro="actions">
+
+            <div class="formFields" tal:condition="view/actions/values|nothing">
+                <tal:block repeat="action view/actions/values">
+                  <input type="submit"
+                    tal:replace="structure action/render" />
+                </tal:block>
+            </div>
+          </metal:define>
+        
+        </dl>
+
+      </metal:define>
+      </div>
+
+  </body>
+</html>

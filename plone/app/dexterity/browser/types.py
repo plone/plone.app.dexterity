@@ -16,7 +16,7 @@ from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.fti import DexterityFTI
-from plone.app.dexterity.interfaces import ITypesContext
+from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext
 from plone.schemaeditor.browser.schema.schema import SchemaContext
 import plone.schemaeditor.browser
 
@@ -115,6 +115,14 @@ class TypesListing(crud.CrudForm):
 # Create a form wrapper so the form gets layout.
 TypesListingPage = layout.wrap_form(TypesListing, label=u'Dexterity content types')
 
+class TypeSchemaContext(SchemaContext):
+    implements(ITypeSchemaContext)
+    
+    fti = None
+    
+    def setFTI(self, fti):
+        self.fti = fti
+
 
 class TypesContext(SimpleItem):
     """ This class represents the types configlet, and allows us to traverse
@@ -149,7 +157,9 @@ class TypesContext(SimpleItem):
             raise TypeError, u'This dexterity type cannot be edited through the web.'
         
         schema = fti.lookup_schema()
-        return SchemaContext(schema, request, name=name, title=fti.title).__of__(self)
+        schema_context = TypeSchemaContext(schema, request, name=name, title=fti.title).__of__(self)
+        schema_context.setFTI(fti)
+        return schema_context
 
     def browserDefault(self, request):
         """ If we aren't traversing to a schema beneath the types configlet, we actually want to
