@@ -1,10 +1,11 @@
+from DateTime import DateTime
+from datetime import datetime
 from zope.interface import alsoProvides
 from zope.component import adapts
 from zope import schema
 from plone.directives import form
 from plone.dexterity.interfaces import IDexterityContent
 from plone.autoform.interfaces import IFormFieldProvider
-from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 
 try:
     from z3c.form.browser.textlines import TextLinesFieldWidget
@@ -125,35 +126,77 @@ alsoProvides(IOwnership, IFormFieldProvider)
 alsoProvides(IDublinCore, IFormFieldProvider)
 
 class MetadataBase(object):
-    """ This adapter uses ProxyFieldProperty to store metadata directly on an object
+    """ This adapter uses DCFieldProperty to store metadata directly on an object
         using the standard CMF DefaultDublinCoreImpl getters and setters.
     """
     adapts(IDexterityContent)
     
-    # work around ProxyFieldProperty's assumption of an 'encoding' attribute
-    # on the adapter
-    # XXX revisit this
-    encoding = None
-    
     def __init__(self, context):
         self.context = context
 
+_marker = object()
+class DCFieldProperty(object):
+    """Computed attributes based on schema fields.
+    Based on zope.schema.fieldproperty.FieldProperty.
+    """
+
+    def __init__(self, field, get_name=None, set_name=None):
+        if get_name is None:
+            get_name = field.__name__
+        self._field = field
+        self._get_name = get_name
+        self._set_name = set_name
+
+    def __get__(self, inst, klass):
+        if inst is None:
+            return self
+
+        attribute = getattr(inst.context, self._get_name, _marker)
+        if attribute is _marker:
+            field = self._field.bind(inst)
+            attribute = getattr(field, 'default', _marker)
+            if attribute is _marker:
+                raise AttributeError(self._field.__name__)
+        elif callable(attribute):
+            attribute = attribute()
+
+        if isinstance(attribute, DateTime):
+             return datetime(*map(int, attribute.parts()[:6]))
+        return attribute
+
+    def __set__(self, inst, value):
+        field = self._field.bind(inst)
+        field.validate(value)
+        if field.readonly:
+            raise ValueError(self._field.__name__, 'field is readonly')
+        if isinstance(value, datetime):
+            value = DateTime(value.isoformat())
+        if self._set_name:
+            getattr(inst.context, self._set_name)(value)
+        elif inst.context.hasProperty(self._get_name):
+            inst.context._updateProperty(self._get_name, value)
+        else:
+            setattr(inst.context, self._get_name, value)
+
+    def __getattr__(self, name):
+        return getattr(self._field, name)
+
 class Basic(MetadataBase):
-    title = ProxyFieldProperty(IBasic['title'], get_name = 'Title', set_name = 'setTitle')
-    description = ProxyFieldProperty(IBasic['description'], get_name = 'Description', set_name = 'setDescription')
+    title = DCFieldProperty(IBasic['title'], get_name = 'Title', set_name = 'setTitle')
+    description = DCFieldProperty(IBasic['description'], get_name = 'Description', set_name = 'setDescription')
     
 class Categorization(MetadataBase):
-    subjects = ProxyFieldProperty(ICategorization['subjects'], get_name = 'Subject', set_name = 'setSubject')
-    language = ProxyFieldProperty(ICategorization['language'], get_name = 'Language', set_name = 'setLanguage')
+    subjects = DCFieldProperty(ICategorization['subjects'], get_name = 'Subject', set_name = 'setSubject')
+    language = DCFieldProperty(ICategorization['language'], get_name = 'Language', set_name = 'setLanguage')
     
 class Publication(MetadataBase):
-    effective = ProxyFieldProperty(IPublication['effective'], get_name = 'effective', set_name = 'setEffectiveDate')
-    expires = ProxyFieldProperty(IPublication['expires'], get_name = 'expires', set_name = 'setExpirationDate')
+    effective = DCFieldProperty(IPublication['effective'], get_name = 'effective', set_name = 'setEffectiveDate')
+    expires = DCFieldProperty(IPublication['expires'], get_name = 'expires', set_name = 'setExpirationDate')
 
 class Ownership(MetadataBase):
-    creators = ProxyFieldProperty(IOwnership['creators'], get_name = 'listCreators', set_name = 'setCreators')
-    contributors = ProxyFieldProperty(IOwnership['contributors'], get_name = 'Contributors', set_name = 'setContributors')
-    rights = ProxyFieldProperty(IOwnership['rights'], get_name = 'Rights', set_name = 'setRights')
+    creators = DCFieldProperty(IOwnership['creators'], get_name = 'listCreators', set_name = 'setCreators')
+    contributors = DCFieldProperty(IOwnership['contributors'], get_name = 'Contributors', set_name = 'setContributors')
+    rights = DCFieldProperty(IOwnership['rights'], get_name = 'Rights', set_name = 'setRights')
 
 class DublinCore(Basic, Categorization, Publication, Ownership):
     pass
