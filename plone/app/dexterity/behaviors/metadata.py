@@ -57,6 +57,7 @@ class ICategorization(form.Schema):
         title = u'Language',
         vocabulary = 'plone.app.vocabularies.AvailableContentLanguages',
         required = False,
+        missing_value = '',
         )
 
 class IPublication(form.Schema):
