@@ -6,7 +6,9 @@
 
     <!-- widgets -->
     <!-- <include package="collective.z3cform.datepicker"/> -->
-    <!-- <include package="plone.formwidget.relations"/> -->
+    <include package="plone.formwidget.autocomplete"/>
+    <include package="plone.formwidget.contenttree"/>
+    <include package="plone.formwidget.relations"/>
 
     <!-- vocabularies -->
     <include package="plone.app.vocabularies"/>
@@ -55,15 +57,14 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
-    <!-- <plone:behavior
+    <plone:behavior
         title="Related items"
         description="Adds the ability to assign related items"
         interface=".behaviors.relations.IRelatedItems"
         factory=".behaviors.relations.IRelatedItems"
         for="plone.dexterity.interfaces.IDexterityContent"
-        /> -->
+        />
 
-    <grok:grok package=".behaviors.metadata" />
-    <grok:grok package=".behaviors.namefromtitle" />
+    <grok:grok package=".behaviors" />
 
 </configure>

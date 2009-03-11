@@ -39,6 +39,9 @@ setup(name='plone.app.dexterity',
           'plone.schemaeditor',
           'Products.CMFCore',
 #          'collective.z3cform.datepicker',
+          'plone.formwidget.autocomplete',
+          'plone.formwidget.relations',
+          'plone.formwidget.contenttree',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
