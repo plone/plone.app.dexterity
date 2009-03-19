@@ -4,6 +4,5 @@
   <dependencies>
     <dependency>profile-plone.formwidget.autocomplete:default</dependency>
     <dependency>profile-plone.formwidget.contenttree:default</dependency>
-    <dependency>profile-plone.app.relations:default</dependency>
   </dependencies>
 </metadata>
