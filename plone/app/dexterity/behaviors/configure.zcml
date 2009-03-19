@@ -72,7 +72,7 @@
         title="Related items"
         description="Adds the ability to assign related items"
         interface=".related.IRelatedItems"
-        factory=".related.RelatedItemsFactory"
+        subtype=".related.IRelatedItems"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
