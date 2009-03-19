@@ -21,7 +21,8 @@
         />
 
     <include package=".browser" />
-    <include file="behaviors.zcml" />
+    <include package=".behaviors" />
+    
     <include file="events.zcml" />
     
     <!-- override add views -->

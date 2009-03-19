@@ -4,59 +4,76 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="plone.app.dexterity">
 
-    <!-- widgets -->
-    <!-- <include package="collective.z3cform.datepicker"/> -->
     <include package="plone.behavior" file="meta.zcml"/>
+    
+    <!-- Fields -->
+    <include package="plone.app.relationfield"/>
+    
+    <!-- widgets -->
     <include package="plone.formwidget.autocomplete"/>
     <include package="plone.formwidget.contenttree"/>
+    
+    <!-- <include package="collective.z3cform.datepicker"/> -->
 
     <!-- vocabularies -->
     <include package="plone.app.vocabularies"/>
 
+    <!-- Grok schemata -->
+    <grok:grok package="." />
+
+    <!-- Metadata -->
     <plone:behavior
         title="Basic metadata"
         description="Adds a title and description"
-        interface=".behaviors.metadata.IBasic"
-        factory=".behaviors.metadata.Basic"
+        interface=".metadata.IBasic"
+        factory=".metadata.Basic"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
     <plone:behavior
         title="Categorization"
         description="Adds keywords and language setting"
-        interface=".behaviors.metadata.ICategorization"
-        factory=".behaviors.metadata.Categorization"
+        interface=".metadata.ICategorization"
+        factory=".metadata.Categorization"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
     <plone:behavior
         title="Effective range"
         description="Assign an effective and/or expiration date"
-        interface=".behaviors.metadata.IPublication"
-        factory=".behaviors.metadata.Publication"
+        interface=".metadata.IPublication"
+        factory=".metadata.Publication"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
     <plone:behavior
         title="Ownership"
         description="Adds creator, contributor, and rights fields"
-        interface=".behaviors.metadata.IOwnership"
-        factory=".behaviors.metadata.Ownership"
+        interface=".metadata.IOwnership"
+        factory=".metadata.Ownership"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
     <plone:behavior
         title="Dublin Core metadata"
         description="Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
-        interface=".behaviors.metadata.IDublinCore"
-        factory=".behaviors.metadata.DublinCore"
+        interface=".metadata.IDublinCore"
+        factory=".metadata.DublinCore"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
+    <!-- Title-to-id -->
     <plone:behavior
         title="Name from title"
         description="Automatically generate short URL name for content based on its initial title"
         interface="plone.app.content.interfaces.INameFromTitle"
-        factory=".behaviors.namefromtitle.NameFromTitle"
+        factory=".namefromtitle.NameFromTitle"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
-
-    <grok:grok package=".behaviors" />
+        
+    <!-- Related items -->
+    <plone:behavior
+        title="Related items"
+        description="Adds the ability to assign related items"
+        interface=".related.IRelatedItems"
+        factory=".related.RelatedItemsFactory"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
 
 </configure>
