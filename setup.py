@@ -31,7 +31,9 @@ setup(name='plone.app.dexterity',
           'zope.schema',
           'zope.publisher',
           'z3c.form',
-          'plone.z3cform',
+          'plone.z3cform>=0.5.4dev',
+           # ^^ strictly speaking either this dev version OR z3c.form trunk
+           # is required, for the textlines widget
           'plone.app.z3cform',
           'plone.supermodel',
           'plone.dexterity',
