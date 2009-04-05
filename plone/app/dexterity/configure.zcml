@@ -25,6 +25,16 @@
     
     <include file="events.zcml" />
     
+    <!-- Make Dexterity types portlet- and content rule aware -->
+    
+    <class class="plone.dexterity.content.DexterityContent">
+        <implements interface="plone.portlets.interfaces.ILocalPortletAssignable" />
+    </class>
+    
+    <class class="plone.dexterity.content.DexterityContent">
+        <implements interface="plone.contentrules.engine.interfaces.IRuleAssignable" />
+    </class>
+    
     <!-- override add views -->
     <include package="Products.CMFCore" />
     <include package="plone.app.content" />
