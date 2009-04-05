@@ -3,7 +3,6 @@ from zope.interface import alsoProvides
 from z3c.relationfield.schema import RelationChoice, RelationList
 
 from plone.formwidget.contenttree import ObjPathSourceBinder
-from plone.dexterity.interfaces import IDexterityContent
 from plone.directives import form
 
 class IRelatedItems(form.Schema):
