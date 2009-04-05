@@ -3,6 +3,27 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="plone.app.dexterity">
 
+    
+    <!-- Default view for Dexterity types in Plone -->
+    
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityItem"
+        name="view"
+        class="plone.dexterity.browser.view.DefaultView"
+        template="item.pt"
+        permission="zope2.View"
+        />
+    
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        name="view"
+        class="plone.dexterity.browser.view.DefaultView"
+        template="container.pt"
+        permission="zope2.View"
+        />
+    
+    <!-- Control panel -->
+
     <browser:page
         name="dexterity-types"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
