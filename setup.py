@@ -45,6 +45,8 @@ setup(name='plone.app.dexterity',
           'plone.formwidget.autocomplete',
           'plone.formwidget.contenttree',
           'plone.app.relationfield',
+          'plone.portlets',
+          'plone.contentrules',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
