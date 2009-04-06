@@ -13,8 +13,8 @@
 
     <genericsetup:registerProfile
         name="default"
-        title="Dexterity Content Type Editor"
-        description="Adds support for managing Dexterity content types through the web"
+        title="Dexterity Content Types - Plone Integration"
+        description="Configures various components needed for full Dexterity support."
         directory="profiles/default"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
