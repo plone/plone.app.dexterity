@@ -41,4 +41,12 @@
     <include package="plone.app.contentmenu" />
     <includeOverrides file="overrides.zcml" />
 
+    <!-- hide profiles for our widget/field dependencies -->
+    <utility
+        factory=".integration.HiddenProfiles"
+        provides="Products.CMFPlone.interfaces.INonInstallable" />
+    <utility
+        factory=".integration.HiddenProfiles"
+        provides="Products.CMFQuickInstallerTool.interfaces.INonInstallable" />
+
 </configure>

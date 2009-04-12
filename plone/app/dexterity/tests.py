@@ -21,6 +21,7 @@ doc_tests = (
     )
 functional_tests = (
     'editing.txt',
+    'installation.txt',
     'namefromtitle.txt',
     )
 
