@@ -1,4 +1,3 @@
-from OFS.interfaces import IItem
 from OFS.SimpleItem import SimpleItem
 
 from zope.interface import Interface, implements
@@ -7,7 +6,6 @@ from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope import schema
 
-from z3c.form import field
 from plone.z3cform import layout
 from plone.z3cform.crud import crud
 
@@ -21,7 +19,7 @@ from plone.schemaeditor.browser.schema.schema import SchemaContext
 import plone.schemaeditor.browser
 
 
-class IAddTypeSettings(Interface):
+class ITypeSettings(Interface):
     """ Define the fields for the content type add form
     """
     
@@ -58,8 +56,8 @@ class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.
     """
     
-    view_schema = field.Fields(IItem).select('title')
-    add_schema = IAddTypeSettings
+    view_schema = ITypeSettings
+    add_schema = ITypeSettings
     
     addform_factory = TypeAddForm
     editform_factory = TypeEditForm
@@ -107,10 +105,8 @@ class TypesListing(crud.CrudForm):
         """ Generate links to the edit page for each type.
             (But only for types with schemata that can be edited through the web.)
         """
-        if item.model_source:
+        if field == 'title':
             return '%s/%s' % (self.context.absolute_url(), item.__name__)
-        else:
-            return None
 
 # Create a form wrapper so the form gets layout.
 TypesListingPage = layout.wrap_form(TypesListing, label=u'Dexterity content types')
@@ -151,11 +147,7 @@ class TypesContext(SimpleItem):
             fti = getUtility(IDexterityFTI, name=name)
         except ComponentLookupError:
             return None
-            
-        if not fti.has_dynamic_schema:
-            # XXX more verbose error?
-            raise TypeError, u'This dexterity type cannot be edited through the web.'
-        
+
         schema = fti.lookup_schema()
         schema_context = TypeSchemaContext(schema, request, name=name, title=fti.title).__of__(self)
         schema_context.setFTI(fti)
