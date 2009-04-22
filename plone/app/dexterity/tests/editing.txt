@@ -71,6 +71,7 @@ For each content type, a number of behaviors may be enabled.  Let's disable all
 the behaviors for 'plonista' and make sure that the change is reflected on the
 FTI::
 
+  >>> browser.getLink('Behaviors').click()
   >>> browser.getControl(name='form.widgets.behaviors:list').value = []
   >>> browser.getControl('Apply').click()
   >>> self.portal.portal_types.plonista.behaviors
