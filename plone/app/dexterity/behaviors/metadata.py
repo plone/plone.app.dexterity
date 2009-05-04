@@ -11,7 +11,7 @@ try:
     from z3c.form.browser.textlines import TextLinesFieldWidget
 except ImportError:
     from plone.z3cform.textlines.textlines import TextLinesFieldWidget
-# from collective.z3cform.datepicker.widget import DateTimePickerFieldWidget
+from collective.z3cform.datepicker.widget import DateTimePickerFieldWidget
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
 # content edit forms.
@@ -73,14 +73,14 @@ class IPublication(form.Schema):
         description = u'If this date is in the future, the content will not show up in listings and searches until this date.',
         required = False
         )
-    # form.widget(effective = DateTimePickerFieldWidget)
+    form.widget(effective = DateTimePickerFieldWidget)
         
     expires = schema.Datetime(
         title = u'Expiration',
         description = u'When this date is reached, the content will nolonger be visible in listings and searches.',
         required = False
         )
-    # form.widget(expires = DateTimePickerFieldWidget)
+    form.widget(expires = DateTimePickerFieldWidget)
 
 class IOwnership(form.Schema):
     # ownership fieldset
@@ -191,8 +191,8 @@ class Categorization(MetadataBase):
     language = DCFieldProperty(ICategorization['language'], get_name = 'Language', set_name = 'setLanguage')
     
 class Publication(MetadataBase):
-    effective = DCFieldProperty(IPublication['effective'], get_name = 'effective', set_name = 'setEffectiveDate')
-    expires = DCFieldProperty(IPublication['expires'], get_name = 'expires', set_name = 'setExpirationDate')
+    effective = DCFieldProperty(IPublication['effective'], get_name = 'effective_date')
+    expires = DCFieldProperty(IPublication['expires'], get_name = 'expiration_date')
 
 class Ownership(MetadataBase):
     creators = DCFieldProperty(IOwnership['creators'], get_name = 'listCreators', set_name = 'setCreators')

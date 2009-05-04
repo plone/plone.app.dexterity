@@ -13,7 +13,7 @@
     <include package="plone.formwidget.autocomplete"/>
     <include package="plone.formwidget.contenttree"/>
     
-    <!-- <include package="collective.z3cform.datepicker"/> -->
+    <include package="collective.z3cform.datepicker"/>
 
     <!-- vocabularies -->
     <include package="plone.app.vocabularies"/>
