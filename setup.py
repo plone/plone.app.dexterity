@@ -34,14 +34,18 @@ setup(name='plone.app.dexterity',
           'plone.z3cform>=0.5.4dev',
            # ^^ strictly speaking either this dev version OR z3c.form trunk
            # is required, for the textlines widget
-          'plone.app.z3cform',
+          'plone.app.z3cform>=0.4.5dev',
+          # ^ 0.4.5 required for the default datetime widget
           'plone.supermodel',
           'plone.dexterity',
           'plone.directives.form',
           'plone.directives.dexterity',
           'plone.schemaeditor',
           'Products.CMFCore',
-          'collective.z3cform.datepicker',
+          'collective.z3cform.datepicker>=0.1rc8',
+          # ^ no explicit dependency in this package, since this is configured
+          # as the default datetime widget in plone.app.z3cform ... but we need
+          # to make sure we have 0.1rc8
           'plone.formwidget.autocomplete',
           'plone.formwidget.contenttree',
           'plone.app.relationfield',
