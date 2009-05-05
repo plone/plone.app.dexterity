@@ -32,6 +32,12 @@ class ITypeSettings(Interface):
         required = False
         )
 
+    container = schema.Bool(
+        title = u'This content type is a container.',
+        description = u'If enabled, items of this type will be able to contain other items.',
+        required = True,
+        default = False,
+        )
 
 class TypeAddForm(crud.AddForm):
     """ Content type add form.  Just a normal CRUD add form with a custom template to show a form title.
@@ -88,6 +94,9 @@ class TypesListing(crud.CrudForm):
     </schema>
 </model>
 """
+        if data['container']:
+            data['klass'] = 'plone.dexterity.content.Container'
+            del data['container']
         fti.manage_changeProperties(**data)
 
         ttool = getToolByName(self.context, 'portal_types')
