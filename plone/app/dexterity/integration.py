@@ -2,12 +2,18 @@
 Miscellaneous things to help integrate the Dexterity libraries into Plone.
 """
 
-from zope.interface import implements
+from zope.interface import implements, classImplements
 from Products.CMFPlone.interfaces import INonInstallable as IPloneFactoryNonInstallable
-from Products.CMFQuickInstallerTool.interfaces import INonInstallable as IQuickInstallerNonInstallable
+try:
+    from Products.CMFQuickInstallerTool.interfaces import INonInstallable as IQuickInstallerNonInstallable
+except ImportError:
+    # Plone trunk
+    HAS_QI = False
+else:
+    HAS_QI = True
 
 class HiddenProfiles(object):
-    implements(IPloneFactoryNonInstallable, IQuickInstallerNonInstallable)
+    implements(IPloneFactoryNonInstallable)
 
     def getNonInstallableProfiles(self):
         """
@@ -29,3 +35,6 @@ class HiddenProfiles(object):
             'plone.formwidget.contenttree',
             'plone.app.relationfield',
             ]
+
+if HAS_QI:
+    classImplements(HiddenProfiles, IQuickInstallerNonInstallable)
