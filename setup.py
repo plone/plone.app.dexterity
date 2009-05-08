@@ -48,10 +48,10 @@ setup(name='plone.app.dexterity',
           # to make sure we have 0.1rc8
           'plone.formwidget.autocomplete',
           'plone.formwidget.contenttree',
+          'plone.app.content',
           'plone.app.relationfield',
           'plone.portlets',
           'plone.contentrules',
-          # -*- Extra requirements: -*-
       ],
       entry_points="""
       [z3c.autoinclude.plugin]

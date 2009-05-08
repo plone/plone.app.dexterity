@@ -98,9 +98,13 @@ def ActionInfo___init__(self, action, ec):
 #   4. Register override view for @@folder_factories to use actions instead
 #       of constructing URLs manually
 
-from plone.app.content.browser.folderfactories import _allowedTypes
-from plone.app.content.browser.folderfactories import FolderFactoriesView
-from zope.component import getMultiAdapter, queryMultiAdapter, queryUtility
+# BBB support for plone.app.content < 2.0
+try:
+    from plone.app.layout.content.folderfactories import FolderFactoriesView
+except ImportError:
+    from plone.app.content.browser.folderfactories import FolderFactoriesView
+
+from zope.component import getMultiAdapter, queryUtility
 from zope.i18n import translate
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from urllib import quote_plus
@@ -132,7 +136,7 @@ class ActionAwareFolderFactoriesView(FolderFactoriesView):
         addContext = self.add_context()
         baseUrl = addContext.absolute_url()
         
-        allowedTypes = _allowedTypes(request, addContext)
+        allowedTypes = addContext.allowedContentTypes()
         
         # XXX: This is calling a pyscript (which we encourage people to customise TTW)
         exclude = addContext.getNotAddableTypes()
