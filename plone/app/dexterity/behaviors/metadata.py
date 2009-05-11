@@ -75,7 +75,7 @@ class IPublication(form.Schema):
         
     expires = schema.Datetime(
         title = u'Expiration',
-        description = u'When this date is reached, the content will nolonger be visible in listings and searches.',
+        description = u'When this date is reached, the content will no longer be visible in listings and searches.',
         required = False
         )
 
