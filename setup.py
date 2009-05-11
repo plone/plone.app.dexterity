@@ -42,10 +42,6 @@ setup(name='plone.app.dexterity',
           'plone.directives.dexterity',
           'plone.schemaeditor',
           'Products.CMFCore',
-          'collective.z3cform.datepicker>=0.1rc8',
-          # ^ no explicit dependency in this package, since this is configured
-          # as the default datetime widget in plone.app.z3cform ... but we need
-          # to make sure we have 0.1rc8
           'plone.formwidget.autocomplete',
           'plone.formwidget.contenttree',
           'plone.app.content',
