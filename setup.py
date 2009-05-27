@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '1.0a1'
 
 setup(name='plone.app.dexterity',
       version=version,
@@ -15,9 +15,9 @@ setup(name='plone.app.dexterity',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='plone ttw dexterity schema interface',
-      author='David Glick',
+      author='Martin Aspeli, David Glick, et al',
       author_email='davidglick@onenw.org',
-      url='http://code.google.com/p/dexterity',
+      url='http://plone.org/products/dexterity',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['plone','plone.app'],
@@ -31,10 +31,10 @@ setup(name='plone.app.dexterity',
           'zope.schema',
           'zope.publisher',
           'z3c.form',
-          'plone.z3cform>=0.5.4dev',
+          'plone.z3cform>=0.5.4',
            # ^^ strictly speaking either this dev version OR z3c.form trunk
            # is required, for the textlines widget
-          'plone.app.z3cform>=0.4.5dev',
+          'plone.app.z3cform>=0.4.5',
           # ^ 0.4.5 required for the default datetime widget
           'plone.supermodel',
           'plone.dexterity',
