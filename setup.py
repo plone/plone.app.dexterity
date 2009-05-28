@@ -5,7 +5,7 @@ version = '1.0a2'
 
 setup(name='plone.app.dexterity',
       version=version,
-      description="Experimental through-the-web Zope 3 schema editor",
+      description="Integrates the Dexterity content type system into Plone",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
