@@ -5,7 +5,6 @@ from Testing import ZopeTestCase as ztc
 from Products.Five import zcml
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
-from Products.PloneTestCase.setup import default_extension_profiles
 
 import plone.app.dexterity
 
@@ -15,7 +14,7 @@ def setup_product():
     zcml.load_config('configure.zcml', plone.app.dexterity)
 
 setup_product()
-ptc.setupPloneSite(extension_profiles=list(default_extension_profiles) + ['plone.app.dexterity:default'])
+ptc.setupPloneSite(extension_profiles=['plone.app.dexterity:default'])
 
 doc_tests = (
     'schema_events.txt',
