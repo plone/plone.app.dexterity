@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0a1'
+version = '2.0'
 
 setup(name='plone.app.dexterity',
       version=version,
-      description="Experimental through-the-web Zope 3 schema editor",
+      description="Integrates the Dexterity content type system into Plone",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
@@ -16,7 +16,7 @@ setup(name='plone.app.dexterity',
         ],
       keywords='plone ttw dexterity schema interface',
       author='Martin Aspeli, David Glick, et al',
-      author_email='davidglick@onenw.org',
+      author_email='dexterity-development@googlegroups.com',
       url='http://plone.org/products/dexterity',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
