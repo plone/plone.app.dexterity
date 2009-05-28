@@ -1,20 +1,6 @@
 Integration with Plone product installation
 ===========================================
 
-Make sure we have hidden our field/widget dependencies from the quick
-installer.  (Although, Plone trunk doesn't use the quick installer, so
-then we'll just skip the check.)
-  >>> qi = getattr(self.portal, 'portal_quickinstaller', None)
-  >>> products = qi and [p['id'] for p in qi.listInstallableProducts(skipInstalled=False)] or ('plone.app.dexterity',)
-  >>> 'plone.app.dexterity' in products
-  True
-  >>> 'plone.app.relationfield' in products
-  False
-  >>> 'plone.formwidget.autocomplete' in products
-  False
-  >>> 'plone.formwidget.contenttree' in products
-  False
-
 Get a logged-in test browser.
   >>> from Products.Five.testbrowser import Browser
   >>> browser = Browser()
