@@ -40,7 +40,6 @@
     <include package="Products.CMFCore" />
     <include package="plone.app.content" />
     <include package="plone.app.contentmenu" />
-    <includeOverrides file="overrides.zcml" />
 
     <!-- hide profiles for our widget/field dependencies -->
     <utility

@@ -1,9 +1,12 @@
 Changelog
 =========
 
-1.0a2 (unreleased)
+1.0a2 (2009-06-01)
 ------------------
 
+* Remove superfluous <includeOverrides /> in configure.zcml which would cause
+  a problem when the package is loaded via z3c.autoinclude.plugin
+  [optilude]
 
 1.0a1 - (2009-05-27)
 --------------------
