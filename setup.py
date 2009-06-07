@@ -38,6 +38,7 @@ setup(name='plone.app.dexterity',
           # ^ 0.4.5 required for the default datetime widget
           'plone.supermodel',
           'plone.dexterity',
+          'plone.behavior>=1.0b4',
           'plone.directives.form',
           'plone.directives.dexterity',
           'plone.schemaeditor',

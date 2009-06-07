@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0a3 (2009-06-07)
+------------------
+
+* Updated use of <plone:behavior /> directive to match plone.behavior 1.0b4.
+  [optilude]
+
 1.0a2 (2009-06-01)
 ------------------
 
