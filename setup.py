@@ -49,7 +49,7 @@ setup(name='plone.app.dexterity',
           'plone.app.relationfield',
           'plone.portlets',
           'plone.contentrules',
-          'five.localsitemanager>=1.1dev,<2.0dev',
+          'five.localsitemanager>=1.1dev',
           # ^^ required to fix a bug that affects content with __parent__ pointers set
           'collective.monkeypatcher',
       ],
