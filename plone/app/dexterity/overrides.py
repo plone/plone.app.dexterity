@@ -7,10 +7,7 @@
 from Products.CMFCore.interfaces import IAction
 def TypesTool_listActions(self, info=None, object=None):
     """ List all the actions defined by a provider.
-    """
-    
-    import pdb; pdb.set_trace( )
-    
+    """    
     actions = list( self._actions )
 
     if object is None and info is not None:
@@ -70,9 +67,7 @@ class AddViewTraverser(object):
 
 from UserDict import UserDict
 def ActionInfo___init__(self, action, ec):
-    
-    import pdb; pdb.set_trace( )
-    
+
     if isinstance(action, dict):
         lazy_keys = []
         UserDict.__init__(self, action)
