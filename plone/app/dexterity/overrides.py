@@ -8,6 +8,9 @@ from Products.CMFCore.interfaces import IAction
 def TypesTool_listActions(self, info=None, object=None):
     """ List all the actions defined by a provider.
     """
+    
+    import pdb; pdb.set_trace( )
+    
     actions = list( self._actions )
 
     if object is None and info is not None:
@@ -67,6 +70,9 @@ class AddViewTraverser(object):
 
 from UserDict import UserDict
 def ActionInfo___init__(self, action, ec):
+    
+    import pdb; pdb.set_trace( )
+    
     if isinstance(action, dict):
         lazy_keys = []
         UserDict.__init__(self, action)
@@ -220,12 +226,3 @@ class ActionAwareFactoriesSubMenuItem(FactoriesSubMenuItem):
             return '%s/createObject?type_name=%s' % (baseUrl, quote_plus(fti.getId()),)
         else:
             return '%s/folder_factories' % self.context_state.folder().absolute_url()
-
-
-
-def apply_patches():
-    from Products.CMFCore.TypesTool import TypesTool
-    TypesTool.listActions = TypesTool_listActions
-    
-    from Products.CMFCore.ActionInformation import ActionInfo
-    ActionInfo.__init__ = ActionInfo___init__

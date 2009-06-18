@@ -10,8 +10,6 @@
     <include package="plone.directives.dexterity" />
     <include package="plone.dexterity" />
     
-    <five:registerPackage package="." initialize=".initialize" />
-
     <genericsetup:registerProfile
         name="default"
         title="Dexterity Content Types - Plone Integration"
