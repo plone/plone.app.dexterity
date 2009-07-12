@@ -14,7 +14,7 @@ class TypeEditPage(JavascriptFormWrapper):
 
     @property
     def tabs(self):
-        if self.context.fti.has_dynamic_schema:
+        if self.context.fti.hasDynamicSchema:
             return (
                 ('Schema', None),
                 ('Behaviors', '@@behaviors'),
@@ -26,7 +26,7 @@ class TypeEditPage(JavascriptFormWrapper):
     
     @property
     def form(self):
-        if self.context.fti.has_dynamic_schema:
+        if self.context.fti.hasDynamicSchema:
             return SchemaListing
         else:
             return BehaviorsForm

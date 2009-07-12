@@ -157,7 +157,7 @@ class TypesContext(SimpleItem):
         except ComponentLookupError:
             return None
 
-        schema = fti.lookup_schema()
+        schema = fti.lookupSchema()
         schema_context = TypeSchemaContext(schema, request, name=name, title=fti.title).__of__(self)
         schema_context.setFTI(fti)
         return schema_context

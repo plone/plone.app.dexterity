@@ -1,6 +1,18 @@
 Changelog
 =========
 
+1.0a4 - 2009-07-12
+------------------
+
+* Changed API methods and arguments to mixedCase to be more consistent with
+  the rest of Zope. This is a non-backwards-compatible change. Our profuse
+  apologies, but it's now or never. :-/
+
+  If you find that you get import errors or unknown keyword arguments in your
+  code, please change names from foo_bar too fooBar, e.g. serialize_schema()
+  becomes serializeSchema().
+  [optilude]
+
 1.0a3 (2009-06-07)
 ------------------
 

@@ -6,17 +6,17 @@
     <subscriber
         for="plone.schemaeditor.interfaces.IField
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".serialize.serialize_schema_on_field_event"
+        handler=".serialize.serializeSchemaOnFieldEvent"
         />
     <subscriber
         for="plone.schemaeditor.interfaces.IField
              zope.app.container.interfaces.IObjectMovedEvent"
-        handler=".serialize.serialize_schema_on_field_event"
+        handler=".serialize.serializeSchemaOnFieldEvent"
         />
     <subscriber
         for="zope.interface.interfaces.IInterface
              zope.app.container.interfaces.IContainerModifiedEvent"
-        handler=".serialize.serialize_schema_on_schema_event"
+        handler=".serialize.serializeSchemaOnSchemaEvent"
         />
 
 </configure>

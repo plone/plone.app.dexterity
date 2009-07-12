@@ -14,7 +14,7 @@ a dummy Dexterity FTI and schema::
   >>> fti = DexterityFTI('dummy')
   >>> self.portal.portal_types._setObject('dummy', fti)
   'dummy'
-  >>> schema = fti.lookup_schema()
+  >>> schema = fti.lookupSchema()
 
 Confirm the ObjectModifiedEvent on a schema field is handled correctly::
 
