@@ -23,6 +23,7 @@ functional_tests = (
     'editing.txt',
     'installation.txt',
     'namefromtitle.txt',
+    'metadata.txt',    
     )
 
 def test_suite():
