@@ -196,5 +196,9 @@ class Ownership(MetadataBase):
     contributors = DCFieldProperty(IOwnership['contributors'], get_name = 'Contributors', set_name = 'setContributors')
     rights = DCFieldProperty(IOwnership['rights'], get_name = 'Rights', set_name = 'setRights')
 
+    def __init__(self, *args, **kwargs):
+        super(Ownership, self).__init__(*args, **kwargs)
+        self.context.addCreator()
+
 class DublinCore(Basic, Categorization, Publication, Ownership):
     pass

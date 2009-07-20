@@ -42,7 +42,7 @@ The creator of the object is the current user::
     True
     >>> md = self.portal.metadatad_type
     >>> md.Creator()
-    'test_user_1_'
+    'root'
 
 The modified and creation dates are set correctly::
 
