@@ -31,11 +31,8 @@ setup(name='plone.app.dexterity',
           'zope.schema',
           'zope.publisher',
           'z3c.form',
-          'plone.z3cform>=0.5.4',
-           # ^^ strictly speaking either this dev version OR z3c.form trunk
-           # is required, for the textlines widget
-          'plone.app.z3cform>=0.4.5',
-          # ^ 0.4.5 required for the default datetime widget
+          'plone.z3cform>=0.5.5',
+          'plone.app.z3cform>=0.4.6',
           'plone.supermodel>=1.0b2',
           'plone.dexterity',
           'plone.behavior>=1.0b5',

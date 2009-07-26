@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0a5 - 2009-07-26
+------------------
+
+* Explicitly include overrides.zcml from plone.app.z3cform.
+  [optilude]
+
 1.0a4 - 2009-07-12
 ------------------
 
