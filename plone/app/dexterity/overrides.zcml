@@ -14,8 +14,8 @@
     
         <monkey:patch
             class="Products.CMFCore.TypesTool.TypesTool"
-            original="listActions"
-            replacement=".overrides.TypesTool_listActions"
+            original="listActionInfos"
+            replacement=".overrides.TypesTool_listActionInfos"
             />
     
         <monkey:patch

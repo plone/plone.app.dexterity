@@ -2,28 +2,52 @@
 # XXX: Should be removed when Plone moves to CMF 2.2
 
 #   1. Monkey patch TypesTool to include FTI actions for add views in the
-#       return value from listActions()
+#       return value from listActionInfos()
 
 from Products.CMFCore.interfaces import IAction
-def TypesTool_listActions(self, info=None, object=None):
-    """ List all the actions defined by a provider.
-    """    
-    actions = list( self._actions )
+from Products.CMFCore.ActionInformation import ActionInfo
 
-    if object is None and info is not None:
-        object = info.object
-    if object is not None:
-        type_info = self.getTypeInfo(object)
-        if type_info is not None:
-            actions.extend( type_info.listActions(info, object) )
+def TypesTool_listActionInfos(self, action_chain=None, object=None,
+                        check_visibility=1, check_permissions=1,
+                        check_condition=1, max=-1):
+    # List ActionInfo objects.
+    # (method is without docstring to disable publishing)
+    #
+    ec = self._getExprContext(object)
+    
+    # PATCH: We include IAction-providing FTIs as well. Note that we could
+    # have overridden listActions(), except this causes the export of
+    # actions.xml to include the folder/add category, which we don't want.
 
-    # XXX: Prior to CMF 2.2, FTI's are not expected to be actions and so the
-    # next two lines are missing.
-    add_actions = [ ti for ti in self.objectValues()
-                    if IAction.providedBy(ti) and ti.add_view_expr ]
-    actions.extend(add_actions)
+    actions = list(self.listActions(object=object)) + \
+                [ti for ti in self.objectValues() if IAction.providedBy(ti) and ti.add_view_expr]
 
-    return actions
+    actions = [ ActionInfo(action, ec) for action in actions ]
+
+    if action_chain:
+        filtered_actions = []
+        if isinstance(action_chain, basestring):
+            action_chain = (action_chain,)
+        for action_ident in action_chain:
+            sep = action_ident.rfind('/')
+            category, id = action_ident[:sep], action_ident[sep+1:]
+            for ai in actions:
+                if id == ai['id'] and category == ai['category']:
+                    filtered_actions.append(ai)
+        actions = filtered_actions
+
+    action_infos = []
+    for ai in actions:
+        if check_visibility and not ai['visible']:
+            continue
+        if check_permissions and not ai['allowed']:
+            continue
+        if check_condition and not ai['available']:
+            continue
+        action_infos.append(ai)
+        if max + 1 and len(action_infos) >= max:
+            break
+    return action_infos
 
 #   2. Register the ++add++ traversal adapter from CMF 2.2
 

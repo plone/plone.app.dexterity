@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.0a6 - 
+------------------
+
+* Patch listActionInfos() instead of listActions() in order to get the
+  folder/add category into the actions list. This avoids a problem with
+  the 'actions.xml' export handler exporting the folder/add category
+  incorrectly. Fixes http://code.google.com/p/dexterity/issues/detail?id=78
+  [optilude]
+
 1.0a5 - 2009-07-26
 ------------------
 
