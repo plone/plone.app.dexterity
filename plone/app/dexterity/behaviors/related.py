@@ -5,6 +5,8 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.directives import form
 
+from plone.app.dexterity import MessageFactory as _
+
 class IRelatedItems(form.Schema):
     """Behavior interface to make a type support related items.
     """
@@ -13,7 +15,7 @@ class IRelatedItems(form.Schema):
                   fields=['relatedItems'])
 
     relatedItems = RelationList(
-        title=u"Related Items",
+        title=_(u'label_related_items', default=u'Related Items'),
         default=[],
         value_type=RelationChoice(title=u"Related",
                       source=ObjPathSourceBinder()),

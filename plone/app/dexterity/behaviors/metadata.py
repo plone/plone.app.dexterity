@@ -12,6 +12,8 @@ try:
 except ImportError:
     from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 
+from plone.app.dexterity import PloneMessageFactory as _
+
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
 # content edit forms.
 #     
@@ -22,13 +24,13 @@ except ImportError:
 class IBasic(form.Schema):
     # default fieldset
     title = schema.TextLine(
-        title = u'Title',
+        title = _(u'label_title', default=u'Title'),
         required = True
         )
         
     description = schema.Text(
-        title = u'Summary',
-        description = u'A short summary of the content.',
+        title=_(u'label_description', default=u'Description'),
+        description = _(u'help_description', default=u'A short summary of the content.'),
         required = False,
         )
     
@@ -39,13 +41,13 @@ class ICategorization(form.Schema):
     # categorization fieldset
     form.fieldset(
         'categorization',
-        label=u'Categorization',
+        label=_(u'Categorization'),
         fields=['subjects', 'language'],
         )
 
     subjects = schema.Tuple(
-        title = u'Categories',
-        description = u'Also known as keywords, tags or labels, these help you categorize your content.',
+        title = _(u'label_categories', default=u'Categories'),
+        description = _(u'help_categories', default=u'Also known as keywords, tags or labels, these help you categorize your content.'),
         value_type = schema.TextLine(),
         required = False,
         missing_value = (),
@@ -53,7 +55,7 @@ class ICategorization(form.Schema):
     form.widget(subjects = TextLinesFieldWidget)
 
     language = schema.Choice(
-        title = u'Language',
+        title = _(u'label_language', default=u'Language'),
         vocabulary = 'plone.app.vocabularies.AvailableContentLanguages',
         required = False,
         missing_value = '',
@@ -63,19 +65,23 @@ class IPublication(form.Schema):
     # dates fieldset
     form.fieldset(
         'dates',
-        label=u'Dates',
+        label=_(u'Dates'),
         fields=['effective', 'expires'],
         )
     
     effective = schema.Datetime(
-        title = u'Publishing Date',
-        description = u'If this date is in the future, the content will not show up in listings and searches until this date.',
+        title = _(u'label_effective_date', u'Publishing Date'),
+        description = _(u'help_effective_date',
+                          default=u"If this date is in the future, the content will "
+                                   "not show up in listings and searches until this date."),
         required = False
         )
         
     expires = schema.Datetime(
-        title = u'Expiration',
-        description = u'When this date is reached, the content will no longer be visible in listings and searches.',
+        title = _(u'label_expiration_date', u'Expiration Date'),
+        description = _(u'help_expiration_date',
+                              default=u"When this date is reached, the content will no"
+                                       "longer be visible in listings and searches."),
         required = False
         )
 
@@ -83,13 +89,16 @@ class IOwnership(form.Schema):
     # ownership fieldset
     form.fieldset(
         'ownership',
-        label=u'Ownership',
+        label=_(u'Ownership'),
         fields=['creators', 'contributors', 'rights'],
         )
 
     creators = schema.Tuple(
-        title = u'Creators',
-        description = u'Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first.',
+        title = _(u'label_creators', u'Creators'),
+        description = _(u'help_creators',
+                          default=u"Persons responsible for creating the content of "
+                                   "this item. Please enter a list of user names, one "
+                                   "per line. The principal creator should come first."),
         value_type = schema.TextLine(),
         required = False,
         missing_value = (),
@@ -97,8 +106,11 @@ class IOwnership(form.Schema):
     form.widget(creators = TextLinesFieldWidget)
 
     contributors = schema.Tuple(
-        title = u'Contributors',
-        description = u'The names of people that have contributed to this item. Each contributor should be on a separate line.',
+        title = _(u'label_contributors', u'Contributors'),
+        description = _(u'help_contributors',
+                          default=u"The names of people that have contributed "
+                                   "to this item. Each contributor should "
+                                   "be on a separate line."),
         value_type = schema.TextLine(),
         required = False,
         missing_value = (),
@@ -106,8 +118,9 @@ class IOwnership(form.Schema):
     form.widget(contributors = TextLinesFieldWidget)
     
     rights = schema.Text(
-        title=u'Rights',
-        description=u'Copyright statement or other rights information on this item.',
+        title=_(u'label_copyrights', default=u'Rights'),
+        description=_(u'help_copyrights',
+                          default=u'Copyright statement or other rights information on this item.'),
         required = False,
         )
 

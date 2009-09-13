@@ -4,6 +4,10 @@ Changelog
 1.0a6 - 
 ------------------
 
+* Add message factories to titles and descriptions of metadata schema fields.
+  Fixes http://code.google.com/p/dexterity/issues/detail?id=75.
+  [optilude]
+
 * Patch listActionInfos() instead of listActions() in order to get the
   folder/add category into the actions list. This avoids a problem with
   the 'actions.xml' export handler exporting the folder/add category
