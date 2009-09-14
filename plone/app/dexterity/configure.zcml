@@ -48,4 +48,11 @@
         factory=".integration.HiddenProfiles"
         provides="Products.CMFQuickInstallerTool.interfaces.INonInstallable" />
 
+    <!-- Register GS exporter for DexterityFTI type -->
+    <adapter
+        factory="Products.CMFCore.exportimport.typeinfo.TypeInformationXMLAdapter"
+        for="plone.dexterity.interfaces.IDexterityFTI
+             Products.GenericSetup.interfaces.ISetupEnviron"
+        />
+
 </configure>
