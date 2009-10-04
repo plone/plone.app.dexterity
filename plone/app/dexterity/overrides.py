@@ -245,3 +245,22 @@ class ActionAwareFactoriesSubMenuItem(FactoriesSubMenuItem):
             return '%s/createObject?type_name=%s' % (baseUrl, quote_plus(fti.getId()),)
         else:
             return '%s/folder_factories' % self.context_state.folder().absolute_url()
+
+#  6. Patch webdav_enabled to not depend on a Zope 2 style interface. This is
+#     a backport from Plone 4
+
+from webdav.interfaces import IWriteLock
+
+def webdav_enabled(obj, container):
+    """WebDAV check used in externalEditorEnabled.py"""
+
+    # Object implements lock interface
+    if IWriteLock.providedBy(obj):
+        return True
+
+    # BBB for Zope2 webdav interface
+    interface_tool = getToolByName(container, 'portal_interface')
+    if interface_tool.objectImplements(obj, 'webdav.WriteLockInterface.WriteLockInterface'):
+        return True
+
+    return False

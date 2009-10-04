@@ -54,6 +54,13 @@
                 provides=".interfaces.IContentMenuItem"
                 />
         </configure>
+        
+        <!-- Override webdav_enabled to not depend on a Zope 2 style interface -->
+        <monkey:patch
+            module="Products.CMFPlone.utils"
+            original="webdav_enabled"
+            replacement=".overrides.webdav_enabled"
+            />
     
     </configure>
     
