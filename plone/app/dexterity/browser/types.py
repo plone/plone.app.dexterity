@@ -6,6 +6,7 @@ from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope import schema
 
+from z3c.form import field
 from plone.z3cform import layout
 from plone.z3cform.crud import crud
 
@@ -33,8 +34,8 @@ class ITypeSettings(Interface):
         )
 
     container = schema.Bool(
-        title = u'This content type is a container.',
-        description = u'If enabled, items of this type will be able to contain other items.',
+        title = u'Container?',
+        description = u'If yes, items of this type will be able to contain other items.',
         required = True,
         default = False,
         )
@@ -62,7 +63,7 @@ class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.
     """
     
-    view_schema = ITypeSettings
+    view_schema = field.Fields(ITypeSettings).omit('container')
     add_schema = ITypeSettings
     
     addform_factory = TypeAddForm

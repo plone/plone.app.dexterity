@@ -4,6 +4,10 @@ Changelog
 1.0a6 - 
 ------------------
 
+* Removed 'container' field from the types listing in the control panel
+  (it wasn't working).
+  [davisagli]
+
 * Add message factories to titles and descriptions of metadata schema fields.
   Fixes http://code.google.com/p/dexterity/issues/detail?id=75.
   [optilude]
