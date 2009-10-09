@@ -48,7 +48,10 @@ Now we should also have a 'plonista' FTI in portal_types::
 
 The new type should have the dublin core behavior assigned by default::
 
-  >>> 'plone.app.dexterity.behaviors.metadata.IDublinCore' in self.portal.portal_types.plonista.behaviors
+  >>> plonista = self.portal.portal_types.plonista
+  >>> 'plone.app.dexterity.behaviors.metadata.IDublinCore' in plonista.behaviors
+  True
+  >>> 'document_icon' in plonista.getIcon()
   True
 
 
@@ -111,5 +114,8 @@ using the Container base class::
 
   >>> 'plonista-folder' in self.portal.portal_types
   True
-  >>> getattr(self.portal.portal_types, 'plonista-folder').klass
+  >>> pf = getattr(self.portal.portal_types, 'plonista-folder')
+  >>> pf.klass
   'plone.dexterity.content.Container'
+  >>> 'folder_icon' in pf.getIcon()
+  True

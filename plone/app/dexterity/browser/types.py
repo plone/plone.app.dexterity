@@ -19,6 +19,11 @@ from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext
 from plone.schemaeditor.browser.schema.schema import SchemaContext
 import plone.schemaeditor.browser
 
+try:
+    from Products.CMFPlone.factory import _IMREALLYPLONE4
+    PLONE40 = True
+except ImportError:
+    PLONE40 = False
 
 class ITypeSettings(Interface):
     """ Define the fields for the content type add form
@@ -103,6 +108,14 @@ class TypesListing(crud.CrudForm):
         if data['container']:
             data['klass'] = 'plone.dexterity.content.Container'
             del data['container']
+            icon = 'folder_icon'
+        else:
+            icon = 'document_icon'
+        # XXX should probably copy icons into p.a.d and use them from here
+        if PLONE40:
+            data['icon_expr'] = 'string:${portal_url}/' + icon + '.png'
+        else:
+            data['content_icon'] = icon + '.gif'
         fti.manage_changeProperties(**data)
 
         ttool = getToolByName(self.context, 'portal_types')

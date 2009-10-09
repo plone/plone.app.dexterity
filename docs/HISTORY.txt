@@ -4,6 +4,9 @@ Changelog
 1.0a6 - 
 ------------------
 
+* Use some default icons for new types.
+  [davisagli]
+
 * Show type icons in type listing if available.
   [davisagli]
 
