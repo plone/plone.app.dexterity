@@ -48,6 +48,11 @@ class TypeAddForm(crud.AddForm):
     template = ViewPageTemplateFile('titledform.pt', _prefix=plone.schemaeditor.browser.__dict__)
 
 
+class TypeEditSubForm(crud.EditSubForm):
+    """ Content type edit subform. Just here to use a custom template.
+    """
+    template = ViewPageTemplateFile('types_listing_row.pt')
+
 class TypeEditForm(crud.EditForm):
     """ Content type edit form.  Just a normal CRUD form without the form title or edit button.
     """

@@ -4,6 +4,9 @@ Changelog
 1.0a6 - 
 ------------------
 
+* Show type icons in type listing if available.
+  [davisagli]
+
 * Removed 'container' field from the types listing in the control panel
   (it wasn't working).
   [davisagli]
