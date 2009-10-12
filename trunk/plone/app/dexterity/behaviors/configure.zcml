@@ -1,0 +1,76 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone.app.dexterity">
+
+    <include package="plone.behavior" file="meta.zcml"/>
+    
+    <!-- Fields -->
+    <include package="plone.app.relationfield"/>
+    
+    <!-- widgets -->
+    <include package="plone.formwidget.autocomplete"/>
+    <include package="plone.formwidget.contenttree"/>
+    
+    <!-- vocabularies -->
+    <include package="plone.app.vocabularies"/>
+
+    <!-- Grok schemata -->
+    <grok:grok package="." />
+
+    <!-- Metadata -->
+    <plone:behavior
+        title="Basic metadata"
+        description="Adds a title and description"
+        provides=".metadata.IBasic"
+        factory=".metadata.Basic"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+    <plone:behavior
+        title="Categorization"
+        description="Adds keywords and language setting"
+        provides=".metadata.ICategorization"
+        factory=".metadata.Categorization"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+    <plone:behavior
+        title="Effective range"
+        description="Assign an effective and/or expiration date"
+        provides=".metadata.IPublication"
+        factory=".metadata.Publication"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+    <plone:behavior
+        title="Ownership"
+        description="Adds creator, contributor, and rights fields"
+        provides=".metadata.IOwnership"
+        factory=".metadata.Ownership"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+    <plone:behavior
+        title="Dublin Core metadata"
+        description="Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+        provides=".metadata.IDublinCore"
+        factory=".metadata.DublinCore"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <!-- Title-to-id -->
+    <plone:behavior
+        title="Name from title"
+        description="Automatically generate short URL name for content based on its initial title"
+        provides="plone.app.content.interfaces.INameFromTitle"
+        factory=".namefromtitle.NameFromTitle"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+        
+    <!-- Related items (marker) -->
+    <plone:behavior
+        title="Related items"
+        description="Adds the ability to assign related items"
+        provides=".related.IRelatedItems"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+</configure>

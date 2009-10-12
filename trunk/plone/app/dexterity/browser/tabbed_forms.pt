@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone.z3cform"
+      tal:omit-tag="">
+
+  <head>
+    <metal:slot metal:fill-slot="javascript_head_slot">
+      <tal:block tal:condition="view/javascript|nothing"
+          tal:replace="structure view/javascript" />
+    </metal:slot>
+  </head>
+
+  <body>
+      <metal:slot metal:fill-slot="header" i18n:domain="cmf_default">
+        <h1 tal:content="view/label">View Title</h1>
+      </metal:slot>
+
+      <metal:slot metal:fill-slot="main" i18n:domain="cmf_default">
+          <div class="documentEditable" metal:define-macro="form">
+
+             <ul class="contentViews">
+                <li class="selected"
+                    tal:repeat="tab view/tabs"
+                    tal:attributes="class python:tab[1] is None and 'selected' or ''">
+                    <a href=""
+                       tal:define="tab_url python:tab[1] and (context.absolute_url() + '/' + tab[1]) or request['URL']"
+                       tal:attributes="href tab_url"
+                       tal:content="python:tab[0]">
+                        Schema
+                    </a>
+                </li>
+             </ul>
+
+             <div class="contentActions"></div>
+
+             <div class="documentContent">
+                 <tal:block tal:replace="structure view/contents"/>
+             </div>
+
+         </div>
+     </metal:slot>
+
+  </body>
+</html>

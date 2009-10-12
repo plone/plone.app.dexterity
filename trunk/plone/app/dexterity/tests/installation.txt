@@ -1,0 +1,34 @@
+Integration with Plone product installation
+===========================================
+
+Make sure we have hidden our field/widget dependencies from the quick
+installer.  (Although, Plone trunk doesn't use the quick installer, so
+then we'll just skip the check.)
+  >>> products = [p['id'] for p in self.portal.portal_quickinstaller.listInstallableProducts(skipInstalled=False)]
+  >>> 'plone.app.dexterity' in products
+  True
+  >>> 'plone.app.relationfield' in products
+  False
+  >>> 'plone.formwidget.autocomplete' in products
+  False
+  >>> 'plone.formwidget.contenttree' in products
+  False
+
+Get a logged-in test browser.
+  >>> from Products.Five.testbrowser import Browser
+  >>> browser = Browser()
+  >>> browser.handleErrors = False
+  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+  >>> browser.addHeader('Authorization', 'Basic root:secret')
+
+Load the form for creating a new Plone site and make sure we see the
+expected profiles.
+  >>> browser.open('http://nohost/manage_addProduct/CMFPlone/addPloneSiteForm')
+  >>> 'plone.app.dexterity:default' in browser.contents
+  True
+  >>> 'plone.app.relationfield:default' in browser.contents
+  False
+  >>> 'plone.formwidget.autocomplete:default' in browser.contents
+  False
+  >>> 'plone.formwidget.contenttree:default' in browser.contents
+  False

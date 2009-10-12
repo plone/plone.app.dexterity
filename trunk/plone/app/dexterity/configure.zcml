@@ -1,0 +1,59 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone.app.dexterity">
+
+    <include package="plone.app.z3cform" />
+    <include package="plone.app.textfield" />
+    <include package="plone.schemaeditor" />
+    <include package="plone.directives.dexterity" />
+    <include package="plone.dexterity" />
+    
+    <genericsetup:registerProfile
+        name="default"
+        title="Dexterity Content Types - Plone Integration"
+        description="Configures various components needed for full Dexterity support."
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
+    <include package=".browser" />
+    <include package=".behaviors" />
+    
+    <include file="events.zcml" />
+    
+    <!-- Make Dexterity types portlet- and content rule aware -->
+    
+    <class class="plone.dexterity.content.DexterityContent">
+        <implements interface="plone.portlets.interfaces.ILocalPortletAssignable" />
+    </class>
+    
+    <class class="plone.dexterity.content.DexterityContent">
+        <implements interface="plone.contentrules.engine.interfaces.IRuleAssignable" />
+    </class>
+    
+    <!-- override add views -->
+    <include package="Products.CMFCore" />
+    <include package="plone.app.content" />
+    <include package="plone.app.contentmenu" />
+
+    <!-- hide profiles for our widget/field dependencies -->
+    <utility
+        factory=".integration.HiddenProfiles"
+        provides="Products.CMFPlone.interfaces.INonInstallable" />
+    <utility
+        zcml:condition="installed Products.CMFQuickInstallerTool"
+        factory=".integration.HiddenProfiles"
+        provides="Products.CMFQuickInstallerTool.interfaces.INonInstallable" />
+
+    <!-- Register GS exporter for DexterityFTI type -->
+    <adapter
+        factory="Products.CMFCore.exportimport.typeinfo.TypeInformationXMLAdapter"
+        for="plone.dexterity.interfaces.IDexterityFTI
+             Products.GenericSetup.interfaces.ISetupEnviron"
+        />
+
+</configure>

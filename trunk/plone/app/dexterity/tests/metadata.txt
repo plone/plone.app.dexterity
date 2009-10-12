@@ -1,0 +1,54 @@
+Metadata on objects
+===================
+
+The default dublin core implementation from CMF is used by dexterity in the
+Dublin Core behaviour, a subset of which is available in the Ownership, Basic
+Metadata, etc behaviours.
+
+When we create a dexterity content type::
+
+    >>> from plone.dexterity.fti import DexterityFTI
+    >>> fti = DexterityFTI('metadatad_type')
+    >>> fti.behaviors = ('plone.app.dexterity.behaviors.metadata.IDublinCore',)
+    >>> self.portal.portal_types._setObject('metadatad_type', fti)
+    'metadatad_type'
+    >>> schema = fti.lookupSchema()
+
+If we access the site as an admin TTW::
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+    >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+    >>> browser.addHeader('Authorization', 'Basic root:secret')
+
+We can see this type in the addable types at the root of the site::
+
+    >>> browser.open("http://nohost/plone/folder_factories")
+    >>> "metadatad_type" in browser.contents
+    True
+    >>> browser.getControl("metadatad_type").click()
+    >>> browser.getControl("Add").click()
+    >>> browser.getControl(name="form.widgets.IDublinCore.title").value = "My Object"
+    >>> browser.getControl(name="form.widgets.title").value = "My Object"
+    >>> browser.getControl(name="form.widgets.IDublinCore.description").value = "Lorem ipsum"
+    >>> browser.getControl(name="form.buttons.save").click()
+    >>> browser.url
+    'http://nohost/plone/metadatad_type/view'
+    
+The creator of the object is the current user::
+
+    >>> "http://nohost/plone/author/root" in browser.contents
+    True
+    >>> md = self.portal.metadatad_type
+    >>> md.Creator()
+    'root'
+
+The modified and creation dates are set correctly::
+
+    >>> md.ModificationDate() == md.CreationDate()
+    True
+    >>> from DateTime import DateTime
+    >>> DateTime() > DateTime(md.CreationDate())
+    True
+

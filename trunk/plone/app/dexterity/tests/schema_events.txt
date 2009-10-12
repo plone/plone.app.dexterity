@@ -1,0 +1,41 @@
+Serialization of schema changes
+===============================
+
+This package defers to plone.schemaeditor for the actual editing of Zope 3
+schemata.  plone.schemaeditor raises object lifecycle events when modifications
+are made to the schema, and this package registers handlers for those event,
+to serialize the modified schema into XML on the type FTI (using the
+plone.supermodel API).
+
+Let's make sure that those event handlers are working properly.  We'll need
+a dummy Dexterity FTI and schema::
+
+  >>> from plone.dexterity.fti import DexterityFTI
+  >>> fti = DexterityFTI('dummy')
+  >>> self.portal.portal_types._setObject('dummy', fti)
+  'dummy'
+  >>> schema = fti.lookupSchema()
+
+Confirm the ObjectModifiedEvent on a schema field is handled correctly::
+
+  >>> schema['title'].title = u'Change1'
+  >>> from zope.event import notify
+  >>> from zope.lifecycleevent import ObjectModifiedEvent
+  >>> notify(ObjectModifiedEvent(schema['title']))
+  >>> 'Change1' in fti.model_source
+  True
+
+Confirm the ObjectMovedEvent on a field is handled correctly::
+
+  >>> schema['title'].title = u'Change2'
+  >>> from zope.app.container.contained import ObjectMovedEvent, ContainerModifiedEvent
+  >>> notify(ObjectMovedEvent(schema['title'], schema, 'title', schema, 'title'))
+  >>> 'Change2' in fti.model_source
+  True
+
+Confirm the container modified event on a schema is handled correctly::
+
+  >>> schema['title'].title = u'Change3'
+  >>> notify(ContainerModifiedEvent(schema))
+  >>> 'Change3' in fti.model_source
+  True

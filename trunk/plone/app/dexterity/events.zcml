@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="plone.app.dexterity">
+
+    <!-- Register schema/field modify handlers -->
+    <subscriber
+        for="plone.schemaeditor.interfaces.IField
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".serialize.serializeSchemaOnFieldEvent"
+        />
+    <subscriber
+        for="plone.schemaeditor.interfaces.IField
+             zope.app.container.interfaces.IObjectMovedEvent"
+        handler=".serialize.serializeSchemaOnFieldEvent"
+        />
+    <subscriber
+        for="zope.interface.interfaces.IInterface
+             zope.app.container.interfaces.IContainerModifiedEvent"
+        handler=".serialize.serializeSchemaOnSchemaEvent"
+        />
+
+</configure>

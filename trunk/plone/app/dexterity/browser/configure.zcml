@@ -1,0 +1,62 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="plone.app.dexterity">
+
+    
+    <!-- Default view for Dexterity types in Plone -->
+    
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityItem"
+        name="view"
+        class="plone.dexterity.browser.view.DefaultView"
+        template="item.pt"
+        permission="zope2.View"
+        />
+    
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        name="view"
+        class="plone.dexterity.browser.view.DefaultView"
+        template="container.pt"
+        permission="zope2.View"
+        />
+    
+    <!-- Control panel -->
+
+    <browser:page
+        name="dexterity-types"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".types.TypesContext"
+        permission="plone.schemaeditor.ManageSchemata"
+        allowed_interface="OFS.interfaces.IItem" />
+
+    <browser:page
+        name="edit"
+        for="plone.app.dexterity.interfaces.ITypesContext"
+        class=".types.TypesListingPage"
+        permission="plone.schemaeditor.ManageSchemata" />
+    
+    <browser:page
+        name="edit"
+        for="plone.app.dexterity.interfaces.ITypeSchemaContext"
+        class=".edit_type.TypeEditPage"
+        permission="plone.schemaeditor.ManageSchemata" />
+    
+    <browser:page
+        name="behaviors"
+        for="plone.app.dexterity.interfaces.ITypeSchemaContext"
+        class=".behaviors.BehaviorsFormPage"
+        permission="plone.schemaeditor.ManageSchemata" />
+
+    <!-- the Dexterity FTI has 'title' and 'description' attributes but
+         doesn't declare that via an interface that we can use for our
+         CRUD form...so we'll take care of that ourselves -->
+    <class class="plone.dexterity.fti.DexterityFTI">
+        <implements interface=".types.ITypeSettings"/>
+    </class>
+
+    <adapter
+        factory=".behaviors.BehaviorConfigurationAdapter" />
+
+</configure>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<metadata>
+  <version>0.1</version>
+  <dependencies>
+    <dependency>profile-plone.formwidget.autocomplete:default</dependency>
+    <dependency>profile-plone.formwidget.contenttree:default</dependency>
+    <dependency>profile-plone.app.relationfield:default</dependency>
+  </dependencies>
+</metadata>

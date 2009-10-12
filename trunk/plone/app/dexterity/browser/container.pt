@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone.app.dexterity">
+<body>
+
+<metal:main fill-slot="main">
+
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+    <h1 class="documentFirstHeading" tal:content="context/Title" /> 
+
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+    <p class="documentDescription" tal:content="context/Description" />
+
+    <div tal:replace="structure provider:plone.abovecontentbody" />
+
+    <div class="field" tal:repeat="widget view/widgets/values">
+        <tal:block condition="python:widget.__name__ not in ('IBasic.title', 'IBasic.description', 'title', 'description',)">
+            <label tal:content="widget/label" />
+            <br />
+            <div tal:content="structure widget/render" />
+        </tal:block>
+    </div>
+    
+    <fieldset tal:repeat="group view/groups">
+        <legend tal:content="group/label" />
+        <div class="field" tal:repeat="widget group/widgets/values">
+            <label tal:content="widget/label" />
+            <br />
+            <div tal:content="structure widget/render" />
+        </div>
+    </fieldset>
+    
+    <tal:block define="listing_macro context/folder_listing/macros/listing">
+        <metal:use_macro use-macro="listing_macro" />
+    </tal:block>
+    
+    <div metal:use-macro="context/document_relateditems/macros/relatedItems">
+        show related items if they exist
+    </div>
+
+    <div tal:replace="structure provider:plone.belowcontentbody" />
+
+</metal:main>
+
+</body>
+</html>
+

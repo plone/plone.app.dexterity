@@ -1,0 +1,67 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:monkey="http://namespaces.plone.org/monkey">
+
+    <includeOverrides package="plone.app.z3cform" file="overrides.zcml" />
+
+    <configure 
+        package="plone.app.dexterity"
+        zcml:condition="not-installed Products.CMFCore.namespace">
+
+        <include package="collective.monkeypatcher" />
+    
+        <monkey:patch
+            class="Products.CMFCore.TypesTool.TypesTool"
+            original="listActionInfos"
+            replacement=".overrides.TypesTool_listActionInfos"
+            />
+    
+        <monkey:patch
+            class="Products.CMFCore.ActionInformation.ActionInfo"
+            original="__init__"
+            replacement=".overrides.ActionInfo___init__"
+            />
+
+        <!-- Add CMF 2.2's ++add++ traverser.
+                XXX: This should be removed when Plone moves to CMF 2.2
+          -->
+
+        <adapter
+          name="add"
+          factory=".overrides.AddViewTraverser"
+          />
+
+        <!-- Override folder_factories to use actions, CMF 2.2 style.
+                XXX: This should be removed when Plone moves to CMF 2.2
+          -->
+        <configure package="plone.app.content.browser">
+            <browser:page
+                for="*"
+                name="folder_factories"
+                class="plone.app.dexterity.overrides.ActionAwareFolderFactoriesView"
+                template="folderfactories.pt"
+                permission="cmf.AddPortalContent"
+                />
+        </configure>
+
+        <configure package="plone.app.contentmenu">
+            <adapter
+                for="* *"
+                name="plone.contentmenu.factories"
+                factory="plone.app.dexterity.overrides.ActionAwareFactoriesSubMenuItem"
+                provides=".interfaces.IContentMenuItem"
+                />
+        </configure>
+        
+        <!-- Override webdav_enabled to not depend on a Zope 2 style interface -->
+        <monkey:patch
+            module="Products.CMFPlone.utils"
+            original="webdav_enabled"
+            replacement=".overrides.webdav_enabled"
+            />
+    
+    </configure>
+    
+</configure>

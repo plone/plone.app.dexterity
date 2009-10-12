@@ -1,0 +1,42 @@
+Automatic title-to-id behavior
+==============================
+
+Say we have a 'Dinosaur' content type::
+
+  >>> from plone.dexterity.fti import DexterityFTI
+  >>> fti = DexterityFTI('dinosaur')
+  >>> self.portal.portal_types._setObject('dinosaur', fti)
+  'dinosaur'
+  >>> fti.klass = 'plone.dexterity.content.Container'
+  >>> fti.filter_content_types = False
+
+We can declare that it supports the "name from title" behavior defined in
+plone.app.content (normally this would be done via Generic Setup)::
+
+  >>> fti.behaviors = ('plone.app.content.interfaces.INameFromTitle',)
+
+Now let's fire up the browser and confirm that new content gets renamed
+appropriately::
+
+  >>> from Products.Five.testbrowser import Browser
+  >>> browser = Browser()
+  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+  >>> browser.addHeader('Authorization', 'Basic root:secret')
+  >>> browser.open('http://nohost/plone/++add++dinosaur')
+  >>> browser.getControl('Title').value = 'Brachiosaurus'
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/brachiosaurus/view'
+
+
+Title-to-id within a Dexterity container
+----------------------------------------
+
+Does it still work if we're adding content within a Dexterity container?  Let's
+check::
+
+  >>> browser.open('http://nohost/plone/brachiosaurus/++add++dinosaur')
+  >>> browser.getControl('Title').value = 'Baby Brachiosaurus'
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/brachiosaurus/baby-brachiosaurus/view'
