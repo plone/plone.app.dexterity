@@ -1,6 +1,20 @@
 Changelog
 =========
 
+1.0a7 - unreleased
+------------------
+
+* Fix issue where traversing to a nonexistent type name in the types control
+  panel did not raise NotFound.
+  [davisagli]
+
+* Make it possible to view the fields of non-editable schemata.
+  [davisagli]
+
+* Tweaks to the tabbed_forms template used for the types control panel.
+  [davisagli]
+
+
 1.0a6 - 2009-10-12
 ------------------
 

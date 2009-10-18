@@ -1,6 +1,5 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.schemaeditor.browser.schema.schema import SchemaListing
-from plone.app.dexterity.browser.behaviors import BehaviorsForm
+from plone.schemaeditor.browser.schema.schema import SchemaListing, ReadOnlySchemaListing
 from plone.schemaeditor.browser.jsform.jsform import JavascriptFormWrapper
 
 class TypeEditPage(JavascriptFormWrapper):
@@ -14,23 +13,18 @@ class TypeEditPage(JavascriptFormWrapper):
 
     @property
     def tabs(self):
-        if self.context.fti.hasDynamicSchema:
-            return (
-                ('Schema', None),
-                ('Behaviors', '@@behaviors'),
-                )
-        else:
-            return (
-                ('Behaviors', None),
-                )
+        return (
+            ('Schema', None),
+            ('Behaviors', '@@behaviors'),
+            )
     
     @property
     def form(self):
         if self.context.fti.hasDynamicSchema:
             return SchemaListing
         else:
-            return BehaviorsForm
+            return ReadOnlySchemaListing
     
     @property
     def label(self):
-        return u'Edit %s' % self.context.__name__
+        return self.context.__name__

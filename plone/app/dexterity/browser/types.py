@@ -1,3 +1,4 @@
+from zExceptions import NotFound
 from OFS.SimpleItem import SimpleItem
 
 from zope.interface import Interface, implements
@@ -174,7 +175,7 @@ class TypesContext(SimpleItem):
         try:
             fti = getUtility(IDexterityFTI, name=name)
         except ComponentLookupError:
-            return None
+            raise NotFound
 
         schema = fti.lookupSchema()
         schema_context = TypeSchemaContext(schema, request, name=name, title=fti.title).__of__(self)

@@ -81,6 +81,27 @@ FTI::
   []
 
 
+Viewing a non-editable schema
+-----------------------------
+
+If a type's schema is not stored as XML in its FTI's schema property, it cannot
+currently be edited through the web.  However, the fields of the schema can at
+least be listed.
+
+  >>> from zope.interface import Interface
+  >>> from zope import schema
+  >>> import plone.app.dexterity.tests
+  >>> class IFilesystemSchema(Interface):
+  ...     irc_nick = schema.TextLine(title=u'IRC Nickname')
+  >>> plone.app.dexterity.tests.IFilesystemSchema = IFilesystemSchema
+  >>> plonista.schema = 'plone.app.dexterity.tests.IFilesystemSchema'
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista')
+  >>> 'crud-edit.form.buttons.delete' in browser.contents
+  False
+  >>> 'IRC Nickname' in browser.contents
+  True
+
+
 Removing a content type
 -----------------------
 

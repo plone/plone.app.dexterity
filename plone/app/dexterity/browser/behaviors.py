@@ -48,4 +48,4 @@ class BehaviorsFormPage(FormWrapper):
     
     @property
     def label(self):
-        return u'Edit %s' % self.context.__name__
+        return self.context.__name__
