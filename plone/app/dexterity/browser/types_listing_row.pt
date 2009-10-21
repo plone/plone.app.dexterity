@@ -7,6 +7,17 @@
       tal:attributes="class python:'field' + (error and ' error' or '')">
     <tal:block repeat="widget tup">
 
+    <img
+       tal:define="fti view/getContent;
+                   icon fti/getIcon;
+                   portal_state nocall:context/@@plone_portal_state;
+                   portal_url portal_state/portal_url"
+       tal:condition="python:icon and idx == 1"
+       tal:attributes="src string:${portal_url}/${icon};"
+       width="16"
+       height="16"
+       />
+
     <a href=""
        tal:define="link python:view.context.context.link(view.getContent(), widget.field.__name__)"
        tal:omit-tag="python:widget.mode == 'input' or link is None"

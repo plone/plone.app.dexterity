@@ -64,6 +64,7 @@ class TypeEditForm(crud.EditForm):
     """
 
     label = None
+    editsubform_factory = TypeEditSubForm
     
     def __init__(self, context, request):
         super(crud.EditForm, self).__init__(context, request)
