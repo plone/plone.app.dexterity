@@ -43,7 +43,7 @@
 
                  <a href=""
                     class="link-parent"
-                    tal:attributes="href string:$context/aq_parent/absolute_url"
+                    tal:attributes="href string:${context/aq_parent/absolute_url}"
                     tal:content="string:Up to ${context/aq_parent/Title}">
                    Up to (parent)
                  </a>

@@ -75,8 +75,8 @@ the behaviors for 'plonista' and make sure that the change is reflected on the
 FTI::
 
   >>> browser.getLink('Behaviors').click()
-  >>> browser.getControl(name='form.widgets.behaviors:list').value = []
-  >>> browser.getControl('Apply').click()
+  >>> browser.getControl(name='form.widgets.plone.app.dexterity.behaviors.metadata.IDublinCore:list').value = []
+  >>> browser.getControl('Save').click()
   >>> self.portal.portal_types.plonista.behaviors
   []
 

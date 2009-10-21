@@ -4,6 +4,9 @@ Changelog
 1.0a7 - unreleased
 ------------------
 
+* Include behavior descriptions on the behavior edit tab.
+  [davisagli]
+
 * IBasic behavior: set missing_value of description-field to u'' . The
   description should never be None (live_search would not work any more).
   [jbaumann]

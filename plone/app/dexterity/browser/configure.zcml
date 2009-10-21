@@ -56,7 +56,4 @@
         <implements interface=".types.ITypeSettings"/>
     </class>
 
-    <adapter
-        factory=".behaviors.BehaviorConfigurationAdapter" />
-
 </configure>
