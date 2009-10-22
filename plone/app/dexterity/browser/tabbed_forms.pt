@@ -15,9 +15,10 @@
 
   <body>
       <metal:slot metal:fill-slot="content" i18n:domain="cmf_default">
-          <div class="documentEditable" metal:define-macro="form">
+          <div class="documentEditable cell width-full position-0" metal:define-macro="form">
 
-             <ul class="contentViews">
+            <div id="edit-bar">
+             <ul id="content-views" class="contentViews">
                 <li class="selected"
                     tal:repeat="tab view/tabs"
                     tal:attributes="class python:tab[1] is None and 'selected' or ''">
@@ -31,6 +32,7 @@
              </ul>
 
              <div class="contentActions"></div>
+            </div>
 
              <div class="documentContent">
                
