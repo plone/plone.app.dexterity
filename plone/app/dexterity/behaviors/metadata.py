@@ -1,3 +1,4 @@
+from AccessControl.SecurityManagement import getSecurityManager
 from DateTime import DateTime
 from datetime import datetime
 from zope.interface import alsoProvides
@@ -105,7 +106,7 @@ class IOwnership(form.Schema):
         missing_value = (),
         )
     form.widget(creators = TextLinesFieldWidget)
-
+    
     contributors = schema.Tuple(
         title = _(u'label_contributors', u'Contributors'),
         description = _(u'help_contributors',
@@ -124,6 +125,12 @@ class IOwnership(form.Schema):
                           default=u'Copyright statement or other rights information on this item.'),
         required = False,
         )
+
+# make sure the add form shows the default creator
+@form.default_value(field=IOwnership['creators'])
+def creatorsDefault(data):
+    user = getSecurityManager().getUser()
+    return user and (user.getId(),)
 
 class IDublinCore(IBasic, ICategorization, IPublication, IOwnership):
     """ Metadata behavior providing all the DC fields

@@ -4,6 +4,10 @@ Changelog
 1.0a7 - unreleased
 ------------------
 
+* Make sure the current user is loaded as the default creator for the
+  IOwnership schema in an add form.
+  [davisagli]
+
 * Include behavior descriptions on the behavior edit tab.
   [davisagli]
 
