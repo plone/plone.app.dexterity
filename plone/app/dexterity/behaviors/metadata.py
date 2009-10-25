@@ -132,7 +132,7 @@ def creatorsDefault(data):
     user = getSecurityManager().getUser()
     return user and (user.getId(),)
 
-class IDublinCore(IBasic, ICategorization, IPublication, IOwnership):
+class IDublinCore(IOwnership, IPublication, ICategorization, IBasic):
     """ Metadata behavior providing all the DC fields
     """
     pass
