@@ -116,8 +116,7 @@ class TypesListing(crud.CrudForm):
         # XXX should probably copy icons into p.a.d and use them from here
         if PLONE40:
             data['icon_expr'] = 'string:${portal_url}/' + icon + '.png'
-        else:
-            data['content_icon'] = icon + '.gif'
+        data['content_icon'] = icon + '.gif'
         fti.manage_changeProperties(**data)
 
         ttool = getToolByName(self.context, 'portal_types')
