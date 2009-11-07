@@ -23,7 +23,11 @@ Get a logged-in test browser.
 
 Load the form for creating a new Plone site and make sure we see the
 expected profiles.
-  >>> browser.open('http://nohost/manage_addProduct/CMFPlone/addPloneSiteForm')
+  >>> from zExceptions import NotFound
+  >>> try:
+  ...     browser.open('http://nohost/manage_addProduct/CMFPlone/addPloneSiteForm')
+  ... except NotFound:
+  ...     browser.open('http://nohost/@@plone-addsite')
   >>> 'plone.app.dexterity:default' in browser.contents
   True
   >>> 'plone.app.relationfield:default' in browser.contents
