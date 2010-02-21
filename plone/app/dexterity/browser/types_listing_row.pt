@@ -10,8 +10,7 @@
     <img
        tal:define="fti view/getContent;
                    icon fti/getIcon;
-                   portal_state nocall:context/@@plone_portal_state;
-                   portal_url portal_state/portal_url"
+                   portal_url context/context/context/portal_url"
        tal:condition="python:icon and idx == 1"
        tal:attributes="src string:${portal_url}/${icon};"
        width="16"

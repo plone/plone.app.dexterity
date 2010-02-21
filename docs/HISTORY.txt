@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.0a8 - unreleased
+------------------
+
+* Avoid relying on acquisition to get the portal_url for links in the type
+  listing table.
+  [davisagli]
+
+
 1.0a7 - 2010-01-08
 ------------------
 
