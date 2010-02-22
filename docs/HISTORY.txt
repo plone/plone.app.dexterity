@@ -4,6 +4,14 @@ Changelog
 1.0a8 - unreleased
 ------------------
 
+* Add upgrades folder and make sure plone.app.z3cform profile gets installed
+  on upgrades from previous versions of Dexterity.
+  [davisagli]
+
+* Depend on the plone.app.z3cform profile, to make sure the Plone browser layer
+  for z3c.form gets installed.
+  [davisagli]
+
 * Avoid relying on acquisition to get the portal_url for links in the type
   listing table.
   [davisagli]

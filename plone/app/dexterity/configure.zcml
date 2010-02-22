@@ -22,6 +22,7 @@
 
     <include package=".browser" />
     <include package=".behaviors" />
+    <include package=".upgrades" />
     
     <include file="events.zcml" />
     

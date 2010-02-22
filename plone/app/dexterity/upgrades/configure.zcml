@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeStep
+    source="0.1"
+    destination="1"
+    title="Install plone.app.z3cform browser layer"
+    description=""
+    profile="plone.app.dexterity:default"
+    handler=".to1.install_z3cform_profile"
+    />
+
+</configure>
