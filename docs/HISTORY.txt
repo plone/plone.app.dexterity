@@ -4,6 +4,10 @@ Changelog
 1.0a8 - unreleased
 ------------------
 
+* Fix issue with the BehaviorsForm accidentally polluting the title of the
+  z3c.form EditForm 'Apply' button.
+  [davisagli]
+
 * Add upgrades folder and make sure plone.app.z3cform profile gets installed
   on upgrades from previous versions of Dexterity.
   [davisagli]

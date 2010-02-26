@@ -1,3 +1,4 @@
+from copy import deepcopy
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as Zope2PageTemplateFile
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapts, getUtilitiesFor
@@ -44,6 +45,7 @@ class BehaviorsForm(form.EditForm):
     description = u'Select the behaviors to enable for this content type.'
     successMessage = u'Behaviors successfully updated.'
     noChangesMessage = u'No changes were made.'
+    buttons = deepcopy(form.EditForm.buttons)
     
     def getContent(self):
         return BehaviorConfigurationAdapter(self.context)
