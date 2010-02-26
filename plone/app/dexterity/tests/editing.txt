@@ -37,7 +37,7 @@ community::
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Add').click()
   >>> browser.url
-  'http://nohost/plone/@@dexterity-types'
+  'http://nohost/plone/@@dexterity-types/@@edit'
   >>> 'Item added successfully.' in browser.contents
   True
 
@@ -126,7 +126,7 @@ We can create a content type that is a container for other content::
   >>> browser.getControl(name='crud-add.form.widgets.container:list').value = ['true']
   >>> browser.getControl('Add').click()
   >>> browser.url
-  'http://nohost/plone/@@dexterity-types'
+  'http://nohost/plone/@@dexterity-types/@@edit'
   >>> 'Item added successfully.' in browser.contents
   True
 
