@@ -4,6 +4,9 @@ Changelog
 1.0a8 - unreleased
 ------------------
 
+* Added a DexterityLayer that can be used in tests.
+  [davisagli]
+
 * Fix issue with the BehaviorsForm accidentally polluting the title of the
   z3c.form EditForm 'Apply' button.
   [davisagli]
