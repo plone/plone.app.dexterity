@@ -7,6 +7,7 @@
 
     <include package="plone.app.z3cform" />
     <include package="plone.app.textfield" />
+    <include package="plone.formwidget.namedfile" />
     <include package="plone.schemaeditor" />
     <include package="plone.directives.dexterity" />
     <include package="plone.dexterity" />
