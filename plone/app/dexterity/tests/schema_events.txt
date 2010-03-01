@@ -3,7 +3,7 @@ Serialization of schema changes
 
 This package defers to plone.schemaeditor for the actual editing of Zope 3
 schemata.  plone.schemaeditor raises object lifecycle events when modifications
-are made to the schema, and this package registers handlers for those event,
+are made to the schema, and this package registers handlers for those events,
 to serialize the modified schema into XML on the type FTI (using the
 plone.supermodel API).
 

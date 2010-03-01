@@ -55,6 +55,19 @@ The new type should have the dublin core behavior assigned by default::
   True
 
 
+Adding an instance of the new type
+----------------------------------
+
+Now a 'Plonista' can be created within the site::
+
+  >>> browser.open('http://nohost/plone')
+  >>> browser.getLink('Plonista').click()
+  >>> browser.getControl('Title').value = 'Martin Aspeli'
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/plonista/view'
+
+
 Editing a content type
 ----------------------
 
@@ -62,6 +75,7 @@ Editing schemata is handled by the plone.schemaeditor package and is tested
 there.  However, let's at least make sure that we can navigate to the
 schema for the 'plonista' type we just created::
 
+  >>> browser.open('http://nohost/plone/@@dexterity-types')
   >>> browser.getLink('Plonista').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types/plonista'
@@ -116,12 +130,25 @@ Now the FTI for the type should no longer be present in portal_types::
   >>> 'plonista' in self.portal.portal_types
   False
 
+We should still be able to view a container that contains an instance of the
+removed type::
+
+  >>> browser.open('http://nohost/plone/folder_contents')
+
+But actually trying to view the type will now cause an error, as expected::
+
+  >>> browser.open('http://nohost/plone/plonista/view')
+  Traceback (most recent call last):
+  ...
+  ComponentLookupError: (<InterfaceClass plone.dexterity.interfaces.IDexterityFTI>, 'plonista')
+
 
 Adding a container
 ------------------
 
 We can create a content type that is a container for other content::
 
+  >>> browser.open('http://nohost/plone/@@dexterity-types')
   >>> browser.getControl('Type Name').value = 'Plonista Folder'
   >>> browser.getControl(name='crud-add.form.widgets.container:list').value = ['true']
   >>> browser.getControl('Add').click()
