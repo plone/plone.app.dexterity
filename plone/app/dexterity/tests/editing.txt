@@ -140,7 +140,7 @@ But actually trying to view the type will now cause an error, as expected::
   >>> browser.open('http://nohost/plone/plonista/view')
   Traceback (most recent call last):
   ...
-  ComponentLookupError: (<InterfaceClass plone.dexterity.interfaces.IDexterityFTI>, 'plonista')
+  ComponentLookupError...
 
 
 Adding a container
