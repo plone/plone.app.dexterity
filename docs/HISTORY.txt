@@ -4,6 +4,9 @@ Changelog
 1.0a8 - unreleased
 ------------------
 
+* Enable the "Name from title" behavior for new types, by default.
+  [davisagli]
+
 * Include plone.formwdiget.namedfile so that File upload and Image fields are
   available out of the box.  You must explicitly include z3c.blobfile in your
   environment if you want blob-based files.

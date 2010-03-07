@@ -100,7 +100,9 @@ class TypesListing(crud.CrudForm):
 
         fti = DexterityFTI(id)
         fti.id = id
-        data['behaviors'] = 'plone.app.dexterity.behaviors.metadata.IDublinCore'
+        data['behaviors'] = "\n".join(['plone.app.dexterity.behaviors.metadata.IDublinCore',
+                                       'plone.app.content.interfaces.INameFromTitle',
+                                       ])
         data['model_source'] = """
 <model xmlns="http://namespaces.plone.org/supermodel/schema">
     <schema>
