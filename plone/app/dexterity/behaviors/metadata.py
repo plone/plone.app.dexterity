@@ -1,6 +1,7 @@
 from AccessControl.SecurityManagement import getSecurityManager
 from DateTime import DateTime
 from datetime import datetime
+from z3c.form.interfaces import IEditForm, IAddForm
 from zope.interface import alsoProvides
 from zope.component import adapts
 from zope import schema
@@ -38,6 +39,10 @@ class IBasic(form.Schema):
     
     form.order_before(description = '*')
     form.order_before(title = '*')
+    
+    form.omitted('title', 'description')
+    form.no_omit(IEditForm, 'title', 'description')
+    form.no_omit(IAddForm, 'title', 'description')
 
 class ICategorization(form.Schema):
     # categorization fieldset
@@ -62,6 +67,10 @@ class ICategorization(form.Schema):
         required = False,
         missing_value = '',
         )
+    
+    form.omitted('subjects', 'language')
+    form.no_omit(IEditForm, 'subjects', 'language')
+    form.no_omit(IAddForm, 'subjects', 'language')
 
 class IPublication(form.Schema):
     # dates fieldset
@@ -86,6 +95,10 @@ class IPublication(form.Schema):
                                        "longer be visible in listings and searches."),
         required = False
         )
+    
+    form.omitted('effective', 'expires')
+    form.no_omit(IEditForm, 'effective', 'expires')
+    form.no_omit(IAddForm, 'effective', 'expires')
 
 class IOwnership(form.Schema):
     # ownership fieldset
@@ -125,6 +138,10 @@ class IOwnership(form.Schema):
                           default=u'Copyright statement or other rights information on this item.'),
         required = False,
         )
+    
+    form.omitted('creators', 'contributors', 'rights')
+    form.no_omit(IEditForm, 'creators', 'contributors', 'rights')
+    form.no_omit(IAddForm, 'creators', 'contributors', 'rights')
 
 # make sure the add form shows the default creator
 @form.default_value(field=IOwnership['creators'])
