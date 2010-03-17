@@ -15,7 +15,6 @@
 
   <body>
       <metal:slot metal:fill-slot="content" i18n:domain="cmf_default">
-          <div class="documentEditable cell width-full position-0" metal:define-macro="form">
 
             <div id="edit-bar">
              <ul id="content-views" class="contentViews">
@@ -33,6 +32,9 @@
 
              <div class="contentActions"></div>
             </div>
+
+          <div id="content" class="cell width-full position-0" metal:define-macro="form">
+
 
              <div class="documentContent">
                
