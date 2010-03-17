@@ -6,13 +6,6 @@
       i18n:domain="plone.z3cform"
       tal:omit-tag="">
 
-  <head>
-    <metal:slot metal:fill-slot="javascript_head_slot">
-      <tal:block tal:condition="view/javascript|nothing"
-          tal:replace="structure view/javascript" />
-    </metal:slot>
-  </head>
-
   <body>
       <metal:slot metal:fill-slot="content" i18n:domain="cmf_default">
 

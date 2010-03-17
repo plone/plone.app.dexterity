@@ -1,8 +1,8 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.schemaeditor.browser.schema.schema import SchemaListing, ReadOnlySchemaListing
-from plone.schemaeditor.browser.jsform.jsform import JavascriptFormWrapper
+from plone.z3cform.layout import FormWrapper
 
-class TypeEditPage(JavascriptFormWrapper):
+class TypeEditPage(FormWrapper):
     """ Form wrapper so we can get a form with layout.
     
         We define an explicit subclass rather than using the wrap_form method
