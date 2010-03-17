@@ -14,7 +14,7 @@ class TypeEditPage(FormWrapper):
     @property
     def tabs(self):
         return (
-            ('Schema', None),
+            ('Fields', None),
             ('Behaviors', '@@behaviors'),
             )
     
@@ -27,4 +27,4 @@ class TypeEditPage(FormWrapper):
     
     @property
     def label(self):
-        return self.context.__name__
+        return u'Fields for %s (%s)' % (self.context.Title(), self.context.__name__)

@@ -76,7 +76,7 @@ class BehaviorsFormPage(FormWrapper):
     form = BehaviorsForm
     index = Zope2PageTemplateFile('tabbed_forms.pt')
     tabs = (
-        ('Schema', '@@edit'),
+        ('Fields', '@@edit'),
         ('Behaviors', None),
         )
     
