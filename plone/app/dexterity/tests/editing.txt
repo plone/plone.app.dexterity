@@ -77,8 +77,37 @@ schema for the 'plonista' type we just created::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
   >>> browser.getLink('Plonista').click()
-  >>> browser.url
+  >>> schemaeditor_url = browser.url
+  >>> schemaeditor_url
   'http://nohost/plone/dexterity-types/plonista'
+
+Demonstrate that all the registered field types can be added edited
+and saved.
+
+  >>> from zope import component
+  >>> from plone.i18n.normalizer.interfaces import IIDNormalizer
+  >>> from plone.schemaeditor import interfaces
+  >>> normalizer = component.getUtility(IIDNormalizer)
+  >>> schema = plonista.lookupSchema()
+  >>> for name, factory in sorted(component.getUtilitiesFor(
+  ...     interfaces.IFieldFactory)):
+  ...     browser.open(schemaeditor_url)
+  ...     browser.getControl('Field title').value = name
+  ...     browser.getControl('Field type').getControl(
+  ...         value=getattr(factory.title, 'default', factory.title)
+  ...         ).selected = True
+  ...     browser.getControl('Add').click()
+  ...     assert 'Item added successfully.' in browser.contents, (
+  ...         'No success message for adding %r' % name)
+  ...     field_name = normalizer.normalize(name).replace('-', '_')
+  ...     assert field_name in schema, '%r not in %r' % (
+  ...         field_name, schema)
+  ...     assert factory.fieldcls._type is None or isinstance(
+  ...         schema[field_name], factory.fieldcls
+  ...         ), '%r is not an instance of %r' % (
+  ...             schema[field_name], factory.fieldcls)
+  ...     browser.getLink(name).click()
+  ...     browser.getControl('Save').click()
 
 
 Enabling a behavior
