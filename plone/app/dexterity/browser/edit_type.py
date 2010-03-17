@@ -1,5 +1,5 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.schemaeditor.browser.schema.schema import SchemaListing, ReadOnlySchemaListing
+from plone.schemaeditor.browser.schema.listing import SchemaListing, ReadOnlySchemaListing
 from plone.z3cform.layout import FormWrapper
 
 class TypeEditPage(FormWrapper):

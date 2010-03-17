@@ -17,7 +17,7 @@ from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.fti import DexterityFTI
 from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext
-from plone.schemaeditor.browser.schema.schema import SchemaContext
+from plone.schemaeditor.browser.schema.traversal import SchemaContext
 import plone.schemaeditor.browser
 
 try:
