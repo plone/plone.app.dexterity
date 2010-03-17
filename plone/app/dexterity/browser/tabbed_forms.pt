@@ -16,6 +16,14 @@
   <body>
       <metal:slot metal:fill-slot="content" i18n:domain="cmf_default">
 
+        <a href=""
+           class="link-parent"
+           tal:attributes="href string:${context/aq_parent/absolute_url}">
+          &laquo; Back to <span tal:replace="context/aq_parent/Title"/>
+        </a>
+
+        <div class="documentEditable">
+
             <div id="edit-bar">
              <ul id="content-views" class="contentViews">
                 <li class="selected"
@@ -33,17 +41,10 @@
              <div class="contentActions"></div>
             </div>
 
-          <div id="content" class="cell width-full position-0" metal:define-macro="form">
-
-             <a href=""
-                class="link-parent"
-                tal:attributes="href string:${context/aq_parent/absolute_url}"
-                tal:content="string:&laquo; Back to ${context/aq_parent/Title}">
-               Back to (parent)
-             </a>
+            <div id="content" class="cell width-full position-0">
 
              <div class="documentContent">
-               
+
                <div metal:use-macro="here/global_statusmessage/macros/portal_message">
                  Portal status message
                </div>
@@ -54,7 +55,8 @@
                  <tal:block tal:replace="structure view/contents"/>
              </div>
 
-         </div>
+           </div>
+        </div>
      </metal:slot>
 
   </body>
