@@ -82,4 +82,4 @@ class BehaviorsFormPage(FormWrapper):
     
     @property
     def label(self):
-        return self.context.__name__
+        return u'Behaviors for %s (%s)' % (self.context.Title(), self.context.__name__)
