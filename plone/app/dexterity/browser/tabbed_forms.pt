@@ -35,23 +35,22 @@
 
           <div id="content" class="cell width-full position-0" metal:define-macro="form">
 
+             <a href=""
+                class="link-parent"
+                tal:attributes="href string:${context/aq_parent/absolute_url}"
+                tal:content="string:&laquo; Back to ${context/aq_parent/Title}">
+               Back to (parent)
+             </a>
 
              <div class="documentContent">
                
                <div metal:use-macro="here/global_statusmessage/macros/portal_message">
                  Portal status message
                </div>
-
+               
                <h1 class="documentFirstHeading"
                    tal:content="view/label">Users Overview</h1>
 
-                 <a href=""
-                    class="link-parent"
-                    tal:attributes="href string:${context/aq_parent/absolute_url}"
-                    tal:content="string:Up to ${context/aq_parent/Title}">
-                   Up to (parent)
-                 </a>
-               
                  <tal:block tal:replace="structure view/contents"/>
              </div>
 
