@@ -34,7 +34,7 @@ Adding a content type
 Let's add a 'Plonista' content type to keep track of members of the Plone
 community::
 
-  >>> browser.getLink('Add Content Type').click()
+  >>> browser.getLink('Add ').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Add').click()
   >>> browser.url
@@ -92,7 +92,7 @@ and saved.
   ...     interfaces.IFieldFactory))):
   ...     browser.open(schemaeditor_url)
   ...     browser.getLink('Add new field').click()
-  ...     browser.getControl('Field title').value = name
+  ...     browser.getControl('Title').value = name
   ...     browser.getControl('Field type').getControl(
   ...         value=getattr(factory.title, 'default', factory.title)
   ...         ).selected = True
@@ -178,7 +178,7 @@ Adding a container
 We can create a content type that is a container for other content::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
-  >>> browser.getLink('Add Content Type').click()
+  >>> browser.getLink('Add ').click()
   >>> browser.getControl('Type Name').value = 'Plonista Folder'
   >>> browser.getControl(name='form.widgets.container:list').value = ['true']
   >>> browser.getControl('Add').click()
