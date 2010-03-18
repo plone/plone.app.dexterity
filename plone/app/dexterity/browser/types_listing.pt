@@ -1,3 +1,22 @@
+<script type="text/javascript" charset="utf-8">
+(function($){
+$(document).ready(function() {
+
+    common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
+
+    // add new type form
+    $('#add-type').prepOverlay(
+        {
+            subtype: 'ajax',
+            filter: common_content_filter,
+        }
+    );
+    
+});
+})(jQuery);    
+</script>
+
+
 <div class="portalMessage"
      tal:condition="view/status" tal:content="view/status">
 </div>
@@ -7,9 +26,10 @@
      tal:content="view/description">
 </p>
 
-<a id="add-type-link"
+<a id="add-type"
+   style="float: right; display: block; margin-top: -1.5em"
    tal:attributes="href string:${context/absolute_url}/@@add-type">
-  Add Content Type
+  Add New Content Type&hellip;
 </a>
 
 <div tal:repeat="form view/subforms"

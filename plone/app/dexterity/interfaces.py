@@ -26,8 +26,8 @@ class ITypeSettings(Interface):
         )
 
     container = schema.Bool(
-        title = u'Container?',
-        description = u'If yes, items of this type will be able to contain other items.',
+        title = u'Container',
+        description = u'Items of this type will be able to contain other items.',
         required = True,
         default = False,
         )
