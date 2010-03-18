@@ -1,58 +1,20 @@
 from zExceptions import NotFound
 from OFS.SimpleItem import SimpleItem
 
-from zope.interface import Interface, implements
+from zope.interface import implements
 from zope.component import getAllUtilitiesRegisteredFor, getUtility, ComponentLookupError
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
-from zope import schema
 
 from z3c.form import field
 from plone.z3cform import layout
 from plone.z3cform.crud import crud
 
 from Products.CMFCore.utils import getToolByName
-from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 from plone.dexterity.interfaces import IDexterityFTI
-from plone.dexterity.fti import DexterityFTI
-from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext
+from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext, ITypeSettings
 from plone.schemaeditor.browser.schema.traversal import SchemaContext
-import plone.schemaeditor.browser
-
-try:
-    from Products.CMFPlone.factory import _IMREALLYPLONE4
-    PLONE40 = True
-except ImportError:
-    PLONE40 = False
-
-class ITypeSettings(Interface):
-    """ Define the fields for the content type add form
-    """
-    
-    title = schema.TextLine(
-        title = u'Type Name'
-        )
-
-    description = schema.Text(
-        title = u'Description',
-        required = False
-        )
-
-    container = schema.Bool(
-        title = u'Container?',
-        description = u'If yes, items of this type will be able to contain other items.',
-        required = True,
-        default = False,
-        )
-
-class TypeAddForm(crud.AddForm):
-    """ Content type add form.  Just a normal CRUD add form with a custom template to show a form title.
-    """
-    
-    label = u'Add Content Type'
-    template = ViewPageTemplateFile('titledform.pt', _prefix=plone.schemaeditor.browser.__dict__)
-
 
 class TypeEditSubForm(crud.EditSubForm):
     """ Content type edit subform. Just here to use a custom template.
@@ -70,15 +32,13 @@ class TypeEditForm(crud.EditForm):
         super(crud.EditForm, self).__init__(context, request)
         self.buttons = self.buttons.copy().omit('edit')
 
-
 class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.
     """
     
+    template = ViewPageTemplateFile('types_listing.pt')
     view_schema = field.Fields(ITypeSettings).omit('container')
-    add_schema = ITypeSettings
-    
-    addform_factory = TypeAddForm
+    addform_factory = crud.NullForm
     editform_factory = TypeEditForm
     
     def get_items(self):
@@ -88,41 +48,6 @@ class TypesListing(crud.CrudForm):
         """
         ftis = getAllUtilitiesRegisteredFor(IDexterityFTI)
         return [(fti.__name__, fti) for fti in ftis]
-
-    def add(self, data):
-        """ Add a new DexterityFTI.
-            
-            A URL normalizer, normally from plone.i18n, is used to sanitize the type's title.
-        """
-        
-        id = getUtility(IIDNormalizer).normalize(data['title'])
-        # XXX validation
-
-        fti = DexterityFTI(id)
-        fti.id = id
-        data['behaviors'] = "\n".join(['plone.app.dexterity.behaviors.metadata.IDublinCore',
-                                       'plone.app.content.interfaces.INameFromTitle',
-                                       ])
-        data['model_source'] = """
-<model xmlns="http://namespaces.plone.org/supermodel/schema">
-    <schema>
-    </schema>
-</model>
-"""
-        if data['container']:
-            data['klass'] = 'plone.dexterity.content.Container'
-            del data['container']
-            icon = 'folder_icon'
-        else:
-            icon = 'document_icon'
-        # XXX should probably copy icons into p.a.d and use them from here
-        if PLONE40:
-            data['icon_expr'] = 'string:${portal_url}/' + icon + '.png'
-        data['content_icon'] = icon + '.gif'
-        fti.manage_changeProperties(**data)
-
-        ttool = getToolByName(self.context, 'portal_types')
-        ttool._setObject(id, fti)
 
     def remove(self, (id, item)):
         """ Remove a content type.

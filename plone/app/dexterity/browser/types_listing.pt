@@ -1,0 +1,22 @@
+<div class="portalMessage"
+     tal:condition="view/status" tal:content="view/status">
+</div>
+
+<p class="crud-description"
+     tal:condition="view/description"
+     tal:content="view/description">
+</p>
+
+<a id="add-type-link"
+   tal:attributes="href string:${context/absolute_url}/@@add-type">
+  Add Content Type
+</a>
+
+<div tal:repeat="form view/subforms"
+     tal:content="structure form/render"
+     class="crud-form">
+</div>
+
+<div class="action" tal:repeat="action view/actions/values">
+  <input type="submit" tal:replace="structure action/render" />
+</div>
