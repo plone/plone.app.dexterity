@@ -28,6 +28,7 @@ setup(name='plone.app.dexterity',
           'five.localsitemanager>=1.1',
           # ^^ required to fix a bug that affects content with __parent__ pointers set
           'plone.app.content',
+          'plone.app.jquerytools',
           'plone.app.relationfield',
           'plone.app.textfield',
           'plone.app.z3cform>=0.4.6',

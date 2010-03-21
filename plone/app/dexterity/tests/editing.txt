@@ -91,7 +91,7 @@ and saved.
   >>> for i, (name, factory) in enumerate(sorted(component.getUtilitiesFor(
   ...     interfaces.IFieldFactory))):
   ...     browser.open(schemaeditor_url)
-  ...     browser.getLink('Add new field').click()
+  ...     browser.getControl('Add new field').click()
   ...     browser.getControl('Title').value = name
   ...     browser.getControl('Field type').getControl(
   ...         value=getattr(factory.title, 'default', factory.title)
