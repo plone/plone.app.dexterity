@@ -13,9 +13,8 @@ $(document).ready(function() {
     );
     
 });
-})(jQuery);    
+})(jQuery);
 </script>
-
 
 <div class="portalMessage"
      tal:condition="view/status" tal:content="view/status">
@@ -26,11 +25,11 @@ $(document).ready(function() {
      tal:content="view/description">
 </p>
 
-<a id="add-type"
-   style="float: right; display: block; margin-top: -1.5em"
-   tal:attributes="href string:${context/absolute_url}/@@add-type">
-  Add New Content Type&hellip;
-</a>
+<form id="add-type" method="GET"
+      tal:attributes="action string:${context/absolute_url}/@@add-type">
+  <input type="submit" style="float: right; display: block;"
+         value="Add New Content Type&hellip;"/>
+</form>
 
 <div tal:repeat="form view/subforms"
      tal:content="structure form/render"

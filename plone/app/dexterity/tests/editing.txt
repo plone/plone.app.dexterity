@@ -34,7 +34,7 @@ Adding a content type
 Let's add a 'Plonista' content type to keep track of members of the Plone
 community::
 
-  >>> browser.getLink('Add ').click()
+  >>> browser.getControl('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Add').click()
   >>> browser.url
@@ -178,7 +178,7 @@ Adding a container
 We can create a content type that is a container for other content::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
-  >>> browser.getLink('Add ').click()
+  >>> browser.getControl('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista Folder'
   >>> browser.getControl(name='form.widgets.container:list').value = ['true']
   >>> browser.getControl('Add').click()
