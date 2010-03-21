@@ -1,8 +1,8 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.schemaeditor.browser.schema.listing import SchemaListing, ReadOnlySchemaListing
-from plone.z3cform.layout import FormWrapper
+from plone.schemaeditor.browser.schema.listing import SchemaListingPage
 
-class TypeEditPage(FormWrapper):
+class TypeEditPage(SchemaListingPage):
     """ Form wrapper so we can get a form with layout.
     
         We define an explicit subclass rather than using the wrap_form method
@@ -24,7 +24,3 @@ class TypeEditPage(FormWrapper):
             return SchemaListing
         else:
             return ReadOnlySchemaListing
-    
-    @property
-    def label(self):
-        return u'Fields for %s (%s)' % (self.context.Title(), self.context.__name__)
