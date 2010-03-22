@@ -14,6 +14,7 @@ class TypeAddForm(form.AddForm):
 
     label = _(u'Add Content Type')
     fields = field.Fields(ITypeSettings)
+    id = 'add-type-form'
 
     def create(self, data):
         id = getUtility(IIDNormalizer).normalize(data['title'])
