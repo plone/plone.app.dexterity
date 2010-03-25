@@ -88,8 +88,8 @@ and saved.
   >>> from plone.schemaeditor import interfaces
   >>> normalizer = component.getUtility(IIDNormalizer)
   >>> schema = plonista.lookupSchema()
-  >>> for i, (name, factory) in enumerate(sorted(component.getUtilitiesFor(
-  ...     interfaces.IFieldFactory))):
+  >>> for name, factory in sorted(component.getUtilitiesFor(
+  ...     interfaces.IFieldFactory)):
   ...     browser.open(schemaeditor_url)
   ...     browser.getControl('Add new field').click()
   ...     browser.getControl('Title').value = name
@@ -107,7 +107,7 @@ and saved.
   ...         schema[field_id], factory.fieldcls
   ...         ), '%r is not an instance of %r' % (
   ...             schema[field_id], factory.fieldcls)
-  ...     browser.getLink('Settings', index=i).click()
+  ...     browser.getLink(url=field_id).click()
   ...     browser.getControl('Save').click()
 
 
