@@ -38,6 +38,13 @@
         permission="plone.schemaeditor.ManageSchemata" />
     
     <browser:page
+        name="add-type"
+        for="plone.app.dexterity.interfaces.ITypesContext"
+        class=".add_type.TypeAddFormPage"
+        permission="plone.schemaeditor.ManageSchemata"
+        />
+
+    <browser:page
         name="edit"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
         class=".edit_type.TypeEditPage"

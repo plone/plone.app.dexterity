@@ -34,12 +34,11 @@ Adding a content type
 Let's add a 'Plonista' content type to keep track of members of the Plone
 community::
 
+  >>> browser.getControl('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Add').click()
   >>> browser.url
-  'http://nohost/plone/@@dexterity-types/@@edit'
-  >>> 'Item added successfully.' in browser.contents
-  True
+  'http://nohost/plone/dexterity-types'
 
 Now we should also have a 'plonista' FTI in portal_types::
 
@@ -89,24 +88,26 @@ and saved.
   >>> from plone.schemaeditor import interfaces
   >>> normalizer = component.getUtility(IIDNormalizer)
   >>> schema = plonista.lookupSchema()
-  >>> for name, factory in sorted(component.getUtilitiesFor(
-  ...     interfaces.IFieldFactory)):
+  >>> for i, (name, factory) in enumerate(sorted(component.getUtilitiesFor(
+  ...     interfaces.IFieldFactory))):
   ...     browser.open(schemaeditor_url)
-  ...     browser.getControl('Field title').value = name
+  ...     browser.getControl('Add new field').click()
+  ...     browser.getControl('Title').value = name
+  ...     field_id = normalizer.normalize(name).replace('-', '_')
+  ...     browser.getControl('Short Name').value = field_id
   ...     browser.getControl('Field type').getControl(
   ...         value=getattr(factory.title, 'default', factory.title)
   ...         ).selected = True
   ...     browser.getControl('Add').click()
-  ...     assert 'Item added successfully.' in browser.contents, (
-  ...         'No success message for adding %r' % name)
-  ...     field_name = normalizer.normalize(name).replace('-', '_')
-  ...     assert field_name in schema, '%r not in %r' % (
-  ...         field_name, schema)
+  ...     assert browser.url == schemaeditor_url, (
+  ...         "Couldn't successfully add %r" % name)
+  ...     assert field_id in schema, '%r not in %r' % (
+  ...         field_id, schema)
   ...     assert factory.fieldcls._type is None or isinstance(
-  ...         schema[field_name], factory.fieldcls
+  ...         schema[field_id], factory.fieldcls
   ...         ), '%r is not an instance of %r' % (
-  ...             schema[field_name], factory.fieldcls)
-  ...     browser.getLink(name).click()
+  ...             schema[field_id], factory.fieldcls)
+  ...     browser.getLink('Settings', index=i).click()
   ...     browser.getControl('Save').click()
 
 
@@ -178,13 +179,12 @@ Adding a container
 We can create a content type that is a container for other content::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
+  >>> browser.getControl('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista Folder'
-  >>> browser.getControl(name='crud-add.form.widgets.container:list').value = ['true']
+  >>> browser.getControl(name='form.widgets.container:list').value = ['true']
   >>> browser.getControl('Add').click()
   >>> browser.url
-  'http://nohost/plone/@@dexterity-types/@@edit'
-  >>> 'Item added successfully.' in browser.contents
-  True
+  'http://nohost/plone/dexterity-types'
 
 Now we should have a 'plonista-folder' FTI in portal_types, and it should be
 using the Container base class::
