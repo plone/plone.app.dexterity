@@ -11,4 +11,13 @@
     handler=".to1.install_z3cform_profile"
     />
 
+  <genericsetup:upgradeStep
+    source="1"
+    destination="2"
+    title="Unregister schemaeditor.css"
+    description=""
+    profile="plone.app.dexterity:default"
+    handler=".to2.remove_stylesheet"
+    />
+
 </configure>
