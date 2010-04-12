@@ -5,6 +5,8 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="plone.app.dexterity">
 
+    <include package="plone.app.imaging"
+             zcml:condition="installed plone.app.imaging"/>
     <include package="plone.app.z3cform" />
     <include package="plone.app.textfield" />
     <include package="plone.formwidget.namedfile" />
@@ -27,16 +29,14 @@
     
     <include file="events.zcml" />
     
-    <!-- Make Dexterity types portlet- and content rule aware -->
-    
     <class class="plone.dexterity.content.DexterityContent">
+        <!-- Make Dexterity types portlet- and content rule aware -->
         <implements interface="plone.portlets.interfaces.ILocalPortletAssignable" />
-    </class>
-    
-    <class class="plone.dexterity.content.DexterityContent">
         <implements interface="plone.contentrules.engine.interfaces.IRuleAssignable" />
+        <!-- Make it possible to traverse to image scales on Dexterity content -->
+        <implements interface="plone.namedfile.interfaces.IImageScaleTraversable" />
     </class>
-    
+
     <!-- override add views -->
     <include package="Products.CMFCore" />
     <include package="plone.app.content" />
