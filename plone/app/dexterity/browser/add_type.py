@@ -33,6 +33,7 @@ class TypeAddForm(form.AddForm):
 """
         if data['container']:
             data['klass'] = 'plone.dexterity.content.Container'
+            data['filter_content_types'] = False
             del data['container']
             icon = 'folder_icon'
         else:

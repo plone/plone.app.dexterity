@@ -196,3 +196,17 @@ using the Container base class::
   'plone.dexterity.content.Container'
   >>> 'folder_icon' in pf.getIcon()
   True
+
+If we add a plonista-folder, we can then add other content items inside it.
+
+  >>> browser.open('http://nohost/plone')
+  >>> browser.getLink('Plonista Folder').click()
+  >>> browser.getControl('Title').value = 'Plonista Folder 1'
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/plonista-folder-1/view'
+  >>> browser.getLink('Page').click()
+  >>> browser.getControl('Title').value = 'Introduction'
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/plonista-folder-1/introduction'
