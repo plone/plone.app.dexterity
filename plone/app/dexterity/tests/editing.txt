@@ -205,7 +205,7 @@ If we add a plonista-folder, we can then add other content items inside it.
   >>> browser.getControl('Save').click()
   >>> browser.url
   'http://nohost/plone/plonista-folder-1/view'
-  >>> browser.getLink('Page').click()
+  >>> browser.getLink(url='Document').click()
   >>> browser.getControl('Title').value = 'Introduction'
   >>> browser.getControl('Save').click()
   >>> browser.url
