@@ -6,7 +6,7 @@ from zope.component import getAllUtilitiesRegisteredFor, getUtility, ComponentLo
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 
-from z3c.form import field
+from z3c.form import field, button
 from plone.z3cform import layout
 from plone.z3cform.crud import crud
 
@@ -15,6 +15,8 @@ from Products.CMFCore.utils import getToolByName
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext, ITypeSettings
 from plone.schemaeditor.browser.schema.traversal import SchemaContext
+
+from plone.app.dexterity import MessageFactory as _
 
 class TypeEditSubForm(crud.EditSubForm):
     """ Content type edit subform. Just here to use a custom template.
@@ -28,9 +30,21 @@ class TypeEditForm(crud.EditForm):
     label = None
     editsubform_factory = TypeEditSubForm
     
-    def __init__(self, context, request):
-        super(crud.EditForm, self).__init__(context, request)
-        self.buttons = self.buttons.copy().omit('edit')
+    buttons = crud.EditForm.buttons.copy().omit('edit')
+    handlers = crud.EditForm.handlers.copy()
+    
+    @button.buttonAndHandler(_(u'Clone'))
+    def handleClone(self, action):
+        selected = self.selected_items()
+        
+        if len(selected) > 1:
+            self.status = _(u'Please select a single type to clone.')
+        elif len(selected) == 1:
+            id = selected[0][0]
+            url = '%s/%s/@@clone' % (self.context.context.absolute_url(), id)
+            self.request.response.redirect(url)
+        else:
+            self.status = _(u'Please select a type to clone.')
 
 class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.

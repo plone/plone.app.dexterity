@@ -5,14 +5,30 @@ $(document).ready(function() {
     common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
 
     // add new type form
-    $('#add-type').prepOverlay(
-        {
-            subtype: 'ajax',
-            filter: common_content_filter,
-            formselector: '#add-type-form',
-            noform: 'reload'
-        }
-    );
+    $('#add-type').prepOverlay({
+        subtype: 'ajax',
+        filter: common_content_filter,
+        formselector: '#add-type-form',
+        noform: 'reload'
+    });
+    
+    // clone type form
+    $('#crud-edit-form-buttons-clone').click(function(e) {
+      var selected = $('input[id$=-widgets-select-0]:checked');
+      if (selected.length == 1) {
+          e.preventDefault();
+          $(this).removeClass('submitting');
+          var type_id = /crud-edit-(\w+)/.exec(selected.attr('id'))[1];
+          var el = $('<a href="' + $('base').attr('href') + '/' + type_id + '/@@clone"><' + '/a>').appendTo('body');
+          el.prepOverlay({
+              subtype: 'ajax',
+              filter: common_content_filter,
+              formselector: '#clone-type-form',
+              noform: 'reload'
+          })
+          el.click();
+      }
+    });
     
     // delete type confirmation
     $('#crud-edit-form-buttons-delete').click(function(e) {
@@ -20,6 +36,7 @@ $(document).ready(function() {
             jq(this).removeClass('submitting');
             e.preventDefault();
         }
+        
     });
 });
 })(jQuery);

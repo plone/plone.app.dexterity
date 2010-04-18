@@ -43,7 +43,7 @@
         class=".add_type.TypeAddFormPage"
         permission="plone.schemaeditor.ManageSchemata"
         />
-
+    
     <browser:page
         name="edit"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
@@ -54,6 +54,12 @@
         name="behaviors"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
         class=".behaviors.BehaviorsFormPage"
+        permission="plone.schemaeditor.ManageSchemata" />
+
+    <browser:page
+        name="clone"
+        for="plone.app.dexterity.interfaces.ITypeSchemaContext"
+        class=".clone_type.TypeCloneFormPage"
         permission="plone.schemaeditor.ManageSchemata" />
 
     <!-- the Dexterity FTI has 'title' and 'description' attributes but
