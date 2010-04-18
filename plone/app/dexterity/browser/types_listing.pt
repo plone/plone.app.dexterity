@@ -19,7 +19,7 @@ $(document).ready(function() {
           e.preventDefault();
           $(this).removeClass('submitting');
           var type_id = /crud-edit-(\w+)/.exec(selected.attr('id'))[1];
-          var el = $('<' + 'a href="' + $('base').attr('href') + '/' + type_id + '/@@clone"><' + '/a>').appendTo('body');
+          var el = $('<' + 'a href="' + $('link[rel=kss-base-url]').attr('href') + '/' + type_id + '/@@clone"><' + '/a>').appendTo('body');
           el.prepOverlay({
               subtype: 'ajax',
               filter: common_content_filter,
