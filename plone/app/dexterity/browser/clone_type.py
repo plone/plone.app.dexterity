@@ -28,6 +28,6 @@ class TypeCloneForm(form.AddForm):
         self.status = _(u"Type cloned successfully.")
 
     def nextURL(self):
-        return self.context.context.absolute_url()
+        return self.context.aq_parent.absolute_url()
 
 TypeCloneFormPage = wrap_form(TypeCloneForm)

@@ -154,13 +154,15 @@ A content type can be cloned.
   >>> browser.open('http://nohost/plone/dexterity-types')
   >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
   >>> browser.getControl('Clone').click()
-  >>> browser.getControl('Title').value = 'Plonista2'
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista/@@clone'
+  >>> browser.getControl('Type Name').value = 'Plonista2'
   >>> browser.getControl('Add').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types'
-  >>> 'Plonista2' in browser.contents
+  >>> 'plonista2' in browser.contents
   True
-  >>> 'Plonista2' in self.portal.portal_types
+  >>> 'plonista2' in self.portal.portal_types
   True
 
 
