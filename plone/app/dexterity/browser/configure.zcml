@@ -69,4 +69,10 @@
         <implements interface=".types.ITypeSettings"/>
     </class>
 
+    <!-- overlay CSS (only needed in Plone 3) -->
+    <browser:resource
+        name="plone.app.dexterity.overlays.css"
+        file="overlays.css"
+        />
+
 </configure>
