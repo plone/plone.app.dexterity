@@ -20,4 +20,13 @@
     handler=".to2.remove_stylesheet"
     />
 
+  <genericsetup:upgradeStep
+    source="2"
+    destination="3"
+    title="Install plone.app.jquerytools"
+    description=""
+    profile="plone.app.dexterity:default"
+    handler=".to3.install_jquerytools_profile"
+    />
+
 </configure>
