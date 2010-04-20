@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0a8'
+version = '1.0b1'
 
 setup(name='plone.app.dexterity',
       version=version,
@@ -26,12 +26,11 @@ setup(name='plone.app.dexterity',
       install_requires=[
           'collective.monkeypatcher',
           'five.localsitemanager>=1.1',
-          # ^^ required to fix a bug that affects content with __parent__ pointers set
           'plone.app.content',
           'plone.app.jquerytools >=1.0rc1',
           'plone.app.relationfield',
           'plone.app.textfield',
-          'plone.app.z3cform>=0.4.6',
+          'plone.app.z3cform>=0.5.0',
           'plone.autoform >=1.0b3dev-r34689',
           'plone.behavior>=1.0b5',
           'plone.contentrules',
@@ -45,7 +44,7 @@ setup(name='plone.app.dexterity',
           'plone.portlets',
           'plone.schemaeditor >=1.0a4dev-r35539',
           'plone.supermodel>=1.0b2',
-          'plone.z3cform>=0.5.5',
+          'plone.z3cform>=0.6.0',
           'Products.CMFCore',
           'setuptools',
           # Zope 2
