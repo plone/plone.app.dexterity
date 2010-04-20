@@ -1,7 +1,11 @@
 Changelog
 =========
 
-1.0b1 - unreleased
+1.0b2 - unreleased
+------------------
+
+
+1.0b1 - 2010-04-20
 ------------------
 
 * Require plone.app.jquerytools for the schema editor UI, and make sure it is
