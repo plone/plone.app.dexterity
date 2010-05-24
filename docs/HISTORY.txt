@@ -4,6 +4,11 @@ Changelog
 1.0b2 - unreleased
 ------------------
 
+* cloning a type through the dexterity UI in the control panel did not work
+  if the type had a hyphen in it's name. This fixes 
+  http://code.google.com/p/dexterity/issues/detail?id=126
+  [vangheem]
+  
 
 1.0b1 - 2010-04-20
 ------------------
