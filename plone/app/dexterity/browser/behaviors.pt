@@ -1,3 +1,4 @@
+<tal:root>
 <div class="portalMessage"
            tal:condition="view/status" tal:content="view/status">
 </div>
@@ -51,3 +52,4 @@
         <metal:actions metal:use-macro="context/@@ploneform-macros/actions"/>
 
 </form>
+</tal:root>

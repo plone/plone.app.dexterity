@@ -1,4 +1,6 @@
+<tal:root>
 <script type="text/javascript" charset="utf-8">
+// <![CDATA[
 (function($){
 $(document).ready(function() {
 
@@ -43,6 +45,7 @@ $(document).ready(function() {
     });
 });
 })(jQuery);
+// ]]>
 </script>
 
 <div class="portalMessage"
@@ -68,3 +71,4 @@ $(document).ready(function() {
 <div class="action" tal:repeat="action view/actions/values">
   <input type="submit" tal:replace="structure action/render" />
 </div>
+</tal:root>
