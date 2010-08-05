@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0b2 - unreleased
+1.0b2 - 2010-08-05
 ------------------
 
 * Fix several XML errors in templates. Needed for Chameleon compatibility.
