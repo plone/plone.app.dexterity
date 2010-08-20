@@ -4,6 +4,10 @@ Changelog
 1.0b3 - unreleased
 ------------------
 
+* Avoid empty <div class="field"> tag for title and description in 
+  item.pt and container.pt.
+  [gaudenzius]
+
 
 1.0b2 - 2010-08-05
 ------------------
