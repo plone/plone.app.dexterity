@@ -11,6 +11,9 @@ Changelog
 * Add locales structure for translations with cs , de, es, eu, fr, ja, nl, pt_BR
   [toutpt]
 
+* Update french translation
+  [toutpt]
+
 1.0b2 - 2010-08-05
 ------------------
 
