@@ -8,6 +8,8 @@ Changelog
   item.pt and container.pt.
   [gaudenzius]
 
+* Add locales structure for translations with cs , de, es, eu, fr, ja, nl, pt_BR
+  [toutpt]
 
 1.0b2 - 2010-08-05
 ------------------

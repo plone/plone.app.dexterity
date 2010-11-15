@@ -1,0 +1,146 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-11-15 16:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: pt-br\n"
+"Language-Name: PortuguÃªs do Brasil\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone.app.dexterity\n"
+
+#: ./browser/add_type.py:15
+msgid "Add Content Type"
+msgstr ""
+
+#: ./behaviors/metadata.py:51
+msgid "Categorization"
+msgstr ""
+
+#: ./browser/types.py:36
+msgid "Clone"
+msgstr ""
+
+#: ./browser/clone_type.py:13
+msgid "Clone Content Type"
+msgstr ""
+
+#: ./behaviors/metadata.py:79
+msgid "Dates"
+msgstr ""
+
+#: ./profiles/default/actions.xml
+#: ./profiles/default/controlpanel.xml
+msgid "Dexterity Content Types"
+msgstr ""
+
+#: ./behaviors/metadata.py:107
+msgid "Ownership"
+msgstr ""
+
+#: ./browser/types.py:41
+msgid "Please select a single type to clone."
+msgstr ""
+
+#: ./browser/types.py:47
+msgid "Please select a type to clone."
+msgstr ""
+
+#: ./browser/add_type.py:51
+msgid "Type added successfully."
+msgstr ""
+
+#: ./browser/clone_type.py:28
+msgid "Type cloned successfully."
+msgstr ""
+
+#. Default: "Also known as keywords, tags or labels, these help you categorize your content."
+#: ./behaviors/metadata.py:57
+msgid "help_categories"
+msgstr ""
+
+#. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
+#: ./behaviors/metadata.py:125
+msgid "help_contributors"
+msgstr ""
+
+#. Default: "Copyright statement or other rights information on this item."
+#: ./behaviors/metadata.py:137
+msgid "help_copyrights"
+msgstr ""
+
+#. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
+#: ./behaviors/metadata.py:113
+msgid "help_creators"
+msgstr ""
+
+#. Default: "A short summary of the content."
+#: ./behaviors/metadata.py:35
+msgid "help_description"
+msgstr ""
+
+#. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
+#: ./behaviors/metadata.py:85
+msgid "help_effective_date"
+msgstr ""
+
+#. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
+#: ./behaviors/metadata.py:93
+msgid "help_expiration_date"
+msgstr ""
+
+#. Default: "Categories"
+#: ./behaviors/metadata.py:56
+msgid "label_categories"
+msgstr ""
+
+#. Default: "Contributors"
+#: ./behaviors/metadata.py:124
+msgid "label_contributors"
+msgstr ""
+
+#. Default: "Rights"
+#: ./behaviors/metadata.py:136
+msgid "label_copyrights"
+msgstr ""
+
+#. Default: "Creators"
+#: ./behaviors/metadata.py:112
+msgid "label_creators"
+msgstr ""
+
+#. Default: "Description"
+#: ./behaviors/metadata.py:34
+msgid "label_description"
+msgstr ""
+
+#. Default: "Publishing Date"
+#: ./behaviors/metadata.py:84
+msgid "label_effective_date"
+msgstr ""
+
+#. Default: "Expiration Date"
+#: ./behaviors/metadata.py:92
+msgid "label_expiration_date"
+msgstr ""
+
+#. Default: "Language"
+#: ./behaviors/metadata.py:65
+msgid "label_language"
+msgstr ""
+
+#. Default: "Related Items"
+#: ./behaviors/related.py:18
+msgid "label_related_items"
+msgstr ""
+
+#. Default: "Title"
+#: ./behaviors/metadata.py:29
+msgid "label_title"
+msgstr ""
+
