@@ -53,6 +53,11 @@ The new type should have the dublin core behavior assigned by default::
   >>> 'document_icon' in plonista.getIcon()
   True
 
+The listing needs to not break if a type description was stored encoded.
+
+  >>> plonista.description = '\xc3\xbc'
+  >>> browser.open('http://nohost/plone/dexterity-types')
+
 
 Adding an instance of the new type
 ----------------------------------

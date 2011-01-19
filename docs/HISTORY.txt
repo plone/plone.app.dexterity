@@ -4,6 +4,9 @@ Changelog
 1.0b3 - unreleased
 ------------------
 
+* Fix decoding error when an encoded description is stored in the FTI.
+  [davisagli]
+
 * Avoid empty <div class="field"> tag for title and description in 
   item.pt and container.pt.
   [gaudenzius]

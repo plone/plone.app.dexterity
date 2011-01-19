@@ -2,7 +2,7 @@ from zExceptions import NotFound
 from OFS.SimpleItem import SimpleItem
 
 from zope.interface import implements
-from zope.component import getAllUtilitiesRegisteredFor, getUtility, ComponentLookupError
+from zope.component import adapts, getAllUtilitiesRegisteredFor, getUtility, ComponentLookupError
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 
@@ -17,6 +17,7 @@ from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext, IT
 from plone.schemaeditor.browser.schema.traversal import SchemaContext
 
 from plone.app.dexterity import MessageFactory as _
+
 
 class TypeEditSubForm(crud.EditSubForm):
     """ Content type edit subform. Just here to use a custom template.
@@ -45,6 +46,29 @@ class TypeEditForm(crud.EditForm):
             self.request.response.redirect(url)
         else:
             self.status = _(u'Please select a type to clone.')
+
+
+class TypeSettingsAdapter(object):
+    implements(ITypeSettings)
+    adapts(IDexterityFTI)
+    
+    def __init__(self, context):
+        self.context = context
+    
+    @property
+    def title(self):
+        return self.context.title
+
+    @property
+    def description(self):
+        description = self.context.description
+        if not isinstance(description, unicode):
+            return description.decode('utf8')
+    
+    @property
+    def container(self):
+        return self.context.container
+
 
 class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.
