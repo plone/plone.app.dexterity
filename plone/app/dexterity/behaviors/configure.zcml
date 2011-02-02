@@ -73,4 +73,12 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
+    <!-- Navigation root -->
+    <plone:behavior
+        title="Navigation root"
+        description="Make all items of this type a navigation root"
+        provides="plone.app.layout.navigation.interfaces.INavigationRoot"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
 </configure>

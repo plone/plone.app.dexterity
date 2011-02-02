@@ -4,6 +4,9 @@ Changelog
 1.0b3 - unreleased
 ------------------
 
+* Add a navigation root behavior.
+  [elro]
+
 * Fix decoding error when an encoded description is stored in the FTI.
   [davisagli]
 
