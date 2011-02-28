@@ -81,4 +81,11 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
+    <!-- Exclude from navigation -->
+    <plone:behavior
+        title="Exclude From navigation"
+        description="Allow items to be excluded from navigation"
+        provides=".exclfromnav.IExcludeFromNavigation"
+        />
+
 </configure>

@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0b4 - Unreleased
+------------------
+
+* Add an "Exclude from navigation" behavior.
+  [lentinj]
+
 1.0b3 - 2011-02-11
 ------------------
 
