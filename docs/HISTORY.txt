@@ -7,6 +7,9 @@ Changelog
 * Add an "Exclude from navigation" behavior.
   [lentinj]
 
+* Put the folder listing within a fieldset.
+  [lentinj]
+
 1.0b3 - 2011-02-11
 ------------------
 
