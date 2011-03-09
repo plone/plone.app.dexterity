@@ -4,6 +4,10 @@ Changelog
 1.0b4 - Unreleased
 ------------------
 
+* Add "Next previous navigation" and "Next previous navigation toggle"
+  behaviors.
+  [elro]
+
 * Add an "Exclude from navigation" behavior.
   [lentinj]
 

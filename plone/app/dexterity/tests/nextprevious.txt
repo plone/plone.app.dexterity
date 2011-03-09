@@ -1,0 +1,92 @@
+Next previous navigation
+========================
+
+Say we have a 'Folder' content type::
+
+  >>> from plone.dexterity.fti import DexterityFTI
+  >>> fti = DexterityFTI('folder')
+  >>> self.portal.portal_types._setObject('folder', fti)
+  'folder'
+  >>> fti.klass = 'plone.dexterity.content.Container'
+  >>> fti.filter_content_types = False
+
+We can declare that it supports the "Next previous navigation toggle" behavior defined in
+plone.app.dexterity (normally this would be done via Generic Setup)::
+
+  >>> fti.behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle',)
+
+Now let's fire up the browser and add a Folder::
+
+  >>> from Products.Five.testbrowser import Browser
+  >>> browser = Browser()
+  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+  >>> browser.addHeader('Authorization', 'Basic root:secret')
+  >>> browser.open('http://nohost/plone/++add++folder')
+  >>> browser.getControl('Title').value = 'Folder'
+  >>> nextPreviousEnabled = browser.getControl('Enable next previous navigation')
+
+The default "Enable next previous navigation" value is taken from the parent folder::
+
+  >>> nextPreviousEnabled.selected
+  False
+
+We'll set it to True instead::
+
+  >>> nextPreviousEnabled.selected = True
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/folder/view'
+
+When creating a sub-folder, the default "Enable next previous navigation" value is now True::
+
+  >>> browser.open('http://nohost/plone/folder/++add++folder')
+  >>> browser.getControl('Title').value = 'Sub Folder'
+  >>> nextPreviousEnabled = browser.getControl('Enable next previous navigation')
+  >>> nextPreviousEnabled.selected
+  True
+
+We'll continue and create another sub-folder::
+
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/folder/folder/view'
+  >>> browser.open('http://nohost/plone/folder/++add++folder')
+  >>> browser.getControl('Title').value = 'Another Sub Folder'
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/folder/folder-1/view'
+
+We can see the next and previous links::
+
+  >>> previous = browser.getLink('Previous')
+  >>> previous.url
+  'http://nohost/plone/folder/folder'
+  >>> previous.click()
+  >>> next = browser.getLink('Next')
+  >>> next.url
+  'http://nohost/plone/folder/folder-1'
+
+The next previous setting is looked up on the parent, so even if we disable
+next previous navigation for one of the sub-folders, when viewing the
+sub-folder itself the next link will still be shown::
+
+  >>> browser.open('http://nohost/plone/folder/folder/edit')
+  >>> nextPreviousEnabled = browser.getControl('Enable next previous navigation')
+  >>> nextPreviousEnabled.selected = False
+  >>> browser.getControl('Save').click()
+  >>> next = browser.getLink('Next')
+  >>> next.url
+  'http://nohost/plone/folder/folder-1'   
+
+Only when we disable the next previous setting on the parent does the next
+link disappear::
+
+  >>> browser.open('http://nohost/plone/folder/edit')
+  >>> nextPreviousEnabled = browser.getControl('Enable next previous navigation')
+  >>> nextPreviousEnabled.selected = False
+  >>> browser.getControl('Save').click()
+  >>> browser.open('http://nohost/plone/folder/folder')
+  >>> next = browser.getLink('Next')
+  Traceback (most recent call last):
+  ...
+  LinkNotFoundError

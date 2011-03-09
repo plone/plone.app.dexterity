@@ -88,4 +88,27 @@
         provides=".exclfromnav.IExcludeFromNavigation"
         />
 
+    <!-- Next previous -->
+    <plone:behavior
+        title="Next previous navigation toggle"
+        description="Allow items to have next previous navigation enabled"
+        provides=".nextprevious.INextPreviousToggle"
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        />
+
+    <adapter factory=".nextprevious.NextPreviousToggle" />
+
+    <adapter
+        factory=".nextprevious.DefaultNextPreviousEnabled"
+        name="default" />
+
+    <plone:behavior
+        title="Next previous navigation"
+        description="Enable next previous navigation for all items of this type"
+        provides=".nextprevious.INextPreviousEnabled"
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        />
+
+    <adapter factory=".nextprevious.NextPreviousEnabled" />
+
 </configure>
