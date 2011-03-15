@@ -1,0 +1,41 @@
+Automatic filename-to-id behavior
+=================================
+
+Say we have a 'File' content type::
+
+  >>> from plone.dexterity.fti import DexterityFTI
+  >>> fti = DexterityFTI('file_type')
+  >>> self.portal.portal_types._setObject('file_type', fti)
+  'file_type'
+  >>> fti.klass = 'plone.dexterity.content.Item'
+  >>> from zope.interface import Interface, alsoProvides
+  >>> from plone.namedfile.field import NamedFile
+  >>> from plone.rfc822.interfaces import IPrimaryField
+  >>> import plone.app.dexterity.tests
+  >>> class IFile(Interface):
+  ...     file = NamedFile(title=u'File')
+  >>> alsoProvides(IFile['file'], IPrimaryField)
+  >>> plone.app.dexterity.tests.IFile = IFile
+  >>> fti.schema = 'plone.app.dexterity.tests.IFile'
+
+We can declare that it supports the "name from file name" behavior (normally
+this would be done via Generic Setup)::
+
+  >>> fti.behaviors = ('plone.app.dexterity.behaviors.filename.INameFromFileName',
+  ...     'plone.app.dexterity.behaviors.metadata.IBasic',)
+
+Now let's fire up the browser and confirm that new content gets renamed
+appropriately::
+
+  >>> from Products.Five.testbrowser import Browser
+  >>> browser = Browser()
+  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+  >>> browser.addHeader('Authorization', 'Basic root:secret')
+  >>> browser.open('http://nohost/plone/++add++file_type')
+  >>> browser.getControl('Title').value = 'A test file'
+  >>> from cStringIO import StringIO
+  >>> browser.getControl(name="form.widgets.file").add_file(
+  ...     StringIO('File contents'), 'text/plain', 'foo.txt')
+  >>> browser.getControl('Save').click()
+  >>> browser.url
+  'http://nohost/plone/foo.txt/view'

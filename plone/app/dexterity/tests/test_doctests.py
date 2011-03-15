@@ -11,6 +11,7 @@ functional_tests = (
     'namefromtitle.txt',
     'metadata.txt',
     'nextprevious.txt',
+    'filename.txt',
     )
 
 def test_suite():

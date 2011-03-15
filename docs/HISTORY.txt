@@ -4,6 +4,9 @@ Changelog
 1.0b4 - Unreleased
 ------------------
 
+* Add a "Name from file name" behavior.
+  [elro]
+
 * Remove the NameFromTitle behavior factory, it is not necessary.
   [elro]
 
