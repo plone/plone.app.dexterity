@@ -4,6 +4,9 @@ Changelog
 1.0b4 - Unreleased
 ------------------
 
+* Remove the NameFromTitle behavior factory, it is not necessary.
+  [elro]
+
 * Add "Next previous navigation" and "Next previous navigation toggle"
   behaviors.
   [elro]

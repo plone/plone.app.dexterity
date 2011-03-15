@@ -61,7 +61,6 @@
         title="Name from title"
         description="Automatically generate short URL name for content based on its initial title"
         provides="plone.app.content.interfaces.INameFromTitle"
-        factory=".namefromtitle.NameFromTitle"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
         
