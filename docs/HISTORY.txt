@@ -4,6 +4,9 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
+* Redirect to view url instead of absolute url on type add.
+  [elro]
+
 1.0b4 - 2011-03-15
 ------------------
 
