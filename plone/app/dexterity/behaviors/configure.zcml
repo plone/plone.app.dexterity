@@ -95,6 +95,7 @@
         title="Exclude From navigation"
         description="Allow items to be excluded from navigation"
         provides=".exclfromnav.IExcludeFromNavigation"
+        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <!-- Next previous -->

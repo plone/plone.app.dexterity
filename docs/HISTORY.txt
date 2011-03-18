@@ -4,6 +4,9 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
+* Next / Previous behavior should be restricted to IDexterityContent.
+  [elro]
+
 1.0b4 - 2011-03-15
 ------------------
 
