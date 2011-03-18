@@ -51,6 +51,6 @@ class TypeAddForm(form.AddForm):
         self.status = _(u"Type added successfully.")
 
     def nextURL(self):
-        return self.context.unrestrictedTraverse('@@plone_context_state/view_url')()
+        return self.context.absolute_url()
 
 TypeAddFormPage = wrap_form(TypeAddForm)
