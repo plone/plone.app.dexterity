@@ -7,17 +7,8 @@
       i18n:domain="plone.app.dexterity">
 <body>
 
-<metal:main fill-slot="main">
-
-    <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-    <h1 class="documentFirstHeading" tal:content="context/Title" /> 
-
-    <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-    <p class="documentDescription" tal:content="context/Description" />
-
-    <div tal:replace="structure provider:plone.abovecontentbody" />
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
 
     <tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IBasic.title', 'IBasic.description', 'title', 'description',)">
@@ -37,14 +28,7 @@
         </div>
     </fieldset>
 
-    <tal:notfound tal:condition="exists:context/document_relateditems/macros">
-      <div metal:use-macro="context/document_relateditems/macros/relatedItems">
-          show related items if they exist
-      </div>
-    </tal:notfound>
-
-    <div tal:replace="structure provider:plone.belowcontentbody" />
-
+  </metal:content-core>
 </metal:main>
 
 </body>

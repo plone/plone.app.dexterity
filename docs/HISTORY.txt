@@ -4,6 +4,9 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
+* Make display templates fill content-core on Plone 4.
+  [elro]
+
 * Add ids to the group fieldsets on display forms.
   [elro]
 
