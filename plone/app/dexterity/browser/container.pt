@@ -27,7 +27,8 @@
         </div>
     </tal:block>
             
-    <fieldset tal:repeat="group view/groups">
+    <fieldset tal:repeat="group view/groups"
+              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
         <legend tal:content="group/label" />
         <div class="field" tal:repeat="widget group/widgets/values">
             <label tal:content="widget/label" />
@@ -36,7 +37,7 @@
         </div>
     </fieldset>
     
-    <fieldset>
+    <fieldset id="folder-listing">
         <legend>Contents</legend>
         <tal:block define="listing_macro context/folder_listing/macros/listing">
             <metal:use_macro use-macro="listing_macro" />

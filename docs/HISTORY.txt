@@ -4,6 +4,9 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
+* Add ids to the group fieldsets on display forms.
+  [elro]
+
 * Exclude from navigation behavior should be restricted to IDexterityContent.
   [elro]
 
