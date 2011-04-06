@@ -235,3 +235,21 @@ If we add a plonista-folder, we can then add other content items inside it.
   >>> browser.getControl('Save').click()
   >>> browser.url
   'http://nohost/plone/plonista-folder-1/introduction'
+
+
+Dexterity Types Export
+----------------------
+
+Once the 'Dexterity Content Configlet' product is installed, site managers
+can navigate to the configlet via the control panel::
+
+    >>> browser.open('http://nohost/plone/@@dexterity-types/@@types-export')
+
+    >>> browser.url
+    'http://nohost/plone/@@dexterity-types/@@types-export'
+
+    >>> browser.headers['content-type']
+    'application/x-gzip'
+    
+    >>> browser.headers['content-disposition']
+    'attachment; filename=dexterity_export-....tar.gz'
