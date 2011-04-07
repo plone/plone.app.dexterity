@@ -240,16 +240,25 @@ If we add a plonista-folder, we can then add other content items inside it.
 Dexterity Types Export
 ----------------------
 
-Once the 'Dexterity Content Configlet' product is installed, site managers
-can navigate to the configlet via the control panel::
+Try out the export button. We should be able to select our types from
+their checkboxes, push the export button, and get a download for a
+gzipped tarball containing files ready to drop into our profile::
 
-    >>> browser.open('http://nohost/plone/@@dexterity-types/@@types-export')
-
+    >>> browser.open('http://nohost/plone/dexterity-types')
+    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']
+    >>> browser.getControl(name='crud-edit.plonista-folder.widgets.select:list').value = ['0']
+    >>> browser.getControl('Export').click()
     >>> browser.url
-    'http://nohost/plone/@@dexterity-types/@@types-export'
+    'http://nohost/plone/dexterity-types/@@types-export?selected=plonista2%2Cplonista-folder'
 
     >>> browser.headers['content-type']
     'application/x-gzip'
     
     >>> browser.headers['content-disposition']
     'attachment; filename=dexterity_export-....tar.gz'
+
+    >>> import StringIO, tarfile
+    >>> fd = StringIO.StringIO(browser.contents)
+    >>> archive = tarfile.open(mode='r:gz', fileobj=fd)
+    >>> archive.getnames()
+    ['types.xml', 'types', 'types/plonista2.xml', 'types/plonista-folder.xml']
