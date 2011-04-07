@@ -12,18 +12,18 @@ from Products.GenericSetup.context import TarballExportContext
 
 
 class SelectiveTarballExportContext(TarballExportContext):
+    """ Override a couple of methods TarballExportContext
+        so that we can filter out unselected type information.
+    """
 
-    def __init__( self, tool, typelist, encoding=None ):
-        super(SelectiveTarballExportContext, self).__init__( tool, encoding )
+    def __init__(self, tool, typelist, encoding=None):
+        super(SelectiveTarballExportContext, self).__init__(tool, encoding)
         self.typelist = typelist
         self.filenames = ['types.xml']
         for tn in typelist:
             self.filenames.append('types/%s.xml' % tn)
 
-    def writeDataFile( self, filename, text, content_type, subdir=None ):
-        if subdir is not None:
-            filename = '/'.join( ( subdir, filename ) )
-
+    def writeDataFile(self, filename, text, content_type, subdir=None):
         if filename not in self.filenames:
             return
 
@@ -46,22 +46,8 @@ class SelectiveTarballExportContext(TarballExportContext):
             text = text.replace('<!--', ' <!--')
             text = text.replace('-->', '-->\n')
 
-        parents = filename.split('/')[:-1]
-        while parents:
-            path = '/'.join(parents) + '/'
-            if path not in self._archive.getnames():
-                info = TarInfo(path)
-                info.type = DIRTYPE
-                info.mode = 0755
-                info.mtime = time.time()
-                self._archive.addfile(info)
-            parents.pop()
-
-        stream = StringIO( text )
-        info = TarInfo( filename )
-        info.size = len( text )
-        info.mtime = time.time()
-        self._archive.addfile( info, stream )
+        super(SelectiveTarballExportContext, self).writeDataFile(
+            filename, text, content_type, subdir=None)
 
 
 class TypesExport(BrowserView):
