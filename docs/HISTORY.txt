@@ -4,6 +4,9 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
+* Add "export" button to types editor. Exports GS-style gzipped tarball.
+  [stevem]
+
 * Make display templates fill content-core on Plone 4.
   [elro]
 

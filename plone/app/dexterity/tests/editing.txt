@@ -262,3 +262,12 @@ gzipped tarball containing files ready to drop into our profile::
     >>> archive = tarfile.open(mode='r:gz', fileobj=fd)
     >>> archive.getnames()
     ['types.xml', 'types', 'types/plonista2.xml', 'types/plonista-folder.xml']
+
+    >>> print archive.extractfile('types.xml').read()
+    <?xml version="1.0"?>
+    <object meta_type="Plone Types Tool" name="portal_types">
+     <property name="title">Controls the available content types in your portal</property>
+     <object meta_type="Dexterity FTI" name="plonista2" />
+     <object meta_type="Dexterity FTI" name="plonista-folder" />
+     <!-- -*- extra stuff goes here -*- -->
+    </object>
