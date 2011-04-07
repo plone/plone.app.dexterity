@@ -1,3 +1,7 @@
+# @@types-export view for dexterity types configlet. View support for the
+# "Export" button. This is done by repurposing the GS typeinfo export and
+# removing unselected type information from its output.
+
 import time
 from StringIO import StringIO
 from tarfile import DIRTYPE
