@@ -242,7 +242,7 @@ Dexterity Types Export
 
 Try out the export button. We should be able to select our types from
 their checkboxes, push the export button, and get a download for a
-gzipped tarball containing files ready to drop into our profile::
+zip archive containing files ready to drop into our profile::
 
     >>> browser.open('http://nohost/plone/dexterity-types')
     >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']

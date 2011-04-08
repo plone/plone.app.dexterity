@@ -4,7 +4,8 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
-* Add "export" button to types editor. Exports GS-style gzipped tarball.
+* Add "export" button to types editor. Exports GS-style zip archive of type
+  info for selected types.
   [stevem]
 
 * Make display templates fill content-core on Plone 4.
