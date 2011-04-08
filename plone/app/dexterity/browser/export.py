@@ -4,28 +4,33 @@
 
 import time
 from StringIO import StringIO
-from tarfile import DIRTYPE
-from tarfile import TarInfo
+from zipfile import ZipFile
 from elementtree import ElementTree
 
 from Products.CMFCore.utils import getToolByName
 
 from Products.Five.browser import BrowserView
 
-from Products.GenericSetup.context import TarballExportContext
+from Products.GenericSetup.context import TarballExportContext, BaseContext
 
 
-class SelectiveTarballExportContext(TarballExportContext):
-    """ Override a couple of methods TarballExportContext
-        so that we can filter out unselected type information.
-    """
+class SelectiveZipExportContext(TarballExportContext):
 
-    def __init__(self, tool, typelist, encoding=None):
-        super(SelectiveTarballExportContext, self).__init__(tool, encoding)
+    def __init__(self, tool, typelist, encoding=None, base_name='setup_tool'):
+
+        BaseContext.__init__(self, tool, encoding)
+
         self.typelist = typelist
         self.filenames = ['types.xml']
         for tn in typelist:
             self.filenames.append('types/%s.xml' % tn)
+
+        timestamp = time.gmtime()
+        self._archive_filename = (base_name + '-%4d%02d%02d%02d%02d%02d.zip'
+                       % timestamp[:6])
+
+        self._archive_stream = StringIO()
+        self._archive = ZipFile(self._archive_stream, 'w')
 
     def writeDataFile(self, filename, text, content_type, subdir=None):
         if filename not in self.filenames:
@@ -50,8 +55,7 @@ class SelectiveTarballExportContext(TarballExportContext):
             text = text.replace('<!--', ' <!--')
             text = text.replace('-->', '-->\n')
 
-        super(SelectiveTarballExportContext, self).writeDataFile(
-            filename, text, content_type, subdir=None)
+        self._archive.writestr(filename, text)
 
 
 class TypesExport(BrowserView):
@@ -63,14 +67,15 @@ class TypesExport(BrowserView):
         ps = getToolByName(self.context, 'portal_setup')
 
         items = self.request.selected.split(',')
-        context = SelectiveTarballExportContext(ps, items)
+        # context = SelectiveTarballExportContext(ps, items)
+        context = SelectiveZipExportContext(ps, items,
+          base_name='dexterity_export')
         handler = ps.getExportStep(u'typeinfo')
         message = handler(context)
 
         filename = context.getArchiveFilename()
-        filename = filename.replace('setup_tool', 'dexterity_export')
 
-        RESPONSE.setHeader('Content-type', 'application/x-gzip')
+        RESPONSE.setHeader('Content-type', 'application/zip')
         RESPONSE.setHeader('Content-disposition',
           'attachment; filename=%s' % filename)
 

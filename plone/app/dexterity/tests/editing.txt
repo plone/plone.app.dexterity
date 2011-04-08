@@ -252,18 +252,18 @@ gzipped tarball containing files ready to drop into our profile::
     'http://nohost/plone/dexterity-types/@@types-export?selected=plonista2%2Cplonista-folder'
 
     >>> browser.headers['content-type']
-    'application/x-gzip'
+    'application/zip'
     
     >>> browser.headers['content-disposition']
-    'attachment; filename=dexterity_export-....tar.gz'
+    'attachment; filename=dexterity_export-....zip'
 
-    >>> import StringIO, tarfile
+    >>> import StringIO, zipfile
     >>> fd = StringIO.StringIO(browser.contents)
-    >>> archive = tarfile.open(mode='r:gz', fileobj=fd)
-    >>> archive.getnames()
-    ['types.xml', 'types', 'types/plonista2.xml', 'types/plonista-folder.xml']
+    >>> archive = zipfile.ZipFile(fd, mode='r')
+    >>> archive.namelist()
+    ['types.xml', 'types/plonista2.xml', 'types/plonista-folder.xml']
 
-    >>> print archive.extractfile('types.xml').read()
+    >>> print archive.read('types.xml')
     <?xml version="1.0"?>
     <object meta_type="Plone Types Tool" name="portal_types">
      <property name="title">Controls the available content types in your portal</property>
