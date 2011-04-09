@@ -4,6 +4,10 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
+* Fix old jquery alias in types_listing.pt. This closes
+  http://code.google.com/p/dexterity/issues/detail?id=159
+  [davisagli]
+
 * Make display templates fill content-core on Plone 4.
   [elro]
 
