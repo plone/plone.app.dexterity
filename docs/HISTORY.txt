@@ -4,6 +4,10 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
+* Add "export" button to types editor. Exports GS-style zip archive of type
+  info for selected types.
+  [stevem]
+
 * Fix old jquery alias in types_listing.pt. This closes
   http://code.google.com/p/dexterity/issues/detail?id=159
   [davisagli]

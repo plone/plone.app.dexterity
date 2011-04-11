@@ -88,6 +88,13 @@
         class=".clone_type.TypeCloneFormPage"
         permission="plone.schemaeditor.ManageSchemata" />
 
+    <browser:page
+        name="types-export"
+        for="plone.app.dexterity.interfaces.ITypesContext"
+        class=".export.TypesExport"
+        permission="plone.schemaeditor.ManageSchemata"
+        />
+
     <!-- overlay CSS (only needed in Plone 3) -->
     <browser:resource
         name="plone.app.dexterity.overlays.css"

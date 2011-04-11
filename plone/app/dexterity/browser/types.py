@@ -1,3 +1,5 @@
+import urllib
+
 from zExceptions import NotFound
 from OFS.SimpleItem import SimpleItem
 
@@ -46,6 +48,18 @@ class TypeEditForm(crud.EditForm):
             self.request.response.redirect(url)
         else:
             self.status = _(u'Please select a type to clone.')
+
+    @button.buttonAndHandler(_(u'Export'))
+    def handleExport(self, action):
+        selected = ",".join([items[0] for items in self.selected_items()])
+
+        if len(selected) == 0:
+            self.status = _(u'Please select types to export.')
+        elif len(selected) > 0:
+            url = '%s/@@types-export?selected=%s' % \
+                (self.context.context.absolute_url(),
+                 urllib.quote(selected))
+            self.request.response.redirect(url)
 
 
 class TypeSettingsAdapter(object):

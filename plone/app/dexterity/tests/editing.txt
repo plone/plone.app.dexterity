@@ -235,3 +235,39 @@ If we add a plonista-folder, we can then add other content items inside it.
   >>> browser.getControl('Save').click()
   >>> browser.url
   'http://nohost/plone/plonista-folder-1/introduction'
+
+
+Dexterity Types Export
+----------------------
+
+Try out the export button. We should be able to select our types from
+their checkboxes, push the export button, and get a download for a
+zip archive containing files ready to drop into our profile::
+
+    >>> browser.open('http://nohost/plone/dexterity-types')
+    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']
+    >>> browser.getControl(name='crud-edit.plonista-folder.widgets.select:list').value = ['0']
+    >>> browser.getControl('Export').click()
+    >>> browser.url
+    'http://nohost/plone/dexterity-types/@@types-export?selected=plonista2%2Cplonista-folder'
+
+    >>> browser.headers['content-type']
+    'application/zip'
+    
+    >>> browser.headers['content-disposition']
+    'attachment; filename=dexterity_export-....zip'
+
+    >>> import StringIO, zipfile
+    >>> fd = StringIO.StringIO(browser.contents)
+    >>> archive = zipfile.ZipFile(fd, mode='r')
+    >>> archive.namelist()
+    ['types.xml', 'types/plonista2.xml', 'types/plonista-folder.xml']
+
+    >>> print archive.read('types.xml')
+    <?xml version="1.0"?>
+    <object meta_type="Plone Types Tool" name="portal_types">
+     <property name="title">Controls the available content types in your portal</property>
+     <object meta_type="Dexterity FTI" name="plonista2" />
+     <object meta_type="Dexterity FTI" name="plonista-folder" />
+     <!-- -*- extra stuff goes here -*- -->
+    </object>
