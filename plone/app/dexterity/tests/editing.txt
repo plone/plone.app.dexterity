@@ -247,7 +247,7 @@ zip archive containing files ready to drop into our profile::
     >>> browser.open('http://nohost/plone/dexterity-types')
     >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']
     >>> browser.getControl(name='crud-edit.plonista-folder.widgets.select:list').value = ['0']
-    >>> browser.getControl('Export').click()
+    >>> browser.getControl('Export Type Profiles').click()
     >>> browser.url
     'http://nohost/plone/dexterity-types/@@types-export?selected=plonista2%2Cplonista-folder'
 

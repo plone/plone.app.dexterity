@@ -95,6 +95,13 @@
         permission="plone.schemaeditor.ManageSchemata"
         />
 
+    <browser:page
+        name="models-export"
+        for="plone.app.dexterity.interfaces.ITypesContext"
+        class=".export.ModelsExport"
+        permission="plone.schemaeditor.ManageSchemata"
+        />
+
     <!-- overlay CSS (only needed in Plone 3) -->
     <browser:resource
         name="plone.app.dexterity.overlays.css"

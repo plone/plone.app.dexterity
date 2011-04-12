@@ -13,6 +13,8 @@ from Products.Five.browser import BrowserView
 
 from Products.GenericSetup.context import TarballExportContext, BaseContext
 
+from plone.supermodel import serializeModel
+
 
 class SelectiveZipExportContext(TarballExportContext):
 
@@ -67,7 +69,6 @@ class TypesExport(BrowserView):
         ps = getToolByName(self.context, 'portal_setup')
 
         items = self.request.selected.split(',')
-        # context = SelectiveTarballExportContext(ps, items)
         context = SelectiveZipExportContext(ps, items,
           base_name='dexterity_export')
         handler = ps.getExportStep(u'typeinfo')
@@ -80,3 +81,35 @@ class TypesExport(BrowserView):
           'attachment; filename=%s' % filename)
 
         return context.getArchive()
+
+
+class ModelsExport(BrowserView):
+    """Generate an archive for download of model xml files for selected
+       types.
+    """
+
+    def __call__(self):
+        RESPONSE = self.request.RESPONSE
+        pt = getToolByName(self.context, 'portal_types')
+
+        items = self.request.selected.split(',')
+
+        timestamp = time.gmtime()
+        archive_filename = ('dexterity_models' + '-%4d%02d%02d%02d%02d%02d.zip'
+                       % timestamp[:6])
+
+        archive_stream = StringIO()
+        archive = ZipFile(archive_stream, 'w')
+
+        for item in items:
+            filename = 'models/%s.xml' % item
+            text = serializeModel(pt[item].lookupModel())
+            archive.writestr(filename, text)
+
+        archive.close()
+
+        RESPONSE.setHeader('Content-type', 'application/zip')
+        RESPONSE.setHeader('Content-disposition',
+          'attachment; filename=%s' % archive_filename)
+
+        return archive_stream.getvalue()

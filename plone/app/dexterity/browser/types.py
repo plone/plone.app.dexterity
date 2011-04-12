@@ -49,7 +49,7 @@ class TypeEditForm(crud.EditForm):
         else:
             self.status = _(u'Please select a type to clone.')
 
-    @button.buttonAndHandler(_(u'Export'))
+    @button.buttonAndHandler(_(u'Export Type Profiles'))
     def handleExport(self, action):
         selected = ",".join([items[0] for items in self.selected_items()])
 
@@ -57,6 +57,18 @@ class TypeEditForm(crud.EditForm):
             self.status = _(u'Please select types to export.')
         elif len(selected) > 0:
             url = '%s/@@types-export?selected=%s' % \
+                (self.context.context.absolute_url(),
+                 urllib.quote(selected))
+            self.request.response.redirect(url)
+
+    @button.buttonAndHandler(_(u'Export Schema Models'))
+    def handleExport(self, action):
+        selected = ",".join([items[0] for items in self.selected_items()])
+
+        if len(selected) == 0:
+            self.status = _(u'Please select types to export.')
+        elif len(selected) > 0:
+            url = '%s/@@models-export?selected=%s' % \
                 (self.context.context.absolute_url(),
                  urllib.quote(selected))
             self.request.response.redirect(url)
