@@ -240,8 +240,8 @@ If we add a plonista-folder, we can then add other content items inside it.
 Dexterity Types Export
 ----------------------
 
-Try out the export button. We should be able to select our types from
-their checkboxes, push the export button, and get a download for a
+Try out the types export button. We should be able to select our types from
+their checkboxes, push the export types button, and get a download for a
 zip archive containing files ready to drop into our profile::
 
     >>> browser.open('http://nohost/plone/dexterity-types')
@@ -271,3 +271,33 @@ zip archive containing files ready to drop into our profile::
      <object meta_type="Dexterity FTI" name="plonista-folder" />
      <!-- -*- extra stuff goes here -*- -->
     </object>
+
+Try out the models export button. We should be able to select our types from
+their checkboxes, push the export models button, and get a download for a
+zip archive containing supermodel xml files::
+
+    >>> browser.open('http://nohost/plone/dexterity-types')
+    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']
+    >>> browser.getControl(name='crud-edit.plonista-folder.widgets.select:list').value = ['0']
+    >>> browser.getControl('Export Schema Models').click()
+    >>> browser.url
+    'http://nohost/plone/dexterity-types/@@models-export?selected=plonista2%2Cplonista-folder'
+
+    >>> browser.headers['content-type']
+    'application/zip'
+
+    >>> browser.headers['content-disposition']
+    'attachment; filename=dexterity_models-....zip'
+
+    >>> import StringIO, zipfile
+    >>> fd = StringIO.StringIO(browser.contents)
+    >>> archive = zipfile.ZipFile(fd, mode='r')
+    >>> archive.namelist()
+    ['models/plonista2.xml', 'models/plonista-folder.xml']
+
+    >>> print archive.read('models/plonista2.xml')
+    <model xmlns="http://namespaces.plone.org/supermodel/schema">
+      <schema>
+      ...
+      </schema>
+    </model>
