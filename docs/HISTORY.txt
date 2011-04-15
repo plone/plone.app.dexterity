@@ -1,113 +1,120 @@
 Changelog
 =========
 
+
 1.0b5 - unreleased
 ------------------
 
-* Add "export" button to types editor. Exports GS-style zip archive of type
+- Add MANIFEST.in.
+  [WouterVH]
+
+- Add "export" button to types editor. Exports GS-style zip archive of type
   info for selected types.
   [stevem]
 
-* Fix old jquery alias in types_listing.pt. This closes
+- Fix old jquery alias in types_listing.pt. This closes
   http://code.google.com/p/dexterity/issues/detail?id=159
   [davisagli]
 
-* Make display templates fill content-core on Plone 4.
+- Make display templates fill content-core on Plone 4.
   [elro]
 
-* Add ids to the group fieldsets on display forms.
+- Add ids to the group fieldsets on display forms.
   [elro]
 
-* Exclude from navigation behavior should be restricted to IDexterityContent.
+- Exclude from navigation behavior should be restricted to IDexterityContent.
   [elro]
+
 
 1.0b4 - 2011-03-15
 ------------------
 
-* Add a "Name from file name" behavior.
+- Add a "Name from file name" behavior.
   [elro]
 
-* Remove the NameFromTitle behavior factory, it is not necessary.
+- Remove the NameFromTitle behavior factory, it is not necessary.
   [elro]
 
-* Add "Next previous navigation" and "Next previous navigation toggle"
+- Add "Next previous navigation" and "Next previous navigation toggle"
   behaviors.
   [elro]
 
-* Add an "Exclude from navigation" behavior.
+- Add an "Exclude from navigation" behavior.
   [lentinj]
 
-* Put the folder listing within a fieldset.
+- Put the folder listing within a fieldset.
   [lentinj]
+
 
 1.0b3 - 2011-02-11
 ------------------
 
-* Add a navigation root behavior.
+- Add a navigation root behavior.
   [elro]
 
-* Fix decoding error when an encoded description is stored in the FTI.
+- Fix decoding error when an encoded description is stored in the FTI.
   [davisagli]
 
-* Avoid empty <div class="field"> tag for title and description in 
+- Avoid empty <div class="field"> tag for title and description in
   item.pt and container.pt.
   [gaudenzius]
 
-* Add locales structure for translations with cs , de, es, eu, fr, ja, nl, pt_BR
+- Add locales structure for translations with cs , de, es, eu, fr, ja, nl, pt_BR
   [toutpt]
 
-* Update french translation
+- Update french translation
   [toutpt]
+
 
 1.0b2 - 2010-08-05
 ------------------
 
-* Fix several XML errors in templates. Needed for Chameleon compatibility.
+- Fix several XML errors in templates. Needed for Chameleon compatibility.
   [wichert]
 
-* cloning a type through the dexterity UI in the control panel did not work
+- cloning a type through the dexterity UI in the control panel did not work
   if the type had a hyphen in it's name. This fixes 
   http://code.google.com/p/dexterity/issues/detail?id=126
   [vangheem]
-  
+
 
 1.0b1 - 2010-04-20
 ------------------
 
-* Require plone.app.jquerytools for the schema editor UI, and make sure it is
+- Require plone.app.jquerytools for the schema editor UI, and make sure it is
   installed when upgrading.
   [davisagli]
 
-* Remove unused schemaeditor.css.
+- Remove unused schemaeditor.css.
   [davisagli]
 
-* Omit the metadata fields except on edit and add forms.
+- Omit the metadata fields except on edit and add forms.
   [davisagli]
 
-* Enable the "Name from title" behavior for new types, by default.
+- Enable the "Name from title" behavior for new types, by default.
   [davisagli]
 
-* Include plone.formwidget.namedfile so that File upload and Image fields are
+- Include plone.formwidget.namedfile so that File upload and Image fields are
   available out of the box.  You must explicitly include z3c.blobfile in your
   environment if you want blob-based files.
   [davisagli]
 
-* Added a DexterityLayer that can be used in tests.
+- Added a DexterityLayer that can be used in tests.
   [davisagli]
 
-* Fix issue with the BehaviorsForm accidentally polluting the title of the
+- Fix issue with the BehaviorsForm accidentally polluting the title of the
   z3c.form EditForm 'Apply' button.
   [davisagli]
 
-* Add upgrades folder and make sure plone.app.z3cform profile gets installed
+- Add upgrades folder and make sure plone.app.z3cform profile gets installed
   on upgrades from previous versions of Dexterity.
   [davisagli]
 
-* Depend on the plone.app.z3cform profile, to make sure the Plone browser layer
+- Depend on the plone.app.z3cform profile, to make sure the Plone browser layer
   for z3c.form gets installed.
   [davisagli]
 
-* Avoid relying on acquisition to get the portal_url for links in the type
+- Avoid relying on acquisition to get the portal_url for links in the type
   listing table.
   [davisagli]
 
@@ -115,69 +122,71 @@ Changelog
 1.0a7 - 2010-01-08
 ------------------
 
-* Make sure the Dublin Core fieldsets appear in the same order as they
+- Make sure the Dublin Core fieldsets appear in the same order as they
   do in AT content.
   [davisagli]
 
-* Make sure the current user is loaded as the default creator for the
+- Make sure the current user is loaded as the default creator for the
   IOwnership schema in an add form.
   [davisagli]
 
-* Include behavior descriptions on the behavior edit tab.
+- Include behavior descriptions on the behavior edit tab.
   [davisagli]
 
-* IBasic behavior: set missing_value of description-field to u'' . The
+- IBasic behavior: set missing_value of description-field to u'' . The
   description should never be None (live_search would not work any more).
   [jbaumann]
 
-* Fix issue where traversing to a nonexistent type name in the types control
+- Fix issue where traversing to a nonexistent type name in the types control
   panel did not raise NotFound.
   [davisagli]
 
-* Make it possible to view the fields of non-editable schemata.
+- Make it possible to view the fields of non-editable schemata.
   [davisagli]
 
-* Tweaks to the tabbed_forms template used for the types control panel.
+- Tweaks to the tabbed_forms template used for the types control panel.
   [davisagli]
 
 
 1.0a6 - 2009-10-12
 ------------------
 
-* Add plone.app.textfield as a dependency. We don't use it directly in this
+- Add plone.app.textfield as a dependency. We don't use it directly in this
   package, but users of Dexterity should have it installed and available.
   [optilude]
 
-* Use some default icons for new types.
+- Use some default icons for new types.
   [davisagli]
 
-* Show type icons in type listing if available.
+- Show type icons in type listing if available.
   [davisagli]
 
-* Removed 'container' field from the types listing in the control panel
+- Removed 'container' field from the types listing in the control panel
   (it wasn't working).
   [davisagli]
 
-* Add message factories to titles and descriptions of metadata schema fields.
+- Add message factories to titles and descriptions of metadata schema fields.
   Fixes http://code.google.com/p/dexterity/issues/detail?id=75.
   [optilude]
 
-* Patch listActionInfos() instead of listActions() in order to get the
+- Patch listActionInfos() instead of listActions() in order to get the
   folder/add category into the actions list. This avoids a problem with
   the 'actions.xml' export handler exporting the folder/add category
   incorrectly. Fixes http://code.google.com/p/dexterity/issues/detail?id=78
   [optilude]
 
+
 1.0a5 - 2009-07-26
 ------------------
 
-* Explicitly include overrides.zcml from plone.app.z3cform.
+- Explicitly include overrides.zcml from plone.app.z3cform.
   [optilude]
+
 
 1.0a4 - 2009-07-12
 ------------------
 
-* Changed API methods and arguments to mixedCase to be more consistent with
+- Changed API methods and arguments to mixedCase to be more consistent with
   the rest of Zope. This is a non-backwards-compatible change. Our profuse
   apologies, but it's now or never. :-/
 
@@ -186,20 +195,23 @@ Changelog
   becomes serializeSchema().
   [optilude]
 
-1.0a3 (2009-06-07)
+
+1.0a3 - 2009-06-07
 ------------------
 
-* Updated use of <plone:behavior /> directive to match plone.behavior 1.0b4.
+- Updated use of <plone:behavior /> directive to match plone.behavior 1.0b4.
   [optilude]
 
-1.0a2 (2009-06-01)
+
+1.0a2 - 2009-06-01
 ------------------
 
-* Remove superfluous <includeOverrides /> in configure.zcml which would cause
+- Remove superfluous <includeOverrides /> in configure.zcml which would cause
   a problem when the package is loaded via z3c.autoinclude.plugin
   [optilude]
 
-1.0a1 - (2009-05-27)
+
+1.0a1 - 2009-05-27
 --------------------
 
-* Initial release
+- Initial release
