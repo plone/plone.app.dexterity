@@ -5,6 +5,21 @@ Changelog
 1.0b5 - unreleased
 ------------------
 
+- Added basic support for making TTW changes to schemas defined in filesystem
+  models and code. (Beware: If supermodel doesn't know how to serialize part of
+  the schema, the serialization may be incomplete and the reconstructed schema
+  may be incorrect after restarting Zope. In this case you can recover by going
+  to the FTI and clearing the model_source property.)
+
+  In order to support this change, the event handling to serialize schema changes
+  was revised. We now register a single event handler for the SchemaModifiedEvent
+  raised for the schema context. This allows us to keep track of the FTI
+  that changes need to be serialized to on the schema context. The
+  serializeSchemaOnFieldEvent and serializeSchemaOnSchemaEvent handlers were
+  removed from the serialize module and replaced by serializeSchemaContext. The
+  serializeSchema helper remains but is deprecated.
+  [davisagli]
+
 - Add MANIFEST.in.
   [WouterVH]
 

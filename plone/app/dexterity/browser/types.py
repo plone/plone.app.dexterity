@@ -62,7 +62,7 @@ class TypeEditForm(crud.EditForm):
             self.request.response.redirect(url)
 
     @button.buttonAndHandler(_(u'Export Schema Models'))
-    def handleExport(self, action):
+    def handleExportModels(self, action):
         selected = ",".join([items[0] for items in self.selected_items()])
 
         if len(selected) == 0:
@@ -131,13 +131,12 @@ class TypesListing(crud.CrudForm):
 # Create a form wrapper so the form gets layout.
 TypesListingPage = layout.wrap_form(TypesListing, label=u'Dexterity content types')
 
+
 class TypeSchemaContext(SchemaContext):
     implements(ITypeSchemaContext)
     
     fti = None
-    
-    def setFTI(self, fti):
-        self.fti = fti
+    schemaName = u''
 
 
 class TypesContext(SimpleItem):
@@ -170,7 +169,8 @@ class TypesContext(SimpleItem):
 
         schema = fti.lookupSchema()
         schema_context = TypeSchemaContext(schema, request, name=name, title=fti.title).__of__(self)
-        schema_context.setFTI(fti)
+        schema_context.fti = fti
+        schema_context.schemaName = u''
         return schema_context
 
     def browserDefault(self, request):

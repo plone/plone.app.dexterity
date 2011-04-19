@@ -4,19 +4,9 @@
 
     <!-- Register schema/field modify handlers -->
     <subscriber
-        for="plone.schemaeditor.interfaces.IField
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".serialize.serializeSchemaOnFieldEvent"
-        />
-    <subscriber
-        for="plone.schemaeditor.interfaces.IField
-             zope.app.container.interfaces.IObjectMovedEvent"
-        handler=".serialize.serializeSchemaOnFieldEvent"
-        />
-    <subscriber
-        for="zope.interface.interfaces.IInterface
-             zope.app.container.interfaces.IContainerModifiedEvent"
-        handler=".serialize.serializeSchemaOnSchemaEvent"
+        for="plone.app.dexterity.interfaces.ITypeSchemaContext
+             plone.schemaeditor.interfaces.ISchemaModifiedEvent"
+        handler=".serialize.serializeSchemaContext"
         />
 
 </configure>

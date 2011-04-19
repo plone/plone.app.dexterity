@@ -2,40 +2,29 @@ Serialization of schema changes
 ===============================
 
 This package defers to plone.schemaeditor for the actual editing of Zope 3
-schemata.  plone.schemaeditor raises object lifecycle events when modifications
+schemata.  plone.schemaeditor raises SchemaModifiedEvents when modifications
 are made to the schema, and this package registers handlers for those events,
 to serialize the modified schema into XML on the type FTI (using the
 plone.supermodel API).
 
 Let's make sure that those event handlers are working properly.  We'll need
-a dummy Dexterity FTI and schema::
+a dummy Dexterity FTI and schema, and a plone.schemaeditor schema context::
 
   >>> from plone.dexterity.fti import DexterityFTI
   >>> fti = DexterityFTI('dummy')
   >>> self.portal.portal_types._setObject('dummy', fti)
   'dummy'
   >>> schema = fti.lookupSchema()
+  >>> from plone.app.dexterity.browser.types import TypeSchemaContext
+  >>> schema_context = TypeSchemaContext(schema, request=None)
+  >>> schema_context.fti = fti
+  >>> schema_context.schemaName = u''
 
-Confirm the ObjectModifiedEvent on a schema field is handled correctly::
+Confirm the SchemaModifiedEvent on a schema context is handled correctly::
 
   >>> schema['title'].title = u'Change1'
   >>> from zope.event import notify
-  >>> from zope.lifecycleevent import ObjectModifiedEvent
-  >>> notify(ObjectModifiedEvent(schema['title']))
+  >>> from plone.schemaeditor.utils import SchemaModifiedEvent
+  >>> notify(SchemaModifiedEvent(schema_context))
   >>> 'Change1' in fti.model_source
-  True
-
-Confirm the ObjectMovedEvent on a field is handled correctly::
-
-  >>> schema['title'].title = u'Change2'
-  >>> from zope.app.container.contained import ObjectMovedEvent, ContainerModifiedEvent
-  >>> notify(ObjectMovedEvent(schema['title'], schema, 'title', schema, 'title'))
-  >>> 'Change2' in fti.model_source
-  True
-
-Confirm the container modified event on a schema is handled correctly::
-
-  >>> schema['title'].title = u'Change3'
-  >>> notify(ContainerModifiedEvent(schema))
-  >>> 'Change3' in fti.model_source
   True
