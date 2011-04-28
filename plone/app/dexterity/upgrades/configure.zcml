@@ -29,4 +29,13 @@
     handler=".to3.install_jquerytools_profile"
     />
 
+  <genericsetup:upgradeStep
+    source="3"
+    destination="4"
+    title="Reinstall plone.formwidget.autocomplete javascript"
+    description=""
+    profile="plone.app.dexterity:default"
+    handler="plone.formwidget.autocomplete.upgrades.to1.install_formwidget_autocomplete"
+    />
+
 </configure>
