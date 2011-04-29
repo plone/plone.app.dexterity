@@ -266,14 +266,11 @@ zip archive containing files ready to drop into our profile::
     >>> archive.namelist()
     ['types.xml', 'types/plonista2.xml', 'types/plonista-folder.xml']
 
-    >>> print archive.read('types.xml')
-    <?xml version="1.0"?>
-    <object meta_type="Plone Types Tool" name="portal_types">
-     <property name="title">Controls the available content types in your portal</property>
-     <object meta_type="Dexterity FTI" name="plonista2" />
-     <object meta_type="Dexterity FTI" name="plonista-folder" />
-     <!-- -*- extra stuff goes here -*- -->
-    </object>
+    >>> types_xml = archive.read('types.xml')
+    >>> '<object meta_type="Dexterity FTI" name="plonista2" />' in types_xml
+    True
+    >>> '<object meta_type="Dexterity FTI" name="plonista-folder" />' in types_xml
+    True
 
 Try out the models export button. We should be able to select our types from
 their checkboxes, push the export models button, and get a download for a
