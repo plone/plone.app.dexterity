@@ -6,11 +6,8 @@ issues:
 general:
 [ ] docs
 - tests
- [ ] roadrunner
  [ ] doctests for basic walkthrough
 [ ] i18n infrastructure (use message factory from plone.dexterity?)
-[ ] make sure plone.schemaeditor can be used by some other product like PFG
- - need to be able to override form template, mutate form fields
 
 schema editor:
 - functionality:
@@ -22,8 +19,6 @@ schema editor:
 design issues:
 - UI design for managing multiple fieldsets / schemata
 - figure out what to do about vocabularies
-- figure out what to do about Choice item types
 
 examples / dogfooding / things to test:
-- build a geolocation behavior
 - handling of pre-existing content

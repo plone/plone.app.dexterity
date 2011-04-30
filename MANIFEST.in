@@ -1,4 +1,4 @@
 include *.txt
 
 recursive-include docs *
-recursive-include plone *
+recursive-include plone/app/dexterity/locales *

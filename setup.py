@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0b5'
+version = '1.0rc1'
 
 setup(name='plone.app.dexterity',
       version=version,
@@ -35,7 +35,7 @@ setup(name='plone.app.dexterity',
           'plone.autoform >=1.0b3dev-r34689',
           'plone.behavior>=1.0b5',
           'plone.contentrules',
-          'plone.dexterity',
+          'plone.dexterity >= 1.0rc1',
           'plone.directives.form>=1.0b7dev-r34690',
           'plone.directives.dexterity',
           'plone.formwidget.autocomplete >= 1.2.0',
@@ -43,7 +43,7 @@ setup(name='plone.app.dexterity',
           'plone.formwidget.namedfile',
           'plone.namedfile[scales] >=1.0b5dev-r36016',
           'plone.portlets',
-          'plone.schemaeditor >=1.0b3dev-r48709',
+          'plone.schemaeditor >=1.0',
           'plone.supermodel>=1.0b2',
           'plone.z3cform>=0.6.0',
           'Products.CMFCore',

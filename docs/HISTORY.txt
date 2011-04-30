@@ -1,15 +1,16 @@
 Changelog
 =========
 
+1.0rc1 - 2011-04-30
+-------------------
 
-1.0b5 - unreleased
-------------------
+- Added upgrade step to install new javascript from
+  plone.formwidget.autocomplete
+  [davisagli]
 
 - Added basic support for making TTW changes to schemas defined in filesystem
-  models and code. (Beware: If supermodel doesn't know how to serialize part of
-  the schema, the serialization may be incomplete and the reconstructed schema
-  may be incorrect after restarting Zope. In this case you can recover by going
-  to the FTI and clearing the model_source property.)
+  models and code. (Note: This feature will not actually work until some further
+  changes are completed in plone.dexterity.)
 
   In order to support this change, the event handling to serialize schema changes
   was revised. We now register a single event handler for the SchemaModifiedEvent
