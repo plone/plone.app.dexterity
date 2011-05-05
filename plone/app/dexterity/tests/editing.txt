@@ -301,3 +301,26 @@ zip archive containing supermodel xml files::
       ...
       </schema>
     </model>
+
+If there's only one item selected, we get a single XML file rather than a zip
+file::
+
+    >>> browser.open('http://nohost/plone/dexterity-types')
+    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']
+    >>> browser.getControl('Export Schema Models').click()
+    >>> browser.url
+    'http://nohost/plone/dexterity-types/@@models-export?selected=plonista2'
+
+    >>> browser.headers['content-type']
+    'application/xml'
+
+    >>> browser.headers['content-disposition']
+    'attachment; filename=plonista2.xml'
+
+    >>> print browser.contents
+    <model xmlns="http://namespaces.plone.org/supermodel/schema">
+      <schema>
+      ...
+      </schema>
+    </model>
+

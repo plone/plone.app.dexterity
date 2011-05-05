@@ -94,22 +94,41 @@ class ModelsExport(BrowserView):
 
         items = self.request.selected.split(',')
 
-        timestamp = time.gmtime()
-        archive_filename = ('dexterity_models' + '-%4d%02d%02d%02d%02d%02d.zip'
-                       % timestamp[:6])
+        if len(items) == 1:
+            # return a single XML file
 
-        archive_stream = StringIO()
-        archive = ZipFile(archive_stream, 'w')
-
-        for item in items:
-            filename = 'models/%s.xml' % item
+            item = items[0]
+            filename = '%s.xml' % item
             text = serializeModel(pt[item].lookupModel())
-            archive.writestr(filename, text)
 
-        archive.close()
+            RESPONSE.setHeader('Content-type', 'application/xml')
+            RESPONSE.setHeader('Content-disposition',
+              'attachment; filename=%s' % filename)
 
-        RESPONSE.setHeader('Content-type', 'application/zip')
-        RESPONSE.setHeader('Content-disposition',
-          'attachment; filename=%s' % archive_filename)
+            return text
 
-        return archive_stream.getvalue()
+        elif len(items) > 1:
+            # pack multiple items into a zip file
+
+            timestamp = time.gmtime()
+            archive_filename = ('dexterity_models-%4d%02d%02d%02d%02d%02d.zip'
+                           % timestamp[:6])
+
+            archive_stream = StringIO()
+            archive = ZipFile(archive_stream, 'w')
+
+            for item in items:
+                filename = 'models/%s.xml' % item
+                text = serializeModel(pt[item].lookupModel())
+                archive.writestr(filename, text)
+
+            archive.close()
+
+            RESPONSE.setHeader('Content-type', 'application/zip')
+            RESPONSE.setHeader('Content-disposition',
+              'attachment; filename=%s' % archive_filename)
+
+            return archive_stream.getvalue()
+
+        else:
+            return ''
