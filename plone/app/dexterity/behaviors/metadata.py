@@ -218,9 +218,22 @@ class DCFieldProperty(object):
         return getattr(self._field, name)
 
 class Basic(MetadataBase):
-    title = DCFieldProperty(IBasic['title'], get_name = 'Title', set_name = 'setTitle')
-    description = DCFieldProperty(IBasic['description'], get_name = 'Description', set_name = 'setDescription')
-    
+    def _get_title(self):
+        return self.context.title
+    def _set_title(self, value):
+        if isinstance(value, str):
+            raise ValueError('Title must be unicode.')
+        self.context.title = value
+    title = property(_get_title, _set_title)
+
+    def _get_description(self):
+        return self.context.description
+    def _set_description(self, value):
+        if isinstance(value, str):
+            raise ValueError('Description must be unicode.')
+        self.context.description = value
+    description = property(_get_description, _set_description)
+
 class Categorization(MetadataBase):
     subjects = DCFieldProperty(ICategorization['subjects'], get_name = 'Subject', set_name = 'setSubject')
     language = DCFieldProperty(ICategorization['language'], get_name = 'Language', set_name = 'setLanguage')

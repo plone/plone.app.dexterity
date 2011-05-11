@@ -4,6 +4,10 @@ Changelog
 1.0 - unreleased
 ----------------
 
+- Make sure the Basic metadata adapter accesses the content's title attribute
+  directly so it doesn't get encoded. Also make sure encoded data can't be set
+  via this adapter.
+  [davisagli]
 
 1.0rc1 - 2011-04-30
 -------------------
