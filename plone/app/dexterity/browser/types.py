@@ -82,6 +82,10 @@ class TypeSettingsAdapter(object):
         self.context = context
     
     @property
+    def id(self):
+        return self.context.getId()
+    
+    @property
     def title(self):
         return self.context.title
 
@@ -101,7 +105,7 @@ class TypesListing(crud.CrudForm):
     """
     
     template = ViewPageTemplateFile('types_listing.pt')
-    view_schema = field.Fields(ITypeSettings).omit('container')
+    view_schema = field.Fields(ITypeSettings).select('title', 'description')
     addform_factory = crud.NullForm
     editform_factory = TypeEditForm
     

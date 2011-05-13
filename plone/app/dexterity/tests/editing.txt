@@ -36,6 +36,7 @@ community::
 
   >>> browser.getControl('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
+  >>> browser.getControl('Short Name').value = 'plonista'
   >>> browser.getControl('Add').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types'
@@ -165,6 +166,7 @@ A content type can be cloned.
   >>> browser.url
   'http://nohost/plone/dexterity-types/plonista/@@clone'
   >>> browser.getControl('Type Name').value = 'Plonista2'
+  >>> browser.getControl('Short Name').value = 'plonista2'
   >>> browser.getControl('Add').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types'
@@ -209,6 +211,7 @@ We can create a content type that is a container for other content::
   >>> browser.open('http://nohost/plone/@@dexterity-types')
   >>> browser.getControl('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista Folder'
+  >>> browser.getControl('Short Name').value = 'plonista-folder'
   >>> browser.getControl(name='form.widgets.container:list').value = ['true']
   >>> browser.getControl('Add').click()
   >>> browser.url

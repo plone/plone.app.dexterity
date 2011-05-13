@@ -24,6 +24,12 @@ class ITypeSettings(Interface):
         title = u'Type Name'
         )
 
+    id = schema.ASCIILine(
+        title = u'Short Name',
+        description = u'Used for programmatic access to the type.',
+        required=True,
+        )
+
     description = schema.Text(
         title = u'Description',
         required = False

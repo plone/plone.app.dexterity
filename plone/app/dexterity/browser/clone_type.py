@@ -1,6 +1,4 @@
-from zope.component import getUtility
 from z3c.form import form, field
-from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
 
@@ -11,11 +9,11 @@ from plone.app.dexterity.interfaces import ITypeSettings
 class TypeCloneForm(form.AddForm):
 
     label = _(u'Clone Content Type')
-    fields = field.Fields(ITypeSettings).select('title')
+    fields = field.Fields(ITypeSettings).select('title', 'id')
     id = 'clone-type-form'
 
     def create(self, data):
-        id = getUtility(IIDNormalizer).normalize(data['title'])
+        id = data.pop('id')
         # XXX check for duplicates
         props = dict(self.context.fti.propertyItems())
         props['title'] = data['title']

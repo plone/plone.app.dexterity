@@ -4,6 +4,9 @@ Changelog
 1.0 - unreleased
 ----------------
 
+- Allow specifying a type's short name when adding a type.
+  [davisagli]
+
 - Make sure the Basic metadata adapter accesses the content's title attribute
   directly so it doesn't get encoded. Also make sure encoded data can't be set
   via this adapter.
