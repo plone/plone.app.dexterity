@@ -4,6 +4,9 @@ Changelog
 1.0 - unreleased
 ----------------
 
+- Fixed cloning of types with a period (.) in their short name.
+  [davisagli]
+
 - Allow specifying a type's short name when adding a type.
   [davisagli]
 
