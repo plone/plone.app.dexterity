@@ -175,6 +175,11 @@ A content type can be cloned.
   >>> 'plonista2' in self.portal.portal_types
   True
 
+The new content type has its own factory.
+
+  >>> self.portal.portal_types.plonista2.factory
+  'plonista2'
+
 
 Removing a content type
 -----------------------

@@ -4,6 +4,9 @@ Changelog
 1.0 - unreleased
 ----------------
 
+- Make sure cloned types get a new factory.
+  [davisagli]
+
 - Don't override overlay CSS in Plone 4.
   [davisagli]
 
