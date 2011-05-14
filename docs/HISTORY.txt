@@ -4,6 +4,9 @@ Changelog
 1.0 - unreleased
 ----------------
 
+- Don't override overlay CSS in Plone 4.
+  [davisagli]
+
 - Fixed cloning of types with a period (.) in their short name.
   [davisagli]
 

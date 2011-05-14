@@ -103,9 +103,17 @@
         />
 
     <!-- overlay CSS (only needed in Plone 3) -->
-    <browser:resource
-        name="plone.app.dexterity.overlays.css"
-        file="overlays.css"
-        />
+    <configure zcml:condition="not-have plone-4">
+      <browser:resource
+          name="plone.app.dexterity.overlays.css"
+          file="overlays.css"
+          />
+    </configure>
+    <configure zcml:condition="have plone-4">
+      <browser:resource
+          name="plone.app.dexterity.overlays.css"
+          file="blank.css"
+          />
+    </configure>
 
 </configure>
