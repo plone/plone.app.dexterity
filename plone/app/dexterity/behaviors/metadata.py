@@ -197,7 +197,9 @@ class DCFieldProperty(object):
             attribute = attribute()
 
         if isinstance(attribute, DateTime):
-             return attribute.asdatetime().replace(tzinfo=None)
+            # Ensure datetime value is stripped of any timezone and seconds
+            # so that it can be compared with the value returned by the widget
+            return datetime(*map(int, attribute.parts()[:6]))
         return attribute
 
     def __set__(self, inst, value):
@@ -206,7 +208,10 @@ class DCFieldProperty(object):
         if field.readonly:
             raise ValueError(self._field.__name__, 'field is readonly')
         if isinstance(value, datetime):
-            value = DateTime(value)
+            # The ensures that the converted DateTime value is in the
+            # server's local timezone rather than GMT.
+            value = DateTime(value.year, value.month, value.day,
+                             value.hour, value.minute)
         if self._set_name:
             getattr(inst.context, self._set_name)(value)
         elif inst.context.hasProperty(self._get_name):
