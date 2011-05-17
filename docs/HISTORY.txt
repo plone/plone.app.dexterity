@@ -4,6 +4,9 @@ Changelog
 1.0 - unreleased
 ----------------
 
+- Use DateTime support for converting from DateTime to datetime.
+  [elro]
+
 - Make sure cloned types get a new factory.
   [davisagli]
 

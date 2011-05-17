@@ -197,7 +197,7 @@ class DCFieldProperty(object):
             attribute = attribute()
 
         if isinstance(attribute, DateTime):
-             return datetime(*map(int, attribute.parts()[:6]))
+             return attribute.asdatetime()
         return attribute
 
     def __set__(self, inst, value):
@@ -206,7 +206,7 @@ class DCFieldProperty(object):
         if field.readonly:
             raise ValueError(self._field.__name__, 'field is readonly')
         if isinstance(value, datetime):
-            value = DateTime(value.isoformat())
+            value = DateTime(value)
         if self._set_name:
             getattr(inst.context, self._set_name)(value)
         elif inst.context.hasProperty(self._get_name):
