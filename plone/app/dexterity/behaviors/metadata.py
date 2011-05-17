@@ -197,7 +197,7 @@ class DCFieldProperty(object):
             attribute = attribute()
 
         if isinstance(attribute, DateTime):
-             return attribute.asdatetime()
+             return attribute.asdatetime().replace(tzinfo=None)
         return attribute
 
     def __set__(self, inst, value):
