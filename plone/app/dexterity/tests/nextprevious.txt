@@ -35,7 +35,7 @@ We'll set it to True instead::
   >>> nextPreviousEnabled.selected = True
   >>> browser.getControl('Save').click()
   >>> browser.url
-  'http://nohost/plone/folder'
+  'http://nohost/plone/folder/view'
 
 When creating a sub-folder, the default "Enable next previous navigation" value is now True::
 
@@ -49,12 +49,12 @@ We'll continue and create another sub-folder::
 
   >>> browser.getControl('Save').click()
   >>> browser.url
-  'http://nohost/plone/folder/folder'
+  'http://nohost/plone/folder/folder/view'
   >>> browser.open('http://nohost/plone/folder/++add++folder')
   >>> browser.getControl('Title').value = 'Another Sub Folder'
   >>> browser.getControl('Save').click()
   >>> browser.url
-  'http://nohost/plone/folder/folder-1'
+  'http://nohost/plone/folder/folder-1/view'
 
 We can see the next and previous links::
 
