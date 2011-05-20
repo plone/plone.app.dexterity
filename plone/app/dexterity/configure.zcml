@@ -20,7 +20,7 @@
     
     <genericsetup:registerProfile
         name="default"
-        title="Dexterity Content Types - Plone Integration"
+        title="Dexterity Content Types"
         description="Configures various components needed for full Dexterity support."
         directory="profiles/default"
         provides="Products.GenericSetup.interfaces.EXTENSION"

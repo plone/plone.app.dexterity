@@ -1,96 +1,146 @@
 Introduction
 ============
 
-This package integrates the Dexterity_ content type system into the Plone_
-content management system.
+Dexterity wants to make some things really easy. These are:
 
-.. _Dexterity: http://plone.org/products/dexterity
-.. _Plone: http://plone.org
+* Create a "real" content type entirely through-the-web without having to
+  know programming.
+* As a business user, create a schema using visual or through-the-web tools,
+  and augment it with adapters, event handlers, and other Python code written
+  on the filesystem by a Python programmer.
+* Create content types in filesystem code quickly and easily, without losing
+  the ability to customise any aspect of the type and its operation later if
+  required.
+* Support general "behaviours" that can be enabled on a custom type in a
+  declarative fashion. Behaviours can be things like title-to-id naming,
+  support for locking or versioning, or sets of standard metadata with
+  associated UI elements.
+* Easily package up and distribute content types defined through-the-web, on
+  the filesystem, or using a combination of the two.
 
-plone.app.dexterity contains code to handle four major areas of concern:
+Philosophy
+==========
 
- * Dexterity Types control panel
- * Default behaviors
- * Installation of dependencies
- * Backports of several upstream changes
+Dexterity is designed with a specific philosophy in mind. This can be
+summarised as follows:
+
+Reuse over reinvention
+  As far as possible, Dexterity should reuse components and technologies that
+  already exist. More importantly, however, Dexterity should reuse concepts that
+  exist elsewhere. It should be easy to learn Dexterity by analogy, and to work
+  with Dexterity types using familiar APIs and techniques.
+
+Small over big
+  Mega-frameworks be damned. Dexterity consists of a number of specialised
+  packages, each of which is independently tested and reusable. Furthermore, 
+  packages should has as few dependencies as possible, and should declare their
+  dependencies explicitly. This helps keep the design clean and the code 
+  manageable.
+
+Natural interaction over excessive generality
+  The Dexterity design was driven by several use cases that express the way in 
+  which we want people to work with Dexterity. The end goal is to make it easy 
+  to get started, but also easy to progress from an initial prototype to a 
+  complex set of types and associated behaviours through step-wise learning and 
+  natural interaction patterns. Dexterity aims to consider its users - be they 
+  business analysts, light integrators or Python developers, and be they new or 
+  experienced - and cater to them explicitly with obvious, well-documented, 
+  natural interaction patterns.
+
+Real code over generated code
+  Generated code is difficult to understand and difficult to debug when it 
+  doesn't work as expected. There is rarely, if ever, any reason to scribble 
+  methods or 'exec' strings of Python code.
+
+Zope 3 over Zope 2
+  Although Dexterity does not pretend to work with non-CMF systems, as many 
+  components as possible should work with plain Zope 3, and even where there are 
+  dependencies on Zope 2, CMF or Plone, they should - as far as is practical - 
+  follow Zope 3 techniques and best practices. Many operations (e.g. managing 
+  objects in a folder, creating new objects or manipulating objects through a 
+  defined schema) are better designed in Zope 3 than they were in Zope 2.
+
+Zope concepts over new paradigms
+  We want Dexterity to be "Zope-ish". Zope is a mature, well-designed (well, 
+  mostly) and battle tested platform. We do not want to invent brand new 
+  paradigms and techniques if we can help it.
+
+Automated testing over wishful thinking
+  "Everything" should be covered by automated tests. Dexterity necessarily has a 
+  lot of moving parts. Untested moving parts tend to come loose and fall on 
+  people's heads. Nobody likes that.
+
+Getting started
+===============
+
+Please read the `installation guide`_ to get Dexterity up and running.
+
+.. _`installation guide`: http://plone.org/products/dexterity/documentation/how-to/install
+
+Then log in to Plone, go to Site Setup, and go to the ``Dexterity Types``
+control panel to get started creating content types through the web.
+
+Or read the `Dexterity developer manual`_ to get started developing
+Dexterity content types on the filesystem.
+
+This release of Dexterity is compatible with Plone 3, 4, and 4.1.
+
+Upgrading
+=========
+
+If you are upgrading from a previous release of Dexterity, you need to:
+
+1. Update your buildout with the new versions (or extend the updated KGS),
+   and re-run it.
+2. Restart Zope.
+3. Go to the Add-ons control panel in Plone Site Setup, and run the
+   upgrade steps for "Dexterity Content Types" if there are any available.
+
+Documentation
+=============
+
+Various documentation is available:
+
+* `FAQ`_
+* `Dexterity Developer Manual`_
+* `How to create reusable behaviors for Dexterity types`_
+
+.. _`FAQ`: http://plone.org/products/dexterity/documentation/faq
+.. _`Dexterity developer manual`: http://plone.org/products/dexterity/documentation/manual/developer-manual
+.. _`How to create reusable behaviors for Dexterity types`: http://plone.org/products/dexterity/documentation/manual/behaviors
+
+The following documents are not Dexterity-specific, but will likely be useful
+to users of Dexterity:
+
+* `Schema-driven forms manual`_
+* `five.grok manual`_
+
+.. _`Schema-driven forms manual`: http://plone.org/products/dexterity/documentation/manual/schema-driven-forms
+.. _`five.grok manual`: http://plone.org/products/dexterity/documentation/manual/five.grok
 
 
-Dexterity Types control panel
------------------------------
+Mailing list
+============
 
-Installing this package adds a control panel called "Dexterity Content Types".
-This control panel allows you to:
+The `dexterity-development group`_ provides a place to discuss development
+and use of Dexterity.
 
- * Add and remove Dexterity content types
- * Modify the schema of a Dexterity content type
- * Assign behaviors to a Dexterity content type
+.. _`dexterity-development group`: http://groups.google.com/group/dexterity-development
 
+Issue tracker
+=============
 
-Default behaviors
------------------
+Please report issues in our `Google Code issue tracker`_.
 
-Several behaviors are included that can be enabled for a content type to make
-it behave similarly to a standard ATContentTypes-based content type.  These
-behaviors can be enabled via the Behaviors tab for a type in the Dexterity
-Types control panel, or via the behaviors setting on the type's FTI in
-portal_types in the ZMI.
+.. _`Google Code issue tracker`: http://code.google.com/p/dexterity/issues
 
-Dublin Core metadata (plone.app.dexterity.behaviors.metadata.IDublinCore)
-  This behavior includes the standard Dublin Core metadata fields.  Enabling
-  it is equivalent to enabling the Basic Metadata, Categorization, Effective
-  Range, and Ownership behaviors.
+Contributing
+============
 
-Basic Metadata (plone.app.dexterity.behaviors.metadata.IBasic)
-  Includes title and description fields.
+Most Dexterity code is owned by the `Plone Foundation`_ and maintained in the
+`Plone svn repository`_. We're happy to share commit access so that you can
+share code with us, but first you must sign the `Plone contributor agreement`_.
 
-Categorization (plone.app.dexterity.behaviors.metadata.ICategorization)
-  Includes subject and language fields.
-
-Effective Range (plone.app.dexterity.behaviors.metadata.IPublication)
-  Includes effective date and expiration date fields.
-
-Ownership (plone.app.dexterity.behaviors.metadata.IOwnership)
-  Includes creator, contributor, and copyright fields.
-
-Related Items (plone.app.dexterity.behaviors.related.IRelatedItems)
-  Includes a z3c.relationfield-based related items field.
-
-Name From Title (plone.app.content.interfaces.INameFromTitle)
-  Items with this behavior enabled will automatically get an id based on their
-  title when the item is saved for the first time.
-
-
-Installation of dependencies
-----------------------------
-
-Installing this package should also install everything else that you need to
-use Dexterity within Plone.  In particular, it will pull in the following
-packages as dependencies:
-
- * z3c.form
- * plone.z3cform
- * plone.app.z3cform
- * plone.supermodel
- * plone.dexterity
- * plone.directives.form
- * plone.directives.dexterity
- * plone.schemaeditor
- * plone.formwidget.autocomplete
- * plone.formwidget.contenttree
- * plone.app.relationfield
-
-
-Backports of upstream changes
------------------------------
-
-Dexterity relies on several new features in CMF_ and plone.app.content that
-are not included in existing Plone 3.x releases:
-
- * The ability to specify an expression for the add view on an FTI.
- * The ability to traverse to an add view in the ++add++ namespace.
- * Building the type factory menu based on actions.
-
-.. _CMF: http://www.zope.org/Products/CMF
-
-plone.app.dexterity applies these changes as monkey patches so that Dexterity
-can be used in Plone 3.x.  See overrides.zcml and overrides.py for details.
+.. _`Plone Foundation`: http://plone.org/foundation
+.. _`Plone svn repository`: http://svn.plone.org/plone
+.. _`Plone contributor agreement`: http://plone.org/foundation/contributors-agreement

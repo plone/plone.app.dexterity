@@ -1,7 +1,7 @@
-Changelog
-=========
+Changelog for plone.app.dexterity
+=================================
 
-1.0 - unreleased
+1.0 - 2011-05-20
 ----------------
 
 - Fix publishing dates DateTime/datetime conversions so as not to drift by the

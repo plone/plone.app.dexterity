@@ -1,0 +1,40 @@
+Release Notes
+=============
+
+Welcome to the first final release of the Dexterity content type system!
+
+This release is compatible with Plone 3, 4, and 4.1, as long as you use
+the correct set of version pins from good-py (see the installation guide).
+
+Following this release, the Dexterity team will begin work on the Dexterity
+2.0 series, which will only be compatible with Plone 4.1.  Maintenance
+releases for the 1.0 series will still be made as necessary, for now.
+
+Changes
+-------
+
+The following packages have been updated since Dexterity 1.0rc1
+
+(fixme)
+
+Contributed packages
+--------------------
+
+The Dexterity known good set (KGS) of version pins includes a number of
+contributed packages that are not installed by default:
+
+plone.app.referenceablebehavior
+  Adds support for the Archetypes reference engine to Dexterity content, so
+  that Dexterity items can be referenced from Archetypes items. Requires
+  Plone 4.1.
+
+plone.app.stagingbehavior
+  Adds support for staging Dexterity content, based on plone.app.iterate.
+  Requires Plone 4.1.
+
+plone.app.versioningbehavior
+  Adds support for storing historic versions of Dexterity content, based on
+  Products.CMFEditions. Requires Plone 4.0 or greater.
+
+collective.z3cform.datagridfield
+  A z3c.form widget for editing lists of subobjects via a tabular UI.
