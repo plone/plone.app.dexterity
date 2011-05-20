@@ -1,13 +1,13 @@
 # --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
+# Translations for　plone.app.dexterity.
 # Jian Aijun <jianaijun@gmail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: plone.app.dexterity-1.0rc1\n"
+"Project-Id-Version: plone.app.dexterity\n"
 "POT-Creation-Date: 2010-11-15 16:31+0000\n"
-"PO-Revision-Date: 2011-05-05 12:52+0800\n"
+"PO-Revision-Date: 2011-05-20 15:15+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +16,6 @@ msgstr ""
 "Language-Name: Chinese (Simplified)\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.dexterity\n"
-"Language-Team: \n"
 
 #: ./browser/add_type.py:15
 msgid "Add Content Type"
@@ -66,12 +65,12 @@ msgstr "类型克隆成功。"
 #. Default: "Also known as keywords, tags or labels, these help you categorize your content."
 #: ./behaviors/metadata.py:57
 msgid "help_categories"
-msgstr "也称为关键字，标签或tags，用于帮助分类您的内容。"
+msgstr "也称为关键字、 标记或标签，用于帮助您对您的内容进行分类。"
 
 #. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
 #: ./behaviors/metadata.py:125
 msgid "help_contributors"
-msgstr "本内容的贡献者的名字。每个贡献者应该独占一行。"
+msgstr "本内容的贡献者的名称。每个贡献者应该独占一行。"
 
 #. Default: "Copyright statement or other rights information on this item."
 #: ./behaviors/metadata.py:137
@@ -101,7 +100,7 @@ msgstr "到达此日期后，内容在列表和搜索结果中将变成不可见
 #. Default: "Categories"
 #: ./behaviors/metadata.py:56
 msgid "label_categories"
-msgstr "分类"
+msgstr "类别"
 
 #. Default: "Contributors"
 #: ./behaviors/metadata.py:124
@@ -141,7 +140,7 @@ msgstr "语言"
 #. Default: "Related Items"
 #: ./behaviors/related.py:18
 msgid "label_related_items"
-msgstr "相关内容"
+msgstr "相关条目"
 
 #. Default: "Title"
 #: ./behaviors/metadata.py:29
