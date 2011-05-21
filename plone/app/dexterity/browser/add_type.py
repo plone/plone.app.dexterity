@@ -6,7 +6,6 @@ from plone.dexterity.fti import DexterityFTI
 from plone.app.dexterity import MessageFactory as _
 from plone.app.dexterity.interfaces import ITypeSettings
 
-from plone.app.dexterity import PLONE40
 
 class TypeAddForm(form.AddForm):
 
@@ -37,9 +36,7 @@ class TypeAddForm(form.AddForm):
         else:
             icon = 'document_icon'
         # XXX should probably copy icons into p.a.d and use them from here
-        if PLONE40:
-            data['icon_expr'] = 'string:${portal_url}/' + icon + '.png'
-        data['content_icon'] = icon + '.gif'
+        data['icon_expr'] = 'string:${portal_url}/' + icon + '.png'
         fti.manage_changeProperties(**data)
         return fti
 

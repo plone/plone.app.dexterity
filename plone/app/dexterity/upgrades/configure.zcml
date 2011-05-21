@@ -37,5 +37,16 @@
     profile="plone.app.dexterity:default"
     handler="plone.formwidget.autocomplete.upgrades.to1.install_formwidget_autocomplete"
     />
+  
+  <!-- Dexterity 2.0 -->
+  
+  <genericsetup:upgradeStep
+    source="4"
+    destination="2000"
+    title="Remove overlays.css from CSS registry"
+    description=""
+    profile="plone.app.dexterity:default"
+    handler=".to2000.remove_overlays_css"
+    />
 
 </configure>

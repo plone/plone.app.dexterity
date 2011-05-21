@@ -5,42 +5,21 @@
     i18n_domain="plone.app.dexterity">
     
     <!-- Default view for Dexterity types in Plone  4 -->
-    <configure zcml:condition="have plone-4">
-      <browser:page
-          for="plone.dexterity.interfaces.IDexterityItem"
-          name="view"
-          class="plone.dexterity.browser.view.DefaultView"
-          template="item.pt"
-          permission="zope2.View"
-          />
-    
-      <browser:page
-          for="plone.dexterity.interfaces.IDexterityContainer"
-          name="view"
-          class="plone.dexterity.browser.view.DefaultView"
-          template="container.pt"
-          permission="zope2.View"
-          />
-    </configure>
-
-    <!-- Default view for Dexterity types in Plone  3 -->
-    <configure zcml:condition="not-have plone-4">
-      <browser:page
-          for="plone.dexterity.interfaces.IDexterityItem"
-          name="view"
-          class="plone.dexterity.browser.view.DefaultView"
-          template="plone3-item.pt"
-          permission="zope2.View"
-          />
-    
-      <browser:page
-          for="plone.dexterity.interfaces.IDexterityContainer"
-          name="view"
-          class="plone.dexterity.browser.view.DefaultView"
-          template="plone3-container.pt"
-          permission="zope2.View"
-          />
-    </configure>
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityItem"
+        name="view"
+        class="plone.dexterity.browser.view.DefaultView"
+        template="item.pt"
+        permission="zope2.View"
+        />
+  
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        name="view"
+        class="plone.dexterity.browser.view.DefaultView"
+        template="container.pt"
+        permission="zope2.View"
+        />
 
     <!-- Control panel -->
 
@@ -101,19 +80,5 @@
         class=".export.ModelsExport"
         permission="plone.schemaeditor.ManageSchemata"
         />
-
-    <!-- overlay CSS (only needed in Plone 3) -->
-    <configure zcml:condition="not-have plone-4">
-      <browser:resource
-          name="plone.app.dexterity.overlays.css"
-          file="overlays.css"
-          />
-    </configure>
-    <configure zcml:condition="have plone-4">
-      <browser:resource
-          name="plone.app.dexterity.overlays.css"
-          file="blank.css"
-          />
-    </configure>
 
 </configure>
