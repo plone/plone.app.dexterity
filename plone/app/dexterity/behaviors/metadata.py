@@ -2,18 +2,13 @@ from AccessControl.SecurityManagement import getSecurityManager
 from DateTime import DateTime
 from datetime import datetime
 from z3c.form.interfaces import IEditForm, IAddForm
+from z3c.form.browser.textlines import TextLinesFieldWidget
 from zope.interface import alsoProvides
 from zope.component import adapts
 from zope import schema
 from plone.directives import form
 from plone.dexterity.interfaces import IDexterityContent
 from plone.autoform.interfaces import IFormFieldProvider
-
-try:
-    from z3c.form.browser.textlines import TextLinesFieldWidget
-except ImportError:
-    from plone.z3cform.textlines.textlines import TextLinesFieldWidget
-
 from plone.app.dexterity import PloneMessageFactory as _
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
