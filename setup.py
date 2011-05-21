@@ -28,7 +28,6 @@ setup(name='plone.app.dexterity',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'collective.monkeypatcher',
           'five.localsitemanager>=1.1',
           'plone.app.content',
           'plone.app.jquerytools >=1.0rc1',
