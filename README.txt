@@ -147,3 +147,46 @@ share code with us, but first you must sign the `Plone contributor agreement`_.
 .. _`Plone Foundation`: http://plone.org/foundation
 .. _`Plone svn repository`: http://svn.plone.org/plone
 .. _`Plone contributor agreement`: http://plone.org/foundation/contributors-agreement
+
+Dexterity wouldn't be possible without the hard work of a lot of people, including:
+
+* Martin Aspeli
+* Jian Aijun
+* Wichert Akkerman
+* Jonas Baumann
+* David Brenneman
+* Joel Burton
+* Vincent Fretin
+* Rok Garbas
+* Anthony Gerrard
+* Nathan van Gheem
+* David Glick
+* Craig Haynal
+* Wouter Vanden Hove
+* Jean-Michel Francois
+* Jim Fulton
+* Jamie Lentin
+* Alex Limi
+* Steve McMahon
+* Jason Mehring
+* Alec Mitchell
+* Daniel Nouri
+* Ross Patterson
+* Maurits van Rees
+* Lennart Regebro
+* Laurence Rowe
+* Israel Saeta Perez
+* Hanno Schlichting
+* Christian Schneider
+* Carsten Senger
+* Jon Stahl
+* Eric Steele
+* Gaudenz Steinlin
+* Dorneles Tremea
+* Sean Upton
+* Sylvain Viollon
+* Matthew Wilkes
+* Matt Yoder
+* Andi Zeidler
+
+(Please add your name if we have neglected to.)
