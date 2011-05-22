@@ -7,20 +7,22 @@ Metadata, etc behaviours.
 
 When we create a dexterity content type::
 
+    >>> portal = layer['portal']
     >>> from plone.dexterity.fti import DexterityFTI
     >>> fti = DexterityFTI('metadatad_type')
     >>> fti.behaviors = ('plone.app.dexterity.behaviors.metadata.IDublinCore',)
-    >>> self.portal.portal_types._setObject('metadatad_type', fti)
+    >>> portal.portal_types._setObject('metadatad_type', fti)
     'metadatad_type'
     >>> schema = fti.lookupSchema()
 
 If we access the site as an admin TTW::
 
-    >>> from Products.Five.testbrowser import Browser
-    >>> browser = Browser()
-    >>> browser.handleErrors = False
-    >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
-    >>> browser.addHeader('Authorization', 'Basic root:secret')
+    >>> from plone.app.testing import TEST_USER_ID, TEST_USER_PASSWORD, setRoles
+    >>> setRoles(portal, TEST_USER_ID, ['Manager'])
+    >>> import transaction; transaction.commit()
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(layer['app'])
+    >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,))
 
 We can see this type in the addable types at the root of the site::
 
@@ -38,11 +40,11 @@ We can see this type in the addable types at the root of the site::
     
 The creator of the object is the current user::
 
-    >>> "http://nohost/plone/author/root" in browser.contents
+    >>> "http://nohost/plone/author/test_user_1_" in browser.contents
     True
-    >>> md = self.portal.metadatad_type
+    >>> md = portal.metadatad_type
     >>> md.Creator()
-    'root'
+    'test_user_1_'
 
 The modified and creation dates are set correctly::
 

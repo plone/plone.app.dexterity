@@ -1,8 +1,11 @@
-from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
-from plone.app.dexterity.tests.base import DexterityTestCase
-from plone.dexterity.fti import DexterityFTI
+import unittest2 as unittest
+from plone.app.testing import setRoles, login, logout, TEST_USER_ID
+from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 
+from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
+from plone.dexterity.fti import DexterityFTI
 from Products.CMFCore.utils import getToolByName
+
 
 class NextPreviousBase:
     # subclass here
@@ -17,17 +20,21 @@ class NextPreviousBase:
         fti.behaviors = self._behaviors
 
 
-class NextPreviousEnabledTests(NextPreviousBase, DexterityTestCase):
+class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
     """ basic use cases and tests for next/previous navigation, essentially
         borrowed from `plone.app.folder.tests.test_nextprevious.py` """
+
+    layer = DEXTERITY_INTEGRATION_TESTING
 
     _behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled',)
     _portal_type = 'FolderEnabled'
 
-    def afterSetUp(self):
+    def setUp(self):
+        self.portal = self.layer['portal']
         self.wf = getToolByName(self.portal, "portal_workflow")
+        self.wf.setDefaultChain('simple_publication_workflow')
         self.portal.acl_users._doAddUser('user_std', 'secret', ['Member'], [])
-        self.setRoles(['Manager'])
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self._setupFTI()
         self.portal.invokeFactory('Document', 'doc1')
         self.portal.invokeFactory('Document', 'doc2')
@@ -46,7 +53,6 @@ class NextPreviousEnabledTests(NextPreviousBase, DexterityTestCase):
         folder2.invokeFactory('Document', 'doc22')
         folder2.invokeFactory('Document', 'doc23')
         folder2.invokeFactory('File', 'file21')
-        self.setRoles(['Member'])
 
     def testIfFolderImplementsPreviousNext(self):
         self.failUnless(INextPreviousProvider(self.portal.folder1, None))
@@ -61,7 +67,7 @@ class NextPreviousEnabledTests(NextPreviousBase, DexterityTestCase):
         self.failUnless(view.enabled())
 
     def testNextPreviousItems(self):
-        container = self.folder[self.folder.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
         for id in range(1, 4):
             container.invokeFactory('Document', 'subDoc%d' % id)
 
@@ -97,18 +103,18 @@ class NextPreviousEnabledTests(NextPreviousBase, DexterityTestCase):
         self.assertEqual(next, None)
 
     def testNextItemOnlyShowViewable(self):
-        container = self.folder[self.folder.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
         # create objects [subDoc1,subDoc2,subDoc3,subDoc4,subDoc5,subDoc6]
         # published objects [subDoc2, subDoc4, subDoc5]
-        self.setRoles(("Manager",))
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
         for id in range(1, 7):
             doc = container[container.invokeFactory('Document', 'subDoc%d' % id)]
             if id in [2,4,5]:
                 self.wf.doActionFor(doc, "publish")
 
         # Member should only see the published items
-        self.logout()
-        self.login('user_std')
+        logout()
+        login(self.portal, 'user_std')
         adapter = INextPreviousProvider(container)
         # text data for next/tems
         next = adapter.getNextItem(container.subDoc2)
@@ -119,18 +125,18 @@ class NextPreviousEnabledTests(NextPreviousBase, DexterityTestCase):
         self.assertEqual(next, None)
 
     def testPreviousItemOnlyShowViewable(self):
-        container = self.folder[self.folder.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
         # create objects [subDoc1,subDoc2,subDoc3,subDoc4,subDoc5,subDoc6]
         # published objects [subDoc2, subDoc4, subDoc5]
-        self.setRoles(("Manager",))
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
         for id in range(1, 7):
             doc = container[container.invokeFactory('Document', 'subDoc%d' % id)]
             if id in [2,4,5]:
                 self.wf.doActionFor(doc, "publish")
 
         # Member should only see the published items
-        self.logout()
-        self.login('user_std')
+        logout()
+        login(self.portal, 'user_std')
         adapter = INextPreviousProvider(container)
         # text data for next/tems
         previous = adapter.getPreviousItem(container.subDoc5)
@@ -141,21 +147,24 @@ class NextPreviousEnabledTests(NextPreviousBase, DexterityTestCase):
         self.assertEqual(previous, None)
 
 
-class NextPreviousToggleTests(NextPreviousBase, DexterityTestCase):
+class NextPreviousToggleTests(NextPreviousBase, unittest.TestCase):
     """ basic use cases and tests for next/previous navigation, essentially
         borrowed from `plone.app.folder.tests.test_nextprevious.py` """
 
+    layer = DEXTERITY_INTEGRATION_TESTING
+    
     _behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle',)
     _portal_type = 'FolderWithToggle'
 
-    def afterSetUp(self):
+    def setUp(self):
+        self.portal = self.layer['portal']
         self.wf = getToolByName(self.portal, "portal_workflow")
         self.portal.acl_users._doAddUser('user_std', 'secret', ['Member'], [])
-        self.setRoles(['Manager'])
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self._setupFTI()
         self.portal.invokeFactory(self._portal_type, 'folder1')
         self.portal.folder1.invokeFactory('Document', 'doc11')
-        self.setRoles(['Member'])
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
 
     def testIfFolderImplementsPreviousNext(self):
         self.failUnless(INextPreviousProvider(self.portal.folder1, None))

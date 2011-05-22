@@ -3,9 +3,10 @@ Automatic filename-to-id behavior
 
 Say we have a 'File' content type::
 
+  >>> portal = layer['portal']
   >>> from plone.dexterity.fti import DexterityFTI
   >>> fti = DexterityFTI('file_type')
-  >>> self.portal.portal_types._setObject('file_type', fti)
+  >>> portal.portal_types._setObject('file_type', fti)
   'file_type'
   >>> fti.klass = 'plone.dexterity.content.Item'
   >>> from zope.interface import Interface, alsoProvides
@@ -27,10 +28,13 @@ this would be done via Generic Setup)::
 Now let's fire up the browser and confirm that new content gets renamed
 appropriately::
 
-  >>> from Products.Five.testbrowser import Browser
-  >>> browser = Browser()
-  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
-  >>> browser.addHeader('Authorization', 'Basic root:secret')
+  >>> from plone.app.testing import TEST_USER_ID, TEST_USER_PASSWORD, setRoles
+  >>> setRoles(portal, TEST_USER_ID, ['Manager'])
+  >>> import transaction; transaction.commit()
+  >>> from plone.testing.z2 import Browser
+  >>> browser = Browser(layer['app'])
+  >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,))
+  
   >>> browser.open('http://nohost/plone/++add++file_type')
   >>> browser.getControl('Title').value = 'A test file'
   >>> from cStringIO import StringIO

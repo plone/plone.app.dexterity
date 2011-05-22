@@ -4,7 +4,8 @@ Integration with Plone product installation
 Make sure we have hidden our field/widget dependencies from the quick
 installer.  (Although, Plone trunk doesn't use the quick installer, so
 then we'll just skip the check.)
-  >>> products = [p['id'] for p in self.portal.portal_quickinstaller.listInstallableProducts(skipInstalled=False)]
+  >>> portal = layer['portal']
+  >>> products = [p['id'] for p in portal.portal_quickinstaller.listInstallableProducts(skipInstalled=False)]
   >>> 'plone.app.dexterity' in products
   True
   >>> 'plone.app.relationfield' in products
@@ -15,19 +16,16 @@ then we'll just skip the check.)
   False
 
 Get a logged-in test browser.
-  >>> from Products.Five.testbrowser import Browser
-  >>> browser = Browser()
-  >>> browser.handleErrors = False
-  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
-  >>> browser.addHeader('Authorization', 'Basic root:secret')
+  >>> from plone.testing.z2 import setRoles
+  >>> layer['app'].acl_users.userFolderAddUser('admin', 'secret', ['Manager'], [])
+  >>> import transaction; transaction.commit()
+  >>> from plone.testing.z2 import Browser
+  >>> browser = Browser(layer['app'])
+  >>> browser.addHeader('Authorization', 'Basic admin:secret')
 
 Load the form for creating a new Plone site and make sure we see the
 expected profiles.
-  >>> from zExceptions import NotFound
-  >>> try:
-  ...     browser.open('http://nohost/manage_addProduct/CMFPlone/addPloneSiteForm')
-  ... except NotFound:
-  ...     browser.open('http://nohost/@@plone-addsite')
+  >>> browser.open('http://nohost/@@plone-addsite')
   >>> 'plone.app.dexterity:default' in browser.contents
   True
   >>> 'plone.app.relationfield:default' in browser.contents

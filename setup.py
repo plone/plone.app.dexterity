@@ -64,6 +64,12 @@ setup(name='plone.app.dexterity',
           'z3c.form',
           'z3c.relationfield',
       ],
+      extras_require = {
+          'test': [
+              'plone.app.testing',
+              'unittest2',
+          ]
+      },
       entry_points="""
       [z3c.autoinclude.plugin]
       target = plone

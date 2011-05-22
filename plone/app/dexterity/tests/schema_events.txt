@@ -10,9 +10,10 @@ plone.supermodel API).
 Let's make sure that those event handlers are working properly.  We'll need
 a dummy Dexterity FTI and schema, and a plone.schemaeditor schema context::
 
+  >>> portal = layer['portal']
   >>> from plone.dexterity.fti import DexterityFTI
   >>> fti = DexterityFTI('dummy')
-  >>> self.portal.portal_types._setObject('dummy', fti)
+  >>> portal.portal_types._setObject('dummy', fti)
   'dummy'
   >>> schema = fti.lookupSchema()
   >>> from plone.app.dexterity.browser.types import TypeSchemaContext

@@ -1,4 +1,7 @@
-from Testing.ZopeTestCase import app, close, installProduct, installPackage
+# Note: This layer is deprecated.  We recommend using the
+# plone.app.testing-based test setup in plone.app.dexterity.testing
+
+from Testing.ZopeTestCase import app, close
 from Products.CMFCore.utils import getToolByName
 from Products.PloneTestCase.layer import PloneSite
 from zope.app.component.hooks import setSite, setHooks

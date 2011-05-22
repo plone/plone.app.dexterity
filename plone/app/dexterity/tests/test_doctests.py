@@ -1,30 +1,22 @@
+import doctest
 import unittest
-from Testing import ZopeTestCase as ztc
-from plone.app.dexterity.tests.base import DexterityFunctionalTestCase
+from plone.testing import layered
+from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 
-doc_tests = (
-    'schema_events.txt',
-    )
-functional_tests = (
+
+tests = (
     'editing.txt',
     'installation.txt',
     'namefromtitle.txt',
     'metadata.txt',
     'nextprevious.txt',
     'filename.txt',
+    'schema_events.txt',
     )
 
 def test_suite():
     return unittest.TestSuite(
-        [ztc.FunctionalDocFileSuite(
-            'tests/%s' % f, package='plone.app.dexterity',
-            test_class=DexterityFunctionalTestCase)
-            for f in functional_tests] + 
-        [ztc.ZopeDocFileSuite(
-            'tests/%s' % f, package='plone.app.dexterity',
-            test_class=DexterityFunctionalTestCase)
-            for f in doc_tests],
+        [layered(doctest.DocFileSuite(f, optionflags=doctest.ELLIPSIS),
+                 layer=DEXTERITY_FUNCTIONAL_TESTING)
+            for f in tests]
         )
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')

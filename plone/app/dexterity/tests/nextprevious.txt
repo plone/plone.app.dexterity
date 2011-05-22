@@ -3,9 +3,10 @@ Next previous navigation
 
 Say we have a 'Folder' content type::
 
+  >>> portal = layer['portal']
   >>> from plone.dexterity.fti import DexterityFTI
   >>> fti = DexterityFTI('folder')
-  >>> self.portal.portal_types._setObject('folder', fti)
+  >>> portal.portal_types._setObject('folder', fti)
   'folder'
   >>> fti.klass = 'plone.dexterity.content.Container'
   >>> fti.filter_content_types = False
@@ -17,10 +18,13 @@ plone.app.dexterity (normally this would be done via Generic Setup)::
 
 Now let's fire up the browser and add a Folder::
 
-  >>> from Products.Five.testbrowser import Browser
-  >>> browser = Browser()
-  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
-  >>> browser.addHeader('Authorization', 'Basic root:secret')
+  >>> from plone.app.testing import TEST_USER_ID, TEST_USER_PASSWORD, setRoles
+  >>> setRoles(portal, TEST_USER_ID, ['Manager'])
+  >>> import transaction; transaction.commit()
+  >>> from plone.testing.z2 import Browser
+  >>> browser = Browser(layer['app'])
+  >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,))
+
   >>> browser.open('http://nohost/plone/++add++folder')
   >>> browser.getControl('Title').value = 'Folder'
   >>> nextPreviousEnabled = browser.getControl('Enable next previous navigation')
@@ -76,7 +80,7 @@ sub-folder itself the next link will still be shown::
   >>> browser.getControl('Save').click()
   >>> next = browser.getLink('Next')
   >>> next.url
-  'http://nohost/plone/folder/folder-1'   
+  'http://nohost/plone/folder/folder-1'
 
 Only when we disable the next previous setting on the parent does the next
 link disappear::

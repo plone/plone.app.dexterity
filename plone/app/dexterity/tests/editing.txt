@@ -6,11 +6,14 @@ Dexterity content types through the Plone control panel.
 
 To demonstrate this, we'll need a logged in test browser::
 
-  >>> from Products.Five.testbrowser import Browser
-  >>> browser = Browser()
+  >>> from plone.app.testing import TEST_USER_ID, TEST_USER_PASSWORD, setRoles
+  >>> portal = layer['portal']
+  >>> setRoles(portal, TEST_USER_ID, ['Manager'])
+  >>> import transaction; transaction.commit()
+  >>> from plone.testing.z2 import Browser
+  >>> browser = Browser(layer['app'])
   >>> browser.handleErrors = False
-  >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
-  >>> browser.addHeader('Authorization', 'Basic root:secret')
+  >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,))
 
 
 Dexterity Types Configlet
@@ -43,12 +46,12 @@ community::
 
 Now we should also have a 'plonista' FTI in portal_types::
 
-  >>> 'plonista' in self.portal.portal_types
+  >>> 'plonista' in portal.portal_types
   True
 
 The new type should have the dublin core behavior assigned by default::
 
-  >>> plonista = self.portal.portal_types.plonista
+  >>> plonista = portal.portal_types.plonista
   >>> 'plone.app.dexterity.behaviors.metadata.IDublinCore' in plonista.behaviors
   True
   >>> 'document_icon' in plonista.getIcon()
@@ -130,7 +133,7 @@ FTI::
 
   >>> browser.getControl(name='form.widgets.plone.app.dexterity.behaviors.metadata.IDublinCore:list').value = []
   >>> browser.getControl('Save').click()
-  >>> self.portal.portal_types.plonista.behaviors
+  >>> portal.portal_types.plonista.behaviors
   ['plone.app.content.interfaces.INameFromTitle']
 
 
@@ -148,6 +151,7 @@ least be listed.
   ...     irc_nick = schema.TextLine(title=u'IRC Nickname')
   >>> plone.app.dexterity.tests.IFilesystemSchema = IFilesystemSchema
   >>> plonista.schema = 'plone.app.dexterity.tests.IFilesystemSchema'
+  >>> transaction.commit()
   >>> browser.open('http://nohost/plone/dexterity-types/plonista')
   >>> 'crud-edit.form.buttons.delete' in browser.contents
   False
@@ -172,12 +176,12 @@ A content type can be cloned.
   'http://nohost/plone/dexterity-types'
   >>> 'plonista2' in browser.contents
   True
-  >>> 'plonista2' in self.portal.portal_types
+  >>> 'plonista2' in portal.portal_types
   True
 
 The new content type has its own factory.
 
-  >>> self.portal.portal_types.plonista2.factory
+  >>> portal.portal_types.plonista2.factory
   'plonista2'
 
 
@@ -192,7 +196,7 @@ We can also delete a content type via the configlet::
 
 Now the FTI for the type should no longer be present in portal_types::
 
-  >>> 'plonista' in self.portal.portal_types
+  >>> 'plonista' in portal.portal_types
   False
 
 We should still be able to view a container that contains an instance of the
@@ -225,9 +229,9 @@ We can create a content type that is a container for other content::
 Now we should have a 'plonista-folder' FTI in portal_types, and it should be
 using the Container base class::
 
-  >>> 'plonista-folder' in self.portal.portal_types
+  >>> 'plonista-folder' in portal.portal_types
   True
-  >>> pf = getattr(self.portal.portal_types, 'plonista-folder')
+  >>> pf = getattr(portal.portal_types, 'plonista-folder')
   >>> pf.klass
   'plone.dexterity.content.Container'
   >>> 'folder_icon' in pf.getIcon()
