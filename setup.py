@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '2.0dev'
 
 setup(name='plone.app.dexterity',
       version=version,
@@ -28,6 +28,7 @@ setup(name='plone.app.dexterity',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
+          'five.grok',
           'five.localsitemanager>=1.1',
           'plone.app.content',
           'plone.app.jquerytools >=1.0rc1',
