@@ -13,20 +13,11 @@
 
   <genericsetup:upgradeStep
     source="1"
-    destination="2"
+    destination="4"
     title="Unregister schemaeditor.css"
     description=""
     profile="plone.app.dexterity:default"
     handler=".to2.remove_stylesheet"
-    />
-
-  <genericsetup:upgradeStep
-    source="2"
-    destination="4"
-    title="Install plone.app.jquerytools"
-    description=""
-    profile="plone.app.dexterity:default"
-    handler=".to3.install_jquerytools_profile"
     />
 
   <!-- Dexterity 2.0 -->
