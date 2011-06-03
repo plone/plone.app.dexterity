@@ -48,3 +48,17 @@ update them to import the behavior from the new location::
   <property name="behaviors">
       <element value="plone.app.relationfield.behavior.IRelatedItems" />
   </property>
+
+Content tree and Autocomplete widgets no longer included by default
+-------------------------------------------------------------------
+
+In Dexterity 1.0, the widgets in ``plone.formwidget.autocomplete`` and
+``plone.formwidget.contenttree`` were installed as dependencies of
+``plone.app.dexterity``. In Dexterity 2.0 they are no longer installed
+by default, because they are not used by any of the included behaviors
+or made available via the through-the-web content type editor at this
+time.
+
+If you use these widgets, make sure your package lists them as
+dependencies in setup.py, loads their ZCML in configure.zcml, and
+activates their GenericSetup profiles as dependencies in metadata.xml.

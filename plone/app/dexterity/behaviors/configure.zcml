@@ -7,10 +7,6 @@
 
     <include package="plone.behavior" file="meta.zcml"/>
     
-    <!-- widgets -->
-    <include package="plone.formwidget.autocomplete"/>
-    <include package="plone.formwidget.contenttree"/>
-    
     <!-- vocabularies -->
     <include package="plone.app.vocabularies"/>
 

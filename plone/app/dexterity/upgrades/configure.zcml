@@ -22,22 +22,13 @@
 
   <genericsetup:upgradeStep
     source="2"
-    destination="3"
+    destination="4"
     title="Install plone.app.jquerytools"
     description=""
     profile="plone.app.dexterity:default"
     handler=".to3.install_jquerytools_profile"
     />
 
-  <genericsetup:upgradeStep
-    source="3"
-    destination="4"
-    title="Reinstall plone.formwidget.autocomplete javascript"
-    description=""
-    profile="plone.app.dexterity:default"
-    handler="plone.formwidget.autocomplete.upgrades.to1.install_formwidget_autocomplete"
-    />
-  
   <!-- Dexterity 2.0 -->
   
   <genericsetup:upgradeStep

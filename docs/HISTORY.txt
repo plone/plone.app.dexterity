@@ -4,6 +4,10 @@ Changelog for plone.app.dexterity
 2.0 - unreleased
 ----------------
 
+- plone.formwidget.autocomplete and plone.formwidget.contenttree are no longer
+  included by default. See the release notes for more information.
+  [davisagli]
+
 - Moved the 'Related Items' behavior to plone.app.relationfield.
   plone.app.relationfield is no longer installed as a dependency. See the
   release notes for more information including how to update your package if it
