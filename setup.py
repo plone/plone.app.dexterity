@@ -33,7 +33,6 @@ setup(name='plone.app.dexterity',
           'plone.app.content',
           'plone.app.jquerytools >=1.0rc1',
           'plone.app.layout',
-          'plone.app.relationfield',
           'plone.app.textfield',
           'plone.app.z3cform>=0.5.0',
           'plone.autoform >=1.0b3dev-r34689',
@@ -62,13 +61,12 @@ setup(name='plone.app.dexterity',
           'zope.schema',
           'zope.publisher',
           'z3c.form',
-          'z3c.relationfield',
       ],
       extras_require = {
           'test': [
               'plone.app.testing',
-              'unittest2',
-          ]
+              'unittest2'
+              ],
       },
       entry_points="""
       [z3c.autoinclude.plugin]

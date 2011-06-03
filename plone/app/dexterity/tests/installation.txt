@@ -8,8 +8,6 @@ then we'll just skip the check.)
   >>> products = [p['id'] for p in portal.portal_quickinstaller.listInstallableProducts(skipInstalled=False)]
   >>> 'plone.app.dexterity' in products
   True
-  >>> 'plone.app.relationfield' in products
-  False
   >>> 'plone.formwidget.autocomplete' in products
   False
   >>> 'plone.formwidget.contenttree' in products
@@ -28,8 +26,6 @@ expected profiles.
   >>> browser.open('http://nohost/@@plone-addsite')
   >>> 'plone.app.dexterity:default' in browser.contents
   True
-  >>> 'plone.app.relationfield:default' in browser.contents
-  False
   >>> 'plone.formwidget.autocomplete:default' in browser.contents
   False
   >>> 'plone.formwidget.contenttree:default' in browser.contents

@@ -16,7 +16,6 @@ class HiddenProfiles(object):
         """
         return [u'plone.formwidget.autocomplete:default',
                 u'plone.formwidget.contenttree:default',
-                u'plone.app.relationfield:default',
                 ]
 
     def getNonInstallableProducts(self):
@@ -27,5 +26,4 @@ class HiddenProfiles(object):
         return [
             'plone.formwidget.autocomplete',
             'plone.formwidget.contenttree',
-            'plone.app.relationfield',
             ]

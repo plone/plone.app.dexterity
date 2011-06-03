@@ -4,6 +4,12 @@ Changelog for plone.app.dexterity
 2.0 - unreleased
 ----------------
 
+- Moved the 'Related Items' behavior to plone.app.relationfield.
+  plone.app.relationfield is no longer installed as a dependency. See the
+  release notes for more information including how to update your package if it
+  depends on relation support or the 'Related Items' behavior.
+  [davisagli]
+
 - Converted tests to plone.app.testing-based setup. The old PloneTestCase-based 
   test case classes and layer are now deprecated.
   [davisagli]

@@ -1,296 +1,50 @@
 Release Notes
 =============
 
-Welcome to the first final release of the Dexterity content type system!
+Dexterity 2.0 is a major release of Dexterity. Its focus is on preparing
+Dexterity for inclusion in Plone core, by cleaning things up and making
+dependencies that are not ready for primetime optional.
 
-This release is compatible with Plone 3, 4, and 4.1, as long as you use
-the correct set of version pins from good-py (see the installation guide).
+Relation support no longer included by default
+----------------------------------------------
 
-Following this release, the Dexterity team will begin work on the Dexterity
-2.0 series, which will only be compatible with Plone 4.1.  Maintenance
-releases for the 1.0 series will still be made as necessary, for now.
+Dexterity 1.0 included support for object relations based on the zc.relation
+catalog and plone.app.relationfield, as well as a behavior
+(``plone.app.dexterity.behaviors.related.IRelatedItems``) providing a
+generic list of related items based on that implementation.
 
-Changes
--------
+Since this feature was added to Dexterity, we discovered that it will be hard
+to support this type of relation well in Zope 2 until Zope 2 is setting
+__parent__ pointers everywhere. In addition, we encountered some problems with
+using interfaces as keys in the zc.relation catalog. And Dexterity gained
+support for the Archetypes reference engine in 
+``plone.app.referenceablebehavior``. As a result of these factors, the 
+zc.relation approach to object relationships will not be included in Dexterity or Plone core for the time being.
 
-The following packages have been updated since Dexterity 1.0rc1:
+Using relations via plone.app.relationfield
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-plone.app.dexterity 1.0
-~~~~~~~~~~~~~~~~~~~~~~~
+If you were relying on the support for relations, you can re-enable support
+by installing the ``plone.app.relationfield`` package. You need to add it to
+your package's install_requires in setup.py::
 
-- Fix publishing dates DateTime/datetime conversions so as not to drift by the
-  timezone delta every save.
-  [elro]
+  install_requires=[
+      'plone.app.relationfield',
+      ]
 
-- Make sure cloned types get a new factory.
-  [davisagli]
+Make sure your package is including its ZCML in configure.zcml::
 
-- Don't override overlay CSS in Plone 4.
-  [davisagli]
+  <include package="plone.app.relationfield" />
 
-- Fixed cloning of types with a period (.) in their short name.
-  [davisagli]
+And install its GenericSetup profile as a dependency in your package's metadata.xml::
 
-- Allow specifying a type's short name when adding a type.
-  [davisagli]
+  <dependencies>
+    <dependency>profile-plone.app.relationfield:default</dependency>
+  </dependencies>
 
-- Make sure the Basic metadata adapter accesses the content's title attribute
-  directly so it doesn't get encoded. Also make sure encoded data can't be set
-  via this adapter.
-  [davisagli]
+If you have any content types using the IRelatedItems behavior, you should 
+update them to import the behavior from the new location::
 
-plone.dexterity 1.0
-~~~~~~~~~~~~~~~~~~~
-
-- Make sure the Title and Description accessors handle a value of None.
-  [davisagli]
-
-- Make sure the Title() accessor for Dexterity content returns an encoded
-  bytestring as expected for CMF-style accessors.
-  [davisagli]
-
-plone.directives.dexterity 1.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Fix reST.
-  [davisagli]
-
-plone.directives.form 1.0
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Final release; no changes.
-
-plone.autoform 1.0
-~~~~~~~~~~~~~~~~~~
-
-- Raise a NotImplementedError instead of NotImplemented as that is not
-  an exception but meant for comparisons and is not callable.
-  [maurits]
-
-plone.behavior 1.0.1
-~~~~~~~~~~~~~~~~~~~~
-
-- Relicense under BSD license.
-  See http://plone.org/foundation/materials/foundation-resolutions/plone-framework-components-relicensing-policy
-  [davisagli]
-
-plone.app.z3cform 0.5.4
-~~~~~~~~~~~~~~~~~~~~~~~
-
-- Customize templates for multi and object widgets for more consistent styling.
-  [elro]
-
-- Remove dependency on zope.app.component.
-  [davisagli]
-
-- Add MANIFEST.in.
-  [WouterVH]
-
-- Raise LookupError when terms are not found (e.g. they are no longer visible 
-  due to security)
-  [lentinj]
-
-plone.namedfile 1.0.1, 1.0.2, 1.0.3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Relicense under BSD license.
-  [davisagli]
-
-- Don't omit empty string attributes from ImageScale tag.
-  [elro]
-
-- In the tag method of ImageScale to allow height/width/alt/title to be
-  omitted when they are supplied as a None argument.
-  [elro]
-
-- In marshalled file fields, encode the filename parameter of the
-  Content-Disposition header in accordance with RFC 2231. This ensures that
-  filenames with non-ASCII characters can be successfully demarshalled.
-  [davisagli]
-
-- Make the various file classes be strict about only accepting unicode
-  filenames.
-  [davisagli]
-
-plone.rfc822 1.0
-~~~~~~~~~~~~~~~~
-
-- Relicensed under the BSD license.
-  [davisagli]
-
-plone.schemaeditor 1.0.1
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Relicense under the BSD license.
-  [davisagli]
-
-- On multiple choice fields (List of Choice), read/write attributes other than
-  ``values`` in the correct place (on the List rather than its value_type
-  Choice).
-  [davisagli]
-
-- Remove unneeded dependency on plone.i18n.
-  [davisagli]
-
-plone.supermodel 1.0.1, 1.0.2, 1.0.3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Relicense under BSD license.
-  [davisagli]
-
-- Only convert Choice field ``values`` attribute into a vocabulary when it is
-  necessary to handle unicode values. This fixes a regression in compatibility
-  with plone.registry.
-  [davisagli]
-
-- Adjust manifest to exclude .pyc files.
-  [davisagli]
-
-plone.synchronize 1.0.1
-~~~~~~~~~~~~~~~~~~~~~~~
-
-- Add license metadata.
-  [davisagli]
-
-plone.z3cform 0.7.3, 0.7.4, 0.7.5, 0.7.6
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Add ability to find widgets with non-integer names in lists. This shouldn't
-  generally be something that happens, and ideally should be removed if
-  DataGridField looses it's 'AA' and 'TT' rows.
-  [lentinj]
-
-- Fix traversal tests on Zope 2.10 to handle TraversalError instead of
-  LocationError.
-  [elro]
-
-- Fix traversal.py syntax to be python2.4 compatible.
-
-- Define 'hidden' within field macro.
-  [elro]
-
-- Ignore "form.widgets." if ++widget++ path begins with it.
-  [lentinj]
-
-- Rework traverser to handle lists and subforms
-  [lentinj]
-
-- Only search a group's widgets if they exist. collective.z3cform.wizard doesn't
-  create widgets for pages/groups other than the current one
-  [lentinj, elro]
-
-- Adds Brazilian Portuguese translation.
-  [davilima6]
-
-- Handle wrong fieldnames more cleanly in the ++widget++ traverser.
-  [elro]
-
-z3c.form 2.4.3
-~~~~~~~~~~~~~~
-
-- Declare TextLinesFieldWidget as an IFieldWidget implementer.
-
-- Clarify MultiWidget.extract(), when there are zero items,
-  this is now [] instead of <NO_VALUE>
-
-- Some typos fixed
-
-- Fixed test failure due to change in floating point representation in Python
-  2.7.
-
-- Ensure at least min_length widgets are rendered for a MultiWidget in input
-  mode.
-
-- Added Japanese translation.
-
-- Added base of Czech translation.
-
-- Added Portuguese Brazilian translation.
-
-plone.formwidget.autocomplete 1.2.1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Use full widget name in ++widget++ path, don't try and remove form prefix
-  (which will not behave correctly if widget is part of a subform).
-  [lentinj]
-
-plone.formwidget.contenttree 1.0.1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Make placeholder terms for hidden / missing items, so that you can still see
-  something in the editing interface and not accidentally remove them. Ideally
-  we should say if a page is invisible or missing, but not today.
-  [lentinj]
-
-- Use javascript function from plone.formwidget.autocomplete to add new input
-  boxes, make javascript as clone-safe (when making new rows in datagridfield)
-  as possible
-  [lentinj]
-
-- Just use full widget name in ++widget++ URL, don't try and strip form prefix
-  off. If within a subform, this is the wrong thing to do and the traverser now
-  supports stripping the initial 'form.widgets'
-  [lentinj]
-
-- Workaround for sources being used without being bound first.
-  [lentinj]
-
-- Check the request for context before falling back to getSite()
-  [lentinj]
-
-- Add a UUIDSource that stores plone.uuid pointers to content.
-  [lentinj]
-
-- Use tokens as full URL of content, move all token<->value operations into the
-  source. Rename methods so that actually-public methods have public names
-  [lentinj]
-
-- Alter terms so that token is the full path to an item, value is the path
-  without portal_url that is stored in the DB. This means all the path parsing
-  can be kept within the source.
-  [lentinj]
-
-- _filter is used outside the source, so not an internal helper function
-  anymore.
-  [lentinj]
-
-plone.app.referenceablebehavior 0.3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Try obj first in event handlers, fall back to getSite(). When a site is being
-  deleted getSite() will return None so isn't useful.
-  [lentinj]
-
-plone.app.stagingbehavior 0.1b1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Add functional tests.
-  [anthonygerrard, davisagli]
-
-collective.z3cform.datagridfield 0.6
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Added to KGS.
-
-
-Contributed packages
---------------------
-
-The Dexterity known good set (KGS) of version pins includes a number of
-contributed packages that are not installed by default:
-
-plone.app.referenceablebehavior
-  Adds support for the Archetypes reference engine to Dexterity content, so
-  that Dexterity items can be referenced from Archetypes items. Requires
-  Plone 4.1.
-
-plone.app.stagingbehavior
-  Adds support for staging Dexterity content, based on plone.app.iterate.
-  Requires Plone 4.1.
-
-plone.app.versioningbehavior
-  Adds support for storing historic versions of Dexterity content, based on
-  Products.CMFEditions. Requires Plone 4.0 or greater.
-
-collective.z3cform.datagridfield
-  A z3c.form widget for editing lists of subobjects via a tabular UI.
+  <property name="behaviors">
+      <element value="plone.app.relationfield.behavior.IRelatedItems" />
+  </property>
