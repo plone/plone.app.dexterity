@@ -6,7 +6,6 @@
     source="0.1"
     destination="1"
     title="Install plone.app.z3cform browser layer"
-    description=""
     profile="plone.app.dexterity:default"
     handler=".to1.install_z3cform_profile"
     />
@@ -15,7 +14,6 @@
     source="1"
     destination="4"
     title="Unregister schemaeditor.css"
-    description=""
     profile="plone.app.dexterity:default"
     handler=".to2.remove_stylesheet"
     />
@@ -26,9 +24,16 @@
     source="4"
     destination="2000"
     title="Remove overlays.css from CSS registry"
-    description=""
     profile="plone.app.dexterity:default"
     handler=".to2000.remove_overlays_css"
+    />
+  
+  <genericsetup:upgradeStep
+    source="2000"
+    destination="2001"
+    title="Add missing UUIDs to Dexterity content"
+    profile="plone.app.dexterity:default"
+    handler=".to2001.add_missing_uuids"
     />
 
 </configure>

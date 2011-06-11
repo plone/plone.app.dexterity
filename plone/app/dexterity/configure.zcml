@@ -10,6 +10,7 @@
              zcml:condition="installed plone.app.imaging"/>
     <include package="plone.app.z3cform" />
     <include package="plone.app.textfield" />
+    <include package="plone.app.uuid" />
     <include package="plone.formwidget.namedfile" />
     <include package="plone.schemaeditor" />
     <include package="plone.directives.dexterity" />
@@ -39,20 +40,6 @@
         <!-- Make it possible to traverse to image scales on Dexterity content -->
         <implements interface="plone.namedfile.interfaces.IImageScaleTraversable" />
     </class>
-
-    <!-- override add views -->
-    <include package="Products.CMFCore" />
-    <include package="plone.app.content" />
-    <include package="plone.app.contentmenu" />
-
-    <!-- hide profiles for our widget/field dependencies -->
-    <utility
-        factory=".integration.HiddenProfiles"
-        provides="Products.CMFPlone.interfaces.INonInstallable" />
-    <utility
-        zcml:condition="installed Products.CMFQuickInstallerTool"
-        factory=".integration.HiddenProfiles"
-        provides="Products.CMFQuickInstallerTool.interfaces.INonInstallable" />
 
     <!-- Register GS exporter for DexterityFTI type -->
     <adapter

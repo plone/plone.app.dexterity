@@ -6,7 +6,6 @@ from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 
 tests = (
     'editing.txt',
-    'installation.txt',
     'namefromtitle.txt',
     'metadata.txt',
     'nextprevious.txt',
