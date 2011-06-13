@@ -3,10 +3,12 @@ from DateTime import DateTime
 from datetime import datetime
 from z3c.form.interfaces import IEditForm, IAddForm
 from z3c.form.browser.textlines import TextLinesFieldWidget
+from z3c.form.widget import ComputedWidgetAttribute
 from zope.interface import alsoProvides
 from zope.component import adapts
 from zope import schema
-from plone.directives import form
+from plone.autoform import directives as form
+from plone.supermodel import model
 from plone.dexterity.interfaces import IDexterityContent
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.dexterity import PloneMessageFactory as _
@@ -18,7 +20,7 @@ from plone.app.dexterity import PloneMessageFactory as _
 # in order to annotate them with form hints and more helpful titles
 # and descriptions.
 
-class IBasic(form.Schema):
+class IBasic(model.Schema):
     # default fieldset
     title = schema.TextLine(
         title = _(u'label_title', default=u'Title'),
@@ -39,9 +41,9 @@ class IBasic(form.Schema):
     form.no_omit(IEditForm, 'title', 'description')
     form.no_omit(IAddForm, 'title', 'description')
 
-class ICategorization(form.Schema):
+class ICategorization(model.Schema):
     # categorization fieldset
-    form.fieldset(
+    model.fieldset(
         'categorization',
         label=_(u'Categorization'),
         fields=['subjects', 'language'],
@@ -67,9 +69,9 @@ class ICategorization(form.Schema):
     form.no_omit(IEditForm, 'subjects', 'language')
     form.no_omit(IAddForm, 'subjects', 'language')
 
-class IPublication(form.Schema):
+class IPublication(model.Schema):
     # dates fieldset
-    form.fieldset(
+    model.fieldset(
         'dates',
         label=_(u'Dates'),
         fields=['effective', 'expires'],
@@ -95,9 +97,9 @@ class IPublication(form.Schema):
     form.no_omit(IEditForm, 'effective', 'expires')
     form.no_omit(IAddForm, 'effective', 'expires')
 
-class IOwnership(form.Schema):
+class IOwnership(model.Schema):
     # ownership fieldset
-    form.fieldset(
+    model.fieldset(
         'ownership',
         label=_(u'Ownership'),
         fields=['creators', 'contributors', 'rights'],
@@ -139,10 +141,11 @@ class IOwnership(form.Schema):
     form.no_omit(IAddForm, 'creators', 'contributors', 'rights')
 
 # make sure the add form shows the default creator
-@form.default_value(field=IOwnership['creators'])
 def creatorsDefault(data):
     user = getSecurityManager().getUser()
     return user and (user.getId(),)
+CreatorsDefaultValue = ComputedWidgetAttribute(creatorsDefault,
+                                               field=IOwnership['creators'])
 
 class IDublinCore(IOwnership, IPublication, ICategorization, IBasic):
     """ Metadata behavior providing all the DC fields

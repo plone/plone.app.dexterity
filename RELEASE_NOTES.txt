@@ -5,6 +5,37 @@ Dexterity 2.0 is a major release of Dexterity. Its focus is on preparing
 Dexterity for inclusion in Plone core, by cleaning things up and making
 dependencies that are not ready for primetime optional.
 
+Grok-style configuration no longer included by default
+------------------------------------------------------
+
+Dexterity 1.0 included ``five.grok`` to allow configuring components via
+Python directives rather than in separate XML-based ZCML files.  It also
+included two packages, ``plone.directives.form`` and 
+``plone.directives.dexterity``, to provide some grok-style directives for
+Dexterity-specific features.
+
+The Dexterity authors still like grok and believe it makes it easier to learn
+how to customize Plone.  However, it has been turned into an optional feature
+so that Dexterity has a chance to enter Plone core even if the Plone framework
+team doesn't want to add grok to the already complex stack.
+
+To include these three grok-related packages when you install Dexterity,
+enable the "grok" extra:
+
+  [instance]
+  eggs =
+      plone.app.dexterity [grok]
+
+By the way, a number of schema directives from ``plone.directives.form`` that 
+used to require grok to work have been reimplemented so that they work without 
+grok. In particular, the ``Schema`` class and the ``model``, ``fieldset``, 
+and ``primary`` directives were moved to ``plone.supermodel.model``. The 
+``omitted``, ``no_omit``, ``mode``, ``widget``, ``order_before``, 
+``order_after``, ``read_permission``, and ``write_permission`` directives were 
+moved to ``plone.autoform.directives``.  There are aliases in the old locations
+so you don't need to update existing code, but you can switch to the new
+locations if you're trying to avoid depending on grok.
+
 Relation support no longer included by default
 ----------------------------------------------
 

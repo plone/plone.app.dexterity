@@ -4,7 +4,9 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.interfaces import IContentish
 from plone.app.dexterity import MessageFactory as _
 from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
-from plone.directives import form
+from plone.autoform import directives as form
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.supermodel import model
 from z3c.form import widget
 from z3c.form.interfaces import IEditForm
 from z3c.form.interfaces import IAddForm
@@ -18,12 +20,12 @@ class INextPreviousEnabled(Interface):
     """Behavior interface to enable next previous navigation for all items of a type.
     """    
 
-class INextPreviousToggle(form.Schema):
+class INextPreviousToggle(model.Schema):
     """Behavior interface to enable next previous navigation per item.
     """
 
-    form.fieldset('settings', label=u"Settings",
-                  fields=['nextPreviousEnabled'])
+    model.fieldset('settings', label=u"Settings",
+                   fields=['nextPreviousEnabled'])
 
     nextPreviousEnabled = schema.Bool(
                 title=_(u'label_nextprevious', default=u'Enable next previous navigation'),
@@ -35,7 +37,7 @@ class INextPreviousToggle(form.Schema):
     form.no_omit(IEditForm, 'nextPreviousEnabled')
     form.no_omit(IAddForm, 'nextPreviousEnabled')
 
-alsoProvides(INextPreviousToggle, form.IFormFieldProvider)
+alsoProvides(INextPreviousToggle, IFormFieldProvider)
 
 
 def getNextPreviousParentValue(adapter):

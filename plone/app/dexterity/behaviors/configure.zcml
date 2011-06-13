@@ -1,6 +1,5 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="plone.app.dexterity">
@@ -9,9 +8,6 @@
     
     <!-- vocabularies -->
     <include package="plone.app.vocabularies"/>
-
-    <!-- Grok schemata -->
-    <grok:grok package="." />
 
     <!-- Metadata -->
     <plone:behavior
@@ -42,6 +38,10 @@
         factory=".metadata.Ownership"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
+    <adapter
+      name="default"
+      factory=".metadata.CreatorsDefaultValue"
+      />
     <plone:behavior
         title="Dublin Core metadata"
         description="Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"

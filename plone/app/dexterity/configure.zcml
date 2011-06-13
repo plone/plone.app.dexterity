@@ -13,7 +13,8 @@
     <include package="plone.app.uuid" />
     <include package="plone.formwidget.namedfile" />
     <include package="plone.schemaeditor" />
-    <include package="plone.directives.dexterity" />
+    <include zcml:condition="installed plone.directives.dexterity"
+             package="plone.directives.dexterity" />
     <include package="plone.dexterity" />
     
     <i18n:registerTranslations directory="locales"/>
