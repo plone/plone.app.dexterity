@@ -1,6 +1,12 @@
 Changelog for plone.app.dexterity
 =================================
 
+1.0.1 - unreleased
+------------------
+
+- Add a no-op "grok" extra for forward-compatibility with Dexterity 2.0.
+  [davisagli]
+
 1.0 - 2011-05-20
 ----------------
 

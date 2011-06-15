@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '1.0.1dev'
 
 setup(name='plone.app.dexterity',
       version=version,
@@ -59,6 +59,9 @@ setup(name='plone.app.dexterity',
           'zope.publisher',
           'z3c.form',
       ],
+      extras_require = {
+          'grok': [],
+      },
       entry_points="""
       [z3c.autoinclude.plugin]
       target = plone
