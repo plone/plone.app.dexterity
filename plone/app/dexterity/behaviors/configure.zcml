@@ -74,6 +74,14 @@
 
     <adapter factory=".filename.NameFromFileName" />
 
+    <!-- Related items (marker) --> 
+    <plone:behavior 
+        title="Related items (deprecated)"
+        description="Adds the ability to assign related items" 
+        provides=".related.IRelatedItems" 
+        for="plone.dexterity.interfaces.IDexterityContent" 
+        />
+
     <!-- Navigation root -->
     <plone:behavior
         title="Navigation root"
@@ -112,10 +120,5 @@
         />
 
     <adapter factory=".nextprevious.NextPreviousEnabled" />
-
-    <!-- BBB -->
-    <utility factory=".related.related_items_behavior_BBB"
-             provides="plone.behavior.interfaces.IBehavior"
-             name="plone.app.dexterity.behaviors.related.IRelatedItems"/>
 
 </configure>
