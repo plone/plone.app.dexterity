@@ -61,6 +61,7 @@ setup(name='plone.app.dexterity',
       ],
       extras_require = {
           'grok': [],
+          'relations': [],
       },
       entry_points="""
       [z3c.autoinclude.plugin]
