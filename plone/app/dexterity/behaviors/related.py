@@ -1,25 +1,11 @@
-from zope.interface import alsoProvides
+"""BBB import for 'Related Items' behavior that was moved to
+plone.app.relationfield.
+"""
+from plone.app.relationfield.behavior import IRelatedItems
+IRelatedItems # pyflakes
 
-from z3c.relationfield.schema import RelationChoice, RelationList
+from zope.component import queryUtility
+from plone.behavior.interfaces import IBehavior
 
-from plone.formwidget.contenttree import ObjPathSourceBinder
-from plone.directives import form
-
-from plone.app.dexterity import MessageFactory as _
-
-class IRelatedItems(form.Schema):
-    """Behavior interface to make a type support related items.
-    """
-
-    form.fieldset('categorization', label=u"Categorization",
-                  fields=['relatedItems'])
-
-    relatedItems = RelationList(
-        title=_(u'label_related_items', default=u'Related Items'),
-        default=[],
-        value_type=RelationChoice(title=u"Related",
-                      source=ObjPathSourceBinder()),
-        required=False,
-        )
-
-alsoProvides(IRelatedItems, form.IFormFieldProvider)
+def related_items_behavior_BBB():
+    return queryUtility(IBehavior, name=u'plone.app.relationfield.behavior.IRelatedItems')
