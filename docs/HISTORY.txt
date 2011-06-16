@@ -18,6 +18,8 @@ Changelog for plone.app.dexterity
   plone.app.relationfield is no longer installed as a dependency. See the
   release notes for more information including how to update your package if it
   depends on relation support or the 'Related Items' behavior.
+  IMPORTANT: You must install plone.app.relationfield on sites that are being
+  upgraded from Dexterity 1.0 to Dexterity 2.0, or the site will break.
   [davisagli]
 
 - Converted tests to plone.app.testing-based setup. The old PloneTestCase-based 

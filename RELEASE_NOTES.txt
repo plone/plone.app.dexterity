@@ -52,6 +52,16 @@ support for the Archetypes reference engine in
 ``plone.app.referenceablebehavior``. As a result of these factors, the 
 zc.relation approach to object relationships will not be included in Dexterity or Plone core for the time being.
 
+VERY IMPORTANT: If you are upgrading a site with Dexterity 1.0 to Dexterity
+2.0, it will break unless you install plone.app.relationfield, since your
+database contains persistent intid and relations utilities. The easiest way
+to include plone.app.relationfield is to install plone.app.dexterity with
+the "relations" extra::
+
+  [instance]
+  eggs =
+      plone.app.dexterity [relations]
+
 Using relations via plone.app.relationfield
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

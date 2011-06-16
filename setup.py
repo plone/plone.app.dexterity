@@ -68,6 +68,11 @@ setup(name='plone.app.dexterity',
               'plone.directives.dexterity',
               'plone.directives.form >=2.0dev',
               ],
+          'relations': [
+              'plone.app.relationfield',
+              'plone.app.intid',
+              'z3c.relationfield',
+              ]
       },
       entry_points="""
       [z3c.autoinclude.plugin]
