@@ -4,6 +4,9 @@ Release Notes
 This release is compatible with Plone 3, 4, and 4.1, as long as you use
 the correct set of version pins from good-py (see the installation guide).
 
+Changes
+-------
+
 The following packages have been updated since Dexterity 1.0:
 
 plone.app.dexterity 1.0.1
