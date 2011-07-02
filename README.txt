@@ -1,5 +1,5 @@
 .. contents:: Table of Contents
-
+   :depth: 1
 
 Introduction
 ============
@@ -136,6 +136,30 @@ Issue tracker
 Please report issues in our `Google Code issue tracker`_.
 
 .. _`Google Code issue tracker`: http://code.google.com/p/dexterity/issues
+
+
+Contributed Packages
+====================
+
+The Dexterity known good set (KGS) of version pins includes a number of
+contributed packages that are not installed by default:
+
+plone.app.referenceablebehavior
+  Adds support for the Archetypes reference engine to Dexterity content, so
+  that Dexterity items can be referenced from Archetypes items. Requires
+  Plone 4.1.
+
+plone.app.stagingbehavior
+  Adds support for staging Dexterity content, based on plone.app.iterate.
+  Requires Plone 4.1.
+
+plone.app.versioningbehavior
+  Adds support for storing historic versions of Dexterity content, based on
+  Products.CMFEditions. Requires Plone 4.0 or greater.
+
+collective.z3cform.datagridfield
+  A z3c.form widget for editing lists of subobjects via a tabular UI.
+
 
 Contributing
 ============

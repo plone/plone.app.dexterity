@@ -1,7 +1,7 @@
 Changelog for plone.app.dexterity
 =================================
 
-1.0.1 - unreleased
+1.0.1 - 2011-07-02
 ------------------
 
 - Deprecated the IRelatedItems behavior in this package. It moved to
