@@ -240,7 +240,13 @@ class Basic(MetadataBase):
     description = property(_get_description, _set_description)
 
 class Categorization(MetadataBase):
-    subjects = DCFieldProperty(ICategorization['subjects'], get_name = 'Subject', set_name = 'setSubject')
+    
+    def _get_subjects(self):
+        return self.context.subject
+    def _set_subjects(self, value):
+        self.context.subject = value
+    subjects = property(_get_subjects, _set_subjects)
+
     language = DCFieldProperty(ICategorization['language'], get_name = 'Language', set_name = 'setLanguage')
     
 class Publication(MetadataBase):

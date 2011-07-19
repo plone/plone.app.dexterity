@@ -39,3 +39,23 @@ class TestBasic(unittest.TestCase):
         b = self._makeOne()
         b.context.description = u'foo'
         self.assertEqual(u'foo', b.description)
+
+
+class TestCategorization(unittest.TestCase):
+
+    def _makeOne(self):
+        class Dummy(object):
+            pass
+        dummy = Dummy()
+        from plone.app.dexterity.behaviors.metadata import Categorization
+        return Categorization(dummy)
+
+    def test_subjects_setter(self):
+        b = self._makeOne()
+        b.subjects = (u'føø',)
+        self.assertEqual((u'føø',), b.context.subject)
+    
+    def test_subjects_getter(self):
+        b = self._makeOne()
+        b.context.subject = (u'føø',)
+        self.assertEqual((u'føø',), b.subjects)

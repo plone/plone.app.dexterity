@@ -4,6 +4,9 @@ Changelog for plone.app.dexterity
 1.0.2 - unreleased
 ------------------
 
+- Bugfix: Make sure subject can still be retrieved as unicode for the
+  categorization behavior now that the Subject accessor returns a bytestring.
+  [davisagli]
 
 1.0.1 - 2011-07-02
 ------------------
