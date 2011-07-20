@@ -40,16 +40,23 @@ $(document).ready(function() {
             $(this).removeClass('submitting');
             e.preventDefault();
         }
-        
+    });
+    
+    // set id from title
+    $('#form-widgets-title').live('change', function () {
+        var val = $(this).val().toLowerCase().replace(/[^A-Za-z0-9_\.]/g, '_');
+        $('#form-widgets-id').val(val);
     });
 });
 })(jQuery);
 // ]]>
 </script>
 
-<div class="portalMessage"
-     tal:condition="view/status" tal:content="view/status">
-</div>
+<dl class="portalMessage"
+     tal:condition="view/status">
+  <dt>Info</dt>
+  <dd tal:content="view/status"/>
+</dl>
 
 <p class="crud-description"
      tal:condition="view/description"

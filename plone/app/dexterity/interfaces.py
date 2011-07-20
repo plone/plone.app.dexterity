@@ -1,6 +1,8 @@
+import re
 from zope.interface import Interface, Attribute
 from zope.publisher.interfaces.browser import IBrowserPage
 from zope import schema
+from plone.app.dexterity import MessageFactory as _
 
 
 class ITypesContext(IBrowserPage):
@@ -16,28 +18,41 @@ class ITypeSchemaContext(Interface):
     schemaName = Attribute(u"The name of this schema within its FTI's model.")
 
 
+class InvalidIdError(schema.ValidationError):
+    __doc__ = _(u'Please enter a valid id.')
+
+# a letter followed by letters, numbers, period, hyphen, or underscore
+ID_RE = re.compile(r'^[a-z][\w\d\.-]*$')
+
+def isValidId(value):
+    if ID_RE.match(value):
+        return True
+    raise InvalidIdError
+
+
 class ITypeSettings(Interface):
     """ Define the fields for the content type add form
     """
 
     title = schema.TextLine(
-        title = u'Type Name'
+        title = _(u'Type Name'),
         )
 
     id = schema.ASCIILine(
         title = u'Short Name',
-        description = u'Used for programmatic access to the type.',
-        required=True,
+        description = _(u'Used for programmatic access to the type.'),
+        required = True,
+        constraint = isValidId,
         )
 
     description = schema.Text(
-        title = u'Description',
+        title = _(u'Description'),
         required = False
         )
 
     container = schema.Bool(
-        title = u'Container',
-        description = u'Items of this type will be able to contain other items.',
+        title = _(u'Container'),
+        description = _(u'Items of this type will be able to contain other items.'),
         required = True,
         default = False,
         )
