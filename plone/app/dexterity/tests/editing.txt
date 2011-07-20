@@ -40,9 +40,12 @@ community::
   >>> browser.getControl('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Short Name').value = 'plonista'
+  >>> browser.getControl('Description').value = 'Represents a Plonista.'
   >>> browser.getControl('Add').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types'
+  >>> 'Represents a Plonista' in browser.contents
+  True
 
 Now we should also have a 'plonista' FTI in portal_types::
 
