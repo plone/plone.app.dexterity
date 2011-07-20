@@ -36,4 +36,12 @@
     handler=".to2001.add_missing_uuids"
     />
 
+  <genericsetup:upgradeStep
+    source="2000"
+    destination="2002"
+    title="Install JQuery Tools date picker resources"
+    profile="plone.app.dexterity:default"
+    handler=".to2002.install_datepicker_profile"
+    />
+
 </configure>
