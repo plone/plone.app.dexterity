@@ -4,6 +4,7 @@ from zExceptions import NotFound
 from OFS.SimpleItem import SimpleItem
 
 from zope.interface import implements
+from zope.cachedescriptors.property import Lazy as lazy_property
 from zope.component import adapts, getAllUtilitiesRegisteredFor, getUtility, ComponentLookupError
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
@@ -104,11 +105,14 @@ class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.
     """
     
-    description = _(
-        u'The Dexterity Content Types control panels lets you create and edit '
-        u'custom content types for your Plone site.  Click the "Add Content '
-        u'Type" button to begin creating a new content type.'
-        )
+    @lazy_property
+    def description(self):
+        if self.get_items():
+            return _(u'The following custom content types are available for '
+                     u'your site.')
+        else:
+            return _(u'Click the "Add Content Type" button to begin creating '
+                     u' a new custom content type.')
     
     template = ViewPageTemplateFile('types_listing.pt')
     view_schema = field.Fields(ITypeSettings).select('title', 'description')
