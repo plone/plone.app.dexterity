@@ -19,7 +19,7 @@ class ITypeSchemaContext(Interface):
 
 
 class InvalidIdError(schema.ValidationError):
-    __doc__ = _(u'Please enter a valid id.')
+    __doc__ = _(u'Please use only letters, numbers, and the following characters: .-_')
 
 # a letter followed by letters, numbers, period, hyphen, or underscore
 ID_RE = re.compile(r'^[a-z][\w\d\.-]*$')
