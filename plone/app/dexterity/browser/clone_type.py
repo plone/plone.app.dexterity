@@ -14,7 +14,6 @@ class TypeCloneForm(form.AddForm):
 
     def create(self, data):
         id = data.pop('id')
-        # XXX check for duplicates
         props = dict(self.context.fti.propertyItems())
         # make sure we don't share the factory
         if props['factory'] == self.context.fti.getId():

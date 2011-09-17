@@ -133,8 +133,6 @@ class TypesListing(crud.CrudForm):
         """
         ttool = getToolByName(self.context, 'portal_types')
         ttool.manage_delObjects([id])
-        
-        # XXX What to do with existing content items?
 
     def link(self, item, field):
         """ Generate links to the edit page for each type.
