@@ -7,107 +7,249 @@ the correct set of version pins from good-py (see the installation guide).
 Changes
 -------
 
-The following packages have been updated since Dexterity 1.0:
+The following packages have been updated since Dexterity 1.0.1:
 
-plone.app.dexterity 1.0.1
+plone.app.dexterity 1.0.3
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Deprecated the IRelatedItems behavior in this package. It moved to
-  plone.app.relationfield.
+* Bugfix: Fix the deprecated IRelatedItems to still add a form field.
   [davisagli]
 
-* Add no-op "grok" and "relations" extras for forward-compatibility with 
-  Dexterity 2.0.
+* Bugfix: Make sure subject can still be retrieved as unicode for the
+  categorization behavior now that the Subject accessor returns a bytestring.
   [davisagli]
 
-plone.schemaeditor 1.0.2 & 1.0.3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  
-* Fix test.
-  [davisagli]
-  
-* Make FieldFactory do a deep copy of its arguments to avoid problems with
-  mutable defaults getting shared between field instances.
-  This fixes http://code.google.com/p/dexterity/issues/detail?id=133
-  [davisagli]
-  
-* Remove dependency on zope.app.schema.
+plone.dexterity 1.0.1
+~~~~~~~~~~~~~~~~~~~~~
+
+* Support importing the ``add_view_expr`` property of the FTI via GenericSetup.
+  This closes http://code.google.com/p/dexterity/issues/detail?id=192
   [davisagli]
 
-plone.app.z3cform 0.5.5 & 0.5.6
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* Make sure group errors get styled like field errors.
+* Make it possible to use DefaultAddForm without a form wrapper.
   [davisagli]
 
-* Include group and field descriptions as structure.
+* Make sure the Subject accessor returns an encoded bytestring as expected for
+  CMF-style accessors. This fixes
+  http://code.google.com/p/dexterity/issues/detail?id=197
   [davisagli]
 
-* Make it possible to add a custom CSS class to a form by setting its css_class attribute.
+* Added pt_BR translation.
+  [rafaelbco, davisagli]
+
+collective.z3cform.datagridfield 0.8
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Avoid using the "row" CSS class.
   [davisagli]
 
-* Match plone.z3cform's template in including the form description as structure.
+* Fixes to work with jQuery 1.3.x (use .remove() instead of .detach(), fetch data
+  attributes a different way, and avoid live binding the change event).
   [davisagli]
 
-plone.z3cform 0.7.7
-~~~~~~~~~~~~~~~~~~~
+* Don't error out when getting a ``FormatterValidationError``, pass
+  it on to z3c.form instead.
+  [claytron]
 
-* Avoid rendering a wrapped form if a redirect has already occurred after updating it.
-  [davisagli]
-
-* Remove <a name=""/> elements from inside the CRUD table TBODY element they were
-  otherwise unused (and illegal in that location of the HTML content model).
-  [mj]
-
-plone.app.relationfield 1.1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* Make sure the content tree widget profile is installed.
-  [davisagli]
-
-* Moved the 'related items' behavior here from plone.app.dexterity.
-  [davisagli]
-
-plone.formwidget.autocomplete 1.2.1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* Use full widget name in ++widget++ path, don't try and remove form prefix
-  (which will not behave correctly if widget is part of a subform).
-  [lentinj]
-
-plone.formwidget.contenttree 1.0.2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* Fix regression that broke the browsing with JQuery < 1.4.
-  [davisagli]
-
-collective.z3cform.datetimewidget 1.0.5
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* Change more $ to jQuery.
-  [danjacka]
-
-* Fix month selection issue with the date input widget.  Previously, due
-  to the leading zero, months < 10 weren't being selected when picking a
-  date on the calendar widget.
+* Give manipulator images a relative src rather than absolute. This
+  previously meant the widget didn't work on sites without Plone/Zope at the
+  root of the domain.
   [davidjb]
 
-* Fix date offset issue for default dates on the jQuery date input widget.
-  Providing the default value as a JavaScript Date(yyyy, mm, dd) required
-  months to be in the range of 0 to 11 but outputting as Date("yyyy/mm/dd")
-  works as expected.
+* During auto-insert, add our new row into the document first, before reindexing
+  it and changing its elements' IDs. This allows Javascript that depends on 
+  these IDs (such as plone.formwidget.autocomplete) to pick up the correct 
+  fields.
   [davidjb]
 
-* Fix issue with jQuery date input widget not being displayed when
-  an incomplete date was entered.
+* Tidying up and reducing complexity of auto-insert functionality
   [davidjb]
 
-* Avoid error fetching widget values when no year or day was entered.
+* Removing unnecessary auto-insert bind and unbind as this is already covered 
+  by jQuery's `live()` function against the `auto-append` class. Adding/removing
+  this class against rows automatically does this.
+  [davidjb]
+
+* Resolved issue with auto-insert functionality not working by removing
+  table-specific check in Javascript.
+  [davidjb]
+
+collective.z3cform.datetimewidget 1.1 & 1.1.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Fix validation errors so they are caught and correctly reported by z3c.form.
   [davisagli]
+
+* Added a GS profile (conditionally loaded in configure.zcml if generic
+  setup is installed) to enable the plone.app.jquerytools css & js support
+  for dateinput popup.
+  [smcmahon]
 
 * Made js for dateinput popup check for jQuery().dateinput before invoking
   it. Changed from $ to jQuery.
   [smcmahon]
 
-* removed trailing comma in JavaScript dict (which broke Internet Explorer)
-  [Brainix]
+* IE was balking on a missing closing parenthesis.
+  [danjacka]
+
+plone.app.stagingbehavior 0.1b2 & 0.1b3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Declare plone.app.versioningbehavior and plone.app.referenceablebehavior
+  as test dependencies.
+  [danjacka, davisagli]
+
+* Declare the implicit dependency on plone.app.relationfield.
+  [davisagli]
+
+* Make sure that changes to the subjects field are carried over when the
+  working copy is checked in.
+  [swampmonkey]
+
+* Fix broken dependency declaration.
+  [danjacka, jonstahl]
+
+plone.app.textfield 1.0.1
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Make sure the field constraint is validated, if specified.
+  This closes http://code.google.com/p/dexterity/issues/detail?id=200
+  [davisagli]
+
+* Make sure validation fails if no text is entered for a required field.
+  This closes http://code.google.com/p/dexterity/issues/detail?id=199
+  [davisagli]
+
+* Wrap the context in the form context, not the site, so that relative links
+  are generated correctly.
+  [davisagli]
+
+* Avoid duplicating the id of the textarea if the form has no prefix.
+  [davisagli]
+
+* Fix case where editor did not load if the context being edited is a
+  dict.
+  [davisagli]
+
+* Pass through the z3c.form widget's ``rows`` and ``cols`` settings to the
+  wysiwyg editor macro.
+  [davisagli]
+
+plone.app.versioningbehavior 1.0b4 & 1.0b5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Added generic setup profile which installs and enables the modifier for
+  cloning blobs and disables the Skip_z3c_blobfile modifier.
+  [buchi]
+
+* Added support for versioning blobs (NamedBlobFile, NamedBlobImage).
+  [buchi]
+
+* Fixed setuphandler to not fail with older versions of Products.CMFEditions
+  that do not have a Skip_z3c_blobfile modifier.
+  [buchi]
+
+* Fixed CloneNamedFileBlobs modifier to handle fields with value ``None``.
+  [buchi]
+
+plone.directives.dexterity 1.0.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Honor the ``plone.directives.form.wrap`` directive on add forms.
+  They remain wrapped by default for backwards-compatibility with custom
+  templates.
+  This closes http://code.google.com/p/dexterity/issues/detail?id=184
+  [davisagli]
+
+plone.formwidget.autocomplete 1.2.2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Add whitespace after autocreated radio buttons, fixing alignment:
+  http://code.google.com/p/dexterity/issues/detail?id=193 (thanks davidjb)
+  [lentinj]
+
+plone.formwidget.contenttree 1.0.3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Add zh_CN translation.
+  [jianaijun]
+
+plone.formwidget.namedfile 1.0.2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Added pt_BR translation.
+  [rafaelbco, davisagli]
+
+* Additional unit tests for download view
+  [lentinj]
+
+plone.namedfile 1.0.4 & 1.0.5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Fix bug in producing tag for a scale on an item whose title has non-ASCII
+  characters.
+  [davisagli]
+
+* Make sure image scales of allowed attributes can be accessed on disallowed
+  containers.
+  [davisagli]
+
+* Add unit tests for safe_filename, since not exercised within this module.
+  (should be moved to plone.formwidget.namedfile?)
+  [lentinj]
+
+* Make the ``download`` view respect custom read permissions for the field
+  being downloaded, rather than only checking the view permission for the
+  object as a whole.
+  [davisagli]
+
+plone.schemaeditor 1.1
+~~~~~~~~~~~~~~~~~~~~~~
+
+* Avoid errors when expanding the range of `min` and `max` attributes on a
+  field, and when entering a `default` outside the range.
+  [davisagli]
+
+* Validate input for the `default` attribute of Choice fields based on the
+  field's vocabulary.
+  [davisagli]
+
+* Removed support for setting the `missing_value` attribute of fields through
+  the web.
+  [davisagli]
+
+* Add a date-only field with no time component.
+  [davisagli]
+
+* Bugfix: Validate short names of fields.
+  [davisagli]
+
+plone.z3cform 0.7.8
+~~~~~~~~~~~~~~~~~~~
+
+* Do not display h1 element if there is no label on view.
+  [thomasdesvenain]
+
+* Add Chinese translation.
+  [jianaijun]
+
+z3c.form 2.4.4
+~~~~~~~~~~~~~~
+
+* Remove unneeded dependency on deprecated zope.app.security.
+
+* Fixed ButtonActions.update() to correctly remove actions when called again,
+  after the button condition become false.
+
+z3c.formwidget.query 0.6
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Add an ignoreMissing parameter and widget subclasses to avoid errors when
+  rendering missing values.
+  [elro]
+
+* Create changelog file.
+  [dukebody]
+
+* Respect the ignoreRequest parameter.
+  [dukebody]

@@ -1,7 +1,13 @@
 Changelog for plone.app.dexterity
 =================================
 
-1.0.2 - unreleased
+1.0.3 - 2011-09-24
+------------------
+
+- Fix bad release of 1.0.2.
+  [davisagli]
+
+1.0.2 - 2011-09-24
 ------------------
 
 - Bugfix: Fix the deprecated IRelatedItems to still add a form field.
