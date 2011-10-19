@@ -212,5 +212,6 @@ Dexterity wouldn't be possible without the hard work of a lot of people, includi
 * Matthew Wilkes
 * Matt Yoder
 * Andi Zeidler
+* Hector Velarde
 
 (Please add your name if we have neglected to.)
