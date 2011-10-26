@@ -12,7 +12,7 @@
 
   <genericsetup:upgradeStep
     source="1"
-    destination="4"
+    destination="5"
     title="Unregister schemaeditor.css"
     profile="plone.app.dexterity:default"
     handler=".to2.remove_stylesheet"
@@ -21,7 +21,7 @@
   <!-- Dexterity 2.0 -->
   
   <genericsetup:upgradeStep
-    source="4"
+    source="5"
     destination="2000"
     title="Remove overlays.css from CSS registry"
     profile="plone.app.dexterity:default"
