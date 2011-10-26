@@ -38,4 +38,13 @@
     handler="plone.formwidget.autocomplete.upgrades.to1.install_formwidget_autocomplete"
     />
 
+  <genericsetup:upgradeStep
+    source="4"
+    destination="5"
+    title="Add missing UUIDs to Dexterity content"
+    description=""
+    profile="plone.app.dexterity:default"
+    handler=".to5.add_missing_uuids"
+    />
+
 </configure>

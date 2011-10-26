@@ -4,6 +4,10 @@ Changelog for plone.app.dexterity
 1.0.4 - unreleased
 ------------------
 
+- Add upgrade step to add missing UUIDs to Dexterity content items if
+  ``plone.uuid`` is present.
+  [davisagli]
+
 - Added Spanish translation.
   [hvelarde]
 
