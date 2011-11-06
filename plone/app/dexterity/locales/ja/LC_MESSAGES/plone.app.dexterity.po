@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-11-15 16:31+0000\n"
+"POT-Creation-Date: 2011-11-06 19:45+0000\n"
 "PO-Revision-Date: 2011-05-20 15:13+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,133 +15,198 @@ msgstr ""
 "Domain: plone.app.dexterity\n"
 "X-Is-Fallback-For: ja-jp\n"
 
-#: ./browser/add_type.py:15
+#: ../browser/add_type.py:12
 msgid "Add Content Type"
 msgstr ""
 
-#: ./behaviors/metadata.py:51
+#: ../behaviors/metadata.py:48
 msgid "Categorization"
 msgstr ""
 
-#: ./browser/types.py:36
+#: ../browser/types.py:40
 msgid "Clone"
 msgstr ""
 
-#: ./browser/clone_type.py:13
+#: ../browser/clone_type.py:11
 msgid "Clone Content Type"
 msgstr ""
 
-#: ./behaviors/metadata.py:79
+#: ../interfaces.py:54
+msgid "Container"
+msgstr ""
+
+#: ../behaviors/metadata.py:76
 msgid "Dates"
 msgstr ""
 
-#: ./profiles/default/actions.xml
-#: ./profiles/default/controlpanel.xml
+#: ../interfaces.py:49
+msgid "Description"
+msgstr ""
+
+#: ../browser/types.py:169
+#: ../profiles/default/actions.xml
+#: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr ""
 
-#: ./behaviors/metadata.py:107
+#: ../browser/types.py:146
+msgid "Dexterity content types"
+msgstr ""
+
+#: ../browser/types.py:65
+msgid "Export Schema Models"
+msgstr ""
+
+#: ../browser/types.py:53
+msgid "Export Type Profiles"
+msgstr ""
+
+#: ../interfaces.py:55
+msgid "Items of this type will be able to contain other items."
+msgstr ""
+
+#: ../behaviors/metadata.py:104
 msgid "Ownership"
 msgstr ""
 
-#: ./browser/types.py:41
+#: ../browser/types.py:45
 msgid "Please select a single type to clone."
 msgstr ""
 
-#: ./browser/types.py:47
+#: ../browser/types.py:51
 msgid "Please select a type to clone."
 msgstr ""
 
-#: ./browser/add_type.py:51
+#: ../browser/types.py:58
+msgid "Please select types to export."
+msgstr ""
+
+#: ../interfaces.py:22
+msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr ""
+
+#: ../browser/types.py:112
+msgid "The following custom content types are available for your site."
+msgstr ""
+
+#: ../interfaces.py:38
+msgid "Type Name"
+msgstr ""
+
+#: ../browser/add_type.py:44
 msgid "Type added successfully."
 msgstr ""
 
-#: ./browser/clone_type.py:28
+#: ../browser/clone_type.py:28
 msgid "Type cloned successfully."
 msgstr ""
 
+#: ../interfaces.py:43
+msgid "Used for programmatic access to the type."
+msgstr ""
+
+#. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
+#: ../browser/types.py:115
+msgid "help_addcontenttype_button"
+msgstr ""
+
 #. Default: "Also known as keywords, tags or labels, these help you categorize your content."
-#: ./behaviors/metadata.py:57
+#: ../behaviors/metadata.py:54
 msgid "help_categories"
 msgstr ""
 
 #. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
-#: ./behaviors/metadata.py:125
+#: ../behaviors/metadata.py:122
 msgid "help_contributors"
 msgstr ""
 
 #. Default: "Copyright statement or other rights information on this item."
-#: ./behaviors/metadata.py:137
+#: ../behaviors/metadata.py:134
 msgid "help_copyrights"
 msgstr ""
 
 #. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
-#: ./behaviors/metadata.py:113
+#: ../behaviors/metadata.py:110
 msgid "help_creators"
 msgstr ""
 
 #. Default: "A short summary of the content."
-#: ./behaviors/metadata.py:35
+#: ../behaviors/metadata.py:32
 msgid "help_description"
 msgstr ""
 
 #. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
-#: ./behaviors/metadata.py:85
+#: ../behaviors/metadata.py:82
 msgid "help_effective_date"
 msgstr ""
 
+#. Default: "If selected, this item will not appear in the navigation tree"
+#: ../behaviors/exclfromnav.py:18
+msgid "help_exclude_from_nav"
+msgstr ""
+
 #. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
-#: ./behaviors/metadata.py:93
+#: ../behaviors/metadata.py:90
 msgid "help_expiration_date"
 msgstr ""
 
+#. Default: "This enables next/previous widget on content items contained in this folder."
+#: ../behaviors/nextprevious.py:32
+msgid "help_nextprevious"
+msgstr ""
+
 #. Default: "Categories"
-#: ./behaviors/metadata.py:56
+#: ../behaviors/metadata.py:53
 msgid "label_categories"
 msgstr ""
 
 #. Default: "Contributors"
-#: ./behaviors/metadata.py:124
+#: ../behaviors/metadata.py:121
 msgid "label_contributors"
 msgstr ""
 
 #. Default: "Rights"
-#: ./behaviors/metadata.py:136
+#: ../behaviors/metadata.py:133
 msgid "label_copyrights"
 msgstr ""
 
 #. Default: "Creators"
-#: ./behaviors/metadata.py:112
+#: ../behaviors/metadata.py:109
 msgid "label_creators"
 msgstr ""
 
 #. Default: "Description"
-#: ./behaviors/metadata.py:34
+#: ../behaviors/metadata.py:31
 msgid "label_description"
 msgstr ""
 
 #. Default: "Publishing Date"
-#: ./behaviors/metadata.py:84
+#: ../behaviors/metadata.py:81
 msgid "label_effective_date"
 msgstr ""
 
+#. Default: "Exclude from navigation"
+#: ../behaviors/exclfromnav.py:17
+msgid "label_exclude_from_nav"
+msgstr ""
+
 #. Default: "Expiration Date"
-#: ./behaviors/metadata.py:92
+#: ../behaviors/metadata.py:89
 msgid "label_expiration_date"
 msgstr ""
 
 #. Default: "Language"
-#: ./behaviors/metadata.py:65
+#: ../behaviors/metadata.py:62
 msgid "label_language"
 msgstr ""
 
-#. Default: "Related Items"
-#: ./behaviors/related.py:18
-msgid "label_related_items"
+#. Default: "Enable next previous navigation"
+#: ../behaviors/nextprevious.py:31
+msgid "label_nextprevious"
 msgstr ""
 
 #. Default: "Title"
-#: ./behaviors/metadata.py:29
+#: ../behaviors/metadata.py:26
 msgid "label_title"
 msgstr ""
 

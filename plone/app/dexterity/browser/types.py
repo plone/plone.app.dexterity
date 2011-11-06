@@ -33,14 +33,14 @@ class TypeEditForm(crud.EditForm):
 
     label = None
     editsubform_factory = TypeEditSubForm
-    
+
     buttons = crud.EditForm.buttons.copy().omit('edit')
     handlers = crud.EditForm.handlers.copy()
-    
+
     @button.buttonAndHandler(_(u'Clone'))
     def handleClone(self, action):
         selected = self.selected_items()
-        
+
         if len(selected) > 1:
             self.status = _(u'Please select a single type to clone.')
         elif len(selected) == 1:
@@ -78,14 +78,14 @@ class TypeEditForm(crud.EditForm):
 class TypeSettingsAdapter(object):
     implements(ITypeSettings)
     adapts(IDexterityFTI)
-    
+
     def __init__(self, context):
         self.context = context
-    
+
     @property
     def id(self):
         return self.context.getId()
-    
+
     @property
     def title(self):
         return self.context.title
@@ -96,7 +96,7 @@ class TypeSettingsAdapter(object):
         if not isinstance(description, unicode):
             description = description.decode('utf8')
         return description
-    
+
     @property
     def container(self):
         return self.context.container
@@ -105,21 +105,22 @@ class TypeSettingsAdapter(object):
 class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.
     """
-    
+
     @lazy_property
     def description(self):
         if self.get_items():
             return _(u'The following custom content types are available for '
                      u'your site.')
         else:
-            return _(u'Click the "Add Content Type" button to begin creating '
+            return _('help_addcontenttype_button',
+                     default=u'Click the "Add Content Type" button to begin creating '
                      u' a new custom content type.')
-    
+
     template = ViewPageTemplateFile('types_listing.pt')
     view_schema = field.Fields(ITypeSettings).select('title', 'description')
     addform_factory = crud.NullForm
     editform_factory = TypeEditForm
-    
+
     def get_items(self):
         """ Look up all Dexterity FTIs via the component registry.
             (These utilities are created via an IObjectCreated handler for the DexterityFTI class,
@@ -147,7 +148,7 @@ TypesListingPage = layout.wrap_form(TypesListing, label=_(u'Dexterity content ty
 
 class TypeSchemaContext(SchemaContext):
     implements(ITypeSchemaContext)
-    
+
     fti = None
     schemaName = u''
 
@@ -159,17 +160,17 @@ class TypesContext(SimpleItem):
     # IBrowserPublisher tells the Zope 2 traverser to pay attention to the
     # publishTraverse and browserDefault methods.
     implements(ITypesContext, IBrowserPublisher)
-    
+
     def __init__(self, context, request):
         super(TypesContext, self).__init__(context, request)
-        
+
         # make sure that breadcrumbs will be correct
         self.id = None
         self.Title = lambda: _(u'Dexterity Content Types')
-        
+
         # turn off green edit border for anything in the type control panel
         request.set('disable_border', 1)
-    
+
     def publishTraverse(self, request, name):
         """ 1. Try to find a content type whose name matches the next URL path element.
             2. Look up its schema.
