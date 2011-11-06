@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-06 19:45+0000\n"
+"POT-Creation-Date: 2011-11-06 20:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,10 @@ msgstr ""
 
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
+msgstr ""
+
+#: ../browser/types_listing.pt:68
+msgid "Add New Content Type…"
 msgstr ""
 
 #: ../behaviors/metadata.py:48
@@ -85,6 +89,10 @@ msgstr ""
 
 #: ../interfaces.py:22
 msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr ""
+
+#: ../interfaces.py:42
+msgid "Short Name"
 msgstr ""
 
 #: ../browser/types.py:112

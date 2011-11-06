@@ -15,7 +15,7 @@ $(document).ready(function() {
         formselector: '#add-type-form',
         noform: 'reload'
     });
-    
+
     // clone type form
     $('#crud-edit-form-buttons-clone').click(function(e) {
       var selected = $('input[id$=-widgets-select-0]:checked');
@@ -33,7 +33,7 @@ $(document).ready(function() {
           el.click();
       }
     });
-    
+
     // delete type confirmation
     $('#crud-edit-form-buttons-delete').click(function(e) {
         if(!confirm('Are you sure you want to delete these types?')) {
@@ -41,7 +41,7 @@ $(document).ready(function() {
             e.preventDefault();
         }
     });
-    
+
     // set id from title
     $('#form-widgets-title').live('change', function () {
         var val = $(this).val().toLowerCase().replace(/[^A-Za-z0-9_\.]/g, '_');
@@ -66,6 +66,8 @@ $(document).ready(function() {
 <form id="add-type" method="GET"
       tal:attributes="action string:${context/absolute_url}/@@add-type">
   <input type="submit" style="float: right; display: block;"
+         i18n:attributes="value"
+         i18n:domain="plone.app.dexterity"
          value="Add New Content Type&hellip;"/>
 </form>
 

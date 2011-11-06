@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
-"POT-Creation-Date: 2011-11-06 19:45+0000\n"
+"POT-Creation-Date: 2011-11-06 20:00+0000\n"
 "PO-Revision-Date: 2011-05-20 15:15+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -20,6 +20,10 @@ msgstr ""
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
 msgstr "添加​​内容类型"
+
+#: ../browser/types_listing.pt:68
+msgid "Add New Content Type…"
+msgstr ""
 
 #: ../behaviors/metadata.py:48
 msgid "Categorization"
@@ -85,6 +89,10 @@ msgstr ""
 
 #: ../interfaces.py:22
 msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr ""
+
+#: ../interfaces.py:42
+msgid "Short Name"
 msgstr ""
 
 #: ../browser/types.py:112

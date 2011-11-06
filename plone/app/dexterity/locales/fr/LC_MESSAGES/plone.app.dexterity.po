@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-06 19:45+0000\n"
+"POT-Creation-Date: 2011-11-06 20:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,10 @@ msgstr ""
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
 msgstr "Ajouter un type de contenu"
+
+#: ../browser/types_listing.pt:68
+msgid "Add New Content Type…"
+msgstr "Ajouter un type de contenu…"
 
 #: ../behaviors/metadata.py:48
 msgid "Categorization"
@@ -87,6 +91,10 @@ msgstr "Veuillez sélectionner les types à exporter."
 #: ../interfaces.py:22
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Veuillez n'utiliser que des lettres, des nombres, et les caractères : .-_"
+
+#: ../interfaces.py:42
+msgid "Short Name"
+msgstr "Nom court"
 
 #: ../browser/types.py:112
 msgid "The following custom content types are available for your site."
