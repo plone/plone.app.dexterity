@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-06 20:00+0000\n"
+"POT-Creation-Date: 2011-11-06 20:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,15 @@ msgstr "Ajouter un type de contenu"
 #: ../browser/types_listing.pt:68
 msgid "Add New Content Type…"
 msgstr "Ajouter un type de contenu…"
+
+#: ../browser/behaviors.py:45
+#: ../browser/edit_type.py:19
+msgid "Behaviors"
+msgstr "Comportements"
+
+#: ../browser/behaviors.py:47
+msgid "Behaviors successfully updated."
+msgstr "Comportements mis à jour avec succès."
 
 #: ../behaviors/metadata.py:48
 msgid "Categorization"
@@ -68,9 +77,18 @@ msgstr "Exporter les modèles de schéma "
 msgid "Export Type Profiles"
 msgstr "Exporter les Profils des Types"
 
+#: ../browser/behaviors.py:83
+#: ../browser/edit_type.py:18
+msgid "Fields"
+msgstr "Champs"
+
 #: ../interfaces.py:55
 msgid "Items of this type will be able to contain other items."
 msgstr "Les items de ce type pourront contenir d'autres items."
+
+#: ../browser/behaviors.py:48
+msgid "No changes were made."
+msgstr "Aucun changement effectué."
 
 #: ../behaviors/metadata.py:104
 msgid "Ownership"
@@ -91,6 +109,10 @@ msgstr "Veuillez sélectionner les types à exporter."
 #: ../interfaces.py:22
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Veuillez n'utiliser que des lettres, des nombres, et les caractères : .-_"
+
+#: ../browser/behaviors.py:46
+msgid "Select the behaviors to enable for this content type."
+msgstr "Choisissez les comportements à activer pour ce type de contenu."
 
 #: ../interfaces.py:42
 msgid "Short Name"
@@ -165,6 +187,16 @@ msgstr "Quand cette date sera atteinte, le contenu ne sera plus affiché dans le
 #: ../behaviors/nextprevious.py:32
 msgid "help_nextprevious"
 msgstr "Cochez cette case pour permettre la navigation précédent/suivant entre les contenus de ce dossier"
+
+#. Default: "&laquo; Back to ${typename}"
+#: ../browser/tabbed_forms.pt:17
+msgid "label_back_to"
+msgstr "&laquo; Revenir à ${typename}"
+
+#. Default: "Behaviors for ${title} (${name})"
+#: ../browser/behaviors.py:89
+msgid "label_behaviors_for"
+msgstr "Comportements du type ${title} (${name})"
 
 #. Default: "Categories"
 #: ../behaviors/metadata.py:53

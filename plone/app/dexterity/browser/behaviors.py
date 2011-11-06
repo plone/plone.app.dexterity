@@ -8,10 +8,11 @@ from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
 from plone.z3cform.layout import FormWrapper
 from plone.behavior.interfaces import IBehavior
 from plone.app.dexterity.interfaces import ITypeSchemaContext
+from plone.app.dexterity import MessageFactory as _
 
 class BehaviorConfigurationAdapter(object):
     adapts(ITypeSchemaContext)
-    
+
     def __init__(self, context):
         self.__dict__['context'] = context
         self.__dict__['fti'] = self.context.fti
@@ -32,24 +33,24 @@ class BehaviorConfigurationAdapter(object):
         elif not value and name in behaviors:
             behaviors.remove(name)
         self.fti.behaviors = behaviors
-    
+
     def __iter__(self):
         # iterate through the present behaviors
         for b in self.fti.behaviors:
             yield b
 
 class BehaviorsForm(form.EditForm):
-    
+
     template = ViewPageTemplateFile('behaviors.pt')
-    label = u'Behaviors'
-    description = u'Select the behaviors to enable for this content type.'
-    successMessage = u'Behaviors successfully updated.'
-    noChangesMessage = u'No changes were made.'
+    label = _(u'Behaviors')
+    description = _(u'Select the behaviors to enable for this content type.')
+    successMessage = _(u'Behaviors successfully updated.')
+    noChangesMessage = _(u'No changes were made.')
     buttons = deepcopy(form.EditForm.buttons)
-    
+
     def getContent(self):
         return BehaviorConfigurationAdapter(self.context)
-    
+
     @property
     def fields(self):
         fields = []
@@ -70,7 +71,7 @@ class BehaviorsForm(form.EditForm):
         for f in fields.values():
             f.widgetFactory = SingleCheckBoxFieldWidget
         return fields
-    
+
     def update(self):
         self.buttons['apply'].title = u'Save'
         form.EditForm.update(self)
@@ -79,10 +80,13 @@ class BehaviorsFormPage(FormWrapper):
     form = BehaviorsForm
     index = Zope2PageTemplateFile('tabbed_forms.pt')
     tabs = (
-        ('Fields', '@@edit'),
-        ('Behaviors', None),
+        (_('Fields'), '@@edit'),
+        (_('Behaviors'), None),
         )
-    
+
     @property
     def label(self):
-        return u'Behaviors for %s (%s)' % (self.context.Title(), self.context.__name__)
+        return _('label_behaviors_for',
+                 default=u"Behaviors for ${title} (${name})",
+                 mapping={'title': self.context.Title(),
+                          'name': self.context.__name__})

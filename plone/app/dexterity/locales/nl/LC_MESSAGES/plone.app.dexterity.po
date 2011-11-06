@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-06 20:00+0000\n"
+"POT-Creation-Date: 2011-11-06 20:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,15 @@ msgstr ""
 
 #: ../browser/types_listing.pt:68
 msgid "Add New Content Type…"
+msgstr ""
+
+#: ../browser/behaviors.py:45
+#: ../browser/edit_type.py:19
+msgid "Behaviors"
+msgstr ""
+
+#: ../browser/behaviors.py:47
+msgid "Behaviors successfully updated."
 msgstr ""
 
 #: ../behaviors/metadata.py:48
@@ -65,8 +74,17 @@ msgstr ""
 msgid "Export Type Profiles"
 msgstr ""
 
+#: ../browser/behaviors.py:83
+#: ../browser/edit_type.py:18
+msgid "Fields"
+msgstr ""
+
 #: ../interfaces.py:55
 msgid "Items of this type will be able to contain other items."
+msgstr ""
+
+#: ../browser/behaviors.py:48
+msgid "No changes were made."
 msgstr ""
 
 #: ../behaviors/metadata.py:104
@@ -87,6 +105,10 @@ msgstr ""
 
 #: ../interfaces.py:22
 msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr ""
+
+#: ../browser/behaviors.py:46
+msgid "Select the behaviors to enable for this content type."
 msgstr ""
 
 #: ../interfaces.py:42
@@ -161,6 +183,16 @@ msgstr ""
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:32
 msgid "help_nextprevious"
+msgstr ""
+
+#. Default: "&laquo; Back to ${typename}"
+#: ../browser/tabbed_forms.pt:17
+msgid "label_back_to"
+msgstr ""
+
+#. Default: "Behaviors for ${title} (${name})"
+#: ../browser/behaviors.py:89
+msgid "label_behaviors_for"
 msgstr ""
 
 #. Default: "Categories"
