@@ -14,7 +14,7 @@
            tal:attributes="href string:${context/aq_parent/absolute_url}"
            i18n:domain="plone.app.dexterity"
            i18n:translate="label_back_to">
-          &laquo; Back to <span i18n:name="typename" tal:replace="context/aq_parent/Title"/>
+          &laquo; Back to <span i18n:name="parentname" tal:replace="context/aq_parent/Title"/>
         </a>
 
         <div class="documentEditable">

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-06 20:28+0000\n"
+"POT-Creation-Date: 2011-11-06 21:15+0000\n"
 "PO-Revision-Date: 2011-05-20 15:13+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,33 @@ msgstr ""
 
 #: ../browser/types_listing.pt:68
 msgid "Add New Content Type…"
+msgstr ""
+
+msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+msgstr ""
+
+msgid "Adds a title and description"
+msgstr ""
+
+msgid "Adds creator, contributor, and rights fields"
+msgstr ""
+
+msgid "Adds keywords and language setting"
+msgstr ""
+
+msgid "Allow items to have next previous navigation enabled"
+msgstr ""
+
+msgid "Assign an effective and/or expiration date"
+msgstr ""
+
+msgid "Automatically generate short URL name for content based on its initial title"
+msgstr ""
+
+msgid "Automatically generate short URL name for content based on its primary field file name"
+msgstr ""
+
+msgid "Basic metadata"
 msgstr ""
 
 #: ../browser/behaviors.py:45
@@ -66,6 +93,18 @@ msgstr ""
 msgid "Dexterity content types"
 msgstr ""
 
+msgid "Dublin Core metadata"
+msgstr ""
+
+msgid "Effective range"
+msgstr ""
+
+msgid "Enable next previous navigation for all items of this type"
+msgstr ""
+
+msgid "Exclude From navigation"
+msgstr ""
+
 #: ../browser/types.py:65
 msgid "Export Schema Models"
 msgstr ""
@@ -74,13 +113,28 @@ msgstr ""
 msgid "Export Type Profiles"
 msgstr ""
 
-#: ../browser/behaviors.py:83
+#: ../browser/behaviors.py:84
 #: ../browser/edit_type.py:18
 msgid "Fields"
 msgstr ""
 
 #: ../interfaces.py:55
 msgid "Items of this type will be able to contain other items."
+msgstr ""
+
+msgid "Name from file name"
+msgstr ""
+
+msgid "Name from title"
+msgstr ""
+
+msgid "Navigation root"
+msgstr ""
+
+msgid "Next previous navigation"
+msgstr ""
+
+msgid "Next previous navigation toggle"
 msgstr ""
 
 #: ../browser/behaviors.py:48
@@ -185,13 +239,13 @@ msgstr ""
 msgid "help_nextprevious"
 msgstr ""
 
-#. Default: "&laquo; Back to ${typename}"
+#. Default: "&laquo; Back to ${parentname}"
 #: ../browser/tabbed_forms.pt:17
 msgid "label_back_to"
 msgstr ""
 
 #. Default: "Behaviors for ${title} (${name})"
-#: ../browser/behaviors.py:89
+#: ../browser/behaviors.py:90
 msgid "label_behaviors_for"
 msgstr ""
 

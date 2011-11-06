@@ -58,6 +58,7 @@ class BehaviorsForm(form.EditForm):
             if name == 'plone.app.dexterity.behaviors.related.IRelatedItems':
                 # skip deprecated behavior
                 continue
+
             f = schema.Bool(
                 __name__ = str(name),
                 title = reg.title,
