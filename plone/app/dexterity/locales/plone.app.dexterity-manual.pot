@@ -23,13 +23,7 @@ msgstr ""
 msgid "Adds a title and description"
 msgstr ""
 
-msgid "Categorization"
-msgstr ""
-
 msgid "Effective range"
-msgstr ""
-
-msgid "Ownership"
 msgstr ""
 
 msgid "Adds keywords and language setting"

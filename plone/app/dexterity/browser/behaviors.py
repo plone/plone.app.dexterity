@@ -3,12 +3,18 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as Zope2
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapts, getUtilitiesFor
 from zope import schema
+from zope.i18nmessageid import MessageFactory
+
 from z3c.form import field, form
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
+
 from plone.z3cform.layout import FormWrapper
 from plone.behavior.interfaces import IBehavior
 from plone.app.dexterity.interfaces import ITypeSchemaContext
 from plone.app.dexterity import MessageFactory as _
+
+
+PMF = MessageFactory('plone')
 
 class BehaviorConfigurationAdapter(object):
     adapts(ITypeSchemaContext)
@@ -74,7 +80,7 @@ class BehaviorsForm(form.EditForm):
         return fields
 
     def update(self):
-        self.buttons['apply'].title = u'Save'
+        self.buttons['apply'].title = PMF(u'Save')
         form.EditForm.update(self)
 
 class BehaviorsFormPage(FormWrapper):

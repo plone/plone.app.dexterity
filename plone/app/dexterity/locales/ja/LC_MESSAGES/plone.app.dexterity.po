@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-06 21:15+0000\n"
+"POT-Creation-Date: 2011-11-08 22:34+0000\n"
 "PO-Revision-Date: 2011-05-20 15:13+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,8 +161,17 @@ msgstr ""
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr ""
 
+#: ../browser/behaviors.py:77
+msgid "Save"
+msgstr ""
+
 #: ../browser/behaviors.py:46
 msgid "Select the behaviors to enable for this content type."
+msgstr ""
+
+#: ../behaviors/exclfromnav.py:13
+#: ../behaviors/nextprevious.py:27
+msgid "Settings"
 msgstr ""
 
 #: ../interfaces.py:42
