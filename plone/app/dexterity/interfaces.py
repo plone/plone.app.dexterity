@@ -39,7 +39,7 @@ class ITypeSettings(Interface):
         )
 
     id = schema.ASCIILine(
-        title = u'Short Name',
+        title = _(u'Short Name'),
         description = _(u'Used for programmatic access to the type.'),
         required = True,
         constraint = isValidId,
