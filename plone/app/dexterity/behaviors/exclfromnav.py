@@ -10,7 +10,7 @@ class IExcludeFromNavigation(model.Schema):
     """Behavior interface to exclude items from navigation.
     """
 
-    model.fieldset('settings', label=u"Settings",
+    model.fieldset('settings', label=_(u"Settings"),
                   fields=['exclude_from_nav'])
 
     exclude_from_nav = schema.Bool(

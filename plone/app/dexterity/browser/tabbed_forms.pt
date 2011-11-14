@@ -11,8 +11,10 @@
 
         <a href=""
            class="link-parent"
-           tal:attributes="href string:${context/aq_parent/absolute_url}">
-          &laquo; Back to <span tal:replace="context/aq_parent/Title"/>
+           tal:attributes="href string:${context/aq_parent/absolute_url}"
+           i18n:domain="plone.app.dexterity"
+           i18n:translate="label_back_to">
+          &laquo; Back to <span i18n:name="parentname" tal:replace="context/aq_parent/Title"/>
         </a>
 
         <div class="documentEditable">
@@ -41,7 +43,7 @@
                <div metal:use-macro="here/global_statusmessage/macros/portal_message">
                  Portal status message
                </div>
-               
+
                <h1 class="documentFirstHeading"
                    tal:content="view/label">Users Overview</h1>
 

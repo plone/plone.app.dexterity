@@ -4,6 +4,12 @@ Changelog for plone.app.dexterity
 2.0 - unreleased
 ----------------
 
+- Internationalized content type settings pages,
+  I18N fixes,
+  messages extraction,
+  French translations.
+  [thomasdesvenain]
+
 - Added Spanish translation.
   [hvelarde]
 
@@ -24,7 +30,7 @@ Changelog for plone.app.dexterity
 - Add intro message to Dexterity control panel.
   [jonstahl, davisagli]
 
-- Grok support is now an optional "grok" extra. Use this if you want 
+- Grok support is now an optional "grok" extra. Use this if you want
   ``five.grok``, ``plone.directives.form``, and ``plone.directives.dexterity``.
   See the release notes for more information. The behaviors in this package
   were updated to work without using grok.
@@ -42,7 +48,7 @@ Changelog for plone.app.dexterity
   upgraded from Dexterity 1.0 to Dexterity 2.0, or the site will break.
   [davisagli]
 
-- Converted tests to plone.app.testing-based setup. The old PloneTestCase-based 
+- Converted tests to plone.app.testing-based setup. The old PloneTestCase-based
   test case classes and layer are now deprecated.
   [davisagli]
 
@@ -167,7 +173,7 @@ Changelog for plone.app.dexterity
   [wichert]
 
 - cloning a type through the dexterity UI in the control panel did not work
-  if the type had a hyphen in it's name. This fixes 
+  if the type had a hyphen in it's name. This fixes
   http://code.google.com/p/dexterity/issues/detail?id=126
   [vangheem]
 

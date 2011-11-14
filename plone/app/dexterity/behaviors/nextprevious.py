@@ -18,13 +18,13 @@ from zope.component import adapts
 
 class INextPreviousEnabled(Interface):
     """Behavior interface to enable next previous navigation for all items of a type.
-    """    
+    """
 
 class INextPreviousToggle(model.Schema):
     """Behavior interface to enable next previous navigation per item.
     """
 
-    model.fieldset('settings', label=u"Settings",
+    model.fieldset('settings', label=_(u"Settings"),
                    fields=['nextPreviousEnabled'])
 
     nextPreviousEnabled = schema.Bool(
