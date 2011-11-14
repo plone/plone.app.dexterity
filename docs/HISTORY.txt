@@ -4,6 +4,11 @@ Changelog for plone.app.dexterity
 1.0.4 - unreleased
 ------------------
 
+- Make sure that the intids utility doesn't get destroyed if a product
+  depending on Dexterity is reinstalled. This closes
+  http://code.google.com/p/dexterity/issues/detail?id=239
+  [davisagli]
+
 - Add upgrade step to add missing UUIDs to Dexterity content items if
   ``plone.uuid`` is present.
   [davisagli]

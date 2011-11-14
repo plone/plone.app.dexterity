@@ -6,6 +6,9 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="plone.app.dexterity">
 
+    <!-- this is necessary to use our beforeUninstall method in Extensions/Install.py -->
+    <five:registerPackage package="." />
+
     <include package="plone.app.imaging"
              zcml:condition="installed plone.app.imaging"/>
     <include package="plone.app.jquerytools" />
