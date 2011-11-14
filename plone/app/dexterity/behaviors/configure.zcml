@@ -85,9 +85,7 @@
     <!-- Navigation root -->
     <plone:behavior
         title="Navigation root"
-        description="Make all items of this type a navigation root. "
-                    "(Warning: this affects site navigation and is "
-                    "intended for content types that act as their own subsite.)"
+        description="Make all items of this type a navigation root. (Warning: this affects site navigation and is intended for content types that act as their own subsite.)"
         provides="plone.app.layout.navigation.interfaces.INavigationRoot"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
