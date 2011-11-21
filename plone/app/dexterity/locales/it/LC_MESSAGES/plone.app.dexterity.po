@@ -1,0 +1,318 @@
+# Translation of plone.app.dexterity.pot to Italian
+# Giacomo Spettoli, 2011.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: plone.app.dexterity\n"
+"POT-Creation-Date: 2011-11-08 22:34+0000\n"
+"PO-Revision-Date: 2011-11-21 21:10+0100\n"
+"Last-Translator: Giacomo Spettoli <giacomo.spettoli@gmail.com>\n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1\n"
+"Language-Code: it\n"
+"Language-Name: Italiano\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone.app.dexterity\n"
+"X-Is-Fallback-For: it-ch it-it\n"
+
+#: ../browser/add_type.py:12
+msgid "Add Content Type"
+msgstr "Aggiungi tipo di contenuto"
+
+#: ../browser/types_listing.pt:68
+msgid "Add New Content Type…"
+msgstr "Aggiungi un nuovo tipo di contenuto…"
+
+msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+msgstr "Aggiunge i campi dei metadati Dublin Core (uguale a Metadati di base + Categorizzazione + Durata effettiva + Possessore)"
+
+msgid "Adds a title and description"
+msgstr "Aggiunge un titolo e una descrizione"
+
+msgid "Adds creator, contributor, and rights fields"
+msgstr "Aggiunge i campi creatori, contributori, e diritti"
+
+msgid "Adds keywords and language setting"
+msgstr "Aggiunge le categorie e l'impostazione della lingua"
+
+msgid "Allow items to have next previous navigation enabled"
+msgstr "Permette ai contenuti di avere la navigazione precedente successivo abilitata"
+
+msgid "Assign an effective and/or expiration date"
+msgstr "Assegna una data di pubblicazione e/o di scadenza"
+
+msgid "Automatically generate short URL name for content based on its initial title"
+msgstr "Generazione automatica del nome breve URL per il contenuto in base al suo titolo iniziale"
+
+msgid "Automatically generate short URL name for content based on its primary field file name"
+msgstr "Generazione automatica del nome breve URL per il contenuto in base al nome del suo campo primario"
+
+msgid "Basic metadata"
+msgstr "Metadati di base"
+
+#: ../browser/behaviors.py:45
+#: ../browser/edit_type.py:19
+msgid "Behaviors"
+msgstr "Comportamenti"
+
+#: ../browser/behaviors.py:47
+msgid "Behaviors successfully updated."
+msgstr "I comportamenti sono stati aggiornati con successo."
+
+#: ../behaviors/metadata.py:48
+msgid "Categorization"
+msgstr "Categorizzazione"
+
+#: ../browser/types.py:40
+msgid "Clone"
+msgstr "Copia"
+
+#: ../browser/clone_type.py:11
+msgid "Clone Content Type"
+msgstr "Copia il tipo di contenuto"
+
+#: ../interfaces.py:54
+msgid "Container"
+msgstr "Contenitore"
+
+#: ../behaviors/metadata.py:76
+msgid "Dates"
+msgstr "Date"
+
+#: ../interfaces.py:49
+msgid "Description"
+msgstr "Descrizione"
+
+#: ../browser/types.py:169
+#: ../profiles/default/actions.xml
+#: ../profiles/default/controlpanel.xml
+msgid "Dexterity Content Types"
+msgstr "Tipi di contenuto Dexterity"
+
+#: ../browser/types.py:146
+msgid "Dexterity content types"
+msgstr "Tipi di contenuto Dexterity"
+
+msgid "Dublin Core metadata"
+msgstr "Metadati Dublin Core"
+
+msgid "Effective range"
+msgstr "Durata effettiva"
+
+msgid "Enable next previous navigation for all items of this type"
+msgstr "Abilita la navigazione precedente successivo per tutti i contenuti di questo tipo"
+
+msgid "Exclude From navigation"
+msgstr "Escludi dalla navigazione"
+
+#: ../browser/types.py:65
+msgid "Export Schema Models"
+msgstr "Esporta i modelli di Schema"
+
+#: ../browser/types.py:53
+msgid "Export Type Profiles"
+msgstr "Esporta i profili del Tipo di contenuto"
+
+#: ../browser/behaviors.py:84
+#: ../browser/edit_type.py:18
+msgid "Fields"
+msgstr "Campi"
+
+#: ../interfaces.py:55
+msgid "Items of this type will be able to contain other items."
+msgstr "I contenuti di questo tipo potranno contenere altri contenuti."
+
+msgid "Name from file name"
+msgstr "Nome dal nome del file"
+
+msgid "Name from title"
+msgstr "Nome dal titolo"
+
+msgid "Navigation root"
+msgstr "Radice di navigazione"
+
+msgid "Next previous navigation"
+msgstr "Navigazione precedente successivo"
+
+msgid "Next previous navigation toggle"
+msgstr "Alterna la navigazione precedente successivo"
+
+#: ../browser/behaviors.py:48
+msgid "No changes were made."
+msgstr "Nessun cambiamento apportato."
+
+#: ../behaviors/metadata.py:104
+msgid "Ownership"
+msgstr "Possessore"
+
+#: ../browser/types.py:45
+msgid "Please select a single type to clone."
+msgstr "Seleziona un singolo tipo da copiare."
+
+#: ../browser/types.py:51
+msgid "Please select a type to clone."
+msgstr "Seleziona un tipo da copiare."
+
+#: ../browser/types.py:58
+msgid "Please select types to export."
+msgstr "Seleziona i tipi da esportare"
+
+#: ../interfaces.py:22
+msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr "Utilizzare solo lettere, numeri o i seguenti caratteri: .-_"
+
+#: ../browser/behaviors.py:77
+msgid "Save"
+msgstr "Salva"
+
+#: ../browser/behaviors.py:46
+msgid "Select the behaviors to enable for this content type."
+msgstr "Seleziona i comportamenti da abilitare per questo tipo di contenuto."
+
+#: ../behaviors/exclfromnav.py:13
+#: ../behaviors/nextprevious.py:27
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: ../interfaces.py:42
+msgid "Short Name"
+msgstr "Nome breve"
+
+#: ../browser/types.py:112
+msgid "The following custom content types are available for your site."
+msgstr "I seguenti tipi di contenuto personalizzati sono disponibili per questo sito."
+
+#: ../interfaces.py:38
+msgid "Type Name"
+msgstr "Nome del tipo"
+
+#: ../browser/add_type.py:44
+msgid "Type added successfully."
+msgstr "Il tipo di contenuto è stato aggiunto con successo."
+
+#: ../browser/clone_type.py:28
+msgid "Type cloned successfully."
+msgstr "Tipo di contenuto copiato con successo."
+
+#: ../interfaces.py:43
+msgid "Used for programmatic access to the type."
+msgstr "Utilizzato per l'accesso programmatico al tipo di contenuto."
+
+#. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
+#: ../browser/types.py:115
+msgid "help_addcontenttype_button"
+msgstr "Clicca su \"Aggiungi tipo di contenuto\" per iniziare la creazione di un nuovo tipo di contenuto personalizzato."
+
+#. Default: "Also known as keywords, tags or labels, these help you categorize your content."
+#: ../behaviors/metadata.py:54
+msgid "help_categories"
+msgstr "Conosciute anche come parole chiave, tag o etichette, queste servono ad aiutare a categorizzare il contenuto."
+
+#. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
+#: ../behaviors/metadata.py:122
+msgid "help_contributors"
+msgstr "I nomi delle persone che hanno contribuito a questo elemento. Ogni nome dev'essere su una riga distinta."
+
+#. Default: "Copyright statement or other rights information on this item."
+#: ../behaviors/metadata.py:134
+msgid "help_copyrights"
+msgstr "Informazioni sul copyright o su altri diritti dell'elemento."
+
+#. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
+#: ../behaviors/metadata.py:110
+msgid "help_creators"
+msgstr "Persone responsabili della creazione del contenuto di questo elemento. Inserisci un elenco di nomi, uno per riga. L'autore principale dovrebbe essere messo al primo posto."
+
+#. Default: "A short summary of the content."
+#: ../behaviors/metadata.py:32
+msgid "help_description"
+msgstr "Un breve riassunto del contenuto."
+
+#. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
+#: ../behaviors/metadata.py:82
+msgid "help_effective_date"
+msgstr "Se questa data è nel futuro, il contenuto non verrà mostrato nelle liste e nelle ricerche fino a questa data."
+
+#. Default: "If selected, this item will not appear in the navigation tree"
+#: ../behaviors/exclfromnav.py:18
+msgid "help_exclude_from_nav"
+msgstr "Se selezionato, questo contenuto non apparirà nell'albero di navigazione"
+
+#. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
+#: ../behaviors/metadata.py:90
+msgid "help_expiration_date"
+msgstr "Quando questa data sarà raggiunta, il contenuto non sarà più visibile nelle liste e nelle ricerche."
+
+#. Default: "This enables next/previous widget on content items contained in this folder."
+#: ../behaviors/nextprevious.py:32
+msgid "help_nextprevious"
+msgstr "Abilita il widget precedente/successivo sui contenuti presenti in questa cartella."
+
+#. Default: "&laquo; Back to ${parentname}"
+#: ../browser/tabbed_forms.pt:17
+msgid "label_back_to"
+msgstr "&laquo; Ritorna a ${parentname}"
+
+#. Default: "Behaviors for ${title} (${name})"
+#: ../browser/behaviors.py:90
+msgid "label_behaviors_for"
+msgstr "Comportamenti di ${title} (${name})"
+
+#. Default: "Categories"
+#: ../behaviors/metadata.py:53
+msgid "label_categories"
+msgstr "Categorie"
+
+#. Default: "Contributors"
+#: ../behaviors/metadata.py:121
+msgid "label_contributors"
+msgstr "Contributori"
+
+#. Default: "Rights"
+#: ../behaviors/metadata.py:133
+msgid "label_copyrights"
+msgstr "Diritti"
+
+#. Default: "Creators"
+#: ../behaviors/metadata.py:109
+msgid "label_creators"
+msgstr "Creatori"
+
+#. Default: "Description"
+#: ../behaviors/metadata.py:31
+msgid "label_description"
+msgstr "Descrizione"
+
+#. Default: "Publishing Date"
+#: ../behaviors/metadata.py:81
+msgid "label_effective_date"
+msgstr "Data di pubblicazione"
+
+#. Default: "Exclude from navigation"
+#: ../behaviors/exclfromnav.py:17
+msgid "label_exclude_from_nav"
+msgstr "Escludi dalla navigazione"
+
+#. Default: "Expiration Date"
+#: ../behaviors/metadata.py:89
+msgid "label_expiration_date"
+msgstr "Data di scadenza"
+
+#. Default: "Language"
+#: ../behaviors/metadata.py:62
+msgid "label_language"
+msgstr "Lingua"
+
+#. Default: "Enable next previous navigation"
+#: ../behaviors/nextprevious.py:31
+msgid "label_nextprevious"
+msgstr "Abilita la navigazione precedente successivo"
+
+#. Default: "Title"
+#: ../behaviors/metadata.py:26
+msgid "label_title"
+msgstr "Titolo"
+
