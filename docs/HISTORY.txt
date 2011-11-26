@@ -1,8 +1,8 @@
 Changelog for plone.app.dexterity
 =================================
 
-1.0.4 - unreleased
-------------------
+1.1 - 2011-11-26
+----------------
 
 - Added Italian translation.
   [giacomos]

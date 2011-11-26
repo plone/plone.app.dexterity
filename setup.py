@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0.4dev'
+version = '1.1'
 
 setup(name='plone.app.dexterity',
       version=version,
@@ -39,7 +39,7 @@ setup(name='plone.app.dexterity',
           'plone.autoform >=1.0b3dev-r34689',
           'plone.behavior>=1.0b5',
           'plone.contentrules',
-          'plone.dexterity >= 1.0rc1',
+          'plone.dexterity >= 1.1',
           'plone.directives.form>=1.0b7dev-r34690',
           'plone.directives.dexterity',
           'plone.formwidget.autocomplete >= 1.2.0',
