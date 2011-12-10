@@ -67,7 +67,7 @@ setup(name='plone.app.dexterity',
           'grok': [
               'five.grok',
               'plone.directives.dexterity',
-              'plone.directives.form >=2.0dev',
+              'plone.directives.form >=1.1dev',
               ],
           'relations': [
               'plone.app.relationfield',
