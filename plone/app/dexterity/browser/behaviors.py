@@ -45,6 +45,7 @@ class BehaviorConfigurationAdapter(object):
         for b in self.fti.behaviors:
             yield b
 
+
 class BehaviorsForm(form.EditForm):
 
     template = ViewPageTemplateFile('behaviors.pt')
@@ -83,17 +84,13 @@ class BehaviorsForm(form.EditForm):
         self.buttons['apply'].title = PMF(u'Save')
         form.EditForm.update(self)
 
+
 class BehaviorsFormPage(FormWrapper):
     form = BehaviorsForm
     index = Zope2PageTemplateFile('tabbed_forms.pt')
     tabs = (
-        (_('Fields'), '@@edit'),
-        (_('Behaviors'), None),
+        (_(u'Overview'), '@@overview'),
+        (_(u'Fields'), '@@fields'),
+        (_(u'Behaviors'), None),
         )
-
-    @property
-    def label(self):
-        return _('label_behaviors_for',
-                 default=u"Behaviors for ${title} (${name})",
-                 mapping={'title': self.context.Title(),
-                          'name': self.context.__name__})
+    label = _(u'Behaviors')

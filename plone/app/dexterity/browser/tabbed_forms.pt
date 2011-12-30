@@ -9,14 +9,6 @@
   <body>
       <metal:slot metal:fill-slot="content" i18n:domain="cmf_default">
 
-        <a href=""
-           class="link-parent"
-           tal:attributes="href string:${context/aq_parent/absolute_url}"
-           i18n:domain="plone.app.dexterity"
-           i18n:translate="label_back_to">
-          &laquo; Back to <span i18n:name="parentname" tal:replace="context/aq_parent/Title"/>
-        </a>
-
         <div class="documentEditable">
 
             <div id="edit-bar">
@@ -40,14 +32,15 @@
 
              <div class="documentContent">
 
-               <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+               <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                  Portal status message
                </div>
 
+               <h2><tal:block tal:content="context/Title"/> (<tal:block tal:content="python:context.__name__" />)</h2>
                <h1 class="documentFirstHeading"
-                   tal:content="view/label">Users Overview</h1>
+                   tal:content="view/label"/>
 
-                 <tal:block tal:replace="structure view/contents"/>
+               <tal:block tal:replace="structure view/contents|view/render"/>
              </div>
 
            </div>

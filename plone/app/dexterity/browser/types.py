@@ -152,6 +152,9 @@ class TypeSchemaContext(SchemaContext):
     fti = None
     schemaName = u''
 
+    def browserDefault(self, request):
+        return self, ('@@overview',)
+
 
 class TypesContext(SimpleItem):
     """ This class represents the types configlet, and allows us to traverse

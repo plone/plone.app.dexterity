@@ -50,9 +50,15 @@
         />
     
     <browser:page
-        name="edit"
+        name="overview"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
-        class=".edit_type.TypeEditPage"
+        class=".overview.TypeOverviewForm"
+        permission="plone.schemaeditor.ManageSchemata" />
+    
+    <browser:page
+        name="fields"
+        for="plone.app.dexterity.interfaces.ITypeSchemaContext"
+        class=".fields.TypeFieldsPage"
         permission="plone.schemaeditor.ManageSchemata" />
     
     <browser:page
