@@ -1,5 +1,4 @@
 from copy import deepcopy
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as Zope2PageTemplateFile
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapts, getUtilitiesFor
 from zope import schema
@@ -8,9 +7,9 @@ from zope.i18nmessageid import MessageFactory
 from z3c.form import field, form
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
 
-from plone.z3cform.layout import FormWrapper
 from plone.behavior.interfaces import IBehavior
 from plone.app.dexterity.interfaces import ITypeSchemaContext
+from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity import MessageFactory as _
 
 
@@ -46,7 +45,7 @@ class BehaviorConfigurationAdapter(object):
             yield b
 
 
-class BehaviorsForm(form.EditForm):
+class TypeBehaviorsForm(form.EditForm):
 
     template = ViewPageTemplateFile('behaviors.pt')
     label = _(u'Behaviors')
@@ -85,12 +84,6 @@ class BehaviorsForm(form.EditForm):
         form.EditForm.update(self)
 
 
-class BehaviorsFormPage(FormWrapper):
-    form = BehaviorsForm
-    index = Zope2PageTemplateFile('tabbed_forms.pt')
-    tabs = (
-        (_(u'Overview'), '@@overview'),
-        (_(u'Fields'), '@@fields'),
-        (_(u'Behaviors'), None),
-        )
+class TypeBehaviorsPage(TypeFormLayout):
+    form = TypeBehaviorsForm
     label = _(u'Behaviors')

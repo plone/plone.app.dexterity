@@ -15,9 +15,9 @@
              <ul id="content-views" class="contentViews">
                 <li class="selected"
                     tal:repeat="tab view/tabs"
-                    tal:attributes="class python:tab[1] is None and 'selected' or ''">
+                    tal:attributes="class python:tab[0] == view.label and 'selected' or ''">
                     <a href=""
-                       tal:define="tab_url python:tab[1] and (context.absolute_url() + '/' + tab[1]) or request['URL']"
+                       tal:define="tab_url python:context.absolute_url() + '/' + tab[1]"
                        tal:attributes="href tab_url"
                        tal:content="python:tab[0]">
                         Schema

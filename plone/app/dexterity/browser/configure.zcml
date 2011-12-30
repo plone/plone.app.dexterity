@@ -52,7 +52,7 @@
     <browser:page
         name="overview"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
-        class=".overview.TypeOverviewForm"
+        class=".overview.TypeOverviewPage"
         permission="plone.schemaeditor.ManageSchemata" />
     
     <browser:page
@@ -64,7 +64,7 @@
     <browser:page
         name="behaviors"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
-        class=".behaviors.BehaviorsFormPage"
+        class=".behaviors.TypeBehaviorsPage"
         permission="plone.schemaeditor.ManageSchemata" />
 
     <browser:page
