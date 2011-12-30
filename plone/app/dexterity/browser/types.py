@@ -17,6 +17,7 @@ from Products.CMFCore.utils import getToolByName
 
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext, ITypeSettings
+from plone.app.dexterity.browser.utils import UTF8Property
 from plone.schemaeditor.browser.schema.traversal import SchemaContext
 
 from plone.app.dexterity import MessageFactory as _
@@ -86,16 +87,8 @@ class TypeSettingsAdapter(object):
     def id(self):
         return self.context.getId()
 
-    @property
-    def title(self):
-        return self.context.title
-
-    @property
-    def description(self):
-        description = self.context.description
-        if not isinstance(description, unicode):
-            description = description.decode('utf8')
-        return description
+    title = UTF8Property('title')
+    description = UTF8Property('description')
 
     @property
     def container(self):

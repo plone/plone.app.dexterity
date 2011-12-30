@@ -53,6 +53,7 @@ class TypeBehaviorsForm(form.EditForm):
     successMessage = _(u'Behaviors successfully updated.')
     noChangesMessage = _(u'No changes were made.')
     buttons = deepcopy(form.EditForm.buttons)
+    buttons['apply'].title = PMF(u'Save')
 
     def getContent(self):
         return BehaviorConfigurationAdapter(self.context)
@@ -78,10 +79,6 @@ class TypeBehaviorsForm(form.EditForm):
         for f in fields.values():
             f.widgetFactory = SingleCheckBoxFieldWidget
         return fields
-
-    def update(self):
-        self.buttons['apply'].title = PMF(u'Save')
-        form.EditForm.update(self)
 
 
 class TypeBehaviorsPage(TypeFormLayout):
