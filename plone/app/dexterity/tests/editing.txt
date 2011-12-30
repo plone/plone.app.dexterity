@@ -88,9 +88,10 @@ schema for the 'plonista' type we just created::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
   >>> browser.getLink('Plonista').click()
+  >>> browser.getLink('Fields').click()
   >>> schemaeditor_url = browser.url
   >>> schemaeditor_url
-  'http://nohost/plone/dexterity-types/plonista'
+  'http://nohost/plone/dexterity-types/plonista/@@fields'
 
 Demonstrate that all the registered field types can be added edited
 and saved.
@@ -155,7 +156,7 @@ least be listed.
   >>> plone.app.dexterity.tests.IFilesystemSchema = IFilesystemSchema
   >>> plonista.schema = 'plone.app.dexterity.tests.IFilesystemSchema'
   >>> transaction.commit()
-  >>> browser.open('http://nohost/plone/dexterity-types/plonista')
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@fields')
   >>> 'crud-edit.form.buttons.delete' in browser.contents
   False
   >>> 'IRC Nickname' in browser.contents
