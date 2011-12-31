@@ -188,6 +188,57 @@ The new content type has its own factory.
   >>> portal.portal_types.plonista2.factory
   'plonista2'
 
+Validation to prevent duplicate content types
+---------------------------------------------
+
+A new content type cannot be created if its name is the same as an existing
+content type.
+
+  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getControl('Type Name').value = 'foobar'
+  >>> browser.getControl('Short Name').value = 'plonista'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/@@add-type'
+  >>> 'There is already a content type named "plonista"' in browser.contents
+  True
+
+To avoid confusion, the title must also be unique.
+
+  >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getControl('Type Name').value = 'Plonista'
+  >>> browser.getControl('Short Name').value = 'foobar'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/@@add-type'
+  >>> 'There is already a content type named "Plonista"' in browser.contents
+  True
+
+Similar checks are performed when cloning.
+
+  >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl('Clone').click()
+  >>> browser.getControl('Type Name').value = 'foobar'
+  >>> browser.getControl('Short Name').value = 'plonista'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista/@@clone'
+  >>> 'There is already a content type named "plonista"' in browser.contents
+  True
+
+  >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl('Clone').click()
+  >>> browser.getControl('Type Name').value = 'Plonista'
+  >>> browser.getControl('Short Name').value = 'foobar'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista/@@clone'
+  >>> 'There is already a content type named "Plonista"' in browser.contents
+  True
+
 
 Removing a content type
 -----------------------

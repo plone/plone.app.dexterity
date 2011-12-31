@@ -145,7 +145,7 @@ class TypeSchemaContext(SchemaContext):
     fti = None
     schemaName = u''
     schemaEditorView = 'fields'
-
+    
     def browserDefault(self, request):
         return self, ('@@overview',)
 
