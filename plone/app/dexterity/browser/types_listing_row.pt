@@ -4,7 +4,7 @@
 
   <td tal:define="error python:tup[0].error;
                   idx repeat/tup/index"
-      tal:attributes="class python:'field' + (error and ' error' or '')">
+      tal:attributes="class python:'field' + (error and ' error' or '') + (tup[0].__name__ == 'view_item_count' and ' count' or '')">
     <tal:block repeat="widget tup">
 
     <img
