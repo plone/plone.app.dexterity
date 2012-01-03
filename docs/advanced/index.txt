@@ -1,0 +1,23 @@
+Advanced configuration
+=======================
+
+**Further configuration and tips**
+
+.. toctree::
+   :maxdepth: 2
+
+   defaults.txt
+   validators.txt
+   vocabularies.txt
+   references.txt
+   rich-text-markup-transformations.txt
+   files-and-images.txt
+   static-resources.txt
+   behaviours.txt
+   event-handlers.txt
+   permissions.txt
+   workflow.txt
+   catalog-indexing-strategies.txt
+   custom-add-and-edit-forms.txt
+   custom-content-classes.txt
+   webdav-and-other-file-representations.txt

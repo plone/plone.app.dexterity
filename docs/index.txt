@@ -1,0 +1,16 @@
+=======================================================
+Dexterity Developer Manual 
+=======================================================
+
+.. toctree::
+   :maxdepth: 2
+
+   intro.txt
+   designing.txt
+   prerequisite.txt
+   schema-driven-types.txt
+   custom-views.txt
+   advanced/index.txt
+   testing/index.txt
+   reference/index.txt
+

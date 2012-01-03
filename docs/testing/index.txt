@@ -1,0 +1,12 @@
+Testing Dexterity types
+==========================
+
+**Writing unit and integration tests**
+
+.. toctree::
+   :maxdepth: 2
+
+   unit-tests.txt
+   integration-tests.txt
+   mock-testing.txt
+

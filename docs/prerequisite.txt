@@ -1,0 +1,275 @@
+Pre-requisites 
+===============
+
+**Setting up a Dexterity project**
+
+Buildout configuration
+-----------------------
+
+**Setting up a development buildout**
+
+To use Dexterity, you simply need to depend on the *plone.app.dexterity*
+package. You will also need to extend a Dexterity *known good set (KGS)* to make
+sure that you get the right versions of the packages that make up Dexterity.
+The easiest way to achieve this is to use a buildout that pins certain versions.
+
+For a minimal buildout, see the `installation how-to
+<http://plone.org/products/dexterity/documentation/how-to/install>`_. In this
+section, will expand upon this to add some development tools.
+
+To create the buildout, you can start with a standard Plone buildout and modify
+buildout.cfg to looks something like this. You should update the Dexterity and
+Plone versions as appropriate::
+
+    [buildout]
+    extensions = mr.developer buildout.dumppickedversions
+    unzip = true
+    parts = instance omelette zopepy test roadrunner
+    extends = 
+        http://good-py.appspot.com/release/dexterity/1.1?plone=4.1.2
+    versions = versions
+    develop = 
+    # If you're not using mr.developer to manage develop eggs, list eggs here. Globs OK.
+    #    src/*
+    
+    sources = sources
+    auto-checkout =
+        example.conference
+    
+    [instance]
+    recipe = plone.recipe.zope2instance
+    user = admin:admin
+    http-address = 8080
+    debug-mode = on
+    verbose-security = on
+    eggs = 
+        Plone
+        example.conference
+    # development tools
+        plone.reload
+        Products.PDBDebugMode
+    zcml =
+    
+    [omelette]
+    recipe = collective.recipe.omelette
+    eggs = ${instance:eggs}
+    
+    [zopepy]
+    recipe = zc.recipe.egg
+    eggs = ${instance:eggs}
+    interpreter = zopepy
+    scripts = zopepy
+    
+    [test]
+    recipe = zc.recipe.testrunner
+    eggs = 
+        example.conference
+    defaults = ['--exit-with-status', '--auto-color', '--auto-progress']
+    
+    [sources]
+    example.conference = svn https://svn.plone.org/svn/collective/example.conference/trunk
+
+You will see references to a package called *example.conference*. We'll create
+that shortly. Let's first go through and explain the buildout, however.
+
+* We define two buildout extensions, `mr.developer
+  <http://pypi.python.org/pypi/mr.developer>`_, which helps us manage our
+  code, and `buildout.dumppickedversions
+  <http://pypi.python.org/pypi/buildout.dumppickedversions>`_, which helps us keep track of which
+  versions buildout has picked for our dependencies. If you are not familiar
+  with mr.developer, you should read its documentation, in particular the
+  documentation about the ./bin/develop command.
+* We extend the version configuration for release 1.1 of Dexterity, targeted at
+  Plone 4.1.2. You should adjust your Plone version accordingly. This allows
+  Dexterity to update certain packages in Plone. You should check `the Dexterity
+  project page <http://plone.org/products/dexterity>`_ to discover which is the latest version. The known good set URL
+  will give us the latest known good set of Dexterity packages, making it safe
+  to depend on *plone.app.dexterity* in our *example.conference* product. The
+  *versions = versions* line will make buildout use the known good set defined by
+  the extended URLs.
+* We tell *mr.developer* which section contain the sources to our packages with
+  *sources = sources* (the *[sources]* section is at the end of the file). We also
+  tell it to automatically check out and configure our *example.conference*
+  package. This will check out the package form the given version repository
+  URL, put it in src/ and ensure that it is configured as a develop egg.
+* If you don't have a version repository yet, you can just put the egg in the
+  src/ directory. The *develop = src/\** line will pick the egg up from there.
+  **Note**: With mr.developer installed, we comment this out so that we don't get
+  the same egg loaded twice.
+* We configure a standard Zope instance and add two development tools to the
+  *eggs* line:
+    * *Products.PdbDebugMode* will drop to a pdb shell when an exception occurs.
+    * *plone.reload* lets you go to *localhost:8080/@@reload* to reload code.
+      Look at the `plone.reload <http://pypi.python.org/pypi/plone.reload>`_
+      documentation for details
+* We also add the *Plone egg* and our new package.
+* We configure a standard Zope 2 server, which is used by our instance.
+* We configure *collective.recipe.omelette* so that we get a set of links in
+  *parts/omelette* giving access to all the code that is currently used by the
+  instance. If you are on Windows, you will need to install junction.exe for
+  this to work. See the `omelette documentation
+  <http://pypi.python.org/pypi/collective.recipe.omelette>`_ for details.
+* We install a testrunner. This will give us a bin/test command which can use
+  to run our tests. **Note**: Only those eggs listed directly here will be
+  available to the test runner. If you want to run tests for a dependency, you
+  need to list it explicitly under the *eggs* option in the *[test] part*.
+
+With this buildout, and a standard *bootstrap.py* file, you can run the usual
+*python bootstrap.py; ./bin/buildout* sequence to configure Plone and Dexterity.
+Before we do that, though, we need to create the package.
+
+Creating a package
+-------------------
+
+**Setting up a package to house your content types**
+
+Typically, our content types will live in a separate package to our theme and
+other customisations. In the previous section, we showed how our buildout
+refers to a package in the *src/* directory, either placed there manually or
+checked out by *mr.developer*, called *example.conference*. You can find the
+latest version of this package in the `Collective repository
+<https://github.com/collective/example.conference>`_.
+
+To create a new package, we can start with *ZopeSkel* and the *plone*
+template. See `this how-to <http://plone.org/documentation/how-to/use-paster>`_
+for more information on how to install ZopeSkel.
+
+.. note::
+    This documentation shows how to start with the simplest Plone add-on
+    skeleton and adapt it to use with Dexterity. You may prefer to use ZopeSkel
+    with `zopeskel.dexterity <http://plone.org/products/zopeskel.dexterity>`_
+    to create a package skeleton that will be ready for immediate use.
+
+We run the following from the src/ directory:
+    
+.. code-block:: bash
+
+    $ paster create -t plone example.conference
+
+If you are using this template, make sure that you specify a namespace
+*(example)* and package name *(conference)* that matches the egg name
+*(example.conference)* on the command line. Answer *False* when asked to create
+a Zope 2 product, and *False* again when asked if the product is zip-safe.
+
+Next, we will normalise the code created by paster, mainly by removing things
+we don't need.
+
+First, we edit *setup.py* to add *plone.app.dexterity* as a dependency and
+specify the package as a *z3c.autoinclude* plug-in. This ensures that we do not
+need to load its ZCML separately once the package is configured in
+*buildout.cfg* (this feature is enabled in Plone 3.3 and later). We will also
+add a dependency on *collective.autopermission*, which will help us define
+custom permissions later. 
+
+We can remove the paster plugin entry point and paster_plugins line. We will not need these::
+
+    from setuptools import setup, find_packages
+    import os
+    
+    version = '1.0a1'
+    
+    setup(name='example.conference',
+          version=version,
+          description="Example accompanying http://plone.org/products/dexterity/documentation/manual/developers-manual/",
+          long_description=open("README.txt").read() + "\n" +
+                           open(os.path.join("docs", "HISTORY.txt")).read(),
+          # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+          classifiers=[
+            "Framework :: Plone",
+            "Programming Language :: Python",
+            "Topic :: Software Development :: Libraries :: Python Modules",
+            ],
+          keywords='plone dexterity example',
+          author='Martin Aspeli',
+          author_email='optilude@gmail.com',
+          url='http://plone.org/products/dexterity',
+          license='GPL',
+          packages=find_packages(exclude=['ez_setup']),
+          namespace_packages=['example'],
+          include_package_data=True,
+          zip_safe=False,
+          install_requires=[
+              'setuptools',
+              'Plone',
+              'plone.app.dexterity',
+              'collective.autopermission',
+          ],
+          entry_points="""
+          [z3c.autoinclude.plugin]
+          target = plone
+          """,
+          )
+
+
+Next, we edit configure.zcml and add the following:
+
+.. code-block:: html
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:grok="http://namespaces.zope.org/grok"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        i18n_domain="example.conference">
+    
+        <!-- Include configuration for dependencies listed in setup.py -->
+        <includeDependencies package="." />
+    
+        <!-- Grok the package to initialise schema interfaces and content classes -->
+        <grok:grok package="." />
+    
+        <!-- Register an extension profile to make the product installable -->
+        <genericsetup:registerProfile
+            name="default"
+            title="Conference management"
+            description="A Dexterity demo"
+            directory="profiles/default"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+            />
+            
+    </configure>
+
+Here, we first automatically include the ZCML configuration for all
+packages listed under *install\_requires* in *setup.py*. This feature is
+part of *z3c.autoinclude*, which is included with Plone 3.3 and later.
+The alternative would be to manually add a line like *<include
+package=“plone.app.dexterity” />* for each dependency.
+
+Next, we *grok* the package to construct and register schemata, views,
+forms and so on based on conventions used in the various files we will
+add throughout this tutorial.
+
+Finally, we register a GenericSetup profile to make the type
+installable, which we will build up over the next several sections.
+
+The profile requires a directory *profiles/default*. You should create
+the *profiles* directory in the same folder as *configure.zcml*, and
+*default* under that. In *default*, add a file called *metadata.xml*
+with the following contents:
+
+.. code-block:: xml
+
+    <metadata>
+        <version>1</version>
+        <dependencies>
+            <dependency>profile-plone.app.dexterity:default</dependency>
+        </dependencies>
+    </metadata>
+
+This gives the profile a version number (which is different to the
+*package* version set in *setup.py*) in case we need to define upgrade
+steps in the future, and declares that *plone.app.dexterity* should be
+installed when this package is installed. We can add other profiles to
+depend on in the same way if you need to.
+
+With this in place, we should be able to go up to the buildout root and
+run:
+
+.. code-block:: bash
+
+    $ python2.4 bootstrap.py
+    $ ./bin/buildout
+
+The buildout should now configure Plone, Dexterity and the
+*example.conference* package.
+
+We are now ready to start adding types.
