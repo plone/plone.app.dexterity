@@ -1,5 +1,4 @@
 from copy import deepcopy
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as Zope2PageTemplateFile
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapts, getUtilitiesFor
 from zope import schema
@@ -8,9 +7,9 @@ from zope.i18nmessageid import MessageFactory
 from z3c.form import field, form
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
 
-from plone.z3cform.layout import FormWrapper
 from plone.behavior.interfaces import IBehavior
 from plone.app.dexterity.interfaces import ITypeSchemaContext
+from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity import MessageFactory as _
 
 
@@ -45,7 +44,8 @@ class BehaviorConfigurationAdapter(object):
         for b in self.fti.behaviors:
             yield b
 
-class BehaviorsForm(form.EditForm):
+
+class TypeBehaviorsForm(form.EditForm):
 
     template = ViewPageTemplateFile('behaviors.pt')
     label = _(u'Behaviors')
@@ -53,6 +53,7 @@ class BehaviorsForm(form.EditForm):
     successMessage = _(u'Behaviors successfully updated.')
     noChangesMessage = _(u'No changes were made.')
     buttons = deepcopy(form.EditForm.buttons)
+    buttons['apply'].title = PMF(u'Save')
 
     def getContent(self):
         return BehaviorConfigurationAdapter(self.context)
@@ -79,21 +80,7 @@ class BehaviorsForm(form.EditForm):
             f.widgetFactory = SingleCheckBoxFieldWidget
         return fields
 
-    def update(self):
-        self.buttons['apply'].title = PMF(u'Save')
-        form.EditForm.update(self)
 
-class BehaviorsFormPage(FormWrapper):
-    form = BehaviorsForm
-    index = Zope2PageTemplateFile('tabbed_forms.pt')
-    tabs = (
-        (_('Fields'), '@@edit'),
-        (_('Behaviors'), None),
-        )
-
-    @property
-    def label(self):
-        return _('label_behaviors_for',
-                 default=u"Behaviors for ${title} (${name})",
-                 mapping={'title': self.context.Title(),
-                          'name': self.context.__name__})
+class TypeBehaviorsPage(TypeFormLayout):
+    form = TypeBehaviorsForm
+    label = _(u'Behaviors')

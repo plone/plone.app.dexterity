@@ -10,7 +10,7 @@ from plone.app.dexterity.interfaces import ITypeSettings
 class TypeAddForm(form.AddForm):
 
     label = _(u'Add Content Type')
-    fields = field.Fields(ITypeSettings)
+    fields = field.Fields(ITypeSettings).select('title', 'id', 'description', 'container')
     id = 'add-type-form'
 
     def create(self, data):
@@ -18,6 +18,10 @@ class TypeAddForm(form.AddForm):
 
         fti = DexterityFTI(id)
         fti.id = id
+        data['title'] = data['title'].encode('utf8')
+        if data['description']:
+            data['description'] = data['description'].encode('utf8')
+        data['i18n_domain'] = 'plone'
         data['behaviors'] = "\n".join(['plone.app.dexterity.behaviors.metadata.IDublinCore',
                                        'plone.app.content.interfaces.INameFromTitle',
                                        ])

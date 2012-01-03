@@ -88,9 +88,10 @@ schema for the 'plonista' type we just created::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
   >>> browser.getLink('Plonista').click()
+  >>> browser.getLink('Fields').click()
   >>> schemaeditor_url = browser.url
   >>> schemaeditor_url
-  'http://nohost/plone/dexterity-types/plonista'
+  'http://nohost/plone/dexterity-types/plonista/@@fields'
 
 Demonstrate that all the registered field types can be added edited
 and saved.
@@ -155,7 +156,7 @@ least be listed.
   >>> plone.app.dexterity.tests.IFilesystemSchema = IFilesystemSchema
   >>> plonista.schema = 'plone.app.dexterity.tests.IFilesystemSchema'
   >>> transaction.commit()
-  >>> browser.open('http://nohost/plone/dexterity-types/plonista')
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@fields')
   >>> 'crud-edit.form.buttons.delete' in browser.contents
   False
   >>> 'IRC Nickname' in browser.contents
@@ -186,6 +187,57 @@ The new content type has its own factory.
 
   >>> portal.portal_types.plonista2.factory
   'plonista2'
+
+Validation to prevent duplicate content types
+---------------------------------------------
+
+A new content type cannot be created if its name is the same as an existing
+content type.
+
+  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getControl('Type Name').value = 'foobar'
+  >>> browser.getControl('Short Name').value = 'plonista'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/@@add-type'
+  >>> 'There is already a content type named "plonista"' in browser.contents
+  True
+
+To avoid confusion, the title must also be unique.
+
+  >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getControl('Type Name').value = 'Plonista'
+  >>> browser.getControl('Short Name').value = 'foobar'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/@@add-type'
+  >>> 'There is already a content type named "Plonista"' in browser.contents
+  True
+
+Similar checks are performed when cloning.
+
+  >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl('Clone').click()
+  >>> browser.getControl('Type Name').value = 'foobar'
+  >>> browser.getControl('Short Name').value = 'plonista'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista/@@clone'
+  >>> 'There is already a content type named "plonista"' in browser.contents
+  True
+
+  >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl('Clone').click()
+  >>> browser.getControl('Type Name').value = 'Plonista'
+  >>> browser.getControl('Short Name').value = 'foobar'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista/@@clone'
+  >>> 'There is already a content type named "Plonista"' in browser.contents
+  True
 
 
 Removing a content type

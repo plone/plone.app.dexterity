@@ -35,6 +35,12 @@
         provides="..interfaces.ITypeSettings"
         for="plone.dexterity.interfaces.IDexterityFTI"
         />
+    
+    <adapter
+        factory=".types.TypeStatsAdapter"
+        provides="..interfaces.ITypeStats"
+        for="plone.dexterity.interfaces.IDexterityFTI"
+        />
 
     <browser:page
         name="edit"
@@ -50,15 +56,21 @@
         />
     
     <browser:page
-        name="edit"
+        name="overview"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
-        class=".edit_type.TypeEditPage"
+        class=".overview.TypeOverviewPage"
+        permission="plone.schemaeditor.ManageSchemata" />
+    
+    <browser:page
+        name="fields"
+        for="plone.app.dexterity.interfaces.ITypeSchemaContext"
+        class=".fields.TypeFieldsPage"
         permission="plone.schemaeditor.ManageSchemata" />
     
     <browser:page
         name="behaviors"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
-        class=".behaviors.BehaviorsFormPage"
+        class=".behaviors.TypeBehaviorsPage"
         permission="plone.schemaeditor.ManageSchemata" />
 
     <browser:page
