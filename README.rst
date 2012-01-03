@@ -109,7 +109,7 @@ Various documentation is available:
 * `How to create reusable behaviors for Dexterity types`_
 
 .. _`FAQ`: http://plone.org/products/dexterity/documentation/faq
-.. _`Dexterity developer manual`: http://plone.org/products/dexterity/documentation/manual/developer-manual
+.. _`Dexterity developer manual`: http://readthedocs.org/docs/dexterity-developer-manual/en/latest/
 .. _`How to create reusable behaviors for Dexterity types`: http://plone.org/products/dexterity/documentation/manual/behaviors
 
 The following documents are not Dexterity-specific, but will likely be useful
@@ -189,5 +189,6 @@ Dexterity wouldn't be possible without the hard work of a lot of people, includi
 * Matt Yoder
 * Andi Zeidler
 * Hector Velarde
+* Giacomo Spettoli
 
 (Please add your name if we have neglected to.)
