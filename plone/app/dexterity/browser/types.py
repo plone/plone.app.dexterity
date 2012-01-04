@@ -1,7 +1,7 @@
 import urllib
 
-from zExceptions import NotFound
 from OFS.SimpleItem import SimpleItem
+from ZPublisher.BaseRequest import DefaultPublishTraverse
 
 from zope.interface import implements
 from zope.cachedescriptors.property import Lazy as lazy_property
@@ -16,6 +16,7 @@ from plone.z3cform.crud import crud
 from Products.CMFCore.utils import getToolByName
 
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.dexterity.utils import getAdditionalSchemata
 from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext, ITypeSettings
 from plone.app.dexterity.interfaces import ITypeStats
 from plone.app.dexterity.browser.utils import UTF8Property
@@ -163,6 +164,10 @@ class TypeSchemaContext(SchemaContext):
     
     def browserDefault(self, request):
         return self, ('@@overview',)
+    
+    @property
+    def additionalSchemata(self):
+        return getAdditionalSchemata(portal_type=self.fti.getId())
 
 
 class TypesContext(SimpleItem):
@@ -191,7 +196,7 @@ class TypesContext(SimpleItem):
         try:
             fti = getUtility(IDexterityFTI, name=name)
         except ComponentLookupError:
-            raise NotFound
+            return DefaultPublishTraverse(self, request).publishTraverse(request, name)
 
         schema = fti.lookupSchema()
         schema_context = TypeSchemaContext(schema, request, name=name, title=fti.title).__of__(self)
