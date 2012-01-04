@@ -1,0 +1,11 @@
+Form types
+===========
+
+.. toctree::
+   :maxdepth: 2
+   
+   base-forms-and-schema-forms.txt
+   page-forms.txt
+   add-forms.txt
+   edit-forms.txt
+   display-forms.txt

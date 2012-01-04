@@ -14,3 +14,10 @@ Dexterity Developer Manual
    testing/index.txt
    reference/index.txt
 
+Appendixes
+-------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   schema-driven-forms/index.txt

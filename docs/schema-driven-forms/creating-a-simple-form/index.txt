@@ -1,0 +1,10 @@
+Creating a simple form 
+=======================
+
+.. toctree::
+   :maxdepth: 2
+   
+   creating-a-package.txt
+   creating-a-schema.txt
+   creating-the-form-view.txt
+   testing-the-form.txt
