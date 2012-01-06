@@ -21,4 +21,5 @@ Appendixes
    :maxdepth: 1
 
    behaviors/index.txt
+   five-grok/index.txt
    schema-driven-forms/index.txt

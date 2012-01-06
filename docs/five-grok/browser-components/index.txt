@@ -1,0 +1,11 @@
+Browser components 
+==================================================
+
+**Using five.grok to create views, viewlets and resource directories**
+
+.. toctree::
+   :maxdepth: 2
+
+   views.txt
+   viewlets.txt
+   resource-directories.txt

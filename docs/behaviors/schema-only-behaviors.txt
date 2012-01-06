@@ -129,7 +129,8 @@ The possible disadvantages are:
    loading the entire BLOB or Btree, so the memory overhead does not
    occur unless the whole BLOB or BTree is actually used.
 
-“The moral of this story? BTrees do not always make things more
-efficient!” ~ Laurence Rowe
+.. note::
+    “The moral of this story? BTrees do not always make things more
+    efficient!” ~ Laurence Rowe
 
 .. _zope.annotation: http://pypi.python.org/pypi/zope.annotation
