@@ -13,7 +13,7 @@ here, though, since we are only interested in the behavior.
 
 First, there are a few dependencies in *setup.py*:
 
-::
+.. code-block:: python
 
           install_requires=[
               ...,
@@ -34,7 +34,7 @@ Next, we have *behaviors.zcml*, which is included from *configure.zcml*
 and contains all necessary configuration to set up the behaviors. It
 looks like this:
 
-::
+.. code-block:: xml
 
     <configure
         xmlns="http://namespaces.zope.org/zope"

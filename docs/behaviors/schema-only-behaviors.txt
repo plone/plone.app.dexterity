@@ -25,7 +25,7 @@ values, which are eventually stored in annotations.
 
 We’ve already seen an example of this factory:
 
-::
+.. code-block:: xml
 
         <plone:behavior
             title="Reviewers"
@@ -54,7 +54,7 @@ on the content object.
 As an example, here’s the standard *IRelatedItems* behavior from
 *plone.app.dexerity*:
 
-::
+.. code-block:: xml
 
         <plone:behavior
             title="Related items"

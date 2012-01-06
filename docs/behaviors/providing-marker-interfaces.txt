@@ -34,7 +34,7 @@ In the first case, where the behavior interface and the marker interface
 are the same, you can simply use the *<plone:behavior />*directive
 without a *factory*. For example:
 
-::
+.. code-block:: xml
 
         <plone:behavior
             title="Pony viewlet"
@@ -67,7 +67,7 @@ well as a custom indexer that lists the reviewers.
 
 The ZCML registration looks like this:
 
-::
+.. code-block:: xml
 
         <plone:behavior
             title="Reviewers"
@@ -85,7 +85,7 @@ factory in this example.
 
 This whole package is grokked, so in *configure.zcml* we have:
 
-::
+.. code-block:: xml
 
         <grok:grok package="." />
 
