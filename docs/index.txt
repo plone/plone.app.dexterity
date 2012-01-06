@@ -20,4 +20,5 @@ Appendixes
 .. toctree::
    :maxdepth: 1
 
+   behaviors/index.txt
    schema-driven-forms/index.txt

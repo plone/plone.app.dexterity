@@ -1,0 +1,14 @@
+Behaviors 
+==========
+
+**How to create re-usable behaviors for Dexterity types**
+
+.. toctree::
+   :maxdepth: 2
+
+   intro.txt
+   behavior-basics.txt
+   creating-and-registering-behaviors.txt
+   providing-marker-interfaces.txt
+   schema-only-behaviors.txt
+   testing-behaviors.txt

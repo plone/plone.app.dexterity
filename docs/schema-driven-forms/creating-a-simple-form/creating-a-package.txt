@@ -92,7 +92,7 @@ This will:
 
 -  Include the configuration of the packages we have listed in the
    *install\_requires* line in *setup.py*. This saves us from manually
-   including them with individual ZCML *<include />*statements.
+   including them with individual ZCML *<include />* statements.
 -  “Grok” the package, to configure the forms we will add. See the
    `five.grok manual`_ for more details.
 -  Create an installation profile that will install this package and its

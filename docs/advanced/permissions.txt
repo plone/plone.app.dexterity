@@ -295,7 +295,7 @@ given field appears on a type’s add and edit forms.
 In both cases, read and write permissions are annotated onto the schema
 using directives similar to those we’ve already seen for form widget
 hints. The *read\_permission()* and *write\_permission()* directives are
-found in the `plone.directives.dexterity`_package.
+found in the `plone.directives.dexterity`_ package.
 
 As an example, let’s add a field for *Session* reviewers to record the
 track for a session. We’ll store the vocabulary of available tracks on

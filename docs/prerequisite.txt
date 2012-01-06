@@ -98,6 +98,7 @@ that shortly. Let's first go through and explain the buildout, however.
   the same egg loaded twice.
 * We configure a standard Zope instance and add two development tools to the
   *eggs* line:
+
     * *Products.PdbDebugMode* will drop to a pdb shell when an exception occurs.
     * *plone.reload* lets you go to *localhost:8080/@@reload* to reload code.
       Look at the `plone.reload <http://pypi.python.org/pypi/plone.reload>`_
