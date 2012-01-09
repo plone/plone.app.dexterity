@@ -1,7 +1,7 @@
 Integration tests
 =================
 
-**Writing integration tests with PloneTestCase**
+**Writing integration tests with plone.app.testing**
 
 We’ll now add some integration tests for our type. These should ensure
 that the package installs cleanly, and that our custom types are addable
@@ -20,64 +20,94 @@ another. If two test cases in the same test run use two different layers
 with a common ancestral layer, the ancestral layer is only set up and
 torn down once.
 
-We’ll use `collective.testcaselayer`_ to write and manage layers. We
-need to depend on this, so in *setup.py*, we have:
+`plone.app.testing`_ provides tools for writing integration and functional
+tests for code that runs on top of Plone, so we’ll use it.
+
+In *setup.py*, we will add the extras_require option, like so:
 
 ::
 
-          install_requires=[
-              ...
-              'collective.testcaselayer',
-          ],
+          extras_require = {
+            'test': ['plone.app.testing']
+          },
 
 .. note::
     Don’t forget to re-run buildout after making changes to *setup.py*.
 
-We then add our own layer to *tests/layer.py*:
+*plone.app.testing* includes a set of layers that set up fixtures containing a
+Plone site, intended for writing integration and functional tests.
+
+We need to create a custom fixture, the usual pattern is to create a new layer
+class that has PLONE_FIXTURE as its default base, instantiating that as a
+separate "fixture" layer. This layer is not to be used in tests directly,
+since it won't have test/transaction lifecycle management, but represents a
+shared fixture, potentially for both functional and integration testing. It is
+also the point of extension for other layers that follow the same pattern.
+
+Once this fixture has been defined, "end-user" layers can be defined using the
+IntegrationTesting and FunctionalTesting classes. We’ll add this in a
+*testing.py* file:
 
 ::
 
-    from Products.PloneTestCase import ptc
-    import collective.testcaselayer.ptc
+    from plone.app.testing import PloneSandboxLayer
+    from plone.app.testing import PLONE_FIXTURE
+    from plone.app.testing import IntegrationTesting
+    from plone.app.testing import FunctionalTesting
 
-    ptc.setupPloneSite()
+    class Fixture(PloneSandboxLayer):
 
-    class IntegrationTestLayer(collective.testcaselayer.ptc.BasePTCLayer):
+        defaultBases = (PLONE_FIXTURE,)
 
-        def afterSetUp(self):
+        def setUpZope(self, app, configurationContext):
+            # Load ZCML
+            import example.conference
+            self.loadZCML(package=example.conference)
+
+        def setUpPloneSite(self, portal):
             # Install the example.conference product
-            self.addProfile('example.conference:default')
+            self.applyProfile(portal, 'example.conference:default')
 
-    Layer = IntegrationTestLayer([collective.testcaselayer.ptc.ptc_layer])
+
+    FIXTURE = Fixture()
+    INTEGRATION_TESTING = IntegrationTesting(
+        bases=(FIXTURE,),
+        name='example.conference:Integration',
+        )
+    FUNCTIONAL_TESTING = FunctionalTesting(
+        bases=(FIXTURE,),
+        name='example.conference:Functional',
+        )
 
 This extends a base layer that sets up Plone, and adds some custom layer
 setup for our package, in this case installing the *example.conference*
 extension profile. We could also perform additional setup here, such as
 creating some initial content or setting the default roles for the test
-run. See the *collective.testcaselayer* documentation for more details.
+run. See the *plone.app.testing* documentation for more details.
 
-To use the layer, we can create a new test case based on *PloneTestCase*
+To use the layer, we can create a new test case based on *unittest.TestCase*
 that uses our layer. We’ll add one to *test\_program.py* first. (In the
 code snippet below, the unit test we created previously has been removed
 to conserve space.)
 
 ::
 
-    import unittest
+    import unittest2 as unittest
 
     from zope.component import createObject
     from zope.component import queryUtility
 
+    from plone.app.testing import TEST_USER_ID
+    from plone.app.testing import setRoles
+
     from plone.dexterity.interfaces import IDexterityFTI
 
-    from Products.PloneTestCase.ptc import PloneTestCase
-    from example.conference.tests.layer import Layer
-
     from example.conference.program import IProgram
+    from example.conference.testing import INTEGRATION_TESTING
 
-    class TestProgramIntegration(PloneTestCase):
+    class TestProgramIntegration(unittest.TestCase):
 
-        layer = Layer
+        layer = INTEGRATION_TESTING
 
         def test_adding(self):
             self.folder.invokeFactory('example.conference.program', 'program1')
@@ -144,7 +174,7 @@ interface.
 
 There are some important things to note about this test case:
 
--  We extend *PloneTestCase*, which means we have access to a full Plone
+-  We extend *unittest.TestCase*, which means we have access to a full Plone
    integration test environment. See the `testing tutorial`_ for more
    details.
 -  We set the *layer* attribute to our custom layer. This means that all
@@ -181,22 +211,23 @@ the *Session* type:
 
 ::
 
-    import unittest
+    import unittest2 as unittest
 
     from zope.component import createObject
     from zope.component import queryUtility
 
-    from plone.dexterity.interfaces import IDexterityFTI
+    from plone.app.testing import TEST_USER_ID
+    from plone.app.testing import setRoles
 
-    from Products.PloneTestCase.ptc import PloneTestCase
-    from example.conference.tests.layer import Layer
+    from plone.dexterity.interfaces import IDexterityFTI
 
     from example.conference.session import ISession
     from example.conference.session import possible_tracks
+    from example.conference.testing import INTEGRATION_TESTING
 
-    class TestSessionIntegration(PloneTestCase):
+    class TestSessionIntegration(unittest.TestCase):
 
-        layer = Layer
+        layer = INTEGRATION_TESTING
 
         def test_adding(self):
 
@@ -265,21 +296,22 @@ And in *tests/test\_presenter.py*, we test the *Presenter* type:
 
 ::
 
-    import unittest
+    import unittest2 as unittest
 
     from zope.component import createObject
     from zope.component import queryUtility
 
+    from plone.app.testing import TEST_USER_ID
+    from plone.app.testing import setRoles
+
     from plone.dexterity.interfaces import IDexterityFTI
 
-    from Products.PloneTestCase.ptc import PloneTestCase
-    from example.conference.tests.layer import Layer
-
     from example.conference.presenter import IPresenter
+    from example.conference.testing import INTEGRATION_TESTING
 
-    class TestPresenterIntegration(PloneTestCase):
+    class TestPresenterIntegration(unittest.TestCase):
 
-        layer = Layer
+        layer = INTEGRATION_TESTING
 
         def test_adding(self):
             self.folder.invokeFactory('example.conference.presenter', 'presenter1')
@@ -306,6 +338,10 @@ And in *tests/test\_presenter.py*, we test the *Presenter* type:
 
 Faster tests with Roadrunner
 ----------------------------
+
+.. note::
+    Roadrunner development halted in 2009. The following is only useful if you
+    are using Plone 3.x.
 
 You will have noticed that running unit tests was much quicker than
 running integration tests. That is unfortunate, but to be expected: the
