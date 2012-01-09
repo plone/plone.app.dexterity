@@ -109,6 +109,13 @@ to conserve space.)
 
         layer = INTEGRATION_TESTING
 
+        def setUp(self):
+            self.portal = self.layer['portal']
+            setRoles(self.portal, TEST_USER_ID, ['Manager'])
+            self.portal.invokeFactory('Folder', 'test-folder')
+            setRoles(self.portal, TEST_USER_ID, ['Member'])
+            self.folder = self.portal['test-folder']
+
         def test_adding(self):
             self.folder.invokeFactory('example.conference.program', 'program1')
             p1 = self.folder['program1']
@@ -180,6 +187,9 @@ There are some important things to note about this test case:
 -  We set the *layer* attribute to our custom layer. This means that all
    tests in our test case will have the *example.conference:default*
    profile installed.
+-  We need to create a test user's member folder as self.folder because
+   *plone.app.testing* takes a minimalist approach and no content is available
+   by default.
 -  We test that the content is addable (here, as a normal member in
    their member folder, since that is the default security context for
    the test - use *self.setRoles([‘Manager’])* to get the *Manager* role
@@ -228,6 +238,13 @@ the *Session* type:
     class TestSessionIntegration(unittest.TestCase):
 
         layer = INTEGRATION_TESTING
+
+        def setUp(self):
+            self.portal = self.layer['portal']
+            setRoles(self.portal, TEST_USER_ID, ['Manager'])
+            self.portal.invokeFactory('Folder', 'test-folder')
+            setRoles(self.portal, TEST_USER_ID, ['Member'])
+            self.folder = self.portal['test-folder']
 
         def test_adding(self):
 
@@ -312,6 +329,13 @@ And in *tests/test\_presenter.py*, we test the *Presenter* type:
     class TestPresenterIntegration(unittest.TestCase):
 
         layer = INTEGRATION_TESTING
+
+        def setUp(self):
+            self.portal = self.layer['portal']
+            setRoles(self.portal, TEST_USER_ID, ['Manager'])
+            self.portal.invokeFactory('Folder', 'test-folder')
+            setRoles(self.portal, TEST_USER_ID, ['Member'])
+            self.folder = self.portal['test-folder']
 
         def test_adding(self):
             self.folder.invokeFactory('example.conference.presenter', 'presenter1')
