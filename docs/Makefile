@@ -19,6 +19,7 @@ help:
 	@echo "  dirhtml   to make HTML files named index.html in directories"
 	@echo "  pickle    to make pickle files"
 	@echo "  json      to make JSON files"
+	@echo "  locales   to make POT files"
 	@echo "  htmlhelp  to make HTML files and a HTML help project"
 	@echo "  qthelp    to make HTML files and a qthelp project"
 	@echo "  latex     to make LaTeX files, you can set PAPER=a4 or PAPER=letter"
@@ -88,6 +89,11 @@ doctest:
 	      "results in _build/doctest/output.txt."
 
 epub:
-	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) __build/epub
+	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) _build/epub
 	@echo
-	@echo "Build finished. The epub file is in __build/epub."
+	@echo "Build finished. The epub file is in _build/pot."
+
+locales:
+	$(SPHINXBUILD) -b gettext $(ALLSPHINXOPTS) locales
+	@echo
+	@echo "Build finished. The *.pot files are in locales."
