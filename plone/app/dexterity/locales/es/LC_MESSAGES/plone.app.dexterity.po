@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
 "POT-Creation-Date: 2011-11-08 22:34+0000\n"
-"PO-Revision-Date: 2011-11-28 00:20-0600\n"
+"PO-Revision-Date: 2012-02-01 16:22-0400\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -227,7 +227,7 @@ msgstr "Personas responsables de la creación del contenido de este elemento. Po
 #. Default: "A short summary of the content."
 #: ../behaviors/metadata.py:32
 msgid "help_description"
-msgstr "Resumen"
+msgstr "Un breve resumen del contenido."
 
 #. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
 #: ../behaviors/metadata.py:82
@@ -282,7 +282,7 @@ msgstr "Creadores"
 #. Default: "Description"
 #: ../behaviors/metadata.py:31
 msgid "label_description"
-msgstr "Usado en listados de elementos y resultados de búsquedas."
+msgstr "Descripción"
 
 #. Default: "Publishing Date"
 #: ../behaviors/metadata.py:81
