@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: plone.app.dexterity\n"
 "POT-Creation-Date: 2011-11-08 22:34+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2012-02-09 18:16+0100\n"
+"Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
+"Language-Team: eu <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,299 +18,299 @@ msgstr ""
 
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
-msgstr ""
+msgstr "Elementu-mota gehitu"
 
 #: ../browser/types_listing.pt:68
 msgid "Add New Content Type…"
-msgstr ""
+msgstr "Elementu-mota berria gehitu"
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
-msgstr ""
+msgstr "Dublin Core metadatuen eremuak gehitu (Oinarrizko metadatuak + Kategorizazioa + Argitaratze-tartea + Jabetza)"
 
 msgid "Adds a title and description"
-msgstr ""
+msgstr "Izenburua eta deskribapena gehitu"
 
 msgid "Adds creator, contributor, and rights fields"
-msgstr ""
+msgstr "Sortzaileak, parte-hartzaileak eta eskubideen eremuak"
 
 msgid "Adds keywords and language setting"
-msgstr ""
+msgstr "Etiketak eta hizkuntzaren eremua gehitu"
 
 msgid "Allow items to have next previous navigation enabled"
-msgstr ""
+msgstr "Elementuak \"aurrekoa-hurrengoa\" nabigazioa izatea aktibatu"
 
 msgid "Assign an effective and/or expiration date"
-msgstr ""
+msgstr "Argitaratze- eta iraungitze-daten eremuak gehitu"
 
 msgid "Automatically generate short URL name for content based on its initial title"
-msgstr ""
+msgstr "Elementuaren helbidea izenburutik sortu"
 
 msgid "Automatically generate short URL name for content based on its primary field file name"
-msgstr ""
+msgstr "Elementuaren helbidea fitxategi-eremuan dagoen fitxategiaren izenaren arabera sortu"
 
 msgid "Basic metadata"
-msgstr ""
+msgstr "Oinarrizko metadatuak"
 
 #: ../browser/behaviors.py:45
 #: ../browser/edit_type.py:19
 msgid "Behaviors"
-msgstr ""
+msgstr "Portaerak"
 
 #: ../browser/behaviors.py:47
 msgid "Behaviors successfully updated."
-msgstr ""
+msgstr "Portaerak ondo eguneratu dira."
 
 #: ../behaviors/metadata.py:48
 msgid "Categorization"
-msgstr ""
+msgstr "Kategorizazioa"
 
 #: ../browser/types.py:40
 msgid "Clone"
-msgstr ""
+msgstr "Klonatu"
 
 #: ../browser/clone_type.py:11
 msgid "Clone Content Type"
-msgstr ""
+msgstr "Elementu-mota klonatu"
 
 #: ../interfaces.py:54
 msgid "Container"
-msgstr ""
+msgstr "Edukiontzia"
 
 #: ../behaviors/metadata.py:76
 msgid "Dates"
-msgstr ""
+msgstr "Datak"
 
 #: ../interfaces.py:49
 msgid "Description"
-msgstr ""
+msgstr "Deskribapena"
 
 #: ../browser/types.py:169
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
-msgstr ""
+msgstr "Dexterity elementu-motak"
 
 #: ../browser/types.py:146
 msgid "Dexterity content types"
-msgstr ""
+msgstr "Dexterity elementu-motak"
 
 msgid "Dublin Core metadata"
-msgstr ""
+msgstr "Dublin Core metadatuak"
 
 msgid "Effective range"
-msgstr ""
+msgstr "Argitaratze-tartea"
 
 msgid "Enable next previous navigation for all items of this type"
-msgstr ""
+msgstr "Elementuak \"aurrekoa-hurrengoa\" nabigazioa izatea aktibatu"
 
 msgid "Exclude From navigation"
-msgstr ""
+msgstr "Nabigaziotik baztertu"
 
 #: ../browser/types.py:65
 msgid "Export Schema Models"
-msgstr ""
+msgstr "Eskema modeloak esportatu"
 
 #: ../browser/types.py:53
 msgid "Export Type Profiles"
-msgstr ""
+msgstr "Moten profilak esportatu"
 
 #: ../browser/behaviors.py:84
 #: ../browser/edit_type.py:18
 msgid "Fields"
-msgstr ""
+msgstr "Eremuak"
 
 #: ../interfaces.py:55
 msgid "Items of this type will be able to contain other items."
-msgstr ""
+msgstr "Elementu-mota honetara beste elementu batzuk gehitu daitezke"
 
 msgid "Name from file name"
-msgstr ""
+msgstr "Izena fitxategiaren izenetik"
 
 msgid "Name from title"
-msgstr ""
+msgstr "Izena izenburutik"
 
 msgid "Navigation root"
-msgstr ""
+msgstr "Nabigaziorako erroa"
 
 msgid "Next previous navigation"
-msgstr ""
+msgstr "Aurrekoa/Hurrengoa nabigazioa"
 
 msgid "Next previous navigation toggle"
-msgstr ""
+msgstr "Aurrekoa/Hurrengoa nabigazioa aukera"
 
 #: ../browser/behaviors.py:48
 msgid "No changes were made."
-msgstr ""
+msgstr "Ez da aldaketarik egin."
 
 #: ../behaviors/metadata.py:104
 msgid "Ownership"
-msgstr ""
+msgstr "Jabetza"
 
 #: ../browser/types.py:45
 msgid "Please select a single type to clone."
-msgstr ""
+msgstr "Klonatzeko elementu bakarra aukeratu."
 
 #: ../browser/types.py:51
 msgid "Please select a type to clone."
-msgstr ""
+msgstr "Klonatzeko elementua aukeratu."
 
 #: ../browser/types.py:58
 msgid "Please select types to export."
-msgstr ""
+msgstr "Esportatu beharreko elementu-motak aukeratu."
 
 #: ../interfaces.py:22
 msgid "Please use only letters, numbers, and the following characters: .-_"
-msgstr ""
+msgstr "Hizkiak, zenbakiak eta ., - edo _ karaktereak bakarrik erabili"
 
 #: ../browser/behaviors.py:77
 msgid "Save"
-msgstr ""
+msgstr "Gorde"
 
 #: ../browser/behaviors.py:46
 msgid "Select the behaviors to enable for this content type."
-msgstr ""
+msgstr "Elementu-mota honi aktibatuko zaizkion portaerak aukeratu."
 
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
-msgstr ""
+msgstr "Ezarpenak"
 
 #: ../interfaces.py:42
 msgid "Short Name"
-msgstr ""
+msgstr "Izen-laburra"
 
 #: ../browser/types.py:112
 msgid "The following custom content types are available for your site."
-msgstr ""
+msgstr "Zure atarian elementu-mota hauek daude"
 
 #: ../interfaces.py:38
 msgid "Type Name"
-msgstr ""
+msgstr "Elementu-motaren izena"
 
 #: ../browser/add_type.py:44
 msgid "Type added successfully."
-msgstr ""
+msgstr "Elementu-mota ondo gehitu da."
 
 #: ../browser/clone_type.py:28
 msgid "Type cloned successfully."
-msgstr ""
+msgstr "Elementu-mota ondo klonatu da."
 
 #: ../interfaces.py:43
 msgid "Used for programmatic access to the type."
-msgstr ""
+msgstr "Elementu-mota programaziotik erabiltzeko."
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:115
 msgid "help_addcontenttype_button"
-msgstr ""
+msgstr "Egin klik \"Elementu-mota gehitu\" botoian elementu-mota berri bat sortzen hasteko."
 
 #. Default: "Also known as keywords, tags or labels, these help you categorize your content."
 #: ../behaviors/metadata.py:54
 msgid "help_categories"
-msgstr ""
+msgstr "Elementuak sailkatzeko erabiltzen dira etiketak"
 
 #. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
 #: ../behaviors/metadata.py:122
 msgid "help_contributors"
-msgstr ""
+msgstr "Elementu honetan lagundu duten pertsonen izenak. Laguntzaile bakoitza lerro desberdin batean egon beharko litzateke."
 
 #. Default: "Copyright statement or other rights information on this item."
 #: ../behaviors/metadata.py:134
 msgid "help_copyrights"
-msgstr ""
+msgstr "Elementu honen Copyrighta."
 
 #. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
 #: ../behaviors/metadata.py:110
 msgid "help_creators"
-msgstr ""
+msgstr "Elementu honen edukia sortzearen arduradunak. Erabiltzaile izenen zerrenda bat sartu, bat lerro bakoitzeko. Egile nagusia lehenengo etorri beharko litzateke."
 
 #. Default: "A short summary of the content."
 #: ../behaviors/metadata.py:32
 msgid "help_description"
-msgstr ""
+msgstr "Elementuaren deskribapen laburra."
 
 #. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
 #: ../behaviors/metadata.py:82
 msgid "help_effective_date"
-msgstr ""
+msgstr "Elementua argitaratuko den data. Datarik ezarri ezean elementua berehala argitaratuko da."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
 #: ../behaviors/exclfromnav.py:18
 msgid "help_exclude_from_nav"
-msgstr ""
+msgstr "Hautatu badago, elementu hau ez da nabigazio zuhaitzean agertuko"
 
 #. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
 #: ../behaviors/metadata.py:90
 msgid "help_expiration_date"
-msgstr ""
+msgstr "Elementua iraungiko den data. Esandako egunean elementua automatikoki ezkutatuko da. Datarik ezarri ezean, ez da inoiz iraungiko."
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:32
 msgid "help_nextprevious"
-msgstr ""
+msgstr "Honek, karpeta honen edukientzat aurrekoak/hurrengoak estekak aktibatzen ditu."
 
 #. Default: "&laquo; Back to ${parentname}"
 #: ../browser/tabbed_forms.pt:17
 msgid "label_back_to"
-msgstr ""
+msgstr "$laquo; ${parentname}ra itzuli"
 
 #. Default: "Behaviors for ${title} (${name})"
 #: ../browser/behaviors.py:90
 msgid "label_behaviors_for"
-msgstr ""
+msgstr "${title}ren (${name}) portaerak"
 
 #. Default: "Categories"
 #: ../behaviors/metadata.py:53
 msgid "label_categories"
-msgstr ""
+msgstr "Etiketak"
 
 #. Default: "Contributors"
 #: ../behaviors/metadata.py:121
 msgid "label_contributors"
-msgstr ""
+msgstr "Parte hartzaileak "
 
 #. Default: "Rights"
 #: ../behaviors/metadata.py:133
 msgid "label_copyrights"
-msgstr ""
+msgstr "Eskubideak"
 
 #. Default: "Creators"
 #: ../behaviors/metadata.py:109
 msgid "label_creators"
-msgstr ""
+msgstr "Sortzaileak"
 
 #. Default: "Description"
 #: ../behaviors/metadata.py:31
 msgid "label_description"
-msgstr ""
+msgstr "Deskribapena"
 
 #. Default: "Publishing Date"
 #: ../behaviors/metadata.py:81
 msgid "label_effective_date"
-msgstr ""
+msgstr "Argitaratze data "
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
-msgstr ""
+msgstr "Nabigaziotik baztertu "
 
 #. Default: "Expiration Date"
 #: ../behaviors/metadata.py:89
 msgid "label_expiration_date"
-msgstr ""
+msgstr "Iraungitze-data "
 
 #. Default: "Language"
 #: ../behaviors/metadata.py:62
 msgid "label_language"
-msgstr ""
+msgstr "Hizkuntza"
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
 msgid "label_nextprevious"
-msgstr ""
+msgstr "Aurreko/hurrengoetarako nabigazioa aktibatu "
 
 #. Default: "Title"
 #: ../behaviors/metadata.py:26
 msgid "label_title"
-msgstr ""
+msgstr "Izenburua"
 
