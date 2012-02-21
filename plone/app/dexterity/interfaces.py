@@ -1,8 +1,11 @@
 import re
-from zope.interface import Interface, Attribute
+from Acquisition import aq_base
+from zope.interface import Interface, Attribute, Invalid
 from zope.publisher.interfaces.browser import IBrowserPage
 from zope import schema
+from z3c.form import validator
 from plone.app.dexterity import MessageFactory as _
+from Products.CMFCore.utils import getToolByName
 
 
 class ITypesContext(IBrowserPage):
@@ -56,3 +59,33 @@ class ITypeSettings(Interface):
         required = True,
         default = False,
         )
+
+
+class TypeIdValidator(validator.SimpleFieldValidator):
+
+    def validate(self, value):
+        super(TypeIdValidator, self).validate(value)
+
+        ttool = getToolByName(self.context, 'portal_types')
+        if value in ttool.objectIds():
+            raise Invalid(_(u'There is already a content type named "${name}"',
+                          mapping={'name': value}))
+
+validator.WidgetValidatorDiscriminators(TypeIdValidator, field=ITypeSettings['id'])
+
+
+class TypeTitleValidator(validator.SimpleFieldValidator):
+
+    def validate(self, value):
+        super(TypeTitleValidator, self).validate(value)
+
+        ttool = getToolByName(self.context, 'portal_types')
+        for existing_fti in ttool.objectValues():
+            if aq_base(existing_fti) is aq_base(self.context):
+                continue
+
+            if existing_fti.Title() == value:
+                raise Invalid(_(u'There is already a content type named "${name}"',
+                              mapping={'name': value}))
+
+validator.WidgetValidatorDiscriminators(TypeTitleValidator, field=ITypeSettings['title'])

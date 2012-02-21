@@ -64,5 +64,8 @@
         for="plone.dexterity.interfaces.IDexterityFTI
              Products.GenericSetup.interfaces.ISetupEnviron"
         />
+    
+    <adapter factory=".interfaces.TypeIdValidator" />
+    <adapter factory=".interfaces.TypeTitleValidator" />
 
 </configure>
