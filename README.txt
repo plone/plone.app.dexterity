@@ -178,8 +178,11 @@ Dexterity wouldn't be possible without the hard work of a lot of people, includi
 * Jian Aijun
 * Wichert Akkerman
 * Jonas Baumann
+* JC Brand
 * David Brenneman
+* Thomas Buchberger
 * Joel Burton
+* Roche Compaan
 * Vincent Fretin
 * Rok Garbas
 * Anthony Gerrard
@@ -191,12 +194,16 @@ Dexterity wouldn't be possible without the hard work of a lot of people, includi
 * Jim Fulton
 * Jamie Lentin
 * Alex Limi
+* Marco Martinez
 * Steve McMahon
 * Jason Mehring
 * Alec Mitchell
 * Daniel Nouri
 * Ross Patterson
+* Franco Pellegrini
+* Martijn Pieters
 * Maurits van Rees
+* Johannes Raggam
 * Lennart Regebro
 * Laurence Rowe
 * Israel Saeta Perez
@@ -204,14 +211,15 @@ Dexterity wouldn't be possible without the hard work of a lot of people, includi
 * Christian Schneider
 * Carsten Senger
 * Jon Stahl
+* Carsten Senger
 * Eric Steele
 * Gaudenz Steinlin
 * Dorneles Tremea
 * Sean Upton
+* Hector Velarde
 * Sylvain Viollon
 * Matthew Wilkes
 * Matt Yoder
 * Andi Zeidler
-* Hector Velarde
 
 (Please add your name if we have neglected to.)
