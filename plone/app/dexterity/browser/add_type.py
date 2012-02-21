@@ -16,7 +16,6 @@ class TypeAddForm(form.AddForm):
 
     def create(self, data):
         id = data.pop('id')
-        # XXX validation
 
         fti = DexterityFTI(id)
         fti.id = id
@@ -36,7 +35,6 @@ class TypeAddForm(form.AddForm):
             icon = 'folder_icon'
         else:
             icon = 'document_icon'
-        # XXX should probably copy icons into p.a.d and use them from here
         if PLONE40:
             data['icon_expr'] = 'string:${portal_url}/' + icon + '.png'
         data['content_icon'] = icon + '.gif'
