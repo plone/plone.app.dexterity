@@ -94,7 +94,8 @@ class TypeSettingsAdapter(object):
     def description(self):
         description = self.context.description
         if not isinstance(description, unicode):
-            return description.decode('utf8')
+            description = description.decode('utf8')
+        return description
     
     @property
     def container(self):
