@@ -36,8 +36,12 @@ plone.app.dexterity 1.2
 - Add intro message to Dexterity control panel.
   [jonstahl, davisagli]
 
-plone.dexterity 1.1.1
+plone.dexterity 1.1.2
 ~~~~~~~~~~~~~~~~~~~~~
+
+* Fix UnicodeDecodeError when getting an FTI title or description with
+  non-ASCII characters.
+  [davisagli]
 
 * When deleting items from a container using manage_delObjects,
   check for the "DeleteObjects" permission on each item being

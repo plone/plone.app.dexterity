@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.1.1dev'
+version = '1.2'
 
 setup(name='plone.app.dexterity',
       version=version,
@@ -40,7 +40,7 @@ setup(name='plone.app.dexterity',
           'plone.autoform >=1.0b3dev-r34689',
           'plone.behavior>=1.0b5',
           'plone.contentrules',
-          'plone.dexterity >= 1.1',
+          'plone.dexterity >= 1.1.2',
           'plone.directives.form>=1.0b7dev-r34690',
           'plone.directives.dexterity',
           'plone.formwidget.autocomplete >= 1.2.0',
@@ -63,6 +63,7 @@ setup(name='plone.app.dexterity',
       extras_require = {
           'grok': [],
           'relations': [],
+          'test': [],
       },
       entry_points="""
       [z3c.autoinclude.plugin]
