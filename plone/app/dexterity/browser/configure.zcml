@@ -56,6 +56,12 @@
         provides="..interfaces.ITypeSettings"
         for="plone.dexterity.interfaces.IDexterityFTI"
         />
+    
+    <adapter
+        factory=".types.TypeStatsAdapter"
+        provides="..interfaces.ITypeStats"
+        for="plone.dexterity.interfaces.IDexterityFTI"
+        />
 
     <browser:page
         name="edit"

@@ -59,6 +59,13 @@ class ITypeSettings(Interface):
         required = True,
         default = False,
         )
+    
+
+class ITypeStats(Interface):
+    
+    item_count = schema.Int(
+        title = _(u'# of items'),
+        )
 
 
 class TypeIdValidator(validator.SimpleFieldValidator):

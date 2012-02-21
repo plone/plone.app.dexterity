@@ -11,7 +11,7 @@ from plone.app.dexterity import PLONE40
 class TypeAddForm(form.AddForm):
 
     label = _(u'Add Content Type')
-    fields = field.Fields(ITypeSettings)
+    fields = field.Fields(ITypeSettings).select('title', 'id', 'description', 'container')
     id = 'add-type-form'
 
     def create(self, data):

@@ -17,6 +17,8 @@ from Products.CMFCore.utils import getToolByName
 
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext, ITypeSettings
+from plone.app.dexterity.interfaces import ITypeStats
+
 from plone.schemaeditor.browser.schema.traversal import SchemaContext
 
 from plone.app.dexterity import MessageFactory as _
@@ -102,6 +104,20 @@ class TypeSettingsAdapter(object):
         return self.context.container
 
 
+class TypeStatsAdapter(object):
+    implements(ITypeStats)
+    adapts(IDexterityFTI)
+    
+    def __init__(self, context):
+        self.context = context
+    
+    @property
+    def item_count(self):
+        catalog = getToolByName(self.context, 'portal_catalog')
+        lengths = dict(catalog.Indexes['portal_type'].uniqueValues(withLengths=True))
+        return lengths.get(self.context.getId(), 0)
+
+
 class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.
     """
@@ -116,7 +132,7 @@ class TypesListing(crud.CrudForm):
                      u' a new custom content type.')
     
     template = ViewPageTemplateFile('types_listing.pt')
-    view_schema = field.Fields(ITypeSettings).select('title', 'description')
+    view_schema = field.Fields(ITypeSettings).select('title', 'description') + field.Fields(ITypeStats)
     addform_factory = crud.NullForm
     editform_factory = TypeEditForm
     
