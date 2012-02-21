@@ -104,6 +104,12 @@ class TypesListing(crud.CrudForm):
     """ The combined content type edit + add forms.
     """
     
+    description = _(
+        u'The Dexterity Content Types control panels lets you create and edit '
+        u'custom content types for your Plone site.  Click the "Add Content '
+        u'Type" button to begin creating a new content type.'
+        )
+    
     template = ViewPageTemplateFile('types_listing.pt')
     view_schema = field.Fields(ITypeSettings).select('title', 'description')
     addform_factory = crud.NullForm
@@ -133,7 +139,7 @@ class TypesListing(crud.CrudForm):
             return '%s/%s' % (self.context.absolute_url(), item.__name__)
 
 # Create a form wrapper so the form gets layout.
-TypesListingPage = layout.wrap_form(TypesListing, label=u'Dexterity content types')
+TypesListingPage = layout.wrap_form(TypesListing, label=_(u'Dexterity content types'))
 
 
 class TypeSchemaContext(SchemaContext):
@@ -156,7 +162,7 @@ class TypesContext(SimpleItem):
         
         # make sure that breadcrumbs will be correct
         self.id = None
-        self.Title = lambda: u'Dexterity Content Types'
+        self.Title = lambda: _(u'Dexterity Content Types')
         
         # turn off green edit border for anything in the type control panel
         request.set('disable_border', 1)
