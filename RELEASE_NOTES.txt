@@ -9,11 +9,32 @@ Changes
 
 The following packages have been updated since Dexterity 1.1:
 
-plone.app.dexterity 1.1.1
-~~~~~~~~~~~~~~~~~~~~~~~~~
+plone.app.dexterity 1.2
+~~~~~~~~~~~~~~~~~~~~~~~
 
-- Upgraded dependencies.
+- Give a more explicit warning before deleting content types that have existing
+  instances.
   [davisagli]
+
+- Add validation to prevent giving a type the same name as an existing type.
+  [davisagli]
+
+- Make sure the title and description of new FTIs are stored encoded,
+  and with a default i18n domain of 'plone'.
+  [davisagli]
+
+- Install the profile from collective.z3cform.datetimewidget to enable the
+  Jquery Tools date picker for date/time fields.
+  [davisagli]
+
+- Bugfix: Make sure type short names are validated.
+  [davisagli]
+
+- Bugfix: Fix display of type descriptions in the types control panel.
+  [davisagli]
+
+- Add intro message to Dexterity control panel.
+  [jonstahl, davisagli]
 
 plone.dexterity 1.1.1
 ~~~~~~~~~~~~~~~~~~~~~
