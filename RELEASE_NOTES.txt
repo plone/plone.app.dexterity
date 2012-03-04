@@ -9,8 +9,11 @@ Changes
 
 The following packages have been updated since Dexterity 1.1:
 
-plone.app.dexterity 1.2
-~~~~~~~~~~~~~~~~~~~~~~~
+plone.app.dexterity 1.2 & 1.2.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add missing upgrade description to restore Plone 3 compatibility.
+  [davisagli]
 
 - Give a more explicit warning before deleting content types that have existing
   instances.
