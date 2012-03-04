@@ -51,6 +51,7 @@
     source="5"
     destination="6"
     title="Install JQuery Tools date picker resources"
+    description=""
     profile="plone.app.dexterity:default"
     handler=".to6.install_datepicker_profile"
     />

@@ -4,6 +4,9 @@ Changelog for plone.app.dexterity
 1.2.1 - unreleased
 ------------------
 
+- Add missing upgrade description to restore Plone 3 compatibility.
+  [davisagli]
+
 1.2 - 2012-12-20
 ----------------
 
