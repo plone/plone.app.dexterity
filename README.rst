@@ -36,7 +36,7 @@ Reuse over reinvention
 Small over big
   Mega-frameworks be damned. Dexterity consists of a number of specialised
   packages, each of which is independently tested and reusable. Furthermore, 
-  packages should has as few dependencies as possible, and should declare their
+  packages should have as few dependencies as possible, and should declare their
   dependencies explicitly. This helps keep the design clean and the code 
   manageable.
 
