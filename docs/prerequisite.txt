@@ -18,7 +18,7 @@ For a minimal buildout, see the `installation how-to
 section, will expand upon this to add some development tools.
 
 To create the buildout, you can start with a standard Plone buildout and modify
-buildout.cfg to looks something like this. You should update the Dexterity and
+buildout.cfg to look something like this. You should update the Dexterity and
 Plone versions as appropriate::
 
     [buildout]
