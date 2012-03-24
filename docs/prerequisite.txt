@@ -90,7 +90,7 @@ that shortly. Let's first go through and explain the buildout, however.
 * We tell *mr.developer* which section contain the sources to our packages with
   *sources = sources* (the *[sources]* section is at the end of the file). We also
   tell it to automatically check out and configure our *example.conference*
-  package. This will check out the package form the given version repository
+  package. This will check out the package from the given version repository
   URL, put it in src/ and ensure that it is configured as a develop egg.
 * If you don't have a version repository yet, you can just put the egg in the
   src/ directory. The *develop = src/\** line will pick the egg up from there.
