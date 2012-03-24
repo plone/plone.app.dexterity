@@ -110,7 +110,7 @@ that shortly. Let's first go through and explain the buildout, however.
   instance. If you are on Windows, you will need to install junction.exe for
   this to work. See the `omelette documentation
   <http://pypi.python.org/pypi/collective.recipe.omelette>`_ for details.
-* We install a testrunner. This will give us a bin/test command which can use
+* We install a testrunner. This will give us a bin/test command which we can use
   to run our tests. **Note**: Only those eggs listed directly here will be
   available to the test runner. If you want to run tests for a dependency, you
   need to list it explicitly under the *eggs* option in the *[test] part*.
