@@ -8,7 +8,7 @@ The schema
 
 **Writing a schema for the type**
 
-A simple Dexterity types consists of a schema and an FTI (Factory Type
+A simple Dexterity type consists of a schema and an FTI (Factory Type
 Information, the object configured in *portal\_types* in the ZMI). We’ll
 create the schemata here, and the FTI on the next page.
 
