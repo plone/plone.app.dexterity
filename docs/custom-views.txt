@@ -13,7 +13,7 @@ widgets from *z3c.form*, much like the add and edit forms use the edit
 widgets. This is functional, but not very attractive. Most types will
 need one or more custom view templates.
 
-Dexterity types are no different to any other content type in Plone. You
+Dexterity types are no different from any other content type in Plone. You
 can register a view for your schema interface, and it will be available
 on your type. If the view is named *view*, it will be the default view,
 at least if you use the standard FTI configuration. This is because the
@@ -153,7 +153,7 @@ contained within the program.
 
     Notice how the *details RichText* field is output as
     *tal:content=“structure context/details/output”*. The *structure*
-    keyword ensure the rendered HTML is not escaped. The extra traversal to
+    keyword ensures the rendered HTML is not escaped. The extra traversal to
     *details/output* is necessary because the *RichText* field actually
     stores a *RichTextValue* object that contains not only the raw text as
     entered by the user, but also a MIME type (e.g. *text/html*) and the
@@ -226,7 +226,7 @@ example to invoke transforms or re-use more complex HTML.
 
 To do this, you can use a *display form*. This is really just a view
 base class that knows about the schema of a type. We will use an example
-in *session.py*, with a template in*session\_templates/view.pt.*
+in *session.py*, with a template in *session\_templates/view.pt.*
 
 .. note ::
 
