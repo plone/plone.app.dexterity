@@ -4,7 +4,7 @@ Validators
 **Creating custom validators for your type**
 
 Many applications require some form of data entry validation. The
-simplest form of validation you get for free – the *z3c.form* library
+simplest form of validation you get for free – the `z3c.form`_ library
 ensures that all data entered on Dexterity add and edit forms is valid
 for the field type.
 
@@ -12,17 +12,25 @@ It is also possible to set certain properties on the fields to add
 further validation (or even create your own fields with custom
 validation logic, although that is a lot less common). These properties
 are set as parameters to the field constructor when the schema interface
-is created. You should see the *zope.schema* package for details, but
+is created. You should see the `zope.schema`_ package for details, but
 the most common constraints are:
 
--  *required=True/False*, to make a field required or optional
--  *min* and *max*, used for *Int*, *Float*, *Datetime*, *Date*, and
-   *Timedelta* fields, specify the minimum and maximum (inclusive)
-   allowed values of the given type
--  *min\_length* and *max\_length*, used for collection fields *(Tuple,
-   List, Set, Frozenset, Dict)* and text fields *(Bytes, BytesLine,
-   ASCII, ASCIILine, Text, TextLine)*, set the minimum and maximum
-   (inclusive) length of a field
+``required=True/False``
+    to make a field required or optional;
+
+``min`` and ``max``
+    used for ``Int``, ``Float``, ``Datetime``, ``Date``, and ``Timedelta``
+    fields, specify the minimum and maximum (inclusive) allowed values of
+    the given type;
+
+``min_length`` and ``max_length``
+    used for collection fields (``Tuple``, ``List``, ``Set``, ``Frozenset``,
+    ``Dict``) and text fields (``Bytes``, ``BytesLine``, ``ASCII``,
+    ``ASCIILine``, ``Text``, ``TextLine``), set the minimum and maximum
+    (inclusive) length of a field.
+
+.. _zope.schema: http://pypi.python.org/pypi/zope.schema
+
 
 Constraints
 ~~~~~~~~~~~
@@ -30,7 +38,7 @@ Constraints
 If this does not suffice, you can pass your own constraint function to a
 field. The constraint function should take a single argument: the value
 that is to be validated. This will be of the field’s type. The function
-should return a boolean True or False.
+should return a boolean ``True`` or ``False``.
 
 ::
 
@@ -41,19 +49,17 @@ should return a boolean True or False.
 
    Hint: The constraint function does not have access to the context, but
    if you need to acquire a tool, you can use the
-   *zope.app.component.hooks.getSite()* method to obtain the site root
+   ``zope.app.component.hooks.getSite()`` method to obtain the site root.
 
-To use the constraint, pass the function as the *constraint* argument to
-the field constructor, e.g.:
+To use the constraint, pass the function as the ``constraint`` argument to
+the field constructor, e.g.::
 
-::
-
-        my_field = schema.TextLine(title=_(u"My field"), constraint=checkForMagic)
+    my_field = schema.TextLine(title=_(u"My field"), constraint=checkForMagic)
 
 Constraints are easy to write, but do not necessarily produce very
 friendly error messages. It is however possible to customise these error
-messages using *z3c.form* error view snippets. See the `z3c.form
-documentation <http://docs.zope.org/z3c.form>`_ for more details.
+messages using `z3c.form`_ error view snippets. See the `z3c.form
+documentation <z3c.form>`_ for more details.
 
 Invariants
 ~~~~~~~~~~~~
@@ -64,10 +70,8 @@ an invariant. Invariants use exceptions to signal errors, which are
 displayed at the top of the form rather than next to a particular field.
 
 To illustrate an invariant, let’s make sure that the start date of a
-*Program* is before the end date. In *program.py*, we add the following.
-Code not relevant to this example is snipped with an ellipsis (…):
-
-::
+`Program` is before the end date. In `program.py`, we add the following.
+Code not relevant to this example is snipped with an ellipsis (…)::
 
     ...
 
@@ -103,6 +107,8 @@ Code not relevant to this example is snipped with an ellipsis (…):
 Form validators
 ~~~~~~~~~~~~~~~
 
-Finally, you can write more powerful validators by using the *z3c.form*
-widget validators. See `the z3c.form documentation for details <http://docs.zope.org/z3c.form>`_.
+Finally, you can write more powerful validators by using the `z3c.form`_
+widget validators. See :ref:`the z3c.form documentation <z3c.form>`_ for
+details.
 
+.. _z3c.form: http://pypi.python.org/pypi/z3c.form
