@@ -1,4 +1,4 @@
-Integration tests 
+Integration tests
 =================
 
 **Writing integration tests with plone.app.testing**
