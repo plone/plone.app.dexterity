@@ -19,12 +19,12 @@ plone.app.content (normally this would be done via Generic Setup)::
 Now let's fire up the browser and confirm that new content gets renamed
 appropriately::
 
-  >>> from plone.app.testing import TEST_USER_ID, TEST_USER_PASSWORD, setRoles
+  >>> from plone.app.testing import TEST_USER_ID, TEST_USER_NAME, TEST_USER_PASSWORD, setRoles
   >>> setRoles(portal, TEST_USER_ID, ['Manager'])
   >>> import transaction; transaction.commit()
   >>> from plone.testing.z2 import Browser
   >>> browser = Browser(layer['app'])
-  >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_ID, TEST_USER_PASSWORD,))
+  >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_NAME, TEST_USER_PASSWORD,))
 
   >>> browser.open('http://nohost/plone/++add++dinosaur')
   >>> browser.getControl('Title').value = 'Brachiosaurus'
