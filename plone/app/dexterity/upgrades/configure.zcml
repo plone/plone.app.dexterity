@@ -44,4 +44,12 @@
     handler=".to2002.install_datepicker_profile"
     />
 
+  <genericsetup:upgradeStep
+    source="2002"
+    destination="2003"
+    title="Make sure uninstalling products won't destroy the intid catalog"
+    profile="plone.app.dexterity:default"
+    handler=".to2003.fix_installed_products"
+    />
+
 </configure>
