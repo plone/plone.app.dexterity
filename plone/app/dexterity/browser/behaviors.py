@@ -1,5 +1,5 @@
 from copy import deepcopy
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapts, getUtilitiesFor
 from zope import schema
 from zope.i18nmessageid import MessageFactory

@@ -7,7 +7,7 @@ from zope.interface import implements
 from zope.cachedescriptors.property import Lazy as lazy_property
 from zope.component import adapts, getAllUtilitiesRegisteredFor, getUtility, ComponentLookupError
 from zope.publisher.interfaces.browser import IBrowserPublisher
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 
 from z3c.form import field, button
 from plone.z3cform import layout
