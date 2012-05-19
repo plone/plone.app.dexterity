@@ -38,6 +38,7 @@ setup(name='plone.app.dexterity',
           'plone.rfc822',
           'plone.schemaeditor >=1.0',
           # Plone/Zope core
+          'lxml',
           'plone.app.content',
           'plone.app.layout',
           'plone.app.uuid',

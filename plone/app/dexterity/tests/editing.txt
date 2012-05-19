@@ -334,9 +334,9 @@ zip archive containing files ready to drop into our profile::
     ['types.xml', 'types/plonista2.xml', 'types/plonista-folder.xml']
 
     >>> types_xml = archive.read('types.xml')
-    >>> '<object meta_type="Dexterity FTI" name="plonista2" />' in types_xml
+    >>> '<object name="plonista2" meta_type="Dexterity FTI"/>' in types_xml
     True
-    >>> '<object meta_type="Dexterity FTI" name="plonista-folder" />' in types_xml
+    >>> '<object name="plonista-folder" meta_type="Dexterity FTI"/>' in types_xml
     True
 
 Try out the models export button. We should be able to select our types from
@@ -363,7 +363,7 @@ zip archive containing supermodel xml files::
     ['models/plonista2.xml', 'models/plonista-folder.xml']
 
     >>> print archive.read('models/plonista2.xml')
-    <model xmlns="http://namespaces.plone.org/supermodel/schema">
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
       <schema>
       ...
       </schema>
@@ -385,7 +385,7 @@ file::
     'attachment; filename=plonista2.xml'
 
     >>> print browser.contents
-    <model xmlns="http://namespaces.plone.org/supermodel/schema">
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
       <schema>
       ...
       </schema>

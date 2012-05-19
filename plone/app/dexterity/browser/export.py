@@ -5,7 +5,7 @@
 import time
 from StringIO import StringIO
 from zipfile import ZipFile
-from elementtree import ElementTree
+from lxml import etree
 
 from Products.CMFCore.utils import getToolByName
 
@@ -42,7 +42,7 @@ class SelectiveZipExportContext(TarballExportContext):
             # Remove all the types except our targets.
             # Strategy: suck into ElementTree element, remove nodes,
             # convert back to text, prettify.
-            root = ElementTree.fromstring(text)
+            root = etree.fromstring(text)
             todelete = []
             for element in root.getchildren():
                 name = element.attrib['name']
@@ -51,9 +51,9 @@ class SelectiveZipExportContext(TarballExportContext):
             for element in todelete:
                 root.remove(element)
             # Add a marker for ZopeSkel additions
-            root.append(ElementTree.Comment('-*- extra stuff goes here -*-'))
+            root.append(etree.Comment('-*- extra stuff goes here -*-'))
             # minor prettifying
-            text = '<?xml version="1.0"?>\n%s' % ElementTree.tostring(root)
+            text = '<?xml version="1.0"?>\n%s' % etree.tostring(root)
             text = text.replace('<!--', ' <!--')
             text = text.replace('-->', '-->\n')
 
