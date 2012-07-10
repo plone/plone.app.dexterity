@@ -1,6 +1,5 @@
 <tal:root>
 <script type="text/javascript" charset="utf-8">
-// <![CDATA[
 (function($){
 $(document).ready(function() {
 
@@ -58,7 +57,6 @@ $(document).ready(function() {
     });
 });
 })(jQuery);
-// ]]>
 </script>
 
 <dl class="portalMessage"
