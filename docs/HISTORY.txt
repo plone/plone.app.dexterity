@@ -99,6 +99,9 @@ Changelog for plone.app.dexterity
 - Update dependencies and imports as appropriate for Zope 2.12 & Zope 2.13
   [davisagli]
 
+- Remove CDATA section from "browser\types_listing.pt" (in HTML5: allowed only in SVG/MathML namespaces).
+  [kleist]
+
 1.0 - 2011-05-20
 ----------------
 
