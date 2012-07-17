@@ -21,8 +21,8 @@ options = SimpleVocabulary([
 class IAllowDiscussion(model.Schema):
 
     model.fieldset(
-        'discussion',
-        label=_(u"Discussion"),
+        'settings',
+        label=_(u"Settings"),
         fields=['allow_discussion'],
         )
 
