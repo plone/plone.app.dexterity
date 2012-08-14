@@ -165,4 +165,4 @@ here. The important things to note are:
 
 .. _the one for plone.autoform: http://good-py.appspot.com/release/plone.autoform
 .. _five.grok manual: /products/dexterity/documentation/manual/five.grok
-.. _buildout manual: /documentation/manual/developer-manual/managing-projects-with-buildout
+.. _buildout manual: http://collective-docs.readthedocs.org/en/latest/buildout/index.html
