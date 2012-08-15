@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2011-11-08 22:34+0000\n"
 "PO-Revision-Date: 2011-05-20 15:13+0800\n"
-"Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
+"Last-Translator: retsu <retsuyam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -17,299 +17,299 @@ msgstr ""
 
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
-msgstr ""
+msgstr "コンテンツタイプを追加"
 
 #: ../browser/types_listing.pt:68
 msgid "Add New Content Type…"
-msgstr ""
+msgstr "新しいコンテンツタイプを追加..."
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
-msgstr ""
+msgstr "ダブリンコアメタデータフィールド（基本メタデータ＋カテゴリ＋有効期間＋所有権）"
 
 msgid "Adds a title and description"
-msgstr ""
+msgstr "タイトルと説明を追加"
 
 msgid "Adds creator, contributor, and rights fields"
-msgstr ""
+msgstr "作者、貢献者、権利といったフィールドを追加"
 
 msgid "Adds keywords and language setting"
-msgstr ""
+msgstr "キーワードと言語設定を追加"
 
 msgid "Allow items to have next previous navigation enabled"
-msgstr ""
+msgstr "アイテムについて、次・前ナビゲーションを有効にする"
 
 msgid "Assign an effective and/or expiration date"
-msgstr ""
+msgstr "有効日付または満了日付を割り当てる"
 
 msgid "Automatically generate short URL name for content based on its initial title"
-msgstr ""
+msgstr "コンテンツの最初のタイトルを基にして、コンテンツの短いURL名を自動生成する"
 
 msgid "Automatically generate short URL name for content based on its primary field file name"
-msgstr ""
+msgstr "コンテンツの主要フィールドファイル名を基にして、コンテンツの短いURL名を自動生成する"
 
 msgid "Basic metadata"
-msgstr ""
+msgstr "基本メタデータ"
 
 #: ../browser/behaviors.py:45
 #: ../browser/edit_type.py:19
 msgid "Behaviors"
-msgstr ""
+msgstr "振る舞い"
 
 #: ../browser/behaviors.py:47
 msgid "Behaviors successfully updated."
-msgstr ""
+msgstr "振る舞いが更新されました"
 
 #: ../behaviors/metadata.py:48
 msgid "Categorization"
-msgstr ""
+msgstr "カテゴリ"
 
 #: ../browser/types.py:40
 msgid "Clone"
-msgstr ""
+msgstr "複製"
 
 #: ../browser/clone_type.py:11
 msgid "Clone Content Type"
-msgstr ""
+msgstr "コンテンツタイプを複製する"
 
 #: ../interfaces.py:54
 msgid "Container"
-msgstr ""
+msgstr "コンテナ"
 
 #: ../behaviors/metadata.py:76
 msgid "Dates"
-msgstr ""
+msgstr "日付"
 
 #: ../interfaces.py:49
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: ../browser/types.py:169
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
-msgstr ""
+msgstr "Dexterityコンテンツタイプ"
 
 #: ../browser/types.py:146
 msgid "Dexterity content types"
-msgstr ""
+msgstr "Dexterityコンテンツタイプ"
 
 msgid "Dublin Core metadata"
-msgstr ""
+msgstr "ダブリンコアメタデータ"
 
 msgid "Effective range"
-msgstr ""
+msgstr "有効期間"
 
 msgid "Enable next previous navigation for all items of this type"
-msgstr ""
+msgstr "このタイプのアイテムについて、次・前ナビゲーションを有効にする"
 
 msgid "Exclude From navigation"
-msgstr ""
+msgstr "ナビゲーションから除外する"
 
 #: ../browser/types.py:65
 msgid "Export Schema Models"
-msgstr ""
+msgstr "スキーマモデルをエクポート"
 
 #: ../browser/types.py:53
 msgid "Export Type Profiles"
-msgstr ""
+msgstr "タイププロファイルをエクスポート"
 
 #: ../browser/behaviors.py:84
 #: ../browser/edit_type.py:18
 msgid "Fields"
-msgstr ""
+msgstr "フィールド"
 
 #: ../interfaces.py:55
 msgid "Items of this type will be able to contain other items."
-msgstr ""
+msgstr "このタイプのアイテムは、他のアイテムを含めることができます"
 
 msgid "Name from file name"
-msgstr ""
+msgstr "ファイル名からの名前"
 
 msgid "Name from title"
-msgstr ""
+msgstr "タイトルからの名前"
 
 msgid "Navigation root"
-msgstr ""
+msgstr "ナビゲーションルート"
 
 msgid "Next previous navigation"
-msgstr ""
+msgstr "次・前ナビゲーション"
 
 msgid "Next previous navigation toggle"
-msgstr ""
+msgstr "次・前ナビゲーションのトグル"
 
 #: ../browser/behaviors.py:48
 msgid "No changes were made."
-msgstr ""
+msgstr "何も変更されていません"
 
 #: ../behaviors/metadata.py:104
 msgid "Ownership"
-msgstr ""
+msgstr "所有権"
 
 #: ../browser/types.py:45
 msgid "Please select a single type to clone."
-msgstr ""
+msgstr "複製するタイプをひとつ選んでください"
 
 #: ../browser/types.py:51
 msgid "Please select a type to clone."
-msgstr ""
+msgstr "複製するタイプをひとつ選んでください"
 
 #: ../browser/types.py:58
 msgid "Please select types to export."
-msgstr ""
+msgstr "エクスポートするタイプを選んでください（複数選択可）"
 
 #: ../interfaces.py:22
 msgid "Please use only letters, numbers, and the following characters: .-_"
-msgstr ""
+msgstr "文字、数字、記号 \".\", \"-\", \"_\" だけを使うようにしてください"
 
 #: ../browser/behaviors.py:77
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: ../browser/behaviors.py:46
 msgid "Select the behaviors to enable for this content type."
-msgstr ""
+msgstr "このコンテンツタイプに対して有効にする振る舞いを選んでください"
 
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: ../interfaces.py:42
 msgid "Short Name"
-msgstr ""
+msgstr "ショートネーム"
 
 #: ../browser/types.py:112
 msgid "The following custom content types are available for your site."
-msgstr ""
+msgstr "次のカスタムコンテンツタイプがあなたのサイトで利用できます"
 
 #: ../interfaces.py:38
 msgid "Type Name"
-msgstr ""
+msgstr "タイプ名"
 
 #: ../browser/add_type.py:44
 msgid "Type added successfully."
-msgstr ""
+msgstr "タイプが追加されました"
 
 #: ../browser/clone_type.py:28
 msgid "Type cloned successfully."
-msgstr ""
+msgstr "タイプが複製されました"
 
 #: ../interfaces.py:43
 msgid "Used for programmatic access to the type."
-msgstr ""
+msgstr "プログラム的にタイプにアクセスするのに使われます"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:115
 msgid "help_addcontenttype_button"
-msgstr ""
+msgstr "新しいカスタムコンテンツタイプを作り始めるには、「コンテンツタイプを追加」ボタンをクリックします"
 
 #. Default: "Also known as keywords, tags or labels, these help you categorize your content."
 #: ../behaviors/metadata.py:54
 msgid "help_categories"
-msgstr ""
+msgstr "キーワード、タグ、ラベルのように自分のコンテンツをカテゴライズするときに助けとなるもの"
 
 #. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
 #: ../behaviors/metadata.py:122
 msgid "help_contributors"
-msgstr ""
+msgstr "このアイテムの作成に貢献した人達の名前。１行に１人分を入力"
 
 #. Default: "Copyright statement or other rights information on this item."
 #: ../behaviors/metadata.py:134
 msgid "help_copyrights"
-msgstr ""
+msgstr "このアイテムに関する著作権や他の権利情報"
 
 #. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
 #: ../behaviors/metadata.py:110
 msgid "help_creators"
-msgstr ""
+msgstr "このアイテムのコンテンツ作成の責任者。１行に１人分を入力し、筆頭者は先頭に記載してください"
 
 #. Default: "A short summary of the content."
 #: ../behaviors/metadata.py:32
 msgid "help_description"
-msgstr ""
+msgstr "コンテンツの短いサマリー"
 
 #. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
 #: ../behaviors/metadata.py:82
 msgid "help_effective_date"
-msgstr ""
+msgstr "日付が未来の場合は、その日付になってからリストや検索結果に表示されます"
 
 #. Default: "If selected, this item will not appear in the navigation tree"
 #: ../behaviors/exclfromnav.py:18
 msgid "help_exclude_from_nav"
-msgstr ""
+msgstr "選ばれると、このアイテムはナビゲーションツリーに現れなくなります"
 
 #. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
 #: ../behaviors/metadata.py:90
 msgid "help_expiration_date"
-msgstr ""
+msgstr "この指定した日になると、コンテンツはリストや検索結果などに表示されなくなります"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:32
 msgid "help_nextprevious"
-msgstr ""
+msgstr "このフォルダに含まれるコンテンツアイテムについて、次・前ウィジェットを有効にします。"
 
 #. Default: "&laquo; Back to ${parentname}"
 #: ../browser/tabbed_forms.pt:17
 msgid "label_back_to"
-msgstr ""
+msgstr "&laquo; ${parentname} へ戻る"
 
 #. Default: "Behaviors for ${title} (${name})"
 #: ../browser/behaviors.py:90
 msgid "label_behaviors_for"
-msgstr ""
+msgstr "${title} (${name}) の振る舞い"
 
 #. Default: "Categories"
 #: ../behaviors/metadata.py:53
 msgid "label_categories"
-msgstr ""
+msgstr "カテゴリ"
 
 #. Default: "Contributors"
 #: ../behaviors/metadata.py:121
 msgid "label_contributors"
-msgstr ""
+msgstr "寄稿・貢献者"
 
 #. Default: "Rights"
 #: ../behaviors/metadata.py:133
 msgid "label_copyrights"
-msgstr ""
+msgstr "権利表示"
 
 #. Default: "Creators"
 #: ../behaviors/metadata.py:109
 msgid "label_creators"
-msgstr ""
+msgstr "作成者"
 
 #. Default: "Description"
 #: ../behaviors/metadata.py:31
 msgid "label_description"
-msgstr ""
+msgstr "説明"
 
 #. Default: "Publishing Date"
 #: ../behaviors/metadata.py:81
 msgid "label_effective_date"
-msgstr ""
+msgstr "公開日"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
-msgstr ""
+msgstr "ナビゲーションから除外"
 
 #. Default: "Expiration Date"
 #: ../behaviors/metadata.py:89
 msgid "label_expiration_date"
-msgstr ""
+msgstr "終了日"
 
 #. Default: "Language"
 #: ../behaviors/metadata.py:62
 msgid "label_language"
-msgstr ""
+msgstr "言語"
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
 msgid "label_nextprevious"
-msgstr ""
+msgstr "次・前ナビゲーションを有効化"
 
 #. Default: "Title"
 #: ../behaviors/metadata.py:26
 msgid "label_title"
-msgstr ""
+msgstr "タイトル"
 
