@@ -10,7 +10,7 @@ Grok-style configuration no longer included by default
 
 Dexterity 1.0 included ``five.grok`` to allow configuring components via
 Python directives rather than in separate XML-based ZCML files.  It also
-included two packages, ``plone.directives.form`` and 
+included two packages, ``plone.directives.form`` and
 ``plone.directives.dexterity``, to provide some grok-style directives for
 Dexterity-specific features.
 
@@ -20,18 +20,18 @@ so that Dexterity has a chance to enter Plone core even if the Plone framework
 team doesn't want to add grok to the already complex stack.
 
 To include these three grok-related packages when you install Dexterity,
-enable the "grok" extra:
+enable the "grok" extra::
 
   [instance]
   eggs =
       plone.app.dexterity [grok]
 
-By the way, a number of schema directives from ``plone.directives.form`` that 
-used to require grok to work have been reimplemented so that they work without 
-grok. In particular, the ``Schema`` class and the ``model``, ``fieldset``, 
-and ``primary`` directives were moved to ``plone.supermodel.model``. The 
-``omitted``, ``no_omit``, ``mode``, ``widget``, ``order_before``, 
-``order_after``, ``read_permission``, and ``write_permission`` directives were 
+By the way, a number of schema directives from ``plone.directives.form`` that
+used to require grok to work have been reimplemented so that they work without
+grok. In particular, the ``Schema`` class and the ``model``, ``fieldset``,
+and ``primary`` directives were moved to ``plone.supermodel.model``. The
+``omitted``, ``no_omit``, ``mode``, ``widget``, ``order_before``,
+``order_after``, ``read_permission``, and ``write_permission`` directives were
 moved to ``plone.autoform.directives``.  There are aliases in the old locations
 so you don't need to update existing code, but you can switch to the new
 locations if you're trying to avoid depending on grok.
@@ -48,8 +48,8 @@ Since this feature was added to Dexterity, we discovered that it will be hard
 to support this type of relation well in Zope 2 until Zope 2 is setting
 __parent__ pointers everywhere. In addition, we encountered some problems with
 using interfaces as keys in the zc.relation catalog. And Dexterity gained
-support for the Archetypes reference engine in 
-``plone.app.referenceablebehavior``. As a result of these factors, the 
+support for the Archetypes reference engine in
+``plone.app.referenceablebehavior``. As a result of these factors, the
 zc.relation approach to object relationships will not be included in Dexterity or Plone core for the time being.
 
 VERY IMPORTANT: If you are upgrading a site with Dexterity 1.0 to Dexterity
@@ -83,7 +83,7 @@ And install its GenericSetup profile as a dependency in your package's metadata.
     <dependency>profile-plone.app.relationfield:default</dependency>
   </dependencies>
 
-If you have any content types using the IRelatedItems behavior, you should 
+If you have any content types using the IRelatedItems behavior, you should
 update them to import the behavior from the new location::
 
   <property name="behaviors">
