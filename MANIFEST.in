@@ -1,6 +1,6 @@
 include *.txt
 
 recursive-include docs *
-recursive-include plone/app/dexterity/locales *
+recursive-include plone *
 
 global-exclude *.pyc
