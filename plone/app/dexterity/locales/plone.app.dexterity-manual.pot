@@ -77,13 +77,13 @@ msgstr ""
 msgid "Enable next previous navigation for all items of this type"
 msgstr ""
 
-msgid ""
+msgid "Configures various components needed for full Dexterity support."
 msgstr ""
 
-msgid ""
+msgid "Allow items to be excluded from navigation"
 msgstr ""
 
-msgid ""
+msgid "Make all items of this type a navigation root"
 msgstr ""
 
 msgid ""

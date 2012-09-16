@@ -75,7 +75,7 @@ class TypeIdValidator(validator.SimpleFieldValidator):
 
         ttool = getToolByName(self.context, 'portal_types')
         if value in ttool.objectIds():
-            raise Invalid(_(u'There is already a content type named "${name}"',
+            raise Invalid(_(u"There is already a content type named '${name}'",
                           mapping={'name': value}))
 
 validator.WidgetValidatorDiscriminators(TypeIdValidator, field=ITypeSettings['id'])
@@ -92,7 +92,7 @@ class TypeTitleValidator(validator.SimpleFieldValidator):
                 continue
 
             if existing_fti.Title() == value:
-                raise Invalid(_(u'There is already a content type named "${name}"',
+                raise Invalid(_(u"There is already a content type named '${name}'",
                               mapping={'name': value}))
 
 validator.WidgetValidatorDiscriminators(TypeTitleValidator, field=ITypeSettings['title'])

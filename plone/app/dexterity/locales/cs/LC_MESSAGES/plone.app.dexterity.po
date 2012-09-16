@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dexterity\n"
-"POT-Creation-Date: 2011-11-08 22:34+0000\n"
+"POT-Creation-Date: 2012-09-16 23:18+0000\n"
 "PO-Revision-Date: 2011-09-16 10:23+0100\n"
 "Last-Translator: Radim Novotny <novotny.radim@gmail.com>\n"
 "Language-Team: Czech <info@dms4u.cz>\n"
@@ -14,11 +14,15 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.dexterity\n"
 
+#: ../interfaces.py:67
+msgid "# of items"
+msgstr ""
+
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
 msgstr "Přidat typ obsahu"
 
-#: ../browser/types_listing.pt:68
+#: ../browser/types_listing.pt:75
 msgid "Add New Content Type…"
 msgstr ""
 
@@ -32,6 +36,9 @@ msgid "Adds creator, contributor, and rights fields"
 msgstr ""
 
 msgid "Adds keywords and language setting"
+msgstr ""
+
+msgid "Allow items to be excluded from navigation"
 msgstr ""
 
 msgid "Allow items to have next previous navigation enabled"
@@ -49,20 +56,16 @@ msgstr ""
 msgid "Basic metadata"
 msgstr ""
 
-#: ../browser/behaviors.py:45
-#: ../browser/edit_type.py:19
+#: ../browser/behaviors.py:51
+#: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr ""
 
-#: ../browser/behaviors.py:47
+#: ../browser/behaviors.py:53
 msgid "Behaviors successfully updated."
 msgstr ""
 
-#: ../behaviors/metadata.py:48
-msgid "Categorization"
-msgstr "Kategorizace"
-
-#: ../browser/types.py:40
+#: ../browser/types.py:43
 msgid "Clone"
 msgstr "Duplikovat"
 
@@ -70,25 +73,24 @@ msgstr "Duplikovat"
 msgid "Clone Content Type"
 msgstr "Duplikovat typ obsahu"
 
-#: ../interfaces.py:54
+msgid "Configures various components needed for full Dexterity support."
+msgstr ""
+
+#: ../interfaces.py:57
 msgid "Container"
 msgstr ""
 
-#: ../behaviors/metadata.py:76
-msgid "Dates"
-msgstr "Datumy"
-
-#: ../interfaces.py:49
+#: ../interfaces.py:52
 msgid "Description"
 msgstr ""
 
-#: ../browser/types.py:169
+#: ../browser/types.py:186
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity typy"
 
-#: ../browser/types.py:146
+#: ../browser/types.py:155
 msgid "Dexterity content types"
 msgstr ""
 
@@ -104,21 +106,24 @@ msgstr ""
 msgid "Exclude From navigation"
 msgstr ""
 
-#: ../browser/types.py:65
+#: ../browser/types.py:68
 msgid "Export Schema Models"
 msgstr ""
 
-#: ../browser/types.py:53
+#: ../browser/types.py:56
 msgid "Export Type Profiles"
 msgstr ""
 
-#: ../browser/behaviors.py:84
-#: ../browser/edit_type.py:18
+#: ../browser/fields.py:9
+#: ../browser/layout.py:15
 msgid "Fields"
 msgstr ""
 
-#: ../interfaces.py:55
+#: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
+msgstr ""
+
+msgid "Make all items of this type a navigation root"
 msgstr ""
 
 msgid "Name from file name"
@@ -136,35 +141,32 @@ msgstr ""
 msgid "Next previous navigation toggle"
 msgstr ""
 
-#: ../browser/behaviors.py:48
+#: ../browser/behaviors.py:54
 msgid "No changes were made."
 msgstr ""
 
-#: ../behaviors/metadata.py:104
-msgid "Ownership"
-msgstr "Vlastnictví"
+#: ../browser/layout.py:14
+#: ../browser/overview.py:19
+msgid "Overview"
+msgstr ""
 
-#: ../browser/types.py:45
+#: ../browser/types.py:48
 msgid "Please select a single type to clone."
 msgstr "Vyberte prosím jeden typ k duplikaci"
 
-#: ../browser/types.py:51
+#: ../browser/types.py:54
 msgid "Please select a type to clone."
 msgstr "Vyberte prosím typ k duplikaci"
 
-#: ../browser/types.py:58
+#: ../browser/types.py:61
 msgid "Please select types to export."
 msgstr ""
 
-#: ../interfaces.py:22
+#: ../interfaces.py:25
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr ""
 
-#: ../browser/behaviors.py:77
-msgid "Save"
-msgstr ""
-
-#: ../browser/behaviors.py:46
+#: ../browser/behaviors.py:52
 msgid "Select the behaviors to enable for this content type."
 msgstr ""
 
@@ -173,19 +175,23 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: ../interfaces.py:42
+#: ../interfaces.py:45
 msgid "Short Name"
 msgstr ""
 
-#: ../browser/types.py:112
+#: ../browser/types.py:121
 msgid "The following custom content types are available for your site."
 msgstr ""
 
-#: ../interfaces.py:38
+#: ../interfaces.py:78
+msgid "There is already a content type named '${name}'"
+msgstr ""
+
+#: ../interfaces.py:41
 msgid "Type Name"
 msgstr ""
 
-#: ../browser/add_type.py:44
+#: ../browser/add_type.py:48
 msgid "Type added successfully."
 msgstr "Typ byl úspěšně přidán."
 
@@ -193,43 +199,13 @@ msgstr "Typ byl úspěšně přidán."
 msgid "Type cloned successfully."
 msgstr "Typ byl úspěšně duplikován."
 
-#: ../interfaces.py:43
+#: ../interfaces.py:46
 msgid "Used for programmatic access to the type."
 msgstr ""
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:115
+#: ../browser/types.py:124
 msgid "help_addcontenttype_button"
-msgstr ""
-
-#. Default: "Also known as keywords, tags or labels, these help you categorize your content."
-#: ../behaviors/metadata.py:54
-msgid "help_categories"
-msgstr ""
-
-#. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
-#: ../behaviors/metadata.py:122
-msgid "help_contributors"
-msgstr ""
-
-#. Default: "Copyright statement or other rights information on this item."
-#: ../behaviors/metadata.py:134
-msgid "help_copyrights"
-msgstr ""
-
-#. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
-#: ../behaviors/metadata.py:110
-msgid "help_creators"
-msgstr ""
-
-#. Default: "A short summary of the content."
-#: ../behaviors/metadata.py:32
-msgid "help_description"
-msgstr ""
-
-#. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
-#: ../behaviors/metadata.py:82
-msgid "help_effective_date"
 msgstr ""
 
 #. Default: "If selected, this item will not appear in the navigation tree"
@@ -237,78 +213,18 @@ msgstr ""
 msgid "help_exclude_from_nav"
 msgstr ""
 
-#. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
-#: ../behaviors/metadata.py:90
-msgid "help_expiration_date"
-msgstr ""
-
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:32
 msgid "help_nextprevious"
 msgstr ""
-
-#. Default: "&laquo; Back to ${parentname}"
-#: ../browser/tabbed_forms.pt:17
-msgid "label_back_to"
-msgstr ""
-
-#. Default: "Behaviors for ${title} (${name})"
-#: ../browser/behaviors.py:90
-msgid "label_behaviors_for"
-msgstr ""
-
-#. Default: "Categories"
-#: ../behaviors/metadata.py:53
-msgid "label_categories"
-msgstr "Kategorie"
-
-#. Default: "Contributors"
-#: ../behaviors/metadata.py:121
-msgid "label_contributors"
-msgstr "Přispěvatelé"
-
-#. Default: "Rights"
-#: ../behaviors/metadata.py:133
-msgid "label_copyrights"
-msgstr "Autorská práva"
-
-#. Default: "Creators"
-#: ../behaviors/metadata.py:109
-msgid "label_creators"
-msgstr "Autoři"
-
-#. Default: "Description"
-#: ../behaviors/metadata.py:31
-msgid "label_description"
-msgstr "Popis"
-
-#. Default: "Publishing Date"
-#: ../behaviors/metadata.py:81
-msgid "label_effective_date"
-msgstr "Datum účinnosti"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
 msgstr ""
 
-#. Default: "Expiration Date"
-#: ../behaviors/metadata.py:89
-msgid "label_expiration_date"
-msgstr "Datum vypršení platnosti"
-
-#. Default: "Language"
-#: ../behaviors/metadata.py:62
-msgid "label_language"
-msgstr "Jazyk"
-
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
 msgid "label_nextprevious"
 msgstr ""
-
-#. Default: "Title"
-#: ../behaviors/metadata.py:26
-msgid "label_title"
-msgstr "Nadpis"
 
