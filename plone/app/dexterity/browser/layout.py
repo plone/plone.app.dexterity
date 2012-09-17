@@ -1,4 +1,4 @@
-from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.z3cform.layout import FormWrapper
 
 from plone.app.dexterity import MessageFactory as _

@@ -7,6 +7,9 @@ Changelog for plone.app.dexterity
 - I18n improved by adding many missing strings
   [giacomos]
 
+- better graphical integration in the control panel
+  [giacomos]
+
 
 2.0.1 (2012-08-31)
 ------------------
