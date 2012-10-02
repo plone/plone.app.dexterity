@@ -2,6 +2,7 @@
 <object name="portal_controlpanel" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone.app.dexterity" purge="False">
  <configlet title="Dexterity Content Types" action_id="dexterity-types" appId="Plone"
     category="Plone" condition_expr=""
+    icon_expr="string:$portal_url/document_icon.png"
     url_expr="string:${portal_url}/@@dexterity-types" visible="True"
     i18n:attributes="title">
   <permission>Manage portal</permission>

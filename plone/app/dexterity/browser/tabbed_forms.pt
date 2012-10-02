@@ -2,12 +2,12 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="context/main_template/macros/master"
+      metal:use-macro="here/prefs_main_template/macros/master"
       i18n:domain="plone.z3cform"
       tal:omit-tag="">
 
   <body>
-      <metal:slot metal:fill-slot="content" i18n:domain="cmf_default">
+      <metal:slot metal:fill-slot="prefs_configlet_wrapper" i18n:domain="cmf_default">
 
         <div class="documentEditable">
 

@@ -8,9 +8,11 @@ from zope.cachedescriptors.property import Lazy as lazy_property
 from zope.component import adapts, getAllUtilitiesRegisteredFor, getUtility, ComponentLookupError
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as FiveViewPageTemplateFile
 
 from z3c.form import field, button
 from plone.z3cform import layout
+from plone.z3cform.layout import FormWrapper
 from plone.z3cform.crud import crud
 
 from Products.CMFCore.utils import getToolByName
@@ -23,7 +25,6 @@ from plone.app.dexterity.browser.utils import UTF8Property
 from plone.schemaeditor.browser.schema.traversal import SchemaContext
 
 from plone.app.dexterity import MessageFactory as _
-
 
 class TypeEditSubForm(crud.EditSubForm):
     """ Content type edit subform. Just here to use a custom template.
@@ -76,6 +77,12 @@ class TypeEditForm(crud.EditForm):
                 (self.context.context.absolute_url(),
                  urllib.quote(selected))
             self.request.response.redirect(url)
+
+class TypesEditFormWrapper(FormWrapper):
+    """ Render Plone frame around our form with little modifications """
+
+    form = TypeEditForm
+    index = FiveViewPageTemplateFile("typesformwrapper.pt")
 
 
 class TypeSettingsAdapter(object):
@@ -152,7 +159,7 @@ class TypesListing(crud.CrudForm):
             return '%s/%s' % (self.context.absolute_url(), item.__name__)
 
 # Create a form wrapper so the form gets layout.
-TypesListingPage = layout.wrap_form(TypesListing, label=_(u'Dexterity content types'))
+TypesListingPage = layout.wrap_form(TypesListing, __wrapper_class=TypesEditFormWrapper, label=_(u'Dexterity content types'))
 
 
 class TypeSchemaContext(SchemaContext):
