@@ -3,6 +3,7 @@ from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapts, getUtilitiesFor
 from zope import schema
 from zope.i18nmessageid import MessageFactory
+from zope.lifecycleevent import modified
 
 from z3c.form import field, form
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
@@ -12,8 +13,12 @@ from plone.app.dexterity.interfaces import ITypeSchemaContext
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity import MessageFactory as _
 
-
 PMF = MessageFactory('plone')
+
+
+def behaviorConfigurationModified(object, event):
+    modified(object.fti, "behaviors")
+
 
 class BehaviorConfigurationAdapter(object):
     adapts(ITypeSchemaContext)

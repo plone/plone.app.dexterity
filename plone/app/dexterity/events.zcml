@@ -9,4 +9,10 @@
         handler=".serialize.serializeSchemaContext"
         />
 
+    <subscriber
+        for=".browser.behaviors.BehaviorConfigurationAdapter
+             zope.lifecycleevent.IObjectModifiedEvent"
+        handler=".browser.behaviors.behaviorConfigurationModified"
+        />
+
 </configure>
