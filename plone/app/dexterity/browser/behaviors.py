@@ -13,12 +13,14 @@ from plone.app.dexterity.interfaces import ITypeSchemaContext
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity import MessageFactory as _
 
+from plone.dexterity.fti import DexterityFTIModificationDescription
+
 PMF = MessageFactory('plone')
 
 
 def behaviorConfigurationModified(object, event):
-    modified(object.fti, "behaviors")
-
+    description = DexterityFTIModificationDescription("behaviors", "")
+    modified(object.fti, description)
 
 class BehaviorConfigurationAdapter(object):
     adapts(ITypeSchemaContext)
