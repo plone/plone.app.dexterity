@@ -1,0 +1,107 @@
+Allow Discussion
+================
+
+Test Setup
+----------
+
+We create a dexterity content type that provides the allow discussion behavior::
+
+    >>> portal = layer['portal']
+    >>> from plone.dexterity.fti import DexterityFTI
+    >>> fti = DexterityFTI('discussiondocument')
+    >>> fti.behaviors = ('plone.app.dexterity.behaviors.discussion.IAllowDiscussion',)
+    >>> portal.portal_types._setObject('discussiondocument', fti)
+    'discussiondocument'
+
+Set up a test browser::
+
+    >>> from plone.app.testing import TEST_USER_ID, TEST_USER_NAME, TEST_USER_PASSWORD, setRoles
+    >>> setRoles(portal, TEST_USER_ID, ['Manager'])
+    >>> import transaction; transaction.commit()
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(layer['app'])
+    >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_NAME, TEST_USER_PASSWORD,))
+
+We have to make sure the request provides IDiscussonLayer because the enabled
+method on the conversation calls conversation_view (which is only registered 
+for IDiscussionLayer).
+
+    >>> from plone.app.discussion.interfaces import IDiscussionLayer
+    >>> from zope.interface import alsoProvides
+    >>> alsoProvides(portal.REQUEST, IDiscussionLayer)
+
+Add a document::
+
+    >>> browser.open('http://nohost/plone/++add++discussiondocument')
+    >>> browser.getControl('Title').value = 'Document'
+
+
+Default Allow Discussion Options
+--------------------------------
+
+There are three options for the allow discussion select field::
+
+    >>> allowDiscussion = browser.getControl('Allow discussion')
+    >>> allowDiscussion.options
+    ['--NOVALUE--', 'True', 'False']
+
+By default, no value is set for allow discussion::
+
+    >>> browser.getControl('Allow discussion').value
+    ['--NOVALUE--']
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/discussiondocument/view'
+
+This means discussion is not enabled:
+
+    >>> from plone.app.discussion.interfaces import IConversation
+    >>> conv = IConversation(portal.discussiondocument)
+    >>> conv.enabled()
+    False
+
+We have to globally enable discussion in order to be able to add comments::
+
+    >>> from plone.registry.interfaces import IRegistry
+    >>> from zope.component import queryUtility
+    >>> from plone.app.discussion.interfaces import IDiscussionSettings
+    >>> registry = queryUtility(IRegistry)
+    >>> settings = registry.forInterface(IDiscussionSettings)
+    >>> settings.globally_enabled = True
+
+Discussion is still disabled for our content object though::
+
+    >>> from plone.app.discussion.interfaces import IConversation
+    >>> conv = IConversation(portal.discussiondocument)
+    >>> conv.enabled()
+    False
+
+This is because discussion is disabled by default for the document content
+type::
+
+    >>> fti.allow_discussion
+    False
+
+If we allow discussion for the 'Document' content type, the conversation
+for our content object is enabled because it just uses the default setting
+(because allow_discussion is set to None)::
+
+    >>> fti.allow_discussion = True
+    >>> from plone.app.discussion.interfaces import IConversation
+    >>> conv = IConversation(portal.discussiondocument)
+    >>> conv.enabled()
+    True
+
+We can now override the default value (True) by explicitly setting allow discussion to False::
+
+    >>> browser.open('http://nohost/plone/discussiondocument/edit')
+    >>> allowDiscussion = browser.getControl('Allow discussion')
+    >>> allowDiscussion.value = ['False']
+    >>> browser.getControl('Save').click()
+
+Discussion on our content object is now not enabled::
+
+    >>> from plone.app.discussion.interfaces import IConversation
+    >>> conv = IConversation(portal.discussiondocument)
+    >>> conv.enabled()
+    False
