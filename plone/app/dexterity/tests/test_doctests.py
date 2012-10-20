@@ -5,6 +5,7 @@ from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 
 
 tests = (
+    'discussion.txt',
     'editing.txt',
     'namefromtitle.txt',
     'metadata.txt',
@@ -12,6 +13,7 @@ tests = (
     'filename.txt',
     'schema_events.txt',
     )
+
 
 def test_suite():
     return unittest.TestSuite(
