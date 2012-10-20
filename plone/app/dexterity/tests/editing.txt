@@ -200,7 +200,7 @@ content type.
   >>> browser.getControl('Add').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types/@@add-type'
-  >>> 'There is already a content type named "plonista"' in browser.contents
+  >>> "There is already a content type named 'plonista'" in browser.contents
   True
 
 To avoid confusion, the title must also be unique.
@@ -212,7 +212,7 @@ To avoid confusion, the title must also be unique.
   >>> browser.getControl('Add').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types/@@add-type'
-  >>> 'There is already a content type named "Plonista"' in browser.contents
+  >>> "There is already a content type named 'Plonista'" in browser.contents
   True
 
 Similar checks are performed when cloning.
@@ -225,7 +225,7 @@ Similar checks are performed when cloning.
   >>> browser.getControl('Add').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types/plonista/@@clone'
-  >>> 'There is already a content type named "plonista"' in browser.contents
+  >>> "There is already a content type named 'plonista'" in browser.contents
   True
 
   >>> browser.open('http://nohost/plone/dexterity-types')
@@ -236,7 +236,7 @@ Similar checks are performed when cloning.
   >>> browser.getControl('Add').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types/plonista/@@clone'
-  >>> 'There is already a content type named "Plonista"' in browser.contents
+  >>> "There is already a content type named 'Plonista'" in browser.contents
   True
 
 
