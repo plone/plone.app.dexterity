@@ -20,6 +20,8 @@ Appendixes
 .. toctree::
    :maxdepth: 1
 
+   install.txt
+   how-is-dexterity-related-to-archetypes.txt
    behaviors/index.txt
    five-grok/index.txt
    schema-driven-forms/index.txt
