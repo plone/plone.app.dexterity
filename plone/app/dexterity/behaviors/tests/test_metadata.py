@@ -59,3 +59,47 @@ class TestCategorization(unittest.TestCase):
         b = self._makeOne()
         b.context.subject = (u'føø',)
         self.assertEqual((u'føø',), b.subjects)
+
+
+class TestDCFieldProperty(unittest.TestCase):
+
+    def _makeOne(self):
+        class Dummy(object):
+            def addCreator(self, creator=None):
+                self.creators = (creator or 'dummy_user', )
+
+            def setRights(self, rights):
+                self.rights = rights
+
+            def Rights(self):
+                return self.rights
+
+            def setCreators(self, creators):
+                self.creators = creators
+
+            def listCreators(self):
+                return self.creators
+
+        dummy = Dummy()
+        from plone.app.dexterity.behaviors.metadata import DublinCore
+        return DublinCore(dummy)
+
+    def test_sequence_text_setter(self):
+        b = self._makeOne()
+        b.creators = (u'føø',)
+        self.assertEqual(('føø',), b.context.creators)
+
+    def test_sequence_text_getter(self):
+        b = self._makeOne()
+        b.context.creators = ('føø',)
+        self.assertEqual((u'føø',), b.creators)
+
+    def test_text_setter(self):
+        b = self._makeOne()
+        b.rights = u'føø'
+        self.assertEqual('føø', b.context.rights)
+
+    def test_text_getter(self):
+        b = self._makeOne()
+        b.context.rights = 'føø'
+        self.assertEqual(u'føø', b.rights)
