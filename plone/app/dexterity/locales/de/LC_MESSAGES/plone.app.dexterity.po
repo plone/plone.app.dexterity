@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2012-09-16 23:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Timo Stollenwerk <contact@timostollenwerk.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -17,188 +17,188 @@ msgstr ""
 
 #: ../interfaces.py:67
 msgid "# of items"
-msgstr ""
+msgstr "Anzahl"
 
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
-msgstr ""
+msgstr "Inhaltstyp hinzufügen"
 
 #: ../browser/types_listing.pt:75
 msgid "Add New Content Type…"
-msgstr ""
+msgstr "Neuen Inhaltstypen hinzufügen"
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
-msgstr ""
+msgstr "Fügt Dublin Core Metadatenfelder hinzu (Basis Metadaten + Kategorisierung + Zeitraum + Urheber)"
 
 msgid "Adds a title and description"
-msgstr ""
+msgstr "Fügt Titel und Beschreibung hinzu"
 
 msgid "Adds creator, contributor, and rights fields"
-msgstr ""
+msgstr "Fügt Ersteller, Beitragende und Berechtigungen hinzu"
 
 msgid "Adds keywords and language setting"
-msgstr ""
+msgstr "Fügt Keywords und Spracheinstellungen hinzu"
 
 msgid "Allow items to be excluded from navigation"
-msgstr ""
+msgstr "Erlaubt es, Objekte von der Navigation auszuschließen"
 
 msgid "Allow items to have next previous navigation enabled"
-msgstr ""
+msgstr "Erlaubt für Objekte eine zurück/weiter-Navigation zu aktivieren"
 
 msgid "Assign an effective and/or expiration date"
-msgstr ""
+msgstr "Erlaubt die Vergabe eines Freigabe- oder Ablaufdatums"
 
 msgid "Automatically generate short URL name for content based on its initial title"
-msgstr ""
+msgstr "Automatische Erstellung einer Kurz-URL für Inhalt basierend auf dem zuerst eingegebenen Titel"
 
 msgid "Automatically generate short URL name for content based on its primary field file name"
-msgstr ""
+msgstr "Automatische Erstellung einer Kurz-URL für Inhalt basierend auf dem zuerst eingegebenen Titel"
 
 msgid "Basic metadata"
-msgstr ""
+msgstr "Metadaten"
 
 #: ../browser/behaviors.py:51
 #: ../browser/layout.py:16
 msgid "Behaviors"
-msgstr ""
+msgstr "Behaviors"
 
 #: ../browser/behaviors.py:53
 msgid "Behaviors successfully updated."
-msgstr ""
+msgstr "Behaviors erfolgreich aktualisiert"
 
 #: ../browser/types.py:43
 msgid "Clone"
-msgstr ""
+msgstr "Duplizieren"
 
 #: ../browser/clone_type.py:11
 msgid "Clone Content Type"
-msgstr ""
+msgstr "Inhaltstyp duplizieren"
 
 msgid "Configures various components needed for full Dexterity support."
-msgstr ""
+msgstr "Konfiguration verschiedener Komponenten die für Dexterity notwendig sind"
 
 #: ../interfaces.py:57
 msgid "Container"
-msgstr ""
+msgstr "Ordner"
 
 #: ../interfaces.py:52
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: ../browser/types.py:186
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
-msgstr ""
+msgstr "Dexterity Inhaltstypen"
 
 #: ../browser/types.py:155
 msgid "Dexterity content types"
-msgstr ""
+msgstr "Dexterity Inhaltstypen"
 
 msgid "Dublin Core metadata"
-msgstr ""
+msgstr "Dublin Core Metadaten"
 
 msgid "Effective range"
-msgstr ""
+msgstr "Zeitraum Veröffentlichungsdatum"
 
 msgid "Enable next previous navigation for all items of this type"
-msgstr ""
+msgstr "Aktiviere zurück/vor-Navigation für alle Objekte dieses Typs"
 
 msgid "Exclude From navigation"
-msgstr ""
+msgstr "Von der Navigation ausschließen"
 
 #: ../browser/types.py:68
 msgid "Export Schema Models"
-msgstr ""
+msgstr "Schemamodell exportieren"
 
 #: ../browser/types.py:56
 msgid "Export Type Profiles"
-msgstr ""
+msgstr "Inhaltstyp-Profile exportieren"
 
 #: ../browser/fields.py:9
 #: ../browser/layout.py:15
 msgid "Fields"
-msgstr ""
+msgstr "Felder"
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
-msgstr ""
+msgstr "Objekte diese Typs können andere Objekte enthalten"
 
 msgid "Make all items of this type a navigation root"
-msgstr ""
+msgstr "Alle Objekte dieses Types zur Navigations-Wurzel"
 
 msgid "Name from file name"
-msgstr ""
+msgstr "Name vom Dateinamen"
 
 msgid "Name from title"
-msgstr ""
+msgstr "Name vom Titel"
 
 msgid "Navigation root"
-msgstr ""
+msgstr "Navigations-Wurzel"
 
 msgid "Next previous navigation"
-msgstr ""
+msgstr "Vor/zurück-Navigation"
 
 msgid "Next previous navigation toggle"
-msgstr ""
+msgstr "Vor/zurück-Navigation Umschalter"
 
 #: ../browser/behaviors.py:54
 msgid "No changes were made."
-msgstr ""
+msgstr "Keine Änderungen vorgenommen"
 
 #: ../browser/layout.py:14
 #: ../browser/overview.py:19
 msgid "Overview"
-msgstr ""
+msgstr "Übersicht"
 
 #: ../browser/types.py:48
 msgid "Please select a single type to clone."
-msgstr ""
+msgstr "Bitte wählen sie eine einzelnen Typen zum Duplizieren"
 
 #: ../browser/types.py:54
 msgid "Please select a type to clone."
-msgstr ""
+msgstr "Bitte wählen sie einen Typen zum Duplizieren"
 
 #: ../browser/types.py:61
 msgid "Please select types to export."
-msgstr ""
+msgstr "Bitte wählen sie Tpyen zum Duplizieren"
 
 #: ../interfaces.py:25
 msgid "Please use only letters, numbers, and the following characters: .-_"
-msgstr ""
+msgstr "Verwenden sie bitte nur Buchstaben, Nummern und die folgenden Zeichen .-_"
 
 #: ../browser/behaviors.py:52
 msgid "Select the behaviors to enable for this content type."
-msgstr ""
+msgstr "Wählen sie ein zu aktivierendes Behavior für diesen Inhaltstypen"
 
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: ../interfaces.py:45
 msgid "Short Name"
-msgstr ""
+msgstr "Kurzname"
 
 #: ../browser/types.py:121
 msgid "The following custom content types are available for your site."
-msgstr ""
+msgstr "Die Folgenden Inhaltstypen sind für ihre Seite verfügbar"
 
 #: ../interfaces.py:78
 msgid "There is already a content type named '${name}'"
-msgstr ""
+msgstr "Es gibt bereits einen Inhaltstypen mit dem Namen '${name}'"
 
 #: ../interfaces.py:41
 msgid "Type Name"
-msgstr ""
+msgstr "Typname"
 
 #: ../browser/add_type.py:48
 msgid "Type added successfully."
-msgstr ""
+msgstr "Typ erfolgreich hinzugefügt"
 
 #: ../browser/clone_type.py:28
 msgid "Type cloned successfully."
-msgstr ""
+msgstr "Typ erfolgreich dupliziert"
 
 #: ../interfaces.py:46
 msgid "Used for programmatic access to the type."
@@ -207,25 +207,24 @@ msgstr ""
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:124
 msgid "help_addcontenttype_button"
-msgstr ""
+msgstr "Klicken sie auf den \"Inhaltstypen hinzufügen\"-Button um einen neuen Inhaltstypen zu erstellen."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
 #: ../behaviors/exclfromnav.py:18
 msgid "help_exclude_from_nav"
-msgstr ""
+msgstr "Wenn sie diese Einstellung auswählen, erscheint dieses Objekt nicht in der Navigation"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:32
 msgid "help_nextprevious"
-msgstr ""
+msgstr "Diese Einstellung aktiviert das vor/zurück-Widget für Inhaltsobjekte welche in diesem Ordner liegen.""
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
-msgstr ""
+msgstr "Von der Navigation ausschließen"
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
 msgid "label_nextprevious"
-msgstr ""
-
+msgstr "vor/zurück-Navigation"
