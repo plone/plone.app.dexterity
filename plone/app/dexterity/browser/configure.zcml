@@ -3,7 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="plone.app.dexterity">
-    
+
     <!-- Default view for Dexterity types in Plone  4 -->
     <browser:page
         for="plone.dexterity.interfaces.IDexterityItem"
@@ -12,7 +12,7 @@
         template="item.pt"
         permission="zope2.View"
         />
-  
+
     <browser:page
         for="plone.dexterity.interfaces.IDexterityContainer"
         name="view"
@@ -29,13 +29,13 @@
         class=".types.TypesContext"
         permission="plone.schemaeditor.ManageSchemata"
         allowed_interface="OFS.interfaces.IItem" />
-    
+
     <adapter
         factory=".types.TypeSettingsAdapter"
         provides="..interfaces.ITypeSettings"
         for="plone.dexterity.interfaces.IDexterityFTI"
         />
-    
+
     <adapter
         factory=".types.TypeStatsAdapter"
         provides="..interfaces.ITypeStats"
@@ -47,26 +47,26 @@
         for="plone.app.dexterity.interfaces.ITypesContext"
         class=".types.TypesListingPage"
         permission="plone.schemaeditor.ManageSchemata" />
-    
+
     <browser:page
         name="add-type"
         for="plone.app.dexterity.interfaces.ITypesContext"
         class=".add_type.TypeAddFormPage"
         permission="plone.schemaeditor.ManageSchemata"
         />
-    
+
     <browser:page
         name="overview"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
         class=".overview.TypeOverviewPage"
         permission="plone.schemaeditor.ManageSchemata" />
-    
+
     <browser:page
         name="fields"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
         class=".fields.TypeFieldsPage"
         permission="plone.schemaeditor.ManageSchemata" />
-    
+
     <browser:page
         name="behaviors"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"

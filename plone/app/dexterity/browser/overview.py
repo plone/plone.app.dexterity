@@ -9,7 +9,7 @@ from plone.app.dexterity import MessageFactory as _
 class TypeOverviewForm(form.EditForm):
     fields = field.Fields(ITypeSettings).select('id', 'title', 'description')
     fields['id'].mode = DISPLAY_MODE
-    
+
     def getContent(self):
         return self.context.fti
 

@@ -5,7 +5,7 @@ from plone.app.dexterity import MessageFactory as _
 
 
 class TypeFormLayout(FormWrapper):
-    
+
     index = ViewPageTemplateFile('tabbed_forms.pt')
 
     @property
