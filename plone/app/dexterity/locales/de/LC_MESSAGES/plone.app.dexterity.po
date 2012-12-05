@@ -217,7 +217,7 @@ msgstr "Wenn sie diese Einstellung auswählen, erscheint dieses Objekt nicht in 
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:32
 msgid "help_nextprevious"
-msgstr "Diese Einstellung aktiviert das vor/zurück-Widget für Inhaltsobjekte welche in diesem Ordner liegen.""
+msgstr "Diese Einstellung aktiviert das vor/zurück-Widget für Inhaltsobjekte welche in diesem Ordner liegen."
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
