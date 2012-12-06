@@ -7,6 +7,7 @@ from z3c.form.widget import ComputedWidgetAttribute
 from zope.interface import alsoProvides
 from zope.component import adapts
 from zope import schema
+from zope.schema.interfaces import IText, ISequence
 from plone.autoform import directives as form
 from plone.supermodel import model
 from plone.dexterity.interfaces import IDexterityContent
@@ -230,6 +231,19 @@ class DCFieldProperty(object):
             # Ensure datetime value is stripped of any timezone and seconds
             # so that it can be compared with the value returned by the widget
             return datetime(*map(int, attribute.parts()[:6]))
+
+        if attribute is None:
+            return
+
+        if IText.providedBy(self._field):
+            return attribute.decode('utf-8')
+
+        if ISequence.providedBy(self._field):
+            if IText.providedBy(self._field.value_type):
+                return type(attribute)(
+                    item.decode('utf-8') for item in attribute
+                )
+
         return attribute
 
     def __set__(self, inst, value):
@@ -242,6 +256,16 @@ class DCFieldProperty(object):
             # server's local timezone rather than GMT.
             value = DateTime(value.year, value.month, value.day,
                              value.hour, value.minute)
+        elif value is not None:
+            if IText.providedBy(self._field):
+                value = value.encode('utf-8')
+
+            elif ISequence.providedBy(self._field):
+                if IText.providedBy(self._field.value_type):
+                    value = type(value)(
+                        item.encode('utf-8') for item in value
+                    )
+
         if self._set_name:
             getattr(inst.context, self._set_name)(value)
         elif inst.context.hasProperty(self._get_name):
