@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
-"POT-Creation-Date: 2012-09-16 23:18+0000\n"
+"POT-Creation-Date: 2012-12-12 14:55+0000\n"
 "PO-Revision-Date: 2011-11-21 21:10+0100\n"
 "Last-Translator: Giacomo Spettoli <giacomo.spettoli@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -42,6 +42,14 @@ msgstr "Aggiunge i campi creatori, contributori, e diritti"
 msgid "Adds keywords and language setting"
 msgstr "Aggiunge le categorie e l'impostazione della lingua"
 
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr ""
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr ""
+
 msgid "Allow items to be excluded from navigation"
 msgstr "Permette agli elementi di essere esclusi dalla navigazione"
 
@@ -60,16 +68,16 @@ msgstr "Generazione automatica del nome breve URL per il contenuto in base al no
 msgid "Basic metadata"
 msgstr "Metadati di base"
 
-#: ../browser/behaviors.py:51
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Comportamenti"
 
-#: ../browser/behaviors.py:53
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "I comportamenti sono stati aggiornati con successo."
 
-#: ../browser/types.py:43
+#: ../browser/types.py:44
 msgid "Clone"
 msgstr "Copia"
 
@@ -88,13 +96,13 @@ msgstr "Contenitore"
 msgid "Description"
 msgstr "Descrizione"
 
-#: ../browser/types.py:186
+#: ../browser/types.py:193
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Tipi di contenuto Dexterity"
 
-#: ../browser/types.py:155
+#: ../browser/types.py:162
 msgid "Dexterity content types"
 msgstr "Tipi di contenuto Dexterity"
 
@@ -110,11 +118,11 @@ msgstr "Abilita la navigazione precedente successivo per tutti i contenuti di qu
 msgid "Exclude From navigation"
 msgstr "Escludi dalla navigazione"
 
-#: ../browser/types.py:68
+#: ../browser/types.py:69
 msgid "Export Schema Models"
 msgstr "Esporta i modelli di Schema"
 
-#: ../browser/types.py:56
+#: ../browser/types.py:57
 msgid "Export Type Profiles"
 msgstr "Esporta i profili del Tipo di contenuto"
 
@@ -145,7 +153,11 @@ msgstr "Navigazione precedente successivo"
 msgid "Next previous navigation toggle"
 msgstr "Alterna la navigazione precedente successivo"
 
-#: ../browser/behaviors.py:54
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr ""
+
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "Nessun cambiamento apportato."
 
@@ -154,15 +166,15 @@ msgstr "Nessun cambiamento apportato."
 msgid "Overview"
 msgstr "Anteprima"
 
-#: ../browser/types.py:48
+#: ../browser/types.py:49
 msgid "Please select a single type to clone."
 msgstr "Seleziona un singolo tipo da copiare."
 
-#: ../browser/types.py:54
+#: ../browser/types.py:55
 msgid "Please select a type to clone."
 msgstr "Seleziona un tipo da copiare."
 
-#: ../browser/types.py:61
+#: ../browser/types.py:62
 msgid "Please select types to export."
 msgstr "Seleziona i tipi da esportare"
 
@@ -170,10 +182,11 @@ msgstr "Seleziona i tipi da esportare"
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Utilizzare solo lettere, numeri o i seguenti caratteri: .-_"
 
-#: ../browser/behaviors.py:52
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "Seleziona i comportamenti da abilitare per questo tipo di contenuto."
 
+#: ../behaviors/discussion.py:25
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
@@ -183,7 +196,7 @@ msgstr "Impostazioni"
 msgid "Short Name"
 msgstr "Nome breve"
 
-#: ../browser/types.py:121
+#: ../browser/types.py:128
 msgid "The following custom content types are available for your site."
 msgstr "I seguenti tipi di contenuto personalizzati sono disponibili per questo sito."
 
@@ -207,8 +220,12 @@ msgstr "Tipo di contenuto copiato con successo."
 msgid "Used for programmatic access to the type."
 msgstr "Utilizzato per l'accesso programmatico al tipo di contenuto."
 
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr ""
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:124
+#: ../browser/types.py:131
 msgid "help_addcontenttype_button"
 msgstr "Clicca su \"Aggiungi tipo di contenuto\" per iniziare la creazione di un nuovo tipo di contenuto personalizzato."
 

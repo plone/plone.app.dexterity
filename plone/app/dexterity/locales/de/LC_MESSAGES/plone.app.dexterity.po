@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-09-16 23:18+0000\n"
+"POT-Creation-Date: 2012-12-12 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Timo Stollenwerk <contact@timostollenwerk.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,14 @@ msgstr "Fügt Ersteller, Beitragende und Berechtigungen hinzu"
 msgid "Adds keywords and language setting"
 msgstr "Fügt Keywords und Spracheinstellungen hinzu"
 
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr ""
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr ""
+
 msgid "Allow items to be excluded from navigation"
 msgstr "Erlaubt es, Objekte von der Navigation auszuschließen"
 
@@ -57,16 +65,16 @@ msgstr "Automatische Erstellung einer Kurz-URL für Inhalt basierend auf dem zue
 msgid "Basic metadata"
 msgstr "Metadaten"
 
-#: ../browser/behaviors.py:51
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Behaviors"
 
-#: ../browser/behaviors.py:53
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "Behaviors erfolgreich aktualisiert"
 
-#: ../browser/types.py:43
+#: ../browser/types.py:44
 msgid "Clone"
 msgstr "Duplizieren"
 
@@ -85,13 +93,13 @@ msgstr "Ordner"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ../browser/types.py:186
+#: ../browser/types.py:193
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity Inhaltstypen"
 
-#: ../browser/types.py:155
+#: ../browser/types.py:162
 msgid "Dexterity content types"
 msgstr "Dexterity Inhaltstypen"
 
@@ -107,11 +115,11 @@ msgstr "Aktiviere zurück/vor-Navigation für alle Objekte dieses Typs"
 msgid "Exclude From navigation"
 msgstr "Von der Navigation ausschließen"
 
-#: ../browser/types.py:68
+#: ../browser/types.py:69
 msgid "Export Schema Models"
 msgstr "Schemamodell exportieren"
 
-#: ../browser/types.py:56
+#: ../browser/types.py:57
 msgid "Export Type Profiles"
 msgstr "Inhaltstyp-Profile exportieren"
 
@@ -142,7 +150,11 @@ msgstr "Vor/zurück-Navigation"
 msgid "Next previous navigation toggle"
 msgstr "Vor/zurück-Navigation Umschalter"
 
-#: ../browser/behaviors.py:54
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr ""
+
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "Keine Änderungen vorgenommen"
 
@@ -151,15 +163,15 @@ msgstr "Keine Änderungen vorgenommen"
 msgid "Overview"
 msgstr "Übersicht"
 
-#: ../browser/types.py:48
+#: ../browser/types.py:49
 msgid "Please select a single type to clone."
 msgstr "Bitte wählen sie eine einzelnen Typen zum Duplizieren"
 
-#: ../browser/types.py:54
+#: ../browser/types.py:55
 msgid "Please select a type to clone."
 msgstr "Bitte wählen sie einen Typen zum Duplizieren"
 
-#: ../browser/types.py:61
+#: ../browser/types.py:62
 msgid "Please select types to export."
 msgstr "Bitte wählen sie Tpyen zum Duplizieren"
 
@@ -167,10 +179,11 @@ msgstr "Bitte wählen sie Tpyen zum Duplizieren"
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Verwenden sie bitte nur Buchstaben, Nummern und die folgenden Zeichen .-_"
 
-#: ../browser/behaviors.py:52
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "Wählen sie ein zu aktivierendes Behavior für diesen Inhaltstypen"
 
+#: ../behaviors/discussion.py:25
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
@@ -180,7 +193,7 @@ msgstr "Einstellungen"
 msgid "Short Name"
 msgstr "Kurzname"
 
-#: ../browser/types.py:121
+#: ../browser/types.py:128
 msgid "The following custom content types are available for your site."
 msgstr "Die Folgenden Inhaltstypen sind für ihre Seite verfügbar"
 
@@ -204,8 +217,12 @@ msgstr "Typ erfolgreich dupliziert"
 msgid "Used for programmatic access to the type."
 msgstr ""
 
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr ""
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:124
+#: ../browser/types.py:131
 msgid "help_addcontenttype_button"
 msgstr "Klicken sie auf den \"Inhaltstypen hinzufügen\"-Button um einen neuen Inhaltstypen zu erstellen."
 
@@ -228,3 +245,4 @@ msgstr "Von der Navigation ausschließen"
 #: ../behaviors/nextprevious.py:31
 msgid "label_nextprevious"
 msgstr "vor/zurück-Navigation"
+

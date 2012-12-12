@@ -4,9 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-09-16 23:18+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-12-12 14:55+0000\n"
+"PO-Revision-Date: 2012-12-12 15:51+0100\n"
+"Last-Translator: Cédric Messiant <cedricmessiant@ecreall.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../interfaces.py:67
 msgid "# of items"
-msgstr ""
+msgstr "Numéro des éléments"
 
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
@@ -42,8 +42,16 @@ msgstr "Ajoute les champs créateur, contributeur et droits"
 msgid "Adds keywords and language setting"
 msgstr "Ajoute les champs mots-clés et langue"
 
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr "Autoriser les commentaires"
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr "Autoriser les commentaires pour cet objet de contenu."
+
 msgid "Allow items to be excluded from navigation"
-msgstr ""
+msgstr "Permettre aux éléments d'être exclus de la navigation"
 
 msgid "Allow items to have next previous navigation enabled"
 msgstr "Permet la navigation précédent/suivant sur les éléments"
@@ -60,16 +68,16 @@ msgstr "Le nom court pour l'URL est généré à partir du nom du fichier princi
 msgid "Basic metadata"
 msgstr "Métadonnées de base"
 
-#: ../browser/behaviors.py:51
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Comportements"
 
-#: ../browser/behaviors.py:53
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "Comportements mis à jour avec succès."
 
-#: ../browser/types.py:43
+#: ../browser/types.py:44
 msgid "Clone"
 msgstr "Dupliquer"
 
@@ -78,7 +86,7 @@ msgid "Clone Content Type"
 msgstr "Dupliquer un type de contenu"
 
 msgid "Configures various components needed for full Dexterity support."
-msgstr ""
+msgstr "Configure les composants requis pour le support complet de Dexterity."
 
 #: ../interfaces.py:57
 msgid "Container"
@@ -88,13 +96,13 @@ msgstr "Conteneur"
 msgid "Description"
 msgstr "Description"
 
-#: ../browser/types.py:186
+#: ../browser/types.py:193
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Types de Contenu Dexterity"
 
-#: ../browser/types.py:155
+#: ../browser/types.py:162
 msgid "Dexterity content types"
 msgstr "Types de contenu Dexterity"
 
@@ -110,11 +118,11 @@ msgstr "Autoriser précédent/suivant"
 msgid "Exclude From navigation"
 msgstr "Exclure de la navigation"
 
-#: ../browser/types.py:68
+#: ../browser/types.py:69
 msgid "Export Schema Models"
 msgstr "Exporter les modèles de schéma "
 
-#: ../browser/types.py:56
+#: ../browser/types.py:57
 msgid "Export Type Profiles"
 msgstr "Exporter les Profils des Types"
 
@@ -128,7 +136,7 @@ msgid "Items of this type will be able to contain other items."
 msgstr "Les items de ce type pourront contenir d'autres items."
 
 msgid "Make all items of this type a navigation root"
-msgstr ""
+msgstr "Faire de tous les éléments de ce type une racine de navigation"
 
 msgid "Name from file name"
 msgstr "Identifiant à partir du nom de fichier"
@@ -145,24 +153,28 @@ msgstr "Navigation précédent/suivant"
 msgid "Next previous navigation toggle"
 msgstr "Activer/désactiver la navigation précédent/suivant"
 
-#: ../browser/behaviors.py:54
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr "Non"
+
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "Aucun changement effectué."
 
 #: ../browser/layout.py:14
 #: ../browser/overview.py:19
 msgid "Overview"
-msgstr ""
+msgstr "Aperçu"
 
-#: ../browser/types.py:48
+#: ../browser/types.py:49
 msgid "Please select a single type to clone."
 msgstr "Merci de ne sélectionner qu'un seul type de contenu à dupliquer."
 
-#: ../browser/types.py:54
+#: ../browser/types.py:55
 msgid "Please select a type to clone."
 msgstr "Merci de sélectionner un type à dupliquer."
 
-#: ../browser/types.py:61
+#: ../browser/types.py:62
 msgid "Please select types to export."
 msgstr "Veuillez sélectionner les types à exporter."
 
@@ -170,26 +182,27 @@ msgstr "Veuillez sélectionner les types à exporter."
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Veuillez n'utiliser que des lettres, des nombres, et les caractères : .-_"
 
-#: ../browser/behaviors.py:52
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "Choisissez les comportements à activer pour ce type de contenu."
 
+#: ../behaviors/discussion.py:25
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: ../interfaces.py:45
 msgid "Short Name"
 msgstr "Nom court"
 
-#: ../browser/types.py:121
+#: ../browser/types.py:128
 msgid "The following custom content types are available for your site."
 msgstr "Les types de contenus personnalisés suivants sont disponibles sur votre site."
 
 #: ../interfaces.py:78
 msgid "There is already a content type named '${name}'"
-msgstr ""
+msgstr "Il y a déjà un type de contenu nommé '${name}'"
 
 #: ../interfaces.py:41
 msgid "Type Name"
@@ -207,8 +220,12 @@ msgstr "Type dupliqué avec succès."
 msgid "Used for programmatic access to the type."
 msgstr "Utilisé pour l'accès programmatique au type."
 
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr "Oui"
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:124
+#: ../browser/types.py:131
 msgid "help_addcontenttype_button"
 msgstr "Cliquez sur le bouton \"Ajouter un Type de Contenu\" pour commencer la création d'un type personnalisé."
 

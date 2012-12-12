@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
-"POT-Creation-Date: 2012-09-16 23:18+0000\n"
+"POT-Creation-Date: 2012-12-12 14:55+0000\n"
 "PO-Revision-Date: 2012-03-23 23:15+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -41,6 +41,14 @@ msgstr "添加​​创建者、贡献者和版权字段"
 msgid "Adds keywords and language setting"
 msgstr "添加关键字和语言设置"
 
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr ""
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr ""
+
 msgid "Allow items to be excluded from navigation"
 msgstr ""
 
@@ -59,16 +67,16 @@ msgstr "自动生成内容的短 URL 名称，基于其主字段文件名称"
 msgid "Basic metadata"
 msgstr "基本元数据"
 
-#: ../browser/behaviors.py:51
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "行为"
 
-#: ../browser/behaviors.py:53
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "行为成功更新。"
 
-#: ../browser/types.py:43
+#: ../browser/types.py:44
 msgid "Clone"
 msgstr "克隆"
 
@@ -87,13 +95,13 @@ msgstr "容器"
 msgid "Description"
 msgstr "描述"
 
-#: ../browser/types.py:186
+#: ../browser/types.py:193
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity 内容类型"
 
-#: ../browser/types.py:155
+#: ../browser/types.py:162
 msgid "Dexterity content types"
 msgstr "Dexterity 内容类型"
 
@@ -109,11 +117,11 @@ msgstr "此类型的所有条目, 启用 下一页 上一页 导航"
 msgid "Exclude From navigation"
 msgstr "从导航中排除"
 
-#: ../browser/types.py:68
+#: ../browser/types.py:69
 msgid "Export Schema Models"
 msgstr "导出模式模型"
 
-#: ../browser/types.py:56
+#: ../browser/types.py:57
 msgid "Export Type Profiles"
 msgstr "导出类型配置文件"
 
@@ -144,7 +152,11 @@ msgstr "下一页 上一页 导航"
 msgid "Next previous navigation toggle"
 msgstr "下一页 上一页 导航切换"
 
-#: ../browser/behaviors.py:54
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr ""
+
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "没有更改。"
 
@@ -153,15 +165,15 @@ msgstr "没有更改。"
 msgid "Overview"
 msgstr ""
 
-#: ../browser/types.py:48
+#: ../browser/types.py:49
 msgid "Please select a single type to clone."
 msgstr "请选择一个克隆的类型。"
 
-#: ../browser/types.py:54
+#: ../browser/types.py:55
 msgid "Please select a type to clone."
 msgstr "请选择克隆的类型。"
 
-#: ../browser/types.py:61
+#: ../browser/types.py:62
 msgid "Please select types to export."
 msgstr "请选择要导出的类型。"
 
@@ -169,10 +181,11 @@ msgstr "请选择要导出的类型。"
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "请使用字母、数字和下列字符：.-_"
 
-#: ../browser/behaviors.py:52
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "选择此内容类型要启用的行为。"
 
+#: ../behaviors/discussion.py:25
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
@@ -182,7 +195,7 @@ msgstr "设置"
 msgid "Short Name"
 msgstr "短名称"
 
-#: ../browser/types.py:121
+#: ../browser/types.py:128
 msgid "The following custom content types are available for your site."
 msgstr "下列自定义内容类型可用于您的网站。"
 
@@ -206,8 +219,12 @@ msgstr "类型克隆成功。"
 msgid "Used for programmatic access to the type."
 msgstr "用于编程访问类型。"
 
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr ""
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:124
+#: ../browser/types.py:131
 msgid "help_addcontenttype_button"
 msgstr "单击 \"添加内容类型\" 按钮，开始创建一个新的自定义内容类型。"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-28 16:13+0000\n"
+"POT-Creation-Date: 2012-12-12 14:55+0000\n"
 "PO-Revision-Date: 2012-08-28 18:13+0100\n"
 "Last-Translator: Thomas Clement Mogensen <tmog@headnet.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,10 +22,9 @@ msgstr "antal emner"
 msgid "Add Content Type"
 msgstr "Tilføj Indholdstype"
 
-#. Default: "Add New Content Type…"
 #: ../browser/types_listing.pt:75
-msgid "Add New Content Type&hellip;"
-msgstr "Tilføj ny indholdsype&hellip;"
+msgid "Add New Content Type…"
+msgstr ""
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
 msgstr "Tilføjer felter til Dublin Core metadata (svarer til Basal metadata + Kategorisering + Gyldighedsperiode + Ejerskab)"
@@ -38,6 +37,17 @@ msgstr "Tilføjer felter til Opretter, Bidragsydere og Rettigheder "
 
 msgid "Adds keywords and language setting"
 msgstr "Tilføjer filter til Kategorisering og Sprogindstillinger"
+
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr ""
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr ""
+
+msgid "Allow items to be excluded from navigation"
+msgstr ""
 
 msgid "Allow items to have next previous navigation enabled"
 msgstr "Tillad indholdsobjekter at vise navigering til forrige og næste side"
@@ -54,19 +64,16 @@ msgstr "Generér automatisk en kort URL, afledt fra indholdsobjektets primære f
 msgid "Basic metadata"
 msgstr "Basal metadata"
 
-#: ../browser/behaviors.py:51
+#: ../browser/behaviors.py:58
+#: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Udvidelser (opførsler)"
 
-#: ../browser/behaviors.py:53
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "Opførsler"
 
-#: ../behaviors/metadata.py:48
-msgid "Categorization"
-msgstr "Kategorisering"
-
-#: ../browser/types.py:43
+#: ../browser/types.py:44
 msgid "Clone"
 msgstr "Klon"
 
@@ -74,23 +81,24 @@ msgstr "Klon"
 msgid "Clone Content Type"
 msgstr "Klon indholdstype"
 
+msgid "Configures various components needed for full Dexterity support."
+msgstr ""
+
 #: ../interfaces.py:57
 msgid "Container"
 msgstr "Mappe"
-
-#: ../behaviors/metadata.py:76
-msgid "Dates"
-msgstr "Datoer"
 
 #: ../interfaces.py:52
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: ../browser/types.py:186
+#: ../browser/types.py:193
+#: ../profiles/default/actions.xml
+#: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity indholdstyper"
 
-#: ../browser/types.py:155
+#: ../browser/types.py:162
 msgid "Dexterity content types"
 msgstr "Dexterity indholdstyper"
 
@@ -106,21 +114,25 @@ msgstr "Slå navigering til næste og forrige side til for alle indholdsobjekter
 msgid "Exclude From navigation"
 msgstr "Ekskludér fra menunavigation"
 
-#: ../browser/types.py:68
+#: ../browser/types.py:69
 msgid "Export Schema Models"
 msgstr "Eksportér skema-modeller"
 
-#: ../browser/types.py:56
+#: ../browser/types.py:57
 msgid "Export Type Profiles"
 msgstr "Eksportér type-profiler"
 
 #: ../browser/fields.py:9
+#: ../browser/layout.py:15
 msgid "Fields"
 msgstr "Felter"
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
 msgstr "Disse indholdstyper vil kunne indholde andre indholdsobjekter."
+
+msgid "Make all items of this type a navigation root"
+msgstr ""
 
 msgid "Name from file name"
 msgstr "Navn fra filnavn"
@@ -137,27 +149,28 @@ msgstr "Næste-/forrige-navigation"
 msgid "Next previous navigation toggle"
 msgstr "Næste-/forrige-navigation til"
 
-#: ../browser/behaviors.py:54
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr ""
+
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "Ingen ændringer blev foretaget."
 
 #: ../browser/layout.py:14
+#: ../browser/overview.py:19
 msgid "Overview"
 msgstr "Overblik"
 
-#: ../behaviors/metadata.py:104
-msgid "Ownership"
-msgstr "Ejerskab"
-
-#: ../browser/types.py:48
+#: ../browser/types.py:49
 msgid "Please select a single type to clone."
 msgstr "Vælg venligst én type der skal klones"
 
-#: ../browser/types.py:54
+#: ../browser/types.py:55
 msgid "Please select a type to clone."
 msgstr "Vælg venligst en type der skal klones."
 
-#: ../browser/types.py:61
+#: ../browser/types.py:62
 msgid "Please select types to export."
 msgstr "Vælg venligst de typer der skal eksporteres."
 
@@ -165,11 +178,13 @@ msgstr "Vælg venligst de typer der skal eksporteres."
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Brug venligst kun bogstaver (a-z), tal, og følgende tegn: .-_"
 
-#: ../browser/behaviors.py:52
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "Vælg de udvidelser der skal slås til for denne indholdstype."
 
+#: ../behaviors/discussion.py:25
 #: ../behaviors/exclfromnav.py:13
+#: ../behaviors/nextprevious.py:27
 msgid "Settings"
 msgstr "Indstillinger"
 
@@ -177,13 +192,13 @@ msgstr "Indstillinger"
 msgid "Short Name"
 msgstr "Kort navn"
 
-#: ../browser/types.py:121
+#: ../browser/types.py:128
 msgid "The following custom content types are available for your site."
 msgstr "Følgende indholdstyper er tilgængelige på sitet."
 
 #: ../interfaces.py:78
-msgid "There is already a content type named \"${name}\""
-msgstr "Indholdstypen \"${name}\" findes allerede"
+msgid "There is already a content type named '${name}'"
+msgstr ""
 
 #: ../interfaces.py:41
 msgid "Type Name"
@@ -201,108 +216,32 @@ msgstr "Indholdstypen blev klonet"
 msgid "Used for programmatic access to the type."
 msgstr "Bruges ved programmatisk tilgang til indholdstypen."
 
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr ""
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:124
+#: ../browser/types.py:131
 msgid "help_addcontenttype_button"
 msgstr "Klik på knappen \"Tilføj indholdstype\" for at oprette en ny type."
-
-#. Default: "Also known as keywords, tags or labels, these help you categorize your content."
-#: ../behaviors/metadata.py:54
-msgid "help_categories"
-msgstr "Også kendt som nøgleord, tags eller mærkater, disse hjælper til at kategorisere indholdet."
-
-#. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
-#: ../behaviors/metadata.py:122
-msgid "help_contributors"
-msgstr "Navne på de personer, der har bidraget til indholdet. Navnet på hver bidragsyder indtastes på en sepearat linje"
-
-#. Default: "Copyright statement or other rights information on this item."
-#: ../behaviors/metadata.py:134
-msgid "help_copyrights"
-msgstr "Rettighedshavere for dette indholdsobjekt"
-
-#. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
-#: ../behaviors/metadata.py:110
-msgid "help_creators"
-msgstr "Personer ansvarlige for dette indhold. Indtast en liste med brugernavne - et pr. linje. Den primære/ansvarlige forfatter bør stå øverst."
-
-#. Default: "A short summary of the content."
-#: ../behaviors/metadata.py:32
-msgid "help_description"
-msgstr "Skriv en kort beskrivelse af indholdet"
-
-#. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
-#: ../behaviors/metadata.py:82
-msgid "help_effective_date"
-msgstr "Her kan du angive indholdsobjektets publiceringsdato. Ved at udfylde dette felt kan du kontrollere fra hvilken dato, indholdsobjektet skal være synligt. Hvis der ikke er valgt nogen dato, vil indholdet være synligt med det samme."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
 #: ../behaviors/exclfromnav.py:18
 msgid "help_exclude_from_nav"
 msgstr "Hvis valgt, vil dette indholdsobjekt ikke blive vist i menunavigationen"
 
-#. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
-#: ../behaviors/metadata.py:90
-msgid "help_expiration_date"
-msgstr "Datoen hvor indholdsobjektet ikke længere er tilgængeligt for andre. Hvis intet er angivet, forbliver indholdsobjektet synligt."
-
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:32
 msgid "help_nextprevious"
 msgstr "Slå næste-/forrige-navigation til på indhold placeret i denne mappe."
-
-#. Default: "Categories"
-#: ../behaviors/metadata.py:53
-msgid "label_categories"
-msgstr "Kategorier"
-
-#. Default: "Contributors"
-#: ../behaviors/metadata.py:121
-msgid "label_contributors"
-msgstr "Bidragsydere"
-
-#. Default: "Rights"
-#: ../behaviors/metadata.py:133
-msgid "label_copyrights"
-msgstr "Rettigheder"
-
-#. Default: "Creators"
-#: ../behaviors/metadata.py:109
-msgid "label_creators"
-msgstr "Forfattere"
-
-#. Default: "Description"
-#: ../behaviors/metadata.py:31
-msgid "label_description"
-msgstr "Beskrivelse"
-
-#. Default: "Publishing Date"
-#: ../behaviors/metadata.py:81
-msgid "label_effective_date"
-msgstr "Publiseringsdato"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
 msgstr "Ekskludér fra menunavigation"
 
-#. Default: "Expiration Date"
-#: ../behaviors/metadata.py:89
-msgid "label_expiration_date"
-msgstr "Udløbsdato"
-
-#. Default: "Language"
-#: ../behaviors/metadata.py:62
-msgid "label_language"
-msgstr "Sprog"
-
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
 msgid "label_nextprevious"
 msgstr "Næste-/forrige-navigation"
-
-#. Default: "Title"
-#: ../behaviors/metadata.py:26
-msgid "label_title"
-msgstr "Titel"
 

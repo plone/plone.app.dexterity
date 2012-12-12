@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
-"POT-Creation-Date: 2012-09-16 23:18+0000\n"
+"POT-Creation-Date: 2012-12-12 14:55+0000\n"
 "PO-Revision-Date: 2012-02-09 18:16+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: eu <eu@li.org>\n"
@@ -40,6 +40,14 @@ msgstr "Sortzaileak, parte-hartzaileak eta eskubideen eremuak"
 msgid "Adds keywords and language setting"
 msgstr "Etiketak eta hizkuntzaren eremua gehitu"
 
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr ""
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr ""
+
 msgid "Allow items to be excluded from navigation"
 msgstr ""
 
@@ -58,16 +66,16 @@ msgstr "Elementuaren helbidea fitxategi-eremuan dagoen fitxategiaren izenaren ar
 msgid "Basic metadata"
 msgstr "Oinarrizko metadatuak"
 
-#: ../browser/behaviors.py:51
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Portaerak"
 
-#: ../browser/behaviors.py:53
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "Portaerak ondo eguneratu dira."
 
-#: ../browser/types.py:43
+#: ../browser/types.py:44
 msgid "Clone"
 msgstr "Klonatu"
 
@@ -86,13 +94,13 @@ msgstr "Edukiontzia"
 msgid "Description"
 msgstr "Deskribapena"
 
-#: ../browser/types.py:186
+#: ../browser/types.py:193
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity elementu-motak"
 
-#: ../browser/types.py:155
+#: ../browser/types.py:162
 msgid "Dexterity content types"
 msgstr "Dexterity elementu-motak"
 
@@ -108,11 +116,11 @@ msgstr "Elementuak \"aurrekoa-hurrengoa\" nabigazioa izatea aktibatu"
 msgid "Exclude From navigation"
 msgstr "Nabigaziotik baztertu"
 
-#: ../browser/types.py:68
+#: ../browser/types.py:69
 msgid "Export Schema Models"
 msgstr "Eskema modeloak esportatu"
 
-#: ../browser/types.py:56
+#: ../browser/types.py:57
 msgid "Export Type Profiles"
 msgstr "Moten profilak esportatu"
 
@@ -143,7 +151,11 @@ msgstr "Aurrekoa/Hurrengoa nabigazioa"
 msgid "Next previous navigation toggle"
 msgstr "Aurrekoa/Hurrengoa nabigazioa aukera"
 
-#: ../browser/behaviors.py:54
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr ""
+
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "Ez da aldaketarik egin."
 
@@ -152,15 +164,15 @@ msgstr "Ez da aldaketarik egin."
 msgid "Overview"
 msgstr ""
 
-#: ../browser/types.py:48
+#: ../browser/types.py:49
 msgid "Please select a single type to clone."
 msgstr "Klonatzeko elementu bakarra aukeratu."
 
-#: ../browser/types.py:54
+#: ../browser/types.py:55
 msgid "Please select a type to clone."
 msgstr "Klonatzeko elementua aukeratu."
 
-#: ../browser/types.py:61
+#: ../browser/types.py:62
 msgid "Please select types to export."
 msgstr "Esportatu beharreko elementu-motak aukeratu."
 
@@ -168,10 +180,11 @@ msgstr "Esportatu beharreko elementu-motak aukeratu."
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Hizkiak, zenbakiak eta ., - edo _ karaktereak bakarrik erabili"
 
-#: ../browser/behaviors.py:52
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "Elementu-mota honi aktibatuko zaizkion portaerak aukeratu."
 
+#: ../behaviors/discussion.py:25
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
@@ -181,7 +194,7 @@ msgstr "Ezarpenak"
 msgid "Short Name"
 msgstr "Izen-laburra"
 
-#: ../browser/types.py:121
+#: ../browser/types.py:128
 msgid "The following custom content types are available for your site."
 msgstr "Zure atarian elementu-mota hauek daude"
 
@@ -205,8 +218,12 @@ msgstr "Elementu-mota ondo klonatu da."
 msgid "Used for programmatic access to the type."
 msgstr "Elementu-mota programaziotik erabiltzeko."
 
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr ""
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:124
+#: ../browser/types.py:131
 msgid "help_addcontenttype_button"
 msgstr "Egin klik \"Elementu-mota gehitu\" botoian elementu-mota berri bat sortzen hasteko."
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-09-16 23:18+0000\n"
+"POT-Creation-Date: 2012-12-12 14:55+0000\n"
 "PO-Revision-Date: 2011-05-20 15:13+0800\n"
 "Last-Translator: retsu <retsuyam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,14 @@ msgstr "作者、貢献者、権利といったフィールドを追加"
 msgid "Adds keywords and language setting"
 msgstr "キーワードと言語設定を追加"
 
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr ""
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr ""
+
 msgid "Allow items to be excluded from navigation"
 msgstr ""
 
@@ -57,16 +65,16 @@ msgstr "コンテンツの主要フィールドファイル名を基にして、
 msgid "Basic metadata"
 msgstr "基本メタデータ"
 
-#: ../browser/behaviors.py:51
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "振る舞い"
 
-#: ../browser/behaviors.py:53
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "振る舞いが更新されました"
 
-#: ../browser/types.py:43
+#: ../browser/types.py:44
 msgid "Clone"
 msgstr "複製"
 
@@ -85,13 +93,13 @@ msgstr "コンテナ"
 msgid "Description"
 msgstr "説明"
 
-#: ../browser/types.py:186
+#: ../browser/types.py:193
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterityコンテンツタイプ"
 
-#: ../browser/types.py:155
+#: ../browser/types.py:162
 msgid "Dexterity content types"
 msgstr "Dexterityコンテンツタイプ"
 
@@ -107,11 +115,11 @@ msgstr "このタイプのアイテムについて、次・前ナビゲーショ
 msgid "Exclude From navigation"
 msgstr "ナビゲーションから除外する"
 
-#: ../browser/types.py:68
+#: ../browser/types.py:69
 msgid "Export Schema Models"
 msgstr "スキーマモデルをエクポート"
 
-#: ../browser/types.py:56
+#: ../browser/types.py:57
 msgid "Export Type Profiles"
 msgstr "タイププロファイルをエクスポート"
 
@@ -142,7 +150,11 @@ msgstr "次・前ナビゲーション"
 msgid "Next previous navigation toggle"
 msgstr "次・前ナビゲーションのトグル"
 
-#: ../browser/behaviors.py:54
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr ""
+
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "何も変更されていません"
 
@@ -151,15 +163,15 @@ msgstr "何も変更されていません"
 msgid "Overview"
 msgstr ""
 
-#: ../browser/types.py:48
+#: ../browser/types.py:49
 msgid "Please select a single type to clone."
 msgstr "複製するタイプをひとつ選んでください"
 
-#: ../browser/types.py:54
+#: ../browser/types.py:55
 msgid "Please select a type to clone."
 msgstr "複製するタイプをひとつ選んでください"
 
-#: ../browser/types.py:61
+#: ../browser/types.py:62
 msgid "Please select types to export."
 msgstr "エクスポートするタイプを選んでください（複数選択可）"
 
@@ -167,10 +179,11 @@ msgstr "エクスポートするタイプを選んでください（複数選択
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "文字、数字、記号 \".\", \"-\", \"_\" だけを使うようにしてください"
 
-#: ../browser/behaviors.py:52
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "このコンテンツタイプに対して有効にする振る舞いを選んでください"
 
+#: ../behaviors/discussion.py:25
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
@@ -180,7 +193,7 @@ msgstr "設定"
 msgid "Short Name"
 msgstr "ショートネーム"
 
-#: ../browser/types.py:121
+#: ../browser/types.py:128
 msgid "The following custom content types are available for your site."
 msgstr "次のカスタムコンテンツタイプがあなたのサイトで利用できます"
 
@@ -204,8 +217,12 @@ msgstr "タイプが複製されました"
 msgid "Used for programmatic access to the type."
 msgstr "プログラム的にタイプにアクセスするのに使われます"
 
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr ""
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:124
+#: ../browser/types.py:131
 msgid "help_addcontenttype_button"
 msgstr "新しいカスタムコンテンツタイプを作り始めるには、「コンテンツタイプを追加」ボタンをクリックします"
 
