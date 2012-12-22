@@ -32,6 +32,13 @@ directory. These directories should be created next to the module files,
 so we will have ``program_templates``, ``presenter_templates`` and
 ``session_templates``.
 
+(Note for newbies: 
+A view will have update() and render() methods.  We will inherit these,
+with the result that our view will render a similarly-named page template.
+If you wanted, you could provide your own update and/or render methods.
+The sessions() method you will see defined below exists to provide 
+information that will be referenced by the page template.)
+
 In ``program.py``, the view is registered as follows:
 
 .. code-block:: python
