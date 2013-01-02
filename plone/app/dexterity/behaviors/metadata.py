@@ -76,7 +76,7 @@ class IPublication(form.Schema):
     # dates fieldset
     form.fieldset(
         'dates',
-        label=_PMF('label_schema_dates', default=u'Dates'),
+        label=_PMF(u'label_schema_dates', default=u'Dates'),
         fields=['effective', 'expires'],
         )
 

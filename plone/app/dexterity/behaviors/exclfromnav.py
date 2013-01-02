@@ -9,7 +9,7 @@ class IExcludeFromNavigation(form.Schema):
     """
 
     form.fieldset('settings',
-                  label=_('label_schema_settings', default=u'Settings'),
+                  label=_(u'label_schema_settings', default=u'Settings'),
                   fields=['exclude_from_nav'])
 
     exclude_from_nav = schema.Bool(
