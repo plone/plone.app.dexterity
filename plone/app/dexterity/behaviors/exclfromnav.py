@@ -8,7 +8,8 @@ class IExcludeFromNavigation(form.Schema):
     """Behavior interface to exclude items from navigation.
     """
 
-    form.fieldset('settings', label=u"Settings",
+    form.fieldset('settings',
+                  label=_(u'label_schema_settings', default=u'Settings'),
                   fields=['exclude_from_nav'])
 
     exclude_from_nav = schema.Bool(
