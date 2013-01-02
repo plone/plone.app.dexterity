@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: plone.app.dexterity\n"
 "POT-Creation-Date: 2013-01-02 14:31+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2013-01-02 15:30 +0000\n"
+"Last-Translator: Steven Looman <steven@fourdigits.nl>\n"
+"Language-Team: Nederlands <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,116 +17,116 @@ msgstr ""
 
 #: ./interfaces.py:67
 msgid "# of items"
-msgstr ""
+msgstr "Aantal items"
 
 #: ./browser/add_type.py:13
 msgid "Add Content Type"
-msgstr ""
+msgstr "Voeg Content Type toe"
 
 #: ./browser/types.py:131
 msgid "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-msgstr ""
+msgstr "Klik op de \"Voeg Content Type toe\" knop om nieuwe Content Types te maken."
 
 #: ./browser/types.py:42
 msgid "Clone"
-msgstr ""
+msgstr "Cloon"
 
 #: ./browser/clone_type.py:11
 msgid "Clone Content Type"
-msgstr ""
+msgstr "Cloon Content Type"
 
 #: ./interfaces.py:57
 msgid "Container"
-msgstr ""
+msgstr "Container"
 
 #: ./interfaces.py:52
 msgid "Description"
-msgstr ""
+msgstr "Beschrijving"
 
 #: ./browser/types.py:184
 #: ./profiles/default/actions.xml
 #: ./profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
-msgstr ""
+msgstr "Dexterity Content Types"
 
 #: ./browser/types.py:161
 msgid "Dexterity content types"
-msgstr ""
+msgstr "Dexterity content types"
 
 #: ./browser/types.py:67
 msgid "Export Schema Models"
-msgstr ""
+msgstr "Export Schema Modellen"
 
 #: ./browser/types.py:55
 msgid "Export Type Profiles"
-msgstr ""
+msgstr "Export Type Profielen"
 
 #: ./interfaces.py:58
 msgid "Items of this type will be able to contain other items."
-msgstr ""
+msgstr "Items op deze site kunnen andere items bevatten."
 
 #: ./browser/types.py:47
 msgid "Please select a single type to clone."
-msgstr ""
+msgstr "Selecteer een type om te clonen."
 
 #: ./browser/types.py:53
 msgid "Please select a type to clone."
-msgstr ""
+msgstr "Selecteer een type om te clonen."
 
 #: ./browser/types.py:60
 msgid "Please select types to export."
-msgstr ""
+msgstr "Selecteer types om te exporteren."
 
 #: ./interfaces.py:25
 msgid "Please use only letters, numbers, and the following characters: .-_"
-msgstr ""
+msgstr "Gebruik alleen letters, cijfers en de volgende karakters: .-_"
 
 #: ./browser/types.py:128
 msgid "The following custom content types are available for your site."
-msgstr ""
+msgstr "De volgende Content Types zijn beschikbaar"
 
 #: ./interfaces.py:78
 msgid "There is already a content type named '${name}'"
-msgstr ""
+msgstr "Er bestaat al een Content Type met de naam '${name}'"
 
 #: ./interfaces.py:41
 msgid "Type Name"
-msgstr ""
+msgstr "Type naam"
 
 #: ./browser/add_type.py:51
 msgid "Type added successfully."
-msgstr ""
+msgstr "Type toegevoegd."
 
 #: ./browser/clone_type.py:28
 msgid "Type cloned successfully."
-msgstr ""
+msgstr "Type gecloond."
 
 #: ./interfaces.py:46
 msgid "Used for programmatic access to the type."
-msgstr ""
+msgstr "Gebruikt voor programmatische toegang tot het type."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
 #: ./behaviors/exclfromnav.py:17
 msgid "help_exclude_from_nav"
-msgstr ""
+msgstr "Indien aangevinkt zal dit item niet getoond worden in de navigatie boom"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ./behaviors/nextprevious.py:30
 msgid "help_nextprevious"
-msgstr ""
+msgstr "Indien aangevinkt zal het volgende/vorige widget op items in deze folder getoond worden."
 
 #. Default: "Exclude from navigation"
 #: ./behaviors/exclfromnav.py:16
 msgid "label_exclude_from_nav"
-msgstr ""
+msgstr "Niet in navigatie tonen"
 
 #. Default: "Enable next previous navigation"
 #: ./behaviors/nextprevious.py:29
 msgid "label_nextprevious"
-msgstr ""
+msgstr "Vorige/volgende tonen"
 
 #. Default: "Settings"
 #: ./behaviors/exclfromnav.py:12
 msgid "label_schema_settings"
-msgstr ""
+msgstr "Instellingen"
 
