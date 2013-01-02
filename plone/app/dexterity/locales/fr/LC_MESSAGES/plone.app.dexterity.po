@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-11-15 16:31+0000\n"
+"POT-Creation-Date: 2013-01-02 14:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,42 +18,83 @@ msgstr ""
 "Domain: plone.app.dexterity\n"
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
-#: ./browser/add_type.py:15
+#: ./interfaces.py:67
+msgid "# of items"
+msgstr ""
+
+#: ./browser/add_type.py:13
 msgid "Add Content Type"
 msgstr "Ajouter un type de contenu"
 
-#: ./behaviors/metadata.py:51
-msgid "Categorization"
-msgstr "Catégorisation"
+#: ./browser/types.py:131
+msgid "Click the \"Add Content Type\" button to begin creating  a new custom content type."
+msgstr ""
 
-#: ./browser/types.py:36
+#: ./browser/types.py:42
 msgid "Clone"
 msgstr "Dupliquer"
 
-#: ./browser/clone_type.py:13
+#: ./browser/clone_type.py:11
 msgid "Clone Content Type"
 msgstr "Dupliquer un type de contenu"
 
-#: ./behaviors/metadata.py:79
-msgid "Dates"
-msgstr "Dates"
+#: ./interfaces.py:57
+msgid "Container"
+msgstr ""
 
+#: ./interfaces.py:52
+msgid "Description"
+msgstr ""
+
+#: ./browser/types.py:184
 #: ./profiles/default/actions.xml
 #: ./profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Types de contenu dexterity"
 
-#: ./behaviors/metadata.py:107
-msgid "Ownership"
+#: ./browser/types.py:161
+msgid "Dexterity content types"
 msgstr ""
 
-#: ./browser/types.py:41
+#: ./browser/types.py:67
+msgid "Export Schema Models"
+msgstr ""
+
+#: ./browser/types.py:55
+msgid "Export Type Profiles"
+msgstr ""
+
+#: ./interfaces.py:58
+msgid "Items of this type will be able to contain other items."
+msgstr ""
+
+#: ./browser/types.py:47
 msgid "Please select a single type to clone."
 msgstr "Merci de ne sélectionner qu'un seul type de contenu à dupliquer."
 
-#: ./browser/types.py:47
+#: ./browser/types.py:53
 msgid "Please select a type to clone."
 msgstr "Merci de sélectionner un type à dupliquer."
+
+#: ./browser/types.py:60
+msgid "Please select types to export."
+msgstr ""
+
+#: ./interfaces.py:25
+msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr ""
+
+#: ./browser/types.py:128
+msgid "The following custom content types are available for your site."
+msgstr ""
+
+#: ./interfaces.py:78
+msgid "There is already a content type named '${name}'"
+msgstr ""
+
+#: ./interfaces.py:41
+msgid "Type Name"
+msgstr ""
 
 #: ./browser/add_type.py:51
 msgid "Type added successfully."
@@ -63,88 +104,32 @@ msgstr "Type ajouté avec succès."
 msgid "Type cloned successfully."
 msgstr "Type dupliqué avec succès."
 
-#. Default: "Also known as keywords, tags or labels, these help you categorize your content."
-#: ./behaviors/metadata.py:57
-msgid "help_categories"
-msgstr "Aussi connu sous le nom de mots-clés, étiquettes ou libellés, ils vous permettent de catégoriser votre contenu."
+#: ./interfaces.py:46
+msgid "Used for programmatic access to the type."
+msgstr ""
 
-#. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
-#: ./behaviors/metadata.py:125
-msgid "help_contributors"
-msgstr "Les noms des personnes qui ont contribué à cet élément. Chaque contributeur doit être sur une ligne séparée."
+#. Default: "If selected, this item will not appear in the navigation tree"
+#: ./behaviors/exclfromnav.py:17
+msgid "help_exclude_from_nav"
+msgstr ""
 
-#. Default: "Copyright statement or other rights information on this item."
-#: ./behaviors/metadata.py:137
-msgid "help_copyrights"
-msgstr "Droit d'auteur ou n'importe quelle information de droit associé à cet élément."
+#. Default: "This enables next/previous widget on content items contained in this folder."
+#: ./behaviors/nextprevious.py:30
+msgid "help_nextprevious"
+msgstr ""
 
-#. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
-#: ./behaviors/metadata.py:113
-msgid "help_creators"
-msgstr "Personne responsable de créer le contenu de cet élément. Merci de saisir une liste de nom d'utilisateurs, un par ligne. Le créateur principal doit être le premier."
+#. Default: "Exclude from navigation"
+#: ./behaviors/exclfromnav.py:16
+msgid "label_exclude_from_nav"
+msgstr ""
 
-#. Default: "A short summary of the content."
-#: ./behaviors/metadata.py:35
-msgid "help_description"
-msgstr "Un court résumé du contenu."
+#. Default: "Enable next previous navigation"
+#: ./behaviors/nextprevious.py:29
+msgid "label_nextprevious"
+msgstr ""
 
-#. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
-#: ./behaviors/metadata.py:85
-msgid "help_effective_date"
-msgstr "Si cette date est dans le futur, le contenu ne s'affichera pas dans les listings et les recherches avant cette date."
-
-#. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
-#: ./behaviors/metadata.py:93
-msgid "help_expiration_date"
-msgstr "Quand cette date sera atteinte, le contenu ne sera plus affiché dans les listings et les recherches."
-
-#. Default: "Categories"
-#: ./behaviors/metadata.py:56
-msgid "label_categories"
-msgstr "Catégories"
-
-#. Default: "Contributors"
-#: ./behaviors/metadata.py:124
-msgid "label_contributors"
-msgstr "Contributeurs"
-
-#. Default: "Rights"
-#: ./behaviors/metadata.py:136
-msgid "label_copyrights"
-msgstr "Droits"
-
-#. Default: "Creators"
-#: ./behaviors/metadata.py:112
-msgid "label_creators"
-msgstr "Créateurs"
-
-#. Default: "Description"
-#: ./behaviors/metadata.py:34
-msgid "label_description"
-msgstr "Description"
-
-#. Default: "Publishing Date"
-#: ./behaviors/metadata.py:84
-msgid "label_effective_date"
-msgstr "Date de publication"
-
-#. Default: "Expiration Date"
-#: ./behaviors/metadata.py:92
-msgid "label_expiration_date"
-msgstr "Date d'expiration"
-
-#. Default: "Language"
-#: ./behaviors/metadata.py:65
-msgid "label_language"
-msgstr "Langue"
-
-#. Default: "Related Items"
-#: ./behaviors/related.py:18
-msgid "label_related_items"
-msgstr "Eléments corrélés"
-
-#. Default: "Title"
-#: ./behaviors/metadata.py:29
-msgid "label_title"
-msgstr "Titre"
+#. Default: "Settings"
+#: ./behaviors/exclfromnav.py:12
+msgid "label_schema_settings"
+msgstr ""
 
