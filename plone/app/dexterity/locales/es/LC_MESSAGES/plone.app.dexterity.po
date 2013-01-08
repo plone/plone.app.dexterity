@@ -122,7 +122,7 @@ msgstr "Exportar los modelos del esquema"
 
 #: ../browser/types.py:57
 msgid "Export Type Profiles"
-msgstr "Esportar los perfiles del tipo"
+msgstr "Exportar los perfiles del tipo"
 
 #: ../browser/fields.py:9
 #: ../browser/layout.py:15
