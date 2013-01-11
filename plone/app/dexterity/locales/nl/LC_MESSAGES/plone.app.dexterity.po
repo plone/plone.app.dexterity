@@ -29,11 +29,11 @@ msgstr "Klik op de \"Voeg Content Type toe\" knop om nieuwe Content Types te mak
 
 #: ./browser/types.py:42
 msgid "Clone"
-msgstr "Cloon"
+msgstr "Kloon"
 
 #: ./browser/clone_type.py:11
 msgid "Clone Content Type"
-msgstr "Cloon Content Type"
+msgstr "Kloon Content Type"
 
 #: ./interfaces.py:57
 msgid "Container"
@@ -67,11 +67,11 @@ msgstr "Items op deze site kunnen andere items bevatten."
 
 #: ./browser/types.py:47
 msgid "Please select a single type to clone."
-msgstr "Selecteer een type om te clonen."
+msgstr "Selecteer een type om te klonen."
 
 #: ./browser/types.py:53
 msgid "Please select a type to clone."
-msgstr "Selecteer een type om te clonen."
+msgstr "Selecteer een type om te klonen."
 
 #: ./browser/types.py:60
 msgid "Please select types to export."
@@ -99,7 +99,7 @@ msgstr "Type toegevoegd."
 
 #: ./browser/clone_type.py:28
 msgid "Type cloned successfully."
-msgstr "Type gecloond."
+msgstr "Type gekloond."
 
 #: ./interfaces.py:46
 msgid "Used for programmatic access to the type."
