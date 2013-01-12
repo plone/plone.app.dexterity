@@ -1,146 +1,132 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-11-15 16:31+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-01-02 14:31+0000\n"
+"PO-Revision-Date: 2012-09-01 21:07-0400\n"
+"Last-Translator: Herson Rodrigues <hersonrodrigues@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: pt-br\n"
-"Language-Name: PortuguÃªs do Brasil\n"
+"Language-Name: Português do Brasil\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.dexterity\n"
+"X-Is-Fallback-For: pt-ao pt-gw pt-cv pt-mz pt-pt pt-st\n"
 
-#: ./browser/add_type.py:15
+#: ./interfaces.py:67
+msgid "# of items"
+msgstr ""
+
+#: ./browser/add_type.py:13
 msgid "Add Content Type"
+msgstr "Adicionar Tipo de Conteúdo"
+
+#: ./browser/types.py:131
+msgid "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 msgstr ""
 
-#: ./behaviors/metadata.py:51
-msgid "Categorization"
-msgstr ""
-
-#: ./browser/types.py:36
+#: ./browser/types.py:42
 msgid "Clone"
-msgstr ""
+msgstr "Clonar"
 
-#: ./browser/clone_type.py:13
+#: ./browser/clone_type.py:11
 msgid "Clone Content Type"
-msgstr ""
+msgstr "Clonar Tipo de Conteúdo"
 
-#: ./behaviors/metadata.py:79
-msgid "Dates"
-msgstr ""
+#: ./interfaces.py:57
+msgid "Container"
+msgstr "Container"
 
+#: ./interfaces.py:52
+msgid "Description"
+msgstr "Descrição"
+
+#: ./browser/types.py:184
 #: ./profiles/default/actions.xml
 #: ./profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr ""
 
-#: ./behaviors/metadata.py:107
-msgid "Ownership"
-msgstr ""
+#: ./browser/types.py:161
+msgid "Dexterity content types"
+msgstr "Dexterity - Tipos de conteúdo"
 
-#: ./browser/types.py:41
-msgid "Please select a single type to clone."
-msgstr ""
+#: ./browser/types.py:67
+msgid "Export Schema Models"
+msgstr "Exportar os modelos de esquema"
+
+#: ./browser/types.py:55
+msgid "Export Type Profiles"
+msgstr "Exportar as configurações do tipo"
+
+#: ./interfaces.py:58
+msgid "Items of this type will be able to contain other items."
+msgstr "Os itens deste tipo poderão conter outros itens."
 
 #: ./browser/types.py:47
+msgid "Please select a single type to clone."
+msgstr "Por favor selecione um tipo simples para clonar"
+
+#: ./browser/types.py:53
 msgid "Please select a type to clone."
+msgstr "Por favor selecione um tipo para clonar"
+
+#: ./browser/types.py:60
+msgid "Please select types to export."
+msgstr "Por favor selecione os tipos a serem exportados."
+
+#: ./interfaces.py:25
+msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr "Por favor use somente letras, números e os seguintes caracteres: _."
+
+#: ./browser/types.py:128
+msgid "The following custom content types are available for your site."
+msgstr "Os seguintes tipos de conteúdo personalizados estão disponíveis para o seu site."
+
+#: ./interfaces.py:78
+msgid "There is already a content type named '${name}'"
 msgstr ""
+
+#: ./interfaces.py:41
+msgid "Type Name"
+msgstr "Nome do tipo"
 
 #: ./browser/add_type.py:51
 msgid "Type added successfully."
-msgstr ""
+msgstr "Tipo adicionado com sucesso."
 
 #: ./browser/clone_type.py:28
 msgid "Type cloned successfully."
-msgstr ""
+msgstr "Tipo clonado com sucesso."
 
-#. Default: "Also known as keywords, tags or labels, these help you categorize your content."
-#: ./behaviors/metadata.py:57
-msgid "help_categories"
-msgstr ""
+#: ./interfaces.py:46
+msgid "Used for programmatic access to the type."
+msgstr "Usado para acessar um tipo de conteúdo programado."
 
-#. Default: "The names of people that have contributed to this item. Each contributor should be on a separate line."
-#: ./behaviors/metadata.py:125
-msgid "help_contributors"
-msgstr ""
+#. Default: "If selected, this item will not appear in the navigation tree"
+#: ./behaviors/exclfromnav.py:17
+msgid "help_exclude_from_nav"
+msgstr "Se estiver selecionado, o item não aparecerá na navegação"
 
-#. Default: "Copyright statement or other rights information on this item."
-#: ./behaviors/metadata.py:137
-msgid "help_copyrights"
-msgstr ""
+#. Default: "This enables next/previous widget on content items contained in this folder."
+#: ./behaviors/nextprevious.py:30
+msgid "help_nextprevious"
+msgstr "Isto habilita o widget próximo/anterior em itens de conteúdo contidos nesta pasta."
 
-#. Default: "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
-#: ./behaviors/metadata.py:113
-msgid "help_creators"
-msgstr ""
+#. Default: "Exclude from navigation"
+#: ./behaviors/exclfromnav.py:16
+msgid "label_exclude_from_nav"
+msgstr "Excluir da navegação"
 
-#. Default: "A short summary of the content."
-#: ./behaviors/metadata.py:35
-msgid "help_description"
-msgstr ""
+#. Default: "Enable next previous navigation"
+#: ./behaviors/nextprevious.py:29
+msgid "label_nextprevious"
+msgstr "Habilitar a navegação próximo/anterior"
 
-#. Default: "If this date is in the future, the content will not show up in listings and searches until this date."
-#: ./behaviors/metadata.py:85
-msgid "help_effective_date"
-msgstr ""
-
-#. Default: "When this date is reached, the content will nolonger be visible in listings and searches."
-#: ./behaviors/metadata.py:93
-msgid "help_expiration_date"
-msgstr ""
-
-#. Default: "Categories"
-#: ./behaviors/metadata.py:56
-msgid "label_categories"
-msgstr ""
-
-#. Default: "Contributors"
-#: ./behaviors/metadata.py:124
-msgid "label_contributors"
-msgstr ""
-
-#. Default: "Rights"
-#: ./behaviors/metadata.py:136
-msgid "label_copyrights"
-msgstr ""
-
-#. Default: "Creators"
-#: ./behaviors/metadata.py:112
-msgid "label_creators"
-msgstr ""
-
-#. Default: "Description"
-#: ./behaviors/metadata.py:34
-msgid "label_description"
-msgstr ""
-
-#. Default: "Publishing Date"
-#: ./behaviors/metadata.py:84
-msgid "label_effective_date"
-msgstr ""
-
-#. Default: "Expiration Date"
-#: ./behaviors/metadata.py:92
-msgid "label_expiration_date"
-msgstr ""
-
-#. Default: "Language"
-#: ./behaviors/metadata.py:65
-msgid "label_language"
-msgstr ""
-
-#. Default: "Related Items"
-#: ./behaviors/related.py:18
-msgid "label_related_items"
-msgstr ""
-
-#. Default: "Title"
-#: ./behaviors/metadata.py:29
-msgid "label_title"
+#. Default: "Settings"
+#: ./behaviors/exclfromnav.py:12
+msgid "label_schema_settings"
 msgstr ""
 

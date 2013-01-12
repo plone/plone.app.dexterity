@@ -14,11 +14,11 @@ try:
 except ImportError:
     from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 
-from plone.app.dexterity import PloneMessageFactory as _
+from plone.app.dexterity import PloneMessageFactory as _PMF
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
 # content edit forms.
-#     
+#
 # These schemata duplicate the fields of zope.dublincore.IZopeDublinCore,
 # in order to annotate them with form hints and more helpful titles
 # and descriptions.
@@ -26,20 +26,20 @@ from plone.app.dexterity import PloneMessageFactory as _
 class IBasic(form.Schema):
     # default fieldset
     title = schema.TextLine(
-        title = _(u'label_title', default=u'Title'),
+        title = _PMF(u'label_title', default=u'Title'),
         required = True
         )
-        
+
     description = schema.Text(
-        title=_(u'label_description', default=u'Description'),
-        description = _(u'help_description', default=u'A short summary of the content.'),
+        title=_PMF(u'label_description', default=u'Description'),
+        description = _PMF(u'help_description', default=u'A short summary of the content.'),
         required = False,
         missing_value = u'',
         )
-    
+
     form.order_before(description = '*')
     form.order_before(title = '*')
-    
+
     form.omitted('title', 'description')
     form.no_omit(IEditForm, 'title', 'description')
     form.no_omit(IAddForm, 'title', 'description')
@@ -48,13 +48,13 @@ class ICategorization(form.Schema):
     # categorization fieldset
     form.fieldset(
         'categorization',
-        label=_(u'Categorization'),
+        label=_PMF(u'label_schema_categorization', default=u'Categorization'),
         fields=['subjects', 'language'],
         )
 
     subjects = schema.Tuple(
-        title = _(u'label_categories', default=u'Categories'),
-        description = _(u'help_categories', default=u'Also known as keywords, tags or labels, these help you categorize your content.'),
+        title = _PMF(u'label_tags', default=u'Categories'),
+        description = _PMF(u'help_tags', default=u'Tags are commonly used for ad-hoc organization of content.'),
         value_type = schema.TextLine(),
         required = False,
         missing_value = (),
@@ -62,12 +62,12 @@ class ICategorization(form.Schema):
     form.widget(subjects = TextLinesFieldWidget)
 
     language = schema.Choice(
-        title = _(u'label_language', default=u'Language'),
+        title = _PMF(u'label_language', default=u'Language'),
         vocabulary = 'plone.app.vocabularies.AvailableContentLanguages',
         required = False,
         missing_value = '',
         )
-    
+
     form.omitted('subjects', 'language')
     form.no_omit(IEditForm, 'subjects', 'language')
     form.no_omit(IAddForm, 'subjects', 'language')
@@ -76,26 +76,26 @@ class IPublication(form.Schema):
     # dates fieldset
     form.fieldset(
         'dates',
-        label=_(u'Dates'),
+        label=_PMF(u'label_schema_dates', default=u'Dates'),
         fields=['effective', 'expires'],
         )
-    
+
     effective = schema.Datetime(
-        title = _(u'label_effective_date', u'Publishing Date'),
-        description = _(u'help_effective_date',
+        title = _PMF(u'label_effective_date', u'Publishing Date'),
+        description = _PMF(u'help_effective_date',
                           default=u"If this date is in the future, the content will "
                                    "not show up in listings and searches until this date."),
         required = False
         )
-        
+
     expires = schema.Datetime(
-        title = _(u'label_expiration_date', u'Expiration Date'),
-        description = _(u'help_expiration_date',
+        title = _PMF(u'label_expiration_date', u'Expiration Date'),
+        description = _PMF(u'help_expiration_date',
                               default=u"When this date is reached, the content will no"
                                        "longer be visible in listings and searches."),
         required = False
         )
-    
+
     form.omitted('effective', 'expires')
     form.no_omit(IEditForm, 'effective', 'expires')
     form.no_omit(IAddForm, 'effective', 'expires')
@@ -104,13 +104,13 @@ class IOwnership(form.Schema):
     # ownership fieldset
     form.fieldset(
         'ownership',
-        label=_(u'Ownership'),
+        label=_PMF(u'label_schema_ownership', default=u'Ownership'),
         fields=['creators', 'contributors', 'rights'],
         )
 
     creators = schema.Tuple(
-        title = _(u'label_creators', u'Creators'),
-        description = _(u'help_creators',
+        title = _PMF(u'label_creators', u'Creators'),
+        description = _PMF(u'help_creators',
                           default=u"Persons responsible for creating the content of "
                                    "this item. Please enter a list of user names, one "
                                    "per line. The principal creator should come first."),
@@ -119,10 +119,10 @@ class IOwnership(form.Schema):
         missing_value = (),
         )
     form.widget(creators = TextLinesFieldWidget)
-    
+
     contributors = schema.Tuple(
-        title = _(u'label_contributors', u'Contributors'),
-        description = _(u'help_contributors',
+        title = _PMF(u'label_contributors', u'Contributors'),
+        description = _PMF(u'help_contributors',
                           default=u"The names of people that have contributed "
                                    "to this item. Each contributor should "
                                    "be on a separate line."),
@@ -131,14 +131,14 @@ class IOwnership(form.Schema):
         missing_value = (),
         )
     form.widget(contributors = TextLinesFieldWidget)
-    
+
     rights = schema.Text(
-        title=_(u'label_copyrights', default=u'Rights'),
-        description=_(u'help_copyrights',
+        title=_PMF(u'label_copyrights', default=u'Rights'),
+        description=_PMF(u'help_copyrights',
                           default=u'Copyright statement or other rights information on this item.'),
         required = False,
         )
-    
+
     form.omitted('creators', 'contributors', 'rights')
     form.no_omit(IEditForm, 'creators', 'contributors', 'rights')
     form.no_omit(IAddForm, 'creators', 'contributors', 'rights')
@@ -166,7 +166,7 @@ class MetadataBase(object):
         using the standard CMF DefaultDublinCoreImpl getters and setters.
     """
     adapts(IDexterityContent)
-    
+
     def __init__(self, context):
         self.context = context
 
@@ -240,7 +240,7 @@ class Basic(MetadataBase):
     description = property(_get_description, _set_description)
 
 class Categorization(MetadataBase):
-    
+
     def _get_subjects(self):
         return self.context.subject
     def _set_subjects(self, value):
@@ -248,7 +248,7 @@ class Categorization(MetadataBase):
     subjects = property(_get_subjects, _set_subjects)
 
     language = DCFieldProperty(ICategorization['language'], get_name = 'Language', set_name = 'setLanguage')
-    
+
 class Publication(MetadataBase):
     effective = DCFieldProperty(IPublication['effective'], get_name = 'effective_date')
     expires = DCFieldProperty(IPublication['expires'], get_name = 'expiration_date')

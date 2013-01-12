@@ -1,6 +1,15 @@
 Changelog for plone.app.dexterity
 =================================
 
+1.2.2 - unreleased
+------------------
+
+- Backported i18n fixes by giacomos. [stevenlooman, giacomos]
+
+- Add upgrade step to make sure that only uninstalling plone.app.intid will
+  remove the intids utility.
+  [davisagli]
+
 1.2.1 - 2012-03-04
 ------------------
 
