@@ -1,8 +1,12 @@
 Changelog for plone.app.dexterity
 =================================
 
-1.2.2 - unreleased
+1.2.2 - 2013-01-11
 ------------------
+
+- Add Dutch translation. [stevenlooman]
+
+- Add Portuguese translation. [hersonrodrigues]
 
 - Backported i18n fixes by giacomos. [stevenlooman, giacomos]
 
