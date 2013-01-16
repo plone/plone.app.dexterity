@@ -33,7 +33,6 @@ for IDiscussionLayer).
 Add a document::
 
     >>> browser.open('http://nohost/plone/++add++discussiondocument')
-    >>> browser.getControl('Title').value = 'Document'
 
 
 Default Allow Discussion Options

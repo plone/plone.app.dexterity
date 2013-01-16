@@ -15,6 +15,7 @@ a dummy Dexterity FTI and schema, and a plone.schemaeditor schema context::
   >>> fti = DexterityFTI('dummy')
   >>> portal.portal_types._setObject('dummy', fti)
   'dummy'
+  >>> fti.model_source = '''<model xmlns="http://namespaces.plone.org/supermodel/schema"><schema><field name="title" type="zope.schema.TextLine"><title>Title</title></field></schema></model>'''
   >>> schema = fti.lookupSchema()
   >>> from plone.app.dexterity.browser.types import TypeSchemaContext
   >>> schema_context = TypeSchemaContext(schema, request=None)

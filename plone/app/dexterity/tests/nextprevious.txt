@@ -14,7 +14,8 @@ Say we have a 'Folder' content type::
 We can declare that it supports the "Next previous navigation toggle" behavior defined in
 plone.app.dexterity (normally this would be done via Generic Setup)::
 
-  >>> fti.behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle',)
+  >>> fti.behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle',
+  ...                  'plone.app.dexterity.behaviors.metadata.IBasic')
 
 Now let's fire up the browser and add a Folder::
 
