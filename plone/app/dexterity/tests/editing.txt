@@ -305,6 +305,39 @@ If we add a plonista-folder, we can then add other content items inside it.
   >>> browser.url
   'http://nohost/plone/plonista-folder-1/introduction'
 
+We can control which content types are allowed to be added into the
+container::
+
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista-folder')
+  >>> ctrl = browser.getControl(name="form.widgets.allowed_types:list")
+  >>> ctrl
+  <ListControl name='form.widgets.allowed_types:list' type='select'>
+  >>> ctrl.getControl('News Item').selected = True
+  >>> ctrl.getControl('Event').selected = True
+  >>> browser.getControl('Apply').click()
+  >>> print browser.contents
+  <...Data successfully updated...
+
+Now only the allowed types may be added::
+
+  >>> browser.open('http://nohost/plone')
+  >>> browser.getLink('Plonista Folder 1').click()
+
+  >>> browser.getLink(url='Document')
+  Traceback (most recent call last):
+  ...
+  LinkNotFound...
+
+  >>> browser.getLink(url='Event').click()
+  >>> browser.getControl('Title').value = 'Foo Plonista Event'
+  >>> browser.getControl('Save').click()
+
+  >>> browser.open('http://nohost/plone')
+  >>> browser.getLink('Plonista Folder 1').click()
+  >>> browser.getLink(url='News Item').click()
+  >>> browser.getControl('Title').value = 'Foo Plonista News Item'
+  >>> browser.getControl('Save').click()
+
 
 Dexterity Types Export
 ----------------------
