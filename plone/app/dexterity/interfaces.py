@@ -52,7 +52,24 @@ class ITypeSettings(Interface):
         title = _(u'Description'),
         required = False
         )
-    
+
+    container = schema.Bool(
+        title = _(u'Container'),
+        description = _(u'Items of this type will be able to contain other items.'),
+        required = True,
+        default = False,
+        )
+
+    allowed_types = schema.Set(
+        title=_(u'Allowed Types'),
+        description=_(
+            u'The content that may be added if this type is a container.'),
+        value_type=schema.Choice(
+            title=_(u'Content Type'),
+            description=_(u'Select each content type that may be added.'),
+            vocabulary=(
+                'plone.app.vocabularies.ReallyUserFriendlyTypes'),
+        required=False))
 
 class ITypeStats(Interface):
     

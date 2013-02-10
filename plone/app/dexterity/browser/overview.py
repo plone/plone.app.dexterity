@@ -6,7 +6,8 @@ from plone.app.dexterity import MessageFactory as _
 
 
 class TypeOverviewForm(form.EditForm):
-    fields = field.Fields(ITypeSettings).select('title', 'description')
+    fields = field.Fields(ITypeSettings).select(
+        'title', 'description', 'allowed_types')
 
     def getContent(self):
         return self.context.fti
