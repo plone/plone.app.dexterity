@@ -36,9 +36,8 @@
                  Portal status message
                </div>
 
-               <h2><tal:block tal:content="context/Title"/> (<tal:block tal:content="python:context.__name__" />)</h2>
-               <h1 class="documentFirstHeading"
-                   tal:content="view/label"/>
+               <h1 class="documentFirstHeading"><tal:block tal:content="context/Title"/> (<tal:block tal:content="python:context.__name__" />)</h1>
+               <h2 tal:content="view/label"/>
 
                <tal:block tal:replace="structure view/contents|view/render"/>
              </div>
