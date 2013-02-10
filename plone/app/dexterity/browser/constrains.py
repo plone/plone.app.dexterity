@@ -58,7 +58,7 @@ class IConstrainForm(Interface):
                         default="Controls what types are addable "
                         "in this location"),
         value_type=Choice(
-            source="plone.app.contenttypes.constrains.validtypes"),
+            source="plone.app.dexterity.constrains.validtypes"),
     )
 
     current_allow = List(
@@ -73,7 +73,7 @@ class IConstrainForm(Interface):
                         "need them."
                         ),
         value_type=Choice(
-            source="plone.app.contenttypes.constrains.validtypes"),
+            source="plone.app.dexterity.constrains.validtypes"),
     )
 
     @invariant

@@ -104,7 +104,7 @@
 
     <utility
         component=".constrains.ValidTypesFactory"
-        name="plone.app.contenttypes.constrains.validtypes"
+        name="plone.app.dexterity.constrains.validtypes"
         />
 
 </configure>

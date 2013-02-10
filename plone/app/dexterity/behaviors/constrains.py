@@ -6,7 +6,7 @@ from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from zope.interface import Interface
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
-from plone.app.contenttypes import MessageFactory as _
+from plone.app.dexterity import MessageFactory as _
 
 # constants for enableConstrain. Copied from AT
 ACQUIRE = -1  # acquire locallyAllowedTypes from parent (default)
