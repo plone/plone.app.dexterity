@@ -52,13 +52,6 @@ class ITypeSettings(Interface):
         title = _(u'Description'),
         required = False
         )
-
-    container = schema.Bool(
-        title = _(u'Container'),
-        description = _(u'Items of this type will be able to contain other items.'),
-        required = True,
-        default = False,
-        )
     
 
 class ITypeStats(Interface):

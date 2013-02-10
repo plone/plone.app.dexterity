@@ -10,7 +10,7 @@ from plone.app.dexterity.interfaces import ITypeSettings
 class TypeAddForm(form.AddForm):
 
     label = _(u'Add Content Type')
-    fields = field.Fields(ITypeSettings).select('title', 'id', 'description', 'container')
+    fields = field.Fields(ITypeSettings).select('title', 'id', 'description')
     id = 'add-type-form'
 
     def create(self, data):
@@ -31,14 +31,10 @@ class TypeAddForm(form.AddForm):
     </schema>
 </model>
 """
-        if data['container']:
-            data['klass'] = 'plone.dexterity.content.Container'
-            data['filter_content_types'] = False
-            del data['container']
-            icon = 'folder_icon'
-        else:
-            icon = 'document_icon'
-        data['icon_expr'] = 'string:${portal_url}/' + icon + '.png'
+
+        data['klass'] = 'plone.dexterity.content.Container'
+        data['filter_content_types'] = False
+        data['icon_expr'] = 'string:${portal_url}/document_icon.png'
         fti.manage_changeProperties(**data)
         return fti
 
