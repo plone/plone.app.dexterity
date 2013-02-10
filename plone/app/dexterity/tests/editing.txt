@@ -313,15 +313,6 @@ Now only the allowed types may be added::
   >>> browser.getControl('Title').value = 'Foo Plonista News Item'
   >>> browser.getControl('Save').click()
 
-The allowed types field is not included on the overview/edit form for
-non-container types::
-
-  >>> browser.open('http://nohost/plone/dexterity-types/plonista')
-  >>> browser.getControl(name="form.widgets.allowed_content_types:list")
-  Traceback (most recent call last):
-  ...
-  LookupError...
-
 
 Removing a content type
 -----------------------
