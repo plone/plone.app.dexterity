@@ -43,9 +43,7 @@ community::
   >>> browser.getControl('Description').value = 'Represents a Plonista.'
   >>> browser.getControl('Add').click()
   >>> browser.url
-  'http://nohost/plone/dexterity-types'
-  >>> 'Represents a Plonista' in browser.contents
-  True
+  'http://nohost/plone/dexterity-types/plonista/@@fields'
 
 Now we should also have a 'plonista' FTI in portal_types::
 
@@ -63,7 +61,10 @@ The new type should have the dublin core behavior assigned by default::
 The listing needs to not break if a type description was stored encoded.
 
   >>> plonista.description = '\xc3\xbc'
+  >>> transaction.commit()
   >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> '\xc3\xbc' in browser.contents
+  True
 
 
 Adding an instance of the new type
@@ -251,7 +252,7 @@ We can create a content type that is a container for other content::
   >>> browser.getControl('Short Name').value = 'plonista-folder'
   >>> browser.getControl('Add').click()
   >>> browser.url
-  'http://nohost/plone/dexterity-types'
+  'http://nohost/plone/dexterity-types/plonista-folder/@@fields'
 
 Now we should have a 'plonista-folder' FTI in portal_types, and it should be
 using the Container base class::

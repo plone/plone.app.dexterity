@@ -4,6 +4,9 @@ Changelog for plone.app.dexterity
 2.0.4 (unreleased)
 ------------------
 
+- When a new type is added, redirect to the fields tab as the next view.
+  [davisagli]
+
 - Don't show the short name as a field on the type overview page.
   [davisagli]
 
