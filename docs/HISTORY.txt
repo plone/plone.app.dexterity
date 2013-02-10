@@ -4,6 +4,11 @@ Changelog for plone.app.dexterity
 2.0.4 (unreleased)
 ------------------
 
+- Add support for constraining container allowed content types using
+  the "Restrictions" form in the add menu.  Merged from Patrick
+  Gerken's (@do3cc) work in plone.app.contenttypes.
+  [rpatterson]
+
 - When a new type is added, redirect to the fields tab as the next view.
   [davisagli]
 

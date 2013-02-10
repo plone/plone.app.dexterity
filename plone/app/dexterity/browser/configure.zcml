@@ -93,4 +93,18 @@
         permission="plone.schemaeditor.ManageSchemata"
         />
 
+    <!-- Constrain container allowed content types -->
+
+    <browser:page
+        name="folder_constraintypes_form"
+        for="*"
+        permission="zope2.View"
+        class=".constrains.ConstrainsFormView"
+        />
+
+    <utility
+        component=".constrains.ValidTypesFactory"
+        name="plone.app.contenttypes.constrains.validtypes"
+        />
+
 </configure>
