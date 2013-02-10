@@ -240,33 +240,6 @@ Similar checks are performed when cloning.
   True
 
 
-Removing a content type
------------------------
-
-We can also delete a content type via the configlet::
-
-  >>> browser.open('http://nohost/plone/@@dexterity-types')
-  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
-  >>> browser.getControl('Delete').click()
-
-Now the FTI for the type should no longer be present in portal_types::
-
-  >>> 'plonista' in portal.portal_types
-  False
-
-We should still be able to view a container that contains an instance of the
-removed type::
-
-  >>> browser.open('http://nohost/plone/folder_contents')
-
-But actually trying to view the type will now cause an error, as expected::
-
-  >>> browser.open('http://nohost/plone/martin-aspeli/view')
-  Traceback (most recent call last):
-  ...
-  ComponentLookupError...
-
-
 Adding a container
 ------------------
 
@@ -309,11 +282,12 @@ We can control which content types are allowed to be added into the
 container::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista-folder')
-  >>> ctrl = browser.getControl(name="form.widgets.allowed_types:list")
-  >>> ctrl
-  <ListControl name='form.widgets.allowed_types:list' type='select'>
-  >>> ctrl.getControl('News Item').selected = True
-  >>> ctrl.getControl('Event').selected = True
+  >>> select = browser.getControl(name="form.widgets.allowed_content_types:list")
+  >>> select
+  <ListControl name='form.widgets.allowed_content_types:list' type='select'>
+
+  >>> select.getControl('News Item').selected = True
+  >>> event = select.getControl('Event').selected = True
   >>> browser.getControl('Apply').click()
   >>> print browser.contents
   <BLANKLINE>
@@ -335,7 +309,7 @@ Now only the allowed types may be added::
 
   >>> browser.open('http://nohost/plone')
   >>> browser.getLink('Plonista Folder 1').click()
-  >>> browser.getLink(url='News Item').click()
+  >>> browser.getLink(url='News+Item').click()
   >>> browser.getControl('Title').value = 'Foo Plonista News Item'
   >>> browser.getControl('Save').click()
 
@@ -343,10 +317,37 @@ The allowed types field is not included on the overview/edit form for
 non-container types::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista')
-  >>> browser.getControl(name="form.widgets.allowed_types:list")
+  >>> browser.getControl(name="form.widgets.allowed_content_types:list")
   Traceback (most recent call last):
   ...
   LookupError...
+
+
+Removing a content type
+-----------------------
+
+We can also delete a content type via the configlet::
+
+  >>> browser.open('http://nohost/plone/@@dexterity-types')
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl('Delete').click()
+
+Now the FTI for the type should no longer be present in portal_types::
+
+  >>> 'plonista' in portal.portal_types
+  False
+
+We should still be able to view a container that contains an instance of the
+removed type::
+
+  >>> browser.open('http://nohost/plone/folder_contents')
+
+But actually trying to view the type will now cause an error, as expected::
+
+  >>> browser.open('http://nohost/plone/martin-aspeli/view')
+  Traceback (most recent call last):
+  ...
+  ComponentLookupError...
 
 
 Dexterity Types Export
