@@ -316,7 +316,8 @@ container::
   >>> ctrl.getControl('Event').selected = True
   >>> browser.getControl('Apply').click()
   >>> print browser.contents
-  <...Data successfully updated...
+  <BLANKLINE>
+  ...Data successfully updated...
 
 Now only the allowed types may be added::
 
