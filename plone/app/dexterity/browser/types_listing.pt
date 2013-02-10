@@ -67,15 +67,15 @@ $(document).ready(function() {
 
 <p class="crud-description"
      tal:condition="view/description"
-     tal:content="view/description">
+     tal:content="structure view/description">
 </p>
 
 <form id="add-type" method="GET"
       tal:attributes="action string:${context/absolute_url}/@@add-type">
-  <input type="submit" style="float: right; display: block;"
+  <p><input type="submit"
          i18n:attributes="value"
          i18n:domain="plone.app.dexterity"
-         value="Add New Content Type&hellip;"/>
+         value="Add New Content Type&hellip;"/></p>
 </form>
 
 <div tal:repeat="form view/subforms"
