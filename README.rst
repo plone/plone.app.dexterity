@@ -133,9 +133,9 @@ and use of Dexterity.
 Issue tracker
 =============
 
-Please report issues in our `Google Code issue tracker`_.
+Please report issues in our `Github issue tracker`_.
 
-.. _`Google Code issue tracker`: http://code.google.com/p/dexterity/issues
+.. _`Github issue tracker`: http://github.com/plone/plone.app.dexterity/issues
 
 Contributing
 ============
