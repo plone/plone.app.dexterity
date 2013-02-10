@@ -4,7 +4,10 @@ Changelog for plone.app.dexterity
 2.0.4 (unreleased)
 ------------------
 
-- Hide the 'Container' checkbox when adding a new type, and default
+- Don't show the short name as a field on the type overview page.
+  [davisagli]
+
+- Remove the 'Container' checkbox when adding a new type, and default
   to creating a container.
   [davisagli]
 
