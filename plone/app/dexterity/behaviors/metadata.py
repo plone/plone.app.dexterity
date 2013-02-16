@@ -99,7 +99,6 @@ class ICategorization(model.Schema):
         required=False,
         missing_value=(),
     )
-    form.widget(subjects=TextLinesFieldWidget)
 
     language = schema.Choice(
         title=_PMF(u'label_language', default=u'Language'),
@@ -169,7 +168,6 @@ class IOwnership(model.Schema):
         required=False,
         missing_value=(),
     )
-    form.widget(creators=TextLinesFieldWidget)
 
     contributors = schema.Tuple(
         title=_PMF(u'label_contributors', u'Contributors'),
@@ -182,7 +180,6 @@ class IOwnership(model.Schema):
         required=False,
         missing_value=(),
     )
-    form.widget(contributors=TextLinesFieldWidget)
 
     rights = schema.Text(
         title=_PMF(u'label_copyrights', default=u'Rights'),
