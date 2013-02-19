@@ -265,6 +265,12 @@ using the Container base class::
   >>> 'document_icon' in pf.getIcon()
   True
 
+We can configure the plonista-folder to allow contained content types::
+
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista-folder')
+  >>> browser.getControl('All content types').click()
+  >>> browser.getControl('Apply').click()
+
 If we add a plonista-folder, we can then add other content items inside it.
 
   >>> browser.open('http://nohost/plone')
@@ -283,6 +289,7 @@ We can control which content types are allowed to be added into the
 container::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista-folder')
+  >>> browser.getControl('Some content types').click()
   >>> select = browser.getControl(name="form.widgets.allowed_content_types:list")
   >>> select
   <ListControl name='form.widgets.allowed_content_types:list' type='select'>

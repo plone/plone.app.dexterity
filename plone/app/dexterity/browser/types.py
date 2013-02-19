@@ -4,7 +4,6 @@ from OFS.SimpleItem import SimpleItem
 from ZPublisher.BaseRequest import DefaultPublishTraverse
 
 from zope.interface import implements
-from zope.schema import fieldproperty
 from zope.cachedescriptors.property import Lazy as lazy_property
 from zope.component import adapts, getAllUtilitiesRegisteredFor, getUtility
 from zope.component import ComponentLookupError
@@ -120,19 +119,33 @@ class TypeSettingsAdapter(object):
         return self.context.container
 
     def _get_allowed_content_types(self):
-        return self.context.allowed_content_types
+        return set(self.context.allowed_content_types)
 
     def _set_allowed_content_types(self, value):
-        self.context.allowed_content_types = list(value)
+        self.context.allowed_content_types = tuple(value)
+        if value:
+            self.context.filter_content_types = True
 
     allowed_content_types = property(
         _get_allowed_content_types, _set_allowed_content_types)
 
     def _get_filter_content_types(self):
-        return self.context.filter_content_types
+        value = self.context.filter_content_types
+        if not value:
+            return 'all'
+        elif value and not self.allowed_content_types:
+            return 'none'
+        else:
+            return 'some'
 
     def _set_filter_content_types(self, value):
-        self.context.filter_content_types = value
+        if value == 'none':
+            self.context.filter_content_types = True
+            self.context.allowed_content_types = ()
+        elif value == 'all':
+            self.context.filter_content_types = False
+        elif value == 'some':
+            self.context.filter_content_types = True
 
     filter_content_types = property(
         _get_filter_content_types, _set_filter_content_types)

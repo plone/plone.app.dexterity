@@ -35,7 +35,7 @@ class TypeAddForm(form.AddForm):
 """
 
         data['klass'] = 'plone.dexterity.content.Container'
-        data['filter_content_types'] = False
+        data['filter_content_types'] = True
         data['icon_expr'] = 'string:${portal_url}/document_icon.png'
         fti.manage_changeProperties(**data)
         return fti
