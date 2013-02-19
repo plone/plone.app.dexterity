@@ -11,7 +11,7 @@ from plone.app.dexterity.behaviors import constrains
 from Products.CMFCore.utils import getToolByName
 from zope.interface.exceptions import Invalid
 
-from plone.app.dexterity.browser.constrains import IConstrainForm
+from plone.app.content.browser.constraintypes import IConstrainForm
 
 from plone.app.dexterity.testing import (
     DEXTERITY_INTEGRATION_TESTING,
@@ -63,8 +63,6 @@ class DocumentIntegrationTest(unittest.TestCase):
         self.assertIn('Products.CMFPlone.interfaces.'
                       'constrains.ISelectableConstrainTypes',
                       self.types_tool.getTypeInfo(self.folder).behaviors)
-        self.assertTrue(
-            constrains.IConstrainTypesBehaviorMarker.providedBy(self.folder))
         self.assertTrue(ISelectableConstrainTypes(self.folder))
 
     def test_constrainTypesModeDefault(self):
@@ -163,7 +161,7 @@ class DocumentIntegrationTest(unittest.TestCase):
     def test_locallyAllowedTypesInvalidValuesGetFiltered(self):
         behavior = ISelectableConstrainTypes(self.folder)
         behavior.setConstrainTypesMode(constrains.ENABLED)
-        self.folder._pac_locally_allowed_types = self.types_id_subset + \
+        self.folder.locally_allowed_types = self.types_id_subset + \
             ['invalid']
         self.assertEqual(
             self.types_id_subset, behavior.getLocallyAllowedTypes())
@@ -236,7 +234,7 @@ class DocumentIntegrationTest(unittest.TestCase):
     def test_immediatelyAllowedTypesInvalidValuesGetFiltered(self):
         behavior = ISelectableConstrainTypes(self.folder)
         behavior.setConstrainTypesMode(constrains.ENABLED)
-        self.folder._pac_immediately_addable_types = self.types_id_subset + \
+        self.folder.immediately_addable_types = self.types_id_subset + \
             ['invalid']
         self.assertEqual(
             self.types_id_subset, behavior.getImmediatelyAddableTypes())

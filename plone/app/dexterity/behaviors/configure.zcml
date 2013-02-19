@@ -122,7 +122,6 @@
         provides="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"
         factory=".constrains.ConstrainTypesBehavior"
         for="plone.dexterity.interfaces.IDexterityContainer"
-        marker=".constrains.IConstrainTypesBehaviorMarker"
         />
 
     <!-- BBB -->

@@ -1,26 +1,18 @@
-from plone.supermodel import model
 from Products.ATContentTypes import permission as ATCTPermissions
-from Products.CMFCore.PortalFolder import PortalFolderBase as PortalFolder
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
-from zope.interface import Interface
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-
-from plone.app.dexterity import MessageFactory as _
 
 # constants for enableConstrain. Copied from AT
 ACQUIRE = -1  # acquire locallyAllowedTypes from parent (default)
-DISABLED = 0  # use default behavior of PortalFolder which uses the FTI information
+DISABLED = 0  # use default behavior of PortalFolder which uses the FTI info
 ENABLED = 1  # allow types from locallyAllowedTypes only
 
-class IConstrainTypesBehaviorMarker(Interface):
-    pass
 
 class ConstrainTypesBehavior(object):
 
     def __init__(self, context):
         self.context = context
-    
+
     def getConstrainTypesMode(self):
         """
         If value is set, use it.
@@ -28,8 +20,8 @@ class ConstrainTypesBehavior(object):
         and can be adapted to ISelectableConstrainTypes.
         Else it is DISABLED
         """
-        if hasattr(self.context, '_pac_constrain_types_mode'):
-            return self.context._pac_constrain_types_mode
+        if hasattr(self.context, 'constrain_types_mode'):
+            return self.context.constrain_types_mode
         parent = self.context.__parent__
         if not parent:
             return DISABLED
@@ -42,13 +34,13 @@ class ConstrainTypesBehavior(object):
     def setConstrainTypesMode(self, mode):
         if mode not in [ACQUIRE, DISABLED, ENABLED]:
             raise ValueError()
-        self.context._pac_constrain_types_mode = mode
+        self.context.constrain_types_mode = mode
 
     def canSetConstrainTypes(self):
         mtool = getToolByName(self.context, 'portal_membership')
         member = mtool.getAuthenticatedMember()
-        return member.has_permission(ATCTPermissions.ModifyConstrainTypes, 
-            self.context)
+        return member.has_permission(
+            ATCTPermissions.ModifyConstrainTypes, self.context)
 
     def getDefaultAddableTypes(self):
         return self._getAddableTypesFor(self.context, self.context)
@@ -64,7 +56,7 @@ class ConstrainTypesBehavior(object):
         my_type = portal_types.getTypeInfo(obj)
         result = portal_types.listTypeInfo()
         return [t for t in result if my_type.allowType(t.getId()) and
-            t.isConstructionAllowed(context)]
+                t.isConstructionAllowed(context)]
 
     def _filterByDefaults(self, types):
         """
@@ -89,9 +81,9 @@ class ConstrainTypesBehavior(object):
         if mode == DISABLED:
             return default_addable
         elif mode == ENABLED:
-            if hasattr(self.context, '_pac_locally_allowed_types'):
-                return [t for t in default_addable if t.getId() in 
-                    self.context._pac_locally_allowed_types]
+            if hasattr(self.context, 'locally_allowed_types'):
+                return [t for t in default_addable if t.getId() in
+                        self.context.locally_allowed_types]
             else:
                 return default_addable
         elif mode == ACQUIRE:
@@ -103,7 +95,8 @@ class ConstrainTypesBehavior(object):
                 parent_constrain_adapter.getLocallyAllowedTypes())
             return [t for t in default_addable if t.getId() in return_tids]
         else:
-            raise Exception("Wrong constraint setting. %i is an invalid value",
+            raise Exception(
+                "Wrong constraint setting. %i is an invalid value",
                 mode)
 
     def getLocallyAllowedTypes(self):
@@ -120,7 +113,7 @@ class ConstrainTypesBehavior(object):
         for type_ in types:
             if type_ not in defaults:
                 raise ValueError("%s is not a valid type id", type_)
-        self.context._pac_locally_allowed_types = types
+        self.context.locally_allowed_types = types
 
     def getImmediatelyAddableTypes(self):
         """
@@ -136,9 +129,9 @@ class ConstrainTypesBehavior(object):
         if mode == DISABLED:
             return default_addable
         elif mode == ENABLED:
-            if hasattr(self.context, '_pac_immediately_addable_types'):
+            if hasattr(self.context, 'immediately_addable_types'):
                 return self._filterByDefaults(
-                    self.context._pac_immediately_addable_types)
+                    self.context.immediately_addable_types)
         elif mode == ACQUIRE:
             parent = self.context.__parent__
             parent_constrain_adapter = ISelectableConstrainTypes(parent, None)
@@ -147,7 +140,8 @@ class ConstrainTypesBehavior(object):
             return self._filterByDefaults(
                 parent_constrain_adapter.getImmediatelyAddableTypes())
         else:
-            raise Exception("Wrong constraint setting. %i is an invalid value",
+            raise Exception(
+                "Wrong constraint setting. %i is an invalid value",
                 mode)
 
     def setImmediatelyAddableTypes(self, types):
@@ -155,4 +149,4 @@ class ConstrainTypesBehavior(object):
         for type_ in types:
             if type_ not in defaults:
                 raise ValueError("%s is not a valid type id", type_)
-        self.context._pac_immediately_addable_types = types
+        self.context.immediately_addable_types = types
