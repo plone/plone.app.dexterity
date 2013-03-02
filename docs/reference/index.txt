@@ -12,3 +12,4 @@ Reference
    form-schema-hints.txt
    value-and-validator-adaptors.txt
    manipulating-content-objects.txt
+   misc.txt
