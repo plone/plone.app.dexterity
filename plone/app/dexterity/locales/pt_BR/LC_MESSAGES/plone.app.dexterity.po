@@ -259,3 +259,11 @@ msgstr "Itens deste tipo de conteúdo podem agir como uma Pasta contendo outros 
 msgid "label_nextprevious"
 msgstr "Habilitar a navegação próximo/anterior"
 
+msgid "label_all_content_types"
+msgstr "Todos os tipos de conteúdo"
+
+msgid "label_no_content_types"
+msgstr "Nenhum tipo de conteúdo"
+
+msgid "label_some_content_types"
+msgstr "Alguns tipos de conteúdo"
