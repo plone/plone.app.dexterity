@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-12-12 14:55+0000\n"
+"POT-Creation-Date: 2013-04-06 10:33+0000\n"
 "PO-Revision-Date: 2012-08-28 18:13+0100\n"
 "Last-Translator: Thomas Clement Mogensen <tmog@headnet.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.dexterity\n"
 
-#: ../interfaces.py:67
+#: ../interfaces.py:87
 msgid "# of items"
 msgstr "antal emner"
 
@@ -22,7 +22,7 @@ msgstr "antal emner"
 msgid "Add Content Type"
 msgstr "Tilføj Indholdstype"
 
-#: ../browser/types_listing.pt:75
+#: ../browser/types_listing.pt:82
 msgid "Add New Content Type…"
 msgstr ""
 
@@ -52,6 +52,10 @@ msgstr ""
 msgid "Allow items to have next previous navigation enabled"
 msgstr "Tillad indholdsobjekter at vise navigering til forrige og næste side"
 
+#: ../interfaces.py:75
+msgid "Allowed Content Types"
+msgstr ""
+
 msgid "Assign an effective and/or expiration date"
 msgstr "Tildel gyldigheds- og udløbsdato"
 
@@ -73,7 +77,7 @@ msgstr "Udvidelser (opførsler)"
 msgid "Behaviors successfully updated."
 msgstr "Opførsler"
 
-#: ../browser/types.py:44
+#: ../browser/types.py:58
 msgid "Clone"
 msgstr "Klon"
 
@@ -92,13 +96,13 @@ msgstr "Mappe"
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: ../browser/types.py:193
+#: ../browser/types.py:247
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity indholdstyper"
 
-#: ../browser/types.py:162
+#: ../browser/types.py:214
 msgid "Dexterity content types"
 msgstr "Dexterity indholdstyper"
 
@@ -114,11 +118,11 @@ msgstr "Slå navigering til næste og forrige side til for alle indholdsobjekter
 msgid "Exclude From navigation"
 msgstr "Ekskludér fra menunavigation"
 
-#: ../browser/types.py:69
+#: ../browser/types.py:83
 msgid "Export Schema Models"
 msgstr "Eksportér skema-modeller"
 
-#: ../browser/types.py:57
+#: ../browser/types.py:71
 msgid "Export Type Profiles"
 msgstr "Eksportér type-profiler"
 
@@ -126,6 +130,10 @@ msgstr "Eksportér type-profiler"
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "Felter"
+
+#: ../interfaces.py:64
+msgid "Filter Contained Types"
+msgstr ""
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
@@ -158,19 +166,19 @@ msgid "No changes were made."
 msgstr "Ingen ændringer blev foretaget."
 
 #: ../browser/layout.py:14
-#: ../browser/overview.py:19
+#: ../browser/overview.py:32
 msgid "Overview"
 msgstr "Overblik"
 
-#: ../browser/types.py:49
+#: ../browser/types.py:63
 msgid "Please select a single type to clone."
 msgstr "Vælg venligst én type der skal klones"
 
-#: ../browser/types.py:55
+#: ../browser/types.py:69
 msgid "Please select a type to clone."
 msgstr "Vælg venligst en type der skal klones."
 
-#: ../browser/types.py:62
+#: ../browser/types.py:76
 msgid "Please select types to export."
 msgstr "Vælg venligst de typer der skal eksporteres."
 
@@ -192,11 +200,11 @@ msgstr "Indstillinger"
 msgid "Short Name"
 msgstr "Kort navn"
 
-#: ../browser/types.py:128
+#: ../browser/types.py:176
 msgid "The following custom content types are available for your site."
 msgstr "Følgende indholdstyper er tilgængelige på sitet."
 
-#: ../interfaces.py:78
+#: ../interfaces.py:98
 msgid "There is already a content type named '${name}'"
 msgstr ""
 
@@ -204,7 +212,7 @@ msgstr ""
 msgid "Type Name"
 msgstr "Indholdstypenavn"
 
-#: ../browser/add_type.py:48
+#: ../browser/add_type.py:47
 msgid "Type added successfully."
 msgstr "Indholdstypen blev tilføjet"
 
@@ -221,7 +229,7 @@ msgid "Yes"
 msgstr ""
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:131
+#: ../browser/types.py:179
 msgid "help_addcontenttype_button"
 msgstr "Klik på knappen \"Tilføj indholdstype\" for at oprette en ny type."
 
@@ -239,6 +247,11 @@ msgstr "Slå næste-/forrige-navigation til på indhold placeret i denne mappe."
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
 msgstr "Ekskludér fra menunavigation"
+
+#. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
+#: ../interfaces.py:65
+msgid "label_filter_contained_types"
+msgstr ""
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31

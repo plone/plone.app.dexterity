@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-04 13:22+0000\n"
+"POT-Creation-Date: 2013-04-06 10:33+0000\n"
 "PO-Revision-Date: 2013-02-04 13:22+0000\n"
 "Last-Translator: Roman Kozlovskyi <krzroman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.dexterity\n"
 
-#: ../interfaces.py:67
+#: ../interfaces.py:87
 msgid "# of items"
 msgstr "кількість елементів"
 
@@ -22,7 +22,7 @@ msgstr "кількість елементів"
 msgid "Add Content Type"
 msgstr "Додати Тип Контенту"
 
-#: ../browser/types_listing.pt:75
+#: ../browser/types_listing.pt:82
 msgid "Add New Content Type…"
 msgstr "Додати Новий Тип Контенту…"
 
@@ -52,6 +52,10 @@ msgstr "Дозволити виключення елементів з навіг
 msgid "Allow items to have next previous navigation enabled"
 msgstr "Дозволити включення наступний/попередній навігації"
 
+#: ../interfaces.py:75
+msgid "Allowed Content Types"
+msgstr ""
+
 msgid "Assign an effective and/or expiration date"
 msgstr "Призначення робочої дати і/або дати придатності"
 
@@ -73,7 +77,7 @@ msgstr "Поведінка"
 msgid "Behaviors successfully updated."
 msgstr "Поведінка успішно оновлена."
 
-#: ../browser/types.py:44
+#: ../browser/types.py:58
 msgid "Clone"
 msgstr "Клонування"
 
@@ -92,13 +96,13 @@ msgstr "Контейнер"
 msgid "Description"
 msgstr "Опис"
 
-#: ../browser/types.py:193
+#: ../browser/types.py:247
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity Типи Контенту"
 
-#: ../browser/types.py:162
+#: ../browser/types.py:214
 msgid "Dexterity content types"
 msgstr "Dexterity типи контенту"
 
@@ -114,11 +118,11 @@ msgstr "Увімкнути наступний/попередній навіга�
 msgid "Exclude From navigation"
 msgstr "Виключити з навігації"
 
-#: ../browser/types.py:69
+#: ../browser/types.py:83
 msgid "Export Schema Models"
 msgstr "Експорт Схем Моделей"
 
-#: ../browser/types.py:57
+#: ../browser/types.py:71
 msgid "Export Type Profiles"
 msgstr "Експорт Профілів Типів"
 
@@ -126,6 +130,10 @@ msgstr "Експорт Профілів Типів"
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "Поля"
+
+#: ../interfaces.py:64
+msgid "Filter Contained Types"
+msgstr ""
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
@@ -158,19 +166,19 @@ msgid "No changes were made."
 msgstr "Зміни не були внесені."
 
 #: ../browser/layout.py:14
-#: ../browser/overview.py:19
+#: ../browser/overview.py:32
 msgid "Overview"
 msgstr "Огляд"
 
-#: ../browser/types.py:49
+#: ../browser/types.py:63
 msgid "Please select a single type to clone."
 msgstr "Будь ласка, виберіть один тип для клонування."
 
-#: ../browser/types.py:55
+#: ../browser/types.py:69
 msgid "Please select a type to clone."
 msgstr "Будь ласка, виберіть тип клонування."
 
-#: ../browser/types.py:62
+#: ../browser/types.py:76
 msgid "Please select types to export."
 msgstr "Будь ласка, виберіть типи для експорту."
 
@@ -192,11 +200,11 @@ msgstr "Налаштування"
 msgid "Short Name"
 msgstr "Коротка Назва"
 
-#: ../browser/types.py:128
+#: ../browser/types.py:176
 msgid "The following custom content types are available for your site."
 msgstr "Наступні користувацькі типи контенту доступні для вашого сайту."
 
-#: ../interfaces.py:78
+#: ../interfaces.py:98
 msgid "There is already a content type named '${name}'"
 msgstr "Існує вже тип контенту з іменем '${name}'"
 
@@ -204,7 +212,7 @@ msgstr "Існує вже тип контенту з іменем '${name}'"
 msgid "Type Name"
 msgstr "Ім'я Типу"
 
-#: ../browser/add_type.py:48
+#: ../browser/add_type.py:47
 msgid "Type added successfully."
 msgstr "Тип успішно додано."
 
@@ -221,7 +229,7 @@ msgid "Yes"
 msgstr "Так"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:131
+#: ../browser/types.py:179
 msgid "help_addcontenttype_button"
 msgstr "Натисніть кнопку \"Додати Тип Контенту\", щоб почати створення нового користувацького типу контенту."
 
@@ -239,6 +247,11 @@ msgstr "Це дозволяє наступний/попередній відже
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
 msgstr "Виключити з навігації"
+
+#. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
+#: ../interfaces.py:65
+msgid "label_filter_contained_types"
+msgstr ""
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31

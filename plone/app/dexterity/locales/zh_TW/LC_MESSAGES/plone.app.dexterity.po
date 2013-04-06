@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
-"POT-Creation-Date: 2012-12-12 14:55+0000\n"
+"POT-Creation-Date: 2013-04-06 10:33+0000\n"
 "PO-Revision-Date: 2013-01-21 17:45+0800\n"
 "Last-Translator: TsungWei Hu <marr.tw@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Domain: plone.app.dexterity\n"
 "X-Is-Fallback-For: zh\n"
 
-#: ../interfaces.py:67
+#: ../interfaces.py:87
 msgid "# of items"
 msgstr "項目數量"
 
@@ -23,7 +23,7 @@ msgstr "項目數量"
 msgid "Add Content Type"
 msgstr "新增型別"
 
-#: ../browser/types_listing.pt:75
+#: ../browser/types_listing.pt:82
 msgid "Add New Content Type…"
 msgstr "新增內容型別…"
 
@@ -53,6 +53,10 @@ msgstr "允許排除於導覽方框"
 msgid "Allow items to have next previous navigation enabled"
 msgstr "允許啟用前後項導覽功能"
 
+#: ../interfaces.py:75
+msgid "Allowed Content Types"
+msgstr ""
+
 msgid "Assign an effective and/or expiration date"
 msgstr "指定生效或失效日期"
 
@@ -74,7 +78,7 @@ msgstr "Behaviors"
 msgid "Behaviors successfully updated."
 msgstr "Behaviors 更新成功。"
 
-#: ../browser/types.py:44
+#: ../browser/types.py:58
 msgid "Clone"
 msgstr "複製"
 
@@ -93,13 +97,13 @@ msgstr "目錄"
 msgid "Description"
 msgstr "摘要描述"
 
-#: ../browser/types.py:193
+#: ../browser/types.py:247
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity 內容型別"
 
-#: ../browser/types.py:162
+#: ../browser/types.py:214
 msgid "Dexterity content types"
 msgstr "Dexterity 內容型別"
 
@@ -115,11 +119,11 @@ msgstr "啟用前後項導覽"
 msgid "Exclude From navigation"
 msgstr "排除導覽"
 
-#: ../browser/types.py:69
+#: ../browser/types.py:83
 msgid "Export Schema Models"
 msgstr "匯出 Schema Model"
 
-#: ../browser/types.py:57
+#: ../browser/types.py:71
 msgid "Export Type Profiles"
 msgstr "匯出 Type Profile"
 
@@ -127,6 +131,10 @@ msgstr "匯出 Type Profile"
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "欄位"
+
+#: ../interfaces.py:64
+msgid "Filter Contained Types"
+msgstr ""
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
@@ -159,19 +167,19 @@ msgid "No changes were made."
 msgstr "沒有更動。"
 
 #: ../browser/layout.py:14
-#: ../browser/overview.py:19
+#: ../browser/overview.py:32
 msgid "Overview"
 msgstr "總覽"
 
-#: ../browser/types.py:49
+#: ../browser/types.py:63
 msgid "Please select a single type to clone."
 msgstr "選擇一個型別來複製。"
 
-#: ../browser/types.py:55
+#: ../browser/types.py:69
 msgid "Please select a type to clone."
 msgstr "選擇一個型別來複製。"
 
-#: ../browser/types.py:62
+#: ../browser/types.py:76
 msgid "Please select types to export."
 msgstr "選擇型別來匯出。"
 
@@ -193,11 +201,11 @@ msgstr "設定"
 msgid "Short Name"
 msgstr "識別碼"
 
-#: ../browser/types.py:128
+#: ../browser/types.py:176
 msgid "The following custom content types are available for your site."
 msgstr "下列是可供使用的型別列表。"
 
-#: ../interfaces.py:78
+#: ../interfaces.py:98
 msgid "There is already a content type named '${name}'"
 msgstr "已有型別命名為 '${name}'"
 
@@ -205,7 +213,7 @@ msgstr "已有型別命名為 '${name}'"
 msgid "Type Name"
 msgstr "型別名稱"
 
-#: ../browser/add_type.py:48
+#: ../browser/add_type.py:47
 msgid "Type added successfully."
 msgstr "型別新增成功。"
 
@@ -222,7 +230,7 @@ msgid "Yes"
 msgstr "是"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:131
+#: ../browser/types.py:179
 msgid "help_addcontenttype_button"
 msgstr "點選「新增內容型別」按鈕就能建立新的型別。"
 
@@ -240,6 +248,11 @@ msgstr "勾選的話，目錄裡的項目會顯示前後項導覽功能。"
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
 msgstr "排除導覽"
+
+#. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
+#: ../interfaces.py:65
+msgid "label_filter_contained_types"
+msgstr ""
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
