@@ -87,7 +87,7 @@ msgid "Clone Content Type"
 msgstr "Clonar Tipo de Conteúdo"
 
 msgid "Configures various components needed for full Dexterity support."
-msgstr "Configura os vários componetes necessários para suporte ao Dexterity."
+msgstr "Configura os vários componentes necessários para suporte ao Dexterity."
 
 #: ../interfaces.py:57
 msgid "Container"
