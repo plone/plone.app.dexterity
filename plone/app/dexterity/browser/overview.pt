@@ -1,4 +1,6 @@
-<tal:form metal:use-macro="context/@@ploneform-macros/titlelessform">
+<tal:form metal:use-macro="context/@@ploneform-macros/titlelessform"
+	xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+	i18n:domain="plone.app.dexterity">
  <tal:fields metal:fill-slot="fields">
 	<tal:field tal:replace="structure view/widgets/title/@@ploneform-render-widget" />
 	<tal:field tal:replace="structure view/widgets/description/@@ploneform-render-widget" />
