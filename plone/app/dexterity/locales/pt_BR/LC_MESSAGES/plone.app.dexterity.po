@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-06 10:33+0000\n"
+"POT-Creation-Date: 2013-04-06 15:36+0000\n"
 "PO-Revision-Date: 2012-09-01 21:07-0400\n"
 "Last-Translator: Herson Rodrigues <hersonrodrigues@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,6 +244,16 @@ msgstr "Se estiver selecionado, o item não aparecerá na navegação"
 msgid "help_nextprevious"
 msgstr "Isto habilita o widget próximo/anterior em itens de conteúdo contidos nesta pasta."
 
+#. Default: "All content types"
+#: ../browser/overview.pt:24
+msgid "label_all_content_types"
+msgstr "Todos os tipos de conteúdo"
+
+#. Default: "Contained items"
+#: ../browser/overview.pt:9
+msgid "label_contained_items"
+msgstr ""
+
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
@@ -259,11 +269,13 @@ msgstr "Itens deste tipo de conteúdo podem agir como uma Pasta contendo outros 
 msgid "label_nextprevious"
 msgstr "Habilitar a navegação próximo/anterior"
 
-msgid "label_all_content_types"
-msgstr "Todos os tipos de conteúdo"
-
+#. Default: "No content types"
+#: ../browser/overview.pt:18
 msgid "label_no_content_types"
 msgstr "Nenhum tipo de conteúdo"
 
+#. Default: "Some content types:"
+#: ../browser/overview.pt:30
 msgid "label_some_content_types"
 msgstr "Alguns tipos de conteúdo"
+
