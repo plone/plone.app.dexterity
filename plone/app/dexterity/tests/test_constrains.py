@@ -33,6 +33,16 @@ def add_folder_type(portal):
     return fti
 
 
+def add_item_type(portal):
+    fti = DexterityFTI('item')
+    portal.portal_types._setObject('item', fti)
+    fti.klass = 'plone.dexterity.content.Item'
+    fti.filter_content_types = False
+    fti.behaviors = (
+        'plone.app.dexterity.behaviors.metadata.IBasic')
+    return fti
+
+
 class DocumentIntegrationTest(unittest.TestCase):
 
     layer = DEXTERITY_INTEGRATION_TESTING
@@ -372,6 +382,64 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         self.browser.getControl("Save").click()
         self.assertEquals(constraint_before, aspect.getConstrainTypesMode())
         self.assertTrue('Error' in self.browser.contents)
+
+
+class ConstrainControlFunctionalText(unittest.TestCase):
+
+    layer = DEXTERITY_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        app = self.layer['app']
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal_url = self.portal.absolute_url()
+
+        self.folder_fti = add_folder_type(self.portal)
+        self.item_fti = add_item_type(self.portal)
+
+        import transaction
+        transaction.commit()
+        self.browser = Browser(app)
+        self.browser.handleErrors = False
+        self.browser.addHeader(
+            'Authorization',
+            'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+        )
+
+    def test_overview_folder_view(self):
+        url = '/dexterity-types/folder/@@overview'
+        self.browser.open(self.portal_url + url)
+        self.assertTrue('Filter Contained Types' in self.browser.contents)
+        self.assertTrue('No content types' in self.browser.contents)
+
+    def test_overview_item_view(self):
+        url = '/dexterity-types/item/@@overview'
+        self.browser.open(self.portal_url + url)
+        self.assertFalse('Filter Contained Types' in self.browser.contents)
+        self.assertFalse('No content types' in self.browser.contents)
+
+    def test_overview_folder_item_view(self):
+        # First we access folder content types and check
+        # that is possible to fiter content types (as it is a container)
+        url = '/dexterity-types/folder/@@overview'
+        self.browser.open(self.portal_url + url)
+        self.assertTrue('Filter Contained Types' in self.browser.contents)
+        self.assertTrue('No content types' in self.browser.contents)
+
+        # Then we access item content types and check
+        # that is NOT possible to fiter content types
+        url = '/dexterity-types/item/@@overview'
+        self.browser.open(self.portal_url + url)
+        self.assertFalse('Filter Contained Types' in self.browser.contents)
+        self.assertFalse('No content types' in self.browser.contents)
+
+        # Acessing folder content types again
+        # and it should be possible to filter content types
+        url = '/dexterity-types/folder/@@overview'
+        self.browser.open(self.portal_url + url)
+        self.assertTrue('Filter Contained Types' in self.browser.contents)
+        self.assertTrue('No content types' in self.browser.contents)
 
 
 def test_suite():
