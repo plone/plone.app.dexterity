@@ -1,8 +1,9 @@
+from Products.CMFPlone.utils import safe_hasattr
+from plone.app.content.interfaces import INameFromTitle
+from plone.rfc822.interfaces import IPrimaryFieldInfo
 from zope.component import adapts
 from zope.interface import Interface
 from zope.interface import implements
-from plone.app.content.interfaces import INameFromTitle
-from plone.rfc822.interfaces import IPrimaryFieldInfo
 
 
 class INameFromFileName(Interface):
@@ -22,6 +23,8 @@ class NameFromFileName(object):
             return None
         instance = super(NameFromFileName, cls).__new__(cls)
         instance.title = filename
+        if safe_hasattr(context, 'title') and not context.title:
+            context.title = filename
         return instance
 
     def __init__(self, context):
