@@ -11,17 +11,18 @@ class TypeOverviewForm(form.EditForm):
     enableCSRFProtection = True
     template = ViewPageTemplateFile('overview.pt')
 
-    fields = field.Fields(ITypeSettings).select(
-        'title', 'description',
-        'allowed_content_types', 'filter_content_types')
-
-    def updateWidgets(self):
+    @property
+    def fields(self):
         # if this type's class is not a container,
         # remove the field for filtering contained content types
         klass = resolveDottedName(self.context.fti.klass)
+        fields = field.Fields(ITypeSettings)
+        filtered = fields.select('title', 'description',
+                                 'allowed_content_types',
+                                 'filter_content_types')
         if not IFolderish.implementedBy(klass):
-            del self.fields['filter_content_types']
-        super(TypeOverviewForm, self).updateWidgets()
+            del filtered['filter_content_types']
+        return filtered
 
     def getContent(self):
         return self.context.fti
