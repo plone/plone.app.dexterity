@@ -74,6 +74,30 @@ The supermodel/schema field tag and its attributes map directly to what's availa
 The field ``type`` needs to be the full dotted name (as if it was being
 imported in Python) of the field type.
 
+Fieldsets
+~~~~~~~~~
+
+It's easy to add fieldsets by surrounding embedding fields tags in a ``fieldset`` block::
+
+      <schema>
+        ...
+        <fieldset name="test"
+                label="Test Fieldset"
+                description="Description of test fieldset">
+            <field name="three" type="zope.schema.TextLine">
+              <description/>
+              <title>Three</title>
+            </field>
+            <field name="four" type="zope.schema.TextLine">
+              <description/>
+              <title>Four</title>
+            </field>
+        </fieldset>
+        ...
+      </schema>
+
+
+
 supermodel/form attributes
 --------------------------
 
