@@ -12,4 +12,5 @@ Reference
    form-schema-hints.txt
    value-and-validator-adaptors.txt
    manipulating-content-objects.txt
+   dexterity-xml.txt
    misc.txt
