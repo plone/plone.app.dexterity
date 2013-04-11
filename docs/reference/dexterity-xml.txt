@@ -6,29 +6,37 @@ Dexterity XML
 Introduction
 ------------
 
-The schema (structure) of a Dexterity content type may be detailed in two very different ways:
+The schema (structure) of a Dexterity content type may be detailed in two very
+different ways:
 
     * In Python as a Zope schema; or,
 
     * In XML
 
-When you are using Dexterity's through-the-web schema editor, all your work is being saved in the content type's Factory Type Information (FTI) as XML.
-``plone.supermodel`` dynamically translates that XML into Python objects which are used to display and edit your content objects.
+When you are using Dexterity's through-the-web schema editor, all your work is
+being saved in the content type's Factory Type Information (FTI) as XML.
+``plone.supermodel`` dynamically translates that XML into Python objects which
+are used to display and edit your content objects.
 
-The XML model of your content object may be exported from Dexterity and incorporated into a Python package. That's typically done with code like::
+The XML model of your content object may be exported from Dexterity and
+incorporated into a Python package. That's typically done with code like::
 
     class IExampleType(form.Schema):
 
         form.model("models/example_type.xml")
 
-XML models in a package may be directly edited. (Dexterity will probably also include a TTW XML-model editor at some point in the future.)
+XML models in a package may be directly edited. (Dexterity will probably also
+include a TTW XML-model editor at some point in the future.)
 
-This document is a reference to the tags and attributes you may use in model XML files. This includes several form-control and security-control attributes that are not available through the TTW schema editor.
+This document is a reference to the tags and attributes you may use in model
+XML files. This includes several form-control and security-control attributes
+that are not available through the TTW schema editor.
 
 XML Document Structure
 ----------------------
 
-Dexterity requires that its model XML be well-formed XML, including name space declarations. The typical structure of a Dexterity XML document is::
+Dexterity requires that its model XML be well-formed XML, including name space
+declarations. The typical structure of a Dexterity XML document is::
 
     <?xml version="1.0" encoding="UTF-8"?>
     <model xmlns="http://namespaces.plone.org/supermodel/schema"
@@ -43,7 +51,9 @@ Dexterity requires that its model XML be well-formed XML, including name space d
         </schema>
     </model>
 
-Only the default name space (.../supermodel/schema) is required for basic schema. The ``supermodel/form`` and ``supermodel/schema`` provide additional attributes to control form presentation and security.
+Only the default name space (.../supermodel/schema) is required for basic
+schema. The ``supermodel/form`` and ``supermodel/schema`` provide additional
+attributes to control form presentation and security.
 
 supermodel/schema fields
 ------------------------
@@ -61,7 +71,8 @@ The supermodel/schema field tag and its attributes map directly to what's availa
           <title>Test</title>
         </field>
 
-The field ``type`` needs to be the full dotted name (as if it was being imported in Python) of the field type.
+The field ``type`` needs to be the full dotted name (as if it was being
+imported in Python) of the field type.
 
 supermodel/form attributes
 --------------------------
@@ -146,7 +157,8 @@ validator
 ~~~~~~~~~
 
 To set a custom validator for a field, use ``form:validator`` to give a fully
-qualified name to the field validator factory. The validator factory should be a class derived from one of the validators in z3c.form.validator.
+qualified name to the field validator factory. The validator factory should be
+a class derived from one of the validators in z3c.form.validator.
 
 Example::
 
