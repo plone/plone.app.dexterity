@@ -11,23 +11,38 @@ we need to register static resources.
 Registering a static resource directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The easiest way to manage static resources is to make use of the
-``static`` resource directory feature in `five.grok`_. Simply add a
-directory called ``static`` in the package and make sure that the
-``<grok:grok package=“.” />`` line appears in ``configure.zcml``.
+The easiest way to manage static resources is to create a
+``static`` resource directory in your Dexterity project using the ZCML resourceDirectory directive.
 
-If a ``static`` resource directory in the ``example.conference`` package
+Registration of the resource directory is done using the
+``<browser:resourceDirectory />`` ZCML directive. This requires two
+attributes: ``name`` is the name that appears after the
+``++resource++`` namespace; ``directory`` is a relative path to the
+directory containing resources.
+
+It's conventional to use "static" or "resources" for the directory name and the dotted name of your package for the resource name.
+If you create a directory named "resources", you would use this zcml to register it::
+
+  <browser:resourceDirectory
+    name="dotted.projectname"
+    directory="resources" />
+
+
+Then, if a ``resources`` resource directory in the ``example.conference`` package
 contains a file called ``conference.css``, it will be accessible on a URL
 like ``http://<server>/site/++resource++example.conference/conference.css.``
-The resource name is the same as the package name wherein the ``static``
+The resource name is the same as the package name wherein the ``resources``
 directory appears.
 
 .. note::
-    If you need to register additional directories, you can do so using the
-    ``<browser:resourceDirectory />`` ZCML directive. This requires two
-    attributes: ``name`` is the name that appears after the
-    ``++resource++`` namespace; ``directory`` is a relative path to the
-    directory containing resources.
+    Grok used to automatically register any directory named ``static``.
+    That behavior no longer works. If you're updating a Dexterity project
+    from < Plone 4.3, add to your configure.zcml a stanza like::
+
+      <browser:resourceDirectory
+        name="dotted.projectname"
+        directory="static" />
+
 
 Importing CSS and JavaScript files in templates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
