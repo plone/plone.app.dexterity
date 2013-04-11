@@ -58,7 +58,7 @@ attributes to control form presentation and security.
 supermodel/schema fields
 ------------------------
 
-The supermodel/schema field tag and its attributes map directly to what's available via the TTW schema editor::
+Most of the supermodel/schema field tag and its attributes map directly to what's available via the TTW schema editor::
 
         <field name="dummy" type="zope.schema.TextLine">
           <default>abc</default>
@@ -96,6 +96,26 @@ It's easy to add fieldsets by surrounding embedding fields tags in a ``fieldset`
         ...
       </schema>
 
+Internationalization
+~~~~~~~~~~~~~~~~~~~~
+
+Translation domains and message ids can be specified for text
+that is interpreted as unicode. This will result in deserialization
+as a zope.i18nmessageid message id rather than a basic Unicode string.
+
+Note that we need to add the i18n namespace and a domain specification::
+
+    <model xmlns="http://namespaces.plone.org/supermodel/schema"
+           xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+           i18n:domain="your.application">
+        <schema>
+
+            <field type="zope.schema.TextLine" name="title">
+                <title i18n:translate="yourapp_test_title">Title</title>
+            </field>
+
+        </schema>
+    </model>
 
 
 supermodel/form attributes
