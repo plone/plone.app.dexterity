@@ -212,7 +212,7 @@ Example::
         <title>Three</title>
     </field>
 
-Sample Python for the validator factory:
+Sample Python for the validator factory::
 
     class TestValidator(z3c.form.validator.SimpleFieldValidator):
 
