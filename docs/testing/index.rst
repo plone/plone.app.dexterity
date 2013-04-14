@@ -6,7 +6,7 @@ Testing Dexterity types
 .. toctree::
    :maxdepth: 2
 
-   unit-tests.txt
-   integration-tests.txt
-   mock-testing.txt
+   unit-tests.rst
+   integration-tests.rst
+   mock-testing.rst
 

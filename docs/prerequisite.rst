@@ -1,4 +1,4 @@
-Pre-requisites 
+Pre-requisites
 ===============
 
 **Setting up a Dexterity project**
@@ -27,47 +27,47 @@ Plone versions as appropriate:
     extensions = mr.developer buildout.dumppickedversions
     unzip = true
     parts = instance omelette zopepy test roadrunner
-    extends = 
+    extends =
         http://good-py.appspot.com/release/dexterity/1.1?plone=4.1.2
     versions = versions
-    develop = 
+    develop =
     # If you're not using mr.developer to manage develop eggs, list eggs here. Globs OK.
     #    src/*
-    
+
     sources = sources
     auto-checkout =
         example.conference
-    
+
     [instance]
     recipe = plone.recipe.zope2instance
     user = admin:admin
     http-address = 8080
     debug-mode = on
     verbose-security = on
-    eggs = 
+    eggs =
         Plone
         example.conference
     # development tools
         plone.reload
         Products.PDBDebugMode
     zcml =
-    
+
     [omelette]
     recipe = collective.recipe.omelette
     eggs = ${instance:eggs}
-    
+
     [zopepy]
     recipe = zc.recipe.egg
     eggs = ${instance:eggs}
     interpreter = zopepy
     scripts = zopepy
-    
+
     [test]
     recipe = zc.recipe.testrunner
-    eggs = 
+    eggs =
         example.conference
     defaults = ['--exit-with-status', '--auto-color', '--auto-progress']
-    
+
     [sources]
     example.conference = svn https://svn.plone.org/svn/collective/example.conference/trunk
 
@@ -143,7 +143,7 @@ for more information on how to install ZopeSkel.
     to create a package skeleton that will be ready for immediate use.
 
 We run the following from the ``src/`` directory:
-    
+
 .. code-block:: bash
 
     $ paster create -t plone example.conference
@@ -161,20 +161,20 @@ specify the package as a `z3c.autoinclude`_ plug-in. This ensures that we do not
 need to load its ZCML separately once the package is configured in
 ``buildout.cfg`` (this feature is enabled in Plone 3.3 and later). We will also
 add a dependency on `collective.autopermission`_, which will help us define
-custom permissions later. 
+custom permissions later.
 
 We can remove the paster plugin entry point and paster_plugins line. We will not need these::
 
     from setuptools import setup, find_packages
     import os
-    
+
     version = '1.0a1'
-    
+
     setup(name='example.conference',
           version=version,
           description="Example accompanying http://plone.org/products/dexterity/documentation/manual/developers-manual/",
-          long_description=open("README.txt").read() + "\n" +
-                           open(os.path.join("docs", "HISTORY.txt")).read(),
+          long_description=open("README.rst").read() + "\n" +
+                           open(os.path.join("docs", "HISTORY.rst")).read(),
           # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
           classifiers=[
             "Framework :: Plone",
@@ -212,13 +212,13 @@ Next, we edit ``configure.zcml`` and add the following:
         xmlns:grok="http://namespaces.zope.org/grok"
         xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
         i18n_domain="example.conference">
-    
+
         <!-- Include configuration for dependencies listed in setup.py -->
         <includeDependencies package="." />
-    
+
         <!-- Grok the package to initialise schema interfaces and content classes -->
         <grok:grok package="." />
-    
+
         <!-- Register an extension profile to make the product installable -->
         <genericsetup:registerProfile
             name="default"
@@ -227,14 +227,14 @@ Next, we edit ``configure.zcml`` and add the following:
             directory="profiles/default"
             provides="Products.GenericSetup.interfaces.EXTENSION"
             />
-            
+
     </configure>
 
 Here, we first automatically include the ZCML configuration for all
 packages listed under ``install_requires`` in ``setup.py``.
 This feature is part of `z3c.autoinclude`_, which is included with Plone 3.3
 and later.
-The alternative would be to manually add a line like 
+The alternative would be to manually add a line like
 ``<include package="plone.app.dexterity" />`` for each dependency.
 
 Next, we *grok* the package to construct and register schemata, views,
@@ -246,7 +246,7 @@ installable, which we will build up over the next several sections.
 
 The profile requires a directory ``profiles/default``.
 You should create the ``profiles`` directory in the same folder as
-``configure.zcml``, and ``default`` under that. 
+``configure.zcml``, and ``default`` under that.
 In ``default``, add a file called ``metadata.xml`` with the following
 contents:
 

@@ -1,4 +1,4 @@
-Creating a package 
+Creating a package
 ====================
 
 **Giving our forms a home**
@@ -35,8 +35,8 @@ in. Finally, we have added a *tests* extra to pull in
     setup(name='example.dexterityforms',
           version=version,
           description="Examples of forms using plone.directives.form",
-          long_description=open("README.txt").read() + "\n" +
-                           open(os.path.join("docs", "HISTORY.txt")).read(),
+          long_description=open("README.rst").read() + "\n" +
+                           open(os.path.join("docs", "HISTORY.rst")).read(),
           # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
           classifiers=[
             "Framework :: Plone",
@@ -74,10 +74,10 @@ Next, we edit *configure.zcml* to add some boilerplate:
         xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
         xmlns:grok="http://namespaces.zope.org/grok"
         i18n_domain="example.dexterityforms">
-        
+
         <includeDependencies package="." />
         <grok:grok package="." />
-        
+
         <genericsetup:registerProfile
             name="default"
             title="Example forms"
@@ -85,7 +85,7 @@ Next, we edit *configure.zcml* to add some boilerplate:
             description="Example forms using plone.directives.forms"
             provides="Products.GenericSetup.interfaces.EXTENSION"
             />
-        
+
     </configure>
 
 This will:
@@ -146,7 +146,7 @@ Finally, we add this package to our *buildout.cfg* and re-run
 
     [tests]
     recipe = zc.recipe.testrunner
-    eggs = 
+    eggs =
         example.dexterityforms [tests]
 
 Obviously, we have omitted large parts of the buildout configuration

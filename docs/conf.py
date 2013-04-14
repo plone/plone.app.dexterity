@@ -31,7 +31,7 @@ extensions = ['sphinx.ext.autodoc',
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = '.txt'
+source_suffix = '.rst'
 
 # The encoding of source files.
 #source_encoding = 'utf-8'
@@ -205,7 +205,7 @@ latex_documents = [
 html_use_smartypants = False
 
 
-# Don't build Modules pages 
+# Don't build Modules pages
 html_domain_indices = False
 
 # Don't build term index

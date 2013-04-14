@@ -1,4 +1,4 @@
-Core components 
+Core components
 ==================================================
 
 **Using five.grok to configure adapters, utilities and event subscribers**
@@ -6,9 +6,9 @@ Core components
 .. toctree::
    :maxdepth: 2
 
-   interfaces.txt
-   utilities.txt
-   adapters.txt
-   annotations.txt
-   events.txt
-   further-details.txt
+   interfaces.rst
+   utilities.rst
+   adapters.rst
+   annotations.rst
+   events.rst
+   further-details.rst

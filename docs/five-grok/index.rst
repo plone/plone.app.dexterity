@@ -9,7 +9,7 @@ developers who want to move beyond types and schemata.**
 .. toctree::
    :maxdepth: 2
 
-   background/index.txt
-   core-components/index.txt
-   browser-components/index.txt
-   other-functionality.txt
+   background/index.rst
+   core-components/index.rst
+   browser-components/index.rst
+   other-functionality.rst

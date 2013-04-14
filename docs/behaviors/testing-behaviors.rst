@@ -27,7 +27,7 @@ tests the *ITags* behavior we saw on the first page of this manual.
     This adds a `Tags` field called `tags` to the "Categorization" fieldset, with
     a behavior adapter that stores the chosen tags in the Subject metadata field.
 
-    To learn more about the `Tags` field and how it works, see `tagging.txt`.
+    To learn more about the `Tags` field and how it works, see `tagging.rst`.
 
     Test setup
     ----------
@@ -39,10 +39,10 @@ tests the *ITags* behavior we saw on the first page of this manual.
         ... <configure
         ...      xmlns="http://namespaces.zope.org/zope"
         ...      i18n_domain="collective.gtags">
-        ...      
+        ...
         ...     <include package="Products.Five" file="meta.zcml" />
         ...     <include package="collective.gtags" file="behaviors.zcml" />
-        ...     
+        ...
         ... </configure>
         ... """
 
@@ -63,15 +63,15 @@ tests the *ITags* behavior we saw on the first page of this manual.
         >>> class TestingAssignable(object):
         ...     implements(IBehaviorAssignable)
         ...     adapts(Document)
-        ...     
+        ...
         ...     enabled = [ITags]
-        ...     
+        ...
         ...     def __init__(self, context):
         ...         self.context = context
-        ...     
+        ...
         ...     def supports(self, behavior_interface):
         ...         return behavior_interface in self.enabled
-        ...     
+        ...
         ...     def enumerate_behaviors(self):
         ...         for e in self.enabled:
         ...             yield queryUtility(IBehavior, name=e.__identifier__)
@@ -113,10 +113,10 @@ tests the *ITags* behavior we saw on the first page of this manual.
         >>> doc.setSubject(['One', 'Two'])
         >>> doc.Subject()
         ('One', 'Two')
-        
+
         >>> tags_adapter.tags == set(['One', 'Two'])
         True
-        
+
         >>> tags_adapter.tags = set(['Two', 'Three'])
         >>> doc.Subject() == ('Two', 'Three')
         True
@@ -164,19 +164,19 @@ To run the test, we need a test suite. In *tests.py*, we have:
 
     def setUp(test):
         pass
-            
+
     def tearDown(test):
         setup.placefulTearDown()
 
     def test_suite():
         return unittest.TestSuite((
             doctestunit.DocFileSuite(
-                'behaviors.txt',
+                'behaviors.rst',
                 setUp=setUp, tearDown=tearDown,
                 optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS),
             ))
 
-This runs the *behaviors.txt* doctest from the same directory as the
+This runs the *behaviors.rst* doctest from the same directory as the
 *tests.py* file. To run the test, we can use the usual test runner:
 
 ::

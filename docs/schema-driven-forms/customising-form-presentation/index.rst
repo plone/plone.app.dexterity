@@ -3,6 +3,6 @@ Customising form presentation
 
 .. toctree::
    :maxdepth: 2
-   
-   layout-templates.txt
-   error-snippets.txt
+
+   layout-templates.rst
+   error-snippets.rst

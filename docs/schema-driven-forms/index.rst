@@ -1,4 +1,4 @@
-Schema-driven forms 
+Schema-driven forms
 ====================
 
 **This tutorial covers how to schema-driven forms, using the z3c.form library.
@@ -7,10 +7,10 @@ this tutorial.**
 
 .. toctree::
    :maxdepth: 2
-   
-   intro.txt
-   creating-a-simple-form/index.txt
-   customising-form-behaviour/index.txt
-   form-types/index.txt
-   customising-form-presentation/index.txt
-   further-reading.txt
+
+   intro.rst
+   creating-a-simple-form/index.rst
+   customising-form-behaviour/index.rst
+   form-types/index.rst
+   customising-form-presentation/index.rst
+   further-reading.rst
