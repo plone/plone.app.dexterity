@@ -241,6 +241,51 @@ Similar checks are performed when cloning.
   True
 
 
+Editing the XML model directly
+------------------------------
+
+  >>> from cgi import escape
+  >>> from urllib import quote_plus
+
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor')
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista/@@modeleditor'
+
+  >>> '<div id="modelEditor">' in browser.contents
+  True
+
+  >>> '&lt;schema&gt;' in browser.contents
+  True
+
+  >>> model_source = portal.portal_types.plonista.model_source
+  >>> escaped_model_source = escape(model_source)
+  >>> escaped_model_source in browser.contents
+  True
+
+  >>> authenticator = browser.getControl(name="_authenticator").value
+
+Prove this won't work without an authenticator
+
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something')
+  Traceback (most recent call last):
+  ...
+  Unauthorized: Unauthorized()
+
+Check reject of bad XML
+
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something&_authenticator=%s' % authenticator)
+
+  >>> print browser.contents
+  {"message": "XMLSyntaxError: Start tag expected, '<' not found, line 1, column 1", "success": false}
+
+Should work with real XML
+
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(model_source), authenticator))
+
+  >>> print browser.contents
+  {"message": "Saved", "success": true}
+
+
 Adding a container
 ------------------
 
@@ -365,7 +410,7 @@ zip archive containing files ready to drop into our profile::
 
     >>> browser.headers['content-type']
     'application/zip'
-    
+
     >>> browser.headers['content-disposition']
     'attachment; filename=dexterity_export-....zip'
 
