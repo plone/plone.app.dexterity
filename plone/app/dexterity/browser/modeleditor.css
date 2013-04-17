@@ -1,0 +1,34 @@
+#portal-top,
+#viewlet-above-content,
+#portal-breadcrumbs,
+#portal-footer,
+#portal-colophon,
+#portal-siteactions {
+    display: none;
+}
+
+#modelEditor {
+    height: 600px;
+    position: absolute;
+    right: 1px;
+    left: 1px;
+    z-index: 1;
+    border: 1px solid #ccc;
+}
+
+.formControls {
+    text-align: left;
+    font-size: 175%;
+}
+.formControls input {
+    font-size: 100%;
+}
+.portalMessage {
+    float: right;
+    font-size: 200%;
+    color: #fff;
+}
+.portalMessage span {
+    background-color: #0a0;
+    padding: 0.5em;
+}

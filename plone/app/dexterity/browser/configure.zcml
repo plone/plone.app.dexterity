@@ -93,4 +93,29 @@
         permission="plone.schemaeditor.ManageSchemata"
         />
 
+  <browser:page
+      name="modeleditor"
+      for="plone.schemaeditor.interfaces.ISchemaContext"
+      class=".modeleditor.ModelEditorView"
+      permission="plone.schemaeditor.ManageSchemata"
+      template="modeleditor.pt"
+      />
+
+  <browser:page
+      name="model-edit-save"
+      for="plone.schemaeditor.interfaces.ISchemaContext"
+      class=".modeleditor.AjaxSaveHandler"
+      permission="plone.schemaeditor.ManageSchemata"
+      />
+
+  <browser:resource
+    name="plone.app.dexterity.modeleditor.css"
+    file="modeleditor.css"
+    />
+
+  <browser:resource
+    name="plone.app.dexterity.modeleditor.js"
+    file="modeleditor.js"
+    />
+
 </configure>
