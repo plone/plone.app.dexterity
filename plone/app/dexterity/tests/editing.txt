@@ -244,13 +244,35 @@ Similar checks are performed when cloning.
 Editing the XML model directly
 ------------------------------
 
+Much of what the XML model editor does is happening in JavaScript, but we can still
+the Zope side.
+
   >>> from cgi import escape
   >>> from urllib import quote_plus
+
+We should be able to view the modeleditor view and find the XML model source
+in a div, ready for the Ace editor::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor')
   >>> browser.url
   'http://nohost/plone/dexterity-types/plonista/@@modeleditor'
 
+We should be telling the browser to load our keys resources::
+
+  >>> browser.contents
+  '...<script...src="http://nohost/plone/++resource++plone.resourceeditor/ace/ace.js"...'
+
+  >>> browser.contents
+  '...<script...src="http://nohost/plone/++resource++plone.app.dexterity.modeleditor.js"...'
+
+Both of those should be available::
+
+  browser.open('http://nohost/plone/++resource++plone.resourceeditor/ace/ace.js')
+  browser.open('http://nohost/plone/++resource++plone.app.dexterity.modeleditor.js')
+
+Return to our view, and check for the model source::
+
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor')
   >>> '<div id="modelEditor">' in browser.contents
   True
 
@@ -262,7 +284,11 @@ Editing the XML model directly
   >>> escaped_model_source in browser.contents
   True
 
+There should be an authenticator in the `save` form::
+
   >>> authenticator = browser.getControl(name="_authenticator").value
+
+Save is via AJAX. Let's check the save view's functionality.
 
 Prove this won't work without an authenticator
 
@@ -274,17 +300,41 @@ Prove this won't work without an authenticator
 Check reject of bad XML
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something&_authenticator=%s' % authenticator)
-
   >>> print browser.contents
   {"message": "XMLSyntaxError: Start tag expected, '<' not found, line 1, column 1", "success": false}
+
+We should refuse source that doesn't have `model` for the root tag::
+
+  >>> bad_source = model_source.replace('model', 'mode')
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
+  >>> print browser.contents
+  {"message": "Error: root tag must be 'model'", "success": false}
+
+Likewise, only `schema` tags are allowed inside the model::
+
+  >>> bad_source = model_source.replace('schema>', 'scheme>')
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
+  >>> print browser.contents
+  {"message": "Error: all model elements must be 'schema'", "success": false}
 
 Should work with real XML
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(model_source), authenticator))
-
   >>> print browser.contents
   {"message": "Saved", "success": true}
 
+That response should have a JSON content type::
+
+  >>> browser.headers['content-type']
+  'application/json'
+
+We should be providing a link back to the fields editor::
+
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor')
+  >>> link = browser.getLink('Back to the schema editor')
+  >>> link.click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista/@@fields'
 
 Adding a container
 ------------------
