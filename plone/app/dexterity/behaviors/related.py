@@ -2,7 +2,7 @@
 plone.app.relationfield in Dexterity 2.0.
 """
 try:
-    from plone.app.relationfield.behavior import IRelatedItems
+    from plone.app.relationfield.behavior import IRelatedItems  # noqa
 except:
     pass
 
