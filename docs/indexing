@@ -1,12 +1,44 @@
 Indexing content
 ================
+
 In order for content created with custom Deterity types to be indexed you must install these add-ons:
 
  - plone.indexer
  - collective.dexteritytextindexer
+ - [add both of the above to 'eggs' and 'zcml' sections of buildout.cfg]
 
 You must then refer to their respective documentation:
 
  - http://developer.plone.org/searching_and_indexing/indexing.html#custom-index-methods
  - https://github.com/collective/collective.dexteritytextindexer
 
+
+How to setup the index TTW:
+============================
+
+If you need to avoid the file system when setting this up, you can apply the same changes but through 
+the web instead (you will still need to install those add-ons above). 
+
+- Go to the Zope Management Interface and select 'portal_types' 
+- Select your Dexterity content type
+- Add collective.dexteritytextindexer.behavior.IDexterityTextIndexer to the "Behaviors" box.
+- On the same page go down to "Model source" and add  indexer:searchable="true" to the <field> 
+  tag you want to index.
+- Add xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" in the top <model> tag also
+  inside the "Model source" box <-- you will get a traceback error if you miss this out.
+- Save your changes
+
+Now that the fields are index-able, we need to create the index itself.
+
+- Go to the Zope Management Interface
+- Go on 'portal_catalog'
+- Click 'Indexes' tab
+- There's a drop down menu to the top right to let you choose what type of index to add - if you 
+  are using a plain text string field you would select 'FieldIndex'
+- As the 'id' but in the programmatical name of your Dexterity type field that you want to index
+- Hit OK, tick your new index and click 'Reindex'
+
+You should now see content being indexed.
+
+Documentation which the above explains:
+http://developer.plone.org/searching_and_indexing/indexing.html#creating-an-index-through-the-web
