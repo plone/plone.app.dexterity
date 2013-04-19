@@ -1,0 +1,12 @@
+Indexing content
+================
+In order for content created with custom Deterity types to be indexed you must install these add-ons:
+
+ - plone.indexer
+ - collective.dexteritytextindexer
+
+You must then refer to their respective documentation:
+
+ - http://developer.plone.org/searching_and_indexing/indexing.html#custom-index-methods
+ - https://github.com/collective/collective.dexteritytextindexer
+
