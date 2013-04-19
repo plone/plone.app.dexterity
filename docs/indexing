@@ -35,7 +35,7 @@ Now that the fields are index-able, we need to create the index itself.
 - Click 'Indexes' tab
 - There's a drop down menu to the top right to let you choose what type of index to add - if you 
   are using a plain text string field you would select 'FieldIndex'
-- As the 'id' but in the programmatical name of your Dexterity type field that you want to index
+- As the 'id' put in the programmatical name of your Dexterity type field that you want to index
 - Hit OK, tick your new index and click 'Reindex'
 
 You should now see content being indexed.
