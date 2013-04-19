@@ -2,7 +2,6 @@ from AccessControl.SecurityManagement import getSecurityManager
 from DateTime import DateTime
 from datetime import datetime
 from z3c.form.interfaces import IEditForm, IAddForm
-from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.form.widget import ComputedWidgetAttribute
 from zope.interface import provider
 from zope.interface import alsoProvides
