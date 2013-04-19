@@ -50,6 +50,13 @@
                 <span i18n:name="name" tal:content="context/Title">name</span>
             </h1>
 
+            <p class="description">
+                This form allows you to directly edit the XML representation of the field
+                list. This makes it possible to add annotations for fieldsets, validation
+                and widgets. See the "Dexterity XML" section of the Dexterity Developer
+                Manual for details.
+            </p>
+
             <a href=""
                 class="link-parent"
                 tal:attributes="href string:${context/absolute_url}/@@fields"
