@@ -15,7 +15,7 @@ from plone.app.dexterity import MessageFactory as _
 options = SimpleVocabulary([
     SimpleTerm(value=True, title=_(u'Yes')),
     SimpleTerm(value=False, title=_(u'No')),
-    ])
+])
 
 
 class IAllowDiscussion(model.Schema):
@@ -24,7 +24,7 @@ class IAllowDiscussion(model.Schema):
         'settings',
         label=_(u"Settings"),
         fields=['allow_discussion'],
-        )
+    )
 
     allow_discussion = schema.Choice(
         title=_(u'Allow discussion'),
@@ -32,7 +32,7 @@ class IAllowDiscussion(model.Schema):
         vocabulary=options,
         required=False,
         default=None,
-        )
+    )
 
 
 alsoProvides(IAllowDiscussion, IFormFieldProvider)
