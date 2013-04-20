@@ -16,5 +16,7 @@ class DexterityFixture(PloneSandboxLayer):
 
 
 DEXTERITY_FIXTURE = DexterityFixture()
-DEXTERITY_INTEGRATION_TESTING = IntegrationTesting(bases=(DEXTERITY_FIXTURE,), name="dexterity:Integration")
-DEXTERITY_FUNCTIONAL_TESTING = FunctionalTesting(bases=(DEXTERITY_FIXTURE,), name="dexterity:Functional")
+DEXTERITY_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(DEXTERITY_FIXTURE,), name="dexterity:Integration")
+DEXTERITY_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(DEXTERITY_FIXTURE,), name="dexterity:Functional")

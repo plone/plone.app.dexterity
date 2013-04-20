@@ -29,7 +29,7 @@ class SelectiveZipExportContext(TarballExportContext):
 
         timestamp = time.gmtime()
         self._archive_filename = (base_name + '-%4d%02d%02d%02d%02d%02d.zip'
-                       % timestamp[:6])
+                                  % timestamp[:6])
 
         self._archive_stream = StringIO()
         self._archive = ZipFile(self._archive_stream, 'w')
@@ -70,7 +70,7 @@ class TypesExport(BrowserView):
 
         items = self.request.selected.split(',')
         context = SelectiveZipExportContext(ps, items,
-          base_name='dexterity_export')
+                                            base_name='dexterity_export')
         handler = ps.getExportStep(u'typeinfo')
         message = handler(context)
 
@@ -78,7 +78,7 @@ class TypesExport(BrowserView):
 
         RESPONSE.setHeader('Content-type', 'application/zip')
         RESPONSE.setHeader('Content-disposition',
-          'attachment; filename=%s' % filename)
+                           'attachment; filename=%s' % filename)
 
         return context.getArchive()
 
@@ -103,7 +103,7 @@ class ModelsExport(BrowserView):
 
             RESPONSE.setHeader('Content-type', 'application/xml')
             RESPONSE.setHeader('Content-disposition',
-              'attachment; filename=%s' % filename)
+                               'attachment; filename=%s' % filename)
 
             return text
 
@@ -112,7 +112,7 @@ class ModelsExport(BrowserView):
 
             timestamp = time.gmtime()
             archive_filename = ('dexterity_models-%4d%02d%02d%02d%02d%02d.zip'
-                           % timestamp[:6])
+                                % timestamp[:6])
 
             archive_stream = StringIO()
             archive = ZipFile(archive_stream, 'w')
@@ -126,7 +126,7 @@ class ModelsExport(BrowserView):
 
             RESPONSE.setHeader('Content-type', 'application/zip')
             RESPONSE.setHeader('Content-disposition',
-              'attachment; filename=%s' % archive_filename)
+                               'attachment; filename=%s' % archive_filename)
 
             return archive_stream.getvalue()
 

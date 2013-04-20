@@ -26,7 +26,8 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
 
     layer = DEXTERITY_INTEGRATION_TESTING
 
-    _behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled',)
+    _behaviors = (
+        'plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled',)
     _portal_type = 'FolderEnabled'
 
     def setUp(self):
@@ -67,7 +68,8 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         self.failUnless(view.enabled())
 
     def testNextPreviousItems(self):
-        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(
+            self._portal_type, 'case3')]
         for id in range(1, 4):
             container.invokeFactory('Document', 'subDoc%d' % id)
 
@@ -103,13 +105,15 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         self.assertEqual(next, None)
 
     def testNextItemOnlyShowViewable(self):
-        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(
+            self._portal_type, 'case3')]
         # create objects [subDoc1,subDoc2,subDoc3,subDoc4,subDoc5,subDoc6]
         # published objects [subDoc2, subDoc4, subDoc5]
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         for id in range(1, 7):
-            doc = container[container.invokeFactory('Document', 'subDoc%d' % id)]
-            if id in [2,4,5]:
+            doc = container[container.invokeFactory(
+                'Document', 'subDoc%d' % id)]
+            if id in [2, 4, 5]:
                 self.wf.doActionFor(doc, "publish")
 
         # Member should only see the published items
@@ -125,13 +129,15 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         self.assertEqual(next, None)
 
     def testPreviousItemOnlyShowViewable(self):
-        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(
+            self._portal_type, 'case3')]
         # create objects [subDoc1,subDoc2,subDoc3,subDoc4,subDoc5,subDoc6]
         # published objects [subDoc2, subDoc4, subDoc5]
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         for id in range(1, 7):
-            doc = container[container.invokeFactory('Document', 'subDoc%d' % id)]
-            if id in [2,4,5]:
+            doc = container[container.invokeFactory(
+                'Document', 'subDoc%d' % id)]
+            if id in [2, 4, 5]:
                 self.wf.doActionFor(doc, "publish")
 
         # Member should only see the published items
@@ -152,8 +158,9 @@ class NextPreviousToggleTests(NextPreviousBase, unittest.TestCase):
         borrowed from `plone.app.folder.tests.test_nextprevious.py` """
 
     layer = DEXTERITY_INTEGRATION_TESTING
-    
-    _behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle',)
+
+    _behaviors = (
+        'plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle',)
     _portal_type = 'FolderWithToggle'
 
     def setUp(self):

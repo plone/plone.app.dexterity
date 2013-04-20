@@ -22,6 +22,7 @@ def behaviorConfigurationModified(object, event):
     description = DexterityFTIModificationDescription("behaviors", "")
     modified(object.fti, description)
 
+
 class BehaviorConfigurationAdapter(object):
     adapts(ITypeSchemaContext)
 
@@ -74,13 +75,13 @@ class TypeBehaviorsForm(form.EditForm):
                 continue
 
             f = schema.Bool(
-                __name__ = str(name),
-                title = reg.title,
-                description = reg.description,
-                required = False
-                )
+                __name__=str(name),
+                title=reg.title,
+                description=reg.description,
+                required=False
+            )
             fields.append(f)
-        fields = sorted(fields, key=lambda x:x.title)
+        fields = sorted(fields, key=lambda x: x.title)
         fields = field.Fields(*fields)
 
         for f in fields.values():

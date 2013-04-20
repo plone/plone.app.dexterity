@@ -22,10 +22,12 @@ class ITypeSchemaContext(Interface):
 
 
 class InvalidIdError(schema.ValidationError):
-    __doc__ = _(u'Please use only letters, numbers, and the following characters: .-_')
+    __doc__ = _(
+        u'Please use only letters, numbers, and the following characters: .-_')
 
 # a letter followed by letters, numbers, period, hyphen, or underscore
 ID_RE = re.compile(r'^[a-z][\w\d\.-]*$')
+
 
 def isValidId(value):
     if ID_RE.match(value):
@@ -38,27 +40,28 @@ class ITypeSettings(Interface):
     """
 
     title = schema.TextLine(
-        title = _(u'Type Name'),
-        )
+        title=_(u'Type Name'),
+    )
 
     id = schema.ASCIILine(
-        title = _(u'Short Name'),
-        description = _(u'Used for programmatic access to the type.'),
-        required = True,
-        constraint = isValidId,
-        )
+        title=_(u'Short Name'),
+        description=_(u'Used for programmatic access to the type.'),
+        required=True,
+        constraint=isValidId,
+    )
 
     description = schema.Text(
-        title = _(u'Description'),
-        required = False
-        )
+        title=_(u'Description'),
+        required=False
+    )
 
     container = schema.Bool(
-        title = _(u'Container'),
-        description = _(u'Items of this type will be able to contain other items.'),
-        required = True,
-        default = False,
-        )
+        title=_(u'Container'),
+        description=_(
+            u'Items of this type will be able to contain other items.'),
+        required=True,
+        default=False,
+    )
 
     filter_content_types = schema.Choice(
         title=_(u'Filter Contained Types'),
@@ -82,10 +85,10 @@ class ITypeSettings(Interface):
 
 
 class ITypeStats(Interface):
-    
+
     item_count = schema.Int(
-        title = _(u'# of items'),
-        )
+        title=_(u'# of items'),
+    )
 
 
 class TypeIdValidator(validator.SimpleFieldValidator):
@@ -98,7 +101,8 @@ class TypeIdValidator(validator.SimpleFieldValidator):
             raise Invalid(_(u"There is already a content type named '${name}'",
                           mapping={'name': value}))
 
-validator.WidgetValidatorDiscriminators(TypeIdValidator, field=ITypeSettings['id'])
+validator.WidgetValidatorDiscriminators(
+    TypeIdValidator, field=ITypeSettings['id'])
 
 
 class TypeTitleValidator(validator.SimpleFieldValidator):
@@ -112,7 +116,9 @@ class TypeTitleValidator(validator.SimpleFieldValidator):
                 continue
 
             if existing_fti.Title() == value:
-                raise Invalid(_(u"There is already a content type named '${name}'",
-                              mapping={'name': value}))
+                raise Invalid(
+                    _(u"There is already a content type named '${name}'",
+                      mapping={'name': value}))
 
-validator.WidgetValidatorDiscriminators(TypeTitleValidator, field=ITypeSettings['title'])
+validator.WidgetValidatorDiscriminators(
+    TypeTitleValidator, field=ITypeSettings['title'])

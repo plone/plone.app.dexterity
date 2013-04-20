@@ -6,6 +6,7 @@ from plone.dexterity.fti import DexterityFTI
 from plone.app.dexterity import MessageFactory as _
 from plone.app.dexterity.interfaces import ITypeSettings
 
+
 class TypeCloneForm(form.AddForm):
 
     label = _(u'Clone Content Type')
