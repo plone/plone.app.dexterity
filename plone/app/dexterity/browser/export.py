@@ -71,6 +71,8 @@ class TypesExport(BrowserView):
         items = self.request.selected.split(',')
         context = SelectiveZipExportContext(ps, items,
                                             base_name='dexterity_export')
+        handler = ps.getExportStep(u'typeinfo')
+        message = handler(context)
 
         filename = context.getArchiveFilename()
 
