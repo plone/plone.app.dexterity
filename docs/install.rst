@@ -16,7 +16,7 @@ Installing Dexterity on Plone 4.2\
 Plone 4.2 is the latest stable release of Plone. The Plone KGS (known
 good set of package versions) includes version pins for the packages
 that make up Dexterity, so all you need to do is add plone.app.dexterity
-to the eggs in your buildout, and re-run the buildout:
+to the eggs in your buildout, and re-run the buildout::
 
     [buildout]
     extensions = buildout.dumppickedversions
@@ -68,7 +68,7 @@ Installing Dexterity on Plone 4.3 is similar to installing it on Plone
 to your eggs no longer enables the grok-style configuration or relation
 field features by default. If you use these features, you must
 explicitly request them by listing the appropriate *extras* when you
-include the egg:
+include the egg::
 
     eggs =
         plone.app.dexterity [grok,relations]
@@ -83,7 +83,7 @@ Installing Dexterity on older versions of Plone
 Prior to Plone 4.2, the official Plone KGS did not include version pins
 for the packages that make up Dexterity. Instead, you can extend a KGS
 from the [good-py service](http://good-py.appspot.com). That looks like
-this:
+this::
 
     [buildout]
     extensions = buildout.dumppickedversions
