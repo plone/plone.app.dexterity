@@ -93,6 +93,7 @@
         permission="plone.schemaeditor.ManageSchemata"
         />
 
+<configure zcml:condition="installed plone.resourceeditor">
   <browser:page
       name="modeleditor"
       for="plone.schemaeditor.interfaces.ISchemaContext"
@@ -117,5 +118,5 @@
     name="plone.app.dexterity.modeleditor.js"
     file="modeleditor.js"
     />
-
+</configure>
 </configure>
