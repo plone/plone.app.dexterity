@@ -54,7 +54,7 @@ jQuery(function ($) {
         // for easy serialization
         $('#savesource').val(editor.getValue());
 
-        $.getJSON(action, myform.serialize(), function (rez) {
+        $.post(action, myform.serialize(), function (rez) {
             if (rez.success) {
                 var messagespan = $("#messagespan");
 
@@ -66,7 +66,7 @@ jQuery(function ($) {
             } else {
                 alert(rez.message);
             }
-        })
+        }, 'json')
         .fail(function() {
             alert(ajax_noresponse_message);
         });
