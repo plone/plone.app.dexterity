@@ -1,0 +1,279 @@
+# Víctor Fernández de Alba <sneridagh@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: plone.app.dexterity\n"
+"POT-Creation-Date: 2013-04-06 15:36+0000\n"
+"PO-Revision-Date: 2013-05-02 15:00 +0100\n"
+"Last-Translator: Víctor Fernández de Alba <sneridagh@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: ca\n"
+"Language-Name: Catalan\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone.app.dexterity\n"
+
+#: ../interfaces.py:87
+msgid "# of items"
+msgstr "# d'elements"
+
+#: ../browser/add_type.py:12
+msgid "Add Content Type"
+msgstr "Afegeix tipus de contingut"
+
+#: ../browser/types_listing.pt:82
+msgid "Add New Content Type…"
+msgstr "Afegeix un nou tipus…"
+
+msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+msgstr "Afegeix els camps de metadades de Dublin Core (metadades bàsiques, categorització, dates efectives i propietari)"
+
+msgid "Adds a title and description"
+msgstr "Afegeix un títol i descripció"
+
+msgid "Adds creator, contributor, and rights fields"
+msgstr "Afegeix els camps creador, col·laboradors i drets"
+
+msgid "Adds keywords and language setting"
+msgstr "Afegeix els camps d'etiquetes i idioma"
+
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr "Permet comentaris"
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr "Permet els comentaris per aquest tipus de contingut."
+
+msgid "Allow items to be excluded from navigation"
+msgstr "Permet excloure de la navegació"
+
+msgid "Allow items to have next previous navigation enabled"
+msgstr "Permet habilitar la navegació següent/anterior"
+
+#: ../interfaces.py:75
+msgid "Allowed Content Types"
+msgstr "Tipus de contingut permessos"
+
+msgid "Assign an effective and/or expiration date"
+msgstr "Assigna la data efectiva i/o la data d'expiració"
+
+msgid "Automatically generate short URL name for content based on its initial title"
+msgstr "Genera automàticament el nom curt utilitzat a la URL per aquest contingut basat en el seu títol"
+
+msgid "Automatically generate short URL name for content based on its primary field file name"
+msgstr "Genera automàticament el nom curt utilitzat a la URL per aquest contingut basat en el nom del fitxer"
+
+msgid "Basic metadata"
+msgstr "Metadades bàsiques"
+
+#: ../browser/behaviors.py:58
+#: ../browser/layout.py:16
+msgid "Behaviors"
+msgstr "Comportaments"
+
+#: ../browser/behaviors.py:60
+msgid "Behaviors successfully updated."
+msgstr "Els comportaments s'han actualitzat"
+
+#: ../browser/types.py:58
+msgid "Clone"
+msgstr "Clona"
+
+#: ../browser/clone_type.py:11
+msgid "Clone Content Type"
+msgstr "Clona el tipus de contingut"
+
+msgid "Configures various components needed for full Dexterity support."
+msgstr "Configura els diferents components necessaris per a donar suport a Dexterity."
+
+#: ../interfaces.py:57
+msgid "Container"
+msgstr "Contenidor"
+
+#: ../interfaces.py:52
+msgid "Description"
+msgstr "Descripció"
+
+#: ../browser/types.py:247
+#: ../profiles/default/actions.xml
+#: ../profiles/default/controlpanel.xml
+msgid "Dexterity Content Types"
+msgstr "Tipus de contingut Dexterity"
+
+#: ../browser/types.py:214
+msgid "Dexterity content types"
+msgstr "Tipus de contingut Dexterity"
+
+msgid "Dublin Core metadata"
+msgstr "Metadades Dublin Core"
+
+msgid "Effective range"
+msgstr "Rang de dates efectiu"
+
+msgid "Enable next previous navigation for all items of this type"
+msgstr "Habilita la navegació següent/anterior per tots els objectes d'aquest tipus"
+
+msgid "Exclude From navigation"
+msgstr "Exclou de la navegació"
+
+#: ../browser/types.py:83
+msgid "Export Schema Models"
+msgstr "Exporta l'esquema dels models"
+
+#: ../browser/types.py:71
+msgid "Export Type Profiles"
+msgstr "Exporta els perfils del tipus"
+
+#: ../browser/fields.py:9
+#: ../browser/layout.py:15
+msgid "Fields"
+msgstr "Camps"
+
+#: ../interfaces.py:64
+msgid "Filter Contained Types"
+msgstr "Filtra els tipus"
+
+#: ../interfaces.py:58
+msgid "Items of this type will be able to contain other items."
+msgstr "Els objectes d'aquest tipus podran contenir altres objectes."
+
+msgid "Make all items of this type a navigation root"
+msgstr "Els objectes d'aquests tipus seran arrel de la navegació"
+
+msgid "Name from file name"
+msgstr "Nom a partir del nom de fitxer"
+
+msgid "Name from title"
+msgstr "Nom a partir del títol"
+
+msgid "Navigation root"
+msgstr "Arrel de la navegació"
+
+msgid "Next previous navigation"
+msgstr "Navegació següent/anterior"
+
+msgid "Next previous navigation toggle"
+msgstr "Canviar a navegació següent/anterior"
+
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr "No"
+
+#: ../browser/behaviors.py:61
+msgid "No changes were made."
+msgstr "No s'ha fet cap canvi."
+
+#: ../browser/layout.py:14
+#: ../browser/overview.py:32
+msgid "Overview"
+msgstr "Resum"
+
+#: ../browser/types.py:63
+msgid "Please select a single type to clone."
+msgstr "Si us plau, seleccioneu un únic tipus de contingut per la clonació."
+
+#: ../browser/types.py:69
+msgid "Please select a type to clone."
+msgstr "Si us plau, seleccioneu un tipus per la clonació."
+
+#: ../browser/types.py:76
+msgid "Please select types to export."
+msgstr "Si us plau, seleccioneu els tipus a exportar."
+
+#: ../interfaces.py:25
+msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr "Si us plau, utilitzeu només lletres, números i els caracters: .-_"
+
+#: ../browser/behaviors.py:59
+msgid "Select the behaviors to enable for this content type."
+msgstr "Seleccioneu els comportaments per aquest tipus de contingut."
+
+#: ../behaviors/discussion.py:25
+#: ../behaviors/exclfromnav.py:13
+#: ../behaviors/nextprevious.py:27
+msgid "Settings"
+msgstr "Configuració"
+
+#: ../interfaces.py:45
+msgid "Short Name"
+msgstr "Nom curt"
+
+#: ../browser/types.py:176
+msgid "The following custom content types are available for your site."
+msgstr "Els següents tipus"
+
+#: ../interfaces.py:98
+msgid "There is already a content type named '${name}'"
+msgstr "Ja existeix un tipus de contingut anomenat '${name}'"
+
+#: ../interfaces.py:41
+msgid "Type Name"
+msgstr "Nom del tipus"
+
+#: ../browser/add_type.py:47
+msgid "Type added successfully."
+msgstr "Tipus afegit satisfactòriament."
+
+#: ../browser/clone_type.py:28
+msgid "Type cloned successfully."
+msgstr "Tipus clonat satisfactòriament."
+
+#: ../interfaces.py:46
+msgid "Used for programmatic access to the type."
+msgstr "Utilitzat per accedir progamàticament al tipus."
+
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr "Sí"
+
+#: ../browser/types.py:179
+msgid "help_addcontenttype_button"
+msgstr "Cliqueu sobre el botó \"Afegeix tipus de contingut\" per a crear un nou tipus de contingut personalitzat."
+
+#. Default: "If selected, this item will not appear in the navigation tree"
+#: ../behaviors/exclfromnav.py:18
+msgid "help_exclude_from_nav"
+msgstr "Si està seleccionat, aquest objecte no apareixerà a l'arbre de navegació"
+
+#. Default: "This enables next/previous widget on content items contained in this folder."
+#: ../behaviors/nextprevious.py:32
+msgid "help_nextprevious"
+msgstr "Habilita la navegació següent/anterior sobre el contingut de dins d'aquesta carpeta."
+
+#. Default: "All content types"
+#: ../browser/overview.pt:24
+msgid "label_all_content_types"
+msgstr "Tots els tipus de contingut"
+
+#. Default: "Contained items"
+#: ../browser/overview.pt:9
+msgid "label_contained_items"
+msgstr "Tipus d'elements que pot contindre"
+
+#. Default: "Exclude from navigation"
+#: ../behaviors/exclfromnav.py:17
+msgid "label_exclude_from_nav"
+msgstr "Exclou de la navegació"
+
+#. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
+#: ../interfaces.py:65
+msgid "label_filter_contained_types"
+msgstr "Aquest tipus actúa de contenidor d'elements d'altres tipus de contingut. Quins tipus de contingut pot contindre?"
+
+#. Default: "Enable next previous navigation"
+#: ../behaviors/nextprevious.py:31
+msgid "label_nextprevious"
+msgstr "Habilita la navegació següent/anterior"
+
+#. Default: "No content types"
+#: ../browser/overview.pt:18
+msgid "label_no_content_types"
+msgstr "Cap tipus de contingut"
+
+#. Default: "Some content types:"
+#: ../browser/overview.pt:30
+msgid "label_some_content_types"
+msgstr "Només aquests tipus de contingut"
