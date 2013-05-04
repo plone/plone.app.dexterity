@@ -1,23 +1,12 @@
-#portal-footer,
-#portal-colophon,
-#portal-siteactions {
-    display: block;
-}
-
 #content {
     margin-bottom: 20px;
 }
-#rules-editor {
-    height: 850px;
-}
 #modelEditor {
-    height: 800px;
     right: 1px;
     left: 1px;
     z-index: 1;
     border: 1px solid #ccc;
 }
-
 .formControls {
     text-align: left;
     font-size: 175%;
