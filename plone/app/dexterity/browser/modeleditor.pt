@@ -68,9 +68,15 @@
         // start with an editor that fits the viewport with room
         // to show the save button.
         jQuery(function ($) {
-            var wheight = $(window).height();
-            $("#rules-editor").height(wheight);
-            $("#modelEditor").height(wheight-80);
+            function setEditorSize () {
+                var wheight = $(window).height();
+                $("#rules-editor").height(wheight);
+                $("#modelEditor").height(wheight-80);
+            }
+            $(window).resize(function() {
+                setEditorSize();
+            });
+            setEditorSize();
         });
     </script>
     <script src="++resource++plone.resourceeditor/ace/ace.js"
