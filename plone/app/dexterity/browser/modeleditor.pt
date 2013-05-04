@@ -3,58 +3,33 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     lang="en"
-    metal:use-macro="context/main_template/macros/master"
+    metal:use-macro="context/prefs_main_template/macros/master"
     i18n:domain="plone">
 
-<head tal:define="portal_url context/@@plone_portal_state/portal_url">
-<metal:block fill-slot="top_slot">
-
-<tal:defines define="dummy python:request.set('disable_border',1);
-                     disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                     disable_column_two python:request.set('disable_plone.rightcolumn',1);"/>
-
-</metal:block>
-
-<metal:block fill-slot="head_slot">
-
-<link href="++resource++modeleditor.css"
-    media="screen"
-    type="text/css"
-    rel="stylesheet"
-    tal:attributes="href string:${portal_url}/++resource++plone.app.dexterity.modeleditor.css"
-    />
-
-<script src="++resource++plone.resourceeditor/ace/ace.js"
-    type="text/javascript"
-    charset="utf-8"
-    tal:attributes="src string:${portal_url}/++resource++plone.resourceeditor/ace/ace.js"
-    ></script>
-<script src="++resource++plone.schemaeditor/modeleditor.js"
-    type="text/javascript"
-    charset="utf-8"
-    tal:attributes="src string:${portal_url}/++resource++plone.app.dexterity.modeleditor.js"
-    ></script>
-
-</metal:block>
-</head>
-
 <body>
-<div metal:fill-slot="content" class="documentEditable">
-
-    <div id="content">
-
+  <metal:main fill-slot="prefs_configlet_main">
+    <tal:main-macro metal:define-macro="main">
+        <tal:comment tal:condition="python:False">
+            prefs_main_template doesn't have the style_slot
+        </tal:comment>
+        <style type="text/css"
+            tal:content="string:@import url(${portal_url}/++resource++plone.app.dexterity.modeleditor.css);"
+            />
         <div id="page-intro">
 
             <h1 class="documentFirstHeading"
-                i18n:translate="heading_model_edit">Edit model for
+                i18n:translate="heading_model_edit">Edit field model for
                 <span i18n:name="name" tal:content="context/Title">name</span>
             </h1>
 
-            <p class="description">
-                This form allows you to directly edit the XML representation of the field
-                list. This makes it possible to add annotations for fieldsets, validation
-                and widgets. See the "Dexterity XML" section of the Dexterity Developer
-                Manual for details.
+            <p class="description" i18:translate="description_model_edit">
+                This form allows you to directly edit the XML representation
+                of the field list. This makes it possible to add annotations for fieldsets,
+                validation and widgets. See the <a
+                href="http://developer.plone.org/reference_manuals/ext
+                ernal/plone.app.dexterity/reference/dexterity-xml.html">Dexterity XML</a>
+                section of the <a href="http://developer.plone.org/reference_manuals/external/
+                plone.app.dexterity">Dexterity Developer Manual</a> for details.
             </p>
 
             <a href=""
@@ -67,7 +42,6 @@
         </div>
 
         <div id="rules-editor">
-
             <div class="portalMessage info">
               <span id="messagespan" style="display:none">
                 &nbsp;
@@ -87,8 +61,20 @@
             <div id="modelEditor" tal:content="view/modelSource" />
         </div>
 
-    </div>
-
-</div>
+    <tal:comment tal:condition="python:False">
+        prefs_main_template doesn't have the head_javascript_slot
+    </tal:comment>
+    <script src="++resource++plone.resourceeditor/ace/ace.js"
+        type="text/javascript"
+        charset="utf-8"
+        tal:attributes="src string:${portal_url}/++resource++plone.resourceeditor/ace/ace.js"
+        ></script>
+    <script src="++resource++plone.schemaeditor/modeleditor.js"
+        type="text/javascript"
+        charset="utf-8"
+        tal:attributes="src string:${portal_url}/++resource++plone.app.dexterity.modeleditor.js"
+        ></script>
+    </tal:main-macro>
+  </metal:main>
 </body>
 </html>

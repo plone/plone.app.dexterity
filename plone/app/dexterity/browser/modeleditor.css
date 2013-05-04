@@ -1,15 +1,17 @@
-#portal-top,
-#viewlet-above-content,
-#portal-breadcrumbs,
 #portal-footer,
 #portal-colophon,
 #portal-siteactions {
-    display: none;
+    display: block;
 }
 
+#content {
+    margin-bottom: 20px;
+}
+#rules-editor {
+    height: 850px;
+}
 #modelEditor {
-    height: 600px;
-    position: absolute;
+    height: 800px;
     right: 1px;
     left: 1px;
     z-index: 1;
