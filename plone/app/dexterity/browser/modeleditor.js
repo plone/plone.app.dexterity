@@ -60,7 +60,9 @@ jQuery(function ($) {
 
                 doc_changed = false;
                 // disable save button
-                $('#saveform :submit').attr('disabled', 'disabled');
+                $('#saveform :submit')
+                    .attr('disabled', 'disabled')
+                    .removeClass('submitting');
                 messagespan.html(rez.message);
                 messagespan.show().fadeOut(1000);
             } else {
