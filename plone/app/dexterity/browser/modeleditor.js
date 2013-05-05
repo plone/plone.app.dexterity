@@ -18,7 +18,7 @@ jQuery(function ($) {
     session.setUseSoftTabs(true);
     session.setUseWrapMode(true);
     editor.setHighlightActiveLine(false);
-    // Make save keystroke trigger save form submit
+    // Make save keystroke trigger save-form submit
     editor.commands.addCommand({
         name: "save",
         bindKey: {win: "Ctrl-S", mac: "Command-S"},
