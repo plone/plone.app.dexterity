@@ -5,6 +5,9 @@ from zope.component import queryMultiAdapter
 from Products.Five import BrowserView
 from AccessControl import Unauthorized
 
+import plone.supermodel
+from plone.supermodel.parser import SupermodelParseError
+
 from plone.schemaeditor import SchemaEditorMessageFactory as _
 
 
@@ -53,6 +56,17 @@ class AjaxSaveHandler(BrowserView):
                         'success': False,
                         'message': _(u"Error: all model elements must be 'schema'")
                     })
+
+            # can supermodel parse it?
+            # This is mainly good for catching bad dotted names.
+            try:
+                plone.supermodel.loadString(source, policy=u"dexterity")
+            except SupermodelParseError, e:
+                message = e.args[0].replace('\n  File "<unknown>"', '')
+                return json.dumps({
+                    'success': False,
+                    'message': u"SuperModelParseError: %s" % message
+                })
 
             # clean up formatting sins
             source = etree.tostring(
