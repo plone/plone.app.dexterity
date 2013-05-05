@@ -128,7 +128,10 @@ and saved.
 Editing the XML model directly
 ------------------------------
 
-Much of what the XML model editor does is happening in JavaScript, but we can still test the Zope side.
+Much of what the XML model editor does is happening in JavaScript, but we can
+still test the Zope side.
+
+Get some tools.
 
   >>> from cgi import escape
   >>> from urllib import quote_plus
