@@ -125,6 +125,8 @@ Or, a source binder::
     </field>
 
 
+With Python like::
+
     from zope.schema.interfaces import IContextSourceBinder
 
     class Binder(object):
@@ -134,6 +136,8 @@ Or, a source binder::
             return SimpleVocabulary.fromValues(['a', 'd', 'f'])
 
     dummy_binder = Binder()
+
+You may also use the ``vocabulary`` tag rather than ``source`` to refer to named vocabularies registered via the ZCA.
 
 
 Internationalization
