@@ -96,6 +96,46 @@ It's easy to add fieldsets by surrounding embedding fields tags in a ``fieldset`
         ...
       </schema>
 
+Vocabularies
+~~~~~~~~~~~~
+
+Vocabularies may be specified via dotted names using the ``source`` tag::
+
+    <field name="dummy" type="zope.schema.Choice">
+        <default>a</default>
+        <description>Test desc</description>
+        <missing_v    alue/>
+        <readonly>True</readonly>
+        <required>False</required>
+        <title>Test</title>
+        <source>plone.supermodel.tests.dummy_vocabulary_instance</source>
+    </field>
+
+Where the full Python dotted-name of a Zope vocabulary in a package::
+
+    from zope.schema.vocabulary import SimpleVocabulary
+
+    dummy_vocabulary_instance = SimpleVocabulary.fromItems([(1, 'a'), (2, 'c')])
+
+Or, a source binder::
+
+    <field name="dummy" type="zope.schema.Choice">
+        ...
+        <source>plone.supermodel.tests.dummy_binder</source>
+    </field>
+
+
+    from zope.schema.interfaces import IContextSourceBinder
+
+    class Binder(object):
+        implements(IContextSourceBinder)
+
+        def __call__(self, context):
+            return SimpleVocabulary.fromValues(['a', 'd', 'f'])
+
+    dummy_binder = Binder()
+
+
 Internationalization
 ~~~~~~~~~~~~~~~~~~~~
 
