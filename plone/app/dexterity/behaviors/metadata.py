@@ -94,7 +94,9 @@ class ICategorization(model.Schema):
             default=u'Tags are commonly used for ad-hoc organization of ' +
                     u'content.'
         ),
-        value_type=schema.TextLine(),
+        value_type=schema.Choice(
+            vocabulary='plone.app.vocabularies.Keywords'
+        ),
         required=False,
         missing_value=(),
     )
