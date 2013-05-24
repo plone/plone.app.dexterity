@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '2.0.8'
+version = '2.0.9.dev0'
 long_description = open("README.rst").read() + "\n" + \
     open("RELEASE_NOTES.txt").read() + "\n" + \
     open(os.path.join("docs", "HISTORY.txt")).read()
