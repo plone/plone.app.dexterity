@@ -118,8 +118,8 @@ to users of Dexterity:
 * `Schema-driven forms manual`_
 * `five.grok manual`_
 
-.. _`Schema-driven forms manual`: http://plone.org/products/dexterity/documentation/manual/schema-driven-forms
-.. _`five.grok manual`: http://plone.org/products/dexterity/documentation/manual/five.grok
+.. _`Schema-driven forms manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/schema-driven-forms
+.. _`five.grok manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/five-grok
 
 
 Mailing list
