@@ -148,11 +148,11 @@ Contributing
 ============
 
 Most Dexterity code is owned by the `Plone Foundation`_ and maintained in the
-`Plone svn repository`_. We're happy to share commit access so that you can
+`Plone github repository`_. We're happy to share commit access so that you can
 share code with us, but first you must sign the `Plone contributor agreement`_.
 
 .. _`Plone Foundation`: http://plone.org/foundation
-.. _`Plone svn repository`: http://svn.plone.org/plone
+.. _`Plone github repository`: http://github.com/plone
 .. _`Plone contributor agreement`: http://plone.org/foundation/contributors-agreement
 
 Dexterity wouldn't be possible without the hard work of a lot of people, including:
