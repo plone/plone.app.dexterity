@@ -133,9 +133,16 @@ and use of Dexterity.
 Issue tracker
 =============
 
-Please report issues in our `Github issue tracker`_.
+Please report issues via the `Plone issue tracker`_.
 
-.. _`Github issue tracker`: http://github.com/plone/plone.app.dexterity/issues
+.. _`Plone issue tracker`: https://dev.plone.org/
+
+Support
+=======
+
+Dexterity use questions may be answered via `Plone's support channels`_.
+
+.. _`Plone's support channels`: http://plone.org/support
 
 Contributing
 ============
