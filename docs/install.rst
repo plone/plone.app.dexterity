@@ -10,10 +10,35 @@ egg pulls in all the required dependencies and should get you up and
 running. This how-to explains what you need to do use Dexterity in a
 standard Plone buildout.
 
+Installing Dexterity on Plone 4.3
+---------------------------------
+
+Note: Plone 4.3 is the latest release of Plone. Dexterity is included
+with Plone 4.3, but must be activated via the "Add-ons" configlet in site setup.
+
+**If you wish to follow the examples in this manual, you must do one extra
+installation step:** activate the `grok` extra for Dexterity.
+To do so, add the following line to the `eggs` section of yor buildout::
+
+    eggs =
+        Plone
+        ...
+        plone.app.dexterity [grok]
+
+**Important: If you installed Dexterity on a Plone site that you
+upgraded to Plone 4.3, you must include the relations extra. Otherwise
+your site will have a broken intid utility.**
+
+    eggs =
+        Plone
+        ...
+        plone.app.dexterity [grok,relations]
+
+
 Installing Dexterity on Plone 4.2\
 ----------------------------------
 
-Plone 4.2 is the latest stable release of Plone. The Plone KGS (known
+Plone 4.2 is the previous stable release of Plone. The Plone KGS (known
 good set of package versions) includes version pins for the packages
 that make up Dexterity, so all you need to do is add plone.app.dexterity
 to the eggs in your buildout, and re-run the buildout::
@@ -25,7 +50,7 @@ to the eggs in your buildout, and re-run the buildout::
     extends =
         http://dist.plone.org/release/4.2.1/versions.cfg
     versions = versions
-    develop = 
+    develop =
 
     [instance]
     recipe = plone.recipe.zope2instance
@@ -33,7 +58,7 @@ to the eggs in your buildout, and re-run the buildout::
     http-address = 8080
     debug-mode = on
     verbose-security = on
-    eggs = 
+    eggs =
         Plone
         plone.app.dexterity
 
@@ -57,26 +82,6 @@ the buildout above should be enough for creating types through the web.
 If you are using a package that itself depends on plone.app.dexterity,
 then the second eggs line becomes superfluous as well, of course.
 
-Installing Dexterity on Plone 4.3
----------------------------------
-
-Note: Plone 4.3 will be the next release of Plone, but is currently
-still under development.
-
-Installing Dexterity on Plone 4.3 is similar to installing it on Plone
-4.2, but there is one thing to keep in mind: adding plone.app.dexterity
-to your eggs no longer enables the grok-style configuration or relation
-field features by default. If you use these features, you must
-explicitly request them by listing the appropriate *extras* when you
-include the egg::
-
-    eggs =
-        plone.app.dexterity [grok,relations]
-
-**Important: If you installed Dexterity on a Plone site that you
-upgraded to Plone 4.3, you must include the relations extra. Otherwise
-your site will have a broken intid utility.**
-
 Installing Dexterity on older versions of Plone
 -----------------------------------------------
 
@@ -92,7 +97,7 @@ this::
     extends =
         http://good-py.appspot.com/release/dexterity/1.2.1?plone=4.1.6
     versions = versions
-    develop = 
+    develop =
 
     [instance]
     recipe = plone.recipe.zope2instance
@@ -100,7 +105,7 @@ this::
     http-address = 8080
     debug-mode = on
     verbose-security = on
-    eggs = 
+    eggs =
         Plone
         plone.app.dexterity
 
