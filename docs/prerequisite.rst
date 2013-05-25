@@ -9,9 +9,17 @@ Buildout configuration
 **Setting up a development buildout**
 
 To use Dexterity, you simply need to depend on the `plone.app.dexterity`_
-package. You will also need to extend a Dexterity *known good set (KGS)* to make
+package.
+
+If you are working with Plone before 4.3, you will also need to extend a
+Dexterity *known good set (KGS)* to make
 sure that you get the right versions of the packages that make up Dexterity.
 The easiest way to achieve this is to use a buildout that pins certain versions.
+Dexterity pin sets are available at::
+
+    http://good-py.appspot.com/release/dexterity/1.2.1?plone=4.1.2
+
+Substitute your version of Plone.
 
 For a minimal buildout, see the `installation how-to
 <http://plone.org/products/dexterity/documentation/how-to/install>`_. In this
@@ -27,8 +35,6 @@ Plone versions as appropriate:
     extensions = mr.developer buildout.dumppickedversions
     unzip = true
     parts = instance omelette zopepy test roadrunner
-    extends =
-        http://good-py.appspot.com/release/dexterity/1.1?plone=4.1.2
     versions = versions
     develop =
     # If you're not using mr.developer to manage develop eggs, list eggs here. Globs OK.
@@ -79,14 +85,6 @@ that shortly. Let's first go through and explain the buildout, however.
   versions buildout has picked for our dependencies. If you are not familiar
   with `mr.developer`_, you should read its documentation, in particular the
   documentation about the ``./bin/develop`` command.
-* We extend the version configuration for release 1.1 of Dexterity, targeted at
-  Plone 4.1.2. You should adjust your Plone version accordingly. This allows
-  Dexterity to update certain packages in Plone. You should check `the Dexterity
-  project page <http://plone.org/products/dexterity>`_ to discover which is the latest version. The known good set URL
-  will give us the latest known good set of Dexterity packages, making it safe
-  to depend on *plone.app.dexterity* in our *example.conference* product. The
-  ``versions = versions`` line will make buildout use the known good set defined by
-  the extended URLs.
 * We tell `mr.developer`_ which section contain the sources to our packages with
   ``sources = sources`` (the ``[sources]`` section is at the end of the file). We also
   tell it to automatically check out and configure our *example.conference*
@@ -193,7 +191,7 @@ We can remove the paster plugin entry point and paster_plugins line. We will not
           install_requires=[
               'setuptools',
               'Plone',
-              'plone.app.dexterity',
+              'plone.app.dexterity [grok]',
               'collective.autopermission',
           ],
           entry_points="""
@@ -202,6 +200,8 @@ We can remove the paster plugin entry point and paster_plugins line. We will not
           """,
           )
 
+Note the specification of the `grok` extra for Dexterity. These examples will not
+work without the grok extras.
 
 Next, we edit ``configure.zcml`` and add the following:
 
