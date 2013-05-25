@@ -41,12 +41,12 @@ In *setup.py*, we will add the extras_require option, like so:
 containing a Plone site, intended for writing integration and functional
 tests.
 
-We need to create a custom fixture. 
+We need to create a custom fixture.
 The usual pattern is to create a new layer class that has ``PLONE_FIXTURE``
 as its default base, instantiating that as a separate "fixture" layer.
 This layer is not to be used in tests directly,
 since it won't have test/transaction lifecycle management, but represents a
-shared fixture, potentially for both functional and integration testing. 
+shared fixture, potentially for both functional and integration testing.
 It is also the point of extension for other layers that follow the same
 pattern.
 
@@ -93,7 +93,7 @@ See the *plone.app.testing* documentation for more details.
 To use the layer, we can create a new test case based on ``unittest.TestCase``
 that uses our layer. We’ll add one to ``test_program.py`` first.
 (In the code snippet below, the unit test we created previously has been
-removed to conserve space.)
+removed to conserve space.)::
 
     import unittest2 as unittest
 
@@ -175,14 +175,14 @@ removed to conserve space.)
 
 This illustrates a basic set of tests that make sense for most content
 types.
-There are many more things we could test 
+There are many more things we could test
 (for example, we could test the add permissions more thoroughly,
 and we ought to test the ``sessions()`` method on the view with some actual
 content!),
-but even this small set of integration tests tells us that 
+but even this small set of integration tests tells us that
 our product has installed,
 that the content type is addable,
-that it has the right factory, and 
+that it has the right factory, and
 that instances of the type provide the right schema interface.
 
 There are some important things to note about this test case:
@@ -200,7 +200,7 @@ There are some important things to note about this test case:
   their member folder, since that is the default security context for
   the test – use ``self.setRoles([‘Manager’])`` to get the ``Manager`` role
   and ``self.portal`` to access the portal root),
-  that the FTI is installed and can be located, and 
+  that the FTI is installed and can be located, and
   that both the FTI and instances of the type know about the correct type
   schema.
 - We also test that the view can be looked up and has the correct methods.
@@ -309,8 +309,8 @@ the ``Session`` type::
     def test_suite():
         return unittest.defaultTestLoader.loadTestsFromName(__name__)
 
-Notice here how we test 
-that the ``Session`` type cannot be added directly to a folder, and 
+Notice here how we test
+that the ``Session`` type cannot be added directly to a folder, and
 that it can be added inside a program.
 We also add a test for the ``possible_tracks()`` vocabulary method,
 as well as tests for the installation of the ``track`` index and metadata
@@ -393,7 +393,7 @@ This runs the tests once, and then drops to the Roadrunner prompt:
 
     rr>
 
-Simply hitting enter here, or typing a command like 
+Simply hitting enter here, or typing a command like
 ``test -s example.conference`` will re-run your tests,
 this time taking much less time.
 
