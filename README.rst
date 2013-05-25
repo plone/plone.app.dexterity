@@ -78,7 +78,7 @@ Getting started
 
 Please read the `installation guide`_ to get Dexterity up and running.
 
-.. _`installation guide`: http://plone.org/products/dexterity/documentation/how-to/install
+.. _`installation guide`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/install.html
 
 Then log in to Plone, go to Site Setup, and go to the ``Dexterity Types``
 control panel to get started creating content types through the web.
