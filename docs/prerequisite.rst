@@ -8,12 +8,12 @@ Preparing a development environment
 
 First, get a working Plone installation. If you don't already have one, the
 easiest way to do so is to use one of Plone's installers. Note that for
-development purposes, you may use a ``standalone`` (non-ZEO), non-root install.
+development purposes, you may use a `standalone` (non-ZEO), non-root install.
 
 Second, add our standard development tools. If you've used one of our
-installers, developer tool configurations are in a separate file, `develop.cfg`.
-Once your site is running, you may activate the development configuration by
-using the command::
+installers, developer tool configurations are in a separate file,
+``develop.cfg``. Once your site is running, you may activate the development
+configuration by using the command::
 
     bin/buildout -c develop.cfg
 
@@ -66,7 +66,7 @@ You may accept all the default suggestions. This will create a directory named
 ``example.conference`` inside ./src.
 
 Now, take a look at the setup.py file in your new package. Edit the `author,`
-`author_email` and `description` fields as you wish. Not a couple of parts of
+`author_email` and `description` fields as you wish. Note a couple of parts of
 the generated setup.py file::
 
           install_requires=[
