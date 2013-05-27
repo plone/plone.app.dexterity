@@ -9,6 +9,7 @@ Dexterity Developer Manual
    designing.rst
    prerequisite.rst
    schema-driven-types.rst
+   model-driven-types.rst
    custom-views.rst
    advanced/index.rst
    testing/index.rst

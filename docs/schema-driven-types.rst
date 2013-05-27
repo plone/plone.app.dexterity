@@ -44,16 +44,10 @@ The "-l" lists available content templates.
     have run buildout. This loads package dependencies that are required to run
     addcontent.
 
-Now, let's add three content types, for the conference presenters, sessions and programs:
+Now, let's add two of the three content types, for the conference sessions and programs.
+We'll do presenters in the next section as a model-driven type.
 
 .. code-block:: bash
-
-    $ ../../bin/paster addcontent dexterity_content
-    Enter contenttype_name (Content type name ) ['Example Type']: Presenter
-    Enter contenttype_description (Content type description ) ['Description of the Example Type']: A person presenting a conference session
-    Enter folderish (True/False: Content type should act as a container ) [False]: False
-    Enter global_allow (True/False: Globally addable ) [True]:
-    Enter allow_discussion (True/False: Allow discussion ) [False]:
 
     $ ../../bin/paster addcontent dexterity_content
     Enter contenttype_name (Content type name ) ['Example Type']: Session
@@ -83,7 +77,7 @@ type. We'll customize all of these.
 Setting the schema
 ~~~~~~~~~~~~~~~~~~
 
-Start with presenter.py. Notice the boilerplate:
+Start with program.py. Notice the boilerplate:
 
 .. code-block:: python
 
@@ -100,69 +94,6 @@ Since we're going to be defining our fields via Zope schema rather than an XML m
 Next, add schema declarations for our fields. The top part of the file should look like:
 
 .. code-block:: python
-
-    from five import grok
-    from plone.directives import dexterity, form
-
-    from zope import schema
-    from plone.namedfile.interfaces import IImageScaleTraversable
-    from plone.namedfile.field import NamedImage
-
-    from plone.app.textfield import RichText
-
-    from example.conference import MessageFactory as _
-
-
-    class IPresenter(form.Schema, IImageScaleTraversable):
-        """
-        Conference Presenter
-        """
-
-        title = schema.TextLine(
-                title=_(u"Name"),
-            )
-
-        description = schema.Text(
-                title=_(u"A short summary"),
-            )
-
-        bio = RichText(
-                title=_(u"Bio"),
-                required=False
-            )
-
-        picture = NamedImage(
-                title=_(u"Picture"),
-                description=_(u"Please upload an image"),
-                required=False,
-            )
-
-We've also removed unnecessary ``import`` declarations.
-
-If you haven't developed for Plone before, take special note of the ``from example.conference import MessageFactory as _`` code. This is to aid future
-internationalisation of the package. Every string that is presented to
-the user should be wrapped in ``_()`` as shown with the titles and
-descriptions below.
-
-The message factory lives in the package root ``__init__.py`` file:
-
-.. code-block:: python
-
-    from zope.i18nmessageid import MessageFactory
-
-    _ = MessageFactory("example.conference")
-
-Notice how we use the package name as the translation domain.
-
-Notice how we use the field names title and description for the name and
-summary. We do this to provide values for the default title and
-description metadata used in Plone’s folder listings and searches, which
-defaults to these fields. In general, every type should have a title
-field, although it could be provided by behaviors (more on those later).
-
-Save presenter.py and move on to program.py.
-
-For the *Program* type, the top of ``program.py`` should look like this:
 
 .. code-block:: python
 
@@ -206,7 +137,33 @@ For the *Program* type, the top of ``program.py`` should look like this:
                 required=False,
             )
 
-Finally, ``session.py`` for the Session type looks like this:
+
+We've also removed unnecessary ``import`` declarations.
+
+If you haven't developed for Plone before, take special note of the ``from example.conference import MessageFactory as _`` code. This is to aid future
+internationalisation of the package. Every string that is presented to
+the user should be wrapped in ``_()`` as shown with the titles and
+descriptions below.
+
+The message factory lives in the package root ``__init__.py`` file:
+
+.. code-block:: python
+
+    from zope.i18nmessageid import MessageFactory
+
+    _ = MessageFactory("example.conference")
+
+Notice how we use the package name as the translation domain.
+
+Notice how we use the field names title and description for the name and
+summary. We do this to provide values for the default title and
+description metadata used in Plone’s folder listings and searches, which
+defaults to these fields. In general, every type should have a title
+field, although it could be provided by behaviors (more on those later).
+
+Save program.py.
+
+``session.py`` for the Session type should look like this:
 
 .. code-block:: python
 
@@ -291,7 +248,6 @@ Look in the ``types.xml`` file in your packages ``example/conference/profiles/de
 .. code-block:: html
 
     <object name="portal_types">
-     <object name="example.conference.presenter" meta_type="Dexterity FTI" />
      <object name="example.conference.program" meta_type="Dexterity FTI" />
      <object name="example.conference.session" meta_type="Dexterity FTI" />
     </object>
@@ -303,96 +259,7 @@ create a unique name. It is important that the ``meta_type`` is
 We then need to add/edit an XML file for each of the types, where the file
 name matches the type name.
 
-For the *Presenter* type, we have ``example.conference.presenter.xml``:
-
-.. code-block:: html
-
-    <?xml version="1.0"?>
-    <object name="example.conference.presenter"
-       meta_type="Dexterity FTI"
-       i18n:domain="example.conference" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-
-      <!-- Basic metadata -->
-      <property name="title" i18n:translate="">Presenter</property>
-      <property name="description"
-        i18n:translate="">Conference Presenter</property>
-      <property name="icon_expr">string:${portal_url}/document_icon.png</property>
-      <property name="factory">example.conference.presenter</property>
-      <property name="global_allow">True</property>
-      <property name="filter_content_types">True</property>
-      <property name="allowed_content_types" />
-      <property name="allow_discussion">False</property>
-
-      <!-- schema and class used for content items -->
-      <property name="schema">example.conference.presenter.IPresenter</property>
-      <property name="klass">example.conference.presenter.Presenter</property>
-
-      <property name="behaviors">
-         <element value="plone.app.content.interfaces.INameFromTitle" />
-       </property>
-
-      <!-- View information -->
-      <property name="link_target"></property>
-      <property name="immediate_view">view</property>
-      <property name="default_view">view</property>
-      <property name="view_methods">
-       <element value="view"/>
-      </property>
-      <property name="default_view_fallback">False</property>
-      <property name="add_permission">cmf.AddPortalContent</property>
-
-
-      <!-- Method aliases -->
-      <alias from="(Default)" to="(dynamic view)" />
-      <alias from="view" to="(selected layout)" />
-      <alias from="edit" to="@@edit" />
-      <alias from="sharing" to="@@sharing" />
-
-      <!-- Actions -->
-      <action title="View" action_id="view" category="object" condition_expr=""
-        url_expr="string:${object_url}/" visible="True">
-        <permission value="View" />
-      </action>
-      <action title="Edit" action_id="edit" category="object" condition_expr=""
-        url_expr="string:${object_url}/edit" visible="True">
-        <permission value="Modify portal content" />
-      </action>
-    </object>
-
-There is a fair amount of boilerplate here which could actually be
-omitted, because the Dexterity FTI defaults will take care of most of
-this. However, it is useful to see the options available so that you
-know what you can change.
-
-The important lines here are:
-
--  The ``name`` attribute on the root element must match the name in
-   ``types.xml`` and the filename.
--  We use the package name as the translation domain again, via
-   ``i18n:domain``.
--  We set a title and description for the type
--  We also specify an icon. Here, we use a standard icon from Plone’s
-   ``plone_images`` skin layer. You’ll learn more about static resources
-   later.
--  We set ``global_allow`` to ``True``. This means that the type will be
-   addable in standard folders.
--  The schema interface is referenced by the ``schema`` property.
--  We set the ``klass`` property to the class defined in the boilerplate file.
-   If you were creating this yourself, you could have instead just used
-   ``plone.dexterity.content.Item`` or
-   ``plone.dexterity.content.Container``.
--  We specify the name of an add permission. The default
-   ``cmf.AddPortalContent`` should be used unless you configure a custom
-   permission. Custom permissions are convered later in this manual.
--  We add a *behavior*. Behaviors are re-usable aspects providing
-   semantics and/or schema fields. Here, we add the ``INameFromTitle``
-   behavior, which will give our content object a readable id based on
-   the ``title`` property. We’ll cover other behaviors later.
-   We removed the IBasic behavior (which would supply title and description fields)
-   as we have alternative fields.
-
-The ``Session`` type, in ``example.conference.session.xml``, is very
-similar:
+The ``Session`` type, in ``example.conference.session.xml``, should look like this:
 
 .. code-block:: html
 
@@ -448,8 +315,38 @@ similar:
       </action>
     </object>
 
-Again, this is an Item. Here, we have set ``global_allow`` to ``False``,
-since these objects should only be addable inside a *Program*.
+There is a fair amount of boilerplate here which could actually be
+omitted, because the Dexterity FTI defaults will take care of most of
+this. However, it is useful to see the options available so that you
+know what you can change.
+
+The important lines here are:
+
+-  The ``name`` attribute on the root element must match the name in
+   ``types.xml`` and the filename.
+-  We use the package name as the translation domain again, via
+   ``i18n:domain``.
+-  We set a title and description for the type
+-  We also specify an icon. Here, we use a standard icon from Plone’s
+   ``plone_images`` skin layer. You’ll learn more about static resources
+   later.
+-  We have set ``global_allow`` to ``False``,
+   since these objects should only be addable inside a *Program*..
+-  The schema interface is referenced by the ``schema`` property.
+-  We set the ``klass`` property to the class defined in the boilerplate file.
+   If you were creating this yourself, you could have instead just used
+   ``plone.dexterity.content.Item`` or
+   ``plone.dexterity.content.Container``.
+-  We specify the name of an add permission. The default
+   ``cmf.AddPortalContent`` should be used unless you configure a custom
+   permission. Custom permissions are convered later in this manual.
+-  We add a *behavior*. Behaviors are re-usable aspects providing
+   semantics and/or schema fields. Here, we add the ``INameFromTitle``
+   behavior, which will give our content object a readable id based on
+   the ``title`` property. We’ll cover other behaviors later.
+   We removed the IBasic behavior (which would supply title and description fields)
+   as we have alternative fields.
+
 
 The ``Program``, in ``example.conference.program.xml``, looks like this:
 
