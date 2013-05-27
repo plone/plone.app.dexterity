@@ -32,12 +32,16 @@ directory. These directories should be created next to the module files,
 so we will have ``program_templates``, ``presenter_templates`` and
 ``session_templates``.
 
-(Note for newbies: 
+(Note for newbies:
 A view will have update() and render() methods.  We will inherit these,
 with the result that our view will render a similarly-named page template.
 If you wanted, you could provide your own update and/or render methods.
-The sessions() method you will see defined below exists to provide 
+The sessions() method you will see defined below exists to provide
 information that will be referenced by the page template.)
+
+.. note::
+
+    ``addcontent`` will have created a "SampleView" class in each content type's .py file. Just rename it to "View" to follow the example.
 
 In ``program.py``, the view is registered as follows:
 
@@ -46,14 +50,14 @@ In ``program.py``, the view is registered as follows:
     class View(grok.View):
         grok.context(IProgram)
         grok.require('zope2.View')
-        
+
         def sessions(self):
             """Return a catalog search result of sessions to show
             """
-            
+
             context = aq_inner(self.context)
             catalog = getToolByName(context, 'portal_catalog')
-            
+
             return catalog(object_provides=ISession.__identifier__,
                            path='/'.join(context.getPhysicalPath()),
                            sort_on='sortable_title')
@@ -93,9 +97,10 @@ The view registration works as follows:
   the ``view`` variable. The content object is available via ``context``,
   as usual.
 
-This is associated with a file in ``program_templates/view.pt``. The file
-name matches the class name (even if a different view name was
-specified). This contains:
+This is associated with a file in ``program_templates/view.pt``. The file name
+matches the class name (even if a different view name was specified).
+``addcontent`` will have created a sampleview.pt file. Just rename it to
+continue with the example. This contains:
 
 .. code-block:: html
 
@@ -115,7 +120,7 @@ specified). This contains:
             <div tal:replace="structure provider:plone.abovecontenttitle" />
 
             <h1 class="documentFirstHeading" tal:content="context/title" />
-            
+
             <div class="discreet">
                 <tal:block condition="context/start">
                     <span i18n:translate="label_from">From:</span>
@@ -134,7 +139,7 @@ specified). This contains:
             <div tal:replace="structure provider:plone.abovecontentbody" />
 
             <div tal:content="structure context/details/output" />
-            
+
             <h2 i18n:translate="heading_sessions">Sessions</h2>
             <dl>
                 <tal:block repeat="session view/sessions">
@@ -196,7 +201,7 @@ previous template:
             <div tal:replace="structure provider:plone.abovecontenttitle" />
 
             <h1 class="documentFirstHeading" tal:content="context/title" />
-            
+
             <div tal:replace="structure provider:plone.belowcontenttitle" />
 
             <p class="documentDescription" tal:content="context/description" />
@@ -221,7 +226,7 @@ technique. Your view does not have to be related to a particular content
 type, even. You could set the context to ``Interface``, for example, to
 make a view that’s available on all types.
 
-Display forms 
+Display forms
 --------------
 
 **Using display widgets in your views**
@@ -253,7 +258,7 @@ derive from ``dexterity.DisplayForm``
 This gives our view a few extra properties that we can use in the
 template:
 
-``view.w`` 
+``view.w``
     a dictionary of all the display widgets, keyed by field names.
     For fields provided by behaviors, that is usually prefixed with the
     behavior interface name (``IBehaviorInterface.field_name``).
@@ -288,14 +293,14 @@ The ``session_templates/view.pt`` template contains the following:
     <body>
 
     <metal:main fill-slot="main">
-        <tal:main-macro metal:define-macro="main"> 
-            <div tal:replace="structure provider:plone.abovecontenttitle" /> 
-            <h1 class="documentFirstHeading" tal:content="context/title" /> 
-            <div tal:replace="structure provider:plone.belowcontenttitle" /> 
-            <p class="documentDescription" tal:content="context/description" /> 
-            <div tal:replace="structure provider:plone.abovecontentbody" /> 
-            <div tal:content="structure view/w/details/render" /> 
-            <div tal:replace="structure provider:plone.belowcontentbody" /> 
+        <tal:main-macro metal:define-macro="main">
+            <div tal:replace="structure provider:plone.abovecontenttitle" />
+            <h1 class="documentFirstHeading" tal:content="context/title" />
+            <div tal:replace="structure provider:plone.belowcontenttitle" />
+            <p class="documentDescription" tal:content="context/description" />
+            <div tal:replace="structure provider:plone.abovecontentbody" />
+            <div tal:content="structure view/w/details/render" />
+            <div tal:replace="structure provider:plone.belowcontentbody" />
         </tal:main-macro>
     </metal:main>
 
