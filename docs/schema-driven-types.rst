@@ -23,7 +23,9 @@ Since we created our example.conference command via ZopeSkel, we'll be able to u
 
     If you didn't use ZopeSkel, you'll need to add the files yourself. We'll supply the full source here, and you may refer to the example repository.
 
-Typical `addcontent` use starting out at the buildout directory is::
+Typical `addcontent` use starting out at the buildout directory is:
+
+.. code-block:: bash
 
     $ cd src/example.conference/
     $ ../../bin/paster addcontent -l
@@ -42,7 +44,9 @@ The "-l" lists available content templates.
     have run buildout. This loads package dependencies that are required to run
     addcontent.
 
-Now, let's add three content types, for the conference presenters, sessions and programs::
+Now, let's add three content types, for the conference presenters, sessions and programs:
+
+.. code-block:: bash
 
     $ ../../bin/paster addcontent dexterity_content
     Enter contenttype_name (Content type name ) ['Example Type']: Presenter
@@ -79,7 +83,9 @@ type. We'll customize all of these.
 Setting the schema
 ~~~~~~~~~~~~~~~~~~
 
-Start with presenter.py. Notice the boilerplate::
+Start with presenter.py. Notice the boilerplate:
+
+.. code-block:: python
 
     # If you want a schema-defined interface, delete the form.model
     # line below and delete the matching file in the models sub-directory.
@@ -91,7 +97,9 @@ Start with presenter.py. Notice the boilerplate::
 
 Since we're going to be defining our fields via Zope schema rather than an XML model, delete all of that.
 
-Next, add schema declarations for our fields. The top part of the file should look like::
+Next, add schema declarations for our fields. The top part of the file should look like:
+
+.. code-block:: python
 
     from five import grok
     from plone.directives import dexterity, form
@@ -136,7 +144,9 @@ internationalisation of the package. Every string that is presented to
 the user should be wrapped in ``_()`` as shown with the titles and
 descriptions below.
 
-The message factory lives in the package root ``__init__.py`` file::
+The message factory lives in the package root ``__init__.py`` file:
+
+.. code-block:: python
 
     from zope.i18nmessageid import MessageFactory
 
@@ -152,7 +162,9 @@ field, although it could be provided by behaviors (more on those later).
 
 Save presenter.py and move on to program.py.
 
-For the *Program* type, the top of ``program.py`` should look like this::
+For the *Program* type, the top of ``program.py`` should look like this:
+
+.. code-block:: python
 
     from five import grok
     from plone.directives import dexterity, form
@@ -194,7 +206,9 @@ For the *Program* type, the top of ``program.py`` should look like this::
                 required=False,
             )
 
-Finally, ``session.py`` for the Session type looks like this::
+Finally, ``session.py`` for the Session type looks like this:
+
+.. code-block:: python
 
     from five import grok
     from plone.directives import dexterity, form
@@ -272,7 +286,9 @@ The FTI
 With the schema in place, we just need to make our types installable. We
 do this with GenericSetup. Most of this was set up when we used ``addcontent`` to add the content type boilerplate.
 
-Look in the ``types.xml`` file in your packages ``example/conference/profiles/default`` directory::
+Look in the ``types.xml`` file in your packages ``example/conference/profiles/default`` directory:
+
+.. code-block:: html
 
     <object name="portal_types">
      <object name="example.conference.presenter" meta_type="Dexterity FTI" />
@@ -287,7 +303,9 @@ create a unique name. It is important that the ``meta_type`` is
 We then need to add/edit an XML file for each of the types, where the file
 name matches the type name.
 
-For the *Presenter* type, we have ``example.conference.presenter.xml``::
+For the *Presenter* type, we have ``example.conference.presenter.xml``:
+
+.. code-block:: html
 
     <?xml version="1.0"?>
     <object name="example.conference.presenter"
@@ -311,7 +329,6 @@ For the *Presenter* type, we have ``example.conference.presenter.xml``::
 
       <property name="behaviors">
          <element value="plone.app.content.interfaces.INameFromTitle" />
-         <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
        </property>
 
       <!-- View information -->
@@ -371,9 +388,13 @@ The important lines here are:
    semantics and/or schema fields. Here, we add the ``INameFromTitle``
    behavior, which will give our content object a readable id based on
    the ``title`` property. We’ll cover other behaviors later.
+   We removed the IBasic behavior (which would supply title and description fields)
+   as we have alternative fields.
 
 The ``Session`` type, in ``example.conference.session.xml``, is very
-similar::
+similar:
+
+.. code-block:: html
 
     <?xml version="1.0"?>
     <object name="example.conference.session"
@@ -397,7 +418,6 @@ similar::
 
       <property name="behaviors">
          <element value="plone.app.content.interfaces.INameFromTitle" />
-         <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
        </property>
 
       <!-- View information -->
@@ -431,7 +451,9 @@ similar::
 Again, this is an Item. Here, we have set ``global_allow`` to ``False``,
 since these objects should only be addable inside a *Program*.
 
-The ``Program``, in ``example.conference.program.xml``, looks like this::
+The ``Program``, in ``example.conference.program.xml``, looks like this:
+
+.. code-block:: html
 
     <?xml version="1.0"?>
     <object name="example.conference.program"
@@ -457,7 +479,6 @@ The ``Program``, in ``example.conference.program.xml``, looks like this::
 
       <property name="behaviors">
          <element value="plone.app.content.interfaces.INameFromTitle" />
-         <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
        </property>
 
       <!-- View information -->
