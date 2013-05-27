@@ -1,5 +1,5 @@
-Pre-requisites
-===============
+Prerequisites
+==============
 
 **Setting up a Dexterity project**
 
