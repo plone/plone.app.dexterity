@@ -17,7 +17,7 @@ Each will start off with a schema interface.
 Creating base files
 ~~~~~~~~~~~~~~~~~~~
 
-Since we created our example.conference command via ZopeSkel, we'll be able to use its ``adcontent`` command to add base files for our content types. ``addcontent`` must be used from inside your new package.
+Since we created our example.conference command via ZopeSkel, we'll be able to use its ``addcontent`` command to add base files for our content types. ``addcontent`` must be used from inside your new package.
 
 .. note::
 
@@ -81,13 +81,13 @@ Start with program.py. Notice the boilerplate:
 
 .. code-block:: python
 
-    # If you want a schema-defined interface, delete the form.model
+    # If you want a schema-defined interface, delete the model.load
     # line below and delete the matching file in the models sub-directory.
     # If you want a model-based interface, edit
     # models/program.xml to define the content type
     # and add directives here as necessary.
 
-    form.model("models/program.xml")
+    model.load("models/program.xml")
 
 Since we're going to be defining our fields via Zope schema rather than an XML model, delete all of that.
 
@@ -95,21 +95,14 @@ Next, add schema declarations for our fields. The top part of the file should lo
 
 .. code-block:: python
 
-.. code-block:: python
-
+    from example.conference import MessageFactory as _
     from five import grok
-    from plone.directives import dexterity, form
-
+    from plone.app.textfield import RichText
+    from plone.supermodel import model
     from zope import schema
 
-    from plone.namedfile.interfaces import IImageScaleTraversable
 
-    from plone.app.textfield import RichText
-
-    from example.conference import MessageFactory as _
-
-
-    class IProgram(form.Schema, IImageScaleTraversable):
+    class IProgram(model.Schema):
         """A conference program. Programs can contain Sessions.
         """
 
@@ -167,19 +160,14 @@ Save program.py.
 
 .. code-block:: python
 
+    from example.conference import MessageFactory as _
     from five import grok
-    from plone.directives import dexterity, form
-
+    from plone.app.textfield import RichText
+    from plone.supermodel import model
     from zope import schema
 
-    from plone.namedfile.interfaces import IImageScaleTraversable
 
-    from plone.app.textfield import RichText
-
-    from example.conference import MessageFactory as _
-
-
-    class ISession(form.Schema, IImageScaleTraversable):
+    class ISession(model.Schema):
             """A conference session. Sessions are managed inside Programs.
             """
 
@@ -211,16 +199,16 @@ You should look at its interfaces
 (``parts/omelette/zope/schema/interfaces.py``) to learn about the various
 schema fields available, and review the `online documentation`_ for the
 package. You may also want to look up `plone.namedfile`_, which you can
-use if you require a file field, `z3c.relationfield`_, which can be used
+use if you require a file field, `plone.app.relationfield`_, which can be used
 for references, and `plone.app.textfield`_, which supports rich text
 with a WYSIWYG editor. We will cover these field types later in this
 manual. They can also be found in the reference at the end.
 
-Unlike a standard interface, however, we are deriving from ``form.Schema``
-(actually, ``plone.directives.form.Schema``). This is just a marker
+Unlike a standard interface, however, we are deriving from ``model.Schema``
+(actually, ``plone.supermodel.model.Schema``). This is just a marker
 interface that allows us to add some form hints to the interface, which
 are then used by Dexterity (actually, the `plone.autoform`_ package) to
-construct forms. Take a look at the `plone.directives.form`_
+construct forms. Take a look at the `plone.autoform`_
 documentation to learn more about the various hints that are possible.
 The most common ones are ``form.fieldset()``, to define groups of fields,
 ``form.widget()``, to set a widget for a particular field, and
@@ -229,11 +217,10 @@ We will see examples of these later in the manual.
 
 .. _zope.schema:
 .. _online documentation: http://pypi.python.org/pypi/zope.schema
+.. _plone.app.relationfield: http://pypi.python.org/pypi/plone.app.relationfield
 .. _plone.app.textfield: http://pypi.python.org/pypi/plone.app.textfield
 .. _plone.autoform: http://pypi.python.org/pypi/plone.autoform
-.. _plone.directives.form: http://pypi.python.org/pypi/plone.directives.form
 .. _plone.namedfile: http://pypi.python.org/pypi/plone.namedfile
-.. _z3c.relationfield: http://pypi.python.org/pypi/z3c.relationfield
 
 The FTI
 --------
@@ -467,7 +454,7 @@ If the package fails to install in ``portal_quickinstaller``:
 
 If your forms do not look right (e.g. you are missing custom widgets):
 
-- Make sure your schema derives from ``form.Schema``.
+- Make sure your schema derives from ``model.Schema``.
 - Remember that the directives require you to specify the correct field
   name, even if they are placed before or after the relevant field.
 - Check that you have a ``<grok:grok package="." />`` line in

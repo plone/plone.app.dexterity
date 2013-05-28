@@ -4,8 +4,8 @@ Installing Dexterity
 *How to install Dexterity and use it in your project*
 
 Dexterity is distributed as a number of eggs, published on
-[PyPI](http://pypi.python.org). The
-[plone.app.dexterity](http://pypi.python.org/pypi/plone.app.dexterity)
+`PyPI <http://pypi.python.org>`_. The
+`plone.app.dexterity <http://pypi.python.org/pypi/plone.app.dexterity>`_
 egg pulls in all the required dependencies and should get you up and
 running. This how-to explains what you need to do use Dexterity in a
 standard Plone buildout.
@@ -35,8 +35,8 @@ your site will have a broken intid utility.**
         plone.app.dexterity [grok,relations]
 
 
-Installing Dexterity on Plone 4.2\
-----------------------------------
+Installing Dexterity on Plone 4.2
+---------------------------------
 
 Plone 4.2 is the previous stable release of Plone. The Plone KGS (known
 good set of package versions) includes version pins for the packages
@@ -65,7 +65,7 @@ to the eggs in your buildout, and re-run the buildout::
 Note that:
 
 -   We use the
-    [buildout.dumppickedversions](http://pypi.python.org/pypi/buildout.dumppickedversions)
+    `buildout.dumppickedversions <http://pypi.python.org/pypi/buildout.dumppickedversions>`_
     extension to help show what versions buildout picked for any
     dependencies not pinned in the buildout. This helps trace any
     dependency issues.
@@ -87,7 +87,7 @@ Installing Dexterity on older versions of Plone
 
 Prior to Plone 4.2, the official Plone KGS did not include version pins
 for the packages that make up Dexterity. Instead, you can extend a KGS
-from the [good-py service](http://good-py.appspot.com). That looks like
+from the `good-py service <http://good-py.appspot.com>`_. That looks like
 this::
 
     [buildout]

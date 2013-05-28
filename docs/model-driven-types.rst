@@ -67,28 +67,21 @@ That's all we need! To see why, look in the generated file ``presenter.py``:
 
 .. code-block:: python
 
-    from five import grok
-    from plone.directives import dexterity, form
-
-    from zope import schema
-    from plone.namedfile.interfaces import IImageScaleTraversable
-    from plone.namedfile.field import NamedImage
-
-    from plone.app.textfield import RichText
-
     from example.conference import MessageFactory as _
+    from five import grok
+    from plone.supermodel import model
+    from zope import schema
 
 
-    # Interface class; used to define content-type schema.
-
-    class IPresenter(form.Schema, IImageScaleTraversable):
+    class IPresenter(model.Schema):
         """
-        Conference Presenter
+        Schema for Conference Presenter content type
         """
 
-        form.model("models/presenter.xml")
+        model.load("models/presenter.xml")
 
-Note the form.model directive. We'd deleted that when we created schema-driven field sets. Now, we leave it in to automatically load our model file.
+
+Note the model.load directive. We'd deleted that when we created schema-driven field sets. Now, we leave it in to automatically load our model file.
 
 Setting Factory Type Information
 --------------------------------
