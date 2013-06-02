@@ -1,4 +1,4 @@
-Base forms and schema forms 
+Base forms and schema forms
 ===========================
 
 **Understanding the two types of forms work with in this manual**
@@ -60,7 +60,7 @@ classes. A brief overview follows.
     documentation for details.
 **plone.directives.form.SchemaEditForm**
     The schema form equivalent of *EditForm*.
-**plone.directives.form.DisplayForm**
+**plone.directives.dexterity.DisplayForm**
     This is a display form view based on the *WidgetsView* base class
     from *plone.autoform*. You can use this much like *grok.View*,
     except that it must be initialised with a *schema*, and optionally a

@@ -1,4 +1,4 @@
-Display forms 
+Display forms
 ==============
 
 **Using widgets in display mode**
@@ -11,7 +11,7 @@ acts as a default for its widgets. The most commonly used mode is
 form mode for *display forms*.
 
 Display forms derive from *z3c.form.display.DisplayForm*, which is
-extended by *plone.directives.form.DisplayForm*. This also mixes in
+extended by *plone.directives.dexterity.DisplayForm*. This also mixes in
 *plone.autoform.view.WidgetsView*, which provides various conveniences
 for dealing with display mode widgets and fieldsets (groups). Note that
 this is a “schema form”, i.e. we must set the *schema* property (and
@@ -39,15 +39,15 @@ Display forms are used much like standard views. For example:
 ::
 
     from give import grok
-    from plone.directives import form
+    from plone.directives import dexterity, form
 
     ...
 
     class IMyContent(form.Schema):
-        
+
         ...
 
-    class MyDisplayForm(form.DisplayForm):
+    class MyDisplayForm(dexterity.DisplayForm):
         grok.name('view')
         grok.require('zope2.View')
         grok.context(IMyContent)
