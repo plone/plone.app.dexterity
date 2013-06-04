@@ -22,7 +22,4 @@ Appendixes
    :maxdepth: 1
 
    install.rst
-   how-is-dexterity-related-to-archetypes.rst
    behaviors/index.rst
-   five-grok/index.rst
-   schema-driven-forms/index.rst

@@ -21,7 +21,7 @@ History
 --------
 
 Why was Dexterity created?
-++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++
 
 Dexterity was created to serve two audiences: Administrators/integrators, and developers.
 
@@ -37,12 +37,12 @@ For developers, Dexterity promises:
 * content objects with a smaller runtime footprint, to improve performance
 * types that use the now-standard zope.interface/zope.schema style of schema, and more broadly support modern idioms that sit a little awkardly with Archetypes and its ilk
 
-How id Dexterity different from Archetypes
-+++++++++++++++++++++++++++++++++++++++++++++
+How is Dexterity different from Archetypes
+++++++++++++++++++++++++++++++++++++++++++
 
 Dexterity is an alternative to Archetypes, Plone's venerable content type framework. Being more recent, Dexterity has been able to learn from some of the mistakes that were made Archetypes, and - more importantly - leverage some of the technologies that did not exist when Archetypes was first conceived.
 
-An exhaustive comparison is beyond the scope of this FAQ, but some of the main differences include:
+Some of the main differences include:
 
 * Dexterity is able to leverage many technologies that come with newer versions of CMF and Zope 3. This means that the Dexterity framework contains significantly less code than Archetypes. Dexterity also has better automated test coverage.
 * Dexterity is more modular where Archetypes is more monolithic. This promises to make it easier to support things like SQL database-backed types, alternative workflow systems, instance-specific sub-types and so on. It also means that many of the components developed for Dexterity, such as the through-the-web schema editor, the "behaviors" system, or the forms construction API (plone.autoform) are re-usable in other contexts, e.g. to build standalone forms or even to augment existing Archetypes-based types.
@@ -54,6 +54,6 @@ An exhaustive comparison is beyond the scope of this FAQ, but some of the main d
 * It is possible to extend the schemata of existing Archetypes types with the archetypes.schemaextender product, although this adds some performance overhead and relies on a somewhat awkward programming technique. Dexterity types were built to be extensible from the beginning, and it is possible to declaratively turn on or off aspects of a type (such as Dublin Core metadata, locking support, ratings, tagging, etc) with re-usable "behaviors".
 * Dexterity is built from the ground up to support through-the-web type creation. There are products that achieve the same thing with Archetypes types, but they have to work around a number of limitations in the design of Archetypes that make them somewhat brittle or slow. Dexterity also allows types to be developed jointly through-the-web and on the filesystem. For example, a schema can be written in Python and then extended through the web.
 
-All that said, Archetypes is still a significantly more mature framework, used in thousands of real-world deployments. Dexterity is still new. As it moves towards version 1.0 and beyond, we hope that it will be a viable alternative to Archetypes in many projects, but if you are happy with Archetypes, you should not immediately rush to rewrite your types to use Dexterity.
+All that said, Archetypes is still an older and more mature framework. Dexterity is a viable alternative to Archetypes in many projects, but if you are happy with Archetypes, you should not immediately rush to rewrite your types to use Dexterity.
 
 There are also some things that Dexterity does not yet support, or, more commonly, services that Plone ships with that currently assume all content objects are built using Archetypes. The current list of "gaps" can be found in the Dexterity issue tracker. You should take a look at this before deciding whether Dexterity will work for you. If in doubt, don't hesitate to write to the Dexterity mailing list and ask for advice.
