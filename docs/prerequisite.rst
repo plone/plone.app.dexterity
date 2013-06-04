@@ -142,11 +142,3 @@ The buildout should now configure Plone, Dexterity and the
 *example.conference* package.
 
 We are now ready to start adding types.
-
-.. _buildout.dumppickedversions: http://pypi.python.org/pypi/buildout.dumppickedversions
-.. _collective.autopermission: http://pypi.python.org/pypi/collective.autopermission
-.. _collective.recipe.omelette: http://pypi.python.org/pypi/collective.recipe.omelette
-.. _mr.developer: http://pypi.python.org/pypi/mr.developer
-.. _plone.app.dexterity: http://pypi.python.org/pypi/plone.app.dexterity
-.. _plone.reload: http://pypi.python.org/pypi/plone.reload
-.. _z3c.autoinclude: http://pypi.python.org/pypi/z3c.autoinclude
