@@ -1,8 +1,8 @@
 Release Notes
 =============
 
-Dexterity 2.0 is a major release of Dexterity. Its focus is on preparing
-Dexterity for inclusion in Plone core, by cleaning things up and making
+Dexterity 2.0 is a major release of Dexterity. It has focused on getting
+Dexterity included in Plone core, by cleaning things up and making
 dependencies that are not ready for primetime optional.
 
 Grok-style configuration no longer included by default

@@ -83,10 +83,11 @@ Please read the `installation guide`_ to get Dexterity up and running.
 Then log in to Plone, go to Site Setup, and go to the ``Dexterity Types``
 control panel to get started creating content types through the web.
 
-Or read the `Dexterity developer manual`_ to get started developing
+Or read the `Dexterity Developer Manual`_ to get started developing
 Dexterity content types on the filesystem.
 
-This release of Dexterity is compatible with Plone 3, 4, and 4.1.
+The 2.0.x release series of Dexterity is compatible with
+and included with Plone 4.3.
 
 Upgrading
 =========
@@ -107,7 +108,7 @@ Various documentation is available:
 * `Dexterity Developer Manual`_
 * `How to create reusable behaviors for Dexterity types`_
 
-.. _`Dexterity developer manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity
+.. _`Dexterity Developer Manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity
 .. _`How to create reusable behaviors for Dexterity types`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/behaviors
 
 The following documents are not Dexterity-specific, but will likely be useful
