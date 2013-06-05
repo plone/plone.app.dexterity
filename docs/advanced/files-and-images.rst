@@ -20,21 +20,9 @@ the ``plone.namedfile.field`` module:
 - ``NamedBlobImage`` stores BLOB images (see note below). It is otherwise
   identical to ``NamedImage``.
 
-Note that ``NamedBlobFile`` and ``NamedBlobImage`` depends on
-`z3c.blobfile`_. This dependency is specified via the ``[blobs]`` `extra`_
-feature.
-
-.. note::
-
-    If you do not have ``z3c.blobfile`` in your buildout (most likely because
-    you did not depend on the ``[blobs]`` extra for ``plone.namedfile``), the
-    ``NamedBlobFile`` and ``NamedBlobImage`` field and value types will not
-    be importable. They are only defined if BLOB support is detected.
-
 In use, the four field types are all pretty similar. They actually store
 persistent objects of type ``plone.namedfile.NamedFile``,
-``plone.namedfile.NamedImage``, ``plone.namedfile.NamedBlobFile`` (if
-available) and ``plone.namedfile.NamedBlobImage`` (if available),
+``plone.namedfile.NamedImage``, ``plone.namedfile.NamedBlobFile`` and ``plone.namedfile.NamedBlobImage``,
 respectively. Note the different module! These objects have attributes
 like ``data``, to access the raw binary data, ``contentType``, to get a MIME
 type, and ``filename``, to get the original filename. The image values
@@ -53,29 +41,24 @@ will actually import directly from ``plone.namedfile``:
       'plone.formwidget.namedfile',
     ],
 
-To use the ``[blobs]`` extra, we would need the following line instead of
-the ``plone.namedfile`` line instead::
-
-    'plone.namedfile[blobs]',
-
 .. note::
 
     Again, we do not need separate ``<include />`` lines in
     ``configure.zcml`` for these new dependencies, because we use
     ``<includeDependencies />``.
 
-For the sake of illustration, we will add a (non-BLOB) image of the
+For the sake of illustration, we will add an image of the
 speaker to the ``Presenter`` type. In ``presenter.py``, we add::
 
     from plone.namedfile.field import NamedImage
 
-    class IPresenter(form.Schema):
+    class IPresenter(model.Schema):
         ...
         
-        picture = NamedImage(
-                title=_(u"Please upload an image"),
-                required=False,
-            )
+        picture = NamedBlobImage(
+            title=_(u"Please upload an image"),
+            required=False,
+        )
 
 To use this in a view, we can either use a display widget via a
 ``DisplayForm``, or construct a download URL manually. Since we don’t have

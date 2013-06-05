@@ -80,7 +80,7 @@ Code not relevant to this example is snipped with an ellipsis (…)::
     class StartBeforeEnd(Invalid):
         __doc__ = _(u"The start or end date is invalid")
 
-    class IProgram(form.Schema):
+    class IProgram(model.Schema):
         
         ...
         

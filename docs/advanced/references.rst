@@ -41,21 +41,21 @@ we can use the field directly in ``session.py``::
         ...
             
         presenter = RelationChoice(
-                title=_(u"Presenter"),
-                source=ObjPathSourceBinder(object_provides=IPresenter.__identifier__),
-                required=False,
-            )
+            title=_(u"Presenter"),
+            source=ObjPathSourceBinder(object_provides=IPresenter.__identifier__),
+            required=False,
+        )
 
 To allow multiple items to be selected, we could have used a
 ``RelationList`` like::
 
     relatedItems = RelationList(
-            title=u"Related Items",
-            default=[],
-            value_type=RelationChoice(title=_(u"Related"),
-                                      source=ObjPathSourceBinder()),
-            required=False,
-        )
+        title=u"Related Items",
+        default=[],
+        value_type=RelationChoice(title=_(u"Related"),
+                                  source=ObjPathSourceBinder()),
+        required=False,
+    )
 
 The ``ObjPathSourceBinder`` class is an ``IContextSourceBinder`` that returns
 a vocabulary with content objects as values, object titles as term
@@ -80,7 +80,7 @@ the autocomplete widget. The following line added to the interface will
 make the presenter selection similar to the ``organizer`` selection widget
 we showed in the previous section::
 
-    form.widget(presenter=AutocompleteFieldWidget)
+    form.widget('presenter', AutocompleteFieldWidget)
 
 Once the user has created some relationships, the value stored in the
 relation field is a ``RelationValue`` object. This provides various

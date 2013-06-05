@@ -9,7 +9,7 @@ functionality, reacting when something happens to objects of our type.
 In Zope, that usually means writing event subscribers.
 
 Zope’s event model is *synchronous*. When an event is broadcast (via the
-``notify()`` function from the `zope.event` package), for example from the
+``notify()`` function from the `zope.event`_ package), for example from the
 ``save`` action of an add form, all registered event handlers will be
 called. There is no guarantee of which order the event handlers will be
 called in, however.
@@ -33,17 +33,17 @@ They are all object events.
 ``zope.lifecycleevent.interfaces.IObjectModifiedEvent``
     fired by the standard edit form when an object has been modified.
 
-``zope.app.container.interfaces.IObjectAddedEvent``
+``zope.lifecycleevent.interfaces.IObjectAddedEvent``
     fired when an object has been added to its container. The container is
     available as the ``newParent`` attribute, and the name the new item holds
     in the container is available as ``newName``.
 
-``zope.app.container.interfaces.IObjectRemovedEvent``
+``zope.lifecycleevent.interfaces.IObjectRemovedEvent``
     fired when an object has been removed from its container. The container
     is available as the ``oldParent`` attribute, and the name the item held
     in the container is available as ``oldName``.
 
-``zope.app.container.interfaces.IObjectMovedEvent``
+``zope.lifecycleevent.interfaces.IObjectMovedEvent``
     fired when an object is added to, removed from, renamed in, or moved
     between containers. This event is a super-type of ``IObjectAddedEvent``
     and ``IObjectRemovedEvent``, shown above, so an event handler registered
@@ -66,7 +66,7 @@ send these users an email.
 
 First, we require a few additional imports at the top of ``presenter.py``::
 
-    from zope.app.container.interfaces import IObjectAddedEvent
+    from zope.lifecycleevent.interfaces import IObjectAddedEvent
     from Products.CMFCore.utils import getToolByName
 
 Then, we’ll add the following event subscriber after the schema

@@ -10,13 +10,13 @@ are supported by the `zope.schema`_ package, with widgets provided by
 Selection fields use the ``Choice`` field type. To allow the user to
 select a single value, use a ``Choice`` field directly::
 
-    class IMySchema(form.Schema):
+    class IMySchema(model.Schema):
         myChoice = schema.Choice(...)
 
 For a multi-select field, use a ``List``, ``Tuple``, ``Set`` or
 ``Frozenset`` with a ``Choice`` as the ``value_type``::
 
-    class IMySchema(form.Schema):
+    class IMySchema(model.Schema):
         myList = schema.List(..., value_type=schema.Choice(...))
 
 The choice field must be passed one of the following arguments:
@@ -139,10 +139,10 @@ To use this context source binder, we use the ``source`` argument to the
 ``Choice`` constructor::
 
     organizer = schema.Choice(
-            title=_(u"Organiser"),
-            source=possibleOrganizers,
-            required=False,
-        )
+        title=_(u"Organiser"),
+        source=possibleOrganizers,
+        required=False,
+    )
 
 Parameterised sources
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -180,10 +180,10 @@ Again, the source is set using the ``source`` argument to the ``Choice``
 constructor::
 
     organizer = schema.Choice(
-            title=_(u"Organiser"),
-            source=GroupMembers('organizers'),
-            required=False,
-        )
+        title=_(u"Organiser"),
+        source=GroupMembers('organizers'),
+        required=False,
+    )
 
 When the schema is initialised on startup, a ``GroupMembers`` object
 is instantiated, storing the desired group name. Each time the
@@ -246,10 +246,10 @@ We can make use of this vocabulary in any schema by passing its name to
 the ``vocabulary`` argument of the ``Choice`` field constructor::
 
     organizer = schema.Choice(
-            title=_(u"Organiser"),
-            vocabulary=u"example.conference.Organizers",
-            required=False,
-        )
+        title=_(u"Organiser"),
+        vocabulary=u"example.conference.Organizers",
+        required=False,
+    )
 
 Some common vocabularies
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -314,10 +314,10 @@ finalise our ``organizer`` field. To do so, we need to add
 The ``organizer`` field now looks like::
 
     organizer = schema.Choice(
-            title=_(u"Organiser"),
-            vocabulary=u"plone.principalsource.Users",
-            required=False,
-        )
+        title=_(u"Organiser"),
+        vocabulary=u"plone.principalsource.Users",
+        required=False,
+    )
 
 The autocomplete selection widget
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -342,16 +342,16 @@ earlier. At the top of ``program.py``, we add the following import::
     ``Choice`` ``value_type``, we would use the
     ``AutocompleteMultiFieldWidget`` instead.
 
-In the ``IProgram`` schema (which, recall, derives from ``form.Schema`` and
+In the ``IProgram`` schema (which, recall, derives from ``model.Schema`` and
 is therefore processed for form hints at startup), we then add the
 following::
 
     form.widget(organizer=AutocompleteFieldWidget)
     organizer = schema.Choice(
-            title=_(u"Organiser"),
-            vocabulary=u"plone.principalsource.Users",
-            required=False,
-        )
+        title=_(u"Organiser"),
+        vocabulary=u"plone.principalsource.Users",
+        required=False,
+    )
 
 You should now see a dynamic auto-complete widget on the form, so long
 as you have JavaScript enabled. Start typing a user name and see what

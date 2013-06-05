@@ -15,13 +15,14 @@ permitted.
 It is possible to store HTML in a standard ``Text`` field. You can even
 get a WYSIWYG widget, by using a schema such as this::
 
-    from plone.directives import form
+    from plone.autoform import directives as form
+    from plone.supermodel import model
     from zope import schema
     from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
-    class ITestSchema(form.Schema):
+    class ITestSchema(model.Schema):
 
-        form.widget(body=WysiwygFieldWidget)
+        form.widget(body, WysiwygFieldWidget)
         body = schema.Text(title=u"Body text")
 
 .. _richtext-label:
@@ -30,10 +31,10 @@ However, this approach does not allow for alternative markups or any
 form of content filtering. For that, we need to use a more powerful
 field: ``RichText`` from the `plone.app.textfield`_ package::
 
-    from plone.directives import form
     from plone.app.textfield import RichText
+    from plone.supermodel import model
 
-    class ITestSchema(form.Schema):
+    class ITestSchema(model.Schema):
 
         body = RichText(title=u"Body text")
 
@@ -58,8 +59,8 @@ or a ``RichTextValue`` object (see below).
 Below is an example of a field allow StructuredText and
 reStructuredText, transformed to HTML by default::
 
-    from plone.directives import form
     from plone.app.textfield import RichText
+    from plone.supermodel import model
 
     defaultBody = """\
     Background
@@ -73,15 +74,15 @@ reStructuredText, transformed to HTML by default::
     And this
     """
 
-    class ITestSchema(form.Schema):
+    class ITestSchema(model.Schema):
 
         body = RichText(
-                title=u"Body text",
-                default_mime_type='text/x-rst',
-                output_mime_type='text/x-html',
-                allowed_mime_types=('text/x-rst', 'text/structured',),
-                default=defaultBody,
-            )
+            title=u"Body text",
+            default_mime_type='text/x-rst',
+            output_mime_type='text/x-html',
+            allowed_mime_types=('text/x-rst', 'text/structured',),
+            default=defaultBody,
+        )
 
 The RichTextValue
 ~~~~~~~~~~~~~~~~~~~
@@ -198,5 +199,5 @@ If the MIME type is omitted, the default output MIME type will be used.
     Unlike the ``output`` property, the value is not cached, and so
     will be calculated each time the page is rendered.
 
-.. _this tutorial: ../../../../../../documentation/tutorial/portal-transforms
+.. _this tutorial: http://plone.org/documentation/kb/portal-transforms
 .. _plone.app.textfield: http://pypi.python.org/pypi/plone.app.textfield

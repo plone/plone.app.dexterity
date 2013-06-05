@@ -143,5 +143,3 @@ directory:
 .. code-block:: xml
 
      <property name="content_icon">++resource++example.conference/presenter.gif</property>
-
-.. _five.grok: http://pypi.python.org/pypi/five.grok
