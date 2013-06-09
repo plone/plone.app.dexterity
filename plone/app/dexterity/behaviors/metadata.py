@@ -61,10 +61,10 @@ class IBasic(model.Schema):
     )
 
     description = schema.Text(
-        title=_PMF(u'label_description', default=u'Description'),
+        title=_PMF(u'label_description', default=u'Summary'),
         description=_PMF(
             u'help_description',
-            default=u'A short summary of the content.'
+            default=u'Used in item listings and search results.'
         ),
         required=False,
         missing_value=u'',
