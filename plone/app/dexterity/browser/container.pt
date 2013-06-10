@@ -10,12 +10,9 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <tal:block repeat="widget view/widgets/values">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IBasic.title', 'IBasic.description', 'title', 'description',)">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
+    <tal:block define="render_widgets context/@@render-widgets/render_widgets;
+                       widgets view/widgets/values;">
+        <metal:use_macro use-macro="render_widgets" />
     </tal:block>
 
     <fieldset tal:repeat="group view/groups"
@@ -40,4 +37,3 @@
 
 </body>
 </html>
-

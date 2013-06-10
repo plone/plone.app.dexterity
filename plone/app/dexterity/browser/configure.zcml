@@ -21,6 +21,22 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        name="render-widgets"
+        class="plone.app.dexterity.browser.render.RenderWidgets"
+        template="render_widgets.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityItem"
+        name="render-widgets"
+        class="plone.app.dexterity.browser.render.RenderWidgets"
+        template="render_widgets.pt"
+        permission="zope2.View"
+        />
+
     <!-- Control panel -->
 
     <browser:page
