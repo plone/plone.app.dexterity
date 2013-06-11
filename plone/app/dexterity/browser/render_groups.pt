@@ -1,0 +1,11 @@
+<metal:render_groups define-macro="render_groups">
+    <fieldset tal:repeat="group groups"
+              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
+        <legend tal:content="group/label" />
+        <div class="field" tal:repeat="widget group/widgets/values">
+            <label tal:content="widget/label" />
+            <br />
+            <div tal:content="structure widget/render" />
+        </div>
+    </fieldset>
+</metal:render_groups>

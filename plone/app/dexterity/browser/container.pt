@@ -18,22 +18,14 @@
         </div> 
     </tal:block>
 
-    <fieldset tal:repeat="group view/groups"
-              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
-        <legend tal:content="group/label" />
-        <div class="field" tal:repeat="widget group/widgets/values">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </fieldset>
+    <tal:block define="render_groups context/@@render-groups/render_groups;
+                       groups view/groups;">
+        <metal:use_macro use-macro="render_groups" />
+    </tal:block>
 
-    <fieldset id="folder-listing">
-        <legend i18n:translate="" i18n:domain="plone">Contents</legend>
-        <tal:block define="listing_macro context/folder_listing/macros/listing">
-            <metal:use_macro use-macro="listing_macro" />
-        </tal:block>
-    </fieldset>
+    <tal:block define="render_folder_listing context/@@render-folder-listing/render_folder_listing;">
+        <metal:use_macro use-macro="render_folder_listing" />
+    </tal:block>
 
   </metal:content-core>
 </metal:main>

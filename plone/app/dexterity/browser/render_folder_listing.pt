@@ -1,0 +1,8 @@
+<metal:render_folder_listing define-macro="render_folder_listing">
+    <fieldset id="folder-listing">
+        <legend i18n:translate="" i18n:domain="plone">Contents</legend>
+        <tal:block define="listing_macro context/folder_listing/macros/listing">
+            <metal:use_macro use-macro="listing_macro" />
+        </tal:block>
+    </fieldset>
+</metal:render_folder_listing>
