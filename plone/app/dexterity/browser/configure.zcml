@@ -68,6 +68,7 @@
         template="render_folder_listing.pt"
         permission="zope2.View"
         />
+
     <!-- Control panel -->
 
     <browser:page
