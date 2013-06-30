@@ -74,6 +74,18 @@ parameters (and here, any valid catalog query will do) as the first
 non-keyword argument (``navigation_tree_query``) to the
 ``ObjPathSourceBinder()`` constructor.
 
+You can also create the fields in an XML schema, however you have to provide a
+pre-baked source instance. If you are happy with not restricting folders shown,
+you can use some that ``plone.formwidget.contenttree`` makes for you. For example::
+
+    <field name="links" type="plone.app.relationfield.RelationList">
+        <title>Related Items</title>
+        <value_type type="plone.app.relationfield.Relation">
+            <title>Related</title>
+            <source>plone.formwidget.contenttree.obj_path_src_binder</source>
+        </value_type>
+    </field>
+
 If you want to use a different widget, you can use the same source (or a
 custom source that has content objects as values) with something like
 the autocomplete widget. The following line added to the interface will
