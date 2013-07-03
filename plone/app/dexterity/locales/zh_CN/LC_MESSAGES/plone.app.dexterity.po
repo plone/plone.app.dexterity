@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../interfaces.py:87
 msgid "# of items"
-msgstr ""
+msgstr "内容序号"
 
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
@@ -43,21 +43,21 @@ msgstr "添加关键字和语言设置"
 
 #: ../behaviors/discussion.py:30
 msgid "Allow discussion"
-msgstr ""
+msgstr "允许讨论"
 
 #: ../behaviors/discussion.py:31
 msgid "Allow discussion for this content object."
-msgstr ""
+msgstr "允许讨论这种类型对象。"
 
 msgid "Allow items to be excluded from navigation"
-msgstr ""
+msgstr "允许这些项目从导航中被排除"
 
 msgid "Allow items to have next previous navigation enabled"
 msgstr "允许条目启用 下一页 上一页 导航"
 
 #: ../interfaces.py:75
 msgid "Allowed Content Types"
-msgstr ""
+msgstr "允许的内容类型"
 
 msgid "Assign an effective and/or expiration date"
 msgstr "指定一个有效和/或失效日期"
@@ -89,7 +89,7 @@ msgid "Clone Content Type"
 msgstr "克隆内容类型"
 
 msgid "Configures various components needed for full Dexterity support."
-msgstr ""
+msgstr "为完全的Dexterity支持，配置各种需要的部件。"
 
 #: ../interfaces.py:57
 msgid "Container"
@@ -136,14 +136,14 @@ msgstr "字段"
 
 #: ../interfaces.py:64
 msgid "Filter Contained Types"
-msgstr ""
+msgstr "容器过滤器（过滤被包含的类型）"
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
 msgstr "此类型的条目，可以包含其他条目。"
 
 msgid "Make all items of this type a navigation root"
-msgstr ""
+msgstr "为这种类型的所有对象建立一个导航root(根)"
 
 msgid "Name from file name"
 msgstr "从文件名称生成名称"
@@ -162,7 +162,7 @@ msgstr "下一页 上一页 导航切换"
 
 #: ../behaviors/discussion.py:17
 msgid "No"
-msgstr ""
+msgstr "不"
 
 #: ../browser/behaviors.py:61
 msgid "No changes were made."
@@ -171,7 +171,7 @@ msgstr "没有更改。"
 #: ../browser/layout.py:14
 #: ../browser/overview.py:32
 msgid "Overview"
-msgstr ""
+msgstr "概览"
 
 #: ../browser/types.py:63
 msgid "Please select a single type to clone."
@@ -208,8 +208,7 @@ msgid "The following custom content types are available for your site."
 msgstr "下列自定义内容类型可用于您的网站。"
 
 #: ../interfaces.py:98
-msgid "There is already a content type named '${name}'"
-msgstr ""
+msgid "这儿已经有一个内容对象"
 
 #: ../interfaces.py:41
 msgid "Type Name"
@@ -229,7 +228,7 @@ msgstr "用于编程访问类型。"
 
 #: ../behaviors/discussion.py:16
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:179
@@ -249,12 +248,12 @@ msgstr "在此文件夹中所包含的内容条目，启用 下一页/上一页 
 #. Default: "All content types"
 #: ../browser/overview.pt:24
 msgid "label_all_content_types"
-msgstr ""
+msgstr "所有内容类型"
 
 #. Default: "Contained items"
 #: ../browser/overview.pt:9
 msgid "label_contained_items"
-msgstr ""
+msgstr "包含的内容"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
@@ -264,7 +263,7 @@ msgstr "从导航中排除"
 #. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
 #: ../interfaces.py:65
 msgid "label_filter_contained_types"
-msgstr ""
+msgstr "这种类型的对象能够象文件夹一样包含其他内容。那么什么样的内容类型允许被包含在里面？"
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
@@ -274,10 +273,10 @@ msgstr "启用 下一页 上一页 导航"
 #. Default: "No content types"
 #: ../browser/overview.pt:18
 msgid "label_no_content_types"
-msgstr ""
+msgstr "每有内容类型"
 
 #. Default: "Some content types:"
 #: ../browser/overview.pt:30
 msgid "label_some_content_types"
-msgstr ""
+msgstr "某些内容类型"
 
