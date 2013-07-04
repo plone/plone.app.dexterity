@@ -51,7 +51,7 @@ class SelectiveZipExportContext(TarballExportContext):
             for element in todelete:
                 root.remove(element)
             # Add a marker for ZopeSkel additions
-            root.append(etree.Comment('-*- extra stuff goes here -*-'))
+            root.append(etree.Comment(' -*- extra stuff goes here -*- '))
             # minor prettifying
             text = '<?xml version="1.0"?>\n%s' % etree.tostring(root)
             text = text.replace('<!--', ' <!--')
