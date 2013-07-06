@@ -1,4 +1,3 @@
-from Products.ATContentTypes import permission as ATCTPermissions
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
@@ -40,7 +39,7 @@ class ConstrainTypesBehavior(object):
         mtool = getToolByName(self.context, 'portal_membership')
         member = mtool.getAuthenticatedMember()
         return member.has_permission(
-            ATCTPermissions.ModifyConstrainTypes, self.context)
+            'Modify constrain types', self.context)
 
     def getDefaultAddableTypes(self):
         return self._getAddableTypesFor(self.context, self.context)
