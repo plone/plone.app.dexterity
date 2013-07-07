@@ -74,6 +74,35 @@ Most of the supermodel/schema field tag and its attributes map directly to what'
 The field ``type`` needs to be the full dotted name (as if it was being
 imported in Python) of the field type.
 
+defaultFactory
+~~~~~~~~~~~~~~
+
+To set a dynamic default for a field, use a ``defaultFactory`` attribute to
+give a fully qualified name for a callable. The defaultFactory callable must
+provide either plone.supermodel.IDefaultFactory or
+zope.schema.interfaces.IContextAwareDefaultFactory.
+
+Example::
+
+    <field type="zope.schema.TextLine"
+            name="three">
+        <defaultFactory>"plone.supermodel.tests.dummy_defaultFactory"</defaultFactory>
+        <title>Three</title>
+    </field>
+
+Sample Python for the validator factory::
+
+    @provider(IDefaultFactory)
+    def dummy_defaultFactory():
+        return u'something'
+
+For a callable using context::
+
+    @provider(IContextAwareDefaultFactory)
+    def dummy_defaultCAFactory(context):
+        return context.something
+
+
 Fieldsets
 ~~~~~~~~~
 
@@ -263,7 +292,6 @@ Sample Python for the validator factory::
         def validate(self, value):
             super(TestValidator, self).validate(value)
             raise Invalid("Test")
-
 
 
 supermodel/security attributes
