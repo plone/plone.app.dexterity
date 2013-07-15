@@ -124,6 +124,10 @@ For a callable using context::
     def dummy_defaultCAFactory(context):
         return context.something
 
+.. note::
+
+    The ``defaultFactory`` tag was added in plone.supermodel 1.2.3,
+    shipping with Plone 4.3.2+.
 
 Vocabularies
 ~~~~~~~~~~~~

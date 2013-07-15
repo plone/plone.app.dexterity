@@ -39,7 +39,7 @@ we can use the field directly in ``session.py``::
         """A conference session. Sessions are managed inside Programs.
         """
         ...
-            
+
         presenter = RelationChoice(
             title=_(u"Presenter"),
             source=ObjPathSourceBinder(object_provides=IPresenter.__identifier__),
@@ -85,6 +85,11 @@ you can use some that ``plone.formwidget.contenttree`` makes for you. For exampl
             <source>plone.formwidget.contenttree.obj_path_src_binder</source>
         </value_type>
     </field>
+
+.. note::
+
+    The pre-baked source binders were added in plone.formwidget.contenttree
+    1.0.7, which ships with Plone 4.3.2+.
 
 If you want to use a different widget, you can use the same source (or a
 custom source that has content objects as values) with something like
