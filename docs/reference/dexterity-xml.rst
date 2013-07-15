@@ -97,38 +97,6 @@ It's easy to add fieldsets by surrounding embedding fields tags in a ``fieldset`
       </schema>
 
 
-Dynamic Defaults
-~~~~~~~~~~~~~~~~
-
-To set a dynamic default for a field, use a ``defaultFactory`` tag to
-give a fully qualified name for a callable. The defaultFactory callable must
-provide either plone.supermodel.IDefaultFactory or
-zope.schema.interfaces.IContextAwareDefaultFactory.
-
-Example::
-
-    <field type="zope.schema.TextLine" name="three">
-        <title>Three</title>
-        <defaultFactory>plone.supermodel.tests.dummy_defaultFactory</defaultFactory>
-    </field>
-
-Sample Python for the validator factory::
-
-    @provider(IDefaultFactory)
-    def dummy_defaultFactory():
-        return u'something'
-
-For a callable using context::
-
-    @provider(IContextAwareDefaultFactory)
-    def dummy_defaultCAFactory(context):
-        return context.something
-
-.. note::
-
-    The ``defaultFactory`` tag was added in plone.supermodel 1.2.3,
-    shipping with Plone 4.3.2+.
-
 Vocabularies
 ~~~~~~~~~~~~
 
@@ -273,6 +241,40 @@ Example::
            form:widget="z3c.form.browser.password.PasswordFieldWidget">
         <title>One</title>
     </field>
+
+
+Dynamic Defaults
+~~~~~~~~~~~~~~~~
+
+To set a dynamic default for a field, use a ``defaultFactory`` tag to
+give a fully qualified name for a callable. The defaultFactory callable must
+provide either plone.supermodel.IDefaultFactory or
+zope.schema.interfaces.IContextAwareDefaultFactory.
+
+Example::
+
+    <field type="zope.schema.TextLine" name="three">
+        <title>Three</title>
+        <defaultFactory>plone.supermodel.tests.dummy_defaultFactory</defaultFactory>
+    </field>
+
+Sample Python for the validator factory::
+
+    @provider(IDefaultFactory)
+    def dummy_defaultFactory():
+        return u'something'
+
+For a callable using context::
+
+    @provider(IContextAwareDefaultFactory)
+    def dummy_defaultCAFactory(context):
+        return context.something
+
+.. note::
+
+    The ``defaultFactory`` tag was added in plone.supermodel 1.2.3,
+    shipping with Plone 4.3.2+.
+
 
 validator
 ~~~~~~~~~
