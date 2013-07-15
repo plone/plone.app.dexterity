@@ -74,35 +74,6 @@ Most of the supermodel/schema field tag and its attributes map directly to what'
 The field ``type`` needs to be the full dotted name (as if it was being
 imported in Python) of the field type.
 
-defaultFactory
-~~~~~~~~~~~~~~
-
-To set a dynamic default for a field, use a ``defaultFactory`` attribute to
-give a fully qualified name for a callable. The defaultFactory callable must
-provide either plone.supermodel.IDefaultFactory or
-zope.schema.interfaces.IContextAwareDefaultFactory.
-
-Example::
-
-    <field type="zope.schema.TextLine"
-            name="three">
-        <defaultFactory>"plone.supermodel.tests.dummy_defaultFactory"</defaultFactory>
-        <title>Three</title>
-    </field>
-
-Sample Python for the validator factory::
-
-    @provider(IDefaultFactory)
-    def dummy_defaultFactory():
-        return u'something'
-
-For a callable using context::
-
-    @provider(IContextAwareDefaultFactory)
-    def dummy_defaultCAFactory(context):
-        return context.something
-
-
 Fieldsets
 ~~~~~~~~~
 
@@ -125,6 +96,35 @@ It's easy to add fieldsets by surrounding embedding fields tags in a ``fieldset`
         ...
       </schema>
 
+
+Dynamic Defaults
+~~~~~~~~~~~~~~~~
+
+To set a dynamic default for a field, use a ``defaultFactory`` tag to
+give a fully qualified name for a callable. The defaultFactory callable must
+provide either plone.supermodel.IDefaultFactory or
+zope.schema.interfaces.IContextAwareDefaultFactory.
+
+Example::
+
+    <field type="zope.schema.TextLine" name="three">
+        <title>Three</title>
+        <defaultFactory>plone.supermodel.tests.dummy_defaultFactory</defaultFactory>
+    </field>
+
+Sample Python for the validator factory::
+
+    @provider(IDefaultFactory)
+    def dummy_defaultFactory():
+        return u'something'
+
+For a callable using context::
+
+    @provider(IContextAwareDefaultFactory)
+    def dummy_defaultCAFactory(context):
+        return context.something
+
+
 Vocabularies
 ~~~~~~~~~~~~
 
@@ -133,7 +133,7 @@ Vocabularies may be specified via dotted names using the ``source`` tag::
     <field name="dummy" type="zope.schema.Choice">
         <default>a</default>
         <description>Test desc</description>
-        <missing_v    alue/>
+        <missing_value/>
         <readonly>True</readonly>
         <required>False</required>
         <title>Test</title>
