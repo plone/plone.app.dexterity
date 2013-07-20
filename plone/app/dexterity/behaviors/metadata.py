@@ -198,7 +198,7 @@ class IOwnership(model.Schema):
 # make sure the add form shows the default creator
 def creatorsDefault(data):
     user = getSecurityManager().getUser()
-    return user and (user.getId(),)
+    return user and (unicode(user.getId()),)
 CreatorsDefaultValue = ComputedWidgetAttribute(
     creatorsDefault,
     field=IOwnership['creators']

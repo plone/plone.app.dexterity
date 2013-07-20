@@ -53,3 +53,13 @@ The modified and creation dates are set correctly::
     >>> DateTime() > DateTime(md.CreationDate())
     True
 
+The creators field contains the current user as a unicode string, and you
+should be able to set same value without a validation error::
+
+    >>> from zope.schema import getFields
+    >>> from plone.dexterity.utils import getAdditionalSchemata
+    >>> schema = getAdditionalSchemata(context=md).next()
+    >>> field = getFields(schema)['creators']
+    >>> field.get(field.interface(md))
+    (u'test_user_1_',)
+    >>> field.set(field.interface(md), (u'test_user_1_',))
