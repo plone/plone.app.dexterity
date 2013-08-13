@@ -1,7 +1,7 @@
 Changelog for plone.app.dexterity
 =================================
 
-2.0.9 (unreleased)
+2.0.9 (2013-08-13)
 ------------------
 
 - Add documentation for defaultFactory tag in XML ref.
