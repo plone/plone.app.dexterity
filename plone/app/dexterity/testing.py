@@ -12,7 +12,7 @@ class DexterityFixture(PloneSandboxLayer):
         self.loadZCML(package=plone.app.dexterity)
 
     def setUpPloneSite(self, portal):
-        self.applyProfile(portal, 'plone.app.dexterity:default')
+        self.applyProfile(portal, 'plone.app.dexterity:testing')
 
 
 DEXTERITY_FIXTURE = DexterityFixture()

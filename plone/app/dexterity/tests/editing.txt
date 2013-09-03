@@ -398,8 +398,7 @@ container::
   >>> select
   <ListControl name='form.widgets.allowed_content_types:list' type='select'>
 
-  >>> select.getControl('News Item').selected = True
-  >>> event = select.getControl('Event').selected = True
+  >>> select.getControl('Page').selected = True
   >>> browser.getControl('Apply').click()
   >>> print browser.contents
   <BLANKLINE>
@@ -410,19 +409,13 @@ Now only the allowed types may be added::
   >>> browser.open('http://nohost/plone')
   >>> browser.getLink('Plonista Folder 1').click()
 
-  >>> browser.getLink(url='Document')
+  >>> browser.getLink(url='Folder')
   Traceback (most recent call last):
   ...
   LinkNotFound...
 
-  >>> browser.getLink(url='Event').click()
-  >>> browser.getControl('Title').value = 'Foo Plonista Event'
-  >>> browser.getControl('Save').click()
-
-  >>> browser.open('http://nohost/plone')
-  >>> browser.getLink('Plonista Folder 1').click()
-  >>> browser.getLink(url='News+Item').click()
-  >>> browser.getControl('Title').value = 'Foo Plonista News Item'
+  >>> browser.getLink(url='Document').click()
+  >>> browser.getControl('Title').value = 'Foo Plonista Page'
   >>> browser.getControl('Save').click()
 
 

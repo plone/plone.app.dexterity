@@ -29,6 +29,15 @@
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         />
 
+    <genericsetup:registerProfile
+        name="testing"
+        title="Dexterity Content Types"
+        description="Adds Dexterity-based Folder and Document types for testing."
+        directory="profiles/testing"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
     <include package=".browser" />
     <include package=".behaviors" />
     <include package=".upgrades" />

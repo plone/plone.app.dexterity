@@ -66,8 +66,8 @@ class DocumentIntegrationTest(unittest.TestCase):
         self.default_types = [t for t in self.types_tool.listTypeInfo() if
                               t.isConstructionAllowed(self.folder)
                               and folder_type.allowType(t.getId())]
-        assert len(self.default_types) > 3
-        self.types_id_subset = [t.getId() for t in self.default_types][:2]
+        assert len(self.default_types) > 1
+        self.types_id_subset = [t.getId() for t in self.default_types][:1]
 
     def test_behavior_added(self):
         self.assertIn('Products.CMFPlone.interfaces.'
