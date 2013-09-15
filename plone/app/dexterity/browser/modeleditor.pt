@@ -22,7 +22,7 @@
                 <span i18n:name="name" tal:content="context/Title">name</span>
             </h1>
 
-            <p class="description" i18:translate="description_model_edit">
+            <p class="description" i18n:translate="description_model_edit">
                 This form allows you to directly edit the XML representation
                 of the field list. This makes it possible to add annotations for fieldsets,
                 validation and widgets. See the <a
