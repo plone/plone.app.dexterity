@@ -1,7 +1,7 @@
 Changelog for plone.app.dexterity
 =================================
 
-2.0.10 (unreleased)
+2.0.10 (2013-09-16)
 -------------------
 
 - Fix determination of allowed types so it checks permission in
