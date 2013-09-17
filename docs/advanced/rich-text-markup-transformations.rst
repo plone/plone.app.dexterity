@@ -1,4 +1,4 @@
-Rich text, markup and transformations 
+Rich text, markup and transformations
 --------------------------------------
 
 **How to store markup (such as HTML or reStructuredText) and render it with a transformation**
@@ -22,7 +22,7 @@ get a WYSIWYG widget, by using a schema such as this::
 
     class ITestSchema(model.Schema):
 
-        form.widget(body, WysiwygFieldWidget)
+        form.widget('body', WysiwygFieldWidget)
         body = schema.Text(title=u"Body text")
 
 .. _richtext-label:
