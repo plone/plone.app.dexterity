@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Dexterity\n"
 "POT-Creation-Date: 2013-04-06 15:36+0000\n"
 "PO-Revision-Date: 2012-09-01 21:07-0400\n"
 "Last-Translator: Herson Rodrigues <hersonrodrigues@gmail.com>\n"
@@ -141,7 +141,7 @@ msgid "Items of this type will be able to contain other items."
 msgstr "Os itens deste tipo poderão conter outros itens."
 
 msgid "Make all items of this type a navigation root"
-msgstr "Torna todos os itens deste tipo de conteúdo raízes de navegação"
+msgstr "Tornar todos os itens deste tipo de conteúdo, fixos na raíz da navegação"
 
 msgid "Name from file name"
 msgstr "Nome criado a partir do nome do arquivo"
@@ -173,11 +173,11 @@ msgstr "Visão geral"
 
 #: ../browser/types.py:63
 msgid "Please select a single type to clone."
-msgstr "Por favor selecione um tipo simples para clonar"
+msgstr "Por favor selecione um tipo simples para clonar."
 
 #: ../browser/types.py:69
 msgid "Please select a type to clone."
-msgstr "Por favor selecione um tipo para clonar"
+msgstr "Por favor selecione um tipo para clonar."
 
 #: ../browser/types.py:76
 msgid "Please select types to export."
@@ -185,7 +185,7 @@ msgstr "Por favor selecione os tipos a serem exportados."
 
 #: ../interfaces.py:25
 msgid "Please use only letters, numbers, and the following characters: .-_"
-msgstr "Por favor use somente letras, números e os seguintes caracteres: _."
+msgstr "Por favor use somente letras, números e os seguintes caracteres: .-_ (ponto, espaço e underline)"
 
 #: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
@@ -207,7 +207,7 @@ msgstr "Os seguintes tipos de conteúdo personalizados estão disponíveis para 
 
 #: ../interfaces.py:98
 msgid "There is already a content type named '${name}'"
-msgstr "Já existe um tipo de conteúdo com nome '${name}'"
+msgstr "Já existe um tipo de conteúdo com o nome '${name}'"
 
 #: ../interfaces.py:41
 msgid "Type Name"
@@ -252,7 +252,7 @@ msgstr "Todos os tipos de conteúdo"
 #. Default: "Contained items"
 #: ../browser/overview.pt:9
 msgid "label_contained_items"
-msgstr ""
+msgstr "Itens contidos"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
