@@ -63,6 +63,7 @@ setup(name='plone.app.dexterity',
       ],
       extras_require={
           'test': [
+              'plone.app.robotframework',
               'plone.app.testing',
               'unittest2'
           ],
