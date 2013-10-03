@@ -248,7 +248,7 @@ Dynamic Defaults
 
 To set a dynamic default for a field, use a ``defaultFactory`` tag to
 give a fully qualified name for a callable. The defaultFactory callable must
-provide either plone.supermodel.IDefaultFactory or
+provide either plone.supermodel.interfaces.IDefaultFactory or
 zope.schema.interfaces.IContextAwareDefaultFactory.
 
 Example::
