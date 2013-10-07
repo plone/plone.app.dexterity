@@ -17,9 +17,10 @@
     <include zcml:condition="installed plone.directives.dexterity"
              package="plone.directives.dexterity" />
     <include package="plone.dexterity" />
-    
+    <include package="plone.behavior" />
+
     <i18n:registerTranslations directory="locales"/>
-    
+
     <genericsetup:registerProfile
         name="default"
         title="Dexterity Content Types"
@@ -41,9 +42,9 @@
     <include package=".browser" />
     <include package=".behaviors" />
     <include package=".upgrades" />
-    
+
     <include file="events.zcml" />
-    
+
     <class class="plone.dexterity.content.DexterityContent">
         <!-- Make Dexterity types portlet- and content rule aware -->
         <implements interface="plone.portlets.interfaces.ILocalPortletAssignable" />
@@ -58,7 +59,7 @@
         for="plone.dexterity.interfaces.IDexterityFTI
              Products.GenericSetup.interfaces.ISetupEnviron"
         />
-    
+
     <adapter factory=".interfaces.TypeIdValidator" />
     <adapter factory=".interfaces.TypeTitleValidator" />
 
