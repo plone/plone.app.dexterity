@@ -1,9 +1,9 @@
-Unit tests 
+Unit tests
 ============
 
 **Writing simple unit tests**
 
-As all good developers know, automated tests are very important! 
+As all good developers know, automated tests are very important!
 If you are not comfortable with automated testing and test-driven
 development, you should read the `Plone testing tutorial`_.
 In this section, we will assume you are familiar with Plone testing basics,
@@ -37,7 +37,7 @@ custom event handlers, default value calculation functions and other
 procedural code.
 
 In that spirit, let’s write some unit tests for the default value
-handler and the invariant in ``program.py``. 
+handler and the invariant in ``program.py``.
 We’ll add the directory ``tests``, with an ``__init__.py`` and a file
 ``test_program.py`` that looks like this::
 
@@ -55,47 +55,47 @@ We’ll add the directory ``tests``, with an ``__init__.py`` and a file
     class TestProgramUnit(unittest.TestCase):
         """Unit test for the Program type
         """
-        
+
         def test_start_defaults(self):
             data = MockProgram()
             default_value = startDefaultValue(data)
             today = datetime.datetime.today()
             delta = default_value - today
-            self.assertEquals(6, delta.days)
+            self.assertEqual(6, delta.days)
 
         def test_end_default(self):
             data = MockProgram()
             default_value = endDefaultValue(data)
             today = datetime.datetime.today()
             delta = default_value - today
-            self.assertEquals(9, delta.days)
-        
+            self.assertEqual(9, delta.days)
+
         def test_validate_invariants_ok(self):
             data = MockProgram()
             data.start = datetime.datetime(2009, 1, 1)
             data.end = datetime.datetime(2009, 1, 2)
-            
+
             try:
                 IProgram.validateInvariants(data)
             except:
                 self.fail()
-        
+
         def test_validate_invariants_fail(self):
             data = MockProgram()
             data.start = datetime.datetime(2009, 1, 2)
             data.end = datetime.datetime(2009, 1, 1)
-            
+
             try:
                 IProgram.validateInvariants(data)
                 self.fail()
             except StartBeforeEnd:
                 pass
-        
+
         def test_validate_invariants_edge(self):
             data = MockProgram()
             data.start = datetime.datetime(2009, 1, 2)
             data.end = datetime.datetime(2009, 1, 2)
-            
+
             try:
                 IProgram.validateInvariants(data)
             except:
@@ -107,7 +107,7 @@ We’ll add the directory ``tests``, with an ``__init__.py`` and a file
 This is a simple test using the Python standard library’s ``unittest``
 module. There are a few things to note here:
 
-- We have created a dummy class to simulate a ``Program`` instance. 
+- We have created a dummy class to simulate a ``Program`` instance.
   It doesn’t contain anything at all, but we set some attributes onto it
   for certain tests.
   This is a very simple way to do mocks.

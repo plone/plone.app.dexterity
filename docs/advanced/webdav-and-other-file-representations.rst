@@ -1,4 +1,4 @@
-WebDAV and other file representations 
+WebDAV and other file representations
 ======================================
 
 **Adding support for WebDAV and accessing and modifying a
@@ -24,10 +24,10 @@ server on the given port.
 
 Most operating systems support mounting WebDAV servers as folders.
 Unfortunately, not all WebDAV implementations are very good.
-Dexterity content should work with Windows Web Folders [*]_ 
+Dexterity content should work with Windows Web Folders [*]_
 and well-behaved clients such as Novell NetDrive.
 
-.. [*] open Internet Explorer, 
+.. [*] open Internet Explorer,
    go to :guilabel:`File | Open`,
    type in a WebDAV address, e.g.  http://localhost:9800,
    and then select :guilabel:`Open as web folder` before hitting
@@ -54,16 +54,16 @@ A field can be marked as “primary” using the ``primary()`` directive from
     class ISession(form.Schema):
         """A conference session. Sessions are managed inside Programs.
         """
-        
+
         title = schema.TextLine(
                 title=_(u"Title"),
                 description=_(u"Session title"),
             )
-        
+
         description = schema.Text(
                 title=_(u"Session summary"),
             )
-        
+
         form.primary('details')
         details = RichText(
                 title=_(u"Session details"),
@@ -76,7 +76,7 @@ A field can be marked as “primary” using the ``primary()`` directive from
                 source=ObjPathSourceBinder(object_provides=IPresenter.__identifier__),
                 required=False,
             )
-        
+
         dexterity.write_permission(track='example.conference.ModifyTrack')
         track = schema.Choice(
                 title=_(u"Track"),
@@ -111,7 +111,7 @@ It is also possible to upload such a file to create a new session.
 In order to do that, the ``content_type_registry`` tool needs to be
 configured with a predicate that can detect the type of content from the
 uploaded file and instantiate the correct type of object.
-Such predicates could be based on an extension or a filename pattern. 
+Such predicates could be based on an extension or a filename pattern.
 Below, we will see a different approach that uses a custom “file factory”
 for the containing ``Program`` type.
 
@@ -119,7 +119,7 @@ Containers
 ~~~~~~~~~~
 
 Container objects will be shown as *collections* (WebDAV-speak for
-folders) for WebDAV purposes. 
+folders) for WebDAV purposes.
 This allows the WebDAV client to open the container and list its contents.
 However, representing containers as collections makes it impossible to
 access the data contained in the various fields of the content object.
@@ -145,7 +145,7 @@ of your type.
   your own ``IRawReadFile`` and ``IRawWriteFile`` adapters.
   For example, if you have a content object that stores binary data,
   you could return this data directly, with an appropriate MIME type, to
-  allow it to be edited in a desktop program 
+  allow it to be edited in a desktop program
   (e.g. an image editor if the MIME type is ``image/jpeg``).
   The file ``plone.dexterity.filerepresentation`` contains
   two base classes, ``ReadFileBase`` and ``WriteFileBase``, which you may
@@ -176,10 +176,10 @@ The code, in ``program.py``, looks like this::
     class ProgramFileFactory(grok.Adapter):
         """Custom file factory for programs, which always creates a Session.
         """
-        
+
         grok.implements(IFileFactory)
         grok.context(IProgram)
-        
+
         def __call__(self, name, contentType, data):
             session = createObject('example.conference.session', id=name)
             notify(ObjectCreatedEvent(session))
@@ -202,13 +202,13 @@ Here is a simple automated integration test for the same component::
             p1 = self.folder['p1']
             fileFactory = IFileFactory(p1)
             newObject = fileFactory('new-session', 'text/plain', 'dummy')
-            self.failUnless(ISession.providedBy(newObject))
+            self.assertTrue(ISession.providedBy(newObject))
 
 How it all works
 ----------------
 
 The rest of this section describes in some detail how the various WebDAV
-related components interact in Zope 2, CMF and Dexterity. 
+related components interact in Zope 2, CMF and Dexterity.
 This may be helpful if you are trying to customise or debug WebDAV behaviour.
 
 Background
@@ -239,9 +239,9 @@ operations to be overridden without subclassing.
 
 A ``HEAD`` request retrieves headers only.
 
-``Resource.HEAD()`` sets 
+``Resource.HEAD()`` sets
 ``Content-Type`` based on ``self.content_type()``,
-``Content-Length`` based on ``self.get\_size()``, 
+``Content-Length`` based on ``self.get\_size()``,
 ``Last-Modified`` based on ``self._p_mtime``,
 and an ``ETag`` based on ``self.http__etag()``, if available.
 
@@ -361,7 +361,7 @@ if available, on each property sheet.
 This method returns a list of name/value pairs in the correct WebDAV XML
 encoding, plus a status.
 
-If a ``propnames`` request is received, it calls ``dav__propnames()``, 
+If a ``propnames`` request is received, it calls ``dav__propnames()``,
 if available, on each property sheet.
 This method returns a list of property names in the correct WebDAV XML
 encoding, plus a status.
@@ -381,7 +381,7 @@ This in turn has two property sheets:
 The ``DefaultProperties`` instance contains the main property sheet. This
 typically has a ``title`` property, for example.
 
-``DAVProperties`` will provides various core WebDAV properties. 
+``DAVProperties`` will provides various core WebDAV properties.
 It defines a number of read-only properties:
 ``creationdate``, ``displayname``,
 ``resourcetype``, ``getcontenttype``, ``getcontentlength``, ``source``,
@@ -407,7 +407,7 @@ In particular:
 
 ``getcontenttype``
     delegates to the ``content_type()`` method, falling back on the
-    ``default_content_type()`` method. 
+    ``default_content_type()`` method.
     In Dexterity, ``content_type()`` is implemented to look up the
     ``IRawReadFile`` adapter on the context and return the value of its
     ``mimeType`` property.
@@ -432,7 +432,7 @@ In particular:
 Other properties in this and any other property sheets are returned as
 stored when requested.
 
-If the ``PROPFIND`` request specifies a depth of 1 or infinity 
+If the ``PROPFIND`` request specifies a depth of 1 or infinity
 (i.e. the client wants properties for items in a collection),
 the process is repeated for all items returned by the ``listDAVObjects()``
 methods,
@@ -457,7 +457,7 @@ A ``MKCOL`` request is used to create a new collection resource,
 i.e. create a new folder.
 
 ``Resource.MKCOL()`` raises "405 Method Not Allowed",
-because the resource already exists 
+because the resource already exists
 (remember that in WebDAV, the ``MKCOL`` request, like a ``PUT``
 for a new resource, is sent with a location that specifies the desired
 new resource location, not the location of the parent object).
