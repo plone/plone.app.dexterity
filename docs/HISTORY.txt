@@ -11,6 +11,10 @@ Changelog for plone.app.dexterity
   (change accented or special characters with corresponding letters).
   [cedricmessiant]
 
+- Show a warning when editing the default page of a folder.
+  [davisagli]
+
+
 
 2.0.10 (2013-09-16)
 -------------------
