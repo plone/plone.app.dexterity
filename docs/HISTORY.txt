@@ -4,8 +4,16 @@ Changelog for plone.app.dexterity
 2.0.11 (unreleased)
 -------------------
 
+- Add robot testing environment and first robot test.
+  [cedricmessiant]
+
+- Better string normalization when setting type id from type title
+  (change accented or special characters with corresponding letters).
+  [cedricmessiant]
+
 - Show a warning when editing the default page of a folder.
   [davisagli]
+
 
 
 2.0.10 (2013-09-16)
