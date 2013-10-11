@@ -1,4 +1,6 @@
 <tal:root>
+<script type="text/javascript"
+      tal:attributes="src context/++resource++schemaeditor.js"></script>
 <script type="text/javascript" charset="utf-8">
 (function($){
 $(document).ready(function() {
@@ -59,8 +61,8 @@ $(document).ready(function() {
 
     // set id from title
     $('#form-widgets-title').live('change', function () {
-        var val = $(this).val().toLowerCase().replace(/[^A-Za-z0-9_\.]/g, '_');
-        $('#form-widgets-id').val(val);
+        var id = $.plone_schemaeditor_normalize_string($(this).val());
+        $('#form-widgets-id').val(id);
     });
 });
 })(jQuery);
