@@ -27,11 +27,19 @@ class TestDexterityTypesImport(unittest.TestCase):
         icontext = ZipFileImportContext(types_tool, f)
 
         types_xml = icontext.readDataFile('types.xml')
-        if not types_xml:
-            self.fail('Unable to read types.xml in sample import file')
+        self.assertTrue(types_xml, msg='Unable to read types.xml in sample import file')
 
-        if not isinstance(icontext.getLastModified('types.xml'), DateTime):
-            self.fail('Bad modification time from zip import')
+        self.assertTrue(isinstance(icontext.getLastModified('types.xml'), DateTime))
+
+        self.assertEqual(
+            set(icontext.listDirectory('')),
+            set(['types', 'types.xml'])
+        )
+
+        self.assertEqual(
+            set(icontext.listDirectory('types')),
+            set(['test_type_two.xml', 'test_type_one.xml'])
+        )
 
         f.close()
 

@@ -13,6 +13,8 @@ from StringIO import StringIO
 from zipfile import ZipFile
 from zope.interface import implements
 
+import os.path
+
 
 class ZipFileImportContext(BaseContext):
     """ GS Import context for a ZipFile """
@@ -23,6 +25,7 @@ class ZipFileImportContext(BaseContext):
         BaseContext.__init__(self, tool, encoding)
         self._archive = ZipFile(archive_bits, 'r')
         self._should_purge = bool(should_purge)
+        self.name_list = self._archive.namelist()
 
     def readDataFile(self, filename, subdir=None):
 
@@ -42,3 +45,28 @@ class ZipFileImportContext(BaseContext):
         except KeyError:
             return None
         return DateTime(*zip_info.date_time)
+
+    def isDirectory(self, path):
+        """ See IImportContext """
+
+        # namelist only includes full filenames, not directories
+        return path not in self.name_list
+
+    def listDirectory(self, path, skip=[]):
+        """ See IImportContext """
+
+        # namelist contains only full path/filenames, not
+        # directories. But we need to include directories.
+
+        if path is None:
+            path = ''
+        res = set()
+        for pn in self.name_list:
+            dn, bn = os.path.split(pn)
+            if dn == path:
+                if bn not in skip:
+                    res.add(bn)
+            elif dn.startswith(path) and \
+              (path == '' or len(dn.split('/')) == len(path.split('/')) + 1):
+                res.add(dn.split('/')[-1])
+        return list(res)
