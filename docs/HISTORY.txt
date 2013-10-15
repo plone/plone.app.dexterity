@@ -4,6 +4,10 @@ Changelog for plone.app.dexterity
 2.0.11 (unreleased)
 -------------------
 
+- Fixed Add view URL of cloned content type.
+  Refs http://dev.plone.org/ticket/13776.
+  [thomasdesvenain]
+
 - Add robot testing environment and first robot test.
   [cedricmessiant]
 
