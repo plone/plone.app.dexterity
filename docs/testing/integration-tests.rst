@@ -122,7 +122,7 @@ removed to conserve space.)::
         def test_adding(self):
             self.folder.invokeFactory('example.conference.program', 'program1')
             p1 = self.folder['program1']
-            self.failUnless(IProgram.providedBy(p1))
+            self.assertTrue(IProgram.providedBy(p1))
 
         def test_fti(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.program')
@@ -131,20 +131,20 @@ removed to conserve space.)::
         def test_schema(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.program')
             schema = fti.lookupSchema()
-            self.assertEquals(IProgram, schema)
+            self.assertEqual(IProgram, schema)
 
         def test_factory(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.program')
             factory = fti.factory
             new_object = createObject(factory)
-            self.failUnless(IProgram.providedBy(new_object))
+            self.assertTrue(IProgram.providedBy(new_object))
 
         def test_view(self):
             self.folder.invokeFactory('example.conference.program', 'program1')
             p1 = self.folder['program1']
             view = p1.restrictedTraverse('@@view')
             sessions = view.sessions()
-            self.assertEquals(0, len(sessions))
+            self.assertEqual(0, len(sessions))
 
         def test_start_end_dates_indexed(self):
             self.folder.invokeFactory('example.conference.program', 'program1')
@@ -155,9 +155,9 @@ removed to conserve space.)::
 
             result = self.portal.portal_catalog(path='/'.join(p1.getPhysicalPath()))
 
-            self.assertEquals(1, len(result))
-            self.assertEquals(result[0].start, DateTime('2009-01-01T14:01:00'))
-            self.assertEquals(result[0].end, DateTime('2009-01-02T15:02:00'))
+            self.assertEqual(1, len(result))
+            self.assertEqual(result[0].start, DateTime('2009-01-01T14:01:00'))
+            self.assertEqual(result[0].end, DateTime('2009-01-02T15:02:00'))
 
         def test_tracks_indexed(self):
             self.folder.invokeFactory('example.conference.program', 'program1')
@@ -167,8 +167,8 @@ removed to conserve space.)::
 
             result = self.portal.portal_catalog(Subject='Track 2')
 
-            self.assertEquals(1, len(result))
-            self.assertEquals(result[0].getURL(), p1.absolute_url())
+            self.assertEqual(1, len(result))
+            self.assertEqual(result[0].getURL(), p1.absolute_url())
 
     def test_suite():
         return unittest.defaultTestLoader.loadTestsFromName(__name__)
@@ -262,7 +262,7 @@ the ``Session`` type::
 
             p1.invokeFactory('example.conference.session', 'session1')
             s1 = p1['session1']
-            self.failUnless(ISession.providedBy(s1))
+            self.assertTrue(ISession.providedBy(s1))
 
         def test_fti(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.session')
@@ -271,13 +271,13 @@ the ``Session`` type::
         def test_schema(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.session')
             schema = fti.lookupSchema()
-            self.assertEquals(ISession, schema)
+            self.assertEqual(ISession, schema)
 
         def test_factory(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.session')
             factory = fti.factory
             new_object = createObject(factory)
-            self.failUnless(ISession.providedBy(new_object))
+            self.assertTrue(ISession.providedBy(new_object))
 
         def test_tracks_vocabulary(self):
             self.folder.invokeFactory('example.conference.program', 'program1')
@@ -289,12 +289,12 @@ the ``Session`` type::
 
             vocab = possible_tracks(s1)
 
-            self.assertEquals(['T1', 'T2', 'T3'], [t.value for t in vocab])
-            self.assertEquals(['T1', 'T2', 'T3'], [t.token for t in vocab])
+            self.assertEqual(['T1', 'T2', 'T3'], [t.value for t in vocab])
+            self.assertEqual(['T1', 'T2', 'T3'], [t.token for t in vocab])
 
         def test_catalog_index_metadata(self):
-            self.failUnless('track' in self.portal.portal_catalog.indexes())
-            self.failUnless('track' in self.portal.portal_catalog.schema())
+            self.assertTrue('track' in self.portal.portal_catalog.indexes())
+            self.assertTrue('track' in self.portal.portal_catalog.schema())
 
         def test_workflow_installed(self):
             self.folder.invokeFactory('example.conference.program', 'program1')
@@ -304,7 +304,7 @@ the ``Session`` type::
             s1 = p1['session1']
 
             chain = self.portal.portal_workflow.getChainFor(s1)
-            self.assertEquals(('example.conference.session_workflow',), chain)
+            self.assertEqual(('example.conference.session_workflow',), chain)
 
     def test_suite():
         return unittest.defaultTestLoader.loadTestsFromName(__name__)
@@ -343,7 +343,7 @@ column and the custom workflow::
         def test_adding(self):
             self.folder.invokeFactory('example.conference.presenter', 'presenter1')
             p1 = self.folder['presenter1']
-            self.failUnless(IPresenter.providedBy(p1))
+            self.assertTrue(IPresenter.providedBy(p1))
 
         def test_fti(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.presenter')
@@ -352,13 +352,13 @@ column and the custom workflow::
         def test_schema(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.presenter')
             schema = fti.lookupSchema()
-            self.assertEquals(IPresenter, schema)
+            self.assertEqual(IPresenter, schema)
 
         def test_factory(self):
             fti = queryUtility(IDexterityFTI, name='example.conference.presenter')
             factory = fti.factory
             new_object = createObject(factory)
-            self.failUnless(IPresenter.providedBy(new_object))
+            self.assertTrue(IPresenter.providedBy(new_object))
 
     def test_suite():
         return unittest.defaultTestLoader.loadTestsFromName(__name__)

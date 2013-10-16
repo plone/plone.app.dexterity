@@ -262,7 +262,7 @@ class DocumentIntegrationTest(unittest.TestCase):
         types = behavior._getAddableTypesFor(self.portal, self.folder)
 
         behavior.setConstrainTypesMode(constrains.DISABLED)
-        self.assertEquals(types, behavior.allowedContentTypes())
+        self.assertEqual(types, behavior.allowedContentTypes())
 
     def test_allowedContentTypesExit2(self):
         """
@@ -273,7 +273,7 @@ class DocumentIntegrationTest(unittest.TestCase):
         types = behavior._getAddableTypesFor(self.portal, self.folder)
 
         behavior.setConstrainTypesMode(constrains.ACQUIRE)
-        self.assertEquals(types, behavior.allowedContentTypes())
+        self.assertEqual(types, behavior.allowedContentTypes())
 
     def test_allowedContentTypesExit3(self):
         """
@@ -287,7 +287,7 @@ class DocumentIntegrationTest(unittest.TestCase):
 
         behavior = ISelectableConstrainTypes(self.inner_folder)
         behavior.setConstrainTypesMode(constrains.ACQUIRE)
-        self.assertEquals(self.types_id_subset,
+        self.assertEqual(self.types_id_subset,
                           [x.getId() for x in behavior.allowedContentTypes()])
 
     def test_allowedContentTypesExit4(self):
@@ -299,7 +299,7 @@ class DocumentIntegrationTest(unittest.TestCase):
         behavior.setLocallyAllowedTypes(self.types_id_subset)
         behavior.setConstrainTypesMode(constrains.ENABLED)
 
-        self.assertEquals(self.types_id_subset,
+        self.assertEqual(self.types_id_subset,
                           [x.getId() for x in behavior.allowedContentTypes()])
 
     def test_formschemainvariants(self):
@@ -362,10 +362,10 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         ctrl("form.widgets.current_allow:list").value = ["Document"]
         self.browser.getControl("Save").click()
         aspect = ISelectableConstrainTypes(self.folder)
-        self.assertEquals(1, aspect.getConstrainTypesMode())
-        self.assertEquals(["Document", "Folder"],
+        self.assertEqual(1, aspect.getConstrainTypesMode())
+        self.assertEqual(["Document", "Folder"],
                           aspect.getLocallyAllowedTypes())
-        self.assertEquals(["Folder"], aspect.getImmediatelyAddableTypes())
+        self.assertEqual(["Folder"], aspect.getImmediatelyAddableTypes())
 
     def test_form_bad_save(self):
         aspect = ISelectableConstrainTypes(self.folder)
@@ -380,7 +380,7 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         ctrl("form.widgets.current_prefer:list").value = ["Document"]
         ctrl("form.widgets.current_allow:list").value = ["Document", "Folder"]
         self.browser.getControl("Save").click()
-        self.assertEquals(constraint_before, aspect.getConstrainTypesMode())
+        self.assertEqual(constraint_before, aspect.getConstrainTypesMode())
         self.assertTrue('Error' in self.browser.contents)
 
 

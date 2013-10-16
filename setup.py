@@ -37,7 +37,7 @@ setup(name='plone.app.dexterity',
           'plone.formwidget.namedfile',
           'plone.namedfile[scales] >=1.0b5dev-r36016',
           'plone.rfc822',
-          'plone.schemaeditor >=1.0',
+          'plone.schemaeditor >1.3.3',
           # Plone/Zope core
           'lxml',
           'plone.app.content',
@@ -63,6 +63,7 @@ setup(name='plone.app.dexterity',
       ],
       extras_require={
           'test': [
+              'plone.app.robotframework',
               'plone.app.testing',
               'unittest2'
           ],
