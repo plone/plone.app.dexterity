@@ -21,7 +21,7 @@ class TypeCloneForm(form.AddForm):
             del props['factory']
 
         props['title'] = data['title']
-        props['add_view_expr'] = 'string:${folder_url}/++add++%s' % type_id
+        props['add_view_expr'] = props['add_view_expr'].replace(self.context.fti.getId(), type_id)
         fti = DexterityFTI(type_id, **props)
         return fti
 
