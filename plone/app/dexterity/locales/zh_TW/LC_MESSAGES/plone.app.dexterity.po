@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
 "POT-Creation-Date: 2013-04-06 15:36+0000\n"
-"PO-Revision-Date: 2013-01-21 17:45+0800\n"
+"PO-Revision-Date: 2013-07-19 22:15+0800\n"
 "Last-Translator: TsungWei Hu <marr.tw@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "允許啟用前後項導覽功能"
 
 #: ../interfaces.py:75
 msgid "Allowed Content Types"
-msgstr ""
+msgstr "允許使用的內容型別"
 
 msgid "Assign an effective and/or expiration date"
 msgstr "指定生效或失效日期"
@@ -134,7 +134,7 @@ msgstr "欄位"
 
 #: ../interfaces.py:64
 msgid "Filter Contained Types"
-msgstr ""
+msgstr "篩選被包含的型別"
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
@@ -247,12 +247,12 @@ msgstr "勾選的話，目錄裡的項目會顯示前後項導覽功能。"
 #. Default: "All content types"
 #: ../browser/overview.pt:24
 msgid "label_all_content_types"
-msgstr ""
+msgstr "包括所有的內容型別"
 
 #. Default: "Contained items"
 #: ../browser/overview.pt:9
 msgid "label_contained_items"
-msgstr ""
+msgstr "是否包含其他內容型別"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
@@ -262,7 +262,7 @@ msgstr "排除導覽"
 #. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
 #: ../interfaces.py:65
 msgid "label_filter_contained_types"
-msgstr ""
+msgstr "這個型別可以包含其他型別，就像目錄一樣。請設定哪些型別能被包含。"
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
@@ -272,10 +272,10 @@ msgstr "啟用前後項導覽"
 #. Default: "No content types"
 #: ../browser/overview.pt:18
 msgid "label_no_content_types"
-msgstr ""
+msgstr "不包含其他內容型別"
 
 #. Default: "Some content types:"
 #: ../browser/overview.pt:30
 msgid "label_some_content_types"
-msgstr ""
+msgstr "包含一些內容型別："
 
