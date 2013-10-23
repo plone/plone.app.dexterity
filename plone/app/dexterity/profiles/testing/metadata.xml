@@ -4,6 +4,5 @@
   <dependencies>
     <dependency>profile-plone.app.dexterity:default</dependency>
     <dependency>profile-plone.app.z3cform:default</dependency>
-    <dependency>profile-plone.z3cform:default</dependency>
   </dependencies>
 </metadata>

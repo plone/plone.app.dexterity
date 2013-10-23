@@ -304,14 +304,14 @@ class DocumentIntegrationTest(unittest.TestCase):
 
     def test_formschemainvariants(self):
         class Data(object):
-            current_prefer = []
-            current_allow = []
+            allowed_types = []
+            secondary_types = []
         bad = Data()
-        bad.current_prefer = []
-        bad.current_allow = ['1']
+        bad.allowed_types = []
+        bad.secondary_types = ['1']
         good = Data()
-        good.current_prefer = ['1']
-        good.current_allow = []
+        good.allowed_types = ['1']
+        good.secondary_types = []
         self.assertTrue(IConstrainForm.validateInvariants(good) is None)
         self.assertRaises(Invalid, IConstrainForm.validateInvariants, bad)
 
@@ -358,8 +358,8 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         self.browser.getLink('Restrictions').click()
         ctrl = lambda name: self.browser.getControl(name=name)
         self.browser.getControl("Type restrictions").value = ['1']
-        ctrl("form.widgets.current_prefer:list").value = ["Document", "Folder"]
-        ctrl("form.widgets.current_allow:list").value = ["Document"]
+        ctrl("form.widgets.allowed_types:list").value = ["Document", "Folder"]
+        ctrl("form.widgets.secondary_types:list").value = ["Document"]
         self.browser.getControl("Save").click()
         aspect = ISelectableConstrainTypes(self.folder)
         self.assertEqual(1, aspect.getConstrainTypesMode())
@@ -377,8 +377,8 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         self.browser.getLink('Restrictions').click()
         ctrl = lambda name: self.browser.getControl(name=name)
         self.browser.getControl("Type restrictions").value = ['1']
-        ctrl("form.widgets.current_prefer:list").value = ["Document"]
-        ctrl("form.widgets.current_allow:list").value = ["Document", "Folder"]
+        ctrl("form.widgets.allowed_types:list").value = ["Document"]
+        ctrl("form.widgets.secondary_types:list").value = ["Document", "Folder"]
         self.browser.getControl("Save").click()
         self.assertEqual(constraint_before, aspect.getConstrainTypesMode())
         self.assertTrue('Error' in self.browser.contents)
