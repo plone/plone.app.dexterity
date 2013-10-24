@@ -30,7 +30,6 @@ setup(name='plone.app.dexterity',
       zip_safe=False,
       install_requires=[
           # Dexterity
-          'collective.z3cform.datetimewidget >=1.1dev',
           'plone.app.textfield',
           'plone.behavior>=1.0b5',
           'plone.dexterity >= 2.2.0dev',
