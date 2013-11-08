@@ -2,6 +2,8 @@
 """ Support for importing Dexterity types from GS zip file.
 """
 
+# XXX: need to make exceptions more specific, shorten messages
+
 from DateTime.DateTime import DateTime
 from lxml import etree
 from Products.CMFCore.utils import getToolByName
@@ -22,7 +24,7 @@ class ZipFileImportContext(BaseContext):
     implements(IImportContext)
 
     def __init__(self, tool, archive_bits, encoding=None, should_purge=False):
-        BaseContext.__init__(self, tool, encoding)
+        super(ZipFileImportContext, self).__init__(tool, encoding)
         self._archive = ZipFile(archive_bits, 'r')
         self._should_purge = bool(should_purge)
         self.name_list = self._archive.namelist()
@@ -70,3 +72,42 @@ class ZipFileImportContext(BaseContext):
               (path == '' or len(dn.split('/')) == len(path.split('/')) + 1):
                 res.add(dn.split('/')[-1])
         return list(res)
+
+
+class TypesZipFileImportContext(ZipFileImportContext):
+    """ a ZipFileImportContext containing a types profile
+    """
+
+    def __init__(self, tool, archive_bits, encoding=None, should_purge=False):
+        super(TypesZipFileImportContext, self).__init__(
+            tool,
+            archive_bits,
+            encoding
+        )
+
+        # verify that this import is a types list and nothing else.
+        rootDir = self.listDirectory(None)
+        if set(rootDir) != set(['types.xml', 'types']) or \
+            not self.isDirectory('types'):
+
+            raise ValueError('Import archive must contain only types.')
+
+        source = self.readDataFile('types.xml')
+        root = etree.fromstring(source)
+        if root.tag != 'object':
+            raise ValueError('types.xml in archive is invalid.')
+        existing_types = tool.listContentTypes()
+
+        for element in root.getchildren():
+            if element.tag == 'object':
+                attribs = element.attrib
+                if not attribs['meta_type'] == 'Dexterity FTI':
+                    raise ValueError(
+                        'Types in archive must be only Dexterity types.'
+                    )
+                if attribs['name'] in existing_types:
+                    raise ValueError(
+                        'One or more types in the import archive is an '
+                        'existing type. Delete the existing type if you '
+                        'really wish to replace it.'
+                    )
