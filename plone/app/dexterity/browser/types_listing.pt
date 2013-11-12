@@ -16,8 +16,8 @@ $(document).ready(function() {
         formselector: '#add-type-form',
         noform: function(el) {return $.plonepopups.noformerrorshow(el, 'redirect');},
         redirect: function (el, responseText) {
-            var fields_link = $('div > ul > li.selected a', el)
-            if (fields_link.length == 1){
+            var fields_link = $('div > ul > li.selected a', el);
+            if (fields_link.length === 1){
                 return fields_link.attr('href');
             }
             return location;
