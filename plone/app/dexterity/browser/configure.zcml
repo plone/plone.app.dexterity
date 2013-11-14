@@ -65,6 +65,13 @@
         />
 
     <browser:page
+        name="import-types"
+        for="plone.app.dexterity.interfaces.ITypesContext"
+        class=".import_types.TypeProfileImportFormPage"
+        permission="plone.schemaeditor.ManageSchemata"
+        />
+
+    <browser:page
         name="overview"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
         class=".overview.TypeOverviewPage"
