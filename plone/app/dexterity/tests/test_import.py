@@ -2,13 +2,16 @@
 """Test the types import."""
 
 from DateTime.DateTime import DateTime
+from plone.app.dexterity.browser.import_types import ITypeProfileImport
+from plone.app.dexterity.browser.import_types import TypeProfileImport
+from plone.app.dexterity.browser.import_types import ZipFileImportContext
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
-from plone.app.dexterity.browser.importtypes import TypesZipFileImportContext
-from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 
 import os.path
+import plone.namedfile
 import unittest2 as unittest
+import zope.interface
 
 
 class TestDexterityTypesImport(unittest.TestCase):
@@ -26,7 +29,7 @@ class TestDexterityTypesImport(unittest.TestCase):
             'dexterity_export.zip',
         )
         f = open(zname, 'r')
-        icontext = TypesZipFileImportContext(types_tool, f)
+        icontext = ZipFileImportContext(types_tool, f)
 
         types_xml = icontext.readDataFile('types.xml')
         self.assertTrue(
@@ -73,7 +76,7 @@ class TestDexterityTypesImport(unittest.TestCase):
             'dexterity_export.zip'
         )
         with open(zname, 'r') as f:
-            icontext = TypesZipFileImportContext(types_tool, f)
+            icontext = ZipFileImportContext(types_tool, f)
             handler(icontext)
 
         # Our types list should have our two new types
@@ -82,14 +85,18 @@ class TestDexterityTypesImport(unittest.TestCase):
             set(['test_type_one', 'test_type_two'])
         )
 
-        # trying to create the context again should fail, since
+        # Trying to import now should fail, since
         # it would be importing existing types.
+        # This is tested in an invariant.
+        data = TypeProfileImport(profile_file=plone.namedfile.NamedFile())
         with open(zname, 'r') as f:
-            self.assertRaises(ValueError,
-                TypesZipFileImportContext,
-                types_tool,
-                f
-            )
+            data.profile_file.data = f.read()
+        self.assertRaises(
+            zope.interface.Invalid,
+            ITypeProfileImport.validateInvariants,
+            data
+        )
+
 
 
 def test_suite():
