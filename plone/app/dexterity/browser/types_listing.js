@@ -28,6 +28,14 @@ $(document).ready(function() {
         }
     });
 
+    // import types form
+    $('#import-types').prepOverlay({
+        subtype: 'ajax',
+        filter: common_content_filter,
+        formselector: '#import-types-form',
+        noform: 'reload'
+    });
+
     // clone type form
     $('#crud-edit-form-buttons-clone').click(function(e) {
       var selected = $('input[id$=-widgets-select-0]:checked');

@@ -27,8 +27,9 @@ class ITypeProfileImport(zope.interface.Interface):
     """
 
     profile_file = NamedFile(
-        title=u'Type profiles archive',
-        required=True)
+        title=_(u'Type profiles archive file'),
+        required=True,
+    )
 
     @zope.interface.invariant
     def isGoodImportFile(data):
@@ -49,7 +50,7 @@ class ITypeProfileImport(zope.interface.Interface):
             if (os.path.dirname(fname) != 'types') or \
                 os.path.splitext(fname)[1] != '.xml':
                 raise zope.interface.Invalid(_(
-                    u"Error: The file submitted must be a zip archive " \
+                    u"Error: The file submitted must be a zip archive "
                     u"containing only type profile information."
             ),)
 
@@ -94,8 +95,15 @@ class TypeProfileImport(object):
 class TypeProfileImportForm(form.AddForm):
 
     label = _(u'Import Content Types')
+    description = _(
+        u"You may import types by uploading a zip archive containing type "
+        u"profiles. The import archive should contain a types.xml file and a "
+        u"types directory containing one or more Dexterity type information "
+        u"files. For a sample, create a content type and export it from the "
+        u"Dexterity Content Types page."
+    )
     fields = field.Fields(ITypeProfileImport)
-    id = 'import-types'
+    id = 'import-types-form'
 
     def create(self, data):
         return TypeProfileImport(**data)
