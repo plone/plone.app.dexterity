@@ -16,9 +16,9 @@ $(document).ready(function() {
         formselector: '#add-type-form',
         noform: function(el) {return $.plonepopups.noformerrorshow(el, 'redirect');},
         redirect: function (el, responseText) {
-            var mo = responseText.match(/<base href="(\S+?)"/i);
-            if (mo.length === 2) {
-                return mo[1] + '/@@fields';
+            var fields_link = $('div > ul#content-views > li.selected a', responseText);
+            if (fields_link.length === 1){
+                return fields_link.attr('href');
             }
             return location;
         }
