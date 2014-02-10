@@ -1,9 +1,11 @@
-import os
-import unittest
-import robotsuite
 from plone.testing import layered
 
-from ..testing import DEXTERITY_ACCEPTANCE_TESTING
+from plone.app.dexterity.testing import DEXTERITY_ACCEPTANCE_TESTING
+from plone.app.testing import ROBOT_TEST_LEVEL
+
+import os
+import robotsuite
+import unittest
 
 
 def test_suite():
@@ -14,10 +16,12 @@ def test_suite():
         os.path.join('robot', doc) for doc in os.listdir(robot_dir)
         if doc.endswith('.robot') and doc.startswith('test_')
     ]
-    for test in robot_tests:
+    for robot_test in robot_tests:
+        robottestsuite = robotsuite.RobotTestSuite(robot_test)
+        robottestsuite.level = ROBOT_TEST_LEVEL
         suite.addTests([
             layered(
-                robotsuite.RobotTestSuite(test),
+                robottestsuite,
                 layer=DEXTERITY_ACCEPTANCE_TESTING
             ),
         ])
