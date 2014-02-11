@@ -14,6 +14,10 @@ Changelog for plone.app.dexterity
 - Fix bug where the type editor's inline javascript was mangled by diazo.
   [davisagli]
 
+- Remove DL's from portal message in templates.
+  https://github.com/plone/Products.CMFPlone/issues/153
+  [khink]
+
 - Fixed Add view URL of cloned content type.
   Refs http://dev.plone.org/ticket/13776.
   [thomasdesvenain]

@@ -68,11 +68,11 @@ $(document).ready(function() {
 })(jQuery);
 </script>
 
-<dl class="portalMessage"
+<div class="portalMessage"
      tal:condition="view/status">
-  <dt>Info</dt>
-  <dd tal:content="view/status"/>
-</dl>
+  <strong>Info</strong>
+  <span tal:replace="view/status"/>
+</div>
 
 <p class="crud-description"
      tal:condition="view/description"
