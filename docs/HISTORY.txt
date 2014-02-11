@@ -8,6 +8,9 @@ Changelog for plone.app.dexterity
   https://github.com/plone/Products.CMFPlone/issues/153
   [khink]
 
+- Fix bug where the type editor's inline javascript was mangled by diazo.
+  [davisagli]
+
 - Fixed Add view URL of cloned content type.
   Refs http://dev.plone.org/ticket/13776.
   [thomasdesvenain]
