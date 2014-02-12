@@ -122,6 +122,8 @@ class TypeSettingsAdapter(object):
         return set(self.context.allowed_content_types)
 
     def _set_allowed_content_types(self, value):
+        if not value:
+            value = ()
         self.context.allowed_content_types = tuple(value)
         if value:
             self.context.filter_content_types = True
