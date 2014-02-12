@@ -130,6 +130,16 @@
       <utility factory=".related.related_items_behavior_BBB"
                provides="plone.behavior.interfaces.IBehavior"
                name="plone.app.dexterity.behaviors.related.IRelatedItems"/>
-    </configure>
+           </configure>
+
+  <plone:behavior
+    title="RichText"
+    description="Adds richtext behavior"
+    provides=".richtext.IRichText"
+    factory=".richtext.RichText"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    marker=".richtext.IRichText"
+    />
+
 
 </configure>
