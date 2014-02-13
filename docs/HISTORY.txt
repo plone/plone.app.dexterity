@@ -7,6 +7,10 @@ Changelog for plone.app.dexterity
 - PLIP #13705: Remove <base> tag.
   [frapell]
 
+- Remove DL's from portal message in templates.
+  https://github.com/plone/Products.CMFPlone/issues/153
+  [khink]
+
 
 2.0.11 (2013-12-07)
 -------------------

@@ -1,13 +1,13 @@
-<dl class="portalMessage info"
+<div class="portalMessage info"
     tal:condition="context/@@plone_context_state/is_default_page|nothing">
-    <dt i18n:translate="">
+    <strong i18n:translate="">
         Info
-    </dt>
-    <dd i18n:translate="label_edit_default_view_container">
+    </strong>
+    <span tal:omit-tag="" i18n:translate="label_edit_default_view_container">
         You are editing the default view of a container. If you wanted to edit the container itself,
        <a href=""
           i18n:name="go_here"
           i18n:translate="label_edit_default_view_container_go_here"
           tal:attributes="href string:${context/aq_inner/aq_parent/absolute_url}/edit">go here</a>.
-    </dd>
-</dl>
+    </span>
+</div>
