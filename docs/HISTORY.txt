@@ -1,12 +1,19 @@
 Changelog for plone.app.dexterity
 =================================
 
-2.0.11 (unreleased)
+2.0.12 (unreleased)
 -------------------
+
+- PLIP #13705: Remove <base> tag.
+  [frapell]
 
 - Remove DL's from portal message in templates.
   https://github.com/plone/Products.CMFPlone/issues/153
   [khink]
+
+
+2.0.11 (2013-12-07)
+-------------------
 
 - Fix bug where the type editor's inline javascript was mangled by diazo.
   [davisagli]
