@@ -400,9 +400,8 @@ container::
 
   >>> select.getControl('Page').selected = True
   >>> browser.getControl('Apply').click()
-  >>> print browser.contents
-  <BLANKLINE>
-  ...Data successfully updated...
+  >>> 'Data successfully updated' in browser.contents
+  True
 
 Now only the allowed types may be added::
 
