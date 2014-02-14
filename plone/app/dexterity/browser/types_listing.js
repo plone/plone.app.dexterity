@@ -20,7 +20,7 @@ $(document).ready(function() {
             }
         },
         redirect: function (el, responseText) {
-            var mo = responseText.match(/<base href="(\S+?)"/i);
+            var mo = responseText.match(/<a href="(\S+?)\/@@fields"/i);
             if (mo.length === 2) {
                 return mo[1] + '/@@fields';
             }
