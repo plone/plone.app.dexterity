@@ -102,6 +102,11 @@
         permission="plone.schemaeditor.ManageSchemata"
         />
 
+    <browser:resource
+        name="plone.app.dexterity.types_listing.js"
+        file="types_listing.js"
+        />
+
     <configure zcml:condition="installed plone.resourceeditor">
         <browser:page
             name="modeleditor"
