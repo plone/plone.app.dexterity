@@ -173,7 +173,7 @@ Return to our view and find the XML model source in a div, ready for the Ace edi
 
 There should be an authenticator in the `save` form::
 
-  >>> authenticator = browser.getControl(name="_authenticator").value
+  >>> authenticator = browser.getControl(name="_authenticator", index=0).value
 
 Save is via AJAX. Let's check the save view's functionality.
 
