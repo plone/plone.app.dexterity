@@ -29,6 +29,21 @@ class TestShortNameBehavior(unittest.TestCase):
         self.browser.getControl('Save').click()
         self.assertEqual(self.browser.url, 'http://nohost/plone/foo')
 
+        # adding another item should append a suffix
+        self.browser.open('http://nohost/plone')
+        self.browser.getLink('Page').click()
+        self.browser.getControl('Title').value = 'title'
+        self.browser.getControl('Short name').value = 'foo'
+        self.browser.getControl('Save').click()
+        self.assertEqual(self.browser.url, 'http://nohost/plone/foo-1')
+
+    def test_add_item_w_reserved_name(self):
+        self.browser.getLink('Page').click()
+        self.browser.getControl('Title').value = 'title'
+        self.browser.getControl('Short name').value = 'login'  # naughty naughty
+        self.browser.getControl('Save').click()
+        self.assertEqual(self.browser.url, 'http://nohost/plone/login-1')
+
     def test_add_item_w_title_only(self):
         self.browser.getLink('Page').click()
         self.browser.getControl('Title').value = 'Id from Title'
@@ -42,7 +57,8 @@ class TestShortNameBehavior(unittest.TestCase):
         self.browser.getControl('Save').click()
         self.browser.getLink('Edit').click()
         self.assertEqual(self.browser.getControl('Short name').value, 'foo')
-        self.browser.getControl('Short name').value = 'bar'
+        # spaces should get stripped
+        self.browser.getControl('Short name').value = ' bar '
         self.browser.getControl('Save').click()
         self.assertEqual(self.browser.url, 'http://nohost/plone/bar')
 
