@@ -4,7 +4,9 @@ Changelog for plone.app.dexterity
 2.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add behavior to let an item's id be edited from its edit form
+  (plone.app.dexterity.behaviors.id.ShortName).
+  [davisagli]
 
 
 2.1.0 (2014-03-01)
