@@ -46,6 +46,11 @@ we can use the field directly in ``session.py``::
             required=False,
         )
 
+.. Note::
+
+    Remeber that `plone.app.relationfield`_ needs to be installed to use any
+    RelationChoice or RelationList field.
+
 To allow multiple items to be selected, we could have used a
 ``RelationList`` like::
 
