@@ -102,26 +102,12 @@ You may have noticed this in the URLs to add forms already.
 What actually happens is this:
 
 - Plone renders the :guilabel:`add` menu.
-  - To do so, it looks, among other places, for actions in the
-    *folder/add* category. This category is provided by the
-    ``portal_types`` tool.
-  - The *folder/add* action category is constructed by looking up the
-    ``add\_view\_expr`` property on the FTIs of all addable types. 
-    This is a TALES expression telling the add menu which URL to use.
-  - The default ``add\_view\_expr`` in Dexterity (and CMF 2.2) is
-    ``string:${folder\_url}/++add++${fti/getId}``.
-    That is, it uses the ``++add++`` traversal namespace with an argument
-    containing the FTI name.
-- A user clicks on an entry in the menu and is taken to a URL like
-  ``/path/to/folder/++add++my.type``.
-    - The ``++add++`` namespace adapter looks up the FTI with the given name,
-      and gets its ``factory`` property.
-    - The ``factory`` property of an FTI gives the name of a particular
-      ``zope.component.interfaces.IFactory`` utility,
-      which is used later to construct an instance of the content object.
-      Dexterity automatically registers a factory instance for each type,
-      with a name that matches the type name,
-      although it is possible to use an existing factory name in a new type.
+  - To do so, it looks, among other places, for actions in the *folder/add* category. This category is provided by the ``portal_types`` tool.
+  - The *folder/add* action category is constructed by looking up the ``add\_view\_expr`` property on the FTIs of all addable types. This is a TALES expression telling the add menu which URL to use.
+  - The default ``add\_view\_expr`` in Dexterity (and CMF 2.2) is ``string:${folder\_url}/++add++${fti/getId}``. That is, it uses the ``++add++`` traversal namespace with an argument containing the FTI name.
+- A user clicks on an entry in the menu and is taken to a URL like ``/path/to/folder/++add++my.type``.
+    - The ``++add++`` namespace adapter looks up the FTI with the given name, and gets its ``factory`` property.
+    - The ``factory`` property of an FTI gives the name of a particular ``zope.component.interfaces.IFactory`` utility, which is used later to construct an instance of the content object.  Dexterity automatically registers a factory instance for each type, with a name that matches the type name, although it is possible to use an existing factory name in a new type.
       This allows administrators to create new “logical” types that are
       functionally identical to an existing type.
     - The ``++add++`` namespace adapter looks up the actual form to render as
@@ -140,13 +126,9 @@ What actually happens is this:
 - The form is rendered like any other ``z3c.form`` form instance,
   and is subject to validation,
   which may cause it to be loaded several times.
-- Eventually, the form is successfully submitted.
-  At this point:
-    - The standard ``AddForm`` base class will look up the factory from the
-      FTI reference it holds and call it to create an instance.
-    - The default Dexterity factory looks at the ``klass`` [*]_ attribute of
-      the FTI to determine the actual content class to use,
-      creates an object and initialises it.
+- Eventually, the form is successfully submitted. At this point:
+    - The standard ``AddForm`` base class will look up the factory from the FTI reference it holds and call it to create an instance.
+    - The default Dexterity factory looks at the ``klass`` [*]_ attribute of the FTI to determine the actual content class to use, creates an object and initialises it.
     - The ``portal_type`` attribute of the newly created instance is set to
       the name of the FTI.
       Thus, if the FTI is a “logical type” created through the web, but
