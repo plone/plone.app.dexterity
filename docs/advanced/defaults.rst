@@ -27,7 +27,7 @@ We also need to import ``datetime`` at the top of the file, of course.
 
 Notice how the functions specify a particular schema field that they
 provide the default value for. The decorator will actually register
-these as “value adapters” for `z3c.form`_, but you probably don’t need to
+these as “value adapters” for `z3c.form <http://pypi.python.org/pypi/z3c.form>`_, but you probably don’t need to
 worry about that.
 
 The ``data`` argument is an object that contains an attribute for each

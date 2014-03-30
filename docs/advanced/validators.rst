@@ -107,7 +107,7 @@ Code not relevant to this example is snipped with an ellipsis (…)::
 Form validators
 ~~~~~~~~~~~~~~~
 
-Finally, you can write more powerful validators by using the `z3c.form`_
+Finally, you can write more powerful validators by using the `z3c.form <http://pypi.python.org/pypi/z3c.form>`_
 widget validators. See :ref:`the z3c.form documentation <z3c.form>`_ for
 details.
 
