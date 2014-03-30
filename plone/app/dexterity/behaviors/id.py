@@ -41,6 +41,10 @@ class ShortName(object):
             return
         context = aq_inner(self.context)
         parent = aq_parent(context)
+        if parent is None:
+            # Object hasn't been added to graph yet; just set directly
+            context.id = value
+            return
         new_id = INameChooser(parent).chooseName(value, context)
         if context.getId():
             transaction.savepoint()
