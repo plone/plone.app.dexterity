@@ -67,7 +67,7 @@ For example, we could:
 - Override the ``schema`` property to tell `plone.autoform`_ to use a
   different schema interface (with different form hints) than the
   content type schema.
-- Override the ``additional_schemata`` property to tell `plone.autoform`_
+- Override the ``additionalSchemata`` property to tell `plone.autoform`_
   to use different supplemental schema interfaces. 
   The default is to use all behavior interfaces that provide the
   ``IFormFieldProvider`` marker from `plone.directives.form`_.
