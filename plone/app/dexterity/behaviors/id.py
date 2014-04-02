@@ -1,3 +1,4 @@
+from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
 from zope import schema
@@ -46,7 +47,7 @@ class ShortName(object):
             context.id = value
             return
         new_id = INameChooser(parent).chooseName(value, context)
-        if context.getId():
+        if getattr(aq_base(context), 'id', None):
             transaction.savepoint()
             parent.manage_renameObject(context.getId(), new_id)
         else:
