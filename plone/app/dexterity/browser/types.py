@@ -208,7 +208,7 @@ class TypesListing(crud.CrudForm):
         (But only for types with schemata that can be edited through the web.)
         """
         if field == 'title':
-            return '%s/%s' % (self.context.absolute_url(), item.__name__)
+            return '%s/%s' % (self.context.absolute_url(), urllib.quote(item.__name__))
 
 # Create a form wrapper so the form gets layout.
 TypesListingPage = layout.wrap_form(
