@@ -8,6 +8,10 @@ Changelog for plone.app.dexterity
   (plone.app.dexterity.behaviors.id.ShortName).
   [davisagli]
 
+- Cloning of types containing white space did not work, this commit 
+  fixes that bug.
+  [bosim]
+
 
 2.1.0 (2014-03-01)
 ------------------
