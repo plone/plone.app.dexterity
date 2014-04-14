@@ -324,7 +324,19 @@ class Basic(MetadataBase):
     def _set_description(self, value):
         if isinstance(value, str):
             raise ValueError('Description must be unicode.')
+
+        # If description is containing linefeeds the HTML
+        # validation can break.
+        # See http://bo.geekworld.dk/diazo-bug-on-html5-validation-errors/
+
+        if '\n' in value:
+            value = value.replace('\n', '')
+
+        if '\r' in value:
+            value = value.replace('\r', '')
+
         self.context.description = value
+
     description = property(_get_description, _set_description)
 
 
