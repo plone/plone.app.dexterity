@@ -4,11 +4,16 @@
 <script type="text/javascript"
         tal:attributes="src context/++resource++plone.app.dexterity.types_listing.js"></script>
 
-<dl class="portalMessage"
+<div class="portalMessage" role="alertdialog" aria-labelledby="dialogTitle"
      tal:condition="view/status">
-  <dt>Info</dt>
-  <dd tal:content="view/status"/>
-</dl>
+  <strong id="dialogTitle"
+          i18n:translate="">
+    Info
+  </strong>
+  <span tal:content="view/status">
+    Status
+  </span>
+</div>
 
 <p class="crud-description"
      tal:condition="view/description"
