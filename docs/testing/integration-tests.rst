@@ -411,4 +411,4 @@ and restart.
 .. _collective.testcaselayer: http://pypi.python.org/pypi/collective.testcaselayer
 .. _plone.app.testing: http://pypi.python.org/pypi/plone.app.testing
 .. _Roadrunner: http://pypi.python.org/pypi/roadrunner
-.. _testing tutorial: /documentation/tutorial/testing
+.. _testing tutorial: /external/plone.app.testing/docs/source/index

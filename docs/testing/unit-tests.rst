@@ -158,4 +158,4 @@ coverage, it means that your tests do not cover many of the code paths
 in those modules, and so are less useful for detecting bugs or guarding
 against future problems. Aim for 100%.
 
-.. _Plone testing tutorial: ../../../../../../documentation/tutorial/testing
+.. _Plone testing tutorial: /external/plone.app.testing/docs/source/index
