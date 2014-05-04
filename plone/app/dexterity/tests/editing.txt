@@ -500,12 +500,13 @@ zip archive containing supermodel xml files::
     >>> archive.namelist()
     ['models/plonista2.xml', 'models/plonista-folder.xml']
 
-    >>> print archive.read('models/plonista2.xml')
-    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
-      <schema>
-      ...
-      </schema>
+    >>> from lxml import etree
+    >>> root = etree.XML(archive.read('models/plonista2.xml'))
+    >>> print(etree.tostring(root, pretty_print=True))
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
+      <schema/>
     </model>
+    ...
 
 If there's only one item selected, we get a single XML file rather than a zip
 file::
@@ -522,10 +523,10 @@ file::
     >>> browser.headers['content-disposition']
     'attachment; filename=plonista2.xml'
 
-    >>> print browser.contents
-    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
-      <schema>
-      ...
-      </schema>
+    >>> root = etree.XML(browser.contents)
+    >>> print(etree.tostring(root, pretty_print=True))
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
+      <schema/>
     </model>
+    ...
 
