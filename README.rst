@@ -78,7 +78,7 @@ Getting started
 
 Please read the `installation guide`_ to get Dexterity up and running.
 
-.. _`installation guide`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/install.html
+.. _`installation guide`: http://docs.plone.org/external/plone.app.dexterity/docs/install.html
 
 Then log in to Plone, go to Site Setup, and go to the ``Dexterity Types``
 control panel to get started creating content types through the web.
@@ -108,8 +108,8 @@ Various documentation is available:
 * `Dexterity Developer Manual`_
 * `How to create reusable behaviors for Dexterity types`_
 
-.. _`Dexterity Developer Manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity
-.. _`How to create reusable behaviors for Dexterity types`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/behaviors
+.. _`Dexterity Developer Manual`: http://docs.plone.org/external/plone.app.dexterity/docs/index.html
+.. _`How to create reusable behaviors for Dexterity types`: http://docs.plone.org/external/plone.app.dexterity/docs/behaviors/index.html
 
 The following documents are not Dexterity-specific, but will likely be useful
 to users of Dexterity:
@@ -117,8 +117,8 @@ to users of Dexterity:
 * `Schema-driven forms manual`_
 * `five.grok manual`_
 
-.. _`Schema-driven forms manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/schema-driven-forms
-.. _`five.grok manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/five-grok
+.. _`Schema-driven forms manual`: http://docs.plone.org/develop/addons/schema-driven-forms/index.html
+.. _`five.grok manual`: http://docs.plone.org/develop/addons/five-grok/index.html
 
 
 Mailing list
