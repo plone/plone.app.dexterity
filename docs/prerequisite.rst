@@ -56,11 +56,11 @@ template.
 
     Nothing that we're doing actually requires ZopeSkel or the zopeskel.dexterity skeleton package. It's just a quick way of getting started.
 
-We run the following from the ``src/`` directory::
+We run the following from the ``src/`` directory
 
-.. code-block:: bash
+.. code-block:: console
 
-    $ ../bin/zopeskel dexterity example.conference
+  $ ../bin/zopeskel dexterity example.conference
 
 You may accept all the default suggestions. This will create a directory named
 ``example.conference`` inside ./src.
