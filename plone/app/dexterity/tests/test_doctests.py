@@ -12,7 +12,7 @@ tests = (
     'nextprevious.txt',
     'filename.txt',
     'schema_events.txt',
-    )
+)
 
 
 def test_suite():
@@ -20,4 +20,4 @@ def test_suite():
         [layered(doctest.DocFileSuite(f, optionflags=doctest.ELLIPSIS),
                  layer=DEXTERITY_FUNCTIONAL_TESTING)
             for f in tests]
-        )
+    )

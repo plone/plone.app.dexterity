@@ -32,12 +32,11 @@ We can see this type in the addable types at the root of the site::
     >>> browser.getControl("metadatad_type").click()
     >>> browser.getControl("Add").click()
     >>> browser.getControl(name="form.widgets.IDublinCore.title").value = "My Object"
-    >>> browser.getControl(name="form.widgets.title").value = "My Object"
     >>> browser.getControl(name="form.widgets.IDublinCore.description").value = "Lorem ipsum"
     >>> browser.getControl(name="form.buttons.save").click()
     >>> browser.url
     'http://nohost/plone/metadatad_type/view'
-    
+
 The creator of the object is the current user::
 
     >>> "http://nohost/plone/author/test_user_1_" in browser.contents
@@ -48,7 +47,7 @@ The creator of the object is the current user::
 
 The modified and creation dates are set correctly::
 
-    >>> md.ModificationDate() == md.CreationDate()
+    >>> md.ModificationDate()[0:16] == md.CreationDate()[0:16]
     True
     >>> from DateTime import DateTime
     >>> DateTime() > DateTime(md.CreationDate())

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-09-16 23:18+0000\n"
-"PO-Revision-Date: 2014-07-02 21:19+0900\n"
+"POT-Creation-Date: 2013-04-06 15:36+0000\n"
+"PO-Revision-Date: 2011-05-20 15:13+0800\n"
 "Last-Translator: Takanori Suzuki <takanori@takanory.net>\n"
 "Language-Team: Plone Japanese Team <https://github.com/plonejp>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Domain: plone.app.dexterity\n"
 "X-Is-Fallback-For: ja-jp\n"
 
-#: ../interfaces.py:67
+#: ../interfaces.py:87
 msgid "# of items"
 msgstr "アイテム数"
 
@@ -24,7 +24,7 @@ msgstr "アイテム数"
 msgid "Add Content Type"
 msgstr "コンテンツタイプを追加"
 
-#: ../browser/types_listing.pt:75
+#: ../browser/types_listing.pt:82
 msgid "Add New Content Type…"
 msgstr "新しいコンテンツタイプを追加..."
 
@@ -40,11 +40,23 @@ msgstr "作者、貢献者、権利といったフィールドを追加"
 msgid "Adds keywords and language setting"
 msgstr "キーワードと言語設定を追加"
 
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr ""
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr ""
+
 msgid "Allow items to be excluded from navigation"
 msgstr "アイテムに対してナビゲーションからの除外を有効にする"
 
 msgid "Allow items to have next previous navigation enabled"
 msgstr "アイテムに対して次・前ナビゲーションを有効にする"
+
+#: ../interfaces.py:75
+msgid "Allowed Content Types"
+msgstr ""
 
 msgid "Assign an effective and/or expiration date"
 msgstr "有効日付または満了日付を割り当てる"
@@ -58,16 +70,16 @@ msgstr "コンテンツの主要フィールドファイル名を基にして、
 msgid "Basic metadata"
 msgstr "基本メタデータ"
 
-#: ../browser/behaviors.py:51
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "振る舞い"
 
-#: ../browser/behaviors.py:53
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "振る舞いが更新されました"
 
-#: ../browser/types.py:43
+#: ../browser/types.py:58
 msgid "Clone"
 msgstr "複製する"
 
@@ -86,13 +98,13 @@ msgstr "コンテナ"
 msgid "Description"
 msgstr "説明"
 
-#: ../browser/types.py:186
+#: ../browser/types.py:247
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterityコンテンツタイプ"
 
-#: ../browser/types.py:155
+#: ../browser/types.py:214
 msgid "Dexterity content types"
 msgstr "Dexterityコンテンツタイプ"
 
@@ -108,11 +120,11 @@ msgstr "このコンテンツタイプのアイテムについて、次・前ナ
 msgid "Exclude From navigation"
 msgstr "ナビゲーションから除外する"
 
-#: ../browser/types.py:68
+#: ../browser/types.py:83
 msgid "Export Schema Models"
 msgstr "スキーマモデルをエクポート"
 
-#: ../browser/types.py:56
+#: ../browser/types.py:71
 msgid "Export Type Profiles"
 msgstr "コンテンツタイプのプロファイルをエクスポート"
 
@@ -120,6 +132,10 @@ msgstr "コンテンツタイプのプロファイルをエクスポート"
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "フィールド"
+
+#: ../interfaces.py:64
+msgid "Filter Contained Types"
+msgstr ""
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
@@ -143,24 +159,28 @@ msgstr "次・前ナビゲーション"
 msgid "Next previous navigation toggle"
 msgstr "次・前ナビゲーションのトグル"
 
-#: ../browser/behaviors.py:54
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr ""
+
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "何も変更されていません"
 
 #: ../browser/layout.py:14
-#: ../browser/overview.py:19
+#: ../browser/overview.py:32
 msgid "Overview"
 msgstr "概要"
 
-#: ../browser/types.py:48
+#: ../browser/types.py:63
 msgid "Please select a single type to clone."
 msgstr "複製するコンテンツタイプを一つだけ選択してください"
 
-#: ../browser/types.py:54
+#: ../browser/types.py:69
 msgid "Please select a type to clone."
 msgstr "複製するコンテンツタイプを選択してください"
 
-#: ../browser/types.py:61
+#: ../browser/types.py:76
 msgid "Please select types to export."
 msgstr "エクスポートするコンテンツタイプを選択してください（複数選択可）"
 
@@ -168,10 +188,11 @@ msgstr "エクスポートするコンテンツタイプを選択してくださ
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "文字、数字、記号 \".\", \"-\", \"_\" だけを使うようにしてください"
 
-#: ../browser/behaviors.py:52
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "このコンテンツタイプに対して有効にする振る舞いを選択してください"
 
+#: ../behaviors/discussion.py:25
 #: ../behaviors/exclfromnav.py:13
 #: ../behaviors/nextprevious.py:27
 msgid "Settings"
@@ -181,11 +202,11 @@ msgstr "設定"
 msgid "Short Name"
 msgstr "ショートネーム"
 
-#: ../browser/types.py:121
+#: ../browser/types.py:176
 msgid "The following custom content types are available for your site."
 msgstr "以下のカスタムコンテンツタイプがサイトで有効です"
 
-#: ../interfaces.py:78
+#: ../interfaces.py:98
 msgid "There is already a content type named '${name}'"
 msgstr "${name}というコンテンツタイプ名はすでに存在します"
 
@@ -193,7 +214,7 @@ msgstr "${name}というコンテンツタイプ名はすでに存在します"
 msgid "Type Name"
 msgstr "コンテンツタイプ名"
 
-#: ../browser/add_type.py:48
+#: ../browser/add_type.py:47
 msgid "Type added successfully."
 msgstr "コンテンツタイプが追加されました"
 
@@ -205,8 +226,12 @@ msgstr "コンテンツタイプが複製されました"
 msgid "Used for programmatic access to the type."
 msgstr "プログラムからコンテンツタイプへのアクセスに使用します"
 
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr ""
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:124
+#: ../browser/types.py:179
 msgid "help_addcontenttype_button"
 msgstr "新しいカスタムコンテンツタイプを作り始めるには、「コンテンツタイプを追加」ボタンをクリックします"
 
@@ -220,13 +245,38 @@ msgstr "選択すると、このアイテムはナビゲーションツリーに
 msgid "help_nextprevious"
 msgstr "このフォルダに含まれるコンテンツアイテムについて、次・前ウィジェットを有効にします。"
 
+#. Default: "All content types"
+#: ../browser/overview.pt:24
+msgid "label_all_content_types"
+msgstr ""
+
+#. Default: "Contained items"
+#: ../browser/overview.pt:9
+msgid "label_contained_items"
+msgstr ""
+
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
 msgid "label_exclude_from_nav"
 msgstr "ナビゲーションから除外"
 
+#. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
+#: ../interfaces.py:65
+msgid "label_filter_contained_types"
+msgstr ""
+
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
 msgid "label_nextprevious"
 msgstr "次・前ナビゲーションを有効化"
+
+#. Default: "No content types"
+#: ../browser/overview.pt:18
+msgid "label_no_content_types"
+msgstr ""
+
+#. Default: "Some content types:"
+#: ../browser/overview.pt:30
+msgid "label_some_content_types"
+msgstr ""
 

@@ -1,0 +1,38 @@
+<tal:form metal:use-macro="context/@@ploneform-macros/titlelessform"
+	xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+	i18n:domain="plone.app.dexterity">
+ <tal:fields metal:fill-slot="fields">
+	<tal:field tal:replace="structure view/widgets/title/@@ploneform-render-widget" />
+	<tal:field tal:replace="structure view/widgets/description/@@ploneform-render-widget" />
+
+    <fieldset tal:condition="python:'filter_content_types' in view.fields">
+      <legend i18n:translate="label_contained_items">Contained items</legend>
+      <tal:block tal:define="context nocall:view/widgets/filter_content_types;
+      	                     value context/value">
+	  <tal:fieldwrapper metal:use-macro="context/@@ploneform-render-widget/widget-wrapper">
+		<tal:field metal:fill-slot="widget">
+			<label>
+			  <input type="radio" value="none"
+				     tal:attributes="name context/name;
+				                     checked python:'checked' if 'none' in value else None"/>
+			  <tal:block i18n:translate="label_no_content_types">No content types</tal:block>
+			</label><br />
+			<label>
+			  <input type="radio" value="all"
+			  	     tal:attributes="name context/name;
+				                     checked python:'checked' if 'all' in value else None"/>
+			  <tal:block i18n:translate="label_all_content_types">All content types</tal:block>
+			</label><br />
+			<label>
+			  <input type="radio" value="some"
+			  	     tal:attributes="name context/name;
+				                     checked python:'checked' if 'some' in value else None"/>
+			  <tal:block i18n:translate="label_some_content_types">Some content types:</tal:block>
+			  <tal:field tal:replace="structure view/widgets/allowed_content_types/render" />
+			</label>
+		</tal:field>
+	  </tal:fieldwrapper>
+	  </tal:block>
+	</fieldset>
+ </tal:fields>
+</tal:form>

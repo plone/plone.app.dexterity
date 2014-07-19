@@ -86,13 +86,13 @@ msgstr ""
 msgid "Make all items of this type a navigation root"
 msgstr ""
 
-msgid ""
+msgid "label_all_content_types"
 msgstr ""
 
-msgid ""
+msgid "label_no_content_types"
 msgstr ""
 
-msgid ""
+msgid "label_some_content_types"
 msgstr ""
 
 msgid ""

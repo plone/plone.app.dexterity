@@ -78,15 +78,16 @@ Getting started
 
 Please read the `installation guide`_ to get Dexterity up and running.
 
-.. _`installation guide`: http://plone.org/products/dexterity/documentation/how-to/install
+.. _`installation guide`: http://docs.plone.org/external/plone.app.dexterity/docs/install.html
 
 Then log in to Plone, go to Site Setup, and go to the ``Dexterity Types``
 control panel to get started creating content types through the web.
 
-Or read the `Dexterity developer manual`_ to get started developing
+Or read the `Dexterity Developer Manual`_ to get started developing
 Dexterity content types on the filesystem.
 
-This release of Dexterity is compatible with Plone 3, 4, and 4.1.
+The 2.0.x release series of Dexterity is compatible with
+and included with Plone 4.3.
 
 Upgrading
 =========
@@ -104,13 +105,11 @@ Documentation
 
 Various documentation is available:
 
-* `FAQ`_
 * `Dexterity Developer Manual`_
 * `How to create reusable behaviors for Dexterity types`_
 
-.. _`FAQ`: http://plone.org/products/dexterity/documentation/faq
-.. _`Dexterity developer manual`: http://dexterity-developer-manual.readthedocs.org/
-.. _`How to create reusable behaviors for Dexterity types`: http://plone.org/products/dexterity/documentation/manual/behaviors
+.. _`Dexterity Developer Manual`: http://docs.plone.org/external/plone.app.dexterity/docs/index.html
+.. _`How to create reusable behaviors for Dexterity types`: http://docs.plone.org/external/plone.app.dexterity/docs/behaviors/index.html
 
 The following documents are not Dexterity-specific, but will likely be useful
 to users of Dexterity:
@@ -118,8 +117,8 @@ to users of Dexterity:
 * `Schema-driven forms manual`_
 * `five.grok manual`_
 
-.. _`Schema-driven forms manual`: http://plone.org/products/dexterity/documentation/manual/schema-driven-forms
-.. _`five.grok manual`: http://plone.org/products/dexterity/documentation/manual/five.grok
+.. _`Schema-driven forms manual`: http://docs.plone.org/develop/addons/schema-driven-forms/index.html
+.. _`five.grok manual`: http://docs.plone.org/develop/addons/five-grok/index.html
 
 
 Mailing list
@@ -133,19 +132,26 @@ and use of Dexterity.
 Issue tracker
 =============
 
-Please report issues in our `Google Code issue tracker`_.
+Please report issues via the `Plone issue tracker`_.
 
-.. _`Google Code issue tracker`: http://code.google.com/p/dexterity/issues
+.. _`Plone issue tracker`: https://dev.plone.org/
+
+Support
+=======
+
+Dexterity use questions may be answered via `Plone's support channels`_.
+
+.. _`Plone's support channels`: http://plone.org/support
 
 Contributing
 ============
 
 Most Dexterity code is owned by the `Plone Foundation`_ and maintained in the
-`Plone svn repository`_. We're happy to share commit access so that you can
+`Plone github repository`_. We're happy to share commit access so that you can
 share code with us, but first you must sign the `Plone contributor agreement`_.
 
 .. _`Plone Foundation`: http://plone.org/foundation
-.. _`Plone svn repository`: http://svn.plone.org/plone
+.. _`Plone github repository`: http://github.com/plone
 .. _`Plone contributor agreement`: http://plone.org/foundation/contributors-agreement
 
 Dexterity wouldn't be possible without the hard work of a lot of people, including:

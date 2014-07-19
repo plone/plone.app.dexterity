@@ -1,0 +1,281 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: plone.app.dexterity\n"
+"POT-Creation-Date: 2013-04-06 15:36+0000\n"
+"PO-Revision-Date: 2013-07-19 22:15+0800\n"
+"Last-Translator: TsungWei Hu <marr.tw@gmail.com>\n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: zh-tw\n"
+"Language-Name: Traditional Chinese\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone.app.dexterity\n"
+"X-Is-Fallback-For: zh\n"
+
+#: ../interfaces.py:87
+msgid "# of items"
+msgstr "項目數量"
+
+#: ../browser/add_type.py:12
+msgid "Add Content Type"
+msgstr "新增型別"
+
+#: ../browser/types_listing.pt:82
+msgid "Add New Content Type…"
+msgstr "新增內容型別…"
+
+msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+msgstr "新增 Dublin Core 資料 (等同於基本資料+分類+日期+擁有者)"
+
+msgid "Adds a title and description"
+msgstr "新增標題與摘要描述欄位"
+
+msgid "Adds creator, contributor, and rights fields"
+msgstr "新增建立者、貢獻者、著作權欄位"
+
+msgid "Adds keywords and language setting"
+msgstr "新增關鍵字與語系欄位"
+
+#: ../behaviors/discussion.py:30
+msgid "Allow discussion"
+msgstr "允許討論"
+
+#: ../behaviors/discussion.py:31
+msgid "Allow discussion for this content object."
+msgstr "允許其他人留言討論。"
+
+msgid "Allow items to be excluded from navigation"
+msgstr "允許排除於導覽方框"
+
+msgid "Allow items to have next previous navigation enabled"
+msgstr "允許啟用前後項導覽功能"
+
+#: ../interfaces.py:75
+msgid "Allowed Content Types"
+msgstr "允許使用的內容型別"
+
+msgid "Assign an effective and/or expiration date"
+msgstr "指定生效或失效日期"
+
+msgid "Automatically generate short URL name for content based on its initial title"
+msgstr "依照標題文字自動產生 URL 名稱"
+
+msgid "Automatically generate short URL name for content based on its primary field file name"
+msgstr "依照主要欄位自動產生 URL 名稱"
+
+msgid "Basic metadata"
+msgstr "基本資料"
+
+#: ../browser/behaviors.py:58
+#: ../browser/layout.py:16
+msgid "Behaviors"
+msgstr "Behaviors"
+
+#: ../browser/behaviors.py:60
+msgid "Behaviors successfully updated."
+msgstr "Behaviors 更新成功。"
+
+#: ../browser/types.py:58
+msgid "Clone"
+msgstr "複製"
+
+#: ../browser/clone_type.py:11
+msgid "Clone Content Type"
+msgstr "複製內容型別"
+
+msgid "Configures various components needed for full Dexterity support."
+msgstr "設定 Dexterity 元件功能"
+
+#: ../interfaces.py:57
+msgid "Container"
+msgstr "目錄"
+
+#: ../interfaces.py:52
+msgid "Description"
+msgstr "摘要描述"
+
+#: ../browser/types.py:247
+#: ../profiles/default/actions.xml
+#: ../profiles/default/controlpanel.xml
+msgid "Dexterity Content Types"
+msgstr "Dexterity 內容型別"
+
+#: ../browser/types.py:214
+msgid "Dexterity content types"
+msgstr "Dexterity 內容型別"
+
+msgid "Dublin Core metadata"
+msgstr "Dublin Core 資料"
+
+msgid "Effective range"
+msgstr "日期"
+
+msgid "Enable next previous navigation for all items of this type"
+msgstr "啟用前後項導覽"
+
+msgid "Exclude From navigation"
+msgstr "排除導覽"
+
+#: ../browser/types.py:83
+msgid "Export Schema Models"
+msgstr "匯出 Schema Model"
+
+#: ../browser/types.py:71
+msgid "Export Type Profiles"
+msgstr "匯出 Type Profile"
+
+#: ../browser/fields.py:9
+#: ../browser/layout.py:15
+msgid "Fields"
+msgstr "欄位"
+
+#: ../interfaces.py:64
+msgid "Filter Contained Types"
+msgstr "篩選被包含的型別"
+
+#: ../interfaces.py:58
+msgid "Items of this type will be able to contain other items."
+msgstr "目錄式項目可以包含其他項目。"
+
+msgid "Make all items of this type a navigation root"
+msgstr "指定這類型別的項目成為 Navigation Root"
+
+msgid "Name from file name"
+msgstr "從檔案名稱來命名"
+
+msgid "Name from title"
+msgstr "從標題名稱來命名"
+
+msgid "Navigation root"
+msgstr "Navigation Root"
+
+msgid "Next previous navigation"
+msgstr "前後項導覽"
+
+msgid "Next previous navigation toggle"
+msgstr "切換前後項導覽"
+
+#: ../behaviors/discussion.py:17
+msgid "No"
+msgstr "否"
+
+#: ../browser/behaviors.py:61
+msgid "No changes were made."
+msgstr "沒有更動。"
+
+#: ../browser/layout.py:14
+#: ../browser/overview.py:32
+msgid "Overview"
+msgstr "總覽"
+
+#: ../browser/types.py:63
+msgid "Please select a single type to clone."
+msgstr "選擇一個型別來複製。"
+
+#: ../browser/types.py:69
+msgid "Please select a type to clone."
+msgstr "選擇一個型別來複製。"
+
+#: ../browser/types.py:76
+msgid "Please select types to export."
+msgstr "選擇型別來匯出。"
+
+#: ../interfaces.py:25
+msgid "Please use only letters, numbers, and the following characters: .-_"
+msgstr "只能使用字母、數字，還有 .-_ 符號。"
+
+#: ../browser/behaviors.py:59
+msgid "Select the behaviors to enable for this content type."
+msgstr "選擇想要啟用的 Behavior"
+
+#: ../behaviors/discussion.py:25
+#: ../behaviors/exclfromnav.py:13
+#: ../behaviors/nextprevious.py:27
+msgid "Settings"
+msgstr "設定"
+
+#: ../interfaces.py:45
+msgid "Short Name"
+msgstr "識別碼"
+
+#: ../browser/types.py:176
+msgid "The following custom content types are available for your site."
+msgstr "下列是可供使用的型別列表。"
+
+#: ../interfaces.py:98
+msgid "There is already a content type named '${name}'"
+msgstr "已有型別命名為 '${name}'"
+
+#: ../interfaces.py:41
+msgid "Type Name"
+msgstr "型別名稱"
+
+#: ../browser/add_type.py:47
+msgid "Type added successfully."
+msgstr "型別新增成功。"
+
+#: ../browser/clone_type.py:28
+msgid "Type cloned successfully."
+msgstr "型別複製成功。"
+
+#: ../interfaces.py:46
+msgid "Used for programmatic access to the type."
+msgstr "用於程式存取之用。"
+
+#: ../behaviors/discussion.py:16
+msgid "Yes"
+msgstr "是"
+
+#. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
+#: ../browser/types.py:179
+msgid "help_addcontenttype_button"
+msgstr "點選「新增內容型別」按鈕就能建立新的型別。"
+
+#. Default: "If selected, this item will not appear in the navigation tree"
+#: ../behaviors/exclfromnav.py:18
+msgid "help_exclude_from_nav"
+msgstr "勾選的話，這個項目就不會出現在導覽方框裡。"
+
+#. Default: "This enables next/previous widget on content items contained in this folder."
+#: ../behaviors/nextprevious.py:32
+msgid "help_nextprevious"
+msgstr "勾選的話，目錄裡的項目會顯示前後項導覽功能。"
+
+#. Default: "All content types"
+#: ../browser/overview.pt:24
+msgid "label_all_content_types"
+msgstr "包括所有的內容型別"
+
+#. Default: "Contained items"
+#: ../browser/overview.pt:9
+msgid "label_contained_items"
+msgstr "是否包含其他內容型別"
+
+#. Default: "Exclude from navigation"
+#: ../behaviors/exclfromnav.py:17
+msgid "label_exclude_from_nav"
+msgstr "排除導覽"
+
+#. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
+#: ../interfaces.py:65
+msgid "label_filter_contained_types"
+msgstr "這個型別可以包含其他型別，就像目錄一樣。請設定哪些型別能被包含。"
+
+#. Default: "Enable next previous navigation"
+#: ../behaviors/nextprevious.py:31
+msgid "label_nextprevious"
+msgstr "啟用前後項導覽"
+
+#. Default: "No content types"
+#: ../browser/overview.pt:18
+msgid "label_no_content_types"
+msgstr "不包含其他內容型別"
+
+#. Default: "Some content types:"
+#: ../browser/overview.pt:30
+msgid "label_some_content_types"
+msgstr "包含一些內容型別："
+

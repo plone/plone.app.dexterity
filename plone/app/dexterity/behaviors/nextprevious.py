@@ -16,9 +16,12 @@ from zope.interface import alsoProvides
 from zope.interface import implements
 from zope.component import adapts
 
+
 class INextPreviousEnabled(Interface):
-    """Behavior interface to enable next previous navigation for all items of a type.
+    """Behavior interface to enable next previous navigation for all items of
+    a type.
     """
+
 
 class INextPreviousToggle(model.Schema):
     """Behavior interface to enable next previous navigation per item.
@@ -28,10 +31,17 @@ class INextPreviousToggle(model.Schema):
                    fields=['nextPreviousEnabled'])
 
     nextPreviousEnabled = schema.Bool(
-                title=_(u'label_nextprevious', default=u'Enable next previous navigation'),
-                description=_(u'help_nextprevious', default=u'This enables next/previous widget on content items contained in this folder.'),
-                default=False
-                )
+        title=_(
+            u'label_nextprevious',
+            default=u'Enable next previous navigation'
+        ),
+        description=_(
+            u'help_nextprevious',
+            default=u'This enables next/previous widget on content items ' +
+                    u'contained in this folder.'
+        ),
+        default=False
+    )
 
     form.omitted('nextPreviousEnabled')
     form.no_omit(IEditForm, 'nextPreviousEnabled')
@@ -50,7 +60,8 @@ def getNextPreviousParentValue(adapter):
 DefaultNextPreviousEnabled = widget.ComputedWidgetAttribute(
     getNextPreviousParentValue,
     field=INextPreviousToggle['nextPreviousEnabled'],
-    )
+)
+
 
 # This is taken from plone.app.folder
 class NextPreviousBase(object):
@@ -73,7 +84,7 @@ class NextPreviousBase(object):
         if not self.order:
             return None
         pos = self.context.getObjectPosition(obj.getId())
-        for oid in self.order[pos+1:]:
+        for oid in self.order[pos + 1:]:
             data = self.getData(self.context[oid])
             if data:
                 return data
@@ -84,7 +95,7 @@ class NextPreviousBase(object):
             return None
         order_reversed = list(reversed(self.order))
         pos = order_reversed.index(obj.getId())
-        for oid in order_reversed[pos+1:]:
+        for oid in order_reversed[pos + 1:]:
             data = self.getData(self.context[oid])
             if data:
                 return data
@@ -102,8 +113,13 @@ class NextPreviousBase(object):
         url = obj.absolute_url()
         if ptype in self.vat:       # "use view action in listings"
             url += '/view'
-        return dict(id=obj.getId(), url=url, title=obj.Title(),
-            description=obj.Description(), portal_type=ptype)
+        return dict(
+            id=obj.getId(),
+            url=url,
+            title=obj.Title(),
+            description=obj.Description(),
+            portal_type=ptype
+        )
 
 
 class NextPreviousToggle(NextPreviousBase):

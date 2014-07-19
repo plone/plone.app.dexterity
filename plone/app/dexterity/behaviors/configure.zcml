@@ -12,28 +12,28 @@
     <!-- Metadata -->
     <plone:behavior
         title="Basic metadata"
-        description="Adds a title and description"
+        description="Adds title and description fields."
         provides=".metadata.IBasic"
         factory=".metadata.Basic"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
     <plone:behavior
         title="Categorization"
-        description="Adds keywords and language setting"
+        description="Adds keywords and language fields."
         provides=".metadata.ICategorization"
         factory=".metadata.Categorization"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
     <plone:behavior
-        title="Effective range"
-        description="Assign an effective and/or expiration date"
+        title="Date range"
+        description="Adds effective date and expiration date fields."
         provides=".metadata.IPublication"
         factory=".metadata.Publication"
         for="plone.dexterity.interfaces.IDexterityContent"
         />
     <plone:behavior
         title="Ownership"
-        description="Adds creator, contributor, and rights fields"
+        description="Adds creator, contributor, and rights fields."
         provides=".metadata.IOwnership"
         factory=".metadata.Ownership"
         for="plone.dexterity.interfaces.IDexterityContent"
@@ -44,7 +44,7 @@
       />
     <plone:behavior
         title="Dublin Core metadata"
-        description="Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+        description="Adds standard metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
         provides=".metadata.IDublinCore"
         factory=".metadata.DublinCore"
         for="plone.dexterity.interfaces.IDexterityContent"
@@ -114,6 +114,24 @@
         />
 
     <adapter factory=".nextprevious.NextPreviousEnabled" />
+
+    <!-- Constrain container allowed content types -->
+    <plone:behavior
+        title="Folder Addable Constrains"
+        description="Restrict the content types that can be added to folderish content"
+        provides="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"
+        factory=".constrains.ConstrainTypesBehavior"
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        />
+
+    <!-- Short name -->
+    <plone:behavior
+        title="Short name"
+        description="Gives the ability to rename an item from its edit form."
+        factory=".id.ShortName"
+        provides=".id.IShortName"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
 
     <!-- BBB -->
     <configure zcml:condition="installed plone.app.relationfield">

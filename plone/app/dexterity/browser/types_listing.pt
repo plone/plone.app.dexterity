@@ -1,63 +1,8 @@
 <tal:root>
-<script type="text/javascript" charset="utf-8">
-(function($){
-$(document).ready(function() {
-
-    common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
-
-    $('.action').css('display', 'inline');
-
-    // add new type form
-    $('#add-type').prepOverlay({
-        subtype: 'ajax',
-        filter: common_content_filter,
-        formselector: '#add-type-form',
-        noform: 'reload'
-    });
-
-    // clone type form
-    $('#crud-edit-form-buttons-clone').click(function(e) {
-      var selected = $('input[id$=-widgets-select-0]:checked');
-      if (selected.length == 1) {
-          e.preventDefault();
-          $(this).removeClass('submitting');
-          var type_link = $('a', selected.closest('tr'));
-          var el = $('<' + 'a href="' + type_link.attr('href') + '/@@clone"><' + '/a>').appendTo('body');
-          el.prepOverlay({
-              subtype: 'ajax',
-              filter: common_content_filter,
-              formselector: '#clone-type-form',
-              noform: 'reload'
-          })
-          el.click();
-      }
-    });
-
-    // delete type confirmation
-    $('#crud-edit-form-buttons-delete').click(function(e) {
-        var items = 0;
-        $('td.count').closest('tr').has('input:checked').each(function() {
-          items += parseInt($('td.count .int-field', this).html().trim());
-        });
-        if (items) {
-          var msg = 'WARNING: There are existing instances of these content types which will break.\n\nAre you sure you want to delete these types?';
-        } else {
-          var msg = 'Are you sure you want to delete these types?';
-        }
-        if(!confirm(msg)) {
-            $(this).removeClass('submitting');
-            e.preventDefault();
-        }
-    });
-
-    // set id from title
-    $('#form-widgets-title').live('change', function () {
-        var val = $(this).val().toLowerCase().replace(/[^A-Za-z0-9_\.]/g, '_');
-        $('#form-widgets-id').val(val);
-    });
-});
-})(jQuery);
-</script>
+<script type="text/javascript"
+        tal:attributes="src context/++resource++schemaeditor.js"></script>
+<script type="text/javascript"
+        tal:attributes="src context/++resource++plone.app.dexterity.types_listing.js"></script>
 
 <dl class="portalMessage"
      tal:condition="view/status">
@@ -67,15 +12,15 @@ $(document).ready(function() {
 
 <p class="crud-description"
      tal:condition="view/description"
-     tal:content="view/description">
+     tal:content="structure view/description">
 </p>
 
 <form id="add-type" method="GET"
       tal:attributes="action string:${context/absolute_url}/@@add-type">
-  <input type="submit" style="float: right; display: block;"
+  <p><input type="submit"
          i18n:attributes="value"
          i18n:domain="plone.app.dexterity"
-         value="Add New Content Type&hellip;"/>
+         value="Add New Content Type&hellip;"/></p>
 </form>
 
 <div tal:repeat="form view/subforms"

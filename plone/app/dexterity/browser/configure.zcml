@@ -3,7 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="plone.app.dexterity">
-    
+
     <!-- Default view for Dexterity types in Plone  4 -->
     <browser:page
         for="plone.dexterity.interfaces.IDexterityItem"
@@ -12,13 +12,22 @@
         template="item.pt"
         permission="zope2.View"
         />
-  
+
     <browser:page
         for="plone.dexterity.interfaces.IDexterityContainer"
         name="view"
         class="plone.dexterity.browser.view.DefaultView"
         template="container.pt"
         permission="zope2.View"
+        />
+
+    <!-- warning when editing default pages -->
+    <browser:viewlet
+        name="plone.app.dexterity.defaultpagewarning"
+        view="plone.dexterity.interfaces.IDexterityEditForm"
+        template="default_page_warning.pt"
+        permission="cmf.ModifyPortalContent"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
         />
 
     <!-- Control panel -->
@@ -29,13 +38,13 @@
         class=".types.TypesContext"
         permission="plone.schemaeditor.ManageSchemata"
         allowed_interface="OFS.interfaces.IItem" />
-    
+
     <adapter
         factory=".types.TypeSettingsAdapter"
         provides="..interfaces.ITypeSettings"
         for="plone.dexterity.interfaces.IDexterityFTI"
         />
-    
+
     <adapter
         factory=".types.TypeStatsAdapter"
         provides="..interfaces.ITypeStats"
@@ -47,26 +56,26 @@
         for="plone.app.dexterity.interfaces.ITypesContext"
         class=".types.TypesListingPage"
         permission="plone.schemaeditor.ManageSchemata" />
-    
+
     <browser:page
         name="add-type"
         for="plone.app.dexterity.interfaces.ITypesContext"
         class=".add_type.TypeAddFormPage"
         permission="plone.schemaeditor.ManageSchemata"
         />
-    
+
     <browser:page
         name="overview"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
         class=".overview.TypeOverviewPage"
         permission="plone.schemaeditor.ManageSchemata" />
-    
+
     <browser:page
         name="fields"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
         class=".fields.TypeFieldsPage"
         permission="plone.schemaeditor.ManageSchemata" />
-    
+
     <browser:page
         name="behaviors"
         for="plone.app.dexterity.interfaces.ITypeSchemaContext"
@@ -93,4 +102,35 @@
         permission="plone.schemaeditor.ManageSchemata"
         />
 
+    <browser:resource
+        name="plone.app.dexterity.types_listing.js"
+        file="types_listing.js"
+        />
+
+    <configure zcml:condition="installed plone.resourceeditor">
+        <browser:page
+            name="modeleditor"
+            for="plone.schemaeditor.interfaces.ISchemaContext"
+            class=".modeleditor.ModelEditorView"
+            permission="plone.schemaeditor.ManageSchemata"
+            template="modeleditor.pt"
+            />
+
+        <browser:page
+            name="model-edit-save"
+            for="plone.schemaeditor.interfaces.ISchemaContext"
+            class=".modeleditor.AjaxSaveHandler"
+            permission="plone.schemaeditor.ManageSchemata"
+            />
+
+        <browser:resource
+          name="plone.app.dexterity.modeleditor.css"
+          file="modeleditor.css"
+          />
+
+        <browser:resource
+          name="plone.app.dexterity.modeleditor.js"
+          file="modeleditor.js"
+          />
+    </configure>
 </configure>

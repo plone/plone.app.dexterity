@@ -26,7 +26,8 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
 
     layer = DEXTERITY_INTEGRATION_TESTING
 
-    _behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled',)
+    _behaviors = (
+        'plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled',)
     _portal_type = 'FolderEnabled'
 
     def setUp(self):
@@ -40,9 +41,6 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         self.portal.invokeFactory('Document', 'doc2')
         self.portal.invokeFactory('Document', 'doc3')
         self.portal.invokeFactory(self._portal_type, 'folder1')
-        self.portal.invokeFactory('Link', 'link1')
-        self.portal.link1.setRemoteUrl('http://plone.org')
-        self.portal.link1.reindexObject()
         folder1 = getattr(self.portal, 'folder1')
         folder1.invokeFactory('Document', 'doc11')
         folder1.invokeFactory('Document', 'doc12')
@@ -52,22 +50,22 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         folder2.invokeFactory('Document', 'doc21')
         folder2.invokeFactory('Document', 'doc22')
         folder2.invokeFactory('Document', 'doc23')
-        folder2.invokeFactory('File', 'file21')
 
     def testIfFolderImplementsPreviousNext(self):
-        self.failUnless(INextPreviousProvider(self.portal.folder1, None))
+        self.assertTrue(INextPreviousProvider(self.portal.folder1, None))
 
     def testNextPreviousEnablingOnCreation(self):
-        self.failUnless(INextPreviousProvider(self.portal.folder1).enabled)
+        self.assertTrue(INextPreviousProvider(self.portal.folder1).enabled)
 
     def testNextPreviousViewEnabled(self):
         doc = self.portal.folder1.doc11
         view = doc.restrictedTraverse('@@plone_nextprevious_view')
-        self.failIf(view is None)
-        self.failUnless(view.enabled())
+        self.assertFalse(view is None)
+        self.assertTrue(view.enabled())
 
     def testNextPreviousItems(self):
-        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(
+            self._portal_type, 'case3')]
         for id in range(1, 4):
             container.invokeFactory('Document', 'subDoc%d' % id)
 
@@ -103,13 +101,15 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         self.assertEqual(next, None)
 
     def testNextItemOnlyShowViewable(self):
-        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(
+            self._portal_type, 'case3')]
         # create objects [subDoc1,subDoc2,subDoc3,subDoc4,subDoc5,subDoc6]
         # published objects [subDoc2, subDoc4, subDoc5]
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         for id in range(1, 7):
-            doc = container[container.invokeFactory('Document', 'subDoc%d' % id)]
-            if id in [2,4,5]:
+            doc = container[container.invokeFactory(
+                'Document', 'subDoc%d' % id)]
+            if id in [2, 4, 5]:
                 self.wf.doActionFor(doc, "publish")
 
         # Member should only see the published items
@@ -125,13 +125,15 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         self.assertEqual(next, None)
 
     def testPreviousItemOnlyShowViewable(self):
-        container = self.portal[self.portal.invokeFactory(self._portal_type, 'case3')]
+        container = self.portal[self.portal.invokeFactory(
+            self._portal_type, 'case3')]
         # create objects [subDoc1,subDoc2,subDoc3,subDoc4,subDoc5,subDoc6]
         # published objects [subDoc2, subDoc4, subDoc5]
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         for id in range(1, 7):
-            doc = container[container.invokeFactory('Document', 'subDoc%d' % id)]
-            if id in [2,4,5]:
+            doc = container[container.invokeFactory(
+                'Document', 'subDoc%d' % id)]
+            if id in [2, 4, 5]:
                 self.wf.doActionFor(doc, "publish")
 
         # Member should only see the published items
@@ -152,8 +154,9 @@ class NextPreviousToggleTests(NextPreviousBase, unittest.TestCase):
         borrowed from `plone.app.folder.tests.test_nextprevious.py` """
 
     layer = DEXTERITY_INTEGRATION_TESTING
-    
-    _behaviors = ('plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle',)
+
+    _behaviors = (
+        'plone.app.dexterity.behaviors.nextprevious.INextPreviousToggle',)
     _portal_type = 'FolderWithToggle'
 
     def setUp(self):
@@ -167,25 +170,25 @@ class NextPreviousToggleTests(NextPreviousBase, unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Member'])
 
     def testIfFolderImplementsPreviousNext(self):
-        self.failUnless(INextPreviousProvider(self.portal.folder1, None))
+        self.assertTrue(INextPreviousProvider(self.portal.folder1, None))
 
     def testNextPreviousEnablingOnCreation(self):
         # This is tested properly in the doctest, the default z3c.form
         # value is not set here.
-        self.failIf(INextPreviousProvider(self.portal.folder1).enabled)
+        self.assertFalse(INextPreviousProvider(self.portal.folder1).enabled)
 
     def testNextPreviousViewDisabled(self):
         doc = self.portal.folder1.doc11
         view = doc.restrictedTraverse('@@plone_nextprevious_view')
-        self.failIf(view is None)
-        self.failIf(view.enabled())
+        self.assertFalse(view is None)
+        self.assertFalse(view.enabled())
 
     def testNextPreviousViewEnabled(self):
         self.portal.folder1.nextPreviousEnabled = True
         doc = self.portal.folder1.doc11
         view = doc.restrictedTraverse('@@plone_nextprevious_view')
-        self.failIf(view is None)
-        self.failUnless(view.enabled())
+        self.assertFalse(view is None)
+        self.assertTrue(view.enabled())
 
 
 def test_suite():
