@@ -4,7 +4,7 @@
 <script type="text/javascript"
         tal:attributes="src context/++resource++plone.app.dexterity.types_listing.js"></script>
 
-<div class="portalMessage" role="alertdialog" aria-labelledby="dialogTitle"
+<div class="portalMessage info" role="alertdialog" aria-labelledby="dialogTitle"
      tal:condition="view/status">
   <strong id="dialogTitle"
           i18n:translate="">
@@ -15,7 +15,7 @@
   </span>
 </div>
 
-<p class="crud-description"
+<p class="crud-description documentDescription"
      tal:condition="view/description"
      tal:content="structure view/description">
 </p>
