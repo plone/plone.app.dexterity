@@ -74,7 +74,7 @@ The Zope 2 permission title is shown in parentheses.
 ``cmf.SetOwnProperties`` (:guilabel:`Set own properties`) 
     used to allow users to set their own member properties'
 
-``cmf.RequestReview`` (:guilabel:`Request Review`)
+``cmf.RequestReview`` (:guilabel:`Request review`)
     typically used as a workflow transition guard 
     to allow users to submit content for review;
 
