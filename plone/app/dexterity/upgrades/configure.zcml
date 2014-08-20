@@ -52,4 +52,12 @@
     handler=".to2003.fix_installed_products"
     />
 
+  <genericsetup:upgradeStep
+    source="2003"
+    destination="2004"
+    title="Remove line feeds and carrige returns from the description"
+    profile="plone.app.dexterity:default"
+    handler=".to2004.remove_cr_and_lf_description"
+    />
+
 </configure>
