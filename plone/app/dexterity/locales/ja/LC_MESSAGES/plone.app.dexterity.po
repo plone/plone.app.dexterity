@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2013-04-06 15:36+0000\n"
-"PO-Revision-Date: 2011-05-20 15:13+0800\n"
+"PO-Revision-Date: 2011-08-20 21:30+0900\n"
 "Last-Translator: Takanori Suzuki <takanori@takanory.net>\n"
 "Language-Team: Plone Japanese Team <https://github.com/plonejp>\n"
 "MIME-Version: 1.0\n"
@@ -42,11 +42,11 @@ msgstr "キーワードと言語設定を追加"
 
 #: ../behaviors/discussion.py:30
 msgid "Allow discussion"
-msgstr ""
+msgstr "議論を許可する"
 
 #: ../behaviors/discussion.py:31
 msgid "Allow discussion for this content object."
-msgstr ""
+msgstr "このコンテンツでの議論を許可する"
 
 msgid "Allow items to be excluded from navigation"
 msgstr "アイテムに対してナビゲーションからの除外を有効にする"
@@ -56,7 +56,7 @@ msgstr "アイテムに対して次・前ナビゲーションを有効にする
 
 #: ../interfaces.py:75
 msgid "Allowed Content Types"
-msgstr ""
+msgstr "許されるコンテンツタイプ"
 
 msgid "Assign an effective and/or expiration date"
 msgstr "有効日付または満了日付を割り当てる"
@@ -135,7 +135,7 @@ msgstr "フィールド"
 
 #: ../interfaces.py:64
 msgid "Filter Contained Types"
-msgstr ""
+msgstr "含まれるコンテンツタイプをフィルターする"
 
 #: ../interfaces.py:58
 msgid "Items of this type will be able to contain other items."
@@ -161,7 +161,7 @@ msgstr "次・前ナビゲーションのトグル"
 
 #: ../behaviors/discussion.py:17
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: ../browser/behaviors.py:61
 msgid "No changes were made."
@@ -228,7 +228,7 @@ msgstr "プログラムからコンテンツタイプへのアクセスに使用
 
 #: ../behaviors/discussion.py:16
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:179
@@ -248,12 +248,12 @@ msgstr "このフォルダに含まれるコンテンツアイテムについて
 #. Default: "All content types"
 #: ../browser/overview.pt:24
 msgid "label_all_content_types"
-msgstr ""
+msgstr "全コンテンツタイプ"
 
 #. Default: "Contained items"
 #: ../browser/overview.pt:9
 msgid "label_contained_items"
-msgstr ""
+msgstr "含まれるアイテム"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:17
@@ -263,7 +263,7 @@ msgstr "ナビゲーションから除外"
 #. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
 #: ../interfaces.py:65
 msgid "label_filter_contained_types"
-msgstr ""
+msgstr "フォルダーのように他のアイテムを含む場合に対象となるコンテンツタイプ"
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:31
@@ -273,10 +273,10 @@ msgstr "次・前ナビゲーションを有効化"
 #. Default: "No content types"
 #: ../browser/overview.pt:18
 msgid "label_no_content_types"
-msgstr ""
+msgstr "コンテンツタイプがありません"
 
 #. Default: "Some content types:"
 #: ../browser/overview.pt:30
 msgid "label_some_content_types"
-msgstr ""
+msgstr "コンテンツタイプ"
 
