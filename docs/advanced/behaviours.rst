@@ -18,7 +18,7 @@ enabled.
 
 We will not cover writing new behaviors in this manual, but we will show
 how to enable behaviors on a type. Writing behaviors is covered in the
-`Behaviors manual <http://developer.plone.org/reference_manuals/external/plone.app.dexterity/behaviors/index.html>`_.
+`Behaviors manual <http://docs.plone.org/external/plone.app.dexterity/docs/behaviors/index.html>`_.
 
 In fact, we’ve already seen one
 standard behavior applied to our example types, registered in the FTI
