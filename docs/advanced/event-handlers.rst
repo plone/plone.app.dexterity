@@ -1,4 +1,4 @@
-Event handlers 
+Event handlers
 ---------------
 
 **Adding custom event handlers for your type**
@@ -77,16 +77,16 @@ definition::
         acl_users = getToolByName(presenter, 'acl_users')
         mail_host = getToolByName(presenter, 'MailHost')
         portal_url = getToolByName(presenter, 'portal_url')
-        
+
         portal = portal_url.getPortalObject()
         sender = portal.getProperty('email_from_address')
-        
+
         if not sender:
             return
-        
+
         subject = "Is this you?"
         message = "A presenter called %s was added here %s" % (presenter.title, presenter.absolute_url(),)
-        
+
         matching_users = acl_users.searchUsers(fullname=presenter.title)
         for user_info in matching_users:
             email = user_info.get('email', None)

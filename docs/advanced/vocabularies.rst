@@ -86,14 +86,14 @@ group::
         acl_users = getToolByName(context, 'acl_users')
         group = acl_users.getGroupById('organizers')
         terms = []
-        
+
         if group is not None:
             for member_id in group.getMemberIds():
                 user = acl_users.getUserById(member_id)
                 if user is not None:
                     member_name = user.getProperty('fullname') or member_id
                     terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
-                
+
         return SimpleVocabulary(terms)
 
 We use the PAS API to get the group and its members, building a list,
@@ -156,24 +156,24 @@ group name::
         """Context source binder to provide a vocabulary of users in a given
         group.
         """
-        
+
         grok.implements(IContextSourceBinder)
-        
+
         def __init__(self, group_name):
             self.group_name = group_name
-        
+
         def __call__(self, context):
             acl_users = getToolByName(context, 'acl_users')
             group = acl_users.getGroupById(self.group_name)
             terms = []
-        
+
             if group is not None:
                 for member_id in group.getMemberIds():
                     user = acl_users.getUserById(member_id)
                     if user is not None:
                         member_name = user.getProperty('fullname') or member_id
                         terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
-                
+
             return SimpleVocabulary(terms)
 
 Again, the source is set using the ``source`` argument to the ``Choice``
@@ -220,19 +220,19 @@ into a named vocabulary by creating a named utility providing
 
     class OrganizersVocabulary(object):
         grok.implements(IVocabularyFactory)
-        
+
         def __call__(self, context):
             acl_users = getToolByName(context, 'acl_users')
             group = acl_users.getGroupById('organizers')
             terms = []
-        
+
             if group is not None:
                 for member_id in group.getMemberIds():
                     user = acl_users.getUserById(member_id)
                     if user is not None:
                         member_name = user.getProperty('fullname') or member_id
                         terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
-                
+
             return SimpleVocabulary(terms)
 
     grok.global_utility(OrganizersVocabulary, name=u"example.conference.Organizers")

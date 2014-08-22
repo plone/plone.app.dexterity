@@ -1,4 +1,4 @@
-Mock testing 
+Mock testing
 =============
 
 **Using a mock objects framework to write mock based tests**
@@ -18,16 +18,16 @@ In our example product, we have an event handler like this:
         acl_users = getToolByName(presenter, 'acl_users')
         mail_host = getToolByName(presenter, 'MailHost')
         portal_url = getToolByName(presenter, 'portal_url')
-        
+
         portal = portal_url.getPortalObject()
         sender = portal.getProperty('email_from_address')
-        
+
         if not sender:
             return
-        
+
         subject = "Is this you?"
         message = "A presenter called %s was added here %s" % (presenter.title, presenter.absolute_url(),)
-        
+
         matching_users = acl_users.searchUsers(fullname=presenter.title)
         for user_info in matching_users:
             email = user_info.get('email', None)
@@ -108,9 +108,9 @@ As an example test case, consider the following class in
     from example.conference.presenter import notifyUser
 
     class TestPresenterUnit(MockTestCase):
-        
+
         def test_notify_user(self):
-            
+
             # dummy presenter
             presenter = self.create_dummy(
                     __parent__=None,
@@ -118,40 +118,40 @@ As an example test case, consider the following class in
                     title="Jim",
                     absolute_url = lambda: 'http://example.org/presenter',
                 )
-            
+
             # dummy event
             event = ObjectAddedEvent(presenter)
-            
+
             # search result for acl_users
             user_info = [{'email': 'jim@example.org', 'id': 'jim'}]
-            
+
             # email data
             message = "A presenter called Jim was added here http://example.org/presenter"
             email = "jim@example.org"
             sender = "test@example.org"
             subject = "Is this you?"
-            
+
             # mock tools/portal
-            
+
             portal_mock = self.mocker.mock()
             self.expect(portal_mock.getProperty('email_from_address')).result('test@example.org')
-            
+
             portal_url_mock = self.mocker.mock()
             self.mock_tool(portal_url_mock, 'portal_url')
             self.expect(portal_url_mock.getPortalObject()).result(portal_mock)
-            
+
             acl_users_mock = self.mocker.mock()
             self.mock_tool(acl_users_mock, 'acl_users')
             self.expect(acl_users_mock.searchUsers(fullname='Jim')).result(user_info)
-            
+
             mail_host_mock = self.mocker.mock()
             self.mock_tool(mail_host_mock, 'MailHost')
             self.expect(mail_host_mock.secureSend(message, email, sender, subject))
-            
-            
+
+
             # put mock framework into replay mode
             self.replay()
-            
+
             # call the method under test
             notifyUser(presenter, event)
 

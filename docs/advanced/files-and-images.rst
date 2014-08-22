@@ -54,7 +54,7 @@ speaker to the ``Presenter`` type. In ``presenter.py``, we add::
 
     class IPresenter(model.Schema):
         ...
-        
+
         picture = NamedBlobImage(
             title=_(u"Please upload an image"),
             required=False,

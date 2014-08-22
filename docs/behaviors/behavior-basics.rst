@@ -1,4 +1,4 @@
-Behavior basics 
+Behavior basics
 ================
 
 **The fundamental concepts behind behaviors**

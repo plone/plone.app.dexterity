@@ -1,11 +1,11 @@
-Permissions 
+Permissions
 -------------
 
 **Setting up add permissions, view permissions and field view/edit permissions**
 
-Plone’s security system is based on the concept of 
-*permissions* protecting *operations* 
-(like accessing a view, 
+Plone’s security system is based on the concept of
+*permissions* protecting *operations*
+(like accessing a view,
 viewing a field,
 modifying a field,
 or adding a type of content)
@@ -22,20 +22,20 @@ permissions are typically used in three different ways:
   so that some users can view and edit fields that others can’t see.
 
 It is easy to create new permissions.
-However, be aware that it is considered good practice 
-to use the standard permissions wherever possible and 
-use *workflow* to control which roles are granted these permissions 
+However, be aware that it is considered good practice
+to use the standard permissions wherever possible and
+use *workflow* to control which roles are granted these permissions
 on a per-instance basis.
 We’ll cover workflow later in this manual.
 
 Standard permissions
 ~~~~~~~~~~~~~~~~~~~~~
 
-The standard permissions can be found in ``Product.Five``\’s ``permissions.zcml`` 
+The standard permissions can be found in ``Product.Five``\’s ``permissions.zcml``
 (``parts/omelette/Products/Five/permissions.zcml``).
-Here, you will find a short ``id`` 
+Here, you will find a short ``id``
 (also known as the *Zope 3 permission id*)
-and a longer ``title`` 
+and a longer ``title``
 (also known as the *Zope 2 permission title*).
 For historical reasons, some areas in Plone use the id,
 whilst others use the title.
@@ -71,11 +71,11 @@ The Zope 2 permission title is shown in parentheses.
 ``cmf.AddPortalContent`` (:guilabel:`Add portal content`)
     the standard add permission required to add content to a folder;
 
-``cmf.SetOwnProperties`` (:guilabel:`Set own properties`) 
+``cmf.SetOwnProperties`` (:guilabel:`Set own properties`)
     used to allow users to set their own member properties'
 
 ``cmf.RequestReview`` (:guilabel:`Request review`)
-    typically used as a workflow transition guard 
+    typically used as a workflow transition guard
     to allow users to submit content for review;
 
 ``cmf.ReviewPortalContent`` (:guilabel:`Review portal content`)
@@ -110,7 +110,7 @@ The standard roles in Plone are:
 
 :guilabel:`Manager`
      which represents super-users/administrators.
-     Almost all permissions that are not granted to ``Anonymous`` 
+     Almost all permissions that are not granted to ``Anonymous``
      are granted to ``Manager``.
 
 :guilabel:`Reviewer`
@@ -129,22 +129,22 @@ pseudonyms.
 :guilabel:`Reader`, aka :guilabel:`Can view`,
     confers the right to view content.
     As a role of thumb,
-    the :guilabel:`Reader` role should have the 
-    :guilabel:`View` and :guilabel:`Access contents information` permissions 
+    the :guilabel:`Reader` role should have the
+    :guilabel:`View` and :guilabel:`Access contents information` permissions
     if the :guilabel:`Owner` roles does.
 
 :guilabel:`Editor`, aka :guilabel:`Can edit`,
     confers the right to edit content.
-    As a role of thumb, the :guilabel:`Editor` role should have the 
-    :guilabel:`Modify portal content` permission 
+    As a role of thumb, the :guilabel:`Editor` role should have the
+    :guilabel:`Modify portal content` permission
     if the :guilabel:`Owner` roles does.
 
 :guilabel:`Contributor`, aka :guilabel:`Can add`,
     confers the right to add new content.
     As a role of thumb,
-    the:guilabel: `Contributor` role should have the 
-    `Add:guilabel: portal content` permission 
-    and any type-specific add permissions globally 
+    the:guilabel: `Contributor` role should have the
+    `Add:guilabel: portal content` permission
+    and any type-specific add permissions globally
     (i.e. granted in ``rolemap.xml``),
     although these permissions are sometimes managed in workflow as well.
 
@@ -170,7 +170,7 @@ In ``session.py``, we update the ``View`` class with the following::
     class View(dexterity.DisplayForm):
         grok.context(ISession)
         grok.require('zope2.View')
-        
+
         def canRequestReview(self):
             return checkPermission('cmf.RequestReview', self.context)
 
@@ -191,14 +191,14 @@ Although the standard permissions should be used to control basic operations
 (view, modify, delete, review),
 it is sometimes useful to create new permissions.
 Combined with custom workflows,
-custom permissions can be used 
+custom permissions can be used
 to create highly tailored content review cycles
 and data entry applications.
 They are also an important way to control who can add what content.
 
 The easiest way to create a custom permission is with the help of the
 `collective.autopermission`_ package,
-which allows permissions to be defined 
+which allows permissions to be defined
 using the ``<permission />`` ZCML statement.
 
 .. note::
@@ -206,11 +206,11 @@ using the ``<permission />`` ZCML statement.
     functionality has been merged into Zope itself.
 
 As an example,
-let’s create some custom permissions 
+let’s create some custom permissions
 for use with the ``Session`` type.
 We’ll create a new add permission,
 so that we can let any member submit a session to a program,
-and a permission which we will later use 
+and a permission which we will later use
 to let reviewers edit some specific fields on the ``Session`` type.
 
 First, we need to depend on `collective.autopermission`_. In ``setup.py``::
@@ -221,9 +221,9 @@ First, we need to depend on `collective.autopermission`_. In ``setup.py``::
     ],
 
 .. note::
-    Make sure `collective.autopermission`_\’s configuration is included 
+    Make sure `collective.autopermission`_\’s configuration is included
     before any custom permissions are defined.
-    In our case, 
+    In our case,
     the ``<includeDependencies />`` line takes care of this.
 
 Next, we’ll create a file called ``permissions.zcml`` to hold the
@@ -236,9 +236,9 @@ We need to include this in ``configure.zcml``, just after the
     <include file="permissions.zcml" />
 
 .. note::
-    All permissions need to be defined before the 
+    All permissions need to be defined before the
     ``<grok:grok package=“.” />`` line in ``configure.zcml``.
-    Otherwise, you may get errors trying to use the permission 
+    Otherwise, you may get errors trying to use the permission
     with a ``grok.require()`` directive.
 
 The ``permissions.zcml`` file looks like this:
@@ -258,7 +258,7 @@ The ``permissions.zcml`` file looks like this:
             id="example.conference.ModifyTrack"
             title="example.conference: Modify track"
             />
-            
+
     </configure>
 
 New permissions are granted to the :guilabel:`Manager` role only by default.
@@ -295,7 +295,7 @@ Content type add permissions
 
 Dexterity content types’ add permissions are set in the FTI,
 using the ``add_permission`` property.
-This can be changed through the web 
+This can be changed through the web
 or in the GenericSetup import step for the content type.
 
 To make the ``Session`` type use our new permission, we modify the
@@ -329,14 +329,14 @@ Protecting form fields
 
 Individual fields in a schema may be associated with a *read* permission
 and a *write* permission.
-The read permission is used to control access to the field’s value 
+The read permission is used to control access to the field’s value
 via protected code (e.g. scripts or templates created through the web)
 and URL traversal,
-and can be used to control the appearance of fields 
-when using display forms 
+and can be used to control the appearance of fields
+when using display forms
 (if you use custom views that access the attribute directly,
 you’ll need to perform your own checks).
-Write permissions can be used to control 
+Write permissions can be used to control
 whether or not a given field appears on a type’s add and edit forms.
 
 In both cases,
@@ -374,19 +374,19 @@ Next, we’ll add a vocabulary for this to ``session.py``::
 
     @grok.provider(IContextSourceBinder)
     def possibleTracks(context):
-        
+
         # we put the import here to avoid a circular import
         from example.conference.program import IProgram
         while context is not None and not IProgram.providedBy(context):
             context = aq_parent(aq_inner(context))
-        
+
         values = []
         if context is not None and context.tracks:
             values = context.tracks
-        
+
         return SimpleVocabulary.fromValues(values)
 
-This vocabulary finds the closest ``IProgram`` 
+This vocabulary finds the closest ``IProgram``
 (in the add form, the ``context`` will be the ``Program``,
 but on the edit form, it will be the ``Session``,
 so we need to check the parent)

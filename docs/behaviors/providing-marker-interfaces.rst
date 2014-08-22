@@ -1,4 +1,4 @@
-Providing marker interfaces 
+Providing marker interfaces
 =============================
 
 **How to use behaviors to set marker interfaces on instances of a given type.**
@@ -119,7 +119,7 @@ The *reviewers.py* module contains the following:
     class IReviewers(form.Schema):
         """Support for specifying official and unofficial reviewers
         """
-        
+
         form.fieldset(
                 'ownership',
                 label=_(u'Ownership'),
@@ -135,7 +135,7 @@ The *reviewers.py* module contains the following:
                 required=False,
                 missing_value=(), # important!
             )
-        
+
         form.widget(unofficial_reviewers=AutocompleteMultiFieldWidget)
         form.write_permission(unofficial_reviewers='iz.EditUnofficialReviewers')
         unofficial_reviewers = schema.Tuple(
@@ -157,42 +157,42 @@ The *reviewers.py* module contains the following:
     class ReviewerLocalRoles(grok.Adapter):
         """Grant local roles to reviewers when the behavior is used.
         """
-        
+
         grok.implements(ILocalRoleProvider)
         grok.context(IReviewersMarker)
         grok.name('iz.behaviors.reviewers')
-        
+
         def getRoles(self, principal_id):
             """If the user is in the list of reviewers for this item, grant
             the Reader, Editor and Contributor local roles.
             """
-            
+
             c = IReviewers(self.context, None)
             if c is None or (not c.official_reviewers and not c.unofficial_reviewers):
                 return ()
-            
+
             if principal_id in c.official_reviewers:
                 return ('Reviewer', 'OfficialReviewer',)
             elif principal_id in c.unofficial_reviewers:
                 return ('Reviewer',)
-            
+
             return ()
-            
+
         def getAllRoles(self):
             """Return a list of tuples (principal_id, roles), where roles is a
             list of roles for the given user id.
             """
-            
+
             c = IReviewers(self.context, None)
             if c is None or (not c.official_reviewers and not c.unofficial_reviewers):
                 return
-            
+
             seen = set ()
-            
+
             for principal_id in c.official_reviewers:
                 seen.add(principal_id)
                 yield (principal_id, ('Reviewer', 'OfficialReviewer'),)
-                
+
             for principal_id in c.unofficial_reviewers:
                 if principal_id not in seen:
                     yield (principal_id, ('Reviewer',),)
@@ -200,14 +200,14 @@ The *reviewers.py* module contains the following:
     class ReviewersIndexer(grok.MultiAdapter):
         """Catalog indexer for the 'reviewers' index.
         """
-        
+
         grok.implements(IIndexer)
         grok.adapts(IReviewersMarker, IZCatalog)
         grok.name('reviewers')
-        
+
         def __init__(self, context, catalog):
             self.reviewers = IReviewers(context)
-        
+
         def __call__(self):
             official = self.reviewers.official_reviewers or ()
             unofficial = self.reviewers.unofficial_reviewers or ()

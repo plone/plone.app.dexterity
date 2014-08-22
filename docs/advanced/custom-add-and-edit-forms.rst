@@ -1,4 +1,4 @@
-Custom add and edit forms 
+Custom add and edit forms
 ============================
 
 **Using `z3c.form`_ to build custom forms**
@@ -50,14 +50,14 @@ To create an edit form that is identical to the default, we could do::
     class EditForm(dexterity.EditForm):
         grok.context(IFSPage)
 
-The ``dexterity`` module is `plone.directives.dexterity`_ and 
+The ``dexterity`` module is `plone.directives.dexterity`_ and
 the ``grok`` module is `five.grok`_.
 
 The default name for the form is *edit*, but we could supply a different
 name using ``grok.name()``.
 The default permission is ``cmf.ModifyPortalContent``,
 but we could require a different permission with ``grok.require()``.
-We could also register the form for a particular browser layer, 
+We could also register the form for a particular browser layer,
 using ``grok.layer()``.
 
 This form is of course not terribly interesting, since it is identical
@@ -68,7 +68,7 @@ For example, we could:
   different schema interface (with different form hints) than the
   content type schema.
 - Override the ``additionalSchemata`` property to tell `plone.autoform`_
-  to use different supplemental schema interfaces. 
+  to use different supplemental schema interfaces.
   The default is to use all behavior interfaces that provide the
   ``IFormFieldProvider`` marker from `plone.directives.form`_.
 - Override the ``label`` and ``description`` properties to provide
@@ -78,7 +78,7 @@ For example, we could:
   or one of the other ``update``()`` methods,
   to perform additional processing on the fields.
   In most cases, these require us to call the ``super`` version at the
-  beginning. 
+  beginning.
   See the `plone.autoform`_ and `z3c.form`_ documentation
   to learn more about the sequence of calls that emanate from the form
   ``update()`` method in the ``z3c.form.form.BaseForm`` class.
@@ -87,7 +87,7 @@ Content add sequence
 --------------------
 
 Add forms are similar to edit forms in that they are built from a type’s
-schema and the schemata of its behaviors. 
+schema and the schemata of its behaviors.
 However, for an add form to be able to construct a content object,
 it needs to know which ``portal_type`` to use.
 
@@ -113,7 +113,7 @@ What actually happens is this:
     - The ``++add++`` namespace adapter looks up the actual form to render as
       a multi-adapter from ``(context, request, fti``) to ``Interface`` with
       a name matching the ``factory`` property.
-      Recall that a standard view is a multi-adapter from 
+      Recall that a standard view is a multi-adapter from
       ``(context, request)`` to ``Interface`` with a name matching the URL
       segment for which the view is looked up.
       As such, add forms are not standard views, because they get the
@@ -161,7 +161,7 @@ A custom form replicating the default would look like this::
 
 The name here should match the *factory* name.
 By default, Dexterity types have a factory called the same as the FTI name.
-If no such factory exists 
+If no such factory exists
 (i.e. you have not registered a custom ``IFactory`` utility),
 a local factory utility will be created and managed by Dexterity when the
 FTI is installed.
@@ -174,7 +174,7 @@ default ``cmf.AddPortalContent`` with ``grok.require()``.
 .. note::
     If the permission used for the add form is different to the
     ``add_permission`` set in the FTI, the user needs to have *both*
-    permissions to be able to see the form and add content. 
+    permissions to be able to see the form and add content.
     For this reason, most add forms will use the generic
     ``cmf.AddPortalContent`` permission.
     The :guilabel:`add` menu will not render links to types where the user
@@ -182,7 +182,7 @@ default ``cmf.AddPortalContent`` with ``grok.require()``.
     even if this is different to ``cmf.AddPortalContent``.
 
 As with edit forms, we can customise this form by overriding `z3c.form`_
-and `plone.autoform`_ properties and methods. 
+and `plone.autoform`_ properties and methods.
 See the `z3c.form`_ documentation on add forms for more details.
 
 

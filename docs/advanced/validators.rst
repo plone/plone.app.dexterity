@@ -81,9 +81,9 @@ Code not relevant to this example is snipped with an ellipsis (…)::
         __doc__ = _(u"The start or end date is invalid")
 
     class IProgram(model.Schema):
-        
+
         ...
-        
+
         start = schema.Datetime(
                 title=_(u"Start date"),
                 required=False,
@@ -93,9 +93,9 @@ Code not relevant to this example is snipped with an ellipsis (…)::
                 title=_(u"End date"),
                 required=False,
             )
-        
+
         ...
-        
+
         @invariant
         def validateStartEnd(data):
             if data.start is not None and data.end is not None:

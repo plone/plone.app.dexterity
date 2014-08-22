@@ -1,4 +1,4 @@
-Form schema hints 
+Form schema hints
 ==================
 
 **Directives which can be used to configure forms from schemata**
@@ -25,7 +25,7 @@ For example, here is a schema that omits a field:
     from zope import schema
 
     class ISampleSchema(form.Schema):
-        
+
         title = schema.TextLine(title=u"Title")
 
         form.omitted('additionalInfo')
@@ -72,7 +72,7 @@ The code sample below illustrates each of these directives:
         # A fieldset with id 'extra' and label 'Extra information' containing
         # the 'footer' and 'dummy' fields. The label can be omitted if the
         # fieldset has already been defined.
-        
+
         form.fieldset('extra',
                 label=u"Extra information",
                 fields=['footer', 'dummy']
@@ -80,7 +80,7 @@ The code sample below illustrates each of these directives:
 
         # Here a widget is specified as a dotted name.
         # The body field is also designated as the priamry field for this schema
-        
+
         form.widget(body='plone.app.z3cform.wysiwyg.WysiwygFieldWidget')
         form.primary('body')
         body = schema.Text(
@@ -90,28 +90,28 @@ The code sample below illustrates each of these directives:
             )
 
         # The widget can also be specified as an object
-        
+
         form.widget(footer=WysiwygFieldWidget)
         footer = schema.Text(
                 title=u"Footer text",
                 required=False
             )
-        
+
         # An omitted field. Use form.omitted('a', 'b', 'c') to omit several fields
-            
+
         form.omitted('dummy')
         dummy = schema.Text(
                 title=u"Dummy"
             )
-        
+
         # A field in 'hidden' mode
-        
+
         form.mode(secret='hidden')
         secret = schema.TextLine(
                 title=u"Secret",
                 default=u"Secret stuff"
             )
-            
+
         # This field is moved before the 'description' field of the standard
         # IBasic behaviour, if this is in use.
 
@@ -146,7 +146,7 @@ The code sample below illustrates each of these directives:
 
         # This field requires the 'cmf.ReviewPortalContent' to be read and
         # written
-        
+
         dexterity.read_permission(reviewNotes='cmf.ReviewPortalContent')
         dexterity.write_permission(reviewNotes='cmf.ReviewPortalContent')
         reviewNotes = schema.Text(

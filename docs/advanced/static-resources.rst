@@ -59,7 +59,7 @@ For example, we could add the following near the top of
 
     <head>
         <metal:block fill-slot="style_slot">
-            <link rel="stylesheet" type="text/css" 
+            <link rel="stylesheet" type="text/css"
                 tal:define="navroot context/@@plone_portal_state/navigation_root_url"
                 tal:attributes="href string:${navroot}/++resource++example.conference/conference.css"
                 />

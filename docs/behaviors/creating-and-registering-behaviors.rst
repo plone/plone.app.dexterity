@@ -1,4 +1,4 @@
-Creating and registering behaviors 
+Creating and registering behaviors
 ====================================
 
 **How to create a basic behavior that provides form fields**
@@ -43,7 +43,7 @@ looks like this:
         i18n_domain="collective.gtags">
 
         <include package="plone.behavior" file="meta.zcml" />
-        
+
         <include package="plone.directives.form" file="meta.zcml" />
         <include package="plone.directives.form" />
 
@@ -107,13 +107,13 @@ The *behaviors.py* module looks like this:
     class ITags(form.Schema):
         """Add tags to content
         """
-        
+
         form.fieldset(
                 'categorization',
                 label=_(u'Categorization'),
                 fields=('tags',),
             )
-        
+
         tags = Tags(
                 title=_(u"Tags"),
                 description=_(u"Applicable tags"),
@@ -132,7 +132,7 @@ The *behaviors.py* module looks like this:
 
         def __init__(self, context):
             self.context = context
-        
+
         @getproperty
         def tags(self):
             return set(self.context.Subject())

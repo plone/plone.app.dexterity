@@ -1,6 +1,6 @@
 # Translation of plone.app.dexterity.pot to Italian
 # Giacomo Spettoli, 2011.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"

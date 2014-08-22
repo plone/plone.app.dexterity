@@ -1,4 +1,4 @@
-Manipulating content objects 
+Manipulating content objects
 ============================
 
 **Common APIs used to manipulate Dexterity content objects**

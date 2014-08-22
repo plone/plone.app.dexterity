@@ -19,7 +19,7 @@
     />
 
   <!-- Dexterity 2.0 -->
-  
+
   <genericsetup:upgradeStep
     source="5"
     destination="2000"
@@ -27,7 +27,7 @@
     profile="plone.app.dexterity:default"
     handler=".to2000.remove_overlays_css"
     />
-  
+
   <genericsetup:upgradeStep
     source="2000"
     destination="2001"

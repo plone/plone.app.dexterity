@@ -1,4 +1,4 @@
-Standard behaviors 
+Standard behaviors
 ===================
 
 **A list of common behaviors that ship with Dexterity**

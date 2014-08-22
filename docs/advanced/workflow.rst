@@ -20,7 +20,7 @@ but hopefully this will cover the basics.
 .. note::
 
     There is nothing Dexterity-specific in this section.
-    Everything here applies equally well to content objects 
+    Everything here applies equally well to content objects
     created with Archetypes or using CMF directly.
 
 A DCWorkflow refresher
@@ -31,7 +31,7 @@ originally posted `here`_.
 You may find some of this a little detailed on first reading,
 so feel free to skip to the specifics later on.
 However, it is useful to be familiar with the high level concepts.
-You’re unlikely to need multi-workflow chains 
+You’re unlikely to need multi-workflow chains
 in your first few attempts at workflow, for instance,
 but it’s useful to know what it is if you come across the term.
 
@@ -39,29 +39,29 @@ but it’s useful to know what it is if you come across the term.
 
 Plone’s workflow system is known as DCWorkflow.
 It is a *states-and-transitions* system,
-which means that your workflow starts in a particular *state* 
-(the *initial state*) and then moves to other states via *transitions* 
+which means that your workflow starts in a particular *state*
+(the *initial state*) and then moves to other states via *transitions*
 (also called *actions* in CMF).
 
 When an object enters a particular state (including the initial state),
 the workflow is given a chance to update **permissions** on the object.
-A workflow manages a number of permissions – 
-typically the “core” CMF permissions 
-like :guilabel:`View`, :guilabel:`Modify portal content` and so on – 
+A workflow manages a number of permissions –
+typically the “core” CMF permissions
+like :guilabel:`View`, :guilabel:`Modify portal content` and so on –
 and will set those on the object at each state change.
 Note that this is event-driven, rather than a real-time security check:
 only by changing the state is the security information updated.
-This is why you need to click :guilabel:`Update security settings` 
+This is why you need to click :guilabel:`Update security settings`
 at the bottom of the ``portal_workflow``
 screen in the ZMI when you change your workflows’ security settings and
 want to update existing objects.
 
-A state can also assign *local roles* to *groups*. 
+A state can also assign *local roles* to *groups*.
 This is akin to assigning roles to groups on Plone’s :guilabel:`Sharing` tab,
 but the mapping of roles to groups happens on each state change,
 much like the mapping of roles to permissions.
 Thus, you can say that in the ``pending_secondary`` state,
-members of the :guilabel:`Secondary reviewers` group 
+members of the :guilabel:`Secondary reviewers` group
 have the :guilabel:`Reviewer` local role.
 This is powerful stuff when combined with the more usual role-to-permission
 mapping, although it is not very commonly used.
@@ -71,31 +71,31 @@ such as the *actor* (the user that invoked the transition),
 the *action* (the name of the transition),
 the date and time and so on.
 The list of variables is dynamic,
-so each workflow can define any number of variables 
-linked to `TALES`_ expressions that are invoked 
+so each workflow can define any number of variables
+linked to `TALES`_ expressions that are invoked
 to calculate the current value at the point of transition.
 The workflow also keeps track of the current state of each object.
-The state is exposed as a special type of workflow variable 
+The state is exposed as a special type of workflow variable
 called the *state variable*.
 Most workflows in Plone uses the name ``review_state`` as the state variable.
 
-Workflow variables are recorded for each state change 
+Workflow variables are recorded for each state change
 in the *workflow history*.
 This allows you to see when a transition occurred,
 who effected it, and what state the object was in before or after.
-In fact, the “current state” of the workflow is internally looked up 
+In fact, the “current state” of the workflow is internally looked up
 as the most recent entry in the workflow history.
 
 Workflow variables are also the basis for *worklists*.
-These are basically pre-defined catalog queries 
+These are basically pre-defined catalog queries
 run against the current set of workflow variables.
 Plone’s review portlet shows all current worklists
 from all installed workflows.
 This can be a bit slow,
-but it does mean that you can use a single portlet 
-to display an amalgamated list of all items on all worklists 
+but it does mean that you can use a single portlet
+to display an amalgamated list of all items on all worklists
 that apply to the current user.
-Most Plone workflows have a single worklist 
+Most Plone workflows have a single worklist
 that matches on the ``review_state`` variable,
 e.g. showing all items in the ``pending`` state.
 
@@ -110,18 +110,18 @@ but not change the state (or security) of the object.
 
 Transitions are controlled by one or more *guards*.
 These can be permissions (the preferred approach),
-roles (mostly useful for the :guilabel:`Owner` role – 
+roles (mostly useful for the :guilabel:`Owner` role –
 in other cases it is normally better to use permissions)
 or `TALES`_ expressions.
 A transition is available if all its guard conditions are true.
-A transition with no guard conditions is available to everyone 
+A transition with no guard conditions is available to everyone
 (including anonymous!).
 
-Transitions are user-triggered by default, but may be **automatic**. 
+Transitions are user-triggered by default, but may be **automatic**.
 An automatic transition triggers immediately following another transition
 provided its guard conditions pass.
 It will not necessarily trigger as soon as the guard condition becomes true,
-as that would involve continually re-evaluating guards 
+as that would involve continually re-evaluating guards
 for all active workflows on all objects!
 
 When a transition is triggered,
@@ -133,9 +133,9 @@ There is a higher level ``IActionSucceededEvent`` in ``Products.CMFCore``
 that is more commonly used to react after a workflow action has completed.
 
 In addition to the events, you can configure workflow **scripts**.
-These are either created through-the-web 
+These are either created through-the-web
 or (more commonly) as External Methods [*]_,
-and may be set to execute before a transition is complete 
+and may be set to execute before a transition is complete
 (i.e.  before the object enters the target state)
 or just after it has been completed (the object is in the new state).
 Note that if you are using event handlers,
@@ -164,7 +164,7 @@ This is called a *workflow chain*.
 Note that in Plone, the workflow chain of an object is looked up by
 multi-adapting the object and the workflow to the ``IWorkflowChain``
 interface.
-The adapter factory should return a tuple of string workflow names 
+The adapter factory should return a tuple of string workflow names
 (``IWorkflowChain`` is a specialisation of ``IReadSequence``, i.e. a tuple).
 The default obviously looks at the mappings in the ``portal_workflow`` tool,
 but it is possible to override the mapping,
@@ -178,7 +178,7 @@ The standard ``portal_workflow`` API (in particular,
 ``doActionFor()``, which is used to change the state of an object)
 also assumes the transition ids are unique.
 If you have two workflows in the chain and both currently have a ``submit``
-action available, 
+action available,
 only the first workflow will be transitioned if you do
 ``portal_workflow.doActionFor(context, ‘submit’)``.
 Plone will show all available transitions from all workflows in the current
@@ -186,10 +186,10 @@ object’s chain in the ``State`` drop-down,
 so you do not need to create any custom UI for this.
 However, Plone always assumes the state variable is called ``review_state``
 (which is also the variable indexed in ``portal_catalog``).
-Therefore, the state of a secondary workflow won’t show up 
+Therefore, the state of a secondary workflow won’t show up
 unless you build some custom UI.
 
-In terms of security, remember that the role-to-permission 
+In terms of security, remember that the role-to-permission
 (and group-to-local-role) mappings
 are event-driven and are set after each transition.
 If you have two concurrent workflows that manage the same permissions,
@@ -200,12 +200,12 @@ will change, leaving the settings for other permissions untouched.
 
 Multiple workflows can be very useful in case you have concurrent processes.
 For example, an object may be published, but require translation.
-You can track the review state in the main workflow 
+You can track the review state in the main workflow
 and the translation state in another.
-If you index the state variable for the second workflow in the catalog 
+If you index the state variable for the second workflow in the catalog
 (the state variable is always available on the indexable object wrapper
-so you only need to add an index with the appropriate name 
-to ``portal_catalog``) 
+so you only need to add an index with the appropriate name
+to ``portal_catalog``)
 you can search for all objects pending translation,
 for example using a *Collection*.
 
@@ -244,7 +244,7 @@ In ``setup.py``, we have::
 A workflow definition using ``collective.wtf`` consists of a CSV file in
 the ``profiles/default/workflow_csv`` directory,
 which we will create,
-and a ``workflows.xml`` file in ``profiles/default`` 
+and a ``workflows.xml`` file in ``profiles/default``
 which maps types to workflows.
 
 The workflow mapping in ``profiles/default/workflows.xml`` looks like
@@ -263,7 +263,7 @@ this:
 
 The CSV file itself is found in
 ``profiles/default/workflow_csv/example.conference.session_workflow.csv``.
-It contains the following, 
+It contains the following,
 which was exported to CSV from an OpenOffice spreadsheet.
 You can find the original spreadsheet with the
 `example.conference source code`_. This applies some useful formatting,
@@ -368,7 +368,7 @@ This workflow assumes that regular members can add *Session* proposals to
 *Programs*, which are then reviewed.
 Previously, we granted the
 ``example.conference: Add session`` permission to the ``Member`` role.
-This is necessary, but not sufficient 
+This is necessary, but not sufficient
 to allow members to add sessions to programs.
 The user will also need the generic ``Add portal content`` permission in the
 ``Program`` folder.

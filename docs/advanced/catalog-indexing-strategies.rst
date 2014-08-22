@@ -1,11 +1,11 @@
 ============================
-Catalog indexing strategies 
+Catalog indexing strategies
 ============================
 
 **How to create custom catalog indexes**
 
 The ZODB is a hierarchical object store where objects of different schemata and sizes can live side by side.
-This is great for managing individual content items, but not optimal for searching across the content repository. 
+This is great for managing individual content items, but not optimal for searching across the content repository.
 A naive search would need to walk the entire object graph, loading each object into memory and comparing object metadata with search criteria.
 On a large site, this would quickly become prohibitive.
 
@@ -24,12 +24,12 @@ The functions ``getURL()``, ``getPath()`` and ``getObject()`` can be used to get
     This means that loading objects into memory is not quite as undesirable as is sometimes assumed.
     If you’re working with references, parent objects, or a small number of child objects, it is usually OK to load objects directly to work with them.
     However, if you are working with a large or unknown-but-potentially-large number of objects, you should consider using catalog searches to find them and use catalog metadata to store frequently used values.
-    There is an important trade-off to be made between limiting object access and bloating the catalog with unneeded indexes and metadata, though. 
+    There is an important trade-off to be made between limiting object access and bloating the catalog with unneeded indexes and metadata, though.
     In particular, large strings (such as the body text of a document) or binary data (such as the contents of image or file fields) should not be stored as catalog metadata.
 
 Plone comes with a number of standard indexes and metadata columns.
 These correspond to much of the *Dublin Core* set of metadata as well as several Plone-specific attributes.
-You can view the indexes, columns and the contents of the catalog through the ZMI pages of the ``portal_catalog`` tool. 
+You can view the indexes, columns and the contents of the catalog through the ZMI pages of the ``portal_catalog`` tool.
 If you’ve never done this, it is probably instructive to have a look, both to understand how the indexes and columns may apply to your own content types, and to learn what searches are already possible.
 
 Indexes come in various types. The most common ones are:
@@ -107,7 +107,7 @@ Zope 2 ``DateTime.DateTime`` object.
 The third indexer will be used to provide a value for the ``Subject`` index that takes its value from the ``tracks`` list. ::
 
     from DateTime import DateTime
-    from plone.indexer import indexer 
+    from plone.indexer import indexer
     ...
 
     @indexer(IProgram)
@@ -171,11 +171,11 @@ Some of the more commonly used indexes are:
 ``path``
     the object’s path. The argument is a string like ``/foo/bar``.
     To get the path of an object (e.g. a parent folder), do
-    ``'/'.join(folder.getPhysicalPath())``. 
+    ``'/'.join(folder.getPhysicalPath())``.
     Searching for an object’s path will return the object and any children.
     To depth-limit the search, e.g. to get only those 1 level deep,
     use a compound query, e.g.
-    ``path={'query': '/'.join(folder.getPhysicalPath()), 'depth': 1}``. 
+    ``path={'query': '/'.join(folder.getPhysicalPath()), 'depth': 1}``.
     If a depth is specified, the object at the given path is not returned
     (but any children within the depth limit are).
 
@@ -269,10 +269,10 @@ There is a helpful package that creates a dexterity *behaviour* which allows ind
 How to setup the index TTW:
 ---------------------------
 
-If you need to avoid the file system when setting this up, you can apply the same changes but through 
-the web instead. 
+If you need to avoid the file system when setting this up, you can apply the same changes but through
+the web instead.
 
-- Go to the Zope Management Interface and select 'portal_types' 
+- Go to the Zope Management Interface and select 'portal_types'
 - Select your Dexterity content type
 - Add collective.dexteritytextindexer.behavior.IDexterityTextIndexer to the "Behaviors" box.
 - On the same page go down to "Model source" and add  indexer:searchable="true" to the <field> tag you want to index.

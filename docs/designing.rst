@@ -1,4 +1,4 @@
-Designing with content types 
+Designing with content types
 ==============================
 
 **How to solve problems with content types**

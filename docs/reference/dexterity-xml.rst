@@ -24,11 +24,11 @@ incorporated into a Python package. That's typically done with code like::
     class IExampleType(form.Schema):
 
         form.model("models/example_type.xml")
-        
+
 or::
-        
+
     from plone.supermodel import xmlSchema
-    
+
     IExampleType = xmlSchema("models/example_type.xml")
 
 XML models in a package may be directly edited. (Dexterity will probably also
