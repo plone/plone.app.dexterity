@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dexterity\n"
 "POT-Creation-Date: 2013-04-06 15:36+0000\n"
-"PO-Revision-Date: 2014-08-23 22:35+0100\n"
+"PO-Revision-Date: 2014-08-24 08:16+0100\n"
 "Last-Translator: Radim Novotny <novotny.radim@gmail.com>\n"
 "Language-Team: Czech <info@dms4u.cz>\n"
 "MIME-Version: 1.0\n"
@@ -46,11 +46,11 @@ msgstr "Přidá nastavení klíčových slov a nastavení jazyka položky"
 
 #: ../behaviors/discussion.py:30
 msgid "Allow discussion"
-msgstr "Povolí diskusi"
+msgstr "Povolit diskusi"
 
 #: ../behaviors/discussion.py:31
 msgid "Allow discussion for this content object."
-msgstr "Povolí diskusi pro tuto položku"
+msgstr "Povolit diskusi pro tuto položku"
 
 msgid "Allow items to be excluded from navigation"
 msgstr "Umožní položkám být vyloučeny z navigace"
