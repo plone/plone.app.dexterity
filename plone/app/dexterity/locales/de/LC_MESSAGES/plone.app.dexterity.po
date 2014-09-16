@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-09-16 13:53+0000\n"
+"POT-Creation-Date: 2014-09-16 14:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Timo Stollenwerk <contact@timostollenwerk.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,7 +122,7 @@ msgstr ""
 
 #: ../browser/modeleditor.py:51
 msgid "Error: root tag must be 'model'"
-msgstr ""
+msgstr "Fehler: Root-Tag muss 'model' sein."
 
 msgid "Exclude From navigation"
 msgstr "Von der Navigation ausschließen"
@@ -197,7 +197,7 @@ msgstr "Verwenden sie bitte nur Buchstaben, Nummern und die folgenden Zeichen: .
 
 #: ../browser/modeleditor.py:83
 msgid "Saved"
-msgstr ""
+msgstr "Gespeichert"
 
 #: ../browser/behaviors.py:60
 msgid "Select the behaviors to enable for this content type."
@@ -215,7 +215,7 @@ msgstr "Kurzname"
 
 #: ../behaviors/id.py:23
 msgid "Short name"
-msgstr ""
+msgstr "Kurzname"
 
 #: ../browser/types.py:178
 msgid "The following custom content types are available for your site."
@@ -227,7 +227,7 @@ msgstr "Es gibt bereits einen Inhaltstypen mit dem Namen '${name}'"
 
 #: ../behaviors/id.py:24
 msgid "This name will be displayed in the URL."
-msgstr ""
+msgstr "Dieser Name wird in der Adressleiste des Browsers angezeigt."
 
 #: ../interfaces.py:43
 msgid "Type Name"
@@ -248,6 +248,16 @@ msgstr "Wird für den programmatischen Zugriff auf diesen Inhaltstyp benötigt."
 #: ../behaviors/discussion.py:13
 msgid "Yes"
 msgstr "Ja"
+
+#. Default: "Expiration date must be after publishing date."
+#: ../behaviors/metadata.py:153
+msgid "error_expiration_must_be_after_effective_date"
+msgstr "Das Ablaufdatum muss nach dem Publikationsdatum sein."
+
+#. Default: "Invalid effective or expires date"
+#: ../behaviors/metadata.py:119
+msgid "error_invalid_publication"
+msgstr "Ungültiges Publikation- oder Ablaufdatum"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:181

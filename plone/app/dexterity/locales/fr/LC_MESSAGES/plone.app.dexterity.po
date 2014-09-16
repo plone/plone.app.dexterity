@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-09-16 13:53+0000\n"
+"POT-Creation-Date: 2014-09-16 14:03+0000\n"
 "PO-Revision-Date: 2013-04-07 00:15+0100\n"
 "Last-Translator: Thomas Desvenain <thomas.desvenain@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -251,6 +251,16 @@ msgstr "Utilisé pour l'accès programmatique au type."
 #: ../behaviors/discussion.py:13
 msgid "Yes"
 msgstr "Oui"
+
+#. Default: "Expiration date must be after publishing date."
+#: ../behaviors/metadata.py:153
+msgid "error_expiration_must_be_after_effective_date"
+msgstr ""
+
+#. Default: "Invalid effective or expires date"
+#: ../behaviors/metadata.py:119
+msgid "error_invalid_publication"
+msgstr ""
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:181
