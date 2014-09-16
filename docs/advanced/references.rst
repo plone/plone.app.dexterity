@@ -157,7 +157,7 @@ You should use from_id and helper method, which search the object in the IntId c
 
 Please note, this method does not check effective and expiration date or content language.
 
-Original issue: `http://code.google.com/p/dexterity/issues/detail?id=234`_
+Original issue: `<http://code.google.com/p/dexterity/issues/detail?id=234>`_
 
 
 
