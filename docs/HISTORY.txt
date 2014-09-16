@@ -13,6 +13,11 @@ Changelog for plone.app.dexterity
   user didn't have add permission on parent.
   [keul, cekk]
 
+- enhancement.
+  ensure expires date is after effective date.
+  [benniboy]
+
+
 2.1.1 (2014-04-13)
 ------------------
 

@@ -1,22 +1,25 @@
 from AccessControl.SecurityManagement import getSecurityManager
 from DateTime import DateTime
-from datetime import datetime
-from z3c.form.interfaces import IEditForm, IAddForm
-from z3c.form.widget import ComputedWidgetAttribute
-from zope.interface import provider
-from zope.interface import alsoProvides
-from zope.component import adapts
-from zope.component.hooks import getSite
-from zope import schema
-from zope.schema.interfaces import IText, ISequence
-from zope.schema.interfaces import IContextAwareDefaultFactory
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
-from plone.autoform import directives as form
-from plone.supermodel import model
-from plone.dexterity.interfaces import IDexterityContent
-from plone.autoform.interfaces import IFormFieldProvider
+from datetime import datetime
+from plone.app.dexterity import MessageFactory as _
 from plone.app.dexterity import PloneMessageFactory as _PMF
+from plone.autoform import directives as form
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexterityContent
+from plone.supermodel import model
+from z3c.form.interfaces import IEditForm, IAddForm
+from z3c.form.widget import ComputedWidgetAttribute
+from zope import schema
+from zope.component import adapts
+from zope.component.hooks import getSite
+from zope.interface import Invalid
+from zope.interface import alsoProvides
+from zope.interface import invariant
+from zope.interface import provider
+from zope.schema.interfaces import IContextAwareDefaultFactory
+from zope.schema.interfaces import IText, ISequence
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
 # content edit forms.
@@ -112,6 +115,11 @@ class ICategorization(model.Schema):
     form.no_omit(IAddForm, 'subjects', 'language')
 
 
+class EffectiveAfterExpires(Invalid):
+    __doc__ = _("error_invalid_publication",
+                default=u"Invalid effective or expires date")
+
+
 class IPublication(model.Schema):
     # dates fieldset
     model.fieldset(
@@ -137,6 +145,14 @@ class IPublication(model.Schema):
                     u"longer be visible in listings and searches."),
         required=False
     )
+
+    @invariant
+    def validate_start_end(data):
+        if data.effective and data.expires and data.effective > data.expires:
+            raise EffectiveAfterExpires(
+                _("error_expiration_must_be_after_effective_date",
+                  default=u"Expiration date must be after publishing date.")
+            )
 
     form.omitted('effective', 'expires')
     form.no_omit(IEditForm, 'effective', 'expires')
