@@ -8,6 +8,10 @@ Changelog for plone.app.dexterity
   added upgrade step to do it for existing content
   [bosim]
 
+- Fixed issue.
+  Multiple (two or more) acquisition from parent was failing when
+  user didn't have add permission on parent.
+  [keul, cekk]
 
 2.1.1 (2014-04-13)
 ------------------
