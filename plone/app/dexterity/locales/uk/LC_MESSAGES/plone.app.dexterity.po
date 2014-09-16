@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-11-17 18:55+0000\n"
+"POT-Creation-Date: 2014-09-16 13:53+0000\n"
 "PO-Revision-Date: 2013-11-17 21:03+0300\n"
 "Last-Translator: Roman Kozlovskyi <krzroman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr "кількість елементів"
 msgid "Add Content Type"
 msgstr "Додати Тип Контенту"
 
-#: ../browser/types_listing.pt:84
+#: ../browser/types_listing.pt:20
 msgid "Add New Content Type…"
 msgstr "Додати Новий Тип Контенту…"
 
@@ -96,13 +96,13 @@ msgstr "Контейнер"
 msgid "Description"
 msgstr "Опис"
 
-#: ../browser/types.py:247
+#: ../browser/types.py:249
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity Типи Контенту"
 
-#: ../browser/types.py:214
+#: ../browser/types.py:216
 msgid "Dexterity content types"
 msgstr "Dexterity типи контенту"
 
@@ -204,7 +204,7 @@ msgstr "Вибрати поведінки, щоб включити для дан
 
 #: ../behaviors/discussion.py:22
 #: ../behaviors/exclfromnav.py:16
-#: ../behaviors/nextprevious.py:30
+#: ../behaviors/id.py:18
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -212,13 +212,21 @@ msgstr "Налаштування"
 msgid "Short Name"
 msgstr "Коротка Назва"
 
-#: ../browser/types.py:176
+#: ../behaviors/id.py:23
+msgid "Short name"
+msgstr ""
+
+#: ../browser/types.py:178
 msgid "The following custom content types are available for your site."
 msgstr "Наступні користувацькі типи контенту доступні для вашого сайту."
 
 #: ../interfaces.py:101
 msgid "There is already a content type named '${name}'"
 msgstr "Існує вже тип контенту з іменем '${name}'"
+
+#: ../behaviors/id.py:24
+msgid "This name will be displayed in the URL."
+msgstr ""
 
 #: ../interfaces.py:43
 msgid "Type Name"
@@ -241,7 +249,7 @@ msgid "Yes"
 msgstr "Так"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:179
+#: ../browser/types.py:181
 msgid "help_addcontenttype_button"
 msgstr "Натисніть кнопку \"Додати Тип Контенту\", щоб почати створення нового користувацького типу контенту."
 

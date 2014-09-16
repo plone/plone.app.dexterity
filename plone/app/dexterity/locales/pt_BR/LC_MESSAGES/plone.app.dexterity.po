@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dexterity\n"
-"POT-Creation-Date: 2013-04-06 15:36+0000\n"
+"POT-Creation-Date: 2014-09-16 13:53+0000\n"
 "PO-Revision-Date: 2012-09-01 21:07-0400\n"
 "Last-Translator: Herson Rodrigues <hersonrodrigues@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Domain: plone.app.dexterity\n"
 "X-Is-Fallback-For: pt-ao pt-gw pt-cv pt-mz pt-pt pt-st\n"
 
-#: ../interfaces.py:87
+#: ../interfaces.py:90
 msgid "# of items"
 msgstr "# de itens"
 
@@ -23,7 +23,7 @@ msgstr "# de itens"
 msgid "Add Content Type"
 msgstr "Adicionar Tipo de Conteúdo"
 
-#: ../browser/types_listing.pt:82
+#: ../browser/types_listing.pt:20
 msgid "Add New Content Type…"
 msgstr "Adicionar novo tipo de conteúdo…"
 
@@ -39,11 +39,11 @@ msgstr "Adiciona os campos criador, colaborador e direitos autorais"
 msgid "Adds keywords and language setting"
 msgstr "Adiciona palavras-chave e configurações de idioma"
 
-#: ../behaviors/discussion.py:30
+#: ../behaviors/discussion.py:27
 msgid "Allow discussion"
 msgstr "Permitir comentários"
 
-#: ../behaviors/discussion.py:31
+#: ../behaviors/discussion.py:28
 msgid "Allow discussion for this content object."
 msgstr "Permitir comentários para este conteúdo."
 
@@ -53,7 +53,7 @@ msgstr "Permite que itens de conteúdo sejam excluídos da navegação"
 msgid "Allow items to have next previous navigation enabled"
 msgstr "Permite habilitar a navegação (próximo/anterior) para os items"
 
-#: ../interfaces.py:75
+#: ../interfaces.py:78
 msgid "Allowed Content Types"
 msgstr "Tipos de conteúdo permitidos"
 
@@ -69,12 +69,12 @@ msgstr "Gera automáticamente uma URL baseado no nome do arquivo"
 msgid "Basic metadata"
 msgstr "Metadados básicos"
 
-#: ../browser/behaviors.py:58
+#: ../browser/behaviors.py:59
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Comportamentos"
 
-#: ../browser/behaviors.py:60
+#: ../browser/behaviors.py:61
 msgid "Behaviors successfully updated."
 msgstr "Comportamentos atualizados com sucesso."
 
@@ -82,28 +82,28 @@ msgstr "Comportamentos atualizados com sucesso."
 msgid "Clone"
 msgstr "Clonar"
 
-#: ../browser/clone_type.py:11
+#: ../browser/clone_type.py:12
 msgid "Clone Content Type"
 msgstr "Clonar Tipo de Conteúdo"
 
 msgid "Configures various components needed for full Dexterity support."
 msgstr "Configura os vários componentes necessários para suporte ao Dexterity."
 
-#: ../interfaces.py:57
+#: ../interfaces.py:59
 msgid "Container"
 msgstr "Container"
 
-#: ../interfaces.py:52
+#: ../interfaces.py:54
 msgid "Description"
 msgstr "Descrição"
 
-#: ../browser/types.py:247
+#: ../browser/types.py:249
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Tipos de conteúdo Dexterity"
 
-#: ../browser/types.py:214
+#: ../browser/types.py:216
 msgid "Dexterity content types"
 msgstr "Tipos de conteúdo usando Dexterity"
 
@@ -116,6 +116,14 @@ msgstr "Data de Publicação"
 msgid "Enable next previous navigation for all items of this type"
 msgstr "Habilitar a navegação próximo/anterior para todos os elementos deste tipo"
 
+#: ../browser/modeleditor.py:57
+msgid "Error: all model elements must be 'schema'"
+msgstr ""
+
+#: ../browser/modeleditor.py:51
+msgid "Error: root tag must be 'model'"
+msgstr ""
+
 msgid "Exclude From navigation"
 msgstr "Excluir da navegação"
 
@@ -127,16 +135,16 @@ msgstr "Exportar os modelos de esquema"
 msgid "Export Type Profiles"
 msgstr "Exportar as configurações do tipo"
 
-#: ../browser/fields.py:9
+#: ../browser/fields.py:34
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "Campos"
 
-#: ../interfaces.py:64
+#: ../interfaces.py:67
 msgid "Filter Contained Types"
 msgstr "Filtrar tipos contidos"
 
-#: ../interfaces.py:58
+#: ../interfaces.py:60
 msgid "Items of this type will be able to contain other items."
 msgstr "Os itens deste tipo poderão conter outros itens."
 
@@ -158,16 +166,16 @@ msgstr "Navegação próximo/anterior"
 msgid "Next previous navigation toggle"
 msgstr "Alterar a navegação próximo/anterior"
 
-#: ../behaviors/discussion.py:17
+#: ../behaviors/discussion.py:14
 msgid "No"
 msgstr "Não"
 
-#: ../browser/behaviors.py:61
+#: ../browser/behaviors.py:62
 msgid "No changes were made."
 msgstr "As alterações não foram realizadas."
 
 #: ../browser/layout.py:14
-#: ../browser/overview.py:32
+#: ../browser/overview.py:33
 msgid "Overview"
 msgstr "Visão geral"
 
@@ -187,29 +195,41 @@ msgstr "Por favor selecione os tipos a serem exportados."
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Por favor use somente letras, números e os seguintes caracteres: .-_ (ponto, espaço e underline)"
 
-#: ../browser/behaviors.py:59
+#: ../browser/modeleditor.py:83
+msgid "Saved"
+msgstr ""
+
+#: ../browser/behaviors.py:60
 msgid "Select the behaviors to enable for this content type."
 msgstr "Selecione os comportamentos que serão habilitados para este tipo de conteúdo."
 
-#: ../behaviors/discussion.py:25
-#: ../behaviors/exclfromnav.py:13
-#: ../behaviors/nextprevious.py:27
+#: ../behaviors/discussion.py:22
+#: ../behaviors/exclfromnav.py:16
+#: ../behaviors/id.py:18
 msgid "Settings"
 msgstr "Configurações"
 
-#: ../interfaces.py:45
+#: ../interfaces.py:47
 msgid "Short Name"
 msgstr "Nome curto"
 
-#: ../browser/types.py:176
+#: ../behaviors/id.py:23
+msgid "Short name"
+msgstr ""
+
+#: ../browser/types.py:178
 msgid "The following custom content types are available for your site."
 msgstr "Os seguintes tipos de conteúdo personalizados estão disponíveis para o seu site."
 
-#: ../interfaces.py:98
+#: ../interfaces.py:101
 msgid "There is already a content type named '${name}'"
 msgstr "Já existe um tipo de conteúdo com o nome '${name}'"
 
-#: ../interfaces.py:41
+#: ../behaviors/id.py:24
+msgid "This name will be displayed in the URL."
+msgstr ""
+
+#: ../interfaces.py:43
 msgid "Type Name"
 msgstr "Nome do tipo"
 
@@ -217,30 +237,30 @@ msgstr "Nome do tipo"
 msgid "Type added successfully."
 msgstr "Tipo adicionado com sucesso."
 
-#: ../browser/clone_type.py:28
+#: ../browser/clone_type.py:31
 msgid "Type cloned successfully."
 msgstr "Tipo clonado com sucesso."
 
-#: ../interfaces.py:46
+#: ../interfaces.py:48
 msgid "Used for programmatic access to the type."
 msgstr "Usado para acessar um tipo de conteúdo programado."
 
-#: ../behaviors/discussion.py:16
+#: ../behaviors/discussion.py:13
 msgid "Yes"
 msgstr "Sim"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:179
+#: ../browser/types.py:181
 msgid "help_addcontenttype_button"
 msgstr "Clique no botão \"Adicionar tipo de conteúdo\" para criar um novo tipo de conteúdo personalizado."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
-#: ../behaviors/exclfromnav.py:18
+#: ../behaviors/exclfromnav.py:25
 msgid "help_exclude_from_nav"
 msgstr "Se estiver selecionado, o item não aparecerá na navegação"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
-#: ../behaviors/nextprevious.py:32
+#: ../behaviors/nextprevious.py:38
 msgid "help_nextprevious"
 msgstr "Isto habilita o widget próximo/anterior em itens de conteúdo contidos nesta pasta."
 
@@ -255,17 +275,17 @@ msgid "label_contained_items"
 msgstr "Itens contidos"
 
 #. Default: "Exclude from navigation"
-#: ../behaviors/exclfromnav.py:17
+#: ../behaviors/exclfromnav.py:21
 msgid "label_exclude_from_nav"
 msgstr "Excluir da navegação"
 
 #. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
-#: ../interfaces.py:65
+#: ../interfaces.py:68
 msgid "label_filter_contained_types"
 msgstr "Itens deste tipo de conteúdo podem agir como uma Pasta contendo outros itens. Quais tipos de conteúdo devem ser permitidos?"
 
 #. Default: "Enable next previous navigation"
-#: ../behaviors/nextprevious.py:31
+#: ../behaviors/nextprevious.py:34
 msgid "label_nextprevious"
 msgstr "Habilitar a navegação próximo/anterior"
 

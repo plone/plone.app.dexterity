@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
-"POT-Creation-Date: 2013-04-06 15:36+0000\n"
+"POT-Creation-Date: 2014-09-16 13:53+0000\n"
 "PO-Revision-Date: 2013-07-03 15:25+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.dexterity\n"
 
-#: ../interfaces.py:87
+#: ../interfaces.py:90
 msgid "# of items"
 msgstr "# 条目数量"
 
@@ -25,7 +25,7 @@ msgstr "# 条目数量"
 msgid "Add Content Type"
 msgstr "添加​​内容类型"
 
-#: ../browser/types_listing.pt:82
+#: ../browser/types_listing.pt:20
 msgid "Add New Content Type…"
 msgstr "添加​​新内容类型…"
 
@@ -41,11 +41,11 @@ msgstr "添加​​创建者、贡献者和版权字段"
 msgid "Adds keywords and language setting"
 msgstr "添加关键字和语言设置"
 
-#: ../behaviors/discussion.py:30
+#: ../behaviors/discussion.py:27
 msgid "Allow discussion"
 msgstr "允许评论"
 
-#: ../behaviors/discussion.py:31
+#: ../behaviors/discussion.py:28
 msgid "Allow discussion for this content object."
 msgstr "允许对此条目进行评论。"
 
@@ -55,7 +55,7 @@ msgstr "允许条目从导航中排除"
 msgid "Allow items to have next previous navigation enabled"
 msgstr "允许 上一条目/下一条目 导航"
 
-#: ../interfaces.py:75
+#: ../interfaces.py:78
 msgid "Allowed Content Types"
 msgstr "允许的内容类型"
 
@@ -71,12 +71,12 @@ msgstr "自动生成内容的短 URL 名称，基于其主字段文件名称"
 msgid "Basic metadata"
 msgstr "基本元数据"
 
-#: ../browser/behaviors.py:58
+#: ../browser/behaviors.py:59
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "行为"
 
-#: ../browser/behaviors.py:60
+#: ../browser/behaviors.py:61
 msgid "Behaviors successfully updated."
 msgstr "行为已更新成功。"
 
@@ -84,28 +84,28 @@ msgstr "行为已更新成功。"
 msgid "Clone"
 msgstr "克隆"
 
-#: ../browser/clone_type.py:11
+#: ../browser/clone_type.py:12
 msgid "Clone Content Type"
 msgstr "克隆内容类型"
 
 msgid "Configures various components needed for full Dexterity support."
 msgstr "Configures various components needed for full Dexterity support."
 
-#: ../interfaces.py:57
+#: ../interfaces.py:59
 msgid "Container"
 msgstr "容器"
 
-#: ../interfaces.py:52
+#: ../interfaces.py:54
 msgid "Description"
 msgstr "描述"
 
-#: ../browser/types.py:247
+#: ../browser/types.py:249
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity 内容类型"
 
-#: ../browser/types.py:214
+#: ../browser/types.py:216
 msgid "Dexterity content types"
 msgstr "Dexterity 内容类型"
 
@@ -118,6 +118,14 @@ msgstr "有效范围"
 msgid "Enable next previous navigation for all items of this type"
 msgstr "此类型的所有条目, 启用 上一条目/下一条目 导航"
 
+#: ../browser/modeleditor.py:57
+msgid "Error: all model elements must be 'schema'"
+msgstr ""
+
+#: ../browser/modeleditor.py:51
+msgid "Error: root tag must be 'model'"
+msgstr ""
+
 msgid "Exclude From navigation"
 msgstr "从导航中排除"
 
@@ -129,16 +137,16 @@ msgstr "导出模式模型"
 msgid "Export Type Profiles"
 msgstr "导出类型配置文件"
 
-#: ../browser/fields.py:9
+#: ../browser/fields.py:34
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "字段"
 
-#: ../interfaces.py:64
+#: ../interfaces.py:67
 msgid "Filter Contained Types"
 msgstr "过滤所包含的类型"
 
-#: ../interfaces.py:58
+#: ../interfaces.py:60
 msgid "Items of this type will be able to contain other items."
 msgstr "此类型的条目，可以包含其他条目。"
 
@@ -160,16 +168,16 @@ msgstr "上一条目/下一条目 导航"
 msgid "Next previous navigation toggle"
 msgstr "切换 上一条目/下一条目 导航"
 
-#: ../behaviors/discussion.py:17
+#: ../behaviors/discussion.py:14
 msgid "No"
 msgstr "禁用"
 
-#: ../browser/behaviors.py:61
+#: ../browser/behaviors.py:62
 msgid "No changes were made."
 msgstr "没有更改。"
 
 #: ../browser/layout.py:14
-#: ../browser/overview.py:32
+#: ../browser/overview.py:33
 msgid "Overview"
 msgstr "概览"
 
@@ -189,29 +197,41 @@ msgstr "请选择要导出的类型。"
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "请使用字母、数字和下列字符：.-_"
 
-#: ../browser/behaviors.py:59
+#: ../browser/modeleditor.py:83
+msgid "Saved"
+msgstr ""
+
+#: ../browser/behaviors.py:60
 msgid "Select the behaviors to enable for this content type."
 msgstr "选择此内容类型要启用的行为。"
 
-#: ../behaviors/discussion.py:25
-#: ../behaviors/exclfromnav.py:13
-#: ../behaviors/nextprevious.py:27
+#: ../behaviors/discussion.py:22
+#: ../behaviors/exclfromnav.py:16
+#: ../behaviors/id.py:18
 msgid "Settings"
 msgstr "设置"
 
-#: ../interfaces.py:45
+#: ../interfaces.py:47
 msgid "Short Name"
 msgstr "类型ID"
 
-#: ../browser/types.py:176
+#: ../behaviors/id.py:23
+msgid "Short name"
+msgstr ""
+
+#: ../browser/types.py:178
 msgid "The following custom content types are available for your site."
 msgstr "下列自定义内容类型可用于您的网站。"
 
-#: ../interfaces.py:98
+#: ../interfaces.py:101
 msgid "There is already a content type named '${name}'"
 msgstr "已经有一个名为 '${name}' 的内容类型"
 
-#: ../interfaces.py:41
+#: ../behaviors/id.py:24
+msgid "This name will be displayed in the URL."
+msgstr ""
+
+#: ../interfaces.py:43
 msgid "Type Name"
 msgstr "类型名称"
 
@@ -219,30 +239,30 @@ msgstr "类型名称"
 msgid "Type added successfully."
 msgstr "类型添加成功。"
 
-#: ../browser/clone_type.py:28
+#: ../browser/clone_type.py:31
 msgid "Type cloned successfully."
 msgstr "类型克隆成功。"
 
-#: ../interfaces.py:46
+#: ../interfaces.py:48
 msgid "Used for programmatic access to the type."
 msgstr "用于编程访问。"
 
-#: ../behaviors/discussion.py:16
+#: ../behaviors/discussion.py:13
 msgid "Yes"
 msgstr "启用"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:179
+#: ../browser/types.py:181
 msgid "help_addcontenttype_button"
 msgstr "单击 \"添加内容类型\" 按钮，开始创建一个新的自定义内容类型。"
 
 #. Default: "If selected, this item will not appear in the navigation tree"
-#: ../behaviors/exclfromnav.py:18
+#: ../behaviors/exclfromnav.py:25
 msgid "help_exclude_from_nav"
 msgstr "如果选中，此条目不会在导航树中显示"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
-#: ../behaviors/nextprevious.py:32
+#: ../behaviors/nextprevious.py:38
 msgid "help_nextprevious"
 msgstr "在此文件夹中的内容条目，启用 上一条目/下一条目 导航。"
 
@@ -257,17 +277,17 @@ msgid "label_contained_items"
 msgstr "包含的类型"
 
 #. Default: "Exclude from navigation"
-#: ../behaviors/exclfromnav.py:17
+#: ../behaviors/exclfromnav.py:21
 msgid "label_exclude_from_nav"
 msgstr "从导航中排除"
 
 #. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
-#: ../interfaces.py:65
+#: ../interfaces.py:68
 msgid "label_filter_contained_types"
 msgstr "此类型的条目可作为一个文件夹包含其他条目。允许包含什么内容类型？"
 
 #. Default: "Enable next previous navigation"
-#: ../behaviors/nextprevious.py:31
+#: ../behaviors/nextprevious.py:34
 msgid "label_nextprevious"
 msgstr "启用 上一条目/下一条目 导航"
 
