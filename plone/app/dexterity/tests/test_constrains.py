@@ -3,6 +3,7 @@ import unittest2 as unittest
 
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import login
 from plone.testing.z2 import Browser
 
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
@@ -161,6 +162,21 @@ class DocumentIntegrationTest(unittest.TestCase):
 
         self.assertEqual(types, behavior.allowedContentTypes())
         self.assertEqual(type_ids, behavior.getLocallyAllowedTypes())
+
+    def test_locallyAllowedTypesDefaultWhenMultipleAcquired(self):
+        """
+        Prevent regression.
+        Multiple (two or more) acquisition from parent must not fail if
+        user doesn't have add permission on parent.
+        """
+        self.inner_folder.invokeFactory('folder', 'deeper_folder')
+        deeper_folder = self.inner_folder.deeper_folder
+        self.portal.acl_users._doAddUser('user_contributor', 'secret', ['Member'], [])
+        deeper_folder.manage_addLocalRoles('user_contributor', ['Contributor'])
+        login(self.portal, 'user_contributor')
+        behavior = ISelectableConstrainTypes(deeper_folder)
+        types = behavior.getLocallyAllowedTypes()
+        self.assertTrue(len(types) > 0)
 
     def test_locallyAllowedTypesInvalidSet(self):
         behavior = ISelectableConstrainTypes(self.folder)
