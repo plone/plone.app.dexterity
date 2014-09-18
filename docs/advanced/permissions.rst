@@ -114,7 +114,7 @@ In both cases,
 read and write permissions are annotated onto the schema using directives similar to those we’ve already seen for form widget hints.
 The ``read_permission()`` and ``write_permission()`` directives are found in the `plone.autoform.directives`_ package.
 
-If XML-schemas are used for defintion see :doc:`../../reference/dexterity-xml`.
+If XML-schemas are used for defintion see :ref:`Dexterity XML: security attributes <dexterity-xml-security>`.
 
 Simple example protecting a field to be readable for Site Administrators only::
 

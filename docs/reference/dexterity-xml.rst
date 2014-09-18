@@ -305,6 +305,7 @@ Sample Python for the validator factory::
             super(TestValidator, self).validate(value)
             raise Invalid("Test")
 
+.. _dexterity-xml-security:
 
 supermodel/security attributes
 ------------------------------
