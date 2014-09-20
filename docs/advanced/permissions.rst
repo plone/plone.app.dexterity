@@ -22,13 +22,9 @@ permissions are typically used in three different ways:
   so that some users can view and edit fields that others can’t see.
 
 It is easy to create new permissions.
-However, be aware that it is considered good practice
-to use the standard permissions wherever possible and
-use *workflow* to control which roles are granted these permissions
-on a per-instance basis.
+However, be aware that it is considered good practice to use the standard permissions wherever possible and use *workflow* to control which roles are granted these permissions on a per-instance basis.
 
-For more basic information on permissions
-and how to create custom permissions read the `Security Section`_ in the Plone documentation.
+For more basic information on permissions and how to create custom permissions read the `Security Section`_ in the Plone documentation.
 
 .. _`Security Section`: http://docs.plone.org/develop/plone/security/index.html
 
@@ -40,9 +36,8 @@ example in a view. A permission check always checks a permission on a
 context object, since permissions can change with workflow.
 
 .. note::
-    Never make security dependent on users’ roles directly. Always check for
-    a permission, and assign the permission to the appropriate role or
-    roles.
+    Never make security dependent on users’ roles directly. 
+    Always check for a permission, and assign the permission to the appropriate role or roles.
 
 As an example,
 let’s display a message on the view of a ``Session`` type
