@@ -28,7 +28,7 @@
              <div class="contentActions"></div>
             </div>
 
-            <div id="content">
+            <article id="content">
 
              <div class="documentContent">
 
@@ -42,7 +42,7 @@
                <tal:block tal:replace="structure view/contents|view/render"/>
              </div>
 
-           </div>
+           </article>
         </div>
      </metal:slot>
 

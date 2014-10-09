@@ -64,7 +64,7 @@ $(document).ready(function() {
     });
 
     // set id from title
-    $('#form-widgets-title').live('change', function () {
+    $('body').on('change', '#form-widgets-title', function () {
         var id = $.plone_schemaeditor_normalize_string($(this).val());
         $('#form-widgets-id').val(id);
     });
