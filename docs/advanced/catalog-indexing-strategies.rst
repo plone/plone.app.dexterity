@@ -2,6 +2,33 @@
 Catalog indexing strategies
 ============================
 
+You may have two different interests in regard to indexing your custom content type objects:
+
+    * Making particular fields searchable via Plone's main search facility;
+
+    * Indexing particular fields for custom lookup.
+
+Making content searchable
+*************************
+
+Plone's main index is called *SearchableText*. This is the index which is searched when you use the main portal search. Fields in your custom content types are not necessarily added to SearchableText. Fields added via Dublin-core behaviors are automatically part of SearchableText; others are not.
+
+So, you may need to explicitly add fields to SearchableText if you wish their information to be findable via the main search. There are all sorts of highly customizable ways to do this, but the easiest is to use the `collective.dexteritytextindexer  <https://github.com/collective/collective.dexteritytextindexer>`_ add-on package.
+
+Add ``collective.dexteritytextindexer`` to your buildout and you will gain a new Dexterity behavior that will allow you to easily add fields to SearchableText. Once you turn on this behavior, you will then need to specify fields for addition to SearchableText.
+
+..Note::
+
+    Note that if you turn on the ``Dynamic SearchableText indexer behavior`` for a content type, then you must specify all fiedls that need SearchableText indexing. Dublin core fields like Title and Description are no longer automatically handled.
+
+Once you have turned on the indexer behavior, edit the XML field model to add ``indexer:searchable="true"`` to the ``field`` tag for each field you wish to add to the SearchableText index.
+
+See the `collective.dexteritytextindexer  <https://github.com/collective/collective.dexteritytextindexer>`_ package documentation for details and for information on how to use it via Python schema.
+
+
+Creating and using custom indexes
+*********************************
+
 **How to create custom catalog indexes**
 
 The ZODB is a hierarchical object store where objects of different schemata and sizes can live side by side.
@@ -255,29 +282,8 @@ For more information about catalog indexes and searching, see the
 .. _plone.indexer: http://pypi.python.org/pypi/plone.indexer
 
 
-
-Indexing content through the web
-================================
-
-There is a helpful package that creates a dexterity *behaviour* which allows indexing:
-
-
- - `collective.dexteritytextindexer <https://github.com/collective/collective.dexteritytextindexer>`_
-
-
-
 How to setup the index TTW:
 ---------------------------
-
-If you need to avoid the file system when setting this up, you can apply the same changes but through
-the web instead.
-
-- Go to the Zope Management Interface and select 'portal_types'
-- Select your Dexterity content type
-- Add collective.dexteritytextindexer.behavior.IDexterityTextIndexer to the "Behaviors" box.
-- On the same page go down to "Model source" and add  indexer:searchable="true" to the <field> tag you want to index.
-- Add xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" in the top <model> tag also inside the "Model source" box <-- you will get a traceback error if you miss this out.
-- Save your changes
 
 Now that the fields are index-able, we need to create the index itself.
 
