@@ -501,7 +501,7 @@ zip archive containing supermodel xml files::
     ['models/plonista2.xml', 'models/plonista-folder.xml']
 
     >>> print archive.read('models/plonista2.xml')
-    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
       </schema>
@@ -523,7 +523,7 @@ file::
     'attachment; filename=plonista2.xml'
 
     >>> print browser.contents
-    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
       </schema>
