@@ -96,7 +96,6 @@ Next, add schema declarations for our fields. The top part of the file should lo
 .. code-block:: python
 
     from example.conference import MessageFactory as _
-    from five import grok
     from plone.app.textfield import RichText
     from plone.supermodel import model
     from zope import schema
@@ -161,7 +160,6 @@ Save program.py.
 .. code-block:: python
 
     from example.conference import MessageFactory as _
-    from five import grok
     from plone.app.textfield import RichText
     from plone.supermodel import model
     from zope import schema
@@ -210,9 +208,10 @@ interface that allows us to add some form hints to the interface, which
 are then used by Dexterity (actually, the `plone.autoform`_ package) to
 construct forms. Take a look at the `plone.autoform`_
 documentation to learn more about the various hints that are possible.
-The most common ones are ``form.fieldset()``, to define groups of fields,
-``form.widget()``, to set a widget for a particular field, and
-``form.omit()`` to hide one or more fields from the form.
+The most common ones are from ``plone.autoform.directives``.
+Use ``fieldset()`` to define groups of fields,
+``widget()`` to set widgets for particular fields and
+``omitted()`` to hide one or more fields from the form.
 We will see examples of these later in the manual.
 
 .. _zope.schema:
@@ -418,10 +417,6 @@ If Zope doesn’t start up:
    the foreground with ``./bin/instance fg``. You could have a syntax
    error or a ZCML error.
 
-If you have a failed import for ``plone.directives.form``, make sure that you
-specified the ``[grok]`` extra for ``plone.app.dexterity`` in your setup.py
-install_requires.
-
 If you don’t see your package in :guilabel:`portal_quickinstaller`:
 
 -  Ensure that the package is either checked out by ``mr.developer`` or
@@ -457,6 +452,3 @@ If your forms do not look right (e.g. you are missing custom widgets):
 - Make sure your schema derives from ``model.Schema``.
 - Remember that the directives require you to specify the correct field
   name, even if they are placed before or after the relevant field.
-- Check that you have a ``<grok:grok package="." />`` line in
-  ``configure.zcml``.
-
