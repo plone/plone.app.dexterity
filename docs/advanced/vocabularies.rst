@@ -217,39 +217,47 @@ distribute vocabularies in third party packages.
 
 We can turn our first "members in the *organizers* group" vocabulary
 into a named vocabulary by creating a named utility providing
-``IVocabularyFactory``, like so:
+``IVocabularyFactory``. Add to your ``configure.zcml``:
 
-.. code-block:: python
-
-    def organizersVocabularyFactory(context):
-        acl_users = getToolByName(context, 'acl_users')
-        group = acl_users.getGroupById('organizers')
-        terms = []
-
-        if group is not None:
-            for member_id in group.getMemberIds():
-                user = acl_users.getUserById(member_id)
-                if user is not None:
-                    member_name = user.getProperty('fullname') or member_id
-                    terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
-
-        return SimpleVocabulary(terms)
-
-.. code-block:: html
+.. code-block:: xml
 
     <utility
         name="example.conference.Organisers"
         provides="zope.schema.interfaces.IVocabularyFactory"
-        component="example.conference.vocabularies.organizersVocabularyFactory"
+        component="example.conference.vocabularies.OrganizersVocabularyFactory"
     />
-
-.. note::
 
     By convention, the vocabulary name is prefixed with the package name, to
     ensure uniqueness.
 
+.. note::
+
+    Then create a vocabulary factory in ``vocabularies.py``:
+
+.. code-block:: python
+
+    ...
+
+    class OrganizersVocabularyFactory(object):
+
+        def __call__(self, context):
+            acl_users = getToolByName(context, 'acl_users')
+            group = acl_users.getGroupById('organizers')
+            terms = []
+
+            if group is not None:
+                for member_id in group.getMemberIds():
+                    user = acl_users.getUserById(member_id)
+                    if user is not None:
+                        member_name = user.getProperty('fullname') or member_id
+                        terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
+
+            return SimpleVocabulary(terms)
+
 We can make use of this vocabulary in any schema by passing its name to
-the ``vocabulary`` argument of the ``Choice`` field constructor::
+the ``vocabulary`` argument of the ``Choice`` field constructor:
+
+.. code-block:: python
 
     organizer = schema.Choice(
         title=_(u"Organiser"),
@@ -352,7 +360,11 @@ In the ``IProgram`` schema (which, recall, derives from ``model.Schema`` and
 is therefore processed for form hints at startup), we then add the
 following::
 
-    form.widget(organizer=AutocompleteFieldWidget)
+.. code-block:: python
+
+    from plone.autoform import directives
+
+    directives.widget(organizer=AutocompleteFieldWidget)
     organizer = schema.Choice(
         title=_(u"Organiser"),
         vocabulary=u"plone.principalsource.Users",
