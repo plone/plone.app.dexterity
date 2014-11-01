@@ -80,8 +80,9 @@ group::
     from zope.schema.interfaces import IContextSourceBinder
     from zope.schema.vocabulary import SimpleVocabulary
     from Products.CMFCore.utils import getToolByName
+    from zope.interface import directlyProvides
 
-    @grok.provider(IContextSourceBinder)
+
     def possibleOrganizers(context):
         acl_users = getToolByName(context, 'acl_users')
         group = acl_users.getGroupById('organizers')
@@ -95,6 +96,7 @@ group::
                     terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
 
         return SimpleVocabulary(terms)
+    directlyProvides(possibleOrganizers, IContextSourceBinder)
 
 We use the PAS API to get the group and its members, building a list,
 which we then turn into a vocabulary.
