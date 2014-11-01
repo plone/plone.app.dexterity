@@ -64,7 +64,3 @@ a particular form, you could use a decorator like:
 We’ll cover creating custom forms later in this manual.
 
 .. _plone.directives.form: http://pypi.python.org/pypi/plone.directives.form
-
-If the default_value decorator is not working, check that you have installed
-plone.directives.form installed with buildout or in your setup.py. Further
-ensure that you have "groked" your package.
