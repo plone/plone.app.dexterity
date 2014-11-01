@@ -154,12 +154,14 @@ function, allowing it to be set on a per-field basis. To do so, we turn
 our ``IContextSourceBinder`` into a class that is initialised with the
 group name::
 
+    from zope.interface import implements
+
     class GroupMembers(object):
         """Context source binder to provide a vocabulary of users in a given
         group.
         """
 
-        grok.implements(IContextSourceBinder)
+        implements(IContextSourceBinder)
 
         def __init__(self, group_name):
             self.group_name = group_name
@@ -215,29 +217,31 @@ distribute vocabularies in third party packages.
 
 We can turn our first "members in the *organizers* group" vocabulary
 into a named vocabulary by creating a named utility providing
-``IVocabularyFactory``, like so::
+``IVocabularyFactory``, like so:
 
-    from zope.schema.interfaces import IVocabularyFactory
-    ...
+.. code-block:: python
 
-    class OrganizersVocabulary(object):
-        grok.implements(IVocabularyFactory)
+    def organizersVocabularyFactory(context):
+        acl_users = getToolByName(context, 'acl_users')
+        group = acl_users.getGroupById('organizers')
+        terms = []
 
-        def __call__(self, context):
-            acl_users = getToolByName(context, 'acl_users')
-            group = acl_users.getGroupById('organizers')
-            terms = []
+        if group is not None:
+            for member_id in group.getMemberIds():
+                user = acl_users.getUserById(member_id)
+                if user is not None:
+                    member_name = user.getProperty('fullname') or member_id
+                    terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
 
-            if group is not None:
-                for member_id in group.getMemberIds():
-                    user = acl_users.getUserById(member_id)
-                    if user is not None:
-                        member_name = user.getProperty('fullname') or member_id
-                        terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
+        return SimpleVocabulary(terms)
 
-            return SimpleVocabulary(terms)
+.. code-block:: html
 
-    grok.global_utility(OrganizersVocabulary, name=u"example.conference.Organizers")
+    <utility
+        name="example.conference.Organisers"
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        component="example.conference.vocabularies.organizersVocabularyFactory"
+    />
 
 .. note::
 
