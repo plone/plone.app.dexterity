@@ -27,7 +27,7 @@ list of ``view_methods.``
 
 First create a view registration with a ``<browser:page />`` ZCML directive in your ```configure.zcml`` file:
 
-.. code-block:: html
+.. code-block:: xml
 
     <configure
         xmlns="http://namespaces.zope.org/zope"
@@ -52,7 +52,7 @@ Secondly add a browser view in ``program.py`` as follows:
     from Acquisition import aq_inner
     from Products.CMFCore.utils import getToolByName
     from Products.Five import BrowserView
-    
+
     from example.conference.session import ISession
 
 
@@ -150,7 +150,7 @@ contained within the program.
 
 The view for ``Presenter`` is even simpler:
 
-.. code-block:: html
+.. code-block:: xml
 
     <configure
         xmlns="http://namespaces.zope.org/zope"
@@ -234,7 +234,7 @@ in ``session.py``, with a template in ``templates/sessionview.pt``.
 The new view class is pretty much the same as before, except that we
 derive from ``plone.dexterity.browser.view.DefaultView``:
 
-.. code-block:: html
+.. code-block:: xml
 
     <configure
         xmlns="http://namespaces.zope.org/zope"
@@ -253,7 +253,7 @@ derive from ``plone.dexterity.browser.view.DefaultView``:
     </configure>
 
 .. code-block:: python
-    
+
     from plone.dexterity.browser.view import DefaultView
 
     class SessionView(DefaultView):

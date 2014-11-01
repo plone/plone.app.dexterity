@@ -32,7 +32,7 @@ Setting the field model
 
 Look in ``example.conference/example/conference/models/presenter.xml`` for a bare model file created by addcontent. Let's elaborate it:
 
-.. code-block:: html
+.. code-block:: xml
 
     <model xmlns:form="http://namespaces.plone.org/supermodel/form"
            xmlns:security="http://namespaces.plone.org/supermodel/security"
@@ -92,7 +92,7 @@ type.
 Look in the ``types.xml`` file in your packages
 ``example/conference/profiles/default`` directory. It should now contain:
 
-.. code-block:: html
+.. code-block:: xml
 
     <object name="portal_types">
      <object name="example.conference.program" meta_type="Dexterity FTI" />
@@ -103,7 +103,7 @@ Look in the ``types.xml`` file in your packages
 
 For the *Presenter* type, we have ``example.conference.presenter.xml``:
 
-.. code-block:: html
+.. code-block:: xml
 
     <?xml version="1.0"?>
     <object name="example.conference.presenter"

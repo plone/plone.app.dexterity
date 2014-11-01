@@ -231,7 +231,7 @@ do this with GenericSetup. Most of this was set up when we used ``addcontent`` t
 
 Look in the ``types.xml`` file in your packages ``example/conference/profiles/default`` directory:
 
-.. code-block:: html
+.. code-block:: xml
 
     <object name="portal_types">
      <object name="example.conference.program" meta_type="Dexterity FTI" />
@@ -247,7 +247,7 @@ name matches the type name.
 
 The ``Session`` type, in ``example.conference.session.xml``, should look like this:
 
-.. code-block:: html
+.. code-block:: xml
 
     <?xml version="1.0"?>
     <object name="example.conference.session"
@@ -336,7 +336,7 @@ The important lines here are:
 
 The ``Program``, in ``example.conference.program.xml``, looks like this:
 
-.. code-block:: html
+.. code-block:: xml
 
     <?xml version="1.0"?>
     <object name="example.conference.program"
