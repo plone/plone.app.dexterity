@@ -23,4 +23,3 @@ Appendixes
 
    install.rst
    behaviors/index.rst
-   grok/index.rst

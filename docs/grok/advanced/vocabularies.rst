@@ -80,9 +80,8 @@ group::
     from zope.schema.interfaces import IContextSourceBinder
     from zope.schema.vocabulary import SimpleVocabulary
     from Products.CMFCore.utils import getToolByName
-    from zope.interface import directlyProvides
 
-
+    @grok.provider(IContextSourceBinder)
     def possibleOrganizers(context):
         acl_users = getToolByName(context, 'acl_users')
         group = acl_users.getGroupById('organizers')
@@ -96,7 +95,6 @@ group::
                     terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
 
         return SimpleVocabulary(terms)
-    directlyProvides(possibleOrganizers, IContextSourceBinder)
 
 We use the PAS API to get the group and its members, building a list,
 which we then turn into a vocabulary.
@@ -154,14 +152,12 @@ function, allowing it to be set on a per-field basis. To do so, we turn
 our ``IContextSourceBinder`` into a class that is initialised with the
 group name::
 
-    from zope.interface import implements
-
     class GroupMembers(object):
         """Context source binder to provide a vocabulary of users in a given
         group.
         """
 
-        implements(IContextSourceBinder)
+        grok.implements(IContextSourceBinder)
 
         def __init__(self, group_name):
             self.group_name = group_name
@@ -217,28 +213,13 @@ distribute vocabularies in third party packages.
 
 We can turn our first "members in the *organizers* group" vocabulary
 into a named vocabulary by creating a named utility providing
-``IVocabularyFactory``. Add to your ``configure.zcml``:
+``IVocabularyFactory``, like so::
 
-.. code-block:: xml
-
-    <utility
-        name="example.conference.Organisers"
-        provides="zope.schema.interfaces.IVocabularyFactory"
-        component="example.conference.vocabularies.OrganizersVocabularyFactory"
-    />
-
-    By convention, the vocabulary name is prefixed with the package name, to
-    ensure uniqueness.
-
-.. note::
-
-    Then create a vocabulary factory in ``vocabularies.py``:
-
-.. code-block:: python
-
+    from zope.schema.interfaces import IVocabularyFactory
     ...
 
-    class OrganizersVocabularyFactory(object):
+    class OrganizersVocabulary(object):
+        grok.implements(IVocabularyFactory)
 
         def __call__(self, context):
             acl_users = getToolByName(context, 'acl_users')
@@ -254,10 +235,15 @@ into a named vocabulary by creating a named utility providing
 
             return SimpleVocabulary(terms)
 
-We can make use of this vocabulary in any schema by passing its name to
-the ``vocabulary`` argument of the ``Choice`` field constructor:
+    grok.global_utility(OrganizersVocabulary, name=u"example.conference.Organizers")
 
-.. code-block:: python
+.. note::
+
+    By convention, the vocabulary name is prefixed with the package name, to
+    ensure uniqueness.
+
+We can make use of this vocabulary in any schema by passing its name to
+the ``vocabulary`` argument of the ``Choice`` field constructor::
 
     organizer = schema.Choice(
         title=_(u"Organiser"),
@@ -360,11 +346,7 @@ In the ``IProgram`` schema (which, recall, derives from ``model.Schema`` and
 is therefore processed for form hints at startup), we then add the
 following::
 
-.. code-block:: python
-
-    from plone.autoform import directives
-
-    directives.widget(organizer=AutocompleteFieldWidget)
+    form.widget(organizer=AutocompleteFieldWidget)
     organizer = schema.Choice(
         title=_(u"Organiser"),
         vocabulary=u"plone.principalsource.Users",

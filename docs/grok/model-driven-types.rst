@@ -68,6 +68,7 @@ That's all we need! To see why, look in the generated file ``presenter.py``:
 .. code-block:: python
 
     from example.conference import MessageFactory as _
+    from five import grok
     from plone.supermodel import model
     from zope import schema
 
@@ -80,7 +81,7 @@ That's all we need! To see why, look in the generated file ``presenter.py``:
         model.load("models/presenter.xml")
 
 
-Note the ``model.load`` directive. We'd deleted that when we created schema-driven field sets. Now, we leave it in to automatically load our model file.
+Note the model.load directive. We'd deleted that when we created schema-driven field sets. Now, we leave it in to automatically load our model file.
 
 Setting Factory Type Information
 --------------------------------

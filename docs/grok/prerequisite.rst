@@ -71,7 +71,7 @@ the generated setup.py file::
 
           install_requires=[
               ...
-              'plone.app.dexterity',
+              'plone.app.dexterity [grok]',
               ...
           ],
           ...
@@ -81,8 +81,8 @@ the generated setup.py file::
           target = plone
           """,
 
-The addition of `plone.app.dexterity` to our install requirements
-assures that we'll have dexterity loaded. Our example
+The addition of `plone.app.dexterity [grok]` to our install requirements
+assures that we'll have dexterity loaded with the `grok` extra. Our example
 code won't work without it. The specification of `plone` as a
 z3c.autoinclude.plugin entry point ensures that we won't need to separately
 specify our zcml in buildout.
@@ -92,6 +92,8 @@ Now, let's take a look at ``configure.zcml`` in the examples/conference director
     <configure ...>
 
       <includeDependencies package="." />
+
+      <grok:grok package="." />
 
       <browser:resourceDirectory
         name="example.conference"
@@ -111,6 +113,10 @@ Here, with the ``includeDependencies`` tag we automatically include the ZCML con
 packages listed under ``install_requires`` in ``setup.py``.
 The alternative would be to manually add a line like
 ``<include package="plone.app.dexterity" />`` for each dependency.
+
+Next, we *grok* the package to construct and register schemata, views,
+forms and so on based on conventions used in the various files we will
+add throughout this tutorial.
 
 The ``browser.resourceDirectory`` command creates a directory for static resources that we want to make available through the web.
 

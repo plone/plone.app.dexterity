@@ -108,4 +108,7 @@ Form validators
 ~~~~~~~~~~~~~~~
 
 Finally, you can write more powerful validators by using the `z3c.form <http://pypi.python.org/pypi/z3c.form>`_
-widget validators. For details see the `z3c.form validators section <http://docs.plone.org/develop/plone/forms/z3c.form.html#validators>`_.
+widget validators. See :ref:`the z3c.form documentation <z3c.form>`_ for
+details.
+
+.. _z3c.form: http://pypi.python.org/pypi/z3c.form
