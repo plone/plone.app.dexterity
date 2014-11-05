@@ -11,6 +11,7 @@
 .coverage
 /*.egg-info
 /.installed.cfg
+*~
 *.pyc
 /.Python
 /include
@@ -20,8 +21,25 @@
 /.mr.developer.cfg
 /src/plone*
 /src/collective*
+*.pyo
+*.tmp*
 *.mo
 docs/Makefile
 docs/make.bat
 docs/doctrees
 docs/html
+*.egg
+*.EGG
+*.EGG-INFO
+*.kpf
+*.swp
+*.wpr
+.*.cfg
+.hg/
+.bzr/
+.svn/
+
+
+
+# OSX
+.DS_Store

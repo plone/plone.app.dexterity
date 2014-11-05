@@ -27,7 +27,7 @@
         view="plone.dexterity.interfaces.IDexterityEditForm"
         template="default_page_warning.pt"
         permission="cmf.ModifyPortalContent"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
         />
 
     <!-- Control panel -->

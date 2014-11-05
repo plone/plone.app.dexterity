@@ -32,7 +32,7 @@ Setting the field model
 
 Look in ``example.conference/example/conference/models/presenter.xml`` for a bare model file created by addcontent. Let's elaborate it:
 
-.. code-block:: html
+.. code-block:: xml
 
     <model xmlns:form="http://namespaces.plone.org/supermodel/form"
            xmlns:security="http://namespaces.plone.org/supermodel/security"
@@ -68,7 +68,6 @@ That's all we need! To see why, look in the generated file ``presenter.py``:
 .. code-block:: python
 
     from example.conference import MessageFactory as _
-    from five import grok
     from plone.supermodel import model
     from zope import schema
 
@@ -81,7 +80,7 @@ That's all we need! To see why, look in the generated file ``presenter.py``:
         model.load("models/presenter.xml")
 
 
-Note the model.load directive. We'd deleted that when we created schema-driven field sets. Now, we leave it in to automatically load our model file.
+Note the ``model.load`` directive. We'd deleted that when we created schema-driven field sets. Now, we leave it in to automatically load our model file.
 
 Setting Factory Type Information
 --------------------------------
@@ -92,7 +91,7 @@ type.
 Look in the ``types.xml`` file in your packages
 ``example/conference/profiles/default`` directory. It should now contain:
 
-.. code-block:: html
+.. code-block:: xml
 
     <object name="portal_types">
      <object name="example.conference.program" meta_type="Dexterity FTI" />
@@ -103,7 +102,7 @@ Look in the ``types.xml`` file in your packages
 
 For the *Presenter* type, we have ``example.conference.presenter.xml``:
 
-.. code-block:: html
+.. code-block:: xml
 
     <?xml version="1.0"?>
     <object name="example.conference.presenter"
