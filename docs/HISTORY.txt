@@ -4,8 +4,7 @@ Changelog for plone.app.dexterity
 2.1.3 (unreleased)
 ------------------
 
-- Remove PloneTestCase traces
-  [tomgross]
+- Nothing changed yet.
 
 
 2.1.2 (2014-10-23)
