@@ -84,15 +84,9 @@ interfaces that store their values in annotations. We’ll describe this
 in more detail later. We could just as easily have provided our own
 factory in this example.
 
-This whole package is grokked, so in *configure.zcml* we have:
-
-.. code-block:: xml
-
-        <grok:grok package="." />
-
 The *reviewers.py* module contains the following:
 
-::
+.. code-block:: python
 
     """Behavior to enable certain users to nominate reviewers
 
@@ -101,22 +95,19 @@ The *reviewers.py* module contains the following:
     OfficialReviewer roles appropriately.
     """
 
-    from five import grok
-
-    from zope.interface import alsoProvides, Interface
-
-    from plone.directives import form
-    from zope import schema
-
-    from plone.formwidget.autocomplete.widget import AutocompleteMultiFieldWidget
-
     from borg.localrole.interfaces import ILocalRoleProvider
-    from plone.indexer.interfaces import IIndexer
-    from Products.ZCatalog.interfaces import IZCatalog
-
     from iz.behaviors import MessageFactory as _
+    from plone.autoform import directives as form
+    from plone.autoform.interfaces import IFormFieldProvider
+    from plone.formwidget.autocomplete.widget import AutocompleteMultiFieldWidget
+    from plone.indexer.interfaces import IIndexer
+    from plone.supermodel import model
+    from Products.ZCatalog.interfaces import IZCatalog
+    from zope import schema
+    from zope.interface import alsoProvides, Interface
+    from zope.component import adapter
 
-    class IReviewers(form.Schema):
+    class IReviewers(model.Schema):
         """Support for specifying official and unofficial reviewers
         """
 
@@ -146,7 +137,7 @@ The *reviewers.py* module contains the following:
                 missing_value=(), # important!
             )
 
-    alsoProvides(IReviewers, form.IFormFieldProvider)
+    alsoProvides(IReviewers, IFormFieldProvider)
 
     class IReviewersMarker(Interface):
         """Marker interface that will be provided by instances using the
@@ -154,13 +145,14 @@ The *reviewers.py* module contains the following:
         this marker.
         """
 
-    class ReviewerLocalRoles(grok.Adapter):
+    @implementer(ILocalRoleProvider)
+    @adapter(IReviewersMarker)
+    class ReviewerLocalRoles(object):
         """Grant local roles to reviewers when the behavior is used.
         """
 
-        grok.implements(ILocalRoleProvider)
-        grok.context(IReviewersMarker)
-        grok.name('iz.behaviors.reviewers')
+        def __init__(self, context):
+            self.context = context
 
         def getRoles(self, principal_id):
             """If the user is in the list of reviewers for this item, grant
@@ -197,13 +189,12 @@ The *reviewers.py* module contains the following:
                 if principal_id not in seen:
                     yield (principal_id, ('Reviewer',),)
 
-    class ReviewersIndexer(grok.MultiAdapter):
+
+    @implementer(IIndexer)
+    @adapter(IReviewersMarker, IZCatalog)
+    class ReviewersIndexer(object):
         """Catalog indexer for the 'reviewers' index.
         """
-
-        grok.implements(IIndexer)
-        grok.adapts(IReviewersMarker, IZCatalog)
-        grok.name('reviewers')
 
         def __init__(self, context, catalog):
             self.reviewers = IReviewers(context)
@@ -217,22 +208,27 @@ Note that the *iz.EditOfficialReviewers* and
 *iz.EditUnofficialReviewers* permissions are defined and granted
 elsewhere.
 
+We need to register these components in *configure.zcml*:
+
+.. code-block:: xml
+
+    <adapter factory=".reviewers.ReviewerLocalRoles" name="iz.behaviors.reviewers" />
+    <adapter factory=".reviewers.ReviewersIndexer" name="reviewers" />
+
+
 This is quite a complex behavior, but hopefully you can see what’s going
 on:
 
--  There is a standard schema interface, which is grokked for form hints
-   using *plone.directives.form* and marked as an *IFormFieldProvider*.
+-  There is a standard schema interface, which includes form hints
+   using *plone.autoform.directives* and is marked as an *IFormFieldProvider*.
    It uses *plone.formwidget.autocomplete* and *plone.principalsource*
    to implement the fields.
 -  We define a marker interface (*IReviewersMarker*) and register this
    with the *marker* attribute of the *<plone:behavior />* directive.
--  We define an adapter from this marker to *ILocalRoles* from
-   *borg.localrole*. Here, we have chosen to use *grokcore.component*
-   (via *five.grok*) to register the adapter. We could have used an
-   *<adapter />* ZCML statement as well, of course.
--  Similarly, we define a multi-adapter to *IIndexer*, as provided by
-   *plone.indexer*. Again, we’ve chosen to use
-   convention-over-configuration via *five.grok* to register this.
+-  We define and register an adapter from this marker to *ILocalRoles* from
+   *borg.localrole*.
+-  Similarly, we register a multi-adapter to *IIndexer*, as provided by
+   *plone.indexer*.
 
 Although this behavior provides a lot of functionality, it is no more
 difficult for integrators to use than any other: they would simply list

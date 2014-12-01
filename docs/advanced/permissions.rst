@@ -107,7 +107,7 @@ Write permissions can be used to control whether or not a given field appears on
 
 In both cases,
 read and write permissions are annotated onto the schema using directives similar to those we’ve already seen for form widget hints.
-The ``read_permission()`` and ``write_permission()`` directives are found in the `plone.autoform.directives`_ package.
+The ``read_permission()`` and ``write_permission()`` directives are found in the `plone.autoform`_ package.
 
 If XML-schemas are used for defintion see :ref:`Dexterity XML: security attributes <dexterity-xml-security>`.
 
@@ -186,4 +186,4 @@ With this in place, users with the ``example.conference: Modify track``
 permission should be able to edit tracks for a session. For everyone
 else, the field will be hidden in the edit form.
 
-.. _plone.autoform.directives: http://pypi.python.org/pypi/plone.directives.dexterity
+.. _plone.autoform: http://pypi.python.org/pypi/plone.autoform

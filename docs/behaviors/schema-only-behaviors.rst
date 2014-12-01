@@ -65,16 +65,17 @@ As an example, here’s the standard *IRelatedItems* behavior from
 
 The *IRelatedItems* schema looks like this:
 
-::
+.. code-block:: python
 
+    from plone.autoform.directives import form
+    form plone.autoform.interfaces import IFormFieldProvider
+    from plone.formwidget.contenttree import ObjPathSourceBinder
+    from plone.supermodel import model
+    from z3c.relationfield.schema import RelationChoice, RelationList
     from zope.interface import alsoProvides
 
-    from z3c.relationfield.schema import RelationChoice, RelationList
 
-    from plone.formwidget.contenttree import ObjPathSourceBinder
-    from plone.directives import form
-
-    class IRelatedItems(form.Schema):
+    class IRelatedItems(model.Schema):
         """Behavior interface to make a type support related items.
         """
 
@@ -89,10 +90,10 @@ The *IRelatedItems* schema looks like this:
             required=False,
             )
 
-    alsoProvides(IRelatedItems, form.IFormFieldProvider)
+    alsoProvides(IRelatedItems, IFormFieldProvider)
 
-This is a standard schema using *plone.directives.form* (the package is
-also grokked). However, notice the lack of a behavior factory. This is a
+This is a standard schema using *plone.autoform.directives*.
+However, notice the lack of a behavior factory. This is a
 directly provided “marker” interface, except that it has attributes, and
 so it is not actually a marker interface. The result is that the
 *relatedItems* attribute will be stored directly onto a content object

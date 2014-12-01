@@ -8,23 +8,22 @@ Dexterity uses the `plone.autoform`_ package to configure its
 annotated with “form hints”, which are used to configure the form.
 
 The easiest way to apply form hints in Python code is to use the
-directives from `plone.directives.form`_ and
-`plone.directives.dexterity`_. These directives are used when the
-package is “grokked” (via the *<grok:grok package=“.” />*ZCML directive)
-to apply the form hints to the interface where they are found. For this
-process to work, the schema must derive from
-*plone.directives.form.Schema*. Directives can be placed anywhere in the
-class body. By convention they are kept next to the fields they apply
-to.
+directives from `plone.autoform` and `plone.supermodel`.
+For the directives to work, the schema
+must derive from *plone.supermodel.model.Schema*. Directives can be
+placed anywhere in the class body. By convention they are kept next to
+the fields they apply to.
 
 For example, here is a schema that omits a field:
 
-::
+.. code-block:: python
 
-    from plone.directives import form
+    from plone.autoform import directives as form
+    from plone.supermodel import model
     from zope import schema
 
-    class ISampleSchema(form.Schema):
+
+    class ISampleSchema(model.Schema):
 
         title = schema.TextLine(title=u"Title")
 
@@ -38,8 +37,7 @@ directive can be used zero or more times.
 Form directives
 ---------------
 
-The form directives in the *plone.directives.form* package are shown
-below.
+These form directives are included in the *plone.autoform.directives* module:
 
 +-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Name            | Description                                                                                                                                                                                                                                                                                                                                  |
@@ -54,6 +52,10 @@ below.
 +-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | order\_after    | The inverse of order\_before(), putting a field after another. Passing “\*” will put the field at the end of the form.                                                                                                                                                                                                                       |
 +-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+These form directives are included in the *plone.supermodel.directives* module:
+
++-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | primary         | Designate a given field as the primary field in the schema. This is not used for form rendering, but is used for WebDAV marshaling of the content object.                                                                                                                                                                                    |
 +-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | fieldset        | Creates a fieldset (rendered in Plone as a tab on the edit form).                                                                                                                                                                                                                                                                            |
@@ -61,13 +63,15 @@ below.
 
 The code sample below illustrates each of these directives:
 
-::
+.. code-block:: python
 
-    from plone.directives import form
-    from zope import schema
+    from plone.autoform import directives as form
+    from plone.supermodel import model
     from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
+    from zope import schema
 
-    class ISampleSchema(form.Schema):
+
+    class ISampleSchema(model.Schema):
 
         # A fieldset with id 'extra' and label 'Extra information' containing
         # the 'footer' and 'dummy' fields. The label can be omitted if the
@@ -82,7 +86,7 @@ The code sample below illustrates each of these directives:
         # The body field is also designated as the priamry field for this schema
 
         form.widget(body='plone.app.z3cform.wysiwyg.WysiwygFieldWidget')
-        form.primary('body')
+        model.primary('body')
         body = schema.Text(
                 title=u"Body text",
                 required=False,
@@ -123,7 +127,7 @@ The code sample below illustrates each of these directives:
 Security directives
 -------------------
 
-The security directives in the *plone.directives.dexterity* package are
+The security directives in the *plone.autoform.directives* module are
 shown below. Note that these are also used to control reading and
 writing of fields on content instances.
 
@@ -137,18 +141,19 @@ writing of fields on content instances.
 
 The code sample below illustrates each of these directives:
 
-::
+.. code-block:: python
 
-    from plone.directives import form, dexterity
+    from plone.autoform import directives as form
+    from plone.supermodel import model
     from zope import schema
 
-    class ISampleSchema(form.Schema):
+    class ISampleSchema(model.Schema):
 
         # This field requires the 'cmf.ReviewPortalContent' to be read and
         # written
 
-        dexterity.read_permission(reviewNotes='cmf.ReviewPortalContent')
-        dexterity.write_permission(reviewNotes='cmf.ReviewPortalContent')
+        form.read_permission(reviewNotes='cmf.ReviewPortalContent')
+        form.write_permission(reviewNotes='cmf.ReviewPortalContent')
         reviewNotes = schema.Text(
                 title=u"Review notes",
                 required=False,
@@ -156,5 +161,3 @@ The code sample below illustrates each of these directives:
 
 .. _plone.autoform: http://pypi.python.org/pypi/plone.autoform
 .. _z3c.form: http://docs.zope.org/z3c.form
-.. _plone.directives.form: http://pypi.python.org/pypi/plone.directives.form
-.. _plone.directives.dexterity: http://pypi.python.org/pypi/plone.directives.dexterity

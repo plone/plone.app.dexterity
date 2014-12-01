@@ -49,9 +49,14 @@ will be contained in the body of the message.
 If there is more than one primary field, a multi-part message is created.
 
 A field can be marked as “primary” using the ``primary()`` directive from
-`plone.directives.form`_. For example::
+`plone.supermodel`_. For example:
 
-    class ISession(form.Schema):
+.. code-block:: python
+
+    from plone.autoform import directives as form
+    from plone.supermodel import directives
+
+    class ISession(model.Schema):
         """A conference session. Sessions are managed inside Programs.
         """
 
@@ -64,7 +69,7 @@ A field can be marked as “primary” using the ``primary()`` directive from
                 title=_(u"Session summary"),
             )
 
-        form.primary('details')
+        directives.primary('details')
         details = RichText(
                 title=_(u"Session details"),
                 required=False
@@ -77,7 +82,7 @@ A field can be marked as “primary” using the ``primary()`` directive from
                 required=False,
             )
 
-        dexterity.write_permission(track='example.conference.ModifyTrack')
+        form.write_permission(track='example.conference.ModifyTrack')
         track = schema.Choice(
                 title=_(u"Track"),
                 source=possibleTracks,
@@ -545,7 +550,7 @@ For example, when the data object is updated via a PUT request, the
 .. _Cyberduck: http://cyberduck.ch/
 .. _External Editor: ../../../../../external-editor
 .. _plone.dexterity.filerepresentation: http://pypi.python.org/pypi/plone.dexterity.filerepresentation
-.. _plone.directives.form: http://pypi.python.org/pypi/plone.directives.form
+.. _plone.supermodel: http://pypi.python.org/pypi/plone.supermodel
 .. _plone.locking: http://pypi.python.org/pypi/plone.locking
 .. _plone.recipe.zope2instance: http://pypi.python.org/pypi/plone.recipe.zope2instance
 .. _plone.rfc822: http://pypi.python.org/pypi/plone.rfc822
