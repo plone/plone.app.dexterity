@@ -142,22 +142,25 @@ The third indexer will be used to provide a value for the ``Subject`` index that
         if obj.start is None:
             return None
         return DateTime(obj.start.isoformat())
-    grok.global_adapter(startIndexer, name="start")
 
     @indexer(IProgram)
     def endIndexer(obj):
         if obj.end is None:
             return None
         return DateTime(obj.end.isoformat())
-    grok.global_adapter(endIndexer, name="end")
 
     @indexer(IProgram)
     def tracksIndexer(obj):
         return obj.tracks
-    grok.global_adapter(tracksIndexer, name="Subject")
+
+And we need to register the indexers in ZCML::
+
+    <adapter factory=".indexers.startIndexer" name="start" />
+    <adapter factory=".indexers.endIndexer" name="end" />
+    <adapter factory=".indexers.tracksIndexer" name="Subject" />
 
 Here, we use the ``@indexer`` decorator to create an indexer.
-This doesn’t register the indexer component, though, so we need to use ``grok.global_adapter()`` to finalise the registration.
+This doesn’t register the indexer component, though, so we need to use ZCML to finalise the registration.
 Crucially, this is where the indexer’s ``name`` is defined.
 This is the name of the indexed attribute for which the indexer is providing a value.
 

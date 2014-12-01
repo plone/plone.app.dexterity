@@ -13,7 +13,6 @@ In our example product, we have an event handler like this:
 
 ::
 
-    @grok.subscribe(IPresenter, IObjectAddedEvent)
     def notifyUser(presenter, event):
         acl_users = getToolByName(presenter, 'acl_users')
         mail_host = getToolByName(presenter, 'MailHost')

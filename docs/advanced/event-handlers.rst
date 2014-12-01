@@ -57,22 +57,19 @@ They are all object events.
     the action (transition) invoked.
 
 Event handlers can be registered using ZCML with the ``<subscriber />``
-directive, but when working with Dexterity types, we’ll more commonly
-use the ``grok.subscriber()`` in Python code.
+directive.
 
 As an example, let’s add an event handler to the ``Presenter`` type that
 tries to find users with matching names matching the presenter id, and
 send these users an email.
 
-First, we require a few additional imports at the top of ``presenter.py``::
+First, we require an additional import at the top of ``presenter.py``::
 
-    from zope.lifecycleevent.interfaces import IObjectAddedEvent
     from Products.CMFCore.utils import getToolByName
 
 Then, we’ll add the following event subscriber after the schema
 definition::
 
-    @grok.subscribe(IPresenter, IObjectAddedEvent)
     def notifyUser(presenter, event):
         acl_users = getToolByName(presenter, 'acl_users')
         mail_host = getToolByName(presenter, 'MailHost')
@@ -93,12 +90,18 @@ definition::
             if email is not None:
                 mail_host.secureSend(message, email, sender, subject)
 
+And register it in ZCML::
+
+    <subscriber
+        for=".presenter.IPresenter zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".presenter.notifyUser"
+        />
+
 There are many ways to improve this rather simplistic event handler, but
 it illustrates how events can be used. The first argument to
-``grok.subscribe()`` is an interface describing the object type. For
-non-object events, this is omitted. The second argument is the event
-type. The arguments to the function reflects these two, so the first
-argument is the ``IPresenter`` instance and the second is an
+``for`` is an interface describing the object type. The second argument
+is the event type. The arguments to the function reflects these two,
+so the first argument is the ``IPresenter`` instance and the second is an
 ``IObjectAddedEvent`` instance.
 
 .. _zope.event: http://pypi.python.org/pypi/zope.event

@@ -169,26 +169,30 @@ since that is the only type that is allowed inside a ``Program`` container.
 
 The code, in ``program.py``, looks like this::
 
-    from five import grok
-    ...
-
+    from zope.component import adapter
     from zope.component import createObject
+    from zope.interface import implementer
     from zope.event import notify
     from zope.lifecycleevent import ObjectCreatedEvent
     from zope.filerepresentation.interfaces import IFileFactory
-    ...
 
-    class ProgramFileFactory(grok.Adapter):
+    @implementer(IFileFactory)
+    @adapter(IProgram)
+    class ProgramFileFactory(object):
         """Custom file factory for programs, which always creates a Session.
         """
 
-        grok.implements(IFileFactory)
-        grok.context(IProgram)
+        def __init__(self, context)
+            self.context = context
 
         def __call__(self, name, contentType, data):
             session = createObject('example.conference.session', id=name)
             notify(ObjectCreatedEvent(session))
             return session
+
+We need to register the adapter in configure.zcml::
+
+    <adapter factory=".program.ProgramFileFactory" />
 
 This adapter overrides the ``DefaultFileFactory`` found in
 `plone.dexterity.filerepresentation`_.

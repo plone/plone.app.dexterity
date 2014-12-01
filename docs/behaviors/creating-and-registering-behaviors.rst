@@ -32,7 +32,6 @@ looks like this:
     <configure
         xmlns="http://namespaces.zope.org/zope"
         xmlns:plone="http://namespaces.plone.org/plone"
-        xmlns:grok="http://namespaces.zope.org/grok"
         i18n_domain="collective.gtags">
 
         <include package="plone.behavior" file="meta.zcml" />
