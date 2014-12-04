@@ -22,13 +22,25 @@
         />
 
     <!-- warning when editing default pages -->
-    <browser:viewlet
-        name="plone.app.dexterity.defaultpagewarning"
-        view="plone.dexterity.interfaces.IDexterityEditForm"
-        template="default_page_warning.pt"
-        permission="cmf.ModifyPortalContent"
-        manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
-        />
+    <configure zcml:condition="have plone-4">
+        <browser:viewlet
+            name="plone.app.dexterity.defaultpagewarning"
+            view="plone.dexterity.interfaces.IDexterityEditForm"
+            template="default_page_warning.pt"
+            permission="cmf.ModifyPortalContent"
+            manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+            />
+    </configure>
+
+    <configure zcml:condition="have plone-5">
+        <browser:viewlet
+            name="plone.app.dexterity.defaultpagewarning"
+            view="plone.dexterity.interfaces.IDexterityEditForm"
+            template="default_page_warning.pt"
+            permission="cmf.ModifyPortalContent"
+            manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
+            />
+    </configure>
 
     <!-- Control panel -->
 
