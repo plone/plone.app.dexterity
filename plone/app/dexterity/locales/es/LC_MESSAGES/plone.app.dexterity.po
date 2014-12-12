@@ -178,7 +178,7 @@ msgstr "No se realizaron cambios."
 #: ../browser/layout.py:14
 #: ../browser/overview.py:33
 msgid "Overview"
-msgstr "Visión global"
+msgstr "Resumen"
 
 #: ../browser/types.py:63
 msgid "Please select a single type to clone."
