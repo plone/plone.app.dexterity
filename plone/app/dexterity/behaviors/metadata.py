@@ -5,6 +5,8 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from datetime import datetime
 from plone.app.dexterity import MessageFactory as _
 from plone.app.dexterity import PloneMessageFactory as _PMF
+from plone.app.z3cform.widget import (
+    AjaxSelectFieldWidget, SelectFieldWidget, DatetimeFieldWidget)
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
@@ -101,6 +103,8 @@ class ICategorization(model.Schema):
         required=False,
         missing_value=(),
     )
+    form.widget('subjects', AjaxSelectFieldWidget,
+                vocabulary='plone.app.vocabularies.Keywords')
 
     language = schema.Choice(
         title=_PMF(u'label_language', default=u'Language'),
@@ -109,6 +113,7 @@ class ICategorization(model.Schema):
         missing_value='',
         defaultFactory=default_language,
     )
+    form.widget('language', SelectFieldWidget)
 
     form.omitted('subjects', 'language')
     form.no_omit(IEditForm, 'subjects', 'language')
@@ -136,6 +141,7 @@ class IPublication(model.Schema):
                     u"not show up in listings and searches until this date."),
         required=False
     )
+    form.widget('effective', DatetimeFieldWidget)
 
     expires = schema.Datetime(
         title=_PMF(u'label_expiration_date', u'Expiration Date'),
@@ -145,6 +151,7 @@ class IPublication(model.Schema):
                     u"longer be visible in listings and searches."),
         required=False
     )
+    form.widget('expires', DatetimeFieldWidget)
 
     @invariant
     def validate_start_end(data):
@@ -183,6 +190,8 @@ class IOwnership(model.Schema):
         required=False,
         missing_value=(),
     )
+    form.widget('creators', AjaxSelectFieldWidget,
+                vocabulary='plone.app.vocabularies.Users')
 
     contributors = schema.Tuple(
         title=_PMF(u'label_contributors', u'Contributors'),
@@ -195,6 +204,8 @@ class IOwnership(model.Schema):
         required=False,
         missing_value=(),
     )
+    form.widget('contributors', AjaxSelectFieldWidget,
+                vocabulary='plone.app.vocabularies.Users')
 
     rights = schema.Text(
         title=_PMF(u'label_copyrights', default=u'Rights'),

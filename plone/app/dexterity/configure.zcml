@@ -63,4 +63,10 @@
     <adapter factory=".interfaces.TypeIdValidator" />
     <adapter factory=".interfaces.TypeTitleValidator" />
 
+    <adapter factory=".factories.DXFileFactory" />
+    <adapter factory=".permissions.DXFieldPermissionChecker" />
+    <adapter factory=".permissions.DXAddViewFieldPermissionChecker" />
+    <adapter factory=".permissions.DXAddViewFieldPermissionChecker"
+             for="plone.z3cform.interfaces.IFormWrapper" />
+
 </configure>
