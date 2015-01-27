@@ -58,6 +58,7 @@ setup(name='plone.app.dexterity',
           'zope.schema',
           'zope.publisher',
           'z3c.form>=3.0.0a1',
+          'plone.app.z3cform>=1.1.0.dev0'
       ],
       extras_require={
           'test': [
