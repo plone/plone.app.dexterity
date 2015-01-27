@@ -4,7 +4,10 @@ Changelog
 2.0.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix the IDexterityContainer view to make use of plone.app.contenttype's new
+  listing view. Accessing it's macro needs the macro-caller's view variable set
+  to the new listing view.
+  [thet]
 
 
 2.0.12 (2014-09-07)
