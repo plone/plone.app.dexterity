@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+from z3c.form.interfaces import IFieldWidget
+from z3c.form.util import getSpecification
+from zope.component import provideAdapter
+from plone.app.widgets.interfaces import IWidgetsLayer
+from zope.component.globalregistry import base
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
@@ -28,7 +33,7 @@ def add_mock_fti(portal):
     fti = DexterityFTI('dx_mock')
     portal.portal_types._setObject('dx_mock', fti)
     fti.klass = 'plone.dexterity.content.Item'
-    fti.schema = 'plone.app.widgets.tests.test_dx.IMockSchema'
+    fti.schema = 'plone.app.dexterity.tests.test_permissions.IMockSchema'
     fti.filter_content_types = False
     fti.behaviors = ('plone.app.dexterity.behaviors.metadata.IBasic',)
 
@@ -59,6 +64,18 @@ IMockSchema.setTaggedValue(WRITE_PERMISSIONS_KEY, {
 IMockSchema.setTaggedValue(WIDGETS_KEY, {
     'custom_widget_field': _custom_field_widget,
 })
+
+
+def _enable_custom_widget(field):
+    provideAdapter(_custom_field_widget, adapts=
+                   (getSpecification(field), IWidgetsLayer),
+                   provides=IFieldWidget)
+
+
+def _disable_custom_widget(field):
+        base.unregisterAdapter(
+            required=(getSpecification(field), IWidgetsLayer,),
+            provided=IFieldWidget)
 
 
 class DexterityVocabularyPermissionTests(unittest.TestCase):
@@ -168,6 +185,7 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
         self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
 
     def test_vocabulary_on_adapted_widget(self):
+        _enable_custom_widget(IMockSchema['adapted_widget_field'])
         view = VocabularyView(self.portal.test_dx, self.request)
         self.request.form.update({
             'name': 'plone.app.vocabularies.PortalTypes',
@@ -180,3 +198,4 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
         self.request.form['name'] = 'plone.app.vocabularies.Fake'
         data = json.loads(view())
         self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
+        _disable_custom_widget(IMockSchema['adapted_widget_field'])

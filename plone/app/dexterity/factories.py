@@ -12,7 +12,7 @@ from Products.CMFPlone import utils as ploneutils
 
 from plone.namedfile.file import NamedBlobImage
 from plone.namedfile.file import NamedBlobFile
-from plone.app.widgets.interfaces import IDXFileFactory
+from plone.app.dexterity.interfaces import IDXFileFactory
 
 upload_lock = allocate_lock()
 
