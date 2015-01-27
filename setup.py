@@ -1,10 +1,9 @@
 from setuptools import setup, find_packages
-import os
 
 version = '2.1.3.dev0'
 long_description = open("README.rst").read() + "\n" + \
-    open("RELEASE_NOTES.txt").read() + "\n" + \
-    open(os.path.join("docs", "HISTORY.txt")).read()
+    open("RELEASE_NOTES.rst").read() + "\n" + \
+    open("CHANGES.rst").read()
 
 setup(name='plone.app.dexterity',
       version=version,

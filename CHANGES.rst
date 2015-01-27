@@ -1,5 +1,5 @@
-Changelog for plone.app.dexterity
-=================================
+Changelog
+=========
 
 2.1.3 (unreleased)
 ------------------
