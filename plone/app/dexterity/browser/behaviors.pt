@@ -7,9 +7,8 @@
             tal:attributes="action request/getURL; enctype view/enctype">
 
           <tal:widgets repeat="widget view/widgets/values">
-            <div class="row"
-                 tal:define="hidden python:widget.mode == 'hidden'"
-                 tal:omit-tag="hidden">
+            <tal:b define="hidden python:widget.mode == 'hidden'"
+                   omit-tag="hidden">
 
                 <div class="field"
                      tal:define="error widget/error"
@@ -46,7 +45,7 @@
 
                 </div>
 
-            </div>
+            </tal:b>
           </tal:widgets>
 
         <metal:actions metal:use-macro="context/@@ploneform-macros/actions"/>
