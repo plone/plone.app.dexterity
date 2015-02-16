@@ -20,13 +20,11 @@
      tal:content="structure view/description">
 </p>
 
-<form id="add-type" method="GET"
-      tal:attributes="action string:${context/absolute_url}/@@add-type">
-  <p><input type="submit"
-         i18n:attributes="value"
-         i18n:domain="plone.app.dexterity"
-         value="Add New Content Type&hellip;"/></p>
-</form>
+<a class="pat-modal"
+   href="${context/absolute_url}/@@add-type">
+   <button i18n:domain="plone.app.dexterity"
+           i18n:translate="">Add New Content Type&hellip;</button>
+</a>
 
 <div tal:repeat="form view/subforms"
      tal:content="structure form/render"

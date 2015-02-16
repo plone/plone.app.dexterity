@@ -4,6 +4,9 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
+- Update markup and javascript for Plone 5.
+  [davisagli]
+
 - Fix the IDexterityContainer view to make use of plone.app.contenttype's new
   listing view. Accessing it's macro needs the macro-caller's view variable set
   to the new listing view.
