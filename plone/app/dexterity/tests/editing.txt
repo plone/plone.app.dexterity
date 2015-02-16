@@ -105,7 +105,7 @@ and saved.
   >>> for name, factory in sorted(component.getUtilitiesFor(
   ...     interfaces.IFieldFactory)):
   ...     browser.open(schemaeditor_url)
-  ...     browser.getControl('Add new field').click()
+  ...     browser.getLink('Add new field').click()
   ...     browser.getControl('Title').value = name
   ...     field_id = normalizer.normalize(name).replace('-', '_')
   ...     browser.getControl('Short Name').value = field_id
