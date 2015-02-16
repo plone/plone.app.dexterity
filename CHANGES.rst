@@ -4,6 +4,10 @@ Changelog
 2.0.13 (unreleased)
 -------------------
 
+- Explicitly include collective.z3cform.datetimewidget - it doesn't contain an
+  autocomplete entry point.
+  [thet]
+
 - Fix the IDexterityContainer view to make use of plone.app.contenttype's new
   listing view. Accessing it's macro needs the macro-caller's view variable set
   to the new listing view.
