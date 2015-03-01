@@ -4,6 +4,9 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
+- Ensure the default creator value is a unicode string.
+  [lentinj]
+
 - Update markup and javascript for Plone 5.
   [davisagli]
 
