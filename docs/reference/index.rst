@@ -10,7 +10,6 @@ Reference
    widgets.rst
    standard-behaviours.rst
    form-schema-hints.rst
-   value-and-validator-adaptors.rst
    manipulating-content-objects.rst
    dexterity-xml.rst
    misc.rst

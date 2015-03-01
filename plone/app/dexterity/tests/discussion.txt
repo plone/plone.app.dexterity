@@ -23,7 +23,7 @@ Set up a test browser::
     >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_NAME, TEST_USER_PASSWORD,))
 
 We have to make sure the request provides IDiscussonLayer because the enabled
-method on the conversation calls conversation_view (which is only registered 
+method on the conversation calls conversation_view (which is only registered
 for IDiscussionLayer).
 
     >>> from plone.app.discussion.interfaces import IDiscussionLayer

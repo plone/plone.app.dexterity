@@ -20,36 +20,43 @@ at least if you use the standard FTI configuration. This is because the
 FTI’s ``default_view`` property is set to ``view``, and ``view`` is in the
 list of ``view_methods.``
 
-When working with Dexterity, we will typically configure our views using
-the `five.grok`_ configuration system, eschewing ZCML configuration.
-Below, we will show how to add simple views for the ``Program`` and
-``Speaker`` types. Next, we will show how to use display forms to take
-advantage of the standard widgets if required.
-
-The `five.grok`_ view approach uses a class in the content type’s module,
-which is automatically associated with a template in an accompanying
-directory. These directories should be created next to the module files,
-so we will have ``program_templates``, ``presenter_templates`` and
-``session_templates``.
-
-(Note for newbies:
-A view will have update() and render() methods.  We will inherit these,
-with the result that our view will render a similarly-named page template.
-If you wanted, you could provide your own update and/or render methods.
-The sessions() method you will see defined below exists to provide
-information that will be referenced by the page template.)
-
 .. note::
 
     ``addcontent`` will have created a "SampleView" class in each content type's .py file. Just rename it to "View" to follow the example.
 
-In ``program.py``, the view is registered as follows:
+
+First create a view registration with a ``<browser:page />`` ZCML directive in your ```configure.zcml`` file:
+
+.. code-block:: xml
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser">
+
+        ...
+
+        <browser:page
+            name="view"
+            for="example.conference.program.IProgram"
+            class="example.conference.program.ProgramView"
+            template="templates/programview.pt"
+            permission="zope2.View"
+            />
+
+    </configure>
+
+Secondly add a browser view in ``program.py`` as follows:
 
 .. code-block:: python
 
-    class View(grok.View):
-        grok.context(IProgram)
-        grok.require('zope2.View')
+    from Acquisition import aq_inner
+    from Products.CMFCore.utils import getToolByName
+    from Products.Five import BrowserView
+
+    from example.conference.session import ISession
+
+
+    class ProgramView(BrowserView):
 
         def sessions(self):
             """Return a catalog search result of sessions to show
@@ -62,45 +69,13 @@ In ``program.py``, the view is registered as follows:
                            path='/'.join(context.getPhysicalPath()),
                            sort_on='sortable_title')
 
-This creates a view registration similar to what you may do with a
-``<browser:page />`` ZCML directive. We have also added a helper method
-which will be used in the view. Note that this requires some imports at
-the top of the file:
+We have added ``sessions``, a helper method
+which will be used in the view.
 
-.. code-block:: python
+You can add any methods to the view. They will be available to the template via
+the ``view`` variable. The content object is available via ``context``.
 
-    from Acquisition import aq_inner
-    from Products.CMFCore.utils import getToolByName
-
-    from example.conference.session import ISession
-
-The view registration works as follows:
-
-- The view name will be ``@@view``, taken from the class name in
-  lowercase. You can specify an alternative name with
-  ``grok.name('some-name')`` if required.
-- The ``grok.context()`` directive specifies that this view is used for
-  objects providing ``IProgram``.
-- You can add a ``grok.layer()`` directive if you want to specify a
-  browser layer.
-- The ``grok.require()`` directive specifies the required permission for
-  this view.
-  It uses the Zope 3 permission name.
-  ``zope2.View`` and ``zope.Public`` are the most commonly used permissions
-  (in fact, ``zope.Public`` is not actually a permission, it just means “no
-  permission required”).
-  For a list of other standard permissions, see
-  ``parts/omelette/Products/Five/permissions.zcml``.
-  We will cover
-  creating custom permissions later in this manual.
-- Any methods added to the view will be available to the template via
-  the ``view`` variable. The content object is available via ``context``,
-  as usual.
-
-This is associated with a file in ``program_templates/view.pt``. The file name
-matches the class name (even if a different view name was specified).
-``addcontent`` will have created a sampleview.pt file. Just rename it to
-continue with the example. This contains:
+Finaly add a template in ``templates/programview.pt``:
 
 .. code-block:: html
 
@@ -173,15 +148,26 @@ contained within the program.
    MIME type (e.g. ``text/html``) and the rendered output text.
    *RichText* fields are covered in more detail :ref:`later in this manual <richtext-label>`.
 
-The view for ``Presenter``, in ``presenter.py``, is even simpler:
+The view for ``Presenter`` is even simpler:
 
-.. code-block:: python
+.. code-block:: xml
 
-    class View(grok.View):
-        grok.context(IPresenter)
-        grok.require('zope2.View')
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser">
 
-Its template, in ``presenter_templates/view.pt``, is similar to the
+        ...
+
+        <browser:page
+            name="view"
+            for="example.conference.program.IPresenter"
+            template="templates/presenterview.pt"
+            permission="zope2.View"
+            />
+
+    </configure>
+
+The template, in ``templates/presenterview.pt``, is similar to the
 previous template:
 
 .. code-block:: html
@@ -226,34 +212,52 @@ technique. Your view does not have to be related to a particular content
 type, even. You could set the context to ``Interface``, for example, to
 make a view that’s available on all types.
 
-Display forms
---------------
+Display view
+------------
 
 **Using display widgets in your views**
 
-In the previous section, we created a view extending ``grok.View``. This
+In the previous section, we created a browser view. This
 kind of view is the most common, but sometimes we want to make use of
 the widgets and information in the type’s schema more directly, for
 example to invoke transforms or re-use more complex HTML.
 
-To do this, you can use a *display form*. This is really just a view
+To do this, you can use a *display view*. This is really just a view
 base class that knows about the schema of a type. We will use an example
-in ``session.py``, with a template in ``session_templates/view.pt.``
+in ``session.py``, with a template in ``templates/sessionview.pt``.
 
-.. note:: Display forms involve the same type of overhead as add- and
-   edit-forms. If you have complex forms with many behaviors, fieldsets and
-   widget hints, you may notice a slow-down compared to standard views, at
-   least on high volume sites.
+.. note:: *Display view* involve the same type of overhead as add- and
+   edit-forms. If you have complex content type with many behaviors, fieldsets and
+   widget hints, you may notice a slow-down. This can be a problem
+   on high volume sites.
 
 The new view class is pretty much the same as before, except that we
-derive from ``dexterity.DisplayForm``
-(``plone.directives.dexterity.DisplayForm``):
+derive from ``plone.dexterity.browser.view.DefaultView``:
+
+.. code-block:: xml
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser">
+
+        ...
+
+        <browser:page
+            name="view"
+            for="example.conference.program.ISession"
+            class="example.conference.session.SessionView"
+            template="templates/sessionview.pt"
+            permission="zope2.View"
+            />
+
+    </configure>
 
 .. code-block:: python
 
-    class View(dexterity.DisplayForm):
-        grok.context(ISession)
-        grok.require('zope2.View')
+    from plone.dexterity.browser.view import DefaultView
+
+    class SessionView(DefaultView):
+        pass
 
 This gives our view a few extra properties that we can use in the
 template:
@@ -279,7 +283,7 @@ template:
 
 The ``w`` dict is the most commonly used.
 
-The ``session_templates/view.pt`` template contains the following:
+The ``templates/sessionview.pt`` template contains the following:
 
 .. code-block:: html
 
@@ -313,4 +317,3 @@ properties include ``__name__``, the field name, and ``label``, the
 field title.
 
 .. _z3c.form: http://pypi.python.org/pypi/z3c.form
-.. _five.grok: http://pypi.python.org/pypi/five.grok

@@ -122,6 +122,8 @@ class TypeSettingsAdapter(object):
         return set(self.context.allowed_content_types)
 
     def _set_allowed_content_types(self, value):
+        if not value:
+            value = ()
         self.context.allowed_content_types = tuple(value)
         if value:
             self.context.filter_content_types = True
@@ -206,7 +208,7 @@ class TypesListing(crud.CrudForm):
         (But only for types with schemata that can be edited through the web.)
         """
         if field == 'title':
-            return '%s/%s' % (self.context.absolute_url(), item.__name__)
+            return '%s/%s' % (self.context.absolute_url(), urllib.quote(item.__name__))
 
 # Create a form wrapper so the form gets layout.
 TypesListingPage = layout.wrap_form(

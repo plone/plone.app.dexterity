@@ -41,9 +41,6 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         self.portal.invokeFactory('Document', 'doc2')
         self.portal.invokeFactory('Document', 'doc3')
         self.portal.invokeFactory(self._portal_type, 'folder1')
-        self.portal.invokeFactory('Link', 'link1')
-        self.portal.link1.setRemoteUrl('http://plone.org')
-        self.portal.link1.reindexObject()
         folder1 = getattr(self.portal, 'folder1')
         folder1.invokeFactory('Document', 'doc11')
         folder1.invokeFactory('Document', 'doc12')
@@ -53,19 +50,18 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         folder2.invokeFactory('Document', 'doc21')
         folder2.invokeFactory('Document', 'doc22')
         folder2.invokeFactory('Document', 'doc23')
-        folder2.invokeFactory('File', 'file21')
 
     def testIfFolderImplementsPreviousNext(self):
-        self.failUnless(INextPreviousProvider(self.portal.folder1, None))
+        self.assertTrue(INextPreviousProvider(self.portal.folder1, None))
 
     def testNextPreviousEnablingOnCreation(self):
-        self.failUnless(INextPreviousProvider(self.portal.folder1).enabled)
+        self.assertTrue(INextPreviousProvider(self.portal.folder1).enabled)
 
     def testNextPreviousViewEnabled(self):
         doc = self.portal.folder1.doc11
         view = doc.restrictedTraverse('@@plone_nextprevious_view')
-        self.failIf(view is None)
-        self.failUnless(view.enabled())
+        self.assertFalse(view is None)
+        self.assertTrue(view.enabled())
 
     def testNextPreviousItems(self):
         container = self.portal[self.portal.invokeFactory(
@@ -174,25 +170,25 @@ class NextPreviousToggleTests(NextPreviousBase, unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Member'])
 
     def testIfFolderImplementsPreviousNext(self):
-        self.failUnless(INextPreviousProvider(self.portal.folder1, None))
+        self.assertTrue(INextPreviousProvider(self.portal.folder1, None))
 
     def testNextPreviousEnablingOnCreation(self):
         # This is tested properly in the doctest, the default z3c.form
         # value is not set here.
-        self.failIf(INextPreviousProvider(self.portal.folder1).enabled)
+        self.assertFalse(INextPreviousProvider(self.portal.folder1).enabled)
 
     def testNextPreviousViewDisabled(self):
         doc = self.portal.folder1.doc11
         view = doc.restrictedTraverse('@@plone_nextprevious_view')
-        self.failIf(view is None)
-        self.failIf(view.enabled())
+        self.assertFalse(view is None)
+        self.assertFalse(view.enabled())
 
     def testNextPreviousViewEnabled(self):
         self.portal.folder1.nextPreviousEnabled = True
         doc = self.portal.folder1.doc11
         view = doc.restrictedTraverse('@@plone_nextprevious_view')
-        self.failIf(view is None)
-        self.failUnless(view.enabled())
+        self.assertFalse(view is None)
+        self.assertTrue(view.enabled())
 
 
 def test_suite():

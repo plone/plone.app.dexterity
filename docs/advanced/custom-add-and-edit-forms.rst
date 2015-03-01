@@ -1,4 +1,4 @@
-Custom add and edit forms 
+Custom add and edit forms
 ============================
 
 **Using `z3c.form`_ to build custom forms**
@@ -13,12 +13,6 @@ forms.
 Dexterity uses the `z3c.form`_ library to build its forms, via the
 `plone.z3cform`_ integration package.
 
-.. note::
-    the `plone.z3cform`_ package requires that standard `z3c.form`_
-    forms are used via a form wrapper view.
-    In Dexterity, this wrapper is normally applied automatically by the form
-    grokkers in `plone.directives.form`_ and `plone.directives.dexterity`_.
-
 Dexterity also relies on `plone.autoform`_, in particular its
 ``AutoExtensibleForm`` base class, which is responsible for processing
 form hints and setting up `z3c.form`_ widgets and groups (fieldsets).
@@ -30,8 +24,6 @@ Dexterity type.
 .. note::
     If you want to build standalone forms not related to content objects,
     see the `z3c.form`_ documentation.
-    For convenience, you may want to use the base classes and schema support
-    in `plone.directives.form`_.
 
 Edit forms
 ----------
@@ -45,20 +37,25 @@ which is registered with that name for the more general
 Dexterity provides a standard edit form base class that provides
 sensible defaults for buttons, labels and so on.
 This should be registered for a type schema (not a class).
-To create an edit form that is identical to the default, we could do::
+To create an edit form that is identical to the default, we could do:
 
-    class EditForm(dexterity.EditForm):
-        grok.context(IFSPage)
+.. code-block:: python
+    
+    from plone.dexterity.browser import edit
 
-The ``dexterity`` module is `plone.directives.dexterity`_ and 
-the ``grok`` module is `five.grok`_.
+    class EditForm(edit.DefaultEditForm):
+        pass
 
-The default name for the form is *edit*, but we could supply a different
-name using ``grok.name()``.
-The default permission is ``cmf.ModifyPortalContent``,
-but we could require a different permission with ``grok.require()``.
-We could also register the form for a particular browser layer, 
-using ``grok.layer()``.
+and register it in configure.zcml:
+
+.. code-block:: xml
+
+    <browser:page
+        for=".fs_page.IFSPage"
+        name="edit"
+        class=".fs_page.EditForm"
+        permission="cmf.ModifyPortalContent"
+        />
 
 This form is of course not terribly interesting, since it is identical
 to the default. However, we can now start changing fields and values.
@@ -67,10 +64,10 @@ For example, we could:
 - Override the ``schema`` property to tell `plone.autoform`_ to use a
   different schema interface (with different form hints) than the
   content type schema.
-- Override the ``additional_schemata`` property to tell `plone.autoform`_
-  to use different supplemental schema interfaces. 
+- Override the ``additionalSchemata`` property to tell `plone.autoform`_
+  to use different supplemental schema interfaces.
   The default is to use all behavior interfaces that provide the
-  ``IFormFieldProvider`` marker from `plone.directives.form`_.
+  ``IFormFieldProvider`` marker from `plone.autoform`_.
 - Override the ``label`` and ``description`` properties to provide
   different a different title and description for the form.
 - Set the `z3c.form`_ ``fields`` and ``groups`` attributes directly.
@@ -78,16 +75,17 @@ For example, we could:
   or one of the other ``update``()`` methods,
   to perform additional processing on the fields.
   In most cases, these require us to call the ``super`` version at the
-  beginning. 
+  beginning.
   See the `plone.autoform`_ and `z3c.form`_ documentation
   to learn more about the sequence of calls that emanate from the form
   ``update()`` method in the ``z3c.form.form.BaseForm`` class.
+- Override the ``template`` attribute to specify a custom template.
 
 Content add sequence
 --------------------
 
 Add forms are similar to edit forms in that they are built from a type’s
-schema and the schemata of its behaviors. 
+schema and the schemata of its behaviors.
 However, for an add form to be able to construct a content object,
 it needs to know which ``portal_type`` to use.
 
@@ -102,32 +100,18 @@ You may have noticed this in the URLs to add forms already.
 What actually happens is this:
 
 - Plone renders the :guilabel:`add` menu.
-  - To do so, it looks, among other places, for actions in the
-    *folder/add* category. This category is provided by the
-    ``portal_types`` tool.
-  - The *folder/add* action category is constructed by looking up the
-    ``add\_view\_expr`` property on the FTIs of all addable types. 
-    This is a TALES expression telling the add menu which URL to use.
-  - The default ``add\_view\_expr`` in Dexterity (and CMF 2.2) is
-    ``string:${folder\_url}/++add++${fti/getId}``.
-    That is, it uses the ``++add++`` traversal namespace with an argument
-    containing the FTI name.
-- A user clicks on an entry in the menu and is taken to a URL like
-  ``/path/to/folder/++add++my.type``.
-    - The ``++add++`` namespace adapter looks up the FTI with the given name,
-      and gets its ``factory`` property.
-    - The ``factory`` property of an FTI gives the name of a particular
-      ``zope.component.interfaces.IFactory`` utility,
-      which is used later to construct an instance of the content object.
-      Dexterity automatically registers a factory instance for each type,
-      with a name that matches the type name,
-      although it is possible to use an existing factory name in a new type.
+  - To do so, it looks, among other places, for actions in the *folder/add* category. This category is provided by the ``portal_types`` tool.
+  - The *folder/add* action category is constructed by looking up the ``add\_view\_expr`` property on the FTIs of all addable types. This is a TALES expression telling the add menu which URL to use.
+  - The default ``add\_view\_expr`` in Dexterity (and CMF 2.2) is ``string:${folder\_url}/++add++${fti/getId}``. That is, it uses the ``++add++`` traversal namespace with an argument containing the FTI name.
+- A user clicks on an entry in the menu and is taken to a URL like ``/path/to/folder/++add++my.type``.
+    - The ``++add++`` namespace adapter looks up the FTI with the given name, and gets its ``factory`` property.
+    - The ``factory`` property of an FTI gives the name of a particular ``zope.component.interfaces.IFactory`` utility, which is used later to construct an instance of the content object.  Dexterity automatically registers a factory instance for each type, with a name that matches the type name, although it is possible to use an existing factory name in a new type.
       This allows administrators to create new “logical” types that are
       functionally identical to an existing type.
     - The ``++add++`` namespace adapter looks up the actual form to render as
       a multi-adapter from ``(context, request, fti``) to ``Interface`` with
       a name matching the ``factory`` property.
-      Recall that a standard view is a multi-adapter from 
+      Recall that a standard view is a multi-adapter from
       ``(context, request)`` to ``Interface`` with a name matching the URL
       segment for which the view is looked up.
       As such, add forms are not standard views, because they get the
@@ -140,13 +124,9 @@ What actually happens is this:
 - The form is rendered like any other ``z3c.form`` form instance,
   and is subject to validation,
   which may cause it to be loaded several times.
-- Eventually, the form is successfully submitted.
-  At this point:
-    - The standard ``AddForm`` base class will look up the factory from the
-      FTI reference it holds and call it to create an instance.
-    - The default Dexterity factory looks at the ``klass`` [*]_ attribute of
-      the FTI to determine the actual content class to use,
-      creates an object and initialises it.
+- Eventually, the form is successfully submitted. At this point:
+    - The standard ``AddForm`` base class will look up the factory from the FTI reference it holds and call it to create an instance.
+    - The default Dexterity factory looks at the ``klass`` [*]_ attribute of the FTI to determine the actual content class to use, creates an object and initialises it.
     - The ``portal_type`` attribute of the newly created instance is set to
       the name of the FTI.
       Thus, if the FTI is a “logical type” created through the web, but
@@ -162,9 +142,8 @@ What actually happens is this:
 
 This sequence is pretty long, but thankfully we rarely have to worry
 about it. In most cases, we can use the default add form, and when we
-can’t, creating a custom add form is no more difficult than creating a
-custom edit form. The add form grokker take care of registering the add
-view appropriately.
+can’t, creating a custom add form is only a bit more difficult than
+creating a custom edit form.
 
 Custom add forms
 ----------------
@@ -172,27 +151,48 @@ Custom add forms
 As with edit forms, Dexterity provides a sensible base class for add
 forms that knows how to deal with the Dexterity FTI and factory.
 
-A custom form replicating the default would look like this::
+A custom form replicating the default would look like this:
 
-    class AddForm(dexterity.AddForm):
-        grok.name('example.fspage')
+.. code-block:: python
+
+    from plone.dexterity.browser import add
+
+    class AddForm(add.DefaultAddForm):
+        portal_type = 'example.fspage'
+
+and be registered in ZCML like this:
+
+.. code-block:: xml
+
+    <adapter
+        for="Products.CMFCore.interfaces.IFolderish
+             zope.publisher.interfaces.browser.IDefaultBrowserLayer
+             ..interfaces.IDexterityFTI"
+        provides="zope.publisher.interfaces.browser.IBrowserPage"
+        factory=".fs_page.AddForm"
+        name="example.fspage"
+        />
+    <class class=".fs_page.AddForm">
+        <require
+            permission="cmf.AddPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>
 
 The name here should match the *factory* name.
 By default, Dexterity types have a factory called the same as the FTI name.
-If no such factory exists 
+If no such factory exists
 (i.e. you have not registered a custom ``IFactory`` utility),
 a local factory utility will be created and managed by Dexterity when the
 FTI is installed.
 
 Also note that we do not specify a context here.
 Add forms are always registered for any ``IFolderish`` context.
-We can specify a layer with ``grok.layer()`` and a permission other than the
-default ``cmf.AddPortalContent`` with ``grok.require()``.
 
 .. note::
     If the permission used for the add form is different to the
     ``add_permission`` set in the FTI, the user needs to have *both*
-    permissions to be able to see the form and add content. 
+    permissions to be able to see the form and add content.
     For this reason, most add forms will use the generic
     ``cmf.AddPortalContent`` permission.
     The :guilabel:`add` menu will not render links to types where the user
@@ -200,13 +200,10 @@ default ``cmf.AddPortalContent`` with ``grok.require()``.
     even if this is different to ``cmf.AddPortalContent``.
 
 As with edit forms, we can customise this form by overriding `z3c.form`_
-and `plone.autoform`_ properties and methods. 
+and `plone.autoform`_ properties and methods.
 See the `z3c.form`_ documentation on add forms for more details.
 
 
 .. _z3c.form: http://docs.zope.org/z3c.form
-.. _five.grok: http://docs.zope.org/five.grok
 .. _plone.z3cform: http://pypi.python.org/pypi/plone.z3cform
 .. _plone.autoform: http://pypi.python.org/pypi/plone.autoform
-.. _plone.directives.form: http://pypi.python.org/pypi/plone.directives.form
-.. _plone.directives.dexterity: http://pypi.python.org/pypi/plone.directives.dexterity

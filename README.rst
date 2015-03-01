@@ -35,42 +35,42 @@ Reuse over reinvention
 
 Small over big
   Mega-frameworks be damned. Dexterity consists of a number of specialised
-  packages, each of which is independently tested and reusable. Furthermore, 
+  packages, each of which is independently tested and reusable. Furthermore,
   packages should have as few dependencies as possible, and should declare their
-  dependencies explicitly. This helps keep the design clean and the code 
+  dependencies explicitly. This helps keep the design clean and the code
   manageable.
 
 Natural interaction over excessive generality
-  The Dexterity design was driven by several use cases that express the way in 
-  which we want people to work with Dexterity. The end goal is to make it easy 
-  to get started, but also easy to progress from an initial prototype to a 
-  complex set of types and associated behaviours through step-wise learning and 
-  natural interaction patterns. Dexterity aims to consider its users - be they 
-  business analysts, light integrators or Python developers, and be they new or 
-  experienced - and cater to them explicitly with obvious, well-documented, 
+  The Dexterity design was driven by several use cases that express the way in
+  which we want people to work with Dexterity. The end goal is to make it easy
+  to get started, but also easy to progress from an initial prototype to a
+  complex set of types and associated behaviours through step-wise learning and
+  natural interaction patterns. Dexterity aims to consider its users - be they
+  business analysts, light integrators or Python developers, and be they new or
+  experienced - and cater to them explicitly with obvious, well-documented,
   natural interaction patterns.
 
 Real code over generated code
-  Generated code is difficult to understand and difficult to debug when it 
-  doesn't work as expected. There is rarely, if ever, any reason to scribble 
+  Generated code is difficult to understand and difficult to debug when it
+  doesn't work as expected. There is rarely, if ever, any reason to scribble
   methods or 'exec' strings of Python code.
 
 Zope 3 over Zope 2
-  Although Dexterity does not pretend to work with non-CMF systems, as many 
-  components as possible should work with plain Zope 3, and even where there are 
-  dependencies on Zope 2, CMF or Plone, they should - as far as is practical - 
-  follow Zope 3 techniques and best practices. Many operations (e.g. managing 
-  objects in a folder, creating new objects or manipulating objects through a 
+  Although Dexterity does not pretend to work with non-CMF systems, as many
+  components as possible should work with plain Zope 3, and even where there are
+  dependencies on Zope 2, CMF or Plone, they should - as far as is practical -
+  follow Zope 3 techniques and best practices. Many operations (e.g. managing
+  objects in a folder, creating new objects or manipulating objects through a
   defined schema) are better designed in Zope 3 than they were in Zope 2.
 
 Zope concepts over new paradigms
-  We want Dexterity to be "Zope-ish". Zope is a mature, well-designed (well, 
-  mostly) and battle tested platform. We do not want to invent brand new 
+  We want Dexterity to be "Zope-ish". Zope is a mature, well-designed (well,
+  mostly) and battle tested platform. We do not want to invent brand new
   paradigms and techniques if we can help it.
 
 Automated testing over wishful thinking
-  "Everything" should be covered by automated tests. Dexterity necessarily has a 
-  lot of moving parts. Untested moving parts tend to come loose and fall on 
+  "Everything" should be covered by automated tests. Dexterity necessarily has a
+  lot of moving parts. Untested moving parts tend to come loose and fall on
   people's heads. Nobody likes that.
 
 Getting started
@@ -78,7 +78,7 @@ Getting started
 
 Please read the `installation guide`_ to get Dexterity up and running.
 
-.. _`installation guide`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/install.html
+.. _`installation guide`: http://docs.plone.org/external/plone.app.dexterity/docs/install.html
 
 Then log in to Plone, go to Site Setup, and go to the ``Dexterity Types``
 control panel to get started creating content types through the web.
@@ -108,8 +108,8 @@ Various documentation is available:
 * `Dexterity Developer Manual`_
 * `How to create reusable behaviors for Dexterity types`_
 
-.. _`Dexterity Developer Manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity
-.. _`How to create reusable behaviors for Dexterity types`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/behaviors
+.. _`Dexterity Developer Manual`: http://docs.plone.org/external/plone.app.dexterity/docs/index.html
+.. _`How to create reusable behaviors for Dexterity types`: http://docs.plone.org/external/plone.app.dexterity/docs/behaviors/index.html
 
 The following documents are not Dexterity-specific, but will likely be useful
 to users of Dexterity:
@@ -117,8 +117,8 @@ to users of Dexterity:
 * `Schema-driven forms manual`_
 * `five.grok manual`_
 
-.. _`Schema-driven forms manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/schema-driven-forms
-.. _`five.grok manual`: http://developer.plone.org/reference_manuals/external/plone.app.dexterity/five-grok
+.. _`Schema-driven forms manual`: http://docs.plone.org/develop/addons/schema-driven-forms/index.html
+.. _`five.grok manual`: http://docs.plone.org/develop/addons/five-grok/index.html
 
 
 Mailing list

@@ -16,9 +16,9 @@ Installing Dexterity on Plone 4.3
 Note: Plone 4.3 is the latest release of Plone. Dexterity is included
 with Plone 4.3, but must be activated via the "Add-ons" configlet in site setup.
 
-**If you wish to follow the examples in this manual, you must do one extra
+**If you are using grok-style configuration, you must do one extra
 installation step:** activate the `grok` extra for Dexterity.
-To do so, add the following line to the `eggs` section of yor buildout::
+To do so, add the following line to the `eggs` section of your buildout::
 
     eggs =
         Plone

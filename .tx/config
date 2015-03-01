@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+type = PO
+
+[plone.ploneappdexterity]
+file_filter = plone/app/dexterity/locales/<lang>/LC_MESSAGES/plone.app.dexterity.po
+source_file = plone/app/dexterity/locales/plone.app.dexterity.pot
+source_lang = en
+type = PO
+

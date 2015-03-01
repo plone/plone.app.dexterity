@@ -16,13 +16,13 @@
 				     tal:attributes="name context/name;
 				                     checked python:'checked' if 'none' in value else None"/>
 			  <tal:block i18n:translate="label_no_content_types">No content types</tal:block>
-			</label><br/>
+			</label><br />
 			<label>
 			  <input type="radio" value="all"
 			  	     tal:attributes="name context/name;
 				                     checked python:'checked' if 'all' in value else None"/>
 			  <tal:block i18n:translate="label_all_content_types">All content types</tal:block>
-			</label><br/>
+			</label><br />
 			<label>
 			  <input type="radio" value="some"
 			  	     tal:attributes="name context/name;

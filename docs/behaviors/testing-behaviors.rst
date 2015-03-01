@@ -93,7 +93,7 @@ tests the *ITags* behavior we saw on the first page of this manual.
 
     We also expect this behavior to be a form field provider. Let's verify that.
 
-        >>> from plone.directives.form import IFormFieldProvider
+        >>> from plone.autoform.interfaces import IFormFieldProvider
         >>> IFormFieldProvider.providedBy(tags_behavior.interface)
         True
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
-"POT-Creation-Date: 2013-04-06 15:36+0000\n"
+"POT-Creation-Date: 2014-09-16 14:03+0000\n"
 "PO-Revision-Date: 2012-02-09 18:16+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: eu <eu@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Is-Fallback-For: eu-es\n"
 "X-Poedit-Language: Basque\n"
 
-#: ../interfaces.py:87
+#: ../interfaces.py:90
 msgid "# of items"
 msgstr ""
 
@@ -24,7 +24,7 @@ msgstr ""
 msgid "Add Content Type"
 msgstr "Elementu-mota gehitu"
 
-#: ../browser/types_listing.pt:82
+#: ../browser/types_listing.pt:20
 msgid "Add New Content Type…"
 msgstr "Elementu-mota berria gehitu"
 
@@ -40,11 +40,11 @@ msgstr "Sortzaileak, parte-hartzaileak eta eskubideen eremuak"
 msgid "Adds keywords and language setting"
 msgstr "Etiketak eta hizkuntzaren eremua gehitu"
 
-#: ../behaviors/discussion.py:30
+#: ../behaviors/discussion.py:27
 msgid "Allow discussion"
 msgstr ""
 
-#: ../behaviors/discussion.py:31
+#: ../behaviors/discussion.py:28
 msgid "Allow discussion for this content object."
 msgstr ""
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Allow items to have next previous navigation enabled"
 msgstr "Elementuak \"aurrekoa-hurrengoa\" nabigazioa izatea aktibatu"
 
-#: ../interfaces.py:75
+#: ../interfaces.py:78
 msgid "Allowed Content Types"
 msgstr ""
 
@@ -70,12 +70,12 @@ msgstr "Elementuaren helbidea fitxategi-eremuan dagoen fitxategiaren izenaren ar
 msgid "Basic metadata"
 msgstr "Oinarrizko metadatuak"
 
-#: ../browser/behaviors.py:58
+#: ../browser/behaviors.py:59
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Portaerak"
 
-#: ../browser/behaviors.py:60
+#: ../browser/behaviors.py:61
 msgid "Behaviors successfully updated."
 msgstr "Portaerak ondo eguneratu dira."
 
@@ -83,28 +83,28 @@ msgstr "Portaerak ondo eguneratu dira."
 msgid "Clone"
 msgstr "Klonatu"
 
-#: ../browser/clone_type.py:11
+#: ../browser/clone_type.py:12
 msgid "Clone Content Type"
 msgstr "Elementu-mota klonatu"
 
 msgid "Configures various components needed for full Dexterity support."
 msgstr ""
 
-#: ../interfaces.py:57
+#: ../interfaces.py:59
 msgid "Container"
 msgstr "Edukiontzia"
 
-#: ../interfaces.py:52
+#: ../interfaces.py:54
 msgid "Description"
 msgstr "Deskribapena"
 
-#: ../browser/types.py:247
+#: ../browser/types.py:249
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity elementu-motak"
 
-#: ../browser/types.py:214
+#: ../browser/types.py:216
 msgid "Dexterity content types"
 msgstr "Dexterity elementu-motak"
 
@@ -117,6 +117,14 @@ msgstr "Argitaratze-tartea"
 msgid "Enable next previous navigation for all items of this type"
 msgstr "Elementuak \"aurrekoa-hurrengoa\" nabigazioa izatea aktibatu"
 
+#: ../browser/modeleditor.py:57
+msgid "Error: all model elements must be 'schema'"
+msgstr ""
+
+#: ../browser/modeleditor.py:51
+msgid "Error: root tag must be 'model'"
+msgstr ""
+
 msgid "Exclude From navigation"
 msgstr "Nabigaziotik baztertu"
 
@@ -128,16 +136,16 @@ msgstr "Eskema modeloak esportatu"
 msgid "Export Type Profiles"
 msgstr "Moten profilak esportatu"
 
-#: ../browser/fields.py:9
+#: ../browser/fields.py:34
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "Eremuak"
 
-#: ../interfaces.py:64
+#: ../interfaces.py:67
 msgid "Filter Contained Types"
 msgstr ""
 
-#: ../interfaces.py:58
+#: ../interfaces.py:60
 msgid "Items of this type will be able to contain other items."
 msgstr "Elementu-mota honetara beste elementu batzuk gehitu daitezke"
 
@@ -159,16 +167,16 @@ msgstr "Aurrekoa/Hurrengoa nabigazioa"
 msgid "Next previous navigation toggle"
 msgstr "Aurrekoa/Hurrengoa nabigazioa aukera"
 
-#: ../behaviors/discussion.py:17
+#: ../behaviors/discussion.py:14
 msgid "No"
 msgstr ""
 
-#: ../browser/behaviors.py:61
+#: ../browser/behaviors.py:62
 msgid "No changes were made."
 msgstr "Ez da aldaketarik egin."
 
 #: ../browser/layout.py:14
-#: ../browser/overview.py:32
+#: ../browser/overview.py:33
 msgid "Overview"
 msgstr ""
 
@@ -188,29 +196,41 @@ msgstr "Esportatu beharreko elementu-motak aukeratu."
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Hizkiak, zenbakiak eta ., - edo _ karaktereak bakarrik erabili"
 
-#: ../browser/behaviors.py:59
+#: ../browser/modeleditor.py:83
+msgid "Saved"
+msgstr ""
+
+#: ../browser/behaviors.py:60
 msgid "Select the behaviors to enable for this content type."
 msgstr "Elementu-mota honi aktibatuko zaizkion portaerak aukeratu."
 
-#: ../behaviors/discussion.py:25
-#: ../behaviors/exclfromnav.py:13
-#: ../behaviors/nextprevious.py:27
+#: ../behaviors/discussion.py:22
+#: ../behaviors/exclfromnav.py:16
+#: ../behaviors/id.py:18
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: ../interfaces.py:45
+#: ../interfaces.py:47
 msgid "Short Name"
 msgstr "Izen-laburra"
 
-#: ../browser/types.py:176
+#: ../behaviors/id.py:23
+msgid "Short name"
+msgstr ""
+
+#: ../browser/types.py:178
 msgid "The following custom content types are available for your site."
 msgstr "Zure atarian elementu-mota hauek daude"
 
-#: ../interfaces.py:98
+#: ../interfaces.py:101
 msgid "There is already a content type named '${name}'"
 msgstr ""
 
-#: ../interfaces.py:41
+#: ../behaviors/id.py:24
+msgid "This name will be displayed in the URL."
+msgstr ""
+
+#: ../interfaces.py:43
 msgid "Type Name"
 msgstr "Elementu-motaren izena"
 
@@ -218,30 +238,40 @@ msgstr "Elementu-motaren izena"
 msgid "Type added successfully."
 msgstr "Elementu-mota ondo gehitu da."
 
-#: ../browser/clone_type.py:28
+#: ../browser/clone_type.py:31
 msgid "Type cloned successfully."
 msgstr "Elementu-mota ondo klonatu da."
 
-#: ../interfaces.py:46
+#: ../interfaces.py:48
 msgid "Used for programmatic access to the type."
 msgstr "Elementu-mota programaziotik erabiltzeko."
 
-#: ../behaviors/discussion.py:16
+#: ../behaviors/discussion.py:13
 msgid "Yes"
 msgstr ""
 
+#. Default: "Expiration date must be after publishing date."
+#: ../behaviors/metadata.py:153
+msgid "error_expiration_must_be_after_effective_date"
+msgstr ""
+
+#. Default: "Invalid effective or expires date"
+#: ../behaviors/metadata.py:119
+msgid "error_invalid_publication"
+msgstr ""
+
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:179
+#: ../browser/types.py:181
 msgid "help_addcontenttype_button"
 msgstr "Egin klik \"Elementu-mota gehitu\" botoian elementu-mota berri bat sortzen hasteko."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
-#: ../behaviors/exclfromnav.py:18
+#: ../behaviors/exclfromnav.py:25
 msgid "help_exclude_from_nav"
 msgstr "Hautatu badago, elementu hau ez da nabigazio zuhaitzean agertuko"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
-#: ../behaviors/nextprevious.py:32
+#: ../behaviors/nextprevious.py:38
 msgid "help_nextprevious"
 msgstr "Honek, karpeta honen edukientzat aurrekoak/hurrengoak estekak aktibatzen ditu."
 
@@ -256,17 +286,17 @@ msgid "label_contained_items"
 msgstr ""
 
 #. Default: "Exclude from navigation"
-#: ../behaviors/exclfromnav.py:17
+#: ../behaviors/exclfromnav.py:21
 msgid "label_exclude_from_nav"
 msgstr "Nabigaziotik baztertu "
 
 #. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
-#: ../interfaces.py:65
+#: ../interfaces.py:68
 msgid "label_filter_contained_types"
 msgstr ""
 
 #. Default: "Enable next previous navigation"
-#: ../behaviors/nextprevious.py:31
+#: ../behaviors/nextprevious.py:34
 msgid "label_nextprevious"
 msgstr "Aurreko/hurrengoetarako nabigazioa aktibatu "
 

@@ -21,6 +21,15 @@
         permission="zope2.View"
         />
 
+    <!-- warning when editing default pages -->
+    <browser:viewlet
+        name="plone.app.dexterity.defaultpagewarning"
+        view="plone.dexterity.interfaces.IDexterityEditForm"
+        template="default_page_warning.pt"
+        permission="cmf.ModifyPortalContent"
+        manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
+        />
+
     <!-- Control panel -->
 
     <browser:page
@@ -91,6 +100,11 @@
         for="plone.app.dexterity.interfaces.ITypesContext"
         class=".export.ModelsExport"
         permission="plone.schemaeditor.ManageSchemata"
+        />
+
+    <browser:resource
+        name="plone.app.dexterity.types_listing.js"
+        file="types_listing.js"
         />
 
     <configure zcml:condition="installed plone.resourceeditor">

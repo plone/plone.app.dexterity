@@ -124,6 +124,15 @@
         for="plone.dexterity.interfaces.IDexterityContainer"
         />
 
+    <!-- Short name -->
+    <plone:behavior
+        title="Short name"
+        description="Gives the ability to rename an item from its edit form."
+        factory=".id.ShortName"
+        provides=".id.IShortName"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
     <!-- BBB -->
     <configure zcml:condition="installed plone.app.relationfield">
       <include package="plone.app.relationfield" />

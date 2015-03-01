@@ -54,7 +54,7 @@ speaker to the ``Presenter`` type. In ``presenter.py``, we add::
 
     class IPresenter(model.Schema):
         ...
-        
+
         picture = NamedBlobImage(
             title=_(u"Please upload an image"),
             required=False,
@@ -82,6 +82,19 @@ filename on a further sub-path. The filename is used mainly so that the
 URL ends in the correct extension, which can help ensure web browsers
 display the picture correctly. We also define the ``height`` and ``width``
 of the image based on the values set on the object.
+
+Access to image scales is similar::
+
+    <div tal:define="picture nocall:context/picture"
+         tal:condition="nocall:picture">
+        <img tal:replace="structure context/@@images/picture/scale" />
+    </div>
+
+where ``scales`` is large, preview, mini, thumb, tile, icon, or a custom scale.
+This code generates a full tag, including height and width attributes and alt and title based on the context title.
+To generate just a URL, use code like::
+
+    <img tal:attributes="src string: ${context/absolute_url}/@@images/picture/scale" />
 
 For file fields, you can construct a download URL in a similar way,
 using an ``<a />`` tag, e.g.::

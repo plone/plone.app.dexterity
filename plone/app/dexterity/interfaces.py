@@ -6,6 +6,7 @@ from zope import schema
 from z3c.form import validator
 from plone.app.dexterity import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
+from plone.app.widgets.interfaces import IFileFactory
 
 
 class ITypesContext(IBrowserPage):
@@ -122,3 +123,9 @@ class TypeTitleValidator(validator.SimpleFieldValidator):
 
 validator.WidgetValidatorDiscriminators(
     TypeTitleValidator, field=ITypeSettings['title'])
+
+
+
+class IDXFileFactory(IFileFactory):
+    """ adapter factory for DX types
+    """

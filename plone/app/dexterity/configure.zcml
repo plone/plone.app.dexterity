@@ -17,9 +17,10 @@
     <include zcml:condition="installed plone.directives.dexterity"
              package="plone.directives.dexterity" />
     <include package="plone.dexterity" />
-    
+    <include package="plone.behavior" />
+
     <i18n:registerTranslations directory="locales"/>
-    
+
     <genericsetup:registerProfile
         name="default"
         title="Dexterity Content Types"
@@ -29,12 +30,21 @@
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         />
 
+    <genericsetup:registerProfile
+        name="testing"
+        title="Dexterity Content Types"
+        description="Adds Dexterity-based Folder and Document types for testing."
+        directory="profiles/testing"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.ITestCasePloneSiteRoot"
+        />
+
     <include package=".browser" />
     <include package=".behaviors" />
     <include package=".upgrades" />
-    
+
     <include file="events.zcml" />
-    
+
     <class class="plone.dexterity.content.DexterityContent">
         <!-- Make Dexterity types portlet- and content rule aware -->
         <implements interface="plone.portlets.interfaces.ILocalPortletAssignable" />
@@ -49,8 +59,14 @@
         for="plone.dexterity.interfaces.IDexterityFTI
              Products.GenericSetup.interfaces.ISetupEnviron"
         />
-    
+
     <adapter factory=".interfaces.TypeIdValidator" />
     <adapter factory=".interfaces.TypeTitleValidator" />
+
+    <adapter factory=".factories.DXFileFactory" />
+    <adapter factory=".permissions.DXFieldPermissionChecker" />
+    <adapter factory=".permissions.DXAddViewFieldPermissionChecker" />
+    <adapter factory=".permissions.DXAddViewFieldPermissionChecker"
+             for="plone.z3cform.interfaces.IFormWrapper" />
 
 </configure>

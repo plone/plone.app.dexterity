@@ -1,23 +1,28 @@
 from AccessControl.SecurityManagement import getSecurityManager
 from DateTime import DateTime
-from datetime import datetime
-from z3c.form.interfaces import IEditForm, IAddForm
-from z3c.form.widget import ComputedWidgetAttribute
-from zope.interface import provider
-from zope.interface import alsoProvides
-from zope.component import adapts
-from zope.component.hooks import getSite
-from zope import schema
-from zope.schema.interfaces import IText, ISequence
-from zope.schema.interfaces import IContextAwareDefaultFactory
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
-from plone.autoform import directives as form
-from plone.dexterity.utils import safe_unicode
-from plone.supermodel import model
-from plone.dexterity.interfaces import IDexterityContent
-from plone.autoform.interfaces import IFormFieldProvider
+from datetime import datetime
+from plone.app.dexterity import MessageFactory as _
 from plone.app.dexterity import PloneMessageFactory as _PMF
+from plone.app.z3cform.widget import (
+    AjaxSelectFieldWidget, SelectFieldWidget, DatetimeFieldWidget)
+from plone.autoform import directives as form
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexterityContent
+from plone.supermodel import model
+from z3c.form.interfaces import IEditForm, IAddForm
+from z3c.form.widget import ComputedWidgetAttribute
+from zope import schema
+from zope.component import adapts
+from zope.component.hooks import getSite
+from zope.interface import Invalid
+from zope.interface import alsoProvides
+from zope.interface import invariant
+from zope.interface import provider
+from zope.schema.interfaces import IContextAwareDefaultFactory
+from plone.dexterity.utils import safe_unicode
+from zope.schema.interfaces import IText, ISequence
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
 # content edit forms.
@@ -99,6 +104,8 @@ class ICategorization(model.Schema):
         required=False,
         missing_value=(),
     )
+    form.widget('subjects', AjaxSelectFieldWidget,
+                vocabulary='plone.app.vocabularies.Keywords')
 
     language = schema.Choice(
         title=_PMF(u'label_language', default=u'Language'),
@@ -107,10 +114,16 @@ class ICategorization(model.Schema):
         missing_value='',
         defaultFactory=default_language,
     )
+    form.widget('language', SelectFieldWidget)
 
     form.omitted('subjects', 'language')
     form.no_omit(IEditForm, 'subjects', 'language')
     form.no_omit(IAddForm, 'subjects', 'language')
+
+
+class EffectiveAfterExpires(Invalid):
+    __doc__ = _("error_invalid_publication",
+                default=u"Invalid effective or expires date")
 
 
 class IPublication(model.Schema):
@@ -129,6 +142,7 @@ class IPublication(model.Schema):
                     u"not show up in listings and searches until this date."),
         required=False
     )
+    form.widget('effective', DatetimeFieldWidget)
 
     expires = schema.Datetime(
         title=_PMF(u'label_expiration_date', u'Expiration Date'),
@@ -138,6 +152,15 @@ class IPublication(model.Schema):
                     u"longer be visible in listings and searches."),
         required=False
     )
+    form.widget('expires', DatetimeFieldWidget)
+
+    @invariant
+    def validate_start_end(data):
+        if data.effective and data.expires and data.effective > data.expires:
+            raise EffectiveAfterExpires(
+                _("error_expiration_must_be_after_effective_date",
+                  default=u"Expiration date must be after publishing date.")
+            )
 
     form.omitted('effective', 'expires')
     form.no_omit(IEditForm, 'effective', 'expires')
@@ -168,6 +191,8 @@ class IOwnership(model.Schema):
         required=False,
         missing_value=(),
     )
+    form.widget('creators', AjaxSelectFieldWidget,
+                vocabulary='plone.app.vocabularies.Users')
 
     contributors = schema.Tuple(
         title=_PMF(u'label_contributors', u'Contributors'),
@@ -180,6 +205,8 @@ class IOwnership(model.Schema):
         required=False,
         missing_value=(),
     )
+    form.widget('contributors', AjaxSelectFieldWidget,
+                vocabulary='plone.app.vocabularies.Users')
 
     rights = schema.Text(
         title=_PMF(u'label_copyrights', default=u'Rights'),
@@ -326,7 +353,19 @@ class Basic(MetadataBase):
     def _set_description(self, value):
         if isinstance(value, str):
             raise ValueError('Description must be unicode.')
+
+        # If description is containing linefeeds the HTML
+        # validation can break.
+        # See http://bo.geekworld.dk/diazo-bug-on-html5-validation-errors/
+
+        if '\n' in value:
+            value = value.replace('\n', '')
+
+        if '\r' in value:
+            value = value.replace('\r', '')
+
         self.context.description = value
+
     description = property(_get_description, _set_description)
 
 

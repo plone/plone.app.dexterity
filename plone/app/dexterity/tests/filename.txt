@@ -34,7 +34,7 @@ appropriately::
   >>> from plone.testing.z2 import Browser
   >>> browser = Browser(layer['app'])
   >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_NAME, TEST_USER_PASSWORD,))
-  
+
   >>> browser.open('http://nohost/plone/++add++file_type')
   >>> browser.getControl('Title').value = 'A test file'
   >>> from cStringIO import StringIO

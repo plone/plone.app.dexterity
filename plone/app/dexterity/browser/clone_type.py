@@ -14,13 +14,15 @@ class TypeCloneForm(form.AddForm):
     id = 'clone-type-form'
 
     def create(self, data):
-        id = data.pop('id')
+        type_id = data.pop('id')
         props = dict(self.context.fti.propertyItems())
         # make sure we don't share the factory
         if props['factory'] == self.context.fti.getId():
             del props['factory']
+
         props['title'] = data['title']
-        fti = DexterityFTI(id, **props)
+        props['add_view_expr'] = props['add_view_expr'].replace(self.context.fti.getId(), type_id)
+        fti = DexterityFTI(type_id, **props)
         return fti
 
     def add(self, fti):

@@ -1,10 +1,9 @@
 from setuptools import setup, find_packages
-import os
 
-version = '2.0.9.dev0'
+version = '2.1.3.dev0'
 long_description = open("README.rst").read() + "\n" + \
-    open("RELEASE_NOTES.txt").read() + "\n" + \
-    open(os.path.join("docs", "HISTORY.txt")).read()
+    open("RELEASE_NOTES.rst").read() + "\n" + \
+    open("CHANGES.rst").read()
 
 setup(name='plone.app.dexterity',
       version=version,
@@ -15,7 +14,9 @@ setup(name='plone.app.dexterity',
       long_description=long_description,
       classifiers=[
           "Framework :: Plone",
+          "Framework :: Plone :: 5.0",
           "Programming Language :: Python",
+          "Programming Language :: Python :: 2.7",
           "Topic :: Software Development :: Libraries :: Python Modules",
           "Development Status :: 5 - Production/Stable",
       ],
@@ -30,14 +31,13 @@ setup(name='plone.app.dexterity',
       zip_safe=False,
       install_requires=[
           # Dexterity
-          'collective.z3cform.datetimewidget >=1.1dev',
           'plone.app.textfield',
           'plone.behavior>=1.0b5',
-          'plone.dexterity >= 1.0rc1',
+          'plone.dexterity >= 2.2.2dev',
           'plone.formwidget.namedfile',
           'plone.namedfile[scales] >=1.0b5dev-r36016',
           'plone.rfc822',
-          'plone.schemaeditor >=1.0',
+          'plone.schemaeditor >1.3.3',
           # Plone/Zope core
           'lxml',
           'plone.app.content',
@@ -60,9 +60,11 @@ setup(name='plone.app.dexterity',
           'zope.schema',
           'zope.publisher',
           'z3c.form>=3.0.0a1',
+          'plone.app.z3cform>=1.1.0.dev0'
       ],
       extras_require={
           'test': [
+              'plone.app.robotframework',
               'plone.app.testing',
               'unittest2'
           ],

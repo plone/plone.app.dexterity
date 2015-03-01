@@ -37,7 +37,7 @@ Adding a content type
 Let's add a 'Plonista' content type to keep track of members of the Plone
 community::
 
-  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Short Name').value = 'plonista'
   >>> browser.getControl('Description').value = 'Represents a Plonista.'
@@ -105,12 +105,12 @@ and saved.
   >>> for name, factory in sorted(component.getUtilitiesFor(
   ...     interfaces.IFieldFactory)):
   ...     browser.open(schemaeditor_url)
-  ...     browser.getControl('Add new field').click()
+  ...     browser.getLink('Add new field').click()
   ...     browser.getControl('Title').value = name
   ...     field_id = normalizer.normalize(name).replace('-', '_')
   ...     browser.getControl('Short Name').value = field_id
   ...     browser.getControl('Field type').getControl(
-  ...         value=getattr(factory.title, 'default', factory.title)
+  ...         value=getattr(factory.title, 'default', '') or factory.title
   ...         ).selected = True
   ...     browser.getControl('Add').click()
   ...     assert browser.url == schemaeditor_url, (
@@ -173,7 +173,7 @@ Return to our view and find the XML model source in a div, ready for the Ace edi
 
 There should be an authenticator in the `save` form::
 
-  >>> authenticator = browser.getControl(name="_authenticator").value
+  >>> authenticator = browser.getControl(name="_authenticator", index=0).value
 
 Save is via AJAX. Let's check the save view's functionality.
 
@@ -299,7 +299,7 @@ Validation to prevent duplicate content types
 A new content type cannot be created if its name is the same as an existing
 content type.
 
-  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'foobar'
   >>> browser.getControl('Short Name').value = 'plonista'
   >>> browser.getControl('Add').click()
@@ -311,7 +311,7 @@ content type.
 To avoid confusion, the title must also be unique.
 
   >>> browser.open('http://nohost/plone/dexterity-types')
-  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Short Name').value = 'foobar'
   >>> browser.getControl('Add').click()
@@ -351,7 +351,7 @@ Adding a container
 We can create a content type that is a container for other content::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
-  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista Folder'
   >>> browser.getControl('Short Name').value = 'plonista-folder'
   >>> browser.getControl('Add').click()
@@ -398,31 +398,23 @@ container::
   >>> select
   <ListControl name='form.widgets.allowed_content_types:list' type='select'>
 
-  >>> select.getControl('News Item').selected = True
-  >>> event = select.getControl('Event').selected = True
+  >>> select.getControl('Page').selected = True
   >>> browser.getControl('Apply').click()
-  >>> print browser.contents
-  <BLANKLINE>
-  ...Data successfully updated...
+  >>> 'Data successfully updated' in browser.contents
+  True
 
 Now only the allowed types may be added::
 
   >>> browser.open('http://nohost/plone')
   >>> browser.getLink('Plonista Folder 1').click()
 
-  >>> browser.getLink(url='Document')
+  >>> browser.getLink(url='Folder')
   Traceback (most recent call last):
   ...
   LinkNotFound...
 
-  >>> browser.getLink(url='Event').click()
-  >>> browser.getControl('Title').value = 'Foo Plonista Event'
-  >>> browser.getControl('Save').click()
-
-  >>> browser.open('http://nohost/plone')
-  >>> browser.getLink('Plonista Folder 1').click()
-  >>> browser.getLink(url='News+Item').click()
-  >>> browser.getControl('Title').value = 'Foo Plonista News Item'
+  >>> browser.getLink(url='Document').click()
+  >>> browser.getControl('Title').value = 'Foo Plonista Page'
   >>> browser.getControl('Save').click()
 
 
@@ -509,7 +501,7 @@ zip archive containing supermodel xml files::
     ['models/plonista2.xml', 'models/plonista-folder.xml']
 
     >>> print archive.read('models/plonista2.xml')
-    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
       </schema>
@@ -531,7 +523,7 @@ file::
     'attachment; filename=plonista2.xml'
 
     >>> print browser.contents
-    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
       </schema>

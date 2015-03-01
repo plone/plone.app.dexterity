@@ -3,6 +3,7 @@ import unittest2 as unittest
 
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import login
 from plone.testing.z2 import Browser
 
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
@@ -66,8 +67,8 @@ class DocumentIntegrationTest(unittest.TestCase):
         self.default_types = [t for t in self.types_tool.listTypeInfo() if
                               t.isConstructionAllowed(self.folder)
                               and folder_type.allowType(t.getId())]
-        assert len(self.default_types) > 3
-        self.types_id_subset = [t.getId() for t in self.default_types][:2]
+        assert len(self.default_types) > 1
+        self.types_id_subset = [t.getId() for t in self.default_types][:1]
 
     def test_behavior_added(self):
         self.assertIn('Products.CMFPlone.interfaces.'
@@ -161,6 +162,21 @@ class DocumentIntegrationTest(unittest.TestCase):
 
         self.assertEqual(types, behavior.allowedContentTypes())
         self.assertEqual(type_ids, behavior.getLocallyAllowedTypes())
+
+    def test_locallyAllowedTypesDefaultWhenMultipleAcquired(self):
+        """
+        Prevent regression.
+        Multiple (two or more) acquisition from parent must not fail if
+        user doesn't have add permission on parent.
+        """
+        self.inner_folder.invokeFactory('folder', 'deeper_folder')
+        deeper_folder = self.inner_folder.deeper_folder
+        self.portal.acl_users._doAddUser('user_contributor', 'secret', ['Member'], [])
+        deeper_folder.manage_addLocalRoles('user_contributor', ['Contributor'])
+        login(self.portal, 'user_contributor')
+        behavior = ISelectableConstrainTypes(deeper_folder)
+        types = behavior.getLocallyAllowedTypes()
+        self.assertTrue(len(types) > 0)
 
     def test_locallyAllowedTypesInvalidSet(self):
         behavior = ISelectableConstrainTypes(self.folder)
@@ -262,7 +278,7 @@ class DocumentIntegrationTest(unittest.TestCase):
         types = behavior._getAddableTypesFor(self.portal, self.folder)
 
         behavior.setConstrainTypesMode(constrains.DISABLED)
-        self.assertEquals(types, behavior.allowedContentTypes())
+        self.assertEqual(types, behavior.allowedContentTypes())
 
     def test_allowedContentTypesExit2(self):
         """
@@ -273,7 +289,7 @@ class DocumentIntegrationTest(unittest.TestCase):
         types = behavior._getAddableTypesFor(self.portal, self.folder)
 
         behavior.setConstrainTypesMode(constrains.ACQUIRE)
-        self.assertEquals(types, behavior.allowedContentTypes())
+        self.assertEqual(types, behavior.allowedContentTypes())
 
     def test_allowedContentTypesExit3(self):
         """
@@ -287,7 +303,7 @@ class DocumentIntegrationTest(unittest.TestCase):
 
         behavior = ISelectableConstrainTypes(self.inner_folder)
         behavior.setConstrainTypesMode(constrains.ACQUIRE)
-        self.assertEquals(self.types_id_subset,
+        self.assertEqual(self.types_id_subset,
                           [x.getId() for x in behavior.allowedContentTypes()])
 
     def test_allowedContentTypesExit4(self):
@@ -299,19 +315,19 @@ class DocumentIntegrationTest(unittest.TestCase):
         behavior.setLocallyAllowedTypes(self.types_id_subset)
         behavior.setConstrainTypesMode(constrains.ENABLED)
 
-        self.assertEquals(self.types_id_subset,
+        self.assertEqual(self.types_id_subset,
                           [x.getId() for x in behavior.allowedContentTypes()])
 
     def test_formschemainvariants(self):
         class Data(object):
-            current_prefer = []
-            current_allow = []
+            allowed_types = []
+            secondary_types = []
         bad = Data()
-        bad.current_prefer = []
-        bad.current_allow = ['1']
+        bad.allowed_types = []
+        bad.secondary_types = ['1']
         good = Data()
-        good.current_prefer = ['1']
-        good.current_allow = []
+        good.allowed_types = ['1']
+        good.secondary_types = []
         self.assertTrue(IConstrainForm.validateInvariants(good) is None)
         self.assertRaises(Invalid, IConstrainForm.validateInvariants, bad)
 
@@ -358,14 +374,14 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         self.browser.getLink('Restrictions').click()
         ctrl = lambda name: self.browser.getControl(name=name)
         self.browser.getControl("Type restrictions").value = ['1']
-        ctrl("form.widgets.current_prefer:list").value = ["Document", "Folder"]
-        ctrl("form.widgets.current_allow:list").value = ["Document"]
+        ctrl("form.widgets.allowed_types:list").value = ["Document", "Folder"]
+        ctrl("form.widgets.secondary_types:list").value = ["Document"]
         self.browser.getControl("Save").click()
         aspect = ISelectableConstrainTypes(self.folder)
-        self.assertEquals(1, aspect.getConstrainTypesMode())
-        self.assertEquals(["Document", "Folder"],
+        self.assertEqual(1, aspect.getConstrainTypesMode())
+        self.assertEqual(["Document", "Folder"],
                           aspect.getLocallyAllowedTypes())
-        self.assertEquals(["Folder"], aspect.getImmediatelyAddableTypes())
+        self.assertEqual(["Folder"], aspect.getImmediatelyAddableTypes())
 
     def test_form_bad_save(self):
         aspect = ISelectableConstrainTypes(self.folder)
@@ -377,10 +393,10 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         self.browser.getLink('Restrictions').click()
         ctrl = lambda name: self.browser.getControl(name=name)
         self.browser.getControl("Type restrictions").value = ['1']
-        ctrl("form.widgets.current_prefer:list").value = ["Document"]
-        ctrl("form.widgets.current_allow:list").value = ["Document", "Folder"]
+        ctrl("form.widgets.allowed_types:list").value = ["Document"]
+        ctrl("form.widgets.secondary_types:list").value = ["Document", "Folder"]
         self.browser.getControl("Save").click()
-        self.assertEquals(constraint_before, aspect.getConstrainTypesMode())
+        self.assertEqual(constraint_before, aspect.getConstrainTypesMode())
         self.assertTrue('Error' in self.browser.contents)
 
 

@@ -1,7 +1,94 @@
-Changelog for plone.app.dexterity
-=================================
+Changelog
+=========
 
-2.0.9 (unreleased)
+2.1.3 (unreleased)
+------------------
+
+- Update markup and javascript for Plone 5.
+  [davisagli]
+
+- Fix the IDexterityContainer view to make use of plone.app.contenttype's new
+  listing view. Accessing it's macro needs the macro-caller's view variable set
+  to the new listing view.
+  [thet]
+
+
+2.1.2 (2014-10-23)
+------------------
+
+- Added transifex-client configuration for manage the translations
+  from Plone transifex organization [macagua].
+
+- Updated Spanish translation [flamelcanto, macagua].
+
+- Add validator to ensure expires date is after effective date.
+  [benniboy]
+  
+- Remove line feeds and carrige returns from meta description and
+  added upgrade step to do it for existing content
+  [bosim]
+
+- Fixed issue.
+  Multiple (two or more) acquisition from parent was failing when
+  user didn't have add permission on parent.
+  [keul, cekk]
+
+
+2.1.1 (2014-04-13)
+------------------
+
+- Add behavior to let an item's id be edited from its edit form
+  (plone.app.dexterity.behaviors.id.ShortName).
+  [davisagli]
+
+- Cloning of types containing white space did not work, this commit
+  fixes that bug.
+  [bosim]
+
+
+2.1.0 (2014-03-01)
+------------------
+
+- Don't throw an error if allowed_content_types is none or missing.
+  Fix https://github.com/plone/plone.app.contenttypes/issues/91
+  [pbauer]
+
+- PLIP #13705: Remove <base> tag.
+  [frapell]
+
+
+2.0.11 (2013-12-07)
+-------------------
+
+- Fix bug where the type editor's inline javascript was mangled by diazo.
+  [davisagli]
+
+- Fixed Add view URL of cloned content type.
+  Refs http://dev.plone.org/ticket/13776.
+  [thomasdesvenain]
+
+- Add robot testing environment and first robot test.
+  [cedricmessiant]
+
+- Better string normalization when setting type id from type title
+  (change accented or special characters with corresponding letters).
+  [cedricmessiant]
+
+- Show a warning when editing the default page of a folder.
+  [davisagli]
+
+
+
+2.0.10 (2013-09-16)
+-------------------
+
+- Fix determination of allowed types so it checks permission in
+  the context of the original folder when inheriting allowed
+  types.
+  [davisagli]
+
+
+2.0.9 (2013-08-13)
 ------------------
 
 - Add documentation for defaultFactory tag in XML ref.
