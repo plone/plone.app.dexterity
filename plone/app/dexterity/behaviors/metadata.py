@@ -13,6 +13,7 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from plone.autoform import directives as form
+from plone.dexterity.utils import safe_unicode
 from plone.supermodel import model
 from plone.dexterity.interfaces import IDexterityContent
 from plone.autoform.interfaces import IFormFieldProvider
@@ -198,7 +199,8 @@ class IOwnership(model.Schema):
 # make sure the add form shows the default creator
 def creatorsDefault(data):
     user = getSecurityManager().getUser()
-    return user and (unicode(user.getId()),)
+    # NB: CMF users are UTF-8 encoded bytes, decode them before inserting
+    return user and (safe_unicode(user.getId()),)
 CreatorsDefaultValue = ComputedWidgetAttribute(
     creatorsDefault,
     field=IOwnership['creators']
