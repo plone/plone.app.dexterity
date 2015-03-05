@@ -7,7 +7,6 @@ Changelog
 - Add facility to import type profiles in zip archives. Added button to
   types edit page. Import format is identical to export.
   [smcmahon]
-<<<<<<< HEAD:CHANGES.rst
 
 - Update markup and javascript for Plone 5.
   [davisagli]
@@ -17,8 +16,6 @@ Changelog
   to the new listing view.
   [thet]
 
-=======
->>>>>>> e4ae22dbca726d9941cbd1caa45b217ae7041f0e:docs/HISTORY.txt
 
 2.1.2 (2014-10-23)
 ------------------
