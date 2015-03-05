@@ -20,6 +20,7 @@
      tal:content="structure view/description">
 </p>
 
+<<<<<<< HEAD
 <a class="pat-modal"
    href="${context/absolute_url}/@@add-type">
    <button i18n:domain="plone.app.dexterity"
@@ -31,6 +32,23 @@
    <button i18n:domain="plone.app.dexterity"
            i18n:translate="">Import Type Profiles&hellip;</button>
 </a>
+=======
+<form id="add-type" method="GET" style="display:inline-block"
+      tal:attributes="action string:${context/absolute_url}/@@add-type">
+  <p><input type="submit"
+         i18n:attributes="value"
+         i18n:domain="plone.app.dexterity"
+         value="Add New Content Type&hellip;"/></p>
+</form>
+>>>>>>> e4ae22dbca726d9941cbd1caa45b217ae7041f0e
+
+<form id="import-types" method="GET" style="display:inline-block"
+      tal:attributes="action string:${context/absolute_url}/@@import-types">
+  <p><input type="submit"
+         i18n:attributes="value"
+         i18n:domain="plone.app.dexterity"
+         value="Import Type Profiles&hellip;"/></p>
+</form>
 
 <div tal:repeat="form view/subforms"
      tal:content="structure form/render"

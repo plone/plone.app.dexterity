@@ -5,6 +5,40 @@ require([
 
     $('.action').css('display', 'inline');
 
+<<<<<<< HEAD
+=======
+    // add new type form
+    $('#add-type').prepOverlay({
+        subtype: 'ajax',
+        filter: '#content',
+        formselector: '#add-type-form',
+        noform: function(el) {
+            var o = $(el), emsg = o.find('dl.portalMessage.error');
+            if (emsg.length) {
+                o.children().replaceWith(emsg);
+                return false;
+            } else {
+                return 'redirect';
+            }
+        },
+        redirect: function (el, responseText) {
+            var mo = responseText.match(/<a href="(\S+?)\/@@fields"/i);
+            if (mo.length === 2) {
+                return mo[1] + '/@@fields';
+            }
+            return location;
+        }
+    });
+
+    // import types form
+    $('#import-types').prepOverlay({
+        subtype: 'ajax',
+        filter: common_content_filter,
+        formselector: '#import-types-form',
+        noform: 'reload'
+    });
+
+>>>>>>> e4ae22dbca726d9941cbd1caa45b217ae7041f0e
     // clone type form
     $('#crud-edit-form-buttons-clone').click(function(e) {
       var selected = $('input[id$=-widgets-select-0]:checked');
