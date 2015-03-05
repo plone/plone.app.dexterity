@@ -4,25 +4,29 @@
 
 # XXX: need to make exceptions more specific, shorten messages
 
-from cStringIO import StringIO
 from DateTime.DateTime import DateTime
+from Products.CMFCore.utils import getToolByName
+from Products.GenericSetup.context import BaseContext
+from Products.GenericSetup.interfaces import IImportContext
+from cStringIO import StringIO
 from lxml import etree
 from plone.app.dexterity import MessageFactory as _
 from plone.namedfile.field import NamedFile
 from plone.z3cform.layout import wrap_form
-from Products.CMFCore.utils import getToolByName
-from Products.GenericSetup.context import BaseContext
-from Products.GenericSetup.interfaces import IImportContext
-from z3c.form import form, field
-from zipfile import ZipFile, BadZipfile
+from z3c.form import field
+from z3c.form import form
+from zipfile import BadZipfile
+from zipfile import ZipFile
+from zope.interface import implementer
+from zope.interface import Invalid
+from zope.interface import Interface
+from zope.interface import invariant
 from zope.site.hooks import getSite
 
 import os.path
-import zope.interface
 import zope.schema
 
-
-class ITypeProfileImport(zope.interface.Interface):
+class ITypeProfileImport(Interface):
     """ Fields for a zip import form
     """
 
@@ -31,7 +35,7 @@ class ITypeProfileImport(zope.interface.Interface):
         required=True,
     )
 
-    @zope.interface.invariant
+    @invariant
     def isGoodImportFile(data):
         nfile = getattr(data, 'profile_file', None)
         if nfile is None:
@@ -40,28 +44,26 @@ class ITypeProfileImport(zope.interface.Interface):
         try:
             archive = ZipFile(StringIO(data.profile_file.data), 'r')
         except BadZipfile:
-            raise zope.interface.Invalid(
+            raise Invalid(
                 _(u"Error: The file submitted must be a zip archive."),
             )
         name_list = archive.namelist()
         for fname in name_list:
             if fname == 'types.xml':
                 continue
-            if (os.path.dirname(fname) != 'types') or \
-                os.path.splitext(fname)[1] != '.xml':
-                raise zope.interface.Invalid(_(
-                    u"Error: The file submitted must be a zip archive "
-                    u"containing only type profile information."
-            ),)
+            if os.path.dirname(fname) != 'types' \
+               or os.path.splitext(fname)[1] != '.xml':
+                raise Invalid(
+                    _(u"Error: The file submitted must be a zip archive "
+                      u"containing only type profile information.")
+                )
 
         # check XML for basic integrity
         with archive.open('types.xml', 'rU') as f:
             source = f.read()
             root = etree.fromstring(source)
             if root.tag != 'object':
-                raise zope.interface.Invalid(_(
-                    u'types.xml in archive is invalid.'
-                ))
+                raise Invalid(_(u'types.xml in archive is invalid.'))
 
         # check against existing types; don't allow overwrites
         site = getSite()
@@ -70,19 +72,19 @@ class ITypeProfileImport(zope.interface.Interface):
             if element.tag == 'object':
                 attribs = element.attrib
                 if not attribs['meta_type'] == 'Dexterity FTI':
-                    raise zope.interface.Invalid(_(
+                    raise Invalid(_(
                         'Types in archive must be only Dexterity types.'
                     ),)
                 if attribs['name'] in existing_types:
-                    raise zope.interface.Invalid(_(
+                    raise Invalid(_(
                         u'One or more types in the import archive is an '
                         u'existing type. Delete "%s" if you '
                         u'really wish to replace it.' % attribs['name']
                     ),)
 
 
+@implementer(ITypeProfileImport)
 class TypeProfileImport(object):
-    zope.interface.implements(ITypeProfileImport)
     form_fields = field.Fields(ITypeProfileImport)
     profile_file = zope.schema.fieldproperty.FieldProperty(
         ITypeProfileImport['profile_file']
@@ -128,10 +130,9 @@ class TypeProfileImportForm(form.AddForm):
 TypeProfileImportFormPage = wrap_form(TypeProfileImportForm)
 
 
+@implementer(IImportContext)
 class ZipFileImportContext(BaseContext):
     """ GS Import context for a ZipFile """
-
-    zope.interface.implements(IImportContext)
 
     def __init__(self, tool, archive_bits, encoding=None, should_purge=False):
         super(ZipFileImportContext, self).__init__(tool, encoding)
@@ -172,13 +173,16 @@ class ZipFileImportContext(BaseContext):
 
         if path is None:
             path = ''
+        path_parts = path.split('/')
         res = set()
         for pn in self.name_list:
             dn, bn = os.path.split(pn)
+            dn_parts = dn.split('/')
             if dn == path:
                 if bn not in skip:
                     res.add(bn)
-            elif dn.startswith(path) and \
-              (path == '' or len(dn.split('/')) == len(path.split('/')) + 1):
-                res.add(dn.split('/')[-1])
+                continue
+            if dn.startswith(path) \
+               and (path == '' or len(dn_parts) == len(path_parts) + 1):
+                res.add(dn_parts[-1])
         return list(res)
