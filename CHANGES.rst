@@ -4,6 +4,10 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
+- Add facility to import type profiles in zip archives. Added button to
+  types edit page. Import format is identical to export.
+  [smcmahon]
+
 - Update markup and javascript for Plone 5.
   [davisagli]
 
@@ -23,7 +27,7 @@ Changelog
 
 - Add validator to ensure expires date is after effective date.
   [benniboy]
-  
+
 - Remove line feeds and carrige returns from meta description and
   added upgrade step to do it for existing content
   [bosim]

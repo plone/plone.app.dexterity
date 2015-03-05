@@ -26,6 +26,12 @@
            i18n:translate="">Add New Content Type&hellip;</button>
 </a>
 
+<a class="pat-modal"
+   href="${context/absolute_url}/@@import-types">
+   <button i18n:domain="plone.app.dexterity"
+           i18n:translate="">Import Type Profiles&hellip;</button>
+</a>
+
 <div tal:repeat="form view/subforms"
      tal:content="structure form/render"
      class="crud-form">
