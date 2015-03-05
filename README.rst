@@ -115,26 +115,16 @@ The following documents are not Dexterity-specific, but will likely be useful
 to users of Dexterity:
 
 * `Schema-driven forms manual`_
-* `five.grok manual`_
 
 .. _`Schema-driven forms manual`: http://docs.plone.org/develop/addons/schema-driven-forms/index.html
-.. _`five.grok manual`: http://docs.plone.org/develop/addons/five-grok/index.html
 
-
-Mailing list
-============
-
-The `dexterity-development group`_ provides a place to discuss development
-and use of Dexterity.
-
-.. _`dexterity-development group`: http://groups.google.com/group/dexterity-development
 
 Issue tracker
 =============
 
 Please report issues via the `Plone issue tracker`_.
 
-.. _`Plone issue tracker`: https://dev.plone.org/
+.. _`Plone issue tracker`: https://github.com/plone/plone.app.dexterity/issues
 
 Support
 =======
