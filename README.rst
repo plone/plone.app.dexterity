@@ -146,13 +146,9 @@ Dexterity use questions may be answered via `Plone's support channels`_.
 Contributing
 ============
 
-Most Dexterity code is owned by the `Plone Foundation`_ and maintained in the
-`Plone github repository`_. We're happy to share commit access so that you can
-share code with us, but first you must sign the `Plone contributor agreement`_.
+Contributors please read the document `Process for Plone core's development <http://docs.plone.org/develop/plone-coredev/index.html>`_
 
-.. _`Plone Foundation`: http://plone.org/foundation
-.. _`Plone github repository`: http://github.com/plone
-.. _`Plone contributor agreement`: http://plone.org/foundation/contributors-agreement
+Sources are at the `Plone code repository hosted at Github <https://github.com/plone/plone.app.dexterity>`_.
 
 Dexterity wouldn't be possible without the hard work of a lot of people, including:
 
