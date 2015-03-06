@@ -1,14 +1,14 @@
-import json
-from lxml import etree
-
-from zope.component import queryMultiAdapter
-from Products.Five import BrowserView
+# -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
-
-import plone.supermodel
-from plone.supermodel.parser import SupermodelParseError
-
+from Products.Five import BrowserView
+from lxml import etree
 from plone.schemaeditor import SchemaEditorMessageFactory as _
+from plone.supermodel.parser import SupermodelParseError
+from zope.component import queryMultiAdapter
+import json
+import plone.supermodel
+
+NAMESPACE = '{http://namespaces.plone.org/supermodel/schema}'
 
 
 class ModelEditorView(BrowserView):
@@ -45,16 +45,18 @@ class AjaxSaveHandler(BrowserView):
                 })
 
             # a little more sanity checking, look at first two element levels
-            if root.tag != '{http://namespaces.plone.org/supermodel/schema}model':
+            if root.tag != NAMESPACE + 'model':
                 return json.dumps({
                     'success': False,
                     'message': _(u"Error: root tag must be 'model'")
                 })
             for element in root.getchildren():
-                if element.tag != '{http://namespaces.plone.org/supermodel/schema}schema':
+                if element.tag != NAMESPACE + 'schema':
                     return json.dumps({
                         'success': False,
-                        'message': _(u"Error: all model elements must be 'schema'")
+                        'message': _(
+                            u"Error: all model elements must be 'schema'"
+                        )
                     })
 
             # can supermodel parse it?

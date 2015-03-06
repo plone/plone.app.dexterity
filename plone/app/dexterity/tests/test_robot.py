@@ -1,8 +1,7 @@
-from plone.testing import layered
-
+# -*- coding: utf-8 -*-
 from plone.app.dexterity.testing import DEXTERITY_ACCEPTANCE_TESTING
 from plone.app.testing import ROBOT_TEST_LEVEL
-
+from plone.testing import layered
 import os
 import robotsuite
 import unittest

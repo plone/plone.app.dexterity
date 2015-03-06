@@ -1,12 +1,13 @@
-import re
+# -*- coding: utf-8 -*-
 from Acquisition import aq_base
+from Products.CMFCore.utils import getToolByName
+from plone.app.dexterity import MessageFactory as _
+from plone.app.widgets.interfaces import IFileFactory
+from z3c.form import validator
+from zope import schema
 from zope.interface import Interface, Attribute, Invalid
 from zope.publisher.interfaces.browser import IBrowserPage
-from zope import schema
-from z3c.form import validator
-from plone.app.dexterity import MessageFactory as _
-from Products.CMFCore.utils import getToolByName
-from plone.app.widgets.interfaces import IFileFactory
+import re
 
 
 class ITypesContext(IBrowserPage):
@@ -67,9 +68,11 @@ class ITypeSettings(Interface):
     filter_content_types = schema.Choice(
         title=_(u'Filter Contained Types'),
         description=_(
-            'label_filter_contained_types', default=
-            u'Items of this type can act as a folder containing other items.'
-            u'What content types should be allowed inside?'),
+            'label_filter_contained_types',
+            default=(
+                u'Items of this type can act as a folder containing other '
+                u' items. What content types should be allowed inside?')
+        ),
         values=('none', 'all', 'some'),
         default='none',
         required=True
@@ -103,7 +106,9 @@ class TypeIdValidator(validator.SimpleFieldValidator):
                           mapping={'name': value}))
 
 validator.WidgetValidatorDiscriminators(
-    TypeIdValidator, field=ITypeSettings['id'])
+    TypeIdValidator,
+    field=ITypeSettings['id']
+)
 
 
 class TypeTitleValidator(validator.SimpleFieldValidator):
@@ -122,8 +127,9 @@ class TypeTitleValidator(validator.SimpleFieldValidator):
                       mapping={'name': value}))
 
 validator.WidgetValidatorDiscriminators(
-    TypeTitleValidator, field=ITypeSettings['title'])
-
+    TypeTitleValidator,
+    field=ITypeSettings['title']
+)
 
 
 class IDXFileFactory(IFileFactory):

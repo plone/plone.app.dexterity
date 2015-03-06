@@ -182,5 +182,6 @@ Dexterity wouldn't be possible without the hard work of a lot of people, includi
 * Andi Zeidler
 * Hector Velarde
 * Giacomo Spettoli
+* Jens Klein
 
 (Please add your name if we have neglected to.)

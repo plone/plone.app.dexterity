@@ -1,8 +1,9 @@
-from zope.component import queryUtility
-from plone.supermodel.utils import syncSchema
-from plone.supermodel import serializeModel
+# -*- coding: utf-8 -*-
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.utils import splitSchemaName
+from plone.supermodel import serializeModel
+from plone.supermodel.utils import syncSchema
+from zope.component import queryUtility
 
 
 def serializeSchemaContext(schema_context, event=None):

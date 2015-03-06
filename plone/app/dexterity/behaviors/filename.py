@@ -1,18 +1,19 @@
+# -*- coding: utf-8 -*-
 from Products.CMFPlone.utils import safe_hasattr
 from plone.app.content.interfaces import INameFromTitle
 from plone.rfc822.interfaces import IPrimaryFieldInfo
-from zope.component import adapts
+from zope.component import adapter
 from zope.interface import Interface
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class INameFromFileName(Interface):
     """Marker interface to enable name from filename behavior"""
 
 
+@implementer(INameFromTitle)
+@adapter(INameFromFileName)
 class NameFromFileName(object):
-    implements(INameFromTitle)
-    adapts(INameFromFileName)
 
     def __new__(cls, context):
         info = IPrimaryFieldInfo(context, None)

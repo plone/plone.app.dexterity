@@ -1,19 +1,16 @@
+# -*- coding: utf-8 -*-
 # @@types-export view for dexterity types configlet. View support for the
 # "Export" button. This is done by repurposing the GS typeinfo export and
 # removing unselected type information from its output.
-
-import time
-from StringIO import StringIO
-from zipfile import ZipFile
-from lxml import etree
-
 from Products.CMFCore.utils import getToolByName
-
 from Products.Five.browser import BrowserView
-
-from Products.GenericSetup.context import TarballExportContext, BaseContext
-
+from Products.GenericSetup.context import BaseContext
+from Products.GenericSetup.context import TarballExportContext
+from StringIO import StringIO
+from lxml import etree
 from plone.supermodel import serializeModel
+from zipfile import ZipFile
+import time
 
 
 class SelectiveZipExportContext(TarballExportContext):

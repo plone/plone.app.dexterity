@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 """Test the types import."""
-
 from DateTime.DateTime import DateTime
+from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity.browser.import_types import ITypeProfileImport
 from plone.app.dexterity.browser.import_types import TypeProfileImport
 from plone.app.dexterity.browser.import_types import ZipFileImportContext
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
-from Products.CMFCore.utils import getToolByName
-
 import os.path
 import plone.namedfile
 import unittest2 as unittest

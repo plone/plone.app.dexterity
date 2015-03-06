@@ -1,20 +1,21 @@
+# -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from Acquisition import aq_base
-from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.interfaces import IContentish
+from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity import MessageFactory as _
 from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
-from plone.autoform import directives as form
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from z3c.form import widget
-from z3c.form.interfaces import IEditForm
 from z3c.form.interfaces import IAddForm
+from z3c.form.interfaces import IEditForm
 from zope import schema
+from zope.component import adapter
 from zope.interface import Interface
-from zope.interface import alsoProvides
-from zope.interface import implements
-from zope.component import adapts
+from zope.interface import implementer
+from zope.interface import provider
 
 
 class INextPreviousEnabled(Interface):
@@ -23,6 +24,7 @@ class INextPreviousEnabled(Interface):
     """
 
 
+@provider(IFormFieldProvider)
 class INextPreviousToggle(model.Schema):
     """Behavior interface to enable next previous navigation per item.
     """
@@ -43,15 +45,13 @@ class INextPreviousToggle(model.Schema):
         default=False
     )
 
-    form.omitted('nextPreviousEnabled')
-    form.no_omit(IEditForm, 'nextPreviousEnabled')
-    form.no_omit(IAddForm, 'nextPreviousEnabled')
-
-alsoProvides(INextPreviousToggle, IFormFieldProvider)
+    directives.omitted('nextPreviousEnabled')
+    directives.no_omit(IEditForm, 'nextPreviousEnabled')
+    directives.no_omit(IAddForm, 'nextPreviousEnabled')
 
 
-def getNextPreviousParentValue(adapter):
-    context = adapter.context
+def getNextPreviousParentValue(adapter_):
+    context = adapter_.context
     nextprevious = INextPreviousProvider(context, None)
     if nextprevious is None:
         return False
@@ -122,19 +122,19 @@ class NextPreviousBase(object):
         )
 
 
+@implementer(INextPreviousProvider)
+@adapter(INextPreviousToggle)
 class NextPreviousToggle(NextPreviousBase):
     """ adapter for acting as a next/previous provider """
-    implements(INextPreviousProvider)
-    adapts(INextPreviousToggle)
 
     @property
     def enabled(self):
         return getattr(aq_base(self.context), 'nextPreviousEnabled', False)
 
 
+@implementer(INextPreviousProvider)
+@adapter(INextPreviousEnabled)
 class NextPreviousEnabled(NextPreviousBase):
     """ adapter for acting as a next/previous provider """
-    implements(INextPreviousProvider)
-    adapts(INextPreviousEnabled)
 
     enabled = True

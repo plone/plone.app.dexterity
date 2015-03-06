@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
-from z3c.form.interfaces import IFieldWidget
-from z3c.form.util import getSpecification
-from zope.component import provideAdapter
-from plone.app.widgets.interfaces import IWidgetsLayer
-from zope.component.globalregistry import base
+from plone.app.content.browser.vocabulary import VocabularyView
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
-from plone.app.content.browser.vocabulary import VocabularyView
+from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.app.widgets.testing import PLONEAPPWIDGETS_DX_INTEGRATION_TESTING
 from plone.app.widgets.testing import TestRequest
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
+from plone.dexterity.fti import DexterityFTI
+from z3c.form.interfaces import IFieldWidget
+from z3c.form.util import getSpecification
+from z3c.form.widget import FieldWidget
 from zope import schema
+from zope.component import provideAdapter
+from zope.component.globalregistry import base
 from zope.globalrequest import setRequest
 from zope.interface import Interface
-from z3c.form.widget import FieldWidget
-from plone.dexterity.fti import DexterityFTI
-
 import json
 
 try:

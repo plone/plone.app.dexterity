@@ -3,13 +3,11 @@ Creating and registering behaviors
 
 **How to create a basic behavior that provides form fields**
 
-The following example is based on the `collective.gtags`_ product, which
-comes with a behavior that adds a *tags* field to the “Categorization”
-fieldset, storing the actual tags in the Dublin Core *Subject* field.
+The following example is based on the `collective.gtags`_ product.
+It comes with a behavior that adds a *tags* field to the “Categorization” fieldset, storing the actual tags in the Dublin Core *Subject* field.
 
-*collective.gtags* is a standard package, with a *configure.zcml*, a
-GenericSetup profile, and a number of modules. We won’t describe those
-here, though, since we are only interested in the behavior.
+*collective.gtags* is a standard package, with a *configure.zcml*, a GenericSetup profile, and a number of modules.
+We won’t describe those here, though, since we are only interested in the behavior.
 
 First, there are a few dependencies in *setup.py*:
 
@@ -23,9 +21,8 @@ First, there are a few dependencies in *setup.py*:
               'zope.component',
           ],
 
-Next, we have *behaviors.zcml*, which is included from *configure.zcml*
-and contains all necessary configuration to set up the behaviors. It
-looks like this:
+Next, we have *behaviors.zcml*, which is included from *configure.zcml* and contains all necessary configuration to set up the behaviors.
+It looks like this:
 
 .. code-block:: xml
 
@@ -45,18 +42,14 @@ looks like this:
 
     </configure>
 
-We first include the *plone.behavior meta.zcml* file, so that we get
-access to the *<plone:behavior />* ZCML directive.
+We first include the *plone.behavior meta.zcml* file, so that we get access to the *<plone:behavior />* ZCML directive.
 
-The behavior itself is registered with the *<plone:behavior />*
-directive. We set a *title* and a *description*, and then speicfy the
-**behavior interface** with the *provides* attribute. This attribute is
-required, and is used to construct the unique name for the behavior. In
-this case, the behavior name is *collective.gtags.behaviors.ITags*, the
-full dotted name to the behavior interface. When the behavior is enabled
-for a type, it will be possible to adapt instances of that type to
-*ITags*. That adaptation will invoke the factory specified by the
-*factory* attribute.
+The behavior itself is registered with the *<plone:behavior />* directive.
+We set a *title* and a *description*, and then speicfy the **behavior interface** with the *provides* attribute.
+This attribute is required, and is used to construct the unique name for the behavior.
+In this case, the behavior name is *collective.gtags.behaviors.ITags*, the full dotted name to the behavior interface.
+When the behavior is enabled for a type, it will be possible to adapt instances of that type to *ITags*.
+That adaptation will invoke the factory specified by the *factory* attribute.
 
 The *behaviors.py* module looks like this:
 
@@ -68,21 +61,23 @@ The *behaviors.py* module looks like this:
     standard Subject field.
     """
 
+    from Products.CMFCore.interfaces import IDublinCore
     from collective.gtags import MessageFactory as _
     from collective.gtags.field import Tags
-    from plone.autoform import directives as form
+    from plone.autoform import directives
     from plone.autoform.interfaces import IFormFieldProvider
     from plone.supermodel import model
-    from Products.CMFCore.interfaces import IDublinCore
-    from zope.interface import implementer, alsoProvides
     from zope.component import adapter
+    from zope.interface import implementer
+    from zope.interface import provider
 
 
+    @provider(IFormFieldProvider)
     class ITags(model.Schema):
         """Add tags to content
         """
 
-        form.fieldset(
+        directives.fieldset(
                 'categorization',
                 label=_(u'Categorization'),
                 fields=('tags',),
@@ -94,8 +89,6 @@ The *behaviors.py* module looks like this:
                 required=False,
                 allow_uncommon=True,
             )
-
-    alsoProvides(ITags, IFormFieldProvider)
 
 
     @implementer(ITags)
@@ -117,30 +110,24 @@ The *behaviors.py* module looks like this:
                 value = ()
             self.context.setSubject(tuple(value))
 
-We first define the *ITags* interface, which is also the behavior
-interface. Here, we define a single attribute, *tags*, but we could also
-have added methods and additional fields if required. Naturally, these
-need to be implemented by the behavior adapter.
+We first define the *ITags* interface, which is also the behavior interface.
+Here, we define a single attribute, *tags*, but we could also have added methods and additional fields if required.
+Naturally, these need to be implemented by the behavior adapter.
 
-Since we want this behavior to provide form fields, we derive the
-behavior interface from *model.Schema* and set form hints using
-*plone.autoform.directives*. We also mark the *ITags* interface with
-*IFormFieldProvider* to signal that it should be processed for form
-fields by the standard forms. See the `Dexterity Developer Manual`_ for
-more information about setting form hints in schema interfaces.
+Since we want this behavior to provide form fields, we derive the behavior interface from *model.Schema* and set form hints using
+*plone.autoform.directives*.
+We also mark the *ITags* interface with *IFormFieldProvider* to signal that it should be processed for form fields by the standard forms.
+See the `Dexterity Developer Manual`_ for more information about setting form hints in schema interfaces.
 
-If your behavior does not provide form fields, you can just derive from
-*zope.interface.Interface* and omit the *alsoProvides()* line.
+If your behavior does not provide form fields, you can just derive from *zope.interface.Interface* and omit the *alsoProvides()* line.
 
-Next, we write the class that implements the behavior adapter and acts
-the adapter factory. Notice how it implements the behavior interface
-(*ITags*), and adapts a broad interface *(IDublinCore*). The behavior
-cannot be enabled on types not supporting this interface. In many cases,
-you will omit the *adapter()* line, provided your behavior is generic
-enough to work on any context.
+Next, we write the class that implements the behavior adapter and acts the adapter factory.
+Notice how it implements the behavior interface (*ITags*), and adapts a broad interface *(IDublinCore*).
+The behavior cannot be enabled on types not supporting this interface.
+In many cases, you will omit the *adapter()* line, provided your behavior is generic enough to work on any context.
 
-The adapter is otherwise identical to any other adapter. It implements
-the interface, here by storing values in the *Subject* field.
+The adapter is otherwise identical to any other adapter.
+It implements the interface, here by storing values in the *Subject* field.
 
 .. _Dexterity Developer Manual: ../index.html
 .. _collective.gtags: http://svn.plone.org/svn/collective/collective.gtags

@@ -1,6 +1,10 @@
 Manipulating content objects
 ============================
 
+.. note::
+    Here the low level api is shown.
+    When writing Plone Add-Ons consider using ``plone.api``, because it covers several standard cases and is a simple, future proof and stable api.
+
 **Common APIs used to manipulate Dexterity content objects**
 
 In this section, we will describe some of the more commonly used APIs
@@ -20,7 +24,7 @@ Creating a content object
 
 The simplest way to create a content item is via its factory:
 
-::
+.. code-block:: python
 
     from zope.component import createObject
     context = createObject('example.type')
@@ -28,7 +32,7 @@ The simplest way to create a content item is via its factory:
 At this point, the object is not acquisition wrapped. You can wrap it
 explicitly by calling:
 
-::
+.. code-block:: python
 
     wrapped = context.__of__(folder)
 
@@ -42,7 +46,7 @@ Plone site root.
 There is a convenience method that can be used to create a Dexterity
 object. It is mostly useful in tests:
 
-::
+.. code-block:: python
 
     from plone.dexterity.utils import createContent
     context = createContent('example.type', title=u"Foo")
@@ -60,7 +64,7 @@ container is a Dexterity container, or another container that supports a
 dict API (e.g. a *Large Plone Folder* in Plone 3 or a container based on
 *plone.folder*), you can do:
 
-::
+.. code-block:: python
 
     folder['some_id'] = context
 
@@ -71,7 +75,7 @@ If the object only supports the basic OFS API (as is the case with
 standard Plone *Folders* in Plone 3), you can use the *\_setObject()*
 method:
 
-::
+.. code-block:: python
 
     folder._setObject('some_id') = context
 
@@ -80,7 +84,7 @@ add items to containers that would not normally allow this type of
 content. Dexterity comes with a convenience function, useful in tests,
 to simulate the checks performed when content is added through the web:
 
-::
+.. code-block:: python
 
     from plone.dexterity.utils import addContentToContainer
     addContentToContainer(folder, context)
@@ -95,7 +99,7 @@ To bypass folder constraints, you can use this function and pass
 
 You can also both create and add an object in one call:
 
-::
+.. code-block:: python
 
     from plone.dexterity.utils import createContentInContainer
     createContentInContainer(folder, 'example.type', title=u"Foo")
@@ -107,7 +111,7 @@ Finally, you can use the *invokeFactory()* API, which is similar, but
 more generic in that it can be used for any type of content, not just
 Dexterity content:
 
-::
+.. code-block:: python
 
     new_id = folder.invokeFactory('example.type', 'some_id')
     context = folder['new_id']
@@ -122,7 +126,7 @@ Dexterity containers and other containers based on *plone.folder*
 support a dict-like API to obtain and manipulate items in folders. For
 example, to obtain an (acquisition-wrapped) object by name:
 
-::
+.. code-block:: python
 
     context = folder['some_id']
 
@@ -141,13 +145,13 @@ Removing items from a folder
 Again, Dexterity containers act like dictionaries, and so implement
 *\_\_delitem\_\_*:
 
-::
+.. code-block:: python
 
     del folder['some_id']
 
 The OFS API uses the *\_delObject()* function for the same purpose:
 
-::
+.. code-block:: python
 
     folder._delObject('some_id')
 
@@ -162,14 +166,14 @@ Obtaining an object’s schema interface
 A content object’s schema is an interface, i.e. an object of type
 *zope.interface.interface.InterfaceClass*.
 
-::
+.. code-block:: python
 
     from zope.app.content import queryContentType
     schema = queryContentType(context)
 
 The schema can now be inspected. For example:
 
-::
+.. code-block:: python
 
     from zope.schema import getFieldsInOrder
     fields = getFieldsInOrder(schema)
@@ -180,7 +184,7 @@ Finding an object’s behaviors
 To find all behaviors supported by an object, use the *plone.behavior*
 API:
 
-::
+.. code-block:: python
 
     from plone.behavior.interfaces import IBehaviorAssignable
     assignable = IBehaviorAssignable(context)
@@ -199,7 +203,7 @@ Getting the FTI
 
 To obtain a Dexterity FTI, look it up as a local utility:
 
-::
+.. code-block:: python
 
     from zope.component import getUtility
     from plone.dexterity.interfaces import IDexterityFTI
@@ -208,7 +212,7 @@ To obtain a Dexterity FTI, look it up as a local utility:
 The returned object provides *plone.dexterity.interfaces.IDexterityFTI*.
 To get the schema interface for the type from the FTI, you can do:
 
-::
+.. code-block:: python
 
     schema = fti.lookupSchema()
 
@@ -218,7 +222,7 @@ Getting the object’s parent folder
 A Dexterity item in a Dexterity container should have the
 *\_\_parent\_\_* property set, pointing to its containment parent:
 
-::
+.. code-block:: python
 
     folder = context.__parent__
 
@@ -227,7 +231,7 @@ not in Plone 3.x.
 
 The more general approach relies on acquisition:
 
-::
+.. code-block:: python
 
     from Acquisition import aq_inner, aq_parent
     folder = aq_parent(aq_inner(context))
@@ -243,7 +247,7 @@ Obtaining the workflow state of an object
 
 To obtain an object’s workflow state, ask the*portal\_workflow* tool:
 
-::
+.. code-block:: python
 
     from Products.CMFCore.utils import getToolByName
     portal_workflow = getToolByName(context, 'portal_workflow')
@@ -257,7 +261,7 @@ Invoking a workflow transition
 
 To invoke a transition:
 
-::
+.. code-block:: python
 
     portal_workflow.doActionFor(context, 'some_transition')
 
@@ -277,7 +281,7 @@ Objects may need to be reindexed if they are modified in code. The best
 way to reindex them is actually to send an event and let Dexterity’s
 standard event handlers take care of this:
 
-::
+.. code-block:: python
 
     from zope.lifecycleevent import modified
     modified(context)
@@ -285,14 +289,14 @@ standard event handlers take care of this:
 In tests, it is sometimes necessary to reindex explicitly. This can be
 done with:
 
-::
+.. code-block:: python
 
     context.reindexObject()
 
 You can also pass specific index names to reindex, if you don’t want to
 reindex everything:
 
-::
+.. code-block:: python
 
     context.reindexObject(idxs=['Title', 'sortable_title'])
 
@@ -310,7 +314,7 @@ Checking a permission
 
 To check a permission by its Zope 3 name:
 
-::
+.. code-block:: python
 
     from zope.security import checkPermission
     checkPermission('zope2.View', context)
@@ -321,7 +325,7 @@ in your test setup (e.g. the *afterSetUp()* method).
 
 To use the Zope 2 permission title:
 
-::
+.. code-block:: python
 
     from AccessControl import getSecurityManager
     getSecurityManager().checkPermission('View', context)
@@ -329,7 +333,7 @@ To use the Zope 2 permission title:
 Sometimes, normally in tests, you want to know which roles have a
 particular permission. To do this, use:
 
-::
+.. code-block:: python
 
     roles = [r['name'] for r in context.rolesOfPermission('View') if r['selected']]
 
@@ -341,7 +345,7 @@ Changing permissions
 Normally, permissions should be set with workflow, but in tests it is
 often useful to manipulate security directly:
 
-::
+.. code-block:: python
 
     context.manage_permission('View', roles=['Manager', 'Owner'], acquire=True)
 

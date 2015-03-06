@@ -3,20 +3,17 @@ Testing behaviors
 
 **How to write unit tests for behaviors**
 
-Behaviors, like any other code, should be tested. If you are writing a
-behavior with just a marker interface or schema interface, it is
-probably not necessary to test the interface. However, any actual code,
-such as a behavior adapter factory, ought to be tested.
+Behaviors, like any other code, should be tested.
+If you are writing a behavior with just a marker interface or schema interface, it is probably not necessary to test the interface.
+However, any actual code, such as a behavior adapter factory, ought to be tested.
 
-Writing a behavior integration test is not very difficult if you are
-happy to depend on Dexterity in your test. You can create a dummy type
-by instantiating a Dexterty FTI in *portal\_types* and enable your
-behavior by adding its interface name to the *behaviors* property.
+Writing a behavior integration test is not very difficult if you are happy to depend on Dexterity in your test.
+You can create a dummy type by instantiating a Dexterty FTI in *portal\_types*.
+Then enable your behavior by adding its interface name to the *behaviors* property.
 
 In many cases, however, it is better not to depend on Dexterity at all.
-It is not too difficult to mock what Dexterity does to enable behaviors
-on its types. The following example is taken from *collective.gtags* and
-tests the *ITags* behavior we saw on the first page of this manual.
+It is not too difficult to mock what Dexterity does to enable behaviors on its types.
+The following example is taken from *collective.gtags* and tests the *ITags* behavior we saw on the first page of this manual.
 
 ::
 
@@ -58,11 +55,11 @@ tests the *ITags* behavior we saw on the first page of this manual.
 
         >>> from plone.behavior.interfaces import IBehaviorAssignable
         >>> from collective.gtags.behaviors import ITags
-        >>> from zope.component import adapts
-        >>> from zope.interface import implements
-        >>> class TestingAssignable(object):
-        ...     implements(IBehaviorAssignable)
-        ...     adapts(Document)
+        >>> from zope.component import adapter
+        >>> from zope.interface import implementer
+        >>> @adapter(Document)
+        ... @implementer(IBehaviorAssignable)
+        ... class TestingAssignable(object):
         ...
         ...     enabled = [ITags]
         ...
@@ -121,46 +118,40 @@ tests the *ITags* behavior we saw on the first page of this manual.
         >>> doc.Subject() == ('Two', 'Three')
         True
 
-This test tries to prove that the behavior is correctly installed and
-works as intended on a suitable content class. It is not a true unit
-test, of course. For that, we would simply test the *Tags* adapter
-directly on a dummy context, but that is not terribly interesting, since
-all it does is convert sets to tuples.
+This test tries to prove that the behavior is correctly installed and works as intended on a suitable content class.
+It is not a true unit test, of course.
+For that, we would simply test the *Tags* adapter directly on a dummy context, but that is not terribly interesting, since all it does is convert sets to tuples.
 
-First, we configure the package. To keep the test small, we limit
-ourselves to the *behaviors.zcml* file, which in this case will suffice.
+First, we configure the package.
+To keep the test small, we limit ourselves to the *behaviors.zcml* file, which in this case will suffice.
 We still need to include a minimal set of ZCML from Five.
 
-Next, we implement an *IBehaviorAssignable*adapter. This is a low-level
-component used by *plone.behavior* to determine if a behavior is enabled
-on a particular object. Dexterity provides an implementation that checks
-the type’s FTI. Our test version is much simpler - it hardcodes the
+Next, we implement an *IBehaviorAssignable*adapter.
+This is a low-level component used by *plone.behavior* to determine if a behavior is enabled on a particular object.
+Dexterity provides an implementation that checks the type’s FTI. Our test version is much simpler - it hardcodes the
 supported behaviors.
 
-With this in place, we first check that the *IBehavior* utility has been
-correctly registered. This is essentially a test to show that we’ve used
-the *<plone:behavior />* directive as intended. We also verify that our
-schema interface is an *IFormFieldsProvider*. For a non-form behavior,
-we’d obviously omit this.
+With this in place, we first check that the *IBehavior* utility has been correctly registered.
+This is essentially a test to show that we’ve used the *<plone:behavior />* directive as intended.
+We also verify that our schema interface is an *IFormFieldsProvider*.
+For a non-form behavior, we’d obviously omit this.
 
-Finally, we test the behavior. We’ve chosen to use CMFDefault’s
-*Document* type for our test, as the behavior adapter requires an object
-providing *IDublinCore*. If we were less lazy, we’d write our own class
-and implement *IDublinCore* directly. However, in many cases, the types
-from CMFDefault are going to provide convenient test fodder.
+Finally, we test the behavior.
+We’ve chosen to use CMFDefault’s *Document* type for our test, as the behavior adapter requires an object providing *IDublinCore*.
+If we were less lazy, we’d write our own class and implement *IDublinCore* directly.
+However, in many cases, the types from CMFDefault are going to provide convenient test fodder.
 
-Obviously, if our behavior was more complex, we’d add more intricate
-tests. By the last section of the doctest, we have enough context to
-test the adapter factory.
+Obviously, if our behavior was more complex, we’d add more intricate tests.
+By the last section of the doctest, we have enough context to test the adapter factory.
 
 To run the test, we need a test suite. In *tests.py*, we have:
 
-::
+.. code-block:: python
 
+    from zope.app.testing import setup
+    from zope.testing import doctestunit
     import doctest
     import unittest
-    from zope.testing import doctestunit
-    from zope.app.testing import setup
 
     def setUp(test):
         pass
@@ -176,8 +167,8 @@ To run the test, we need a test suite. In *tests.py*, we have:
                 optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS),
             ))
 
-This runs the *behaviors.rst* doctest from the same directory as the
-*tests.py* file. To run the test, we can use the usual test runner:
+This runs the *behaviors.rst* doctest from the same directory as the *tests.py* file.
+To run the test, we can use the usual test runner:
 
 ::
 
@@ -186,8 +177,5 @@ This runs the *behaviors.rst* doctest from the same directory as the
 A note about marker interfaces
 ------------------------------
 
-Note that marker interface support depends on code that is implemented
-in Dexterity and is non-trivial to reproduce in a test. If you need a
-marker interface in a test, set it manually with
-*zope.interface.alsoProvides*, or write an integration test with
-Dexterity content.
+Note that marker interface support depends on code that is implemented in Dexterity and is non-trivial to reproduce in a test.
+If you need a marker interface in a test, set it manually with *zope.interface.alsoProvides*, or write an integration test with Dexterity content.

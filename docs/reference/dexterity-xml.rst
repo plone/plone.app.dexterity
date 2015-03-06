@@ -6,20 +6,20 @@ Dexterity XML
 Introduction
 ------------
 
-The schema (structure) of a Dexterity content type may be detailed in two very
-different ways:
+The schema (structure) of a Dexterity content type may be detailed in two very different ways:
 
     * In Python as a Zope schema; or,
 
     * In XML
 
-When you are using Dexterity's through-the-web schema editor, all your work is
-being saved in the content type's Factory Type Information (FTI) as XML.
-``plone.supermodel`` dynamically translates that XML into Python objects which
-are used to display and edit your content objects.
+When you are using Dexterity's through-the-web schema editor, all your work is being saved in the content type's Factory Type Information (FTI) as XML.
+``plone.supermodel`` dynamically translates that XML into Python objects which are used to display and edit your content objects.
 
-The XML model of your content object may be exported from Dexterity and
-incorporated into a Python package. That's typically done with code like::
+The XML model of your content object may be exported from Dexterity and incorporated into a Python package.
+That's typically done with code like:
+
+.. code-block:: python
+
 
     class IExampleType(form.Schema):
 
@@ -31,25 +31,25 @@ or::
 
     IExampleType = xmlSchema("models/example_type.xml")
 
-XML models in a package may be directly edited. (Dexterity will probably also
-include a TTW XML-model editor at some point in the future.)
+XML models in a package may be directly edited.
 
-This document is a reference to the tags and attributes you may use in model
-XML files. This includes several form-control and security-control attributes
-that are not available through the TTW schema editor.
+This document is a reference to the tags and attributes you may use in model XML files.
+This includes several form-control and security-control attributes that are not available through the TTW schema editor.
 
 XML Document Structure
 ----------------------
 
-Dexterity requires that its model XML be well-formed XML, including name space
-declarations. The typical structure of a Dexterity XML document is::
+Dexterity requires that its model XML be well-formed XML, including name space declarations.
+The typical structure of a Dexterity XML document is:
+
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <model xmlns="http://namespaces.plone.org/supermodel/schema"
            xmlns:form="http://namespaces.plone.org/supermodel/form"
            xmlns:security="http://namespaces.plone.org/supermodel/security">
         <schema>
-            <field type="zope.schema.TextLine" name="one"
+            <field type="zope.schema.TextLine" name="one">
                 <title>One</title>
                 ... More field attributes
             </field>
@@ -57,14 +57,15 @@ declarations. The typical structure of a Dexterity XML document is::
         </schema>
     </model>
 
-Only the default name space (.../supermodel/schema) is required for basic
-schema. The ``supermodel/form`` and ``supermodel/schema`` provide additional
-attributes to control form presentation and security.
+Only the default name space (.../supermodel/schema) is required for basic schema.
+The ``supermodel/form`` and ``supermodel/schema`` provide additional attributes to control form presentation and security.
 
 supermodel/schema fields
 ------------------------
 
-Most of the supermodel/schema field tag and its attributes map directly to what's available via the TTW schema editor::
+Most of the supermodel/schema field tag and its attributes map directly to what's available via the TTW schema editor:
+
+.. code-block:: xml
 
         <field name="dummy" type="zope.schema.TextLine">
           <default>abc</default>
@@ -77,13 +78,14 @@ Most of the supermodel/schema field tag and its attributes map directly to what'
           <title>Test</title>
         </field>
 
-The field ``type`` needs to be the full dotted name (as if it was being
-imported in Python) of the field type.
+The field ``type`` needs to be the full dotted name (as if it was being imported in Python) of the field type.
 
 Fieldsets
 ~~~~~~~~~
 
-It's easy to add fieldsets by surrounding embedding fields tags in a ``fieldset`` block::
+It's easy to add fieldsets by surrounding embedding fields tags in a ``fieldset`` block:
+
+.. code-block:: xml
 
       <schema>
         ...
@@ -106,7 +108,9 @@ It's easy to add fieldsets by surrounding embedding fields tags in a ``fieldset`
 Vocabularies
 ~~~~~~~~~~~~
 
-Vocabularies may be specified via dotted names using the ``source`` tag::
+Vocabularies may be specified via dotted names using the ``source`` tag:
+
+.. code-block:: xml
 
     <field name="dummy" type="zope.schema.Choice">
         <default>a</default>
@@ -124,7 +128,9 @@ Where the full Python dotted-name of a Zope vocabulary in a package::
 
     dummy_vocabulary_instance = SimpleVocabulary.fromItems([(1, 'a'), (2, 'c')])
 
-Or, a source binder::
+Or, a source binder:
+
+.. code-block:: xml
 
     <field name="dummy" type="zope.schema.Choice">
         ...
@@ -132,7 +138,9 @@ Or, a source binder::
     </field>
 
 
-With Python like::
+With Python like:
+
+.. code-block:: python
 
     from zope.schema.interfaces import IContextSourceBinder
 
@@ -154,7 +162,9 @@ Translation domains and message ids can be specified for text
 that is interpreted as unicode. This will result in deserialization
 as a zope.i18nmessageid message id rather than a basic Unicode string.
 
-Note that we need to add the i18n namespace and a domain specification::
+Note that we need to add the i18n namespace and a domain specification:
+
+.. code-block:: xml
 
     <model xmlns="http://namespaces.plone.org/supermodel/schema"
            xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -185,7 +195,9 @@ current schema (or a base schema). Use a fully prefixed name (e.g.
 ``'my.package.ISomeSchema'``) to refer to a field in another schema. Use an
 unprefixed name to refer to a field in the default schema for the form.
 
-Example::
+Example:
+
+.. code-block:: xml
 
     <field type="zope.schema.TextLine"
            name="one"
@@ -200,7 +212,9 @@ To turn a field into a view mode or hidden field, use ``form:mode``.  The
 mode may be set for only some forms by specifying a form interface in the
 same manner as for ``form:omitted``.
 
-Example::
+Example:
+
+.. code-block:: xml
 
     <field type="zope.schema.TextLine"
             name="three"
@@ -217,7 +231,9 @@ only from some forms, specify a form interface like
 ``form:omitted="z3c.form.interfaces.IForm:true"``. Multiple interface:value
 settings may be specified, separated by spaces.
 
-Examples::
+Examples:
+
+.. code-block:: xml
 
     <field type="zope.schema.TextLine"
            name="one"
@@ -240,7 +256,9 @@ widget
 To set a custom widget for a field, use ``form:widget`` to give a fully
 qualified name to the field widget factory.
 
-Example::
+Example:
+
+.. code-block:: xml
 
     <field type="zope.schema.TextLine"
            name="password"
@@ -257,20 +275,26 @@ give a fully qualified name for a callable. The defaultFactory callable must
 provide either plone.supermodel.interfaces.IDefaultFactory or
 zope.schema.interfaces.IContextAwareDefaultFactory.
 
-Example::
+Example:
+
+.. code-block:: xml
 
     <field type="zope.schema.TextLine" name="three">
         <title>Three</title>
         <defaultFactory>plone.supermodel.tests.dummy_defaultFactory</defaultFactory>
     </field>
 
-Sample Python for the validator factory::
+Sample Python for the validator factory:
+
+.. code-block:: python
 
     @provider(IDefaultFactory)
     def dummy_defaultFactory():
         return u'something'
 
-For a callable using context::
+For a callable using context:
+
+.. code-block:: python
 
     @provider(IContextAwareDefaultFactory)
     def dummy_defaultCAFactory(context):
@@ -289,7 +313,9 @@ To set a custom validator for a field, use ``form:validator`` to give a fully
 qualified name to the field validator factory. The validator factory should be
 a class derived from one of the validators in z3c.form.validator.
 
-Example::
+Example:
+
+.. code-block:: xml
 
     <field type="zope.schema.TextLine"
             name="three"
@@ -297,7 +323,9 @@ Example::
         <title>Three</title>
     </field>
 
-Sample Python for the validator factory::
+Sample Python for the validator factory:
+
+.. code-block:: python
 
     class TestValidator(z3c.form.validator.SimpleFieldValidator):
 
@@ -317,7 +345,9 @@ To set a read or write permission, use ``security:read-permission`` or
 ``security:write-permission``. The value should be the name of an
 ``IPermission`` utility.
 
-Example::
+Example:
+
+.. code-block:: xml
 
     <field type="zope.schema.TextLine"
             name="one"

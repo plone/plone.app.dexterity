@@ -1,27 +1,23 @@
-import transaction
-from thread import allocate_lock
-
-from zope.component import adapts
-from zope.container.interfaces import INameChooser
-from zope.interface import implements
-
-from Products.CMFCore.utils import getToolByName
+# -*- coding: utf-8 -*-
 from Products.CMFCore.interfaces._content import IFolderish
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils as ploneutils
-
-
-from plone.namedfile.file import NamedBlobImage
-from plone.namedfile.file import NamedBlobFile
 from plone.app.dexterity.interfaces import IDXFileFactory
+from plone.dexterity.utils import createContentInContainer
+from plone.namedfile.file import NamedBlobFile
+from plone.namedfile.file import NamedBlobImage
+from thread import allocate_lock
+from zope.component import adapter
+from zope.container.interfaces import INameChooser
+from zope.interface import implementer
+import transaction
 
 upload_lock = allocate_lock()
 
-from plone.dexterity.utils import createContentInContainer
 
-
+@adapter(IFolderish)
+@implementer(IDXFileFactory)
 class DXFileFactory(object):
-    implements(IDXFileFactory)
-    adapts(IFolderish)
 
     def __init__(self, context):
         self.context = context
@@ -46,19 +42,32 @@ class DXFileFactory(object):
             # This will suffice for standard p.a.contenttypes File/Image
             # and any other custom type that would have 'File' or 'Image' in
             # its type name
+            # XXX heuristics are harmful behavior, here a better implemenation
+            #     is needed
             filename = ploneutils.safe_unicode(name)
             if 'Image' in type_:
-                image = NamedBlobImage(data=data,
-                                       filename=filename,
-                                       contentType=content_type)
+                image = NamedBlobImage(
+                    data=data,
+                    filename=filename,
+                    contentType=content_type
+                )
                 obj = createContentInContainer(
-                    self.context, type_, id=newid, image=image)
+                    self.context, type_,
+                    id=newid,
+                    image=image
+                )
             else:
-                file = NamedBlobFile(data=data,
-                                     filename=filename,
-                                     contentType=content_type)
+                file = NamedBlobFile(
+                    data=data,
+                    filename=filename,
+                    contentType=content_type
+                )
                 obj = createContentInContainer(
-                    self.context, type_, id=newid, file=file)
+                    self.context,
+                    type_,
+                    id=newid,
+                    file=file
+                )
 
             obj.title = name
             obj.reindexObject()

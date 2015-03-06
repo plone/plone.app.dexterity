@@ -4,6 +4,9 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
+- Code and docs housekeeping: pep8 et al, zca decorators, doc style.
+  [jensens]
+
 - Ensure the default creator value is a unicode string.
   [lentinj]
 
