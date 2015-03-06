@@ -115,26 +115,16 @@ The following documents are not Dexterity-specific, but will likely be useful
 to users of Dexterity:
 
 * `Schema-driven forms manual`_
-* `five.grok manual`_
 
 .. _`Schema-driven forms manual`: http://docs.plone.org/develop/addons/schema-driven-forms/index.html
-.. _`five.grok manual`: http://docs.plone.org/develop/addons/five-grok/index.html
 
-
-Mailing list
-============
-
-The `dexterity-development group`_ provides a place to discuss development
-and use of Dexterity.
-
-.. _`dexterity-development group`: http://groups.google.com/group/dexterity-development
 
 Issue tracker
 =============
 
 Please report issues via the `Plone issue tracker`_.
 
-.. _`Plone issue tracker`: https://dev.plone.org/
+.. _`Plone issue tracker`: https://github.com/plone/plone.app.dexterity/issues
 
 Support
 =======
@@ -146,13 +136,9 @@ Dexterity use questions may be answered via `Plone's support channels`_.
 Contributing
 ============
 
-Most Dexterity code is owned by the `Plone Foundation`_ and maintained in the
-`Plone github repository`_. We're happy to share commit access so that you can
-share code with us, but first you must sign the `Plone contributor agreement`_.
+Contributors please read the document `Process for Plone core's development <http://docs.plone.org/develop/plone-coredev/index.html>`_
 
-.. _`Plone Foundation`: http://plone.org/foundation
-.. _`Plone github repository`: http://github.com/plone
-.. _`Plone contributor agreement`: http://plone.org/foundation/contributors-agreement
+Sources are at the `Plone code repository hosted at Github <https://github.com/plone/plone.app.dexterity>`_.
 
 Dexterity wouldn't be possible without the hard work of a lot of people, including:
 
