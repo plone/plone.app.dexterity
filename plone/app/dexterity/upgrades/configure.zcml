@@ -3,61 +3,61 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
   <genericsetup:upgradeStep
-    source="0.1"
-    destination="1"
-    title="Install plone.app.z3cform browser layer"
-    profile="plone.app.dexterity:default"
-    handler=".to1.install_z3cform_profile"
-    />
+      source="0.1"
+      destination="1"
+      title="Install plone.app.z3cform browser layer"
+      profile="plone.app.dexterity:default"
+      handler=".to1.install_z3cform_profile"
+      />
 
   <genericsetup:upgradeStep
-    source="1"
-    destination="5"
-    title="Unregister schemaeditor.css"
-    profile="plone.app.dexterity:default"
-    handler=".to2.remove_stylesheet"
-    />
+      source="1"
+      destination="5"
+      title="Unregister schemaeditor.css"
+      profile="plone.app.dexterity:default"
+      handler=".to2.remove_stylesheet"
+      />
 
   <!-- Dexterity 2.0 -->
 
   <genericsetup:upgradeStep
-    source="5"
-    destination="2000"
-    title="Remove overlays.css from CSS registry"
-    profile="plone.app.dexterity:default"
-    handler=".to2000.remove_overlays_css"
-    />
+      source="5"
+      destination="2000"
+      title="Remove overlays.css from CSS registry"
+      profile="plone.app.dexterity:default"
+      handler=".to2000.remove_overlays_css"
+      />
 
   <genericsetup:upgradeStep
-    source="2000"
-    destination="2001"
-    title="Add missing UUIDs to Dexterity content"
-    profile="plone.app.dexterity:default"
-    handler=".to2001.add_missing_uuids"
-    />
+      source="2000"
+      destination="2001"
+      title="Add missing UUIDs to Dexterity content"
+      profile="plone.app.dexterity:default"
+      handler=".to2001.add_missing_uuids"
+      />
 
   <genericsetup:upgradeStep
-    source="2000"
-    destination="2002"
-    title="Install JQuery Tools date picker resources"
-    profile="plone.app.dexterity:default"
-    handler=".to2002.install_datepicker_profile"
-    />
+      source="2000"
+      destination="2002"
+      title="Install JQuery Tools date picker resources"
+      profile="plone.app.dexterity:default"
+      handler=".to2002.install_datepicker_profile"
+      />
 
   <genericsetup:upgradeStep
-    source="2002"
-    destination="2003"
-    title="Make sure uninstalling products won't destroy the intid catalog"
-    profile="plone.app.dexterity:default"
-    handler=".to2003.fix_installed_products"
-    />
+      source="2002"
+      destination="2003"
+      title="Make sure uninstalling products won't destroy the intid catalog"
+      profile="plone.app.dexterity:default"
+      handler=".to2003.fix_installed_products"
+      />
 
   <genericsetup:upgradeStep
-    source="2003"
-    destination="2004"
-    title="Remove line feeds and carrige returns from the description"
-    profile="plone.app.dexterity:default"
-    handler=".to2004.remove_cr_and_lf_description"
-    />
+      source="2003"
+      destination="2004"
+      title="Remove line feeds and carrige returns from the description"
+      profile="plone.app.dexterity:default"
+      handler=".to2004.remove_cr_and_lf_description"
+      />
 
 </configure>

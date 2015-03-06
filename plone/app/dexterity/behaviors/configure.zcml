@@ -4,141 +4,141 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="plone.app.dexterity">
 
-    <include package="plone.behavior" file="meta.zcml"/>
+  <include package="plone.behavior" file="meta.zcml"/>
 
-    <!-- vocabularies -->
-    <include package="plone.app.vocabularies"/>
+  <!-- vocabularies -->
+  <include package="plone.app.vocabularies"/>
 
-    <!-- Metadata -->
-    <plone:behavior
-        title="Basic metadata"
-        description="Adds title and description fields."
-        provides=".metadata.IBasic"
-        factory=".metadata.Basic"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
-    <plone:behavior
-        title="Categorization"
-        description="Adds keywords and language fields."
-        provides=".metadata.ICategorization"
-        factory=".metadata.Categorization"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
-    <plone:behavior
-        title="Date range"
-        description="Adds effective date and expiration date fields."
-        provides=".metadata.IPublication"
-        factory=".metadata.Publication"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
-    <plone:behavior
-        title="Ownership"
-        description="Adds creator, contributor, and rights fields."
-        provides=".metadata.IOwnership"
-        factory=".metadata.Ownership"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
-    <adapter
+  <!-- Metadata -->
+  <plone:behavior
+      title="Basic metadata"
+      description="Adds title and description fields."
+      provides=".metadata.IBasic"
+      factory=".metadata.Basic"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
+  <plone:behavior
+      title="Categorization"
+      description="Adds keywords and language fields."
+      provides=".metadata.ICategorization"
+      factory=".metadata.Categorization"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
+  <plone:behavior
+      title="Date range"
+      description="Adds effective date and expiration date fields."
+      provides=".metadata.IPublication"
+      factory=".metadata.Publication"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
+  <plone:behavior
+      title="Ownership"
+      description="Adds creator, contributor, and rights fields."
+      provides=".metadata.IOwnership"
+      factory=".metadata.Ownership"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
+  <adapter
       name="default"
       factory=".metadata.CreatorsDefaultValue"
       />
-    <plone:behavior
-        title="Dublin Core metadata"
-        description="Adds standard metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
-        provides=".metadata.IDublinCore"
-        factory=".metadata.DublinCore"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
+  <plone:behavior
+      title="Dublin Core metadata"
+      description="Adds standard metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+      provides=".metadata.IDublinCore"
+      factory=".metadata.DublinCore"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <!-- Title-to-id -->
-    <plone:behavior
-        title="Name from title"
-        description="Automatically generate short URL name for content based on its initial title"
-        provides="plone.app.content.interfaces.INameFromTitle"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
+  <!-- Title-to-id -->
+  <plone:behavior
+      title="Name from title"
+      description="Automatically generate short URL name for content based on its initial title"
+      provides="plone.app.content.interfaces.INameFromTitle"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <!-- File-name-to-id -->
-    <plone:behavior
-        title="Name from file name"
-        description="Automatically generate short URL name for content based on its primary field file name"
-        provides=".filename.INameFromFileName"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
+  <!-- File-name-to-id -->
+  <plone:behavior
+      title="Name from file name"
+      description="Automatically generate short URL name for content based on its primary field file name"
+      provides=".filename.INameFromFileName"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <adapter factory=".filename.NameFromFileName" />
+  <adapter factory=".filename.NameFromFileName" />
 
-    <!-- Navigation root -->
-    <plone:behavior
-        title="Navigation root"
-        description="Make all items of this type a navigation root"
-        provides="plone.app.layout.navigation.interfaces.INavigationRoot"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
+  <!-- Navigation root -->
+  <plone:behavior
+      title="Navigation root"
+      description="Make all items of this type a navigation root"
+      provides="plone.app.layout.navigation.interfaces.INavigationRoot"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <!-- Exclude from navigation -->
-    <plone:behavior
-        title="Exclude From navigation"
-        description="Allow items to be excluded from navigation"
-        provides=".exclfromnav.IExcludeFromNavigation"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
+  <!-- Exclude from navigation -->
+  <plone:behavior
+      title="Exclude From navigation"
+      description="Allow items to be excluded from navigation"
+      provides=".exclfromnav.IExcludeFromNavigation"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <!-- Next previous -->
-    <plone:behavior
-        title="Next previous navigation toggle"
-        description="Allow items to have next previous navigation enabled"
-        provides=".nextprevious.INextPreviousToggle"
-        for="plone.dexterity.interfaces.IDexterityContainer"
-        />
+  <!-- Next previous -->
+  <plone:behavior
+      title="Next previous navigation toggle"
+      description="Allow items to have next previous navigation enabled"
+      provides=".nextprevious.INextPreviousToggle"
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      />
 
-    <!--Allow discussion -->
-    <plone:behavior
-        title="Allow discussion"
-        description="Allow discussion on this item"
-        provides=".discussion.IAllowDiscussion"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
+  <!--Allow discussion -->
+  <plone:behavior
+      title="Allow discussion"
+      description="Allow discussion on this item"
+      provides=".discussion.IAllowDiscussion"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <adapter factory=".nextprevious.NextPreviousToggle" />
+  <adapter factory=".nextprevious.NextPreviousToggle" />
 
-    <adapter
-        factory=".nextprevious.DefaultNextPreviousEnabled"
-        name="default" />
+  <adapter
+      factory=".nextprevious.DefaultNextPreviousEnabled"
+      name="default" />
 
-    <plone:behavior
-        title="Next previous navigation"
-        description="Enable next previous navigation for all items of this type"
-        provides=".nextprevious.INextPreviousEnabled"
-        for="plone.dexterity.interfaces.IDexterityContainer"
-        />
+  <plone:behavior
+      title="Next previous navigation"
+      description="Enable next previous navigation for all items of this type"
+      provides=".nextprevious.INextPreviousEnabled"
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      />
 
-    <adapter factory=".nextprevious.NextPreviousEnabled" />
+  <adapter factory=".nextprevious.NextPreviousEnabled" />
 
-    <!-- Constrain container allowed content types -->
-    <plone:behavior
-        title="Folder Addable Constrains"
-        description="Restrict the content types that can be added to folderish content"
-        provides="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"
-        factory=".constrains.ConstrainTypesBehavior"
-        for="plone.dexterity.interfaces.IDexterityContainer"
-        />
+  <!-- Constrain container allowed content types -->
+  <plone:behavior
+      title="Folder Addable Constrains"
+      description="Restrict the content types that can be added to folderish content"
+      provides="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"
+      factory=".constrains.ConstrainTypesBehavior"
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      />
 
-    <!-- Short name -->
-    <plone:behavior
-        title="Short name"
-        description="Gives the ability to rename an item from its edit form."
-        factory=".id.ShortName"
-        provides=".id.IShortName"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
+  <!-- Short name -->
+  <plone:behavior
+      title="Short name"
+      description="Gives the ability to rename an item from its edit form."
+      factory=".id.ShortName"
+      provides=".id.IShortName"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <!-- BBB -->
-    <configure zcml:condition="installed plone.app.relationfield">
-      <include package="plone.app.relationfield" />
-      <utility factory=".related.related_items_behavior_BBB"
-               provides="plone.behavior.interfaces.IBehavior"
-               name="plone.app.dexterity.behaviors.related.IRelatedItems"/>
-    </configure>
+  <!-- BBB -->
+  <configure zcml:condition="installed plone.app.relationfield">
+    <include package="plone.app.relationfield" />
+    <utility factory=".related.related_items_behavior_BBB"
+             provides="plone.behavior.interfaces.IBehavior"
+             name="plone.app.dexterity.behaviors.related.IRelatedItems"/>
+  </configure>
 
 </configure>

@@ -6,67 +6,65 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="plone.app.dexterity">
 
-    <include package="plone.app.imaging"
-             zcml:condition="installed plone.app.imaging"/>
-    <include package="plone.app.vocabularies" />
-    <include package="plone.app.z3cform" />
-    <include package="plone.app.textfield" />
-    <include package="plone.app.uuid" />
-    <include package="plone.formwidget.namedfile" />
-    <include package="plone.schemaeditor" />
-    <include zcml:condition="installed plone.directives.dexterity"
-             package="plone.directives.dexterity" />
-    <include package="plone.dexterity" />
-    <include package="plone.behavior" />
+  <include package="plone.app.imaging" zcml:condition="installed plone.app.imaging"/>
+  <include package="plone.app.vocabularies" />
+  <include package="plone.app.z3cform" />
+  <include package="plone.app.textfield" />
+  <include package="plone.app.uuid" />
+  <include package="plone.formwidget.namedfile" />
+  <include package="plone.schemaeditor" />
+  <include package="plone.directives.dexterity" zcml:condition="installed plone.directives.dexterity" />
+  <include package="plone.dexterity" />
+  <include package="plone.behavior" />
 
-    <i18n:registerTranslations directory="locales"/>
+  <i18n:registerTranslations directory="locales"/>
 
-    <genericsetup:registerProfile
-        name="default"
-        title="Dexterity Content Types"
-        description="Configures various components needed for full Dexterity support."
-        directory="profiles/default"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        />
+  <genericsetup:registerProfile
+      name="default"
+      title="Dexterity Content Types"
+      description="Configures various components needed for full Dexterity support."
+      directory="profiles/default"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
 
-    <genericsetup:registerProfile
-        name="testing"
-        title="Dexterity Content Types"
-        description="Adds Dexterity-based Folder and Document types for testing."
-        directory="profiles/testing"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        for="Products.CMFPlone.interfaces.ITestCasePloneSiteRoot"
-        />
+  <genericsetup:registerProfile
+      name="testing"
+      title="Dexterity Content Types"
+      description="Adds Dexterity-based Folder and Document types for testing."
+      directory="profiles/testing"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.ITestCasePloneSiteRoot"
+      />
 
-    <include package=".browser" />
-    <include package=".behaviors" />
-    <include package=".upgrades" />
+  <include package=".browser" />
+  <include package=".behaviors" />
+  <include package=".upgrades" />
 
-    <include file="events.zcml" />
+  <include file="events.zcml" />
 
-    <class class="plone.dexterity.content.DexterityContent">
-        <!-- Make Dexterity types portlet- and content rule aware -->
-        <implements interface="plone.portlets.interfaces.ILocalPortletAssignable" />
-        <implements interface="plone.contentrules.engine.interfaces.IRuleAssignable" />
-        <!-- Make it possible to traverse to image scales on Dexterity content -->
-        <implements interface="plone.namedfile.interfaces.IImageScaleTraversable" />
-    </class>
+  <class class="plone.dexterity.content.DexterityContent">
+    <!-- Make Dexterity types portlet- and content rule aware -->
+    <implements interface="plone.portlets.interfaces.ILocalPortletAssignable" />
+    <implements interface="plone.contentrules.engine.interfaces.IRuleAssignable" />
+    <!-- Make it possible to traverse to image scales on Dexterity content -->
+    <implements interface="plone.namedfile.interfaces.IImageScaleTraversable" />
+  </class>
 
-    <!-- Register GS exporter for DexterityFTI type -->
-    <adapter
-        factory="Products.CMFCore.exportimport.typeinfo.TypeInformationXMLAdapter"
-        for="plone.dexterity.interfaces.IDexterityFTI
-             Products.GenericSetup.interfaces.ISetupEnviron"
-        />
+  <!-- Register GS exporter for DexterityFTI type -->
+  <adapter
+      factory="Products.CMFCore.exportimport.typeinfo.TypeInformationXMLAdapter"
+      for="plone.dexterity.interfaces.IDexterityFTI
+           Products.GenericSetup.interfaces.ISetupEnviron"
+      />
 
-    <adapter factory=".interfaces.TypeIdValidator" />
-    <adapter factory=".interfaces.TypeTitleValidator" />
+  <adapter factory=".interfaces.TypeIdValidator" />
+  <adapter factory=".interfaces.TypeTitleValidator" />
 
-    <adapter factory=".factories.DXFileFactory" />
-    <adapter factory=".permissions.DXFieldPermissionChecker" />
-    <adapter factory=".permissions.DXAddViewFieldPermissionChecker" />
-    <adapter factory=".permissions.DXAddViewFieldPermissionChecker"
-             for="plone.z3cform.interfaces.IFormWrapper" />
+  <adapter factory=".factories.DXFileFactory" />
+  <adapter factory=".permissions.DXFieldPermissionChecker" />
+  <adapter factory=".permissions.DXAddViewFieldPermissionChecker" />
+  <adapter factory=".permissions.DXAddViewFieldPermissionChecker"
+           for="plone.z3cform.interfaces.IFormWrapper" />
 
 </configure>
