@@ -66,9 +66,11 @@ IMockSchema.setTaggedValue(WIDGETS_KEY, {
 
 
 def _enable_custom_widget(field):
-    provideAdapter(_custom_field_widget, adapts=
-                   (getSpecification(field), IWidgetsLayer),
-                   provides=IFieldWidget)
+    provideAdapter(
+        _custom_field_widget,
+        adapts=(getSpecification(field), IWidgetsLayer),
+        provides=IFieldWidget
+    )
 
 
 def _disable_custom_widget(field):

@@ -12,7 +12,8 @@ NAMESPACE = '{http://namespaces.plone.org/supermodel/schema}'
 
 
 class ModelEditorView(BrowserView):
-    """ editor view """
+    """Editor view.
+    """
 
     def modelSource(self):
         return self.context.fti.model_source
@@ -25,10 +26,12 @@ def authorized(context, request):
 
 
 class AjaxSaveHandler(BrowserView):
-    """ handle AJAX save posts """
+    """Handle AJAX save posts.
+    """
 
     def __call__(self):
-        """ handle AJAX save post """
+        """Handle AJAX save post.
+        """
 
         if not authorized(self.context, self.request):
             raise Unauthorized

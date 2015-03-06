@@ -2,18 +2,18 @@ require([
     'jquery',
     'mockup-patterns-modal'
 ], function($, Modal) {
-
+    "use strict";
     $('.action').css('display', 'inline');
 
     // clone type form
     $('#crud-edit-form-buttons-clone').click(function(e) {
       var selected = $('input[id$=-widgets-select-0]:checked');
-      if (selected.length == 1) {
+      if (selected.length === 1) {
           e.preventDefault();
           $(this).removeClass('submitting');
           var type_link = $('a', selected.closest('tr'));
           var $el = $('<' + 'a href="' + type_link.attr('href') + '/@@clone"><' + '/a>').appendTo('body');
-          new Modal($el, {
+          var modal = new Modal($el, {
             actionOptions: {displayInModal: false}
           });
           $el.click();
@@ -31,7 +31,7 @@ require([
         } else {
           msg = 'Are you sure you want to delete these types?';
         }
-        if(!confirm(msg)) {
+        if(!window.confirm(msg)) {
             $(this).removeClass('submitting');
             e.preventDefault();
         }
