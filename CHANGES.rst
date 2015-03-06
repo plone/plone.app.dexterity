@@ -4,6 +4,9 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
+- Ensure the default creator value is a unicode string.
+  [lentinj]
+
 - Add facility to import type profiles in zip archives. Added button to
   types edit page. Import format is identical to export.
   [smcmahon]

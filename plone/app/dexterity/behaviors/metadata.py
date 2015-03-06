@@ -21,6 +21,7 @@ from zope.interface import alsoProvides
 from zope.interface import invariant
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
+from plone.dexterity.utils import safe_unicode
 from zope.schema.interfaces import IText, ISequence
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
@@ -225,7 +226,8 @@ class IOwnership(model.Schema):
 # make sure the add form shows the default creator
 def creatorsDefault(data):
     user = getSecurityManager().getUser()
-    return user and (user.getId(),)
+    # NB: CMF users are UTF-8 encoded bytes, decode them before inserting
+    return user and (safe_unicode(user.getId()),)
 CreatorsDefaultValue = ComputedWidgetAttribute(
     creatorsDefault,
     field=IOwnership['creators']
