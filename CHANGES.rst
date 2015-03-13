@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.3 (unreleased)
+2.1.3 (2015-03-13)
 ------------------
 
 - Code and docs housekeeping: pep8 et al, zca decorators, doc style.
