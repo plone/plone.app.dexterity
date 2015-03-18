@@ -1,3 +1,6 @@
+<tal:info
+ xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+ i18n:domain="plone.app.dexterity">
 <div class="portalMessage info" role="alertdialog" aria-labelledby="dialogTitle"
     tal:condition="context/@@plone_context_state/is_default_page|nothing">
   <strong id="dialogTitle"
@@ -12,3 +15,4 @@
         tal:attributes="href string:${context/aq_inner/aq_parent/absolute_url}/edit">go here</a>.
   </span>
 </div>
+</tal:info>
