@@ -4,7 +4,8 @@ Changelog
 2.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update Traditional Chinese translation.
+  [l34marr]
 
 
 2.1.3 (2015-03-13)
