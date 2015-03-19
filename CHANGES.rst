@@ -4,6 +4,9 @@ Changelog
 2.1.4 (unreleased)
 ------------------
 
+- Add i18n:domain for Default Page Warning template.
+  [l34marr]
+
 - Update Traditional Chinese translation.
   [l34marr]
 
