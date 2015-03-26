@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.4 (unreleased)
+2.1.4 (2015-03-26)
 ------------------
 
 - Add i18n:domain for Default Page Warning template.
