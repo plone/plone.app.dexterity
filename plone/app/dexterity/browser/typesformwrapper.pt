@@ -6,14 +6,12 @@
       metal:use-macro="here/prefs_main_template/macros/master"
       i18n:domain="plone.app.dexterity">
 <body>
-  <metal:main fill-slot="prefs_configlet_main">
-    <tal:main-macro metal:define-macro="main">
-
-      <h1 class="documentFirstHeading" tal:content="view/label">Title</h1>
-
-      <div id="skel-contents">
-        <span tal:replace="structure view/contents" />
-      </div>
-    </tal:main-macro>
+<metal:main fill-slot="prefs_configlet_main">
+<tal:main-macro metal:define-macro="main">
+  <h1 class="documentFirstHeading" tal:content="view/label">Title</h1>
+  <div id="skel-contents">
+    <span tal:replace="structure view/contents" />
+  </div>
+</tal:main-macro>
 </metal:main>
 </html>

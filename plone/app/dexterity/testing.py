@@ -1,9 +1,9 @@
-from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import PLONE_FIXTURE
-from plone.app.testing import IntegrationTesting, FunctionalTesting
-
+# -*- coding: utf-8 -*-
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
-
+from plone.app.testing import FunctionalTesting
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import PloneSandboxLayer
 from plone.testing import z2
 
 
@@ -20,10 +20,16 @@ class DexterityFixture(PloneSandboxLayer):
 
 
 DEXTERITY_FIXTURE = DexterityFixture()
+
 DEXTERITY_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(DEXTERITY_FIXTURE,), name="dexterity:Integration")
+    bases=(DEXTERITY_FIXTURE,),
+    name="dexterity:Integration"
+)
 DEXTERITY_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(DEXTERITY_FIXTURE,), name="dexterity:Functional")
+    bases=(DEXTERITY_FIXTURE,),
+    name="dexterity:Functional"
+)
 DEXTERITY_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(DEXTERITY_FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE,
-    z2.ZSERVER_FIXTURE), name="dexterity:Acceptance")
+    bases=(DEXTERITY_FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
+    name="dexterity:Acceptance"
+)

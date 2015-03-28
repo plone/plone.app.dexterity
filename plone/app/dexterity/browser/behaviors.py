@@ -1,19 +1,18 @@
+# -*- coding: utf-8 -*-
 from copy import deepcopy
-from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
-from zope.component import adapts, getUtilitiesFor
-from zope import schema
-from zope.i18nmessageid import MessageFactory
-from zope.lifecycleevent import modified
-
+from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity.browser.layout import TypeFormLayout
+from plone.app.dexterity.interfaces import ITypeSchemaContext
+from plone.behavior.interfaces import IBehavior
+from plone.dexterity.fti import DexterityFTIModificationDescription
 from z3c.form import field, form
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
-
-from plone.behavior.interfaces import IBehavior
-from plone.app.dexterity.interfaces import ITypeSchemaContext
-from plone.app.dexterity.browser.layout import TypeFormLayout
-from plone.app.dexterity import MessageFactory as _
-
-from plone.dexterity.fti import DexterityFTIModificationDescription
+from zope import schema
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from zope.component import adapter
+from zope.component import getUtilitiesFor
+from zope.i18nmessageid import MessageFactory
+from zope.lifecycleevent import modified
 
 PMF = MessageFactory('plone')
 
@@ -23,8 +22,8 @@ def behaviorConfigurationModified(object, event):
     modified(object.fti, description)
 
 
+@adapter(ITypeSchemaContext)
 class BehaviorConfigurationAdapter(object):
-    adapts(ITypeSchemaContext)
 
     def __init__(self, context):
         self.__dict__['context'] = context

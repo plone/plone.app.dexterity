@@ -1,12 +1,15 @@
-from z3c.form.interfaces import IEditForm, IAddForm
-from zope.interface import alsoProvides
-from zope import schema
-from plone.autoform.interfaces import IFormFieldProvider
-from plone.autoform import directives as form
-from plone.supermodel import model
+# -*- coding: utf-8 -*-
 from plone.app.dexterity import MessageFactory as _
+from plone.autoform import directives
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.supermodel import model
+from z3c.form.interfaces import IAddForm
+from z3c.form.interfaces import IEditForm
+from zope import schema
+from zope.interface import provider
 
 
+@provider(IFormFieldProvider)
 class IExcludeFromNavigation(model.Schema):
     """Behavior interface to exclude items from navigation.
     """
@@ -30,8 +33,6 @@ class IExcludeFromNavigation(model.Schema):
         default=False
     )
 
-    form.omitted('exclude_from_nav')
-    form.no_omit(IEditForm, 'exclude_from_nav')
-    form.no_omit(IAddForm, 'exclude_from_nav')
-
-alsoProvides(IExcludeFromNavigation, IFormFieldProvider)
+    directives.omitted('exclude_from_nav')
+    directives.no_omit(IEditForm, 'exclude_from_nav')
+    directives.no_omit(IAddForm, 'exclude_from_nav')

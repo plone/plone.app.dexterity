@@ -1,29 +1,22 @@
-from z3c.form import button
-
-from plone.schemaeditor.browser.schema.listing import SchemaListing
-from plone.schemaeditor.browser.schema.listing import ReadOnlySchemaListing
-
-from plone.app.dexterity.browser.layout import TypeFormLayout
+# -*- coding: utf-8 -*-
 from plone.app.dexterity import MessageFactory as _
-
-try:
-    import plone.resourceeditor
-    plone.resourceeditor  # avoid PEP 8 warning
-    HAVE_RESOURCE_EDITOR = True
-except ImportError:
-    HAVE_RESOURCE_EDITOR = False
-
+from plone.app.dexterity.browser.layout import TypeFormLayout
+from plone.schemaeditor.browser.schema.listing import ReadOnlySchemaListing
+from plone.schemaeditor.browser.schema.listing import SchemaListing
+from z3c.form import button
+import pkg_resources
 
 # We want to add a Plone-specific feature to the SchemaListing
 # form from plone.schemaeditor. We'll do this by subclassing, then
 # adding the plone-specific button for the ace model editor.
+
 
 class EnhancedSchemaListing(SchemaListing):
 
     def handleModelEdit(self, action):
         self.request.response.redirect('@@modeleditor')
 
-if HAVE_RESOURCE_EDITOR:
+if pkg_resources.get_distribution('plone.resourceeditor'):
     but = button.Button("modeleditor", title=u'Edit XML Field Model')
     EnhancedSchemaListing.buttons += button.Buttons(but)
     handler = button.Handler(but, EnhancedSchemaListing.handleModelEdit)

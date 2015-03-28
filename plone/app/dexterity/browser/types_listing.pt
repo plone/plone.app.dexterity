@@ -1,34 +1,42 @@
 <tal:root>
-<script type="text/javascript"
-        tal:attributes="src context/++resource++schemaeditor.js"></script>
-<script type="text/javascript"
-        tal:attributes="src context/++resource++plone.app.dexterity.types_listing.js"></script>
+  <script type="text/javascript"
+          tal:attributes="src context/++resource++schemaeditor.js"></script>
+  <script type="text/javascript"
+          tal:attributes="src context/++resource++plone.app.dexterity.types_listing.js"></script>
 
-<dl class="portalMessage"
-     tal:condition="view/status">
-  <dt>Info</dt>
-  <dd tal:content="view/status"/>
-</dl>
+  <div class="portalMessage info" role="alertdialog" aria-labelledby="dialogTitle"
+       tal:condition="view/status">
+    <strong id="dialogTitle" i18n:translate="">
+      Info
+    </strong>
+    <span tal:content="view/status">
+      Status
+    </span>
+  </div>
 
-<p class="crud-description"
-     tal:condition="view/description"
-     tal:content="structure view/description">
-</p>
+  <p class="crud-description documentDescription"
+      tal:condition="view/description"
+      tal:content="structure view/description">
+  </p>
 
-<form id="add-type" method="GET"
-      tal:attributes="action string:${context/absolute_url}/@@add-type">
-  <p><input type="submit"
-         i18n:attributes="value"
-         i18n:domain="plone.app.dexterity"
-         value="Add New Content Type&hellip;"/></p>
-</form>
+  <a class="pat-modal"
+      href="${context/absolute_url}/@@add-type">
+    <button i18n:domain="plone.app.dexterity"
+            i18n:translate="">Add New Content Type&hellip;</button>
+  </a>
 
-<div tal:repeat="form view/subforms"
-     tal:content="structure form/render"
-     class="crud-form">
-</div>
+  <a class="pat-modal"
+      href="${context/absolute_url}/@@import-types">
+    <button i18n:domain="plone.app.dexterity"
+            i18n:translate="">Import Type Profiles&hellip;</button>
+  </a>
 
-<div class="action" tal:repeat="action view/actions/values">
-  <input type="submit" tal:replace="structure action/render" />
-</div>
+  <div class="crud-form"
+      tal:repeat="form view/subforms"
+      tal:content="structure form/render">
+  </div>
+
+  <div class="action" tal:repeat="action view/actions/values">
+    <input type="submit" tal:replace="structure action/render" />
+  </div>
 </tal:root>

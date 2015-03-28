@@ -3,12 +3,11 @@ plone.app.relationfield in Dexterity 2.0.
 """
 try:
     from plone.app.relationfield.behavior import IRelatedItems  # noqa
-except:
+except ImportError:
     pass
 
-
-from zope.component import queryUtility
 from plone.behavior.interfaces import IBehavior
+from zope.component import queryUtility
 
 
 def related_items_behavior_BBB():

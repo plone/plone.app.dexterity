@@ -81,9 +81,9 @@ Code not relevant to this example is snipped with an ellipsis (…)::
         __doc__ = _(u"The start or end date is invalid")
 
     class IProgram(model.Schema):
-        
+
         ...
-        
+
         start = schema.Datetime(
                 title=_(u"Start date"),
                 required=False,
@@ -93,9 +93,9 @@ Code not relevant to this example is snipped with an ellipsis (…)::
                 title=_(u"End date"),
                 required=False,
             )
-        
+
         ...
-        
+
         @invariant
         def validateStartEnd(data):
             if data.start is not None and data.end is not None:
@@ -108,7 +108,4 @@ Form validators
 ~~~~~~~~~~~~~~~
 
 Finally, you can write more powerful validators by using the `z3c.form <http://pypi.python.org/pypi/z3c.form>`_
-widget validators. See :ref:`the z3c.form documentation <z3c.form>`_ for
-details.
-
-.. _z3c.form: http://pypi.python.org/pypi/z3c.form
+widget validators. For details see the `z3c.form validators section <http://docs.plone.org/develop/plone/forms/z3c.form.html#validators>`_.

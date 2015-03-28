@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
+from Products.CMFCore.interfaces import IFolderish
+from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity.browser.layout import TypeFormLayout
+from plone.app.dexterity.interfaces import ITypeSettings
 from z3c.form import form, field
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.dottedname.resolve import resolve as resolveDottedName
-from Products.CMFCore.interfaces import IFolderish
-from plone.app.dexterity.browser.layout import TypeFormLayout
-from plone.app.dexterity.interfaces import ITypeSettings
-from plone.app.dexterity import MessageFactory as _
 
 
 class TypeOverviewForm(form.EditForm):

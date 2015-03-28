@@ -1,24 +1,19 @@
 # -*- coding: utf-8 -*-
-import unittest2 as unittest
-
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+from plone.app.content.browser.constraintypes import IConstrainForm
+from plone.app.dexterity.behaviors import constrains
+from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
+from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
-from plone.testing.z2 import Browser
-
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import login
+from plone.app.testing import setRoles
 from plone.dexterity.fti import DexterityFTI
-from plone.app.dexterity.behaviors import constrains
-from Products.CMFCore.utils import getToolByName
+from plone.testing.z2 import Browser
 from zope.interface.exceptions import Invalid
-
-from plone.app.content.browser.constraintypes import IConstrainForm
-
-from plone.app.dexterity.testing import (
-    DEXTERITY_INTEGRATION_TESTING,
-    DEXTERITY_FUNCTIONAL_TESTING
-)
-
-from plone.app.testing import TEST_USER_ID, setRoles
+import unittest2 as unittest
 
 
 def add_folder_type(portal):
@@ -162,6 +157,24 @@ class DocumentIntegrationTest(unittest.TestCase):
         self.assertEqual(types, behavior.allowedContentTypes())
         self.assertEqual(type_ids, behavior.getLocallyAllowedTypes())
 
+    def test_locallyAllowedTypesDefaultWhenMultipleAcquired(self):
+        """
+        Prevent regression.
+        Multiple (two or more) acquisition from parent must not fail if
+        user doesn't have add permission on parent.
+        """
+        self.inner_folder.invokeFactory('folder', 'deeper_folder')
+        deeper_folder = self.inner_folder.deeper_folder
+        self.portal.acl_users._doAddUser(
+            'user_contributor', 'secret', ['Member'],
+            []
+        )
+        deeper_folder.manage_addLocalRoles('user_contributor', ['Contributor'])
+        login(self.portal, 'user_contributor')
+        behavior = ISelectableConstrainTypes(deeper_folder)
+        types = behavior.getLocallyAllowedTypes()
+        self.assertTrue(len(types) > 0)
+
     def test_locallyAllowedTypesInvalidSet(self):
         behavior = ISelectableConstrainTypes(self.folder)
         self.assertRaises(ValueError,
@@ -287,8 +300,10 @@ class DocumentIntegrationTest(unittest.TestCase):
 
         behavior = ISelectableConstrainTypes(self.inner_folder)
         behavior.setConstrainTypesMode(constrains.ACQUIRE)
-        self.assertEqual(self.types_id_subset,
-                          [x.getId() for x in behavior.allowedContentTypes()])
+        self.assertEquals(
+            self.types_id_subset,
+            [x.getId() for x in behavior.allowedContentTypes()]
+        )
 
     def test_allowedContentTypesExit4(self):
         """
@@ -299,8 +314,10 @@ class DocumentIntegrationTest(unittest.TestCase):
         behavior.setLocallyAllowedTypes(self.types_id_subset)
         behavior.setConstrainTypesMode(constrains.ENABLED)
 
-        self.assertEqual(self.types_id_subset,
-                          [x.getId() for x in behavior.allowedContentTypes()])
+        self.assertEqual(
+            self.types_id_subset,
+            [x.getId() for x in behavior.allowedContentTypes()]
+        )
 
     def test_formschemainvariants(self):
         class Data(object):
@@ -356,15 +373,20 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
     def test_form_save_restrictions(self):
         self.browser.open(self.folder_url)
         self.browser.getLink('Restrictions').click()
-        ctrl = lambda name: self.browser.getControl(name=name)
+
+        def ctrl(name):
+            return self.browser.getControl(name=name)
+
         self.browser.getControl("Type restrictions").value = ['1']
         ctrl("form.widgets.allowed_types:list").value = ["Document", "Folder"]
         ctrl("form.widgets.secondary_types:list").value = ["Document"]
         self.browser.getControl("Save").click()
         aspect = ISelectableConstrainTypes(self.folder)
         self.assertEqual(1, aspect.getConstrainTypesMode())
-        self.assertEqual(["Document", "Folder"],
-                          aspect.getLocallyAllowedTypes())
+        self.assertEqual(
+            ["Document", "Folder"],
+            aspect.getLocallyAllowedTypes()
+        )
         self.assertEqual(["Folder"], aspect.getImmediatelyAddableTypes())
 
     def test_form_bad_save(self):
@@ -375,10 +397,16 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
 
         self.browser.open(self.folder_url)
         self.browser.getLink('Restrictions').click()
-        ctrl = lambda name: self.browser.getControl(name=name)
+
+        def ctrl(name):
+            return self.browser.getControl(name=name)
+
         self.browser.getControl("Type restrictions").value = ['1']
         ctrl("form.widgets.allowed_types:list").value = ["Document"]
-        ctrl("form.widgets.secondary_types:list").value = ["Document", "Folder"]
+        ctrl("form.widgets.secondary_types:list").value = [
+            "Document",
+            "Folder"
+        ]
         self.browser.getControl("Save").click()
         self.assertEqual(constraint_before, aspect.getConstrainTypesMode())
         self.assertTrue('Error' in self.browser.contents)

@@ -80,21 +80,23 @@ group::
     from zope.schema.interfaces import IContextSourceBinder
     from zope.schema.vocabulary import SimpleVocabulary
     from Products.CMFCore.utils import getToolByName
+    from zope.interface import directlyProvides
 
-    @grok.provider(IContextSourceBinder)
+
     def possibleOrganizers(context):
         acl_users = getToolByName(context, 'acl_users')
         group = acl_users.getGroupById('organizers')
         terms = []
-        
+
         if group is not None:
             for member_id in group.getMemberIds():
                 user = acl_users.getUserById(member_id)
                 if user is not None:
                     member_name = user.getProperty('fullname') or member_id
                     terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
-                
+
         return SimpleVocabulary(terms)
+    directlyProvides(possibleOrganizers, IContextSourceBinder)
 
 We use the PAS API to get the group and its members, building a list,
 which we then turn into a vocabulary.
@@ -152,28 +154,30 @@ function, allowing it to be set on a per-field basis. To do so, we turn
 our ``IContextSourceBinder`` into a class that is initialised with the
 group name::
 
+    from zope.interface import implements
+
     class GroupMembers(object):
         """Context source binder to provide a vocabulary of users in a given
         group.
         """
-        
-        grok.implements(IContextSourceBinder)
-        
+
+        implements(IContextSourceBinder)
+
         def __init__(self, group_name):
             self.group_name = group_name
-        
+
         def __call__(self, context):
             acl_users = getToolByName(context, 'acl_users')
             group = acl_users.getGroupById(self.group_name)
             terms = []
-        
+
             if group is not None:
                 for member_id in group.getMemberIds():
                     user = acl_users.getUserById(member_id)
                     if user is not None:
                         member_name = user.getProperty('fullname') or member_id
                         terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
-                
+
             return SimpleVocabulary(terms)
 
 Again, the source is set using the ``source`` argument to the ``Choice``
@@ -213,37 +217,47 @@ distribute vocabularies in third party packages.
 
 We can turn our first "members in the *organizers* group" vocabulary
 into a named vocabulary by creating a named utility providing
-``IVocabularyFactory``, like so::
+``IVocabularyFactory``. Add to your ``configure.zcml``:
 
-    from zope.schema.interfaces import IVocabularyFactory
+.. code-block:: xml
+
+    <utility
+        name="example.conference.Organisers"
+        provides="zope.schema.interfaces.IVocabularyFactory"
+        component="example.conference.vocabularies.OrganizersVocabularyFactory"
+    />
+
+    By convention, the vocabulary name is prefixed with the package name, to
+    ensure uniqueness.
+
+.. note::
+
+    Then create a vocabulary factory in ``vocabularies.py``:
+
+.. code-block:: python
+
     ...
 
-    class OrganizersVocabulary(object):
-        grok.implements(IVocabularyFactory)
-        
+    class OrganizersVocabularyFactory(object):
+
         def __call__(self, context):
             acl_users = getToolByName(context, 'acl_users')
             group = acl_users.getGroupById('organizers')
             terms = []
-        
+
             if group is not None:
                 for member_id in group.getMemberIds():
                     user = acl_users.getUserById(member_id)
                     if user is not None:
                         member_name = user.getProperty('fullname') or member_id
                         terms.append(SimpleVocabulary.createTerm(member_id, str(member_id), member_name))
-                
+
             return SimpleVocabulary(terms)
 
-    grok.global_utility(OrganizersVocabulary, name=u"example.conference.Organizers")
-
-.. note::
-
-    By convention, the vocabulary name is prefixed with the package name, to
-    ensure uniqueness.
-
 We can make use of this vocabulary in any schema by passing its name to
-the ``vocabulary`` argument of the ``Choice`` field constructor::
+the ``vocabulary`` argument of the ``Choice`` field constructor:
+
+.. code-block:: python
 
     organizer = schema.Choice(
         title=_(u"Organiser"),
@@ -346,7 +360,11 @@ In the ``IProgram`` schema (which, recall, derives from ``model.Schema`` and
 is therefore processed for form hints at startup), we then add the
 following::
 
-    form.widget(organizer=AutocompleteFieldWidget)
+.. code-block:: python
+
+    from plone.autoform import directives
+
+    directives.widget(organizer=AutocompleteFieldWidget)
     organizer = schema.Choice(
         title=_(u"Organiser"),
         vocabulary=u"plone.principalsource.Users",

@@ -19,7 +19,10 @@ class TestShortNameBehavior(unittest.TestCase):
 
         # prepare browser
         self.browser = z2.Browser(self.layer['app'])
-        self.browser.addHeader('Authorization', 'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,))
+        self.browser.addHeader(
+            'Authorization', 'Basic %s:%s'
+            % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+        )
         self.browser.open('http://nohost/plone')
 
     def test_add_item_w_id_specified(self):
@@ -40,7 +43,7 @@ class TestShortNameBehavior(unittest.TestCase):
     def test_add_item_w_reserved_name(self):
         self.browser.getLink('Page').click()
         self.browser.getControl('Title').value = 'title'
-        self.browser.getControl('Short name').value = 'login'  # naughty naughty
+        self.browser.getControl('Short name').value = 'login'  # naughty
         self.browser.getControl('Save').click()
         self.assertEqual(self.browser.url, 'http://nohost/plone/login-1')
 
@@ -83,4 +86,6 @@ class TestShortNameBehavior(unittest.TestCase):
         self.browser.getControl('Save').click()
         self.assertEqual(self.browser.url, 'http://nohost/plone/foo')
         # assert that object has not been modified
-        self.assertEqual(mtime, self.layer['portal'].foo.bobobase_modification_time())
+        self.assertEqual(
+            mtime, self.layer['portal'].foo.bobobase_modification_time()
+        )

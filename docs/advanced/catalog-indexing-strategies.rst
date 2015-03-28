@@ -1,11 +1,38 @@
 ============================
-Catalog indexing strategies 
+Catalog indexing strategies
 ============================
+
+You may have two different interests in regard to indexing your custom content type objects:
+
+    * Making particular fields searchable via Plone's main search facility;
+
+    * Indexing particular fields for custom lookup.
+
+Making content searchable
+*************************
+
+Plone's main index is called *SearchableText*. This is the index which is searched when you use the main portal search. Fields in your custom content types are not necessarily added to SearchableText. Fields added via Dublin-core behaviors are automatically part of SearchableText; others are not.
+
+So, you may need to explicitly add fields to SearchableText if you wish their information to be findable via the main search. There are all sorts of highly customizable ways to do this, but the easiest is to use the `collective.dexteritytextindexer  <https://github.com/collective/collective.dexteritytextindexer>`_ add-on package.
+
+Add ``collective.dexteritytextindexer`` to your buildout and you will gain a new Dexterity behavior that will allow you to easily add fields to SearchableText. Once you turn on this behavior, you will then need to specify fields for addition to SearchableText.
+
+..Note::
+
+    Note that if you turn on the ``Dynamic SearchableText indexer behavior`` for a content type, then you must specify all fields that need SearchableText indexing. Dublin core fields like Title and Description are no longer automatically handled.
+
+Once you have turned on the indexer behavior, edit the XML field model to add ``indexer:searchable="true"`` to the ``field`` tag for each field you wish to add to the SearchableText index.
+
+See the `collective.dexteritytextindexer  <https://github.com/collective/collective.dexteritytextindexer>`_ package documentation for details and for information on how to use it via Python schema.
+
+
+Creating and using custom indexes
+*********************************
 
 **How to create custom catalog indexes**
 
 The ZODB is a hierarchical object store where objects of different schemata and sizes can live side by side.
-This is great for managing individual content items, but not optimal for searching across the content repository. 
+This is great for managing individual content items, but not optimal for searching across the content repository.
 A naive search would need to walk the entire object graph, loading each object into memory and comparing object metadata with search criteria.
 On a large site, this would quickly become prohibitive.
 
@@ -24,12 +51,12 @@ The functions ``getURL()``, ``getPath()`` and ``getObject()`` can be used to get
     This means that loading objects into memory is not quite as undesirable as is sometimes assumed.
     If you’re working with references, parent objects, or a small number of child objects, it is usually OK to load objects directly to work with them.
     However, if you are working with a large or unknown-but-potentially-large number of objects, you should consider using catalog searches to find them and use catalog metadata to store frequently used values.
-    There is an important trade-off to be made between limiting object access and bloating the catalog with unneeded indexes and metadata, though. 
+    There is an important trade-off to be made between limiting object access and bloating the catalog with unneeded indexes and metadata, though.
     In particular, large strings (such as the body text of a document) or binary data (such as the contents of image or file fields) should not be stored as catalog metadata.
 
 Plone comes with a number of standard indexes and metadata columns.
 These correspond to much of the *Dublin Core* set of metadata as well as several Plone-specific attributes.
-You can view the indexes, columns and the contents of the catalog through the ZMI pages of the ``portal_catalog`` tool. 
+You can view the indexes, columns and the contents of the catalog through the ZMI pages of the ``portal_catalog`` tool.
 If you’ve never done this, it is probably instructive to have a look, both to understand how the indexes and columns may apply to your own content types, and to learn what searches are already possible.
 
 Indexes come in various types. The most common ones are:
@@ -107,7 +134,7 @@ Zope 2 ``DateTime.DateTime`` object.
 The third indexer will be used to provide a value for the ``Subject`` index that takes its value from the ``tracks`` list. ::
 
     from DateTime import DateTime
-    from plone.indexer import indexer 
+    from plone.indexer import indexer
     ...
 
     @indexer(IProgram)
@@ -115,22 +142,25 @@ The third indexer will be used to provide a value for the ``Subject`` index that
         if obj.start is None:
             return None
         return DateTime(obj.start.isoformat())
-    grok.global_adapter(startIndexer, name="start")
 
     @indexer(IProgram)
     def endIndexer(obj):
         if obj.end is None:
             return None
         return DateTime(obj.end.isoformat())
-    grok.global_adapter(endIndexer, name="end")
 
     @indexer(IProgram)
     def tracksIndexer(obj):
         return obj.tracks
-    grok.global_adapter(tracksIndexer, name="Subject")
+
+And we need to register the indexers in ZCML::
+
+    <adapter factory=".indexers.startIndexer" name="start" />
+    <adapter factory=".indexers.endIndexer" name="end" />
+    <adapter factory=".indexers.tracksIndexer" name="Subject" />
 
 Here, we use the ``@indexer`` decorator to create an indexer.
-This doesn’t register the indexer component, though, so we need to use ``grok.global_adapter()`` to finalise the registration.
+This doesn’t register the indexer component, though, so we need to use ZCML to finalise the registration.
 Crucially, this is where the indexer’s ``name`` is defined.
 This is the name of the indexed attribute for which the indexer is providing a value.
 
@@ -171,11 +201,11 @@ Some of the more commonly used indexes are:
 ``path``
     the object’s path. The argument is a string like ``/foo/bar``.
     To get the path of an object (e.g. a parent folder), do
-    ``'/'.join(folder.getPhysicalPath())``. 
+    ``'/'.join(folder.getPhysicalPath())``.
     Searching for an object’s path will return the object and any children.
     To depth-limit the search, e.g. to get only those 1 level deep,
     use a compound query, e.g.
-    ``path={'query': '/'.join(folder.getPhysicalPath()), 'depth': 1}``. 
+    ``path={'query': '/'.join(folder.getPhysicalPath()), 'depth': 1}``.
     If a depth is specified, the object at the given path is not returned
     (but any children within the depth limit are).
 
@@ -255,29 +285,8 @@ For more information about catalog indexes and searching, see the
 .. _plone.indexer: http://pypi.python.org/pypi/plone.indexer
 
 
-
-Indexing content through the web
-================================
-
-There is a helpful package that creates a dexterity *behaviour* which allows indexing:
-
-
- - `collective.dexteritytextindexer <https://github.com/collective/collective.dexteritytextindexer>`_
-
-
-
 How to setup the index TTW:
 ---------------------------
-
-If you need to avoid the file system when setting this up, you can apply the same changes but through 
-the web instead. 
-
-- Go to the Zope Management Interface and select 'portal_types' 
-- Select your Dexterity content type
-- Add collective.dexteritytextindexer.behavior.IDexterityTextIndexer to the "Behaviors" box.
-- On the same page go down to "Model source" and add  indexer:searchable="true" to the <field> tag you want to index.
-- Add xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" in the top <model> tag also inside the "Model source" box <-- you will get a traceback error if you miss this out.
-- Save your changes
 
 Now that the fields are index-able, we need to create the index itself.
 

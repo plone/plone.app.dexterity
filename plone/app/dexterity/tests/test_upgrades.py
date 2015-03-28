@@ -1,5 +1,6 @@
-import unittest2 as unittest
+# -*- coding: utf-8 -*-
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
+import unittest2 as unittest
 
 
 class TestUpgrades(unittest.TestCase):

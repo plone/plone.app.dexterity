@@ -1,16 +1,18 @@
+# -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from zope import schema
-from zope.interface import alsoProvides
-from zope.container.interfaces import INameChooser
 from plone.app.dexterity import MessageFactory as _
-from plone.autoform import directives as form
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from zope import schema
+from zope.container.interfaces import INameChooser
+from zope.interface import provider
 import transaction
 
 
+@provider(IFormFieldProvider)
 class IShortName(model.Schema):
 
     model.fieldset(
@@ -24,9 +26,7 @@ class IShortName(model.Schema):
         description=_(u'This name will be displayed in the URL.'),
         required=False,
     )
-    form.write_permission(id='cmf.AddPortalContent')
-
-alsoProvides(IShortName, IFormFieldProvider)
+    directives.write_permission(id='cmf.AddPortalContent')
 
 
 class ShortName(object):

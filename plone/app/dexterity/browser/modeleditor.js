@@ -6,6 +6,7 @@
 /* global message strings are from jsvariables.py in CMFPlone */
 
 jQuery(function ($) {
+    "use strict";
     var editor = ace.edit("modelEditor"),
         session = editor.getSession(),
         myform = $("#saveform"),

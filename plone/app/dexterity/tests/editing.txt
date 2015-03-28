@@ -37,7 +37,7 @@ Adding a content type
 Let's add a 'Plonista' content type to keep track of members of the Plone
 community::
 
-  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Short Name').value = 'plonista'
   >>> browser.getControl('Description').value = 'Represents a Plonista.'
@@ -105,7 +105,7 @@ and saved.
   >>> for name, factory in sorted(component.getUtilitiesFor(
   ...     interfaces.IFieldFactory)):
   ...     browser.open(schemaeditor_url)
-  ...     browser.getControl('Add new field').click()
+  ...     browser.getLink('Add new field').click()
   ...     browser.getControl('Title').value = name
   ...     field_id = normalizer.normalize(name).replace('-', '_')
   ...     browser.getControl('Short Name').value = field_id
@@ -299,7 +299,7 @@ Validation to prevent duplicate content types
 A new content type cannot be created if its name is the same as an existing
 content type.
 
-  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'foobar'
   >>> browser.getControl('Short Name').value = 'plonista'
   >>> browser.getControl('Add').click()
@@ -311,7 +311,7 @@ content type.
 To avoid confusion, the title must also be unique.
 
   >>> browser.open('http://nohost/plone/dexterity-types')
-  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Short Name').value = 'foobar'
   >>> browser.getControl('Add').click()
@@ -351,7 +351,7 @@ Adding a container
 We can create a content type that is a container for other content::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
-  >>> browser.getControl('Add New Content Type').click()
+  >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'Plonista Folder'
   >>> browser.getControl('Short Name').value = 'plonista-folder'
   >>> browser.getControl('Add').click()
@@ -501,7 +501,7 @@ zip archive containing supermodel xml files::
     ['models/plonista2.xml', 'models/plonista-folder.xml']
 
     >>> print archive.read('models/plonista2.xml')
-    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
       </schema>
@@ -523,7 +523,7 @@ file::
     'attachment; filename=plonista2.xml'
 
     >>> print browser.contents
-    <model...xmlns="http://namespaces.plone.org/supermodel/schema">
+    <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
       </schema>

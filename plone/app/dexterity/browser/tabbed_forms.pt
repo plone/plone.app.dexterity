@@ -3,48 +3,27 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="here/prefs_main_template/macros/master"
-      i18n:domain="plone.z3cform"
-      tal:omit-tag="">
+      i18n:domain="plone.z3cform">
+<body>
+<metal:slot metal:fill-slot="prefs_configlet_main">
+  <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+    Portal status message
+  </div>
 
-  <body>
-      <metal:slot metal:fill-slot="prefs_configlet_wrapper" i18n:domain="cmf_default">
+  <h1 class="documentFirstHeading"><tal:block tal:content="context/Title"/> (<tal:block tal:content="python:context.__name__" />)</h1>
 
-        <div class="documentEditable">
+  <div class="autotabs">
+   
+    <nav class="autotoc-nav">
+      <a tal:repeat="tab view/tabs"
+          tal:attributes="href python:context.absolute_url() + '/' + tab[1];
+                          class python:'active' if tab[0] == view.label else ''"
+          tal:content="python:tab[0]" />
+    </nav>
 
-            <div id="edit-bar">
-             <ul id="content-views" class="contentViews">
-                <li class="selected"
-                    tal:repeat="tab view/tabs"
-                    tal:attributes="class python:tab[0] == view.label and 'selected' or ''">
-                    <a href=""
-                       tal:define="tab_url python:context.absolute_url() + '/' + tab[1]"
-                       tal:attributes="href tab_url"
-                       tal:content="python:tab[0]">
-                        Schema
-                    </a>
-                </li>
-             </ul>
+    <tal:block tal:replace="structure view/contents|view/render"/>
+  </div>
 
-             <div class="contentActions"></div>
-            </div>
-
-            <div id="content">
-
-             <div class="documentContent">
-
-               <div metal:use-macro="context/global_statusmessage/macros/portal_message">
-                 Portal status message
-               </div>
-
-               <h1 class="documentFirstHeading"><tal:block tal:content="context/Title"/> (<tal:block tal:content="python:context.__name__" />)</h1>
-               <h2 tal:content="view/label"/>
-
-               <tal:block tal:replace="structure view/contents|view/render"/>
-             </div>
-
-           </div>
-        </div>
-     </metal:slot>
-
-  </body>
+</metal:slot>
+</body>
 </html>

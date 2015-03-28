@@ -1,33 +1,31 @@
-import urllib
-
+# -*- coding: utf-8 -*-
 from OFS.SimpleItem import SimpleItem
-from ZPublisher.BaseRequest import DefaultPublishTraverse
-
-from zope.interface import implements
-from zope.cachedescriptors.property import Lazy as lazy_property
-from zope.component import adapts, getAllUtilitiesRegisteredFor, getUtility
-from zope.component import ComponentLookupError
-from zope.publisher.interfaces.browser import IBrowserPublisher
-from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile \
     import ViewPageTemplateFile as FiveViewPageTemplateFile
-
-from z3c.form import field, button
-from plone.z3cform import layout
-from plone.z3cform.layout import FormWrapper
-from plone.z3cform.crud import crud
-
-from Products.CMFCore.utils import getToolByName
-
-from plone.dexterity.interfaces import IDexterityFTI
-from plone.dexterity.utils import getAdditionalSchemata
-from plone.app.dexterity.interfaces import ITypesContext, ITypeSchemaContext
+from ZPublisher.BaseRequest import DefaultPublishTraverse
+from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity.browser.utils import UTF8Property
+from plone.app.dexterity.interfaces import ITypeSchemaContext
 from plone.app.dexterity.interfaces import ITypeSettings
 from plone.app.dexterity.interfaces import ITypeStats
-from plone.app.dexterity.browser.utils import UTF8Property
+from plone.app.dexterity.interfaces import ITypesContext
+from plone.dexterity.interfaces import IDexterityFTI
+from plone.dexterity.utils import getAdditionalSchemata
 from plone.schemaeditor.browser.schema.traversal import SchemaContext
-
-from plone.app.dexterity import MessageFactory as _
+from plone.z3cform import layout
+from plone.z3cform.crud import crud
+from plone.z3cform.layout import FormWrapper
+from z3c.form import field, button
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from zope.cachedescriptors.property import Lazy as lazy_property
+from zope.component import ComponentLookupError
+from zope.component import adapter
+from zope.component import getAllUtilitiesRegisteredFor
+from zope.component import getUtility
+from zope.interface import implementer
+from zope.publisher.interfaces.browser import IBrowserPublisher
+import urllib
 
 
 HELP = """<p>Content types show up on Plone's 'Add Item' menu and allow
@@ -100,9 +98,9 @@ class TypesEditFormWrapper(FormWrapper):
     index = FiveViewPageTemplateFile("typesformwrapper.pt")
 
 
+@adapter(IDexterityFTI)
+@implementer(ITypeSettings)
 class TypeSettingsAdapter(object):
-    implements(ITypeSettings)
-    adapts(IDexterityFTI)
 
     def __init__(self, context):
         self.context = context
@@ -153,9 +151,9 @@ class TypeSettingsAdapter(object):
         _get_filter_content_types, _set_filter_content_types)
 
 
+@adapter(IDexterityFTI)
+@implementer(ITypeStats)
 class TypeStatsAdapter(object):
-    implements(ITypeStats)
-    adapts(IDexterityFTI)
 
     def __init__(self, context):
         self.context = context
@@ -208,7 +206,10 @@ class TypesListing(crud.CrudForm):
         (But only for types with schemata that can be edited through the web.)
         """
         if field == 'title':
-            return '%s/%s' % (self.context.absolute_url(), urllib.quote(item.__name__))
+            return '{0}/{1}'.format(
+                self.context.absolute_url(),
+                urllib.quote(item.__name__)
+            )
 
 # Create a form wrapper so the form gets layout.
 TypesListingPage = layout.wrap_form(
@@ -216,8 +217,8 @@ TypesListingPage = layout.wrap_form(
     label=_(u'Dexterity content types'))
 
 
+@implementer(ITypeSchemaContext)
 class TypeSchemaContext(SchemaContext):
-    implements(ITypeSchemaContext)
 
     fti = None
     schemaName = u''
@@ -231,15 +232,15 @@ class TypeSchemaContext(SchemaContext):
         return getAdditionalSchemata(portal_type=self.fti.getId())
 
 
+# IBrowserPublisher tells the Zope 2 traverser to pay attention to the
+# publishTraverse and browserDefault methods.
+@implementer(ITypesContext, IBrowserPublisher)
 class TypesContext(SimpleItem):
     """This class represents the types configlet.
 
     It allows us to traverse through it to (a wrapper of) the schema
     of a particular type.
     """
-    # IBrowserPublisher tells the Zope 2 traverser to pay attention to the
-    # publishTraverse and browserDefault methods.
-    implements(ITypesContext, IBrowserPublisher)
 
     def __init__(self, context, request):
         super(TypesContext, self).__init__(context, request)
@@ -264,7 +265,9 @@ class TypesContext(SimpleItem):
             fti = getUtility(IDexterityFTI, name=name)
         except ComponentLookupError:
             return DefaultPublishTraverse(self, request).publishTraverse(
-                request, name)
+                request,
+                name
+            )
 
         schema = fti.lookupSchema()
         schema_context = TypeSchemaContext(

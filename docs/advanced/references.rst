@@ -1,5 +1,6 @@
+==========
 References
------------
+==========
 
 **How to work with references between content objects**
 
@@ -100,9 +101,12 @@ If you want to use a different widget, you can use the same source (or a
 custom source that has content objects as values) with something like
 the autocomplete widget. The following line added to the interface will
 make the presenter selection similar to the ``organizer`` selection widget
-we showed in the previous section::
+we showed in the previous section:
 
-    form.widget('presenter', AutocompleteFieldWidget)
+.. code-block:: python
+
+    from plone.autoform import directives
+    directives.widget('presenter', AutocompleteFieldWidget)
 
 Once the user has created some relationships, the value stored in the
 relation field is a ``RelationValue`` object. This provides various
@@ -117,8 +121,8 @@ The ``isBroken()`` method can be used to determine if the relationship is
 broken. This normally happens if the target object is deleted.
 
 To display the relationship on our form, we can either use a display
-widget on a ``DisplayForm``, or use this API to find the object and
-display it. We’ll do the latter in ``session_templates/view.pt``:
+widget on a *display view*, or use this API to find the object and
+display it. We’ll do the latter in ``templates/sessionview.pt``:
 
 .. code-block:: html
 
@@ -126,6 +130,44 @@ display it. We’ll do the latter in ``session_templates/view.pt``:
         <label i18n:translate="presenter">Presenter:</label>
         <span tal:content="context/presenter/to_object/Title | nothing" />
     </div>
+
+
+Back references
+---------------
+
+To retrieve back-reference (all objects pointing to particular object using specified attribute) you can't simply use ``from_object`` or ``from_path``, because source object is stored in the relation without acquisition wrappers.
+You should use ``from_id`` and ``helper`` method, which search the object in the ``IntId`` catalog:
+
+.. code-block:: python
+
+    from Acquisition import aq_inner
+    from zope.component import getUtility
+    from zope.intid.interfaces import IIntIds
+    from zope.security import checkPermission
+    from zc.relation.interfaces import ICatalog
+
+    def back_references(source_object, attribute_name):
+        """
+        Return back references from source object on specified attribute_name
+        """
+        catalog = getUtility(ICatalog)
+        intids = getUtility(IIntIds)
+        result = []
+        for rel in catalog.findRelations(
+                    dict(to_id=intids.getId(aq_inner(source_object)),
+                    from_attribute=attribute_name)
+                ):
+            obj = intids.queryObject(rel.from_id)
+            if obj is not None and checkPermission('zope2.View', obj):
+            result.append(obj)
+        return result
+
+Please note, this method does not check effective and expiration date or content language.
+
+Original issue: `<http://code.google.com/p/dexterity/issues/detail?id=234>`_
+
+
+
 
 .. _five.intid: http://pypi.python.org/pypi/five.intid
 .. _zope.intid: http://pypi.python.org/pypi/zope.intid

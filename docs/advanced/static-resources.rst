@@ -20,28 +20,21 @@ attributes: ``name`` is the name that appears after the
 ``++resource++`` namespace; ``directory`` is a relative path to the
 directory containing resources.
 
-It's conventional to use "static" or "resources" for the directory name and the dotted name of your package for the resource name.
-If you create a directory named "resources", you would use this zcml to register it::
+It's conventional to use "static" for the directory name and the dotted name of your package for the resource name.
+You would use this zcml to register it:
+
+.. code-block:: xml
 
   <browser:resourceDirectory
-    name="dotted.projectname"
-    directory="resources" />
+    name="example.conference"
+    directory="static" />
 
 
-Then, if a ``resources`` resource directory in the ``example.conference`` package
+Then, if a "static" resource directory in the ``example.conference`` package
 contains a file called ``conference.css``, it will be accessible on a URL
 like ``http://<server>/site/++resource++example.conference/conference.css.``
 The resource name is the same as the package name wherein the ``resources``
 directory appears.
-
-.. note::
-    Grok used to automatically register any directory named ``static``.
-    That behavior no longer works. If you're updating a Dexterity project
-    from < Plone 4.3, add to your configure.zcml a stanza like::
-
-      <browser:resourceDirectory
-        name="dotted.projectname"
-        directory="static" />
 
 
 Importing CSS and JavaScript files in templates
@@ -59,7 +52,7 @@ For example, we could add the following near the top of
 
     <head>
         <metal:block fill-slot="style_slot">
-            <link rel="stylesheet" type="text/css" 
+            <link rel="stylesheet" type="text/css"
                 tal:define="navroot context/@@plone_portal_state/navigation_root_url"
                 tal:attributes="href string:${navroot}/++resource++example.conference/conference.css"
                 />
@@ -137,7 +130,7 @@ Content type icons
 Finally, to use an image resource as the icon for a content type, simply
 list it in the FTI under the ``content_icon`` property. For example, in
 ``profiles/default/types/example.conference.presenter.xml``, we can use
-the following line, presuming we have a ``presenter.gif`` in the ``static``
+the following line, presuming we have a ``presenter.gif`` in the ``example.conference`` resource
 directory:
 
 .. code-block:: xml

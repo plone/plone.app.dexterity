@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 """Test the @@types-export view."""
-
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 from plone.app.dexterity.tests.test_constrains import add_item_type
 from xml.dom.minidom import parseString
 from xml.parsers.expat import ExpatError
 from zope.component import getMultiAdapter
-
 import StringIO
 import unittest2 as unittest
 import zipfile

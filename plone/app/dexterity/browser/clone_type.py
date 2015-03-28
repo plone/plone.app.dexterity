@@ -1,10 +1,11 @@
-from z3c.form import form, field
-from plone.z3cform.layout import wrap_form
+# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-
-from plone.dexterity.fti import DexterityFTI
 from plone.app.dexterity import MessageFactory as _
 from plone.app.dexterity.interfaces import ITypeSettings
+from plone.dexterity.fti import DexterityFTI
+from plone.z3cform.layout import wrap_form
+from z3c.form import form
+from z3c.form import field
 
 
 class TypeCloneForm(form.AddForm):
@@ -21,7 +22,10 @@ class TypeCloneForm(form.AddForm):
             del props['factory']
 
         props['title'] = data['title']
-        props['add_view_expr'] = props['add_view_expr'].replace(self.context.fti.getId(), type_id)
+        props['add_view_expr'] = props['add_view_expr'].replace(
+            self.context.fti.getId(),
+            type_id
+        )
         fti = DexterityFTI(type_id, **props)
         return fti
 

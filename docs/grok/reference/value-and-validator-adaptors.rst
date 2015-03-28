@@ -1,4 +1,4 @@
-Value and validator adaptors 
+Value and validator adaptors
 ============================
 
 **Handy Decorators to set computed defaults and dynamic validators**

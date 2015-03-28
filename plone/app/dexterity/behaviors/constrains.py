@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
@@ -59,12 +60,16 @@ class ConstrainTypesBehavior(object):
         return [t for t in result if my_type.allowType(t.getId()) and
                 t.isConstructionAllowed(context)]
 
-    def _filterByDefaults(self, types):
+    def _filterByDefaults(self, types, context=None):
         """
         Filter the given types by the items which would also be allowed by
         default. Important, else users could circumvent security restritions
         """
-        defaults = [fti.getId() for fti in self.getDefaultAddableTypes()]
+        if context is None:
+            context = self.context
+        defaults = [
+            fti.getId() for fti in self.getDefaultAddableTypes(context)
+        ]
         return [x for x in types if x in defaults]
 
     def allowedContentTypes(self, context=None):
@@ -80,7 +85,6 @@ class ConstrainTypesBehavior(object):
             context = self.context
         mode = self.getConstrainTypesMode()
         default_addable = self.getDefaultAddableTypes(context)
-
         if mode == DISABLED:
             return default_addable
         elif mode == ENABLED:
@@ -95,7 +99,8 @@ class ConstrainTypesBehavior(object):
             if not parent_constrain_adapter:
                 return default_addable
             return_tids = self._filterByDefaults(
-                parent_constrain_adapter.getLocallyAllowedTypes(context))
+                parent_constrain_adapter.getLocallyAllowedTypes(
+                    context), context)
             return [t for t in default_addable if t.getId() in return_tids]
         else:
             raise Exception(
@@ -129,21 +134,24 @@ class ConstrainTypesBehavior(object):
         if context is None:
             context = self.context
         mode = self.getConstrainTypesMode()
-        default_addable = [t.getId() for t in self.getDefaultAddableTypes(context)]
+        default_addable = [
+            t.getId() for t in self.getDefaultAddableTypes(context)
+        ]
 
         if mode == DISABLED:
             return default_addable
         elif mode == ENABLED:
             if hasattr(self.context, 'immediately_addable_types'):
                 return self._filterByDefaults(
-                    self.context.immediately_addable_types)
+                    self.context.immediately_addable_types, context)
         elif mode == ACQUIRE:
             parent = self.context.__parent__
             parent_constrain_adapter = ISelectableConstrainTypes(parent, None)
             if not parent_constrain_adapter:
                 return default_addable
             return self._filterByDefaults(
-                parent_constrain_adapter.getImmediatelyAddableTypes(context))
+                parent_constrain_adapter.getImmediatelyAddableTypes(
+                    context), context)
         else:
             raise Exception(
                 "Wrong constraint setting. %i is an invalid value",

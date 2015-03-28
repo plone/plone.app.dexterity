@@ -1,12 +1,63 @@
-Changelog for plone.app.dexterity
-=================================
+Changelog
+=========
 
-2.1.2 (unreleased)
+2.1.5 (unreleased)
 ------------------
 
-- Remove line feeds and carrige returns from meta description and 
+- Nothing changed yet.
+
+
+2.1.4 (2015-03-26)
+------------------
+
+- Add i18n:domain for Default Page Warning template.
+  [l34marr]
+
+- Update Traditional Chinese translation.
+  [l34marr]
+
+
+2.1.3 (2015-03-13)
+------------------
+
+- Code and docs housekeeping: pep8 et al, zca decorators, doc style.
+  [jensens]
+
+- Ensure the default creator value is a unicode string.
+  [lentinj]
+
+- Add facility to import type profiles in zip archives. Added button to
+  types edit page. Import format is identical to export.
+  [smcmahon]
+
+- Update markup and javascript for Plone 5.
+  [davisagli]
+
+- Fix the IDexterityContainer view to make use of plone.app.contenttype's new
+  listing view. Accessing it's macro needs the macro-caller's view variable set
+  to the new listing view.
+  [thet]
+
+
+2.1.2 (2014-10-23)
+------------------
+
+- Added transifex-client configuration for manage the translations
+  from Plone transifex organization [macagua].
+
+- Updated Spanish translation [flamelcanto, macagua].
+
+- Add validator to ensure expires date is after effective date.
+  [benniboy]
+
+- Remove line feeds and carrige returns from meta description and
   added upgrade step to do it for existing content
   [bosim]
+
+- Fixed issue.
+  Multiple (two or more) acquisition from parent was failing when
+  user didn't have add permission on parent.
+  [keul, cekk]
 
 
 2.1.1 (2014-04-13)
@@ -16,7 +67,7 @@ Changelog for plone.app.dexterity
   (plone.app.dexterity.behaviors.id.ShortName).
   [davisagli]
 
-- Cloning of types containing white space did not work, this commit 
+- Cloning of types containing white space did not work, this commit
   fixes that bug.
   [bosim]
 
