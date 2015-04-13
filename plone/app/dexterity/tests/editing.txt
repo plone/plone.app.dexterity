@@ -110,8 +110,7 @@ and saved.
   ...     field_id = normalizer.normalize(name).replace('-', '_')
   ...     browser.getControl('Short Name').value = field_id
   ...     browser.getControl('Field type').getControl(
-  ...         value=getattr(factory.title, 'default', '') or factory.title
-  ...         ).selected = True
+  ...         value=factory.title).selected = True
   ...     browser.getControl('Add').click()
   ...     assert browser.url == schemaeditor_url, (
   ...         "Couldn't successfully add %r" % name)
