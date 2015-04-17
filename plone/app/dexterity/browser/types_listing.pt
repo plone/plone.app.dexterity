@@ -19,13 +19,13 @@
       tal:content="structure view/description">
   </p>
 
-  <a class="pat-modal"
+  <a class="pat-plone-modal"
       href="${context/absolute_url}/@@add-type">
     <button i18n:domain="plone.app.dexterity"
             i18n:translate="">Add New Content Type&hellip;</button>
   </a>
 
-  <a class="pat-modal"
+  <a class="pat-plone-modal"
       href="${context/absolute_url}/@@import-types">
     <button i18n:domain="plone.app.dexterity"
             i18n:translate="">Import Type Profiles&hellip;</button>
