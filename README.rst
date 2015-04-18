@@ -1,5 +1,7 @@
 .. contents:: Table of Contents
 
+.. note:: ``2.1.1`` is the last Plone 4 compatible release.
+
 
 Introduction
 ============
