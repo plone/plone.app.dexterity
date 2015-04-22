@@ -4,7 +4,8 @@ Changelog
 2.1.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- pat-modal pattern has been renamed to pat-plone-modal
+  [jcbrand]
 
 
 2.1.4 (2015-03-26)
