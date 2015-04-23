@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.13 (unreleased)
+2.0.13 (2015-04-23)
 -------------------
 
 - Explicitly include collective.z3cform.datetimewidget - it doesn't contain an
