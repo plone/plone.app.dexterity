@@ -23,6 +23,8 @@ Changelog
 2.0.12 (2014-09-07)
 -------------------
 
+**Brown bag release, please do not pin this version, use either 2.0.11, 2.0.13 or any later version.**
+
 - Don't throw an error if allowed_content_types is none or missing.
   Fix https://github.com/plone/plone.app.contenttypes/issues/91
   [pbauer]
