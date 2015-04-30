@@ -50,7 +50,7 @@ will actually import directly from ``plone.namedfile``:
 For the sake of illustration, we will add an image of the
 speaker to the ``Presenter`` type. In ``presenter.py``, we add::
 
-    from plone.namedfile.field import NamedImage
+    from plone.namedfile.field import NamedBlobImage
 
     class IPresenter(model.Schema):
         ...
