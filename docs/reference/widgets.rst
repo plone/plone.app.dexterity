@@ -19,8 +19,8 @@ The table below shows some commonly used custom widgets.
  AutocompleteMultiFieldWidget   plone.formwidget.autocomplete     Collection        Multi-select version of the above. Used for a List, Tuple, Set or Frozenset with a Choice value\_type.
  ContentTreeFieldWidget         plone.formwidget.contenttree      RelationChoice    Content browser. Requires a query source with content objects as values.
  MultiContentTreeFieldWidget    plone.formwidget.contenttree      RelationList      Content browser. Requires a query source with content objects as values.
- NamedFileFieldWidget           plone.formwidget.namedfile        NamedFile         A file upload widget
- NamedImageFieldWidget          plone.formwidget.namedimage       NamedImage        An image upload widget
+ NamedFileFieldWidget           plone.formwidget.namedfile        NamedFile/NamedBlobFile         A file upload widget
+ NamedImageFieldWidget          plone.formwidget.namedfile        NamedImage/NamedBlobImage        An image upload widget
  TextLinesFieldWidget           plone.z3cform.textlines           Collection        One-per-line list entry for List, Tuple, Set or Frozenset fields. Requires a value_type of TextLine or ASCIILine.
  SingleCheckBoxFieldWidget      z3c.form.browser.checkbox         Bool              A single checkbox for true/false.
  CheckBoxFieldWidget            z3c.form.browser.checkbox         Collection        A set of checkboxes. Used for Set or Frozenset fields with a Choice value_type and a vocabulary.
