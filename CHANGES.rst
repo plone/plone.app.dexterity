@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.5 (unreleased)
+2.1.5 (2015-05-04)
 ------------------
 
 - pat-modal pattern has been renamed to pat-plone-modal
