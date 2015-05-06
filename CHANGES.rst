@@ -4,7 +4,8 @@ Changelog
 2.1.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update Japanese translation.
+  [terapyon]
 
 
 2.1.5 (2015-05-04)

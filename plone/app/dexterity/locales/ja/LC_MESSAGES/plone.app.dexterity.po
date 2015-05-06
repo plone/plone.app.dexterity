@@ -1,10 +1,14 @@
+# retsu <retsuyam@gmail.com> 2012
+# Takanori Suzuki <takanori@takanory.net> 2014
+# Zen Yasuda <zen@zenich.com> 2015
+# Manabu TERADA <terada@cmscom.jp> 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-09-16 14:03+0000\n"
-"PO-Revision-Date: 2011-05-20 15:13+0800\n"
-"Last-Translator: retsu <retsuyam@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2015-04-29 14:51+0900\n"
+"Last-Translator: Manabu TERADA <terada@cmscom.jp>\n"
+"Language-Team: Plone Japanese Team <https://github.com/plonejp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +21,7 @@ msgstr ""
 
 #: ../interfaces.py:90
 msgid "# of items"
-msgstr ""
+msgstr "アイテム数"
 
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
@@ -28,7 +32,7 @@ msgid "Add New Content Type…"
 msgstr "新しいコンテンツタイプを追加..."
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
-msgstr "ダブリンコアメタデータフィールド（基本メタデータ＋カテゴリ＋有効期間＋所有権）"
+msgstr "ダブリンコアメタデータフィールド（基本メタデータ、カテゴリ、有効期間、所有権）を追加"
 
 msgid "Adds a title and description"
 msgstr "タイトルと説明を追加"
@@ -41,21 +45,21 @@ msgstr "キーワードと言語設定を追加"
 
 #: ../behaviors/discussion.py:27
 msgid "Allow discussion"
-msgstr ""
+msgstr "議論を許可する"
 
 #: ../behaviors/discussion.py:28
 msgid "Allow discussion for this content object."
-msgstr ""
+msgstr "このコンテンツでの議論を許可する"
 
 msgid "Allow items to be excluded from navigation"
-msgstr ""
+msgstr "アイテムに対してナビゲーションからの除外を有効にする"
 
 msgid "Allow items to have next previous navigation enabled"
-msgstr "アイテムについて、次・前ナビゲーションを有効にする"
+msgstr "アイテムに対して次・前ナビゲーションを有効にする"
 
 #: ../interfaces.py:78
 msgid "Allowed Content Types"
-msgstr ""
+msgstr "許されるコンテンツタイプ"
 
 msgid "Assign an effective and/or expiration date"
 msgstr "有効日付または満了日付を割り当てる"
@@ -80,14 +84,14 @@ msgstr "振る舞いが更新されました"
 
 #: ../browser/types.py:58
 msgid "Clone"
-msgstr "複製"
+msgstr "複製する"
 
 #: ../browser/clone_type.py:12
 msgid "Clone Content Type"
 msgstr "コンテンツタイプを複製する"
 
 msgid "Configures various components needed for full Dexterity support."
-msgstr ""
+msgstr "Dexterityのすべての機能を有効にするために必要なコンポーネントの構成"
 
 #: ../interfaces.py:59
 msgid "Container"
@@ -114,15 +118,15 @@ msgid "Effective range"
 msgstr "有効期間"
 
 msgid "Enable next previous navigation for all items of this type"
-msgstr "このタイプのアイテムについて、次・前ナビゲーションを有効にする"
+msgstr "このコンテンツタイプのアイテムについて、次・前ナビゲーションを有効にする"
 
 #: ../browser/modeleditor.py:57
 msgid "Error: all model elements must be 'schema'"
-msgstr ""
+msgstr "エラー: すべてのモデルエレメント名は 'schema' でなければなりません"
 
 #: ../browser/modeleditor.py:51
 msgid "Error: root tag must be 'model'"
-msgstr ""
+msgstr "エラー: ルートタグは 'model' でなければなりません"
 
 msgid "Exclude From navigation"
 msgstr "ナビゲーションから除外する"
@@ -133,7 +137,7 @@ msgstr "スキーマモデルをエクポート"
 
 #: ../browser/types.py:71
 msgid "Export Type Profiles"
-msgstr "タイププロファイルをエクスポート"
+msgstr "コンテンツタイプのプロファイルをエクスポート"
 
 #: ../browser/fields.py:34
 #: ../browser/layout.py:15
@@ -142,14 +146,14 @@ msgstr "フィールド"
 
 #: ../interfaces.py:67
 msgid "Filter Contained Types"
-msgstr ""
+msgstr "含まれるコンテンツタイプをフィルターする"
 
 #: ../interfaces.py:60
 msgid "Items of this type will be able to contain other items."
-msgstr "このタイプのアイテムは、他のアイテムを含めることができます"
+msgstr "このコンテンツタイプのアイテムは、他のアイテムを含めることができます"
 
 msgid "Make all items of this type a navigation root"
-msgstr ""
+msgstr "すべてのアイテムをナビゲーションルートに作成する"
 
 msgid "Name from file name"
 msgstr "ファイル名からの名前"
@@ -168,7 +172,7 @@ msgstr "次・前ナビゲーションのトグル"
 
 #: ../behaviors/discussion.py:14
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: ../browser/behaviors.py:62
 msgid "No changes were made."
@@ -177,19 +181,19 @@ msgstr "何も変更されていません"
 #: ../browser/layout.py:14
 #: ../browser/overview.py:33
 msgid "Overview"
-msgstr ""
+msgstr "概要"
 
 #: ../browser/types.py:63
 msgid "Please select a single type to clone."
-msgstr "複製するタイプをひとつ選んでください"
+msgstr "複製するコンテンツタイプを一つだけ選択してください"
 
 #: ../browser/types.py:69
 msgid "Please select a type to clone."
-msgstr "複製するタイプをひとつ選んでください"
+msgstr "複製するコンテンツタイプを選択してください"
 
 #: ../browser/types.py:76
 msgid "Please select types to export."
-msgstr "エクスポートするタイプを選んでください（複数選択可）"
+msgstr "エクスポートするコンテンツタイプを選択してください（複数選択可）"
 
 #: ../interfaces.py:25
 msgid "Please use only letters, numbers, and the following characters: .-_"
@@ -197,11 +201,11 @@ msgstr "文字、数字、記号 \".\", \"-\", \"_\" だけを使うようにし
 
 #: ../browser/modeleditor.py:83
 msgid "Saved"
-msgstr ""
+msgstr "保存されました"
 
 #: ../browser/behaviors.py:60
 msgid "Select the behaviors to enable for this content type."
-msgstr "このコンテンツタイプに対して有効にする振る舞いを選んでください"
+msgstr "このコンテンツタイプに対して有効にする振る舞いを選択してください"
 
 #: ../behaviors/discussion.py:22
 #: ../behaviors/exclfromnav.py:16
@@ -215,49 +219,49 @@ msgstr "ショートネーム"
 
 #: ../behaviors/id.py:23
 msgid "Short name"
-msgstr ""
+msgstr "ショートネーム"
 
 #: ../browser/types.py:178
 msgid "The following custom content types are available for your site."
-msgstr "次のカスタムコンテンツタイプがあなたのサイトで利用できます"
+msgstr "以下のカスタムコンテンツタイプがサイトで有効です"
 
 #: ../interfaces.py:101
 msgid "There is already a content type named '${name}'"
-msgstr ""
+msgstr "${name}というコンテンツタイプ名はすでに存在します"
 
 #: ../behaviors/id.py:24
 msgid "This name will be displayed in the URL."
-msgstr ""
+msgstr "この名前はURLの一部として使用されます"
 
 #: ../interfaces.py:43
 msgid "Type Name"
-msgstr "タイプ名"
+msgstr "コンテンツタイプ名"
 
 #: ../browser/add_type.py:47
 msgid "Type added successfully."
-msgstr "タイプが追加されました"
+msgstr "コンテンツタイプが追加されました"
 
 #: ../browser/clone_type.py:31
 msgid "Type cloned successfully."
-msgstr "タイプが複製されました"
+msgstr "コンテンツタイプが複製されました"
 
 #: ../interfaces.py:48
 msgid "Used for programmatic access to the type."
-msgstr "プログラム的にタイプにアクセスするのに使われます"
+msgstr "プログラムからコンテンツタイプへのアクセスに使用します"
 
 #: ../behaviors/discussion.py:13
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #. Default: "Expiration date must be after publishing date."
 #: ../behaviors/metadata.py:153
 msgid "error_expiration_must_be_after_effective_date"
-msgstr ""
+msgstr "満了日付は公開日付より後でなければなりません"
 
 #. Default: "Invalid effective or expires date"
 #: ../behaviors/metadata.py:119
 msgid "error_invalid_publication"
-msgstr ""
+msgstr "公開日付または満了日付が正しくありません"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:181
@@ -267,7 +271,7 @@ msgstr "新しいカスタムコンテンツタイプを作り始めるには、
 #. Default: "If selected, this item will not appear in the navigation tree"
 #: ../behaviors/exclfromnav.py:25
 msgid "help_exclude_from_nav"
-msgstr "選ばれると、このアイテムはナビゲーションツリーに現れなくなります"
+msgstr "選択すると、このアイテムはナビゲーションツリーに現れなくなります"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:38
@@ -277,12 +281,12 @@ msgstr "このフォルダに含まれるコンテンツアイテムについて
 #. Default: "All content types"
 #: ../browser/overview.pt:24
 msgid "label_all_content_types"
-msgstr ""
+msgstr "全コンテンツタイプ"
 
 #. Default: "Contained items"
 #: ../browser/overview.pt:9
 msgid "label_contained_items"
-msgstr ""
+msgstr "含まれるアイテム"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:21
@@ -292,7 +296,7 @@ msgstr "ナビゲーションから除外"
 #. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
 #: ../interfaces.py:68
 msgid "label_filter_contained_types"
-msgstr ""
+msgstr "フォルダーのように他のアイテムを含む場合に対象となるコンテンツタイプ"
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:34
@@ -302,10 +306,10 @@ msgstr "次・前ナビゲーションを有効化"
 #. Default: "No content types"
 #: ../browser/overview.pt:18
 msgid "label_no_content_types"
-msgstr ""
+msgstr "コンテンツタイプがありません"
 
 #. Default: "Some content types:"
 #: ../browser/overview.pt:30
 msgid "label_some_content_types"
-msgstr ""
+msgstr "コンテンツタイプ"
 
