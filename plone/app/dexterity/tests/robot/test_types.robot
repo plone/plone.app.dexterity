@@ -12,7 +12,7 @@ Test Teardown  Close all browsers
 *** Keywords ***
 
 adding a new content type
-    Log in as site owner
+    Enable autologin as  Manager
     Go to  ${PLONE_URL}/@@dexterity-types
     Click Overlay Button  Add New Content Type…
 
