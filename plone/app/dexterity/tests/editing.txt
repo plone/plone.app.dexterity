@@ -104,6 +104,8 @@ and saved.
   >>> schema = plonista.lookupSchema()
   >>> for name, factory in sorted(component.getUtilitiesFor(
   ...     interfaces.IFieldFactory)):
+  ...     if hasattr(factory, 'protected') and factory.protected(None):
+  ...         continue
   ...     browser.open(schemaeditor_url)
   ...     browser.getLink('Add new field').click()
   ...     browser.getControl('Title').value = name
