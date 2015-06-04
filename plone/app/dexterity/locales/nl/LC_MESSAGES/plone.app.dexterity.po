@@ -104,7 +104,7 @@ msgid "Dexterity Content Types"
 msgstr ""
 
 #: ../browser/types.py:216
-msgid "Dexterity content types"
+msgid "Dexterity Content Types"
 msgstr ""
 
 msgid "Dublin Core metadata"

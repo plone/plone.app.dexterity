@@ -105,7 +105,7 @@ msgid "Dexterity Content Types"
 msgstr "Dexterity elementu-motak"
 
 #: ../browser/types.py:216
-msgid "Dexterity content types"
+msgid "Dexterity Content Types"
 msgstr "Dexterity elementu-motak"
 
 msgid "Dublin Core metadata"

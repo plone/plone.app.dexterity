@@ -214,7 +214,7 @@ class TypesListing(crud.CrudForm):
 # Create a form wrapper so the form gets layout.
 TypesListingPage = layout.wrap_form(
     TypesListing, __wrapper_class=TypesEditFormWrapper,
-    label=_(u'Dexterity content types'))
+    label=_(u'Dexterity Content Types'))
 
 
 @implementer(ITypeSchemaContext)

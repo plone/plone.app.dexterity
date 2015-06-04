@@ -4,6 +4,9 @@ Changelog
 2.1.6 (unreleased)
 ------------------
 
+- change control panel title to be upper cased
+  [vangheem]
+
 - Update Japanese translation.
   [terapyon]
 
