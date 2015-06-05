@@ -7,6 +7,9 @@ Changelog
 - change control panel title to be upper cased
   [vangheem]
 
+- ignore protected fields when testing addability.
+  [ebrehault]
+
 - Update Japanese translation.
   [terapyon]
 
