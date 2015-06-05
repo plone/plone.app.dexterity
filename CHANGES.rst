@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.6 (unreleased)
+2.1.6 (2015-06-05)
 ------------------
 
 - change control panel title to be upper cased
