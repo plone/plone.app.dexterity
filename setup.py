@@ -43,7 +43,7 @@ setup(name='plone.app.dexterity',
           'plone.app.content',
           'plone.app.layout',
           'plone.app.uuid',
-          'plone.app.z3cform>=1.1.0'
+          'plone.app.z3cform>=1.1.0',
           'plone.autoform >=1.1dev',
           'plone.contentrules',
           'plone.portlets',
