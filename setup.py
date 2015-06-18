@@ -43,7 +43,7 @@ setup(name='plone.app.dexterity',
           'plone.app.content',
           'plone.app.layout',
           'plone.app.uuid',
-          'plone.app.z3cform>=0.7.2',
+          'plone.app.z3cform>=1.1.0'
           'plone.autoform >=1.1dev',
           'plone.contentrules',
           'plone.portlets',
@@ -60,7 +60,6 @@ setup(name='plone.app.dexterity',
           'zope.schema',
           'zope.publisher',
           'z3c.form>=3.0.0a1',
-          'plone.app.z3cform>=1.1.0.dev0'
       ],
       extras_require={
           'test': [
