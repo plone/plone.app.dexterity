@@ -7,6 +7,9 @@ Changelog
 - Remove duplicate plone.app.z3cform pin in setup.py. This fixes https://github.com/plone/plone.app.dexterity/issues/167.
   [timo]
 
+- Fixed an adapter path at custom add forms documentation.
+  [brunobbbs]
+
 
 2.1.6 (2015-06-05)
 ------------------
