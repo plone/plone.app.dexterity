@@ -167,7 +167,7 @@ and be registered in ZCML like this:
     <adapter
         for="Products.CMFCore.interfaces.IFolderish
              zope.publisher.interfaces.browser.IDefaultBrowserLayer
-             ..interfaces.IDexterityFTI"
+             plone.dexterity.interfaces.IDexterityFTI"
         provides="zope.publisher.interfaces.browser.IBrowserPage"
         factory=".fs_page.AddForm"
         name="example.fspage"
