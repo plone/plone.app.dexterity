@@ -5,6 +5,7 @@ from Acquisition import aq_parent
 from plone.app.dexterity import MessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.locking.interfaces import ILockable
 from plone.supermodel import model
 from zope import schema
 from zope.container.interfaces import INameChooser
@@ -49,7 +50,17 @@ class ShortName(object):
         new_id = INameChooser(parent).chooseName(value, context)
         if getattr(aq_base(context), 'id', None):
             transaction.savepoint()
+            locked = False
+            try:
+                lockable = ILockable(context)
+                if lockable.locked():
+                    locked = True
+                    lockable.unlock()
+            except TypeError:
+                pass
             parent.manage_renameObject(context.getId(), new_id)
+            if locked:
+                lockable.lock()
         else:
             context.id = new_id
     id = property(_get_id, _set_id)
