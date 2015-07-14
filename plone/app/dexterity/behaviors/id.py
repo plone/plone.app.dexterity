@@ -51,13 +51,10 @@ class ShortName(object):
         if getattr(aq_base(context), 'id', None):
             transaction.savepoint()
             locked = False
-            try:
-                lockable = ILockable(context)
-                if lockable.locked():
-                    locked = True
-                    lockable.unlock()
-            except TypeError:
-                pass
+            lockable = ILockable(context, None)
+            if lockable is not None and lockable.locked():
+                locked = True
+                lockable.unlock()
             parent.manage_renameObject(context.getId(), new_id)
             if locked:
                 lockable.lock()
