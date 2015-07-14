@@ -89,3 +89,23 @@ class TestShortNameBehavior(unittest.TestCase):
         self.assertEqual(
             mtime, self.layer['portal'].foo.bobobase_modification_time()
         )
+
+        behaviors = list(self.layer['portal'].portal_types.Document.behaviors)
+        behaviors.append('plone.app.lockingbehavior.behaviors.ILocking')
+
+    def test_rename_works_with_lockingbehavior(self):
+        """Test if the object is unlocked before renaming"""
+        behaviors = list(self.layer['portal'].portal_types.Document.behaviors)
+        behaviors.append('plone.app.lockingbehavior.behaviors.ILocking')
+        self.layer['portal'].portal_types.Document.behaviors = tuple(behaviors)
+        transaction.commit()
+
+        self.browser.getLink('Page').click()
+        self.browser.getControl('Title').value = 'title'
+        self.browser.getControl('Short name').value = 'foo'
+        self.browser.getControl('Save').click()
+        self.browser.getLink('Edit').click()
+        self.assertEqual(self.browser.getControl('Short name').value, 'foo')
+        self.browser.getControl('Short name').value = 'bar'
+        self.browser.getControl('Save').click()
+        self.assertEqual(self.browser.url, 'http://nohost/plone/bar')
