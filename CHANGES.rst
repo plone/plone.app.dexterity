@@ -10,6 +10,8 @@ Changelog
 - Fixed an adapter path at custom add forms documentation.
   [brunobbbs]
 
+- Change the category of the configlet to 'plone-content' [sneridagh]
+
 
 2.1.6 (2015-06-05)
 ------------------

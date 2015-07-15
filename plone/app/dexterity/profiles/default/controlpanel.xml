@@ -3,7 +3,7 @@
   <configlet
       action_id="dexterity-types"
       appId="Plone"
-      category="Plone"
+      category="plone-content"
       condition_expr=""
       icon_expr="string:$portal_url/document_icon.png"
       title="Dexterity Content Types"
