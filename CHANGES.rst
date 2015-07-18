@@ -10,7 +10,18 @@ Changelog
 - Fixed an adapter path at custom add forms documentation.
   [brunobbbs]
 
-- Change the category of the configlet to 'plone-content' [sneridagh]
+- Change the category of the configlet to 'plone-content'.
+  [sneridagh]
+
+- Unlock before changing id (fixes
+  https://github.com/plone/Products.CMFPlone/issues/623).
+  [pbauer]
+
+- Remove superfluous 'for'. Fixes plone/Products.CMFPlone#669.
+  [fulv]
+
+- Schemaeditor does not redirect anymore.
+  [barichu]
 
 
 2.1.6 (2015-06-05)
