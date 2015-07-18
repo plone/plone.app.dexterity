@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.7 (unreleased)
+2.1.7 (2015-07-18)
 ------------------
 
 - Remove duplicate plone.app.z3cform pin in setup.py. This fixes https://github.com/plone/plone.app.dexterity/issues/167.
