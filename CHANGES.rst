@@ -4,7 +4,8 @@ Changelog
 2.0.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed test: use autologin.
+  [gotcha]
 
 
 2.0.13 (2015-04-23)
