@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.14 (unreleased)
+2.0.14 (2015-07-30)
 -------------------
 
 - Fixed test: use autologin.
