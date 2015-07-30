@@ -4,7 +4,9 @@ Changelog
 2.0.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove superfluous ``for`` in behaviors zcml w/o factory. No more warnings
+  logged by ``plone.behavior``.  See also plone/plone.behavior#2.
+  [jensens]
 
 
 2.0.14 (2015-07-30)

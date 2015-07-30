@@ -55,7 +55,6 @@
         title="Name from title"
         description="Automatically generate short URL name for content based on its initial title"
         provides="plone.app.content.interfaces.INameFromTitle"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <!-- File-name-to-id -->
@@ -63,7 +62,6 @@
         title="Name from file name"
         description="Automatically generate short URL name for content based on its primary field file name"
         provides=".filename.INameFromFileName"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <adapter factory=".filename.NameFromFileName" />
@@ -73,7 +71,6 @@
         title="Navigation root"
         description="Make all items of this type a navigation root"
         provides="plone.app.layout.navigation.interfaces.INavigationRoot"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <!-- Exclude from navigation -->
@@ -81,7 +78,6 @@
         title="Exclude From navigation"
         description="Allow items to be excluded from navigation"
         provides=".exclfromnav.IExcludeFromNavigation"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <!-- Next previous -->
@@ -89,7 +85,6 @@
         title="Next previous navigation toggle"
         description="Allow items to have next previous navigation enabled"
         provides=".nextprevious.INextPreviousToggle"
-        for="plone.dexterity.interfaces.IDexterityContainer"
         />
 
     <!--Allow discussion -->
@@ -97,7 +92,6 @@
         title="Allow discussion"
         description="Allow discussion on this item"
         provides=".discussion.IAllowDiscussion"
-        for="plone.dexterity.interfaces.IDexterityContent"
         />
 
     <adapter factory=".nextprevious.NextPreviousToggle" />
@@ -110,7 +104,6 @@
         title="Next previous navigation"
         description="Enable next previous navigation for all items of this type"
         provides=".nextprevious.INextPreviousEnabled"
-        for="plone.dexterity.interfaces.IDexterityContainer"
         />
 
     <adapter factory=".nextprevious.NextPreviousEnabled" />
