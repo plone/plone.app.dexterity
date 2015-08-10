@@ -123,7 +123,7 @@ Secondly, it is not always feasible to add a method or attribute to a class just
 
 Plone 3.3 and later ships with a package called `plone.indexer`_ to help make it easier to write custom indexers:
 components that are invoked to calculate the value which the catalog sees when it tries to index a given attribute.
-Indexers can be used to index a different value to the one stored on the object, or to allow indexing of a “virtual” attribute that does not actually exist on the object is question.
+Indexers can be used to index a different value to the one stored on the object, or to allow indexing of a “virtual” attribute that does not actually exist on the object in question.
 Indexers are usually registered on a per-type basis, so you can have different implementations for different types of content.
 
 To illustrate indexers, we will add three indexers to ``program.py``.
