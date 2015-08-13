@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.dexterity.interfaces import IDexterityFTI
-from plone.dexterity.utils import splitSchemaName
+from plone.dexterity.schema import splitSchemaName
 from plone.supermodel import serializeModel
 from plone.supermodel.utils import syncSchema
 from zope.component import queryUtility
