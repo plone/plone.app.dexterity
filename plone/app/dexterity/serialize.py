@@ -2,7 +2,7 @@ from zope.component import queryUtility
 from plone.supermodel.utils import syncSchema
 from plone.supermodel import serializeModel
 from plone.dexterity.interfaces import IDexterityFTI
-from plone.dexterity.utils import splitSchemaName
+from plone.dexterity.schema import splitSchemaName
 
 
 def serializeSchemaContext(schema_context, event=None):
