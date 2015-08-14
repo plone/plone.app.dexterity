@@ -366,7 +366,7 @@ using the Container base class::
   >>> pf = getattr(portal.portal_types, 'plonista-folder')
   >>> pf.klass
   'plone.dexterity.content.Container'
-  >>> 'document_icon' in pf.getIcon()
+  >>> 'document_icon' in pf.getIconExprObject().text
   True
 
 We can configure the plonista-folder to allow contained content types::
