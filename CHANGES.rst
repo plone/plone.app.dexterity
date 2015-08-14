@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.15 (unreleased)
+2.0.15 (2015-08-14)
 -------------------
 
 - Avoid DeprecationWarning for getIcon.
