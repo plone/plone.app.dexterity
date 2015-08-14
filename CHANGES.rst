@@ -4,7 +4,8 @@ Changelog
 2.1.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Avoid DeprecationWarning for getIcon.
+  [maurits]
 
 
 2.1.7 (2015-07-18)

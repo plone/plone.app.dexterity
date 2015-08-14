@@ -55,7 +55,7 @@ The new type should have the dublin core behavior assigned by default::
   >>> plonista = portal.portal_types.plonista
   >>> 'plone.app.dexterity.behaviors.metadata.IDublinCore' in plonista.behaviors
   True
-  >>> 'document_icon' in plonista.getIcon()
+  >>> 'document_icon' in plonista.getIconExprObject().text
   True
 
 The listing needs to not break if a type description was stored encoded.
