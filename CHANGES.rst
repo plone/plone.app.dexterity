@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.8 (unreleased)
+2.1.8 (2015-08-20)
 ------------------
 
 - Avoid ``DeprecationWarning`` for ``getIcon`` and ``splitSchemaName``.
