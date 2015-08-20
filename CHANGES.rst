@@ -4,7 +4,7 @@ Changelog
 2.1.8 (unreleased)
 ------------------
 
-- Avoid DeprecationWarning for getIcon.
+- Avoid ``DeprecationWarning`` for ``getIcon`` and ``splitSchemaName``.
   [maurits]
 
 
