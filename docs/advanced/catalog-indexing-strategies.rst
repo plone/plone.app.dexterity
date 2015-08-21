@@ -4,9 +4,8 @@ Catalog indexing strategies
 
 You may have two different interests in regard to indexing your custom content type objects:
 
-    * Making particular fields searchable via Plone's main search facility;
-
-    * Indexing particular fields for custom lookup.
+* Making particular fields searchable via Plone's main search facility;
+* Indexing particular fields for custom lookup.
 
 Making content searchable
 *************************
@@ -17,7 +16,7 @@ So, you may need to explicitly add fields to SearchableText if you wish their in
 
 Add ``collective.dexteritytextindexer`` to your buildout and you will gain a new Dexterity behavior that will allow you to easily add fields to SearchableText. Once you turn on this behavior, you will then need to specify fields for addition to SearchableText.
 
-..Note::
+.. note::
 
     Note that if you turn on the ``Dynamic SearchableText indexer behavior`` for a content type, then you must specify all fields that need SearchableText indexing. Dublin core fields like Title and Description are no longer automatically handled.
 
@@ -131,7 +130,9 @@ Two will provide values for the ``start`` and ``end`` indexes, normally used by 
 We actually have attributes with the correct name for these already, but they use Python ``datetime`` objects whereas the ``DateIndex`` requires a
 Zope 2 ``DateTime.DateTime`` object.
 (Python didn’t have a ``datetime`` module when this part of Zope was created!)
-The third indexer will be used to provide a value for the ``Subject`` index that takes its value from the ``tracks`` list. ::
+The third indexer will be used to provide a value for the ``Subject`` index that takes its value from the ``tracks`` list.
+
+.. code-block:: python
 
     from DateTime import DateTime
     from plone.indexer import indexer
@@ -153,7 +154,9 @@ The third indexer will be used to provide a value for the ``Subject`` index that
     def tracksIndexer(obj):
         return obj.tracks
 
-And we need to register the indexers in ZCML::
+And we need to register the indexers in ZCML:
+
+.. code-block:: xml
 
     <adapter factory=".indexers.startIndexer" name="start" />
     <adapter factory=".indexers.endIndexer" name="end" />
@@ -174,11 +177,13 @@ Searching using your indexes
 
 Once we have registered our indexers and re-installed our product (to ensure that the ``catalog.xml`` import step is allowed to install new indexes in the catalog), we can use our new indexes just like we would any of the default indexes.
 
-The pattern is always the same::
+The pattern is always the same:
 
-    from Products.CMFCore.utils import getToolByName
+.. code-block:: python
+
+    from plone import api
     # get the tool
-    catalog = getToolByName(context, 'portal_catalog')
+    catalog = api.portal.get_tool(name='portal_catalog')
     # execute a search
     results = catalog(track='Track 1')
     # examine the results
