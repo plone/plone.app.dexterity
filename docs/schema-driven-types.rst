@@ -102,30 +102,30 @@ Next, add schema declarations for our fields. The top part of the file should lo
 
 
     class IProgram(model.Schema):
-        """A conference program. Programs can contain Sessions.
-        """
+
+        """A conference program. Programs can contain Sessions."""
 
         title = schema.TextLine(
-                title=_(u"Program name"),
-            )
+            title=_(u'Program name'),
+        )
 
         description = schema.Text(
-                title=_(u"Program summary"),
-            )
+            title=_(u'Program summary'),
+        )
 
         start = schema.Datetime(
-                title=_(u"Start date"),
-                required=False,
-            )
+            title=_(u'Start date'),
+            required=False,
+        )
 
         end = schema.Datetime(
-                title=_(u"End date"),
-                required=False,
-            )
+            title=_(u'End date'),
+            required=False,
+        )
 
         details = RichText(
-                title=_(u"Details"),
-                description=_(u"Details about the program"),
+                title=_(u'Details'),
+                description=_(u'Details about the program.'),
                 required=False,
             )
 
@@ -143,7 +143,7 @@ The message factory lives in the package root ``__init__.py`` file:
 
     from zope.i18nmessageid import MessageFactory
 
-    _ = MessageFactory("example.conference")
+    MessageFactory = MessageFactory("example.conference")
 
 Notice how we use the package name as the translation domain.
 
@@ -166,22 +166,22 @@ Save program.py.
 
 
     class ISession(model.Schema):
-            """A conference session. Sessions are managed inside Programs.
-            """
 
-            title = schema.TextLine(
-                    title=_(u"Title"),
-                    description=_(u"Session title"),
-                )
+        """A conference session. Sessions are managed inside Programs."""
 
-            description = schema.Text(
-                    title=_(u"Session summary"),
-                )
+        title = schema.TextLine(
+            title=_(u'Title'),
+            description=_(u'Session title'),
+        )
 
-            details = RichText(
-                    title=_(u"Session details"),
-                    required=False
-                )
+        description = schema.Text(
+            title=_(u'Session summary'),
+        )
+
+        details = RichText(
+            title=_(u'Session details'),
+            required=False
+        )
 
 
 Note that we haven’t added information about speakers or tracks yet.
@@ -234,8 +234,8 @@ Look in the ``types.xml`` file in your packages ``example/conference/profiles/de
 .. code-block:: xml
 
     <object name="portal_types">
-     <object name="example.conference.program" meta_type="Dexterity FTI" />
-     <object name="example.conference.session" meta_type="Dexterity FTI" />
+      <object name="example.conference.program" meta_type="Dexterity FTI" />
+      <object name="example.conference.session" meta_type="Dexterity FTI" />
     </object>
 
 We use the package name as a prefix and the type name in lowercase to
@@ -250,14 +250,13 @@ The ``Session`` type, in ``example.conference.session.xml``, should look like th
 .. code-block:: xml
 
     <?xml version="1.0"?>
-    <object name="example.conference.session"
-       meta_type="Dexterity FTI"
-       i18n:domain="example.conference" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    <object name="example.conference.session" meta_type="Dexterity FTI"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="example.conference">
 
       <!-- Basic metadata -->
       <property name="title" i18n:translate="">Session</property>
-      <property name="description"
-        i18n:translate="">A session in a program</property>
+      <property name="description" i18n:translate="">A session in a program</property>
       <property name="icon_expr">string:${portal_url}/document_icon.png</property>
       <property name="factory">example.conference.session</property>
       <property name="global_allow">False</property>
@@ -270,7 +269,7 @@ The ``Session`` type, in ``example.conference.session.xml``, should look like th
       <property name="klass">example.conference.session.Session</property>
 
       <property name="behaviors">
-         <element value="plone.app.content.interfaces.INameFromTitle" />
+        <element value="plone.app.content.interfaces.INameFromTitle" />
        </property>
 
       <!-- View information -->
@@ -278,11 +277,10 @@ The ``Session`` type, in ``example.conference.session.xml``, should look like th
       <property name="immediate_view">view</property>
       <property name="default_view">view</property>
       <property name="view_methods">
-       <element value="view"/>
+        <element value="view"/>
       </property>
       <property name="default_view_fallback">False</property>
       <property name="add_permission">cmf.AddPortalContent</property>
-
 
       <!-- Method aliases -->
       <alias from="(Default)" to="(dynamic view)" />
@@ -292,11 +290,11 @@ The ``Session`` type, in ``example.conference.session.xml``, should look like th
 
       <!-- Actions -->
       <action title="View" action_id="view" category="object" condition_expr=""
-        url_expr="string:${object_url}/" visible="True">
+          url_expr="string:${object_url}/" visible="True">
         <permission value="View" />
       </action>
       <action title="Edit" action_id="edit" category="object" condition_expr=""
-        url_expr="string:${object_url}/edit" visible="True">
+          url_expr="string:${object_url}/edit" visible="True">
         <permission value="Modify portal content" />
       </action>
     </object>
@@ -339,20 +337,19 @@ The ``Program``, in ``example.conference.program.xml``, looks like this:
 .. code-block:: xml
 
     <?xml version="1.0"?>
-    <object name="example.conference.program"
-       meta_type="Dexterity FTI"
-       i18n:domain="example.conference" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    <object name="example.conference.program" meta_type="Dexterity FTI"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="example.conference">
 
       <!-- Basic metadata -->
       <property name="title" i18n:translate="">Program</property>
-      <property name="description"
-        i18n:translate="">Conference Program</property>
+      <property name="description" i18n:translate="">Conference Program</property>
       <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
       <property name="factory">example.conference.program</property>
       <property name="global_allow">True</property>
       <property name="filter_content_types">True</property>
       <property name="allowed_content_types">
-          <element value="example.conference.session" />
+        <element value="example.conference.session" />
       </property>
       <property name="allow_discussion">False</property>
 
@@ -361,7 +358,7 @@ The ``Program``, in ``example.conference.program.xml``, looks like this:
       <property name="klass">example.conference.program.Program</property>
 
       <property name="behaviors">
-         <element value="plone.app.content.interfaces.INameFromTitle" />
+        <element value="plone.app.content.interfaces.INameFromTitle" />
        </property>
 
       <!-- View information -->
@@ -369,7 +366,7 @@ The ``Program``, in ``example.conference.program.xml``, looks like this:
       <property name="immediate_view">view</property>
       <property name="default_view">view</property>
       <property name="view_methods">
-       <element value="view"/>
+        <element value="view"/>
       </property>
       <property name="default_view_fallback">False</property>
       <property name="add_permission">cmf.AddPortalContent</property>
@@ -383,11 +380,11 @@ The ``Program``, in ``example.conference.program.xml``, looks like this:
 
       <!-- Actions -->
       <action title="View" action_id="view" category="object" condition_expr=""
-        url_expr="string:${object_url}/" visible="True">
+          url_expr="string:${object_url}/" visible="True">
         <permission value="View" />
       </action>
       <action title="Edit" action_id="edit" category="object" condition_expr=""
-        url_expr="string:${object_url}/edit" visible="True">
+          url_expr="string:${object_url}/edit" visible="True">
         <permission value="Modify portal content" />
       </action>
     </object>

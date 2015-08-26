@@ -73,11 +73,10 @@ That's all we need! To see why, look in the generated file ``presenter.py``:
 
 
     class IPresenter(model.Schema):
-        """
-        Schema for Conference Presenter content type
-        """
 
-        model.load("models/presenter.xml")
+        """Schema for Conference Presenter content type."""
+
+        model.load('models/presenter.xml')
 
 
 Note the ``model.load`` directive. We'd deleted that when we created schema-driven field sets. Now, we leave it in to automatically load our model file.
@@ -94,9 +93,9 @@ Look in the ``types.xml`` file in your packages
 .. code-block:: xml
 
     <object name="portal_types">
-     <object name="example.conference.program" meta_type="Dexterity FTI" />
-     <object name="example.conference.session" meta_type="Dexterity FTI" />
-     <object name="example.conference.presenter" meta_type="Dexterity FTI" />
+      <object name="example.conference.program" meta_type="Dexterity FTI" />
+      <object name="example.conference.session" meta_type="Dexterity FTI" />
+      <object name="example.conference.presenter" meta_type="Dexterity FTI" />
     </object>
 
 
@@ -105,14 +104,13 @@ For the *Presenter* type, we have ``example.conference.presenter.xml``:
 .. code-block:: xml
 
     <?xml version="1.0"?>
-    <object name="example.conference.presenter"
-       meta_type="Dexterity FTI"
-       i18n:domain="example.conference" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    <object name="example.conference.presenter" meta_type="Dexterity FTI"
+         xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="example.conference">
 
       <!-- Basic metadata -->
       <property name="title" i18n:translate="">Presenter</property>
-      <property name="description"
-        i18n:translate="">Conference Presenter</property>
+      <property name="description" i18n:translate="">Conference Presenter</property>
       <property name="icon_expr">string:${portal_url}/document_icon.png</property>
       <property name="factory">example.conference.presenter</property>
       <property name="global_allow">True</property>
@@ -125,7 +123,7 @@ For the *Presenter* type, we have ``example.conference.presenter.xml``:
       <property name="klass">example.conference.presenter.Presenter</property>
 
       <property name="behaviors">
-         <element value="plone.app.content.interfaces.INameFromTitle" />
+        <element value="plone.app.content.interfaces.INameFromTitle" />
        </property>
 
       <!-- View information -->
@@ -133,11 +131,10 @@ For the *Presenter* type, we have ``example.conference.presenter.xml``:
       <property name="immediate_view">view</property>
       <property name="default_view">view</property>
       <property name="view_methods">
-       <element value="view"/>
+        <element value="view"/>
       </property>
       <property name="default_view_fallback">False</property>
       <property name="add_permission">cmf.AddPortalContent</property>
-
 
       <!-- Method aliases -->
       <alias from="(Default)" to="(dynamic view)" />
@@ -147,11 +144,11 @@ For the *Presenter* type, we have ``example.conference.presenter.xml``:
 
       <!-- Actions -->
       <action title="View" action_id="view" category="object" condition_expr=""
-        url_expr="string:${object_url}/" visible="True">
+          url_expr="string:${object_url}/" visible="True">
         <permission value="View" />
       </action>
       <action title="Edit" action_id="edit" category="object" condition_expr=""
-        url_expr="string:${object_url}/edit" visible="True">
+          url_expr="string:${object_url}/edit" visible="True">
         <permission value="Modify portal content" />
       </action>
     </object>

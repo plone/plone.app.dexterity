@@ -13,7 +13,9 @@ development purposes, you may use a `standalone` (non-ZEO), non-root install.
 Second, add our standard development tools. If you've used one of our
 installers, developer tool configurations are in a separate file,
 ``develop.cfg``. Once your site is running, you may activate the development
-configuration by using the command::
+configuration by using the command:
+
+.. code-block:: console
 
     bin/buildout -c develop.cfg
 
@@ -67,7 +69,9 @@ You may accept all the default suggestions. This will create a directory named
 
 Now, take a look at the setup.py file in your new package. Edit the `author,`
 `author_email` and `description` fields as you wish. Note a couple of parts of
-the generated setup.py file::
+the generated setup.py file:
+
+.. code-block:: python
 
           install_requires=[
               ...
@@ -87,15 +91,18 @@ code won't work without it. The specification of `plone` as a
 z3c.autoinclude.plugin entry point ensures that we won't need to separately
 specify our zcml in buildout.
 
-Now, let's take a look at ``configure.zcml`` in the examples/conference directory of our project. Again, we want to note a few parts::
+Now, let's take a look at ``configure.zcml`` in the examples/conference directory of our project. Again, we want to note a few parts:
+
+.. code-block:: xml
 
     <configure ...>
 
       <includeDependencies package="." />
 
       <browser:resourceDirectory
-        name="example.conference"
-        directory="resources" />
+          name="example.conference"
+          directory="resources"
+          />
 
       <genericsetup:registerProfile
           name="default"
@@ -118,6 +125,8 @@ Finally, we register a GenericSetup profile to make the type
 installable, which we will build up over the next several sections.
 
 When you've got your project tuned up, return to your buildout/instance directory and edit buildout.cfg to add ``example.conference`` to your eggs list and ``src/example.conference`` to your develop sources list::
+
+.. code-block:: ini
 
     eggs =
         Plone
