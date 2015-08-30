@@ -34,6 +34,26 @@ you to store custom data in your site.</p>
 <p>Click the "Add Content Type" button to begin creating
 a new content type with its own fields.</p>"""
 
+ALLOWED_FIELDS = [
+    u'plone.app.textfield.RichText',
+    u'plone.namedfile.field.NamedBlobImage',
+    u'plone.namedfile.field.NamedBlobFile',
+    u'plone.schema.email.Email',
+    u'z3c.relationfield.schema.RelationChoice',
+    u'z3c.relationfield.schema.RelationList',
+    u'zope.schema._bootstrapfields.Bool',
+    u'zope.schema._bootstrapfields.Int',
+    u'zope.schema._bootstrapfields.Password',
+    u'zope.schema._bootstrapfields.Text',
+    u'zope.schema._bootstrapfields.TextLine',
+    u'zope.schema._field.Choice',
+    u'zope.schema._field.Date',
+    u'zope.schema._field.Datetime',
+    u'zope.schema._field.Float',
+    u'zope.schema._field.Set',
+    u'zope.schema._field.URI',
+]
+
 
 class TypeEditSubForm(crud.EditSubForm):
     """ Content type edit subform. Just here to use a custom template.
@@ -223,6 +243,7 @@ class TypeSchemaContext(SchemaContext):
     fti = None
     schemaName = u''
     schemaEditorView = 'fields'
+    allowedFields = ALLOWED_FIELDS
 
     def browserDefault(self, request):
         return self, ('@@overview',)

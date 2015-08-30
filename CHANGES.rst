@@ -4,7 +4,9 @@ Changelog
 2.1.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Restrict allowed field types to regular types (so plone.app.users do not show
+  up)
+  [ebrehault]
 
 
 2.1.8 (2015-08-20)
