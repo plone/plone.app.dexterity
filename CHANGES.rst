@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.9 (unreleased)
+2.1.9 (2015-09-07)
 ------------------
 
 - Restrict allowed field types to regular types (so plone.app.users do not show
