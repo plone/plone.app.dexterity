@@ -5,8 +5,38 @@
 
 /* global message strings are from jsvariables.py in CMFPlone */
 
-jQuery(function ($) {
-    "use strict";
+if(require === undefined){
+  // plone 4
+  require = function(reqs, torun){
+    'use strict';
+    return torun(window.jQuery);
+  };
+}
+
+if (window.jQuery && define) {
+  define( 'jquery', [], function () {
+    'use strict';
+    return window.jQuery;
+  } );
+}
+
+
+require([
+  'jquery',
+  'ace'
+], function($) {
+  'use strict';
+
+var init = function(){
+    if (!window.ace){
+        // XXX hack...
+        // wait, try loading later
+        setTimeout(function() {
+          init();
+        }, 200);
+        return;
+    }
+
     var editor = ace.edit("modelEditor"),
         session = editor.getSession(),
         myform = $("#saveform"),
@@ -75,4 +105,20 @@ jQuery(function ($) {
         });
 
     });
+
+    function setEditorSize () {
+      var wheight = $(window).height();
+      $("#rules-editor").height(wheight);
+      $("#modelEditor").height(wheight-80);
+    }
+    $(window).resize(function() {
+      setEditorSize();
+    });
+    setEditorSize();
+};
+
+$().ready(function() {
+    init();
+});
+
 });
