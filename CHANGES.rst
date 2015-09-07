@@ -4,14 +4,12 @@ Changelog
 2.1.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix modeleditor for Plone 5
+  [vangheem]
 
 
 2.1.9 (2015-09-07)
 ------------------
-
-- Fix modeleditor for Plone 5
-  [vangheem]
 
 - Restrict allowed field types to regular types (so plone.app.users do not show
   up)
