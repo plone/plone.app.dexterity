@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.10 (unreleased)
+2.1.10 (2015-09-08)
 -------------------
 
 - Fix modeleditor for Plone 5
