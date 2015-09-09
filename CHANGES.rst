@@ -4,7 +4,8 @@ Changelog
 2.1.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Updated basque translation
+  [erral]
 
 
 2.1.10 (2015-09-08)
