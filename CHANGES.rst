@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.11 (unreleased)
+2.1.11 (2015-09-11)
 -------------------
 
 - Updated basque translation
