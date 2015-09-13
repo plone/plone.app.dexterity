@@ -8,7 +8,7 @@ from plone.app.dexterity.browser.import_types import ZipFileImportContext
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 import os.path
 import plone.namedfile
-import unittest2 as unittest
+import unittest
 import zope.interface
 
 

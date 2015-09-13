@@ -95,7 +95,7 @@ that uses our layer. We’ll add one to ``test_program.py`` first.
 (In the code snippet below, the unit test we created previously has been
 removed to conserve space.)::
 
-    import unittest2 as unittest
+    import unittest
 
     from zope.component import createObject
     from zope.component import queryUtility

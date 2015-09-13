@@ -65,7 +65,6 @@ setup(name='plone.app.dexterity',
           'test': [
               'plone.app.robotframework',
               'plone.app.testing',
-              'unittest2'
           ],
           'grok': [
               'five.grok',

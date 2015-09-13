@@ -95,7 +95,7 @@ that uses our layer. We’ll add one to ``test_program.py`` first.
 (In the code snippet below, the unit test we created previously has been
 removed to conserve space.)::
 
-    import unittest2 as unittest
+    import unittest
 
     from zope.component import createObject
     from zope.component import queryUtility
@@ -227,7 +227,7 @@ only.
 The other tests are similar. We have ``tests/test_session.py`` to test
 the ``Session`` type::
 
-    import unittest2 as unittest
+    import unittest
 
     from zope.component import createObject
     from zope.component import queryUtility
@@ -316,7 +316,7 @@ We also add a test for the ``possible_tracks()`` vocabulary method,
 as well as tests for the installation of the ``track`` index and metadata
 column and the custom workflow::
 
-    import unittest2 as unittest
+    import unittest
 
     from zope.component import createObject
     from zope.component import queryUtility

@@ -1,4 +1,4 @@
-import unittest2 as unittest
+import unittest
 from plone.app.testing import setRoles, login, logout, TEST_USER_ID
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 
