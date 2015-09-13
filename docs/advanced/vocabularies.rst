@@ -358,7 +358,7 @@ earlier. At the top of ``program.py``, we add the following import::
 
 In the ``IProgram`` schema (which, recall, derives from ``model.Schema`` and
 is therefore processed for form hints at startup), we then add the
-following::
+following:
 
 .. code-block:: python
 
