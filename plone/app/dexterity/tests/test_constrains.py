@@ -13,7 +13,7 @@ from plone.app.testing import setRoles
 from plone.dexterity.fti import DexterityFTI
 from plone.testing.z2 import Browser
 from zope.interface.exceptions import Invalid
-import unittest2 as unittest
+import unittest
 
 
 def add_folder_type(portal):

@@ -19,12 +19,7 @@ from zope.component.globalregistry import base
 from zope.globalrequest import setRequest
 from zope.interface import Interface
 import json
-
-try:
-    import unittest2 as unittest
-except ImportError:  # pragma: nocover
-    import unittest  # pragma: nocover
-    assert unittest  # pragma: nocover
+import unittest
 
 
 def add_mock_fti(portal):
