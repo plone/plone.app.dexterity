@@ -3,11 +3,10 @@
 # JeanMichel FRANCOIS <toutpt@gmail.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2014-09-16 14:03+0000\n"
-"PO-Revision-Date: 2013-04-07 00:15+0100\n"
-"Last-Translator: Thomas Desvenain <thomas.desvenain@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2015-09-16 01:21+0100\n"
+"Last-Translator: Encolpe DEGOUTE <encolpe.degoute@free.fr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,6 +16,9 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.dexterity\n"
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
+"Language-Team: \n"
+"Language: fr\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: ../interfaces.py:90
 msgid "# of items"
@@ -104,7 +106,7 @@ msgstr "Description"
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
-msgstr "Types de Contenu Dexterity"
+msgstr "Types de contenu Dexterity"
 
 #: ../browser/types.py:216
 msgid "Dexterity Content Types"
@@ -121,11 +123,11 @@ msgstr "Autoriser précédent/suivant"
 
 #: ../browser/modeleditor.py:57
 msgid "Error: all model elements must be 'schema'"
-msgstr ""
+msgstr "Erreur : Tous les éléments du modèle doivent être \"schema\""
 
 #: ../browser/modeleditor.py:51
 msgid "Error: root tag must be 'model'"
-msgstr ""
+msgstr "Erreur : La balise racine doit être \"model\""
 
 msgid "Exclude From navigation"
 msgstr "Exclure de la navigation"
@@ -200,7 +202,7 @@ msgstr "Veuillez n'utiliser que des lettres, des nombres, et les caractères : .
 
 #: ../browser/modeleditor.py:83
 msgid "Saved"
-msgstr ""
+msgstr "Sauvegardé"
 
 #: ../browser/behaviors.py:60
 msgid "Select the behaviors to enable for this content type."
@@ -218,7 +220,7 @@ msgstr "Nom court"
 
 #: ../behaviors/id.py:23
 msgid "Short name"
-msgstr ""
+msgstr "Nom court"
 
 #: ../browser/types.py:178
 msgid "The following custom content types are available for your site."
@@ -230,7 +232,7 @@ msgstr "Il y a déjà un type de contenu nommé '${name}'"
 
 #: ../behaviors/id.py:24
 msgid "This name will be displayed in the URL."
-msgstr ""
+msgstr "Ce nom sera affiché dans l'URL."
 
 #: ../interfaces.py:43
 msgid "Type Name"
@@ -255,12 +257,12 @@ msgstr "Oui"
 #. Default: "Expiration date must be after publishing date."
 #: ../behaviors/metadata.py:153
 msgid "error_expiration_must_be_after_effective_date"
-msgstr ""
+msgstr "La date d'expiration doit être après la date effective."
 
 #. Default: "Invalid effective or expires date"
 #: ../behaviors/metadata.py:119
 msgid "error_invalid_publication"
-msgstr ""
+msgstr "Date effective ou date d'expiration invalide."
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:181
