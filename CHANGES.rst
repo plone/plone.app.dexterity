@@ -4,7 +4,8 @@ Changelog
 2.1.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Rerun i18ndude and updated German translation.
+  [pabo3000]
 
 
 2.1.12 (2015-09-15)

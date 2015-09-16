@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
-"POT-Creation-Date: 2015-09-09 10:13+0000\n"
+"POT-Creation-Date: 2015-09-16 11:18+0000\n"
 "PO-Revision-Date: 2015-09-09 12:27+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: eu <eu@li.org>\n"
@@ -29,12 +29,8 @@ msgstr "Elementu-mota gehitu"
 msgid "Add New Content Type&hellip;"
 msgstr "Elementu-mota berria gehitu&hellip;"
 
-msgid ""
-"Adds Dublin Core metadata fields (equals Basic metadata + Categorization + "
-"Effective range + Ownership)"
-msgstr ""
-"Dublin Core metadatuen eremuak gehitu (Oinarrizko metadatuak + "
-"Kategorizazioa + Argitaratze-tartea + Jabetza)"
+msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+msgstr "Dublin Core metadatuen eremuak gehitu (Oinarrizko metadatuak + Kategorizazioa + Argitaratze-tartea + Jabetza)"
 
 msgid "Adds a title and description"
 msgstr "Izenburua eta deskribapena gehitu"
@@ -66,21 +62,17 @@ msgstr "Barnean onartutako elementu motak"
 msgid "Assign an effective and/or expiration date"
 msgstr "Argitaratze- eta iraungitze-daten eremuak gehitu"
 
-msgid ""
-"Automatically generate short URL name for content based on its initial title"
+msgid "Automatically generate short URL name for content based on its initial title"
 msgstr "Elementuaren helbidea izenburutik sortu"
 
-msgid ""
-"Automatically generate short URL name for content based on its primary field "
-"file name"
-msgstr ""
-"Elementuaren helbidea fitxategi-eremuan dagoen fitxategiaren izenaren "
-"arabera sortu"
+msgid "Automatically generate short URL name for content based on its primary field file name"
+msgstr "Elementuaren helbidea fitxategi-eremuan dagoen fitxategiaren izenaren arabera sortu"
 
 msgid "Basic metadata"
 msgstr "Oinarrizko metadatuak"
 
-#: ../browser/behaviors.py:58 ../browser/layout.py:16
+#: ../browser/behaviors.py:58
+#: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Portaerak"
 
@@ -107,7 +99,8 @@ msgstr "Edukiontzia"
 msgid "Description"
 msgstr "Deskribapena"
 
-#: ../browser/types.py:237 ../profiles/default/actions.xml
+#: ../browser/types.py:237
+#: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
 msgstr "Dexterity elementu-motak"
@@ -122,12 +115,8 @@ msgid "Enable next previous navigation for all items of this type"
 msgstr "Elementuak \"aurrekoa-hurrengoa\" nabigazioa izatea aktibatu"
 
 #: ../browser/import_types.py:55
-msgid ""
-"Error: The file submitted must be a zip archive containing only type profile "
-"information."
-msgstr ""
-"Errorea: bidalitako fitxategia zip formatuko fitxategi bat izan behar da eta "
-"elementu-motari dagokion informazioa bakarrik izan behar du."
+msgid "Error: The file submitted must be a zip archive containing only type profile information."
+msgstr "Errorea: bidalitako fitxategia zip formatuko fitxategi bat izan behar da eta elementu-motari dagokion informazioa bakarrik izan behar du."
 
 #: ../browser/import_types.py:46
 msgid "Error: The file submitted must be a zip archive."
@@ -152,7 +141,8 @@ msgstr "Eskema modeloak esportatu"
 msgid "Export Type Profiles"
 msgstr "Moten profilak esportatu"
 
-#: ../browser/fields.py:27 ../browser/layout.py:15
+#: ../browser/fields.py:27
+#: ../browser/layout.py:15
 msgid "Fields"
 msgstr "Eremuak"
 
@@ -207,14 +197,11 @@ msgid "No changes were made."
 msgstr "Ez da aldaketarik egin."
 
 #: ../browser/import_types.py:77
-msgid ""
-"One or more types in the import archive is an existing type. Delete \"%s\" "
-"if you really wish to replace it.name"
-msgstr ""
-"Inportatu duzun fitxategian existitzen den elementu-mota baten informazioa "
-"dago. Ezabatu lehenengo \"%s\" benetan ordezkatu nahi baduzu."
+msgid "One or more types in the import archive is an existing type. Delete \"%s\" if you really wish to replace it.name"
+msgstr "Inportatu duzun fitxategian existitzen den elementu-mota baten informazioa dago. Ezabatu lehenengo \"%s\" benetan ordezkatu nahi baduzu."
 
-#: ../browser/layout.py:14 ../browser/overview.py:34
+#: ../browser/layout.py:14
+#: ../browser/overview.py:34
 msgid "Overview"
 msgstr "Gainbegirada"
 
@@ -242,7 +229,8 @@ msgstr "Gordeta"
 msgid "Select the behaviors to enable for this content type."
 msgstr "Elementu-mota honi aktibatuko zaizkion portaerak aukeratu."
 
-#: ../behaviors/discussion.py:25 ../behaviors/exclfromnav.py:19
+#: ../behaviors/discussion.py:25
+#: ../behaviors/exclfromnav.py:19
 #: ../behaviors/id.py:21
 msgid "Settings"
 msgstr "Ezarpenak"
@@ -296,17 +284,8 @@ msgid "Yes"
 msgstr "Bai"
 
 #: ../browser/import_types.py:98
-msgid ""
-"You may import types by uploading a zip archive containing type profiles. "
-"The import archive should contain a types.xml file and a types directory "
-"containing one or more Dexterity type information files. For a sample, "
-"create a content type and export it from the Dexterity Content Types page."
-msgstr ""
-"Elementu-moten definizioak profilaren informazioa duen zip fitxategi baten "
-"kargatu ditzakezu. Fitxategian types.xml izaneko fitxategi bat egon behar da "
-"eta elementu-mota bakoitzari dagokion beste karpeta bat dagokion "
-"fitxategiarekin. Adibide bat ikusteko, sortu elementu bat bat eta esportatu "
-"ezazu."
+msgid "You may import types by uploading a zip archive containing type profiles. The import archive should contain a types.xml file and a types directory containing one or more Dexterity type information files. For a sample, create a content type and export it from the Dexterity Content Types page."
+msgstr "Elementu-moten definizioak profilaren informazioa duen zip fitxategi baten kargatu ditzakezu. Fitxategian types.xml izaneko fitxategi bat egon behar da eta elementu-mota bakoitzari dagokion beste karpeta bat dagokion fitxategiarekin. Adibide bat ikusteko, sortu elementu bat bat eta esportatu ezazu."
 
 #. Default: "Expiration date must be after publishing date."
 #: ../behaviors/metadata.py:169
@@ -321,9 +300,7 @@ msgstr "Argitaratze- edo iraungitze-data ez da zuzena"
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
 #: ../browser/types.py:199
 msgid "help_addcontenttype_button"
-msgstr ""
-"Egin klik \"Elementu-mota gehitu\" botoian elementu-mota berri bat sortzen "
-"hasteko."
+msgstr "Egin klik \"Elementu-mota gehitu\" botoian elementu-mota berri bat sortzen hasteko."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
 #: ../behaviors/exclfromnav.py:28
@@ -333,9 +310,7 @@ msgstr "Hautatu badago, elementu hau ez da nabigazio zuhaitzean agertuko"
 #. Default: "This enables next/previous widget on content items contained in this folder."
 #: ../behaviors/nextprevious.py:40
 msgid "help_nextprevious"
-msgstr ""
-"Honek, karpeta honen edukientzat aurrekoak/hurrengoak estekak aktibatzen "
-"ditu."
+msgstr "Honek, karpeta honen edukientzat aurrekoak/hurrengoak estekak aktibatzen ditu."
 
 #. Default: "All content types"
 #: ../browser/overview.pt:24
@@ -350,9 +325,7 @@ msgstr "Barneko elementuak"
 #. Default: "You are editing the default view of a container. If you wanted to edit the container itself, ${go_here}."
 #: ../browser/default_page_warning.pt:12
 msgid "label_edit_default_view_container"
-msgstr ""
-"Karpeta baten defektuzko-orria editatzen ari zara. Karpeta bera editatu nahi "
-"baduzu, ${go_here}."
+msgstr "Karpeta baten defektuzko-orria editatzen ari zara. Karpeta bera editatu nahi baduzu, ${go_here}."
 
 #. Default: "go here"
 #: ../browser/default_page_warning.pt:12
@@ -367,9 +340,7 @@ msgstr "Nabigaziotik baztertu "
 #. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
 #: ../interfaces.py:70
 msgid "label_filter_contained_types"
-msgstr ""
-"Mota honetako elementuek karpeta izaera dute eta barnean beste elementu "
-"batzuk izan ditzakete. Zein motatako elementuak onartzen dira bere barnean?"
+msgstr "Mota honetako elementuek karpeta izaera dute eta barnean beste elementu batzuk izan ditzakete. Zein motatako elementuak onartzen dira bere barnean?"
 
 #. Default: "Enable next previous navigation"
 #: ../behaviors/nextprevious.py:36
@@ -389,3 +360,4 @@ msgstr "Batzuk:"
 #: ../browser/import_types.py:64
 msgid "types.xml in archive is invalid."
 msgstr "types.xml fitxategia ez da zuzena."
+

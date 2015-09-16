@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Dexterity\n"
-"POT-Creation-Date: 2014-09-16 14:03+0000\n"
+"POT-Creation-Date: 2015-09-16 11:18+0000\n"
 "PO-Revision-Date: 2014-08-24 08:16+0100\n"
 "Last-Translator: Radim Novotny <novotny.radim@gmail.com>\n"
 "Language-Team: Czech <info@dms4u.cz>\n"
@@ -16,17 +16,17 @@ msgstr ""
 "Language: cs\n"
 "X-Generator: Poedit 1.6.8\n"
 
-#: ../interfaces.py:90
+#: ../interfaces.py:94
 msgid "# of items"
 msgstr "počet položek"
 
-#: ../browser/add_type.py:12
+#: ../browser/add_type.py:13
 msgid "Add Content Type"
 msgstr "Přidat typ obsahu"
 
-#: ../browser/types_listing.pt:20
-msgid "Add New Content Type…"
-msgstr "Přidat nový typ obsahu"
+#: ../browser/types_listing.pt:24
+msgid "Add New Content Type&hellip;"
+msgstr ""
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
 msgstr "Přidá Dublin Core metadata (nadpis, popis, kategorizaci, data zveřejnění a expirace, vlastnictví)"
@@ -40,11 +40,11 @@ msgstr "Přidá pole pro autora, přispěvatele a práva"
 msgid "Adds keywords and language setting"
 msgstr "Přidá nastavení klíčových slov a nastavení jazyka položky"
 
-#: ../behaviors/discussion.py:27
+#: ../behaviors/discussion.py:30
 msgid "Allow discussion"
 msgstr "Povolit diskusi"
 
-#: ../behaviors/discussion.py:28
+#: ../behaviors/discussion.py:31
 msgid "Allow discussion for this content object."
 msgstr "Povolit diskusi pro tuto položku"
 
@@ -54,7 +54,7 @@ msgstr "Umožní položkám být vyloučeny z navigace"
 msgid "Allow items to have next previous navigation enabled"
 msgstr "Povolí položkám nastavení navigace předchozí-další"
 
-#: ../interfaces.py:78
+#: ../interfaces.py:82
 msgid "Allowed Content Types"
 msgstr "Povolené typy"
 
@@ -70,41 +70,37 @@ msgstr "Automaticky generovat krátký název primárního pole"
 msgid "Basic metadata"
 msgstr "Základní metadata"
 
-#: ../browser/behaviors.py:59
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Vlastnosti"
 
-#: ../browser/behaviors.py:61
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "Vlastnosti byly aktualizovány."
 
-#: ../browser/types.py:58
+#: ../browser/types.py:76
 msgid "Clone"
 msgstr "Duplikovat"
 
-#: ../browser/clone_type.py:12
+#: ../browser/clone_type.py:13
 msgid "Clone Content Type"
 msgstr "Duplikovat typ obsahu"
 
 msgid "Configures various components needed for full Dexterity support."
 msgstr "Nastavuje různé komponenty nutné pro správné chování Dexterity typů"
 
-#: ../interfaces.py:59
+#: ../interfaces.py:61
 msgid "Container"
 msgstr "Slořka"
 
-#: ../interfaces.py:54
+#: ../interfaces.py:56
 msgid "Description"
 msgstr "Popis"
 
-#: ../browser/types.py:249
+#: ../browser/types.py:237
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
-msgid "Dexterity Content Types"
-msgstr "Dexterity typy"
-
-#: ../browser/types.py:216
 msgid "Dexterity Content Types"
 msgstr "Nastavení Dexterity typů"
 
@@ -117,35 +113,59 @@ msgstr "Datum účinnosti"
 msgid "Enable next previous navigation for all items of this type"
 msgstr "Povolit navigaci předchozí-další pro všechny položky tohoto typu"
 
-#: ../browser/modeleditor.py:57
+#: ../browser/import_types.py:55
+msgid "Error: The file submitted must be a zip archive containing only type profile information."
+msgstr ""
+
+#: ../browser/import_types.py:46
+msgid "Error: The file submitted must be a zip archive."
+msgstr ""
+
+#: ../browser/modeleditor.py:60
 msgid "Error: all model elements must be 'schema'"
 msgstr ""
 
-#: ../browser/modeleditor.py:51
+#: ../browser/modeleditor.py:54
 msgid "Error: root tag must be 'model'"
 msgstr ""
 
 msgid "Exclude From navigation"
 msgstr "Vyloučit z navigace"
 
-#: ../browser/types.py:83
+#: ../browser/types.py:101
 msgid "Export Schema Models"
 msgstr "Exportovat modely schema"
 
-#: ../browser/types.py:71
+#: ../browser/types.py:89
 msgid "Export Type Profiles"
 msgstr "Exportovat profily typu"
 
-#: ../browser/fields.py:34
+#: ../browser/fields.py:27
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "Pole"
 
-#: ../interfaces.py:67
+#: ../interfaces.py:69
 msgid "Filter Contained Types"
 msgstr "Filtrovat typ vkládaných položek"
 
-#: ../interfaces.py:60
+#: ../browser/import_types.py:97
+msgid "Import Content Types"
+msgstr ""
+
+#: ../browser/types_listing.pt:30
+msgid "Import Type Profiles&hellip;"
+msgstr ""
+
+#: ../browser/import_types.py:122
+msgid "Imported successfully."
+msgstr ""
+
+#: ../browser/default_page_warning.pt:6
+msgid "Info"
+msgstr ""
+
+#: ../interfaces.py:62
 msgid "Items of this type will be able to contain other items."
 msgstr "Položky tohoto typu budou moci obsahovat další položky"
 
@@ -167,111 +187,127 @@ msgstr "Navigace předchozí-další"
 msgid "Next previous navigation toggle"
 msgstr "Zapnutí navigace předchozí-další"
 
-#: ../behaviors/discussion.py:14
+#: ../behaviors/discussion.py:16
 msgid "No"
 msgstr "Ne"
 
-#: ../browser/behaviors.py:62
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "Nebyly provedeny žádné změny"
 
+#: ../browser/import_types.py:77
+msgid "One or more types in the import archive is an existing type. Delete \"%s\" if you really wish to replace it.name"
+msgstr ""
+
 #: ../browser/layout.py:14
-#: ../browser/overview.py:33
+#: ../browser/overview.py:34
 msgid "Overview"
 msgstr "Přehled"
 
-#: ../browser/types.py:63
+#: ../browser/types.py:81
 msgid "Please select a single type to clone."
 msgstr "Vyberte prosím jeden typ k duplikaci"
 
-#: ../browser/types.py:69
+#: ../browser/types.py:87
 msgid "Please select a type to clone."
 msgstr "Vyberte prosím typ k duplikaci"
 
-#: ../browser/types.py:76
+#: ../browser/types.py:94
 msgid "Please select types to export."
 msgstr "Vyberte prosím typy k exportu"
 
-#: ../interfaces.py:25
+#: ../interfaces.py:27
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Použijte prosím pouze písmena, číslice a znaky .-_"
 
-#: ../browser/modeleditor.py:83
+#: ../browser/modeleditor.py:88
 msgid "Saved"
 msgstr ""
 
-#: ../browser/behaviors.py:60
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "Vyberte vlastnosti podporované tímto typem obsahu"
 
-#: ../behaviors/discussion.py:22
-#: ../behaviors/exclfromnav.py:16
-#: ../behaviors/id.py:18
+#: ../behaviors/discussion.py:25
+#: ../behaviors/exclfromnav.py:19
+#: ../behaviors/id.py:21
 msgid "Settings"
 msgstr "Nastavení"
 
-#: ../interfaces.py:47
+#: ../interfaces.py:49
 msgid "Short Name"
 msgstr "Krátký název"
 
-#: ../behaviors/id.py:23
+#: ../behaviors/id.py:26
 msgid "Short name"
 msgstr ""
 
-#: ../browser/types.py:178
+#: ../browser/types.py:196
 msgid "The following custom content types are available for your site."
 msgstr "V portálu jsou dostupné následující vlastní typy obsahu"
 
-#: ../interfaces.py:101
+#: ../interfaces.py:105
 msgid "There is already a content type named '${name}'"
 msgstr "Typ  '${name}' již existuje"
 
-#: ../behaviors/id.py:24
+#: ../behaviors/id.py:27
 msgid "This name will be displayed in the URL."
 msgstr ""
 
-#: ../interfaces.py:43
+#: ../interfaces.py:45
 msgid "Type Name"
 msgstr "Název typu"
 
-#: ../browser/add_type.py:47
+#: ../browser/add_type.py:48
 msgid "Type added successfully."
 msgstr "Typ byl úspěšně přidán."
 
-#: ../browser/clone_type.py:31
+#: ../browser/clone_type.py:35
 msgid "Type cloned successfully."
 msgstr "Typ byl úspěšně duplikován."
 
-#: ../interfaces.py:48
+#: ../browser/import_types.py:32
+msgid "Type profiles archive file"
+msgstr ""
+
+#: ../browser/import_types.py:73
+msgid "Types in archive must be only Dexterity types."
+msgstr ""
+
+#: ../interfaces.py:50
 msgid "Used for programmatic access to the type."
 msgstr "Používá se k programátorskému přístupu k tomuto typu"
 
-#: ../behaviors/discussion.py:13
+#: ../behaviors/discussion.py:15
 msgid "Yes"
 msgstr "Ano"
 
+#: ../browser/import_types.py:98
+msgid "You may import types by uploading a zip archive containing type profiles. The import archive should contain a types.xml file and a types directory containing one or more Dexterity type information files. For a sample, create a content type and export it from the Dexterity Content Types page."
+msgstr ""
+
 #. Default: "Expiration date must be after publishing date."
-#: ../behaviors/metadata.py:153
+#: ../behaviors/metadata.py:169
 msgid "error_expiration_must_be_after_effective_date"
 msgstr ""
 
 #. Default: "Invalid effective or expires date"
-#: ../behaviors/metadata.py:119
+#: ../behaviors/metadata.py:132
 msgid "error_invalid_publication"
 msgstr ""
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:181
+#: ../browser/types.py:199
 msgid "help_addcontenttype_button"
 msgstr "Chcete-li vytvořit nový typ, klepněte na tlačítko \"Přidat typ obsahu\" "
 
 #. Default: "If selected, this item will not appear in the navigation tree"
-#: ../behaviors/exclfromnav.py:25
+#: ../behaviors/exclfromnav.py:28
 msgid "help_exclude_from_nav"
 msgstr "Je-li zaškrtnuto, tento typ se nebude objevovat v navigaci"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
-#: ../behaviors/nextprevious.py:38
+#: ../behaviors/nextprevious.py:40
 msgid "help_nextprevious"
 msgstr "Povoluje widget pro navigaci předchozí-další pro položky uložené v této slořce."
 
@@ -285,18 +321,29 @@ msgstr "Všechny typy položek"
 msgid "label_contained_items"
 msgstr "Vložené položky"
 
+#. Default: "You are editing the default view of a container. If you wanted to edit the container itself, ${go_here}."
+#: ../browser/default_page_warning.pt:12
+msgid "label_edit_default_view_container"
+msgstr ""
+
+#. Default: "go here"
+#: ../browser/default_page_warning.pt:12
+msgid "label_edit_default_view_container_go_here"
+msgstr ""
+
 #. Default: "Exclude from navigation"
-#: ../behaviors/exclfromnav.py:21
+#: ../behaviors/exclfromnav.py:24
 msgid "label_exclude_from_nav"
 msgstr "Vyloučit z navigace"
 
-#. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
-#: ../interfaces.py:68
+#. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
+#: ../interfaces.py:70
+#, fuzzy
 msgid "label_filter_contained_types"
 msgstr "Položky tohoto typu mohou fungovat jako složky pro další položky. Jaké typy položek by měly být v této složce povoleny?"
 
 #. Default: "Enable next previous navigation"
-#: ../behaviors/nextprevious.py:34
+#: ../behaviors/nextprevious.py:36
 msgid "label_nextprevious"
 msgstr "Povolit navigaci předchozí-další"
 
@@ -309,4 +356,8 @@ msgstr "Žádné typy"
 #: ../browser/overview.pt:30
 msgid "label_some_content_types"
 msgstr "Některé typy obsahu"
+
+#: ../browser/import_types.py:64
+msgid "types.xml in archive is invalid."
+msgstr ""
 

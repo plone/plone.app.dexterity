@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-09-16 14:03+0000\n"
+"POT-Creation-Date: 2015-09-16 11:18+0000\n"
 "PO-Revision-Date: 2012-08-28 18:13+0100\n"
 "Last-Translator: Thomas Clement Mogensen <tmog@headnet.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,16 +14,16 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone.app.dexterity\n"
 
-#: ../interfaces.py:90
+#: ../interfaces.py:94
 msgid "# of items"
 msgstr "antal emner"
 
-#: ../browser/add_type.py:12
+#: ../browser/add_type.py:13
 msgid "Add Content Type"
 msgstr "Tilføj Indholdstype"
 
-#: ../browser/types_listing.pt:20
-msgid "Add New Content Type…"
+#: ../browser/types_listing.pt:24
+msgid "Add New Content Type&hellip;"
 msgstr ""
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
@@ -38,11 +38,11 @@ msgstr "Tilføjer felter til Opretter, Bidragsydere og Rettigheder "
 msgid "Adds keywords and language setting"
 msgstr "Tilføjer filter til Kategorisering og Sprogindstillinger"
 
-#: ../behaviors/discussion.py:27
+#: ../behaviors/discussion.py:30
 msgid "Allow discussion"
 msgstr ""
 
-#: ../behaviors/discussion.py:28
+#: ../behaviors/discussion.py:31
 msgid "Allow discussion for this content object."
 msgstr ""
 
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Allow items to have next previous navigation enabled"
 msgstr "Tillad indholdsobjekter at vise navigering til forrige og næste side"
 
-#: ../interfaces.py:78
+#: ../interfaces.py:82
 msgid "Allowed Content Types"
 msgstr ""
 
@@ -68,41 +68,37 @@ msgstr "Generér automatisk en kort URL, afledt fra indholdsobjektets primære f
 msgid "Basic metadata"
 msgstr "Basal metadata"
 
-#: ../browser/behaviors.py:59
+#: ../browser/behaviors.py:58
 #: ../browser/layout.py:16
 msgid "Behaviors"
 msgstr "Udvidelser (opførsler)"
 
-#: ../browser/behaviors.py:61
+#: ../browser/behaviors.py:60
 msgid "Behaviors successfully updated."
 msgstr "Opførsler"
 
-#: ../browser/types.py:58
+#: ../browser/types.py:76
 msgid "Clone"
 msgstr "Klon"
 
-#: ../browser/clone_type.py:12
+#: ../browser/clone_type.py:13
 msgid "Clone Content Type"
 msgstr "Klon indholdstype"
 
 msgid "Configures various components needed for full Dexterity support."
 msgstr ""
 
-#: ../interfaces.py:59
+#: ../interfaces.py:61
 msgid "Container"
 msgstr "Mappe"
 
-#: ../interfaces.py:54
+#: ../interfaces.py:56
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: ../browser/types.py:249
+#: ../browser/types.py:237
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
-msgid "Dexterity Content Types"
-msgstr "Dexterity indholdstyper"
-
-#: ../browser/types.py:216
 msgid "Dexterity Content Types"
 msgstr "Dexterity indholdstyper"
 
@@ -115,35 +111,59 @@ msgstr "Gyldighedsperiode"
 msgid "Enable next previous navigation for all items of this type"
 msgstr "Slå navigering til næste og forrige side til for alle indholdsobjekter af denne type"
 
-#: ../browser/modeleditor.py:57
+#: ../browser/import_types.py:55
+msgid "Error: The file submitted must be a zip archive containing only type profile information."
+msgstr ""
+
+#: ../browser/import_types.py:46
+msgid "Error: The file submitted must be a zip archive."
+msgstr ""
+
+#: ../browser/modeleditor.py:60
 msgid "Error: all model elements must be 'schema'"
 msgstr ""
 
-#: ../browser/modeleditor.py:51
+#: ../browser/modeleditor.py:54
 msgid "Error: root tag must be 'model'"
 msgstr ""
 
 msgid "Exclude From navigation"
 msgstr "Ekskludér fra menunavigation"
 
-#: ../browser/types.py:83
+#: ../browser/types.py:101
 msgid "Export Schema Models"
 msgstr "Eksportér skema-modeller"
 
-#: ../browser/types.py:71
+#: ../browser/types.py:89
 msgid "Export Type Profiles"
 msgstr "Eksportér type-profiler"
 
-#: ../browser/fields.py:34
+#: ../browser/fields.py:27
 #: ../browser/layout.py:15
 msgid "Fields"
 msgstr "Felter"
 
-#: ../interfaces.py:67
+#: ../interfaces.py:69
 msgid "Filter Contained Types"
 msgstr ""
 
-#: ../interfaces.py:60
+#: ../browser/import_types.py:97
+msgid "Import Content Types"
+msgstr ""
+
+#: ../browser/types_listing.pt:30
+msgid "Import Type Profiles&hellip;"
+msgstr ""
+
+#: ../browser/import_types.py:122
+msgid "Imported successfully."
+msgstr ""
+
+#: ../browser/default_page_warning.pt:6
+msgid "Info"
+msgstr ""
+
+#: ../interfaces.py:62
 msgid "Items of this type will be able to contain other items."
 msgstr "Disse indholdstyper vil kunne indholde andre indholdsobjekter."
 
@@ -165,111 +185,127 @@ msgstr "Næste-/forrige-navigation"
 msgid "Next previous navigation toggle"
 msgstr "Næste-/forrige-navigation til"
 
-#: ../behaviors/discussion.py:14
+#: ../behaviors/discussion.py:16
 msgid "No"
 msgstr ""
 
-#: ../browser/behaviors.py:62
+#: ../browser/behaviors.py:61
 msgid "No changes were made."
 msgstr "Ingen ændringer blev foretaget."
 
+#: ../browser/import_types.py:77
+msgid "One or more types in the import archive is an existing type. Delete \"%s\" if you really wish to replace it.name"
+msgstr ""
+
 #: ../browser/layout.py:14
-#: ../browser/overview.py:33
+#: ../browser/overview.py:34
 msgid "Overview"
 msgstr "Overblik"
 
-#: ../browser/types.py:63
+#: ../browser/types.py:81
 msgid "Please select a single type to clone."
 msgstr "Vælg venligst én type der skal klones"
 
-#: ../browser/types.py:69
+#: ../browser/types.py:87
 msgid "Please select a type to clone."
 msgstr "Vælg venligst en type der skal klones."
 
-#: ../browser/types.py:76
+#: ../browser/types.py:94
 msgid "Please select types to export."
 msgstr "Vælg venligst de typer der skal eksporteres."
 
-#: ../interfaces.py:25
+#: ../interfaces.py:27
 msgid "Please use only letters, numbers, and the following characters: .-_"
 msgstr "Brug venligst kun bogstaver (a-z), tal, og følgende tegn: .-_"
 
-#: ../browser/modeleditor.py:83
+#: ../browser/modeleditor.py:88
 msgid "Saved"
 msgstr ""
 
-#: ../browser/behaviors.py:60
+#: ../browser/behaviors.py:59
 msgid "Select the behaviors to enable for this content type."
 msgstr "Vælg de udvidelser der skal slås til for denne indholdstype."
 
-#: ../behaviors/discussion.py:22
-#: ../behaviors/exclfromnav.py:16
-#: ../behaviors/id.py:18
+#: ../behaviors/discussion.py:25
+#: ../behaviors/exclfromnav.py:19
+#: ../behaviors/id.py:21
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: ../interfaces.py:47
+#: ../interfaces.py:49
 msgid "Short Name"
 msgstr "Kort navn"
 
-#: ../behaviors/id.py:23
+#: ../behaviors/id.py:26
 msgid "Short name"
 msgstr ""
 
-#: ../browser/types.py:178
+#: ../browser/types.py:196
 msgid "The following custom content types are available for your site."
 msgstr "Følgende indholdstyper er tilgængelige på sitet."
 
-#: ../interfaces.py:101
+#: ../interfaces.py:105
 msgid "There is already a content type named '${name}'"
 msgstr ""
 
-#: ../behaviors/id.py:24
+#: ../behaviors/id.py:27
 msgid "This name will be displayed in the URL."
 msgstr ""
 
-#: ../interfaces.py:43
+#: ../interfaces.py:45
 msgid "Type Name"
 msgstr "Indholdstypenavn"
 
-#: ../browser/add_type.py:47
+#: ../browser/add_type.py:48
 msgid "Type added successfully."
 msgstr "Indholdstypen blev tilføjet"
 
-#: ../browser/clone_type.py:31
+#: ../browser/clone_type.py:35
 msgid "Type cloned successfully."
 msgstr "Indholdstypen blev klonet"
 
-#: ../interfaces.py:48
+#: ../browser/import_types.py:32
+msgid "Type profiles archive file"
+msgstr ""
+
+#: ../browser/import_types.py:73
+msgid "Types in archive must be only Dexterity types."
+msgstr ""
+
+#: ../interfaces.py:50
 msgid "Used for programmatic access to the type."
 msgstr "Bruges ved programmatisk tilgang til indholdstypen."
 
-#: ../behaviors/discussion.py:13
+#: ../behaviors/discussion.py:15
 msgid "Yes"
 msgstr ""
 
+#: ../browser/import_types.py:98
+msgid "You may import types by uploading a zip archive containing type profiles. The import archive should contain a types.xml file and a types directory containing one or more Dexterity type information files. For a sample, create a content type and export it from the Dexterity Content Types page."
+msgstr ""
+
 #. Default: "Expiration date must be after publishing date."
-#: ../behaviors/metadata.py:153
+#: ../behaviors/metadata.py:169
 msgid "error_expiration_must_be_after_effective_date"
 msgstr ""
 
 #. Default: "Invalid effective or expires date"
-#: ../behaviors/metadata.py:119
+#: ../behaviors/metadata.py:132
 msgid "error_invalid_publication"
 msgstr ""
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:181
+#: ../browser/types.py:199
 msgid "help_addcontenttype_button"
 msgstr "Klik på knappen \"Tilføj indholdstype\" for at oprette en ny type."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
-#: ../behaviors/exclfromnav.py:25
+#: ../behaviors/exclfromnav.py:28
 msgid "help_exclude_from_nav"
 msgstr "Hvis valgt, vil dette indholdsobjekt ikke blive vist i menunavigationen"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
-#: ../behaviors/nextprevious.py:38
+#: ../behaviors/nextprevious.py:40
 msgid "help_nextprevious"
 msgstr "Slå næste-/forrige-navigation til på indhold placeret i denne mappe."
 
@@ -283,18 +319,28 @@ msgstr ""
 msgid "label_contained_items"
 msgstr ""
 
+#. Default: "You are editing the default view of a container. If you wanted to edit the container itself, ${go_here}."
+#: ../browser/default_page_warning.pt:12
+msgid "label_edit_default_view_container"
+msgstr ""
+
+#. Default: "go here"
+#: ../browser/default_page_warning.pt:12
+msgid "label_edit_default_view_container_go_here"
+msgstr ""
+
 #. Default: "Exclude from navigation"
-#: ../behaviors/exclfromnav.py:21
+#: ../behaviors/exclfromnav.py:24
 msgid "label_exclude_from_nav"
 msgstr "Ekskludér fra menunavigation"
 
-#. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
-#: ../interfaces.py:68
+#. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
+#: ../interfaces.py:70
 msgid "label_filter_contained_types"
 msgstr ""
 
 #. Default: "Enable next previous navigation"
-#: ../behaviors/nextprevious.py:34
+#: ../behaviors/nextprevious.py:36
 msgid "label_nextprevious"
 msgstr "Næste-/forrige-navigation"
 
@@ -306,5 +352,9 @@ msgstr ""
 #. Default: "Some content types:"
 #: ../browser/overview.pt:30
 msgid "label_some_content_types"
+msgstr ""
+
+#: ../browser/import_types.py:64
+msgid "types.xml in archive is invalid."
 msgstr ""
 
