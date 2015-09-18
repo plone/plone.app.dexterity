@@ -43,7 +43,7 @@ var init = function(){
         doc_changed = false;
 
     // editor tuneup
-    editor.setTheme("ace/theme/textmate");
+    editor.setTheme("ace/theme/monokai");
     session.setMode("ace/mode/xml");
     session.setTabSize(4);
     session.setUseSoftTabs(true);
