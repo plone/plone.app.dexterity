@@ -4,6 +4,9 @@ Changelog
 2.1.13 (unreleased)
 -------------------
 
+- Fix ace editor javascript reference (`895`_).
+  [rodfersou]
+
 - Rerun i18ndude and updated German translation.
   [pabo3000]
 
@@ -682,3 +685,5 @@ Changelog
 --------------------
 
 - Initial release
+
+.. _`#895`: https://github.com/plone/Products.CMFPlone/issues/895
