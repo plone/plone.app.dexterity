@@ -63,10 +63,10 @@
       prefs_main_template doesn't have the head_javascript_slot
   </tal:comment>
 
-  <script src="++resource++plone.resourceeditor/ace/ace.js"
+  <script src="++plone++static/components/ace-builds/src/ace.js"
       type="text/javascript"
       charset="utf-8"
-      tal:attributes="src string:${portal_url}/++resource++plone.resourceeditor/ace/ace.js"
+      tal:attributes="src string:${portal_url}/++plone++static/components/ace-builds/src/ace.js"
       ></script>
   <script src="++resource++plone.schemaeditor/modeleditor.js"
       type="text/javascript"
