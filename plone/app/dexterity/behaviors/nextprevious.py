@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from Acquisition import aq_base
+from zope.component import getUtility
 from Products.CMFCore.interfaces import IContentish
-from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity import MessageFactory as _
 from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from plone.registry.interfaces import IRegistry
 from z3c.form import widget
 from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
@@ -69,8 +70,8 @@ class NextPreviousBase(object):
 
     def __init__(self, context):
         self.context = context
-        props = getToolByName(context, 'portal_properties').site_properties
-        self.vat = props.getProperty('typesUseViewActionInListings', ())
+        registry = getUtility(IRegistry)
+        self.vat = registry.get('plone.types_use_view_action_in_listings', [])
         self.security = getSecurityManager()
         order = context.getOrdering()
         if not isinstance(order, list):
