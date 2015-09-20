@@ -6,7 +6,7 @@ from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.autoform.utils import resolveDottedName
 from plone.dexterity.interfaces import IDexterityContent
-from plone.dexterity.utils import iterSchemata, getAdditionalSchemata
+from plone.dexterity.utils import iterSchemata
 from plone.supermodel.utils import mergedTaggedValueDict
 from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IFieldWidget
@@ -86,17 +86,7 @@ class DXAddViewFieldPermissionChecker(DXFieldPermissionChecker):
     adapts(IAddForm)
 
     def __init__(self, view):
-        self.context = view.context
-        # This may fail for views that aren't DefaultAddForm or
-        # DefaultAddView sub-classes, but they can register their own
-        # more specific adapters, if needed.
-        self.fti = getattr(view, 'fti', None)
-        if self.fti is None:
-            self.fti = view.ti
-        self._request = view.request
-
-    def _get_schemata(self):
-        fti = self.fti
-        yield fti.lookupSchema()
-        for schema in getAdditionalSchemata(portal_type=fti.getId()):
-            yield schema
+        if getattr(view, 'form_instance', None) is not None:
+            view = view.form_instance
+        content = view.create({})
+        self.context = content.__of__(view.context)

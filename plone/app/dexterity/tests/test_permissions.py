@@ -10,6 +10,7 @@ from plone.app.widgets.testing import TestRequest
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.dexterity.fti import DexterityFTI
+from plone.dexterity.browser.add import DefaultAddForm, DefaultAddView
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
@@ -195,3 +196,27 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
         data = json.loads(view())
         self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
         _disable_custom_widget(IMockSchema['adapted_widget_field'])
+
+    def test_vocabulary_field_allowed_from_add_view(self):
+        add_view = DefaultAddView(self.portal, self.request,
+                                  self.portal.portal_types['dx_mock'])
+        view = VocabularyView(add_view, self.request)
+        self.request.form.update({
+            'name': 'plone.app.vocabularies.PortalTypes',
+            'field': 'allowed_field',
+        })
+        data = json.loads(view())
+        self.assertEquals(len(data['results']),
+                          len(self.portal.portal_types.objectIds()))
+
+    def test_vocabulary_field_allowed_from_add_form(self):
+        add_form = DefaultAddForm(self.portal, self.request)
+        add_form.portal_type = 'dx_mock'
+        view = VocabularyView(add_form, self.request)
+        self.request.form.update({
+            'name': 'plone.app.vocabularies.PortalTypes',
+            'field': 'allowed_field',
+        })
+        data = json.loads(view())
+        self.assertEquals(len(data['results']),
+                          len(self.portal.portal_types.objectIds()))

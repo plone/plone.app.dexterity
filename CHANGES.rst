@@ -4,6 +4,9 @@ Changelog
 2.1.13 (unreleased)
 -------------------
 
+- Fix issue with permission checker add form context (`1027`_).
+  [alecm]
+
 - Fix ace editor javascript reference (`895`_).
   [rodfersou]
 
