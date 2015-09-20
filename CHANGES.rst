@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.13 (unreleased)
+2.1.13 (2015-09-20)
 -------------------
 
 - Fix issue with permission checker add form context (`1027`_).
