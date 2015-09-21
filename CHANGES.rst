@@ -1,10 +1,11 @@
 Changelog
 =========
 
-2.1.14 (unreleased)
+2.1.14 (2015-09-21)
 -------------------
 
-- Nothing changed yet.
+- Update French translations
+  [enclope]
 
 
 2.1.13 (2015-09-20)
