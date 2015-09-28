@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.16 (unreleased)
+2.0.16 (2015-09-28)
 -------------------
 
 - reimport splitSchemaName from plone.dexterity.utils to be compatible
