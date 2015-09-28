@@ -17,10 +17,10 @@ Changelog
 2.1.13 (2015-09-20)
 -------------------
 
-- Fix issue with permission checker add form context (`1027`_).
+- Fix issue with permission checker add form context (`#1027`_).
   [alecm]
 
-- Fix ace editor javascript reference (`895`_).
+- Fix ace editor javascript reference (`#895`_).
   [rodfersou]
 
 - Rerun i18ndude and updated German translation.
@@ -703,3 +703,4 @@ Changelog
 - Initial release
 
 .. _`#895`: https://github.com/plone/Products.CMFPlone/issues/895
+.. _`#1027`: https://github.com/plone/Products.CMFPlone/issues/1027
