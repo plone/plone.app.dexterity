@@ -4,7 +4,9 @@ Changelog
 2.0.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- reimport splitSchemaName from plone.dexterity.utils to be compatible
+  with plone.dexterity 2.2.4
+  [vincentfretin]
 
 
 2.0.15 (2015-08-14)
