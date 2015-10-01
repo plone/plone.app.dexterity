@@ -7,6 +7,9 @@ Changelog
 - Fixed typos in german translation. Thx bierik for reporting in #183.
   [jensens]
 
+- Update Brazil translations
+  [claytonc]
+
 
 2.1.14 (2015-09-21)
 -------------------
