@@ -4,7 +4,8 @@ Changelog
 2.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed typos in german translation. Thx bierik for reporting in #183.
+  [jensens]
 
 
 2.1.14 (2015-09-21)
