@@ -4,6 +4,9 @@ Changelog
 2.1.15 (unreleased)
 -------------------
 
+- Update Traditional Chinese translation.
+  [l34marr]
+
 - Fixed typos in german translation. Thx bierik for reporting in #183.
   [jensens]
 
