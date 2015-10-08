@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plone.app.dexterity\n"
 "POT-Creation-Date: 2015-09-16 11:18+0000\n"
-"PO-Revision-Date: 2015-03-18 21:33+0800\n"
+"PO-Revision-Date: 2015-10-08 10:30+0800\n"
 "Last-Translator: TsungWei Hu <marr.tw@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "新增型別"
 
 #: ../browser/types_listing.pt:24
 msgid "Add New Content Type&hellip;"
-msgstr ""
+msgstr "新增內容型別&hellip;"
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
 msgstr "新增 Dublin Core 資料 (等同於基本資料+分類+日期+擁有者)"
@@ -101,7 +101,7 @@ msgstr "摘要描述"
 #: ../profiles/default/actions.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
-msgstr "Dexterity 內容型別"
+msgstr "內容型別"
 
 msgid "Dublin Core metadata"
 msgstr "Dublin Core 資料"
@@ -114,11 +114,11 @@ msgstr "啟用前後項導覽"
 
 #: ../browser/import_types.py:55
 msgid "Error: The file submitted must be a zip archive containing only type profile information."
-msgstr ""
+msgstr "錯誤: 上傳的檔案必須是 ZIP 格式，僅包含 Type Profile Information 內容。"
 
 #: ../browser/import_types.py:46
 msgid "Error: The file submitted must be a zip archive."
-msgstr ""
+msgstr "錯誤: 上傳的檔案必須是 ZIP 格式。"
 
 #: ../browser/modeleditor.py:60
 msgid "Error: all model elements must be 'schema'"
@@ -150,15 +150,15 @@ msgstr "篩選被包含的型別"
 
 #: ../browser/import_types.py:97
 msgid "Import Content Types"
-msgstr ""
+msgstr "匯入內容型別"
 
 #: ../browser/types_listing.pt:30
 msgid "Import Type Profiles&hellip;"
-msgstr ""
+msgstr "匯入 Type Profiles&hellip;"
 
 #: ../browser/import_types.py:122
 msgid "Imported successfully."
-msgstr ""
+msgstr "匯入成功。"
 
 #: ../browser/default_page_warning.pt:6
 msgid "Info"
@@ -196,7 +196,7 @@ msgstr "沒有更動。"
 
 #: ../browser/import_types.py:77
 msgid "One or more types in the import archive is an existing type. Delete \"%s\" if you really wish to replace it.name"
-msgstr ""
+msgstr "匯入的壓縮檔裡，包括已存在的型別內容，想要取代舊的內容，要先刪除 \"%s\" 才行。"
 
 #: ../browser/layout.py:14
 #: ../browser/overview.py:34
@@ -267,11 +267,11 @@ msgstr "型別複製成功。"
 
 #: ../browser/import_types.py:32
 msgid "Type profiles archive file"
-msgstr ""
+msgstr "Type Profile 壓縮檔"
 
 #: ../browser/import_types.py:73
 msgid "Types in archive must be only Dexterity types."
-msgstr ""
+msgstr "壓縮檔裡必須是 Dexterity 型別內容。"
 
 #: ../interfaces.py:50
 msgid "Used for programmatic access to the type."
@@ -283,7 +283,7 @@ msgstr "是"
 
 #: ../browser/import_types.py:98
 msgid "You may import types by uploading a zip archive containing type profiles. The import archive should contain a types.xml file and a types directory containing one or more Dexterity type information files. For a sample, create a content type and export it from the Dexterity Content Types page."
-msgstr ""
+msgstr "可以上傳 Type Profile 的 ZIP 壓縮檔，包含一個 types.xml 檔案，和一個 types 目錄結構。想要取得範例的話，可以建立一個型別，再從內容型別的管理介面執行匯出。"
 
 #. Default: "Expiration date must be after publishing date."
 #: ../behaviors/metadata.py:169
@@ -323,12 +323,12 @@ msgstr "是否包含其他內容型別"
 #. Default: "You are editing the default view of a container. If you wanted to edit the container itself, ${go_here}."
 #: ../browser/default_page_warning.pt:12
 msgid "label_edit_default_view_container"
-msgstr ""
+msgstr "你正在編輯目錄"
 
 #. Default: "go here"
 #: ../browser/default_page_warning.pt:12
 msgid "label_edit_default_view_container_go_here"
-msgstr ""
+msgstr "點選這裡"
 
 #. Default: "Exclude from navigation"
 #: ../behaviors/exclfromnav.py:24
@@ -337,7 +337,6 @@ msgstr "排除導覽"
 
 #. Default: "Items of this type can act as a folder containing other  items. What content types should be allowed inside?"
 #: ../interfaces.py:70
-#, fuzzy
 msgid "label_filter_contained_types"
 msgstr "這個型別可以包含其他型別，就像目錄一樣。請設定哪些型別能被包含。"
 
@@ -358,5 +357,5 @@ msgstr "包含一些內容型別："
 
 #: ../browser/import_types.py:64
 msgid "types.xml in archive is invalid."
-msgstr ""
+msgstr "壓縮檔裡的 types.xml 不正確。"
 
