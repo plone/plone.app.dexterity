@@ -359,7 +359,7 @@ msgstr "Itens contidos"
 msgid "label_edit_default_view_container"
 msgstr ""
 "Você está editando a visualização padrão de uma pasta. Se você quisesse "
-"editar o própria pasta, $ {go_here} ."
+"editar o própria pasta, ${go_here} ."
 
 #. Default: "go here"
 #: ../browser/default_page_warning.pt:12
