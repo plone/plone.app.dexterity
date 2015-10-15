@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
@@ -80,14 +81,14 @@ class TestShortNameBehavior(unittest.TestCase):
         self.browser.getControl('Title').value = 'title'
         self.browser.getControl('Short name').value = 'foo'
         self.browser.getControl('Save').click()
-        mtime = self.layer['portal'].foo.bobobase_modification_time()
+        mtime = DateTime(self.layer['portal'].foo._p_mtime)
         self.browser.getLink('Edit').click()
         self.browser.getControl('Short name').value = 'foo'
         self.browser.getControl('Save').click()
         self.assertEqual(self.browser.url, 'http://nohost/plone/foo')
         # assert that object has not been modified
         self.assertEqual(
-            mtime, self.layer['portal'].foo.bobobase_modification_time()
+            mtime, DateTime(self.layer['portal'].foo._p_mtime)
         )
 
         behaviors = list(self.layer['portal'].portal_types.Document.behaviors)

@@ -4,6 +4,10 @@ Changelog
 2.1.15 (unreleased)
 -------------------
 
+- No longer rely on deprecated ``bobobase_modification_time`` from
+  ``Persistence.Persistent``.
+  [thet]
+
 - Update Traditional Chinese translation.
   [l34marr]
 
