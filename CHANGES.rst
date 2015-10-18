@@ -4,6 +4,10 @@ Changelog
 2.1.15 (unreleased)
 -------------------
 
+- fix icons in dexterity types list
+  plone/Products.CMFPlone#1151, plone/Products.CMFPlone#1013
+  [fgrcon]
+
 - No longer rely on deprecated ``bobobase_modification_time`` from
   ``Persistence.Persistent``.
   [thet]
