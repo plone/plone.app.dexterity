@@ -31,15 +31,15 @@ First create a view registration with a ``<browser:page />`` ZCML directive in y
         xmlns="http://namespaces.zope.org/zope"
         xmlns:browser="http://namespaces.zope.org/browser">
 
-        ...
+      ...
 
-        <browser:page
-            name="view"
-            for="example.conference.program.IProgram"
-            class="example.conference.program.ProgramView"
-            template="templates/programview.pt"
-            permission="zope2.View"
-            />
+      <browser:page
+          name="view"
+          for="example.conference.program.IProgram"
+          class="example.conference.program.ProgramView"
+          template="templates/programview.pt"
+          permission="zope2.View"
+          />
 
     </configure>
 
@@ -48,24 +48,23 @@ Secondly add a browser view in ``program.py`` as follows:
 .. code-block:: python
 
     from Acquisition import aq_inner
-    from Products.CMFCore.utils import getToolByName
-    from Products.Five import BrowserView
-
     from example.conference.session import ISession
+    from plone import api
+    from Products.Five import BrowserView
 
 
     class ProgramView(BrowserView):
 
         def sessions(self):
-            """Return a catalog search result of sessions to show
-            """
+            """Return a catalog search result of sessions to show."""
 
             context = aq_inner(self.context)
-            catalog = getToolByName(context, 'portal_catalog')
+            catalog = api.portal.get_tool(name='portal_catalog')
 
-            return catalog(object_provides=ISession.__identifier__,
-                           path='/'.join(context.getPhysicalPath()),
-                           sort_on='sortable_title')
+            return catalog(
+                object_provides=ISession.__identifier__,
+                path='/'.join(context.getPhysicalPath()),
+                sort_on='sortable_title')
 
 We have added ``sessions``, a helper method which will be used in the view.
 
