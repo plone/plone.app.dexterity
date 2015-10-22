@@ -7,8 +7,8 @@ from plone.uuid.interfaces import IUUID
 def add_missing_uuids(context):
     catalog = getToolByName(context, 'portal_catalog')
     query = {'object_provides': IDexterityContent.__identifier__}
-    for b in catalog.unrestrictedSearchResults(query):
-        ob = b.getObject()
+    for brain in catalog.unrestrictedSearchResults(query):
+        ob = brain.getObject()
         if IUUID(ob, None) is None:
             addAttributeUUID(ob, None)
             ob.reindexObject(idxs=['UID'])
