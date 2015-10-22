@@ -22,6 +22,8 @@ class TestUpgrades(unittest.TestCase):
         )
         setattr(page, ATTRIBUTE_NAME, None)
         self.assertTrue(IUUID(page, None) is None)
+        # reindex to remove the UUID it got when the page was created
+        page.reindexObject(idxs=['UID'])
 
         # run the migration
         add_missing_uuids(self.layer['portal'])
