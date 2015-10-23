@@ -26,8 +26,8 @@
       This form allows you to directly edit the XML representation
       of the field list. This makes it possible to add annotations for fieldsets,
       validation and widgets. See the <a
-      href="http://developer.plone.org/reference_manuals/external/plone.app.dexterity/reference/dexterity-xml.html">Dexterity XML</a>
-      section of the <a href="http://developer.plone.org/reference_manuals/external/plone.app.dexterity">Dexterity Developer Manual</a> for details.
+      href="http://docs.plone.org/external/plone.app.dexterity/docs/reference/dexterity-xml.html">Dexterity XML</a>
+      section of the <a href="http://docs.plone.org/external/plone.app.dexterity/docs/index.html">Dexterity Developer Manual</a> for details.
     </p>
 
     <a href=""
