@@ -4,6 +4,10 @@ Changelog
 2.1.15 (unreleased)
 -------------------
 
+- update doc links in modeleditor
+  plone/Products.CMFPlone#1207
+  [pabo3000]
+
 - fix icons in dexterity types list
   plone/Products.CMFPlone#1151, plone/Products.CMFPlone#1013
   [fgrcon]
