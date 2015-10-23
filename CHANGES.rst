@@ -21,6 +21,8 @@ Changelog
 - Update Brazil translations
   [claytonc]
 
+- Avoid re-adding the UUID on an upgrade step.
+  [gforcada]
 
 2.1.14 (2015-09-21)
 -------------------
