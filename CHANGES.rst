@@ -4,44 +4,52 @@ Changelog
 2.1.15 (unreleased)
 -------------------
 
-- update doc links in modeleditor
-  plone/Products.CMFPlone#1207
+New:
+
+- Updated Traditional Chinese translation.
+  [l34marr]
+
+- Updated Brazil translations.
+  [claytonc]
+
+Fixes:
+
+- Updated doc links in modeleditor.
+  Issue `CMFPlone#1027`_.
   [pabo3000]
 
-- fix icons in dexterity types list
-  plone/Products.CMFPlone#1151, plone/Products.CMFPlone#1013
+- Fixed icons in dexterity types list.
+  Issues `CMFPlone#1013`_ and `CMFPlone#1151`_.
   [fgrcon]
 
 - No longer rely on deprecated ``bobobase_modification_time`` from
   ``Persistence.Persistent``.
   [thet]
 
-- Update Traditional Chinese translation.
-  [l34marr]
-
-- Fixed typos in german translation. Thx bierik for reporting in #183.
+- Fixed typos in german translation. Thx bierik for reporting in
+  Issue `dexterity#183`_.
   [jensens]
-
-- Update Brazil translations
-  [claytonc]
 
 - Avoid re-adding the UUID on an upgrade step.
   [gforcada]
 
+
 2.1.14 (2015-09-21)
 -------------------
 
-- Update French translations
+- Updated French translations.
   [enclope]
 
 
 2.1.13 (2015-09-20)
 -------------------
 
-- Fix issue with permission checker add form context (`#1027`_).
+- Fixed issue with permission checker add form context.
+  Issue `CMFPlone#1027`_.
   [alecm]
 
-- Fix ace editor javascript reference (`#895`_).
+- Fixed ace editor javascript reference.
+  Issue `CMFPlone#895`_.
   [rodfersou]
 
 - Rerun i18ndude and updated German translation.
@@ -723,5 +731,10 @@ Changelog
 
 - Initial release
 
-.. _`#895`: https://github.com/plone/Products.CMFPlone/issues/895
-.. _`#1027`: https://github.com/plone/Products.CMFPlone/issues/1027
+.. _`dexterity#183`: https://github.com/plone/plone.app.dexterity/issues/183
+
+.. _`CMFPlone#895`: https://github.com/plone/Products.CMFPlone/issues/895
+.. _`CMFPlone#1013`: https://github.com/plone/Products.CMFPlone/issues/1013
+.. _`CMFPlone#1027`: https://github.com/plone/Products.CMFPlone/issues/1027
+.. _`CMFPlone#1151`: https://github.com/plone/Products.CMFPlone/issues/1151
+.. _`CMFPlone#1207`: https://github.com/plone/Products.CMFPlone/issues/1207
