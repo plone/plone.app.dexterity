@@ -4,6 +4,8 @@ Changelog
 2.0.17 (unreleased)
 -------------------
 
+Fixes:
+
 - Avoid re-adding the UUID on an upgrade step.
   [gforcada]
 
