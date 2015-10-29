@@ -250,7 +250,7 @@ A ``HEAD`` request retrieves headers only.
 
 ``Resource.HEAD()`` sets
 ``Content-Type`` based on ``self.content_type()``,
-``Content-Length`` based on ``self.get\_size()``,
+``Content-Length`` based on ``self.get_size()``,
 ``Last-Modified`` based on ``self._p_mtime``,
 and an ``ETag`` based on ``self.http__etag()``, if available.
 
