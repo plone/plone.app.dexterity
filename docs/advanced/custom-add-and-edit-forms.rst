@@ -40,7 +40,7 @@ This should be registered for a type schema (not a class).
 To create an edit form that is identical to the default, we could do:
 
 .. code-block:: python
-    
+
     from plone.dexterity.browser import edit
 
     class EditForm(edit.DefaultEditForm):
@@ -162,7 +162,7 @@ A custom form replicating the default would look like this:
 
     class AddView(add.DefaultAddView):
         form = AddForm
-    
+
 and be registered in ZCML like this:
 
 .. code-block:: xml

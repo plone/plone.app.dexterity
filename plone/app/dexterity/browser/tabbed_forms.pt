@@ -13,7 +13,7 @@
   <h1 class="documentFirstHeading"><tal:block tal:content="context/Title"/> (<tal:block tal:content="python:context.__name__" />)</h1>
 
   <div class="autotabs">
-   
+
     <nav class="autotoc-nav">
       <a tal:repeat="tab view/tabs"
           tal:attributes="href python:context.absolute_url() + '/' + tab[1];
