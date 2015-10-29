@@ -160,6 +160,9 @@ A custom form replicating the default would look like this:
     class AddForm(add.DefaultAddForm):
         portal_type = 'example.fspage'
 
+    class AddView(add.DefaultAddView):
+        form = AddForm
+    
 and be registered in ZCML like this:
 
 .. code-block:: xml
@@ -169,10 +172,10 @@ and be registered in ZCML like this:
              zope.publisher.interfaces.browser.IDefaultBrowserLayer
              plone.dexterity.interfaces.IDexterityFTI"
         provides="zope.publisher.interfaces.browser.IBrowserPage"
-        factory=".fs_page.AddForm"
+        factory=".fs_page.AddView"
         name="example.fspage"
         />
-    <class class=".fs_page.AddForm">
+    <class class=".fs_page.AddView">
         <require
             permission="cmf.AddPortalContent"
             interface="zope.publisher.interfaces.browser.IBrowserPage"
