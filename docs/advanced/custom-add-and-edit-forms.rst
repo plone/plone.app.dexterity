@@ -72,7 +72,7 @@ For example, we could:
   different a different title and description for the form.
 - Set the `z3c.form`_ ``fields`` and ``groups`` attributes directly.
 - Override the ``updateWidgets()`` method to modify widget properties,
-  or one of the other ``update``()`` methods,
+  or one of the other ``update()`` methods,
   to perform additional processing on the fields.
   In most cases, these require us to call the ``super`` version at the
   beginning.
