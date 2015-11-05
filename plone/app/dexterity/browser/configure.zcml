@@ -2,7 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml"
-    i18n_domain="plone.app.dexterity">
+    i18n_domain="plone">
 
   <!-- Default view for Dexterity types in Plone  4 -->
   <browser:page

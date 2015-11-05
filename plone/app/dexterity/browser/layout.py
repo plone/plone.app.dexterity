@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity import _
 from plone.z3cform.layout import FormWrapper
 
 

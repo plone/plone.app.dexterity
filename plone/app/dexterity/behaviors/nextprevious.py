@@ -3,7 +3,7 @@ from AccessControl import getSecurityManager
 from Acquisition import aq_base
 from zope.component import getUtility
 from Products.CMFCore.interfaces import IContentish
-from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity import _
 from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider

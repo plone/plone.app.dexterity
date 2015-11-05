@@ -3,8 +3,7 @@ from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from datetime import datetime
-from plone.app.dexterity import MessageFactory as _
-from plone.app.dexterity import PloneMessageFactory as _PMF
+from plone.app.dexterity import _
 from plone.app.z3cform.widget import AjaxSelectFieldWidget
 from plone.app.z3cform.widget import DatetimeFieldWidget
 from plone.app.z3cform.widget import SelectFieldWidget
@@ -65,13 +64,13 @@ class IBasic(model.Schema):
 
     # default fieldset
     title = schema.TextLine(
-        title=_PMF(u'label_title', default=u'Title'),
+        title=_(u'label_title', default=u'Title'),
         required=True
     )
 
     description = schema.Text(
-        title=_PMF(u'label_description', default=u'Summary'),
-        description=_PMF(
+        title=_(u'label_description', default=u'Summary'),
+        description=_(
             u'help_description',
             default=u'Used in item listings and search results.'
         ),
@@ -93,13 +92,13 @@ class ICategorization(model.Schema):
     # categorization fieldset
     model.fieldset(
         'categorization',
-        label=_PMF(u'label_schema_categorization', default=u'Categorization'),
+        label=_(u'label_schema_categorization', default=u'Categorization'),
         fields=['subjects', 'language'],
     )
 
     subjects = schema.Tuple(
-        title=_PMF(u'label_tags', default=u'Tags'),
-        description=_PMF(
+        title=_(u'label_tags', default=u'Tags'),
+        description=_(
             u'help_tags',
             default=u'Tags are commonly used for ad-hoc organization of ' +
                     u'content.'
@@ -115,7 +114,7 @@ class ICategorization(model.Schema):
     )
 
     language = schema.Choice(
-        title=_PMF(u'label_language', default=u'Language'),
+        title=_(u'label_language', default=u'Language'),
         vocabulary='plone.app.vocabularies.AvailableContentLanguages',
         required=False,
         missing_value='',
@@ -138,13 +137,13 @@ class IPublication(model.Schema):
     # dates fieldset
     model.fieldset(
         'dates',
-        label=_PMF(u'label_schema_dates', default=u'Dates'),
+        label=_(u'label_schema_dates', default=u'Dates'),
         fields=['effective', 'expires'],
     )
 
     effective = schema.Datetime(
-        title=_PMF(u'label_effective_date', u'Publishing Date'),
-        description=_PMF(
+        title=_(u'label_effective_date', u'Publishing Date'),
+        description=_(
             u'help_effective_date',
             default=u"If this date is in the future, the content will "
                     u"not show up in listings and searches until this date."),
@@ -153,8 +152,8 @@ class IPublication(model.Schema):
     directives.widget('effective', DatetimeFieldWidget)
 
     expires = schema.Datetime(
-        title=_PMF(u'label_expiration_date', u'Expiration Date'),
-        description=_PMF(
+        title=_(u'label_expiration_date', u'Expiration Date'),
+        description=_(
             u'help_expiration_date',
             default=u"When this date is reached, the content will no"
                     u"longer be visible in listings and searches."),
@@ -181,7 +180,7 @@ class IOwnership(model.Schema):
     # ownership fieldset
     model.fieldset(
         'ownership',
-        label=_PMF(
+        label=_(
             'label_schema_ownership',
             default=u'Ownership'
         ),
@@ -189,8 +188,8 @@ class IOwnership(model.Schema):
     )
 
     creators = schema.Tuple(
-        title=_PMF(u'label_creators', u'Creators'),
-        description=_PMF(
+        title=_(u'label_creators', u'Creators'),
+        description=_(
             u'help_creators',
             default=u"Persons responsible for creating the content of "
                     u"this item. Please enter a list of user names, one "
@@ -207,8 +206,8 @@ class IOwnership(model.Schema):
     )
 
     contributors = schema.Tuple(
-        title=_PMF(u'label_contributors', u'Contributors'),
-        description=_PMF(
+        title=_(u'label_contributors', u'Contributors'),
+        description=_(
             u'help_contributors',
             default=u"The names of people that have contributed "
                     u"to this item. Each contributor should "
@@ -224,8 +223,8 @@ class IOwnership(model.Schema):
     )
 
     rights = schema.Text(
-        title=_PMF(u'label_copyrights', default=u'Rights'),
-        description=_PMF(
+        title=_(u'label_copyrights', default=u'Rights'),
+        description=_(
             u'help_copyrights',
             default=u'Copyright statement or other rights information on this '
                     u'item.'

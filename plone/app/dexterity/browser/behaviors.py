@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from copy import deepcopy
-from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity.interfaces import ITypeSchemaContext
 from plone.behavior.interfaces import IBehavior
@@ -11,10 +11,7 @@ from zope import schema
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapter
 from zope.component import getUtilitiesFor
-from zope.i18nmessageid import MessageFactory
 from zope.lifecycleevent import modified
-
-PMF = MessageFactory('plone')
 
 
 def behaviorConfigurationModified(object, event):
@@ -60,7 +57,7 @@ class TypeBehaviorsForm(form.EditForm):
     successMessage = _(u'Behaviors successfully updated.')
     noChangesMessage = _(u'No changes were made.')
     buttons = deepcopy(form.EditForm.buttons)
-    buttons['apply'].title = PMF(u'Save')
+    buttons['apply'].title = _(u'Save')
 
     def getContent(self):
         return BehaviorConfigurationAdapter(self.context)

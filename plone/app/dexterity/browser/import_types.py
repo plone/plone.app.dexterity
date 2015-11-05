@@ -8,7 +8,7 @@ from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.interfaces import IImportContext
 from cStringIO import StringIO
 from lxml import etree
-from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity import _
 from plone.namedfile.field import NamedFile
 from plone.z3cform.layout import wrap_form
 from z3c.form import field
