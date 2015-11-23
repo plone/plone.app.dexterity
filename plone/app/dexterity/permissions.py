@@ -90,3 +90,4 @@ class DXAddViewFieldPermissionChecker(DXFieldPermissionChecker):
             view = view.form_instance
         content = view.create({})
         self.context = content.__of__(view.context)
+        self._request = MockRequest()
