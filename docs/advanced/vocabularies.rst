@@ -61,9 +61,8 @@ in the drop-down list.
 Dynamic sources
 ~~~~~~~~~~~~~~~~
 
-The static vocabulary is obviously a bit limited. Not only is it
-hard-coded in Python, it also does not allow separation of the stored
-values and the labels shown in the selection widget.
+The static vocabulary is obviously a bit limited, 
+since it is hard-coded in Python.
 
 We can make a one-off dynamic vocabulary using a context source binder.
 This is simply a callable (usually a function or an object with a
