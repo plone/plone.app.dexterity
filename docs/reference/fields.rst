@@ -36,10 +36,12 @@ IField      title               unicode    The title of the field. Used in the w
                                            Used by form validation. Defaults to ``None``. For
                                            lists and tuples, it is sometimes useful to set
                                            this to an empty list/tuple.
-IMinMaxLen  min_length          int        The minimum required length. Used for string
-                                           fields. Default is ``0``.
-\           max_length          int        The maximum allowed length. Used for string
-                                           fields. Default is ``None`` (no check).
+IMinMaxLen  min_length          int        The minimum required length or minimum number
+                                           of elements. Used for string, sequence, mapping
+                                           or set fields. Default is ``0``.
+\           max_length          int        The maximum allowed length or maximum number
+                                           of elements. Used for string, sequence, mapping
+                                           or set fields. Default is ``None`` (no check).
 IMinMax     min                            The minimum allowed value. Must be a valid value
                                            for the field, e.g. for an ``Int`` field this
                                            should be an integer. Default is ``None`` (no
