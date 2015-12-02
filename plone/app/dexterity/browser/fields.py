@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.schemaeditor.browser.schema.listing import ReadOnlySchemaListing
 from plone.schemaeditor.browser.schema.listing import SchemaListing

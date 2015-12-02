@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import zope.i18nmessageid
+from zope.i18nmessageid import MessageFactory
 
-MessageFactory = zope.i18nmessageid.MessageFactory('plone.app.dexterity')
-PloneMessageFactory = zope.i18nmessageid.MessageFactory('plone')
+
+_ = MessageFactory('plone')

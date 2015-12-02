@@ -2,7 +2,7 @@
 from AccessControl import Unauthorized
 from Products.Five import BrowserView
 from lxml import etree
-from plone.schemaeditor import SchemaEditorMessageFactory as _
+from plone.app.dexterity import _
 from plone.supermodel.parser import SupermodelParseError
 from zope.component import queryMultiAdapter
 import json

@@ -1,4 +1,5 @@
-<tal:root>
+<tal:root
+    i18n:domain="plone">
   <script type="text/javascript"
           tal:attributes="src context/++resource++schemaeditor.js"></script>
   <script type="text/javascript"
@@ -21,14 +22,12 @@
 
   <a class="pat-plone-modal"
       href="${context/absolute_url}/@@add-type">
-    <button i18n:domain="plone.app.dexterity"
-            i18n:translate="">Add New Content Type&hellip;</button>
+    <button i18n:translate="">Add New Content Type&hellip;</button>
   </a>
 
   <a class="pat-plone-modal"
       href="${context/absolute_url}/@@import-types">
-    <button i18n:domain="plone.app.dexterity"
-            i18n:translate="">Import Type Profiles&hellip;</button>
+    <button i18n:translate="">Import Type Profiles&hellip;</button>
   </a>
 
   <div class="crud-form"

@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="here/prefs_main_template/macros/master"
-      i18n:domain="plone.app.dexterity">
+      i18n:domain="plone">
 <body>
 <metal:main fill-slot="prefs_configlet_main">
 <tal:main-macro metal:define-macro="main">

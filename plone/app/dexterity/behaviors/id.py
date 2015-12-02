@@ -2,7 +2,7 @@
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity import _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.locking.interfaces import ILockable
