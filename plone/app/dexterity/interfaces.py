@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from Products.CMFCore.utils import getToolByName
-from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity import _
 from plone.app.widgets.interfaces import IFileFactory
 from z3c.form import validator
 from zope import schema
-from zope.interface import Interface, Attribute, Invalid
+from zope.interface import Attribute
+from zope.interface import Interface
+from zope.interface import Invalid
 from zope.publisher.interfaces.browser import IBrowserPage
 import re
 
@@ -40,7 +42,6 @@ def isValidId(value):
 class ITypeSettings(Interface):
     """ Define the fields for the content type add form
     """
-
     title = schema.TextLine(
         title=_(u'Type Name'),
     )

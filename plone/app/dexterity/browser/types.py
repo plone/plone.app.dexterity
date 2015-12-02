@@ -4,23 +4,24 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile \
     import ViewPageTemplateFile as FiveViewPageTemplateFile
 from ZPublisher.BaseRequest import DefaultPublishTraverse
-from plone.app.dexterity import MessageFactory as _
+from plone.app.dexterity import _
 from plone.app.dexterity.browser.utils import UTF8Property
 from plone.app.dexterity.interfaces import ITypeSchemaContext
+from plone.app.dexterity.interfaces import ITypesContext
 from plone.app.dexterity.interfaces import ITypeSettings
 from plone.app.dexterity.interfaces import ITypeStats
-from plone.app.dexterity.interfaces import ITypesContext
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.utils import getAdditionalSchemata
 from plone.schemaeditor.browser.schema.traversal import SchemaContext
 from plone.z3cform import layout
 from plone.z3cform.crud import crud
 from plone.z3cform.layout import FormWrapper
-from z3c.form import field, button
+from z3c.form import button
+from z3c.form import field
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.cachedescriptors.property import Lazy as lazy_property
-from zope.component import ComponentLookupError
 from zope.component import adapter
+from zope.component import ComponentLookupError
 from zope.component import getAllUtilitiesRegisteredFor
 from zope.component import getUtility
 from zope.interface import implementer
