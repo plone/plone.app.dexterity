@@ -10,7 +10,8 @@ New:
 
 Fixes:
 
-- *add item here*
+- Remove unused locales folder, translations are now in plone.app.locales.
+  [vincentfretin]
 
 
 2.1.16 (2015-12-03)
@@ -19,7 +20,7 @@ Fixes:
 Fixes:
 
 - Fix wrong usage of MessageFactory
- [jensens]
+  [jensens]
 
 - Use plone i18n domain
   [gforcada]
