@@ -1,16 +1,19 @@
 Changelog
 =========
 
-2.1.16 (unreleased)
+2.1.16 (2015-12-03)
 -------------------
-
-New:
-
-- *add item here*
 
 Fixes:
 
-- *add item here*
+- Fix wrong usage of MessageFactory
+ [jensens]
+
+- Use plone i18n domain
+  [gforcada]
+
+- Fix non existing self._request with schema.Choice value_type.
+  [pcdummy]
 
 
 2.1.15 (2015-10-28)
