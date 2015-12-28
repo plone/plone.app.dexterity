@@ -10,6 +10,9 @@ New:
 
 Fixes:
 
+- Update event handler documentation.
+  [jensens]
+
 - Remove unused locales folder, translations are now in plone.app.locales.
   [vincentfretin]
 
