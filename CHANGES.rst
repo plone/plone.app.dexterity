@@ -4,10 +4,6 @@ Changelog
 2.1.17 (unreleased)
 -------------------
 
-New:
-
-- *add item here*
-
 Fixes:
 
 - Update event handler documentation.
