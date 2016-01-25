@@ -149,7 +149,6 @@ To run the test, we need a test suite. In *tests.py*, we have:
 .. code-block:: python
 
     from zope.app.testing import setup
-    from zope.testing import doctestunit
     import doctest
     import unittest
 
@@ -161,7 +160,7 @@ To run the test, we need a test suite. In *tests.py*, we have:
 
     def test_suite():
         return unittest.TestSuite((
-            doctestunit.DocFileSuite(
+            doctest.DocFileSuite(
                 'behaviors.rst',
                 setUp=setUp, tearDown=tearDown,
                 optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS),
