@@ -61,8 +61,8 @@
 
   <adapter factory=".factories.DXFileFactory" />
   <adapter factory=".permissions.DXFieldPermissionChecker" />
-  <adapter factory=".permissions.DXAddViewFieldPermissionChecker" />
-  <adapter factory=".permissions.DXAddViewFieldPermissionChecker"
+  <adapter factory=".permissions.GenericFormFieldPermissionChecker" />
+  <adapter factory=".permissions.GenericFormFieldPermissionChecker"
            for="plone.z3cform.interfaces.IFormWrapper" />
 
 </configure>
