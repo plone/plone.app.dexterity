@@ -8,11 +8,12 @@ from plone.autoform.utils import resolveDottedName
 from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.utils import iterSchemata
 from plone.supermodel.utils import mergedTaggedValueDict
-from z3c.form.interfaces import IAddForm
+from z3c.form.interfaces import IForm
 from z3c.form.interfaces import IFieldWidget
 from zope.component import adapts
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility
+from zope.deprecation import deprecated
 from zope.interface import implements
 from zope.publisher.browser import TestRequest
 from zope.security.interfaces import IPermission
@@ -82,14 +83,33 @@ class DXFieldPermissionChecker(object):
             raise AttributeError('No such field: {0}'.format(field_name))
 
 
-class DXAddViewFieldPermissionChecker(DXFieldPermissionChecker):
+class GenericFormFieldPermissionChecker(DXFieldPermissionChecker):
     """Permission checker for when we just have an add view"""
 
-    adapts(IAddForm)
+    adapts(IForm)
 
     def __init__(self, view):
         if getattr(view, 'form_instance', None) is not None:
             view = view.form_instance
-        content = view.create({})
-        self.context = content.__of__(view.context)
+        if getattr(view, 'create', None):
+            content = view.create({})
+            self.context = content.__of__(view.context)
+        else:
+            self.context = view.context
+
         self._request = MockRequest()
+        self.view = view
+
+    def _get_schemata(self):
+        if getattr(self.view, 'create', None):
+            return iterSchemata(self.context)
+        return [self.view.schema]
+
+
+# BBB: Old name to match prior more limited function
+DXAddViewFieldPermissionChecker = GenericFormFieldPermissionChecker
+deprecated(
+    'DXAddViewFieldPermissionChecker',
+    'plone.app.dexterity.permissions.DXAddViewFieldPermissionChecker has been '
+    'replaced with GenericFormFieldPermissionChecker, please update any '
+    'imports.')

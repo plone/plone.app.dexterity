@@ -10,7 +10,9 @@ New:
 
 Fixes:
 
-- *add item here*
+- Make the form permission validator a bit more generic so it can be used
+  with non-AddForms.
+  [alecm]
 
 
 2.1.17 (2016-01-08)
