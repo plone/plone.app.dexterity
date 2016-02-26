@@ -4,10 +4,6 @@ Changelog
 2.1.18 (unreleased)
 -------------------
 
-New:
-
-- *add item here*
-
 Fixes:
 
 - Make the form permission validator a bit more generic so it can be used
