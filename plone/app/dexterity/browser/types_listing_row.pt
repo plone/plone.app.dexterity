@@ -14,7 +14,7 @@
 
     <a href=""
        tal:define="link python:view.context.context.link(view.getContent(), widget.field.__name__);
-                   item_type_class python:'contenttype-' + normalize(view.getContent().Title())"
+                   item_type_class python:'contenttype-' + normalize(view.getContent().id)"
        tal:omit-tag="python:widget.mode == 'input' or link is None"
        tal:attributes="href link;
                        class string:$item_type_class">

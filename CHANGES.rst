@@ -14,7 +14,8 @@ New:
 
 Fixes:
 
-- *add item here*
+- Use the type ID in HTML classes in the type listing rather than titles.
+  [davidjb]
 
 
 2.1.19 (2016-02-26)

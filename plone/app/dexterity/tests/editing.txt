@@ -30,7 +30,6 @@ can navigate to the configlet via the control panel::
   >>> 'Dexterity Content Types' in browser.contents
   True
 
-
 Adding a content type
 ---------------------
 
@@ -64,6 +63,22 @@ The listing needs to not break if a type description was stored encoded.
   >>> transaction.commit()
   >>> browser.open('http://nohost/plone/dexterity-types')
   >>> '\xc3\xbc' in browser.contents
+  True
+
+The listing should also feature a CSS class for display in the listing
+using the short name. Add a new content type to ensure the short name
+is present on the page:
+
+  >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> browser.getLink('Add New Content Type').click()
+  >>> browser.getControl('Type Name').value = 'Plonista Content'
+  >>> browser.getControl('Short Name').value = 'plonista-content-short-name'
+  >>> browser.getControl('Add').click()
+  >>> browser.url
+  'http://nohost/plone/dexterity-types/plonista-content-short-name/@@fields'
+
+  >>> browser.open('http://nohost/plone/dexterity-types')
+  >>> 'class="contenttype-plonista-content-short-name"' in browser.contents
   True
 
 
