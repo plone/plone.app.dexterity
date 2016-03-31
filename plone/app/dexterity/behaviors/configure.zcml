@@ -75,7 +75,7 @@
 
   <!-- Navigation root -->
   <plone:behavior
-      name="plone.namefromfilename"
+      name="plone.navigationroot"
       title="Navigation root"
       description="Make all items of this type a navigation root"
       provides="plone.app.layout.navigation.interfaces.INavigationRoot"
