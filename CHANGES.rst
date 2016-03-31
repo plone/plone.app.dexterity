@@ -1,16 +1,8 @@
 Changelog
 =========
 
-2.1.20 (unreleased)
+2.1.20 (2016-03-31)
 -------------------
-
-Incompatibilities:
-
-- *add item here*
-
-New:
-
-- *add item here*
 
 Fixes:
 
