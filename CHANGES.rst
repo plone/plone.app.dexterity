@@ -14,7 +14,11 @@ New:
 
 Fixes:
 
-- *add item here*
+- Fix problem in ConstrainTypesBehavior: 
+  when mode was ENABLED but only setLocallyAllowedTypes were set, 
+  then getImmediatelyAddableTypes returned None, 
+  but all consuming code expect it to return a list
+  [jensens]
 
 
 2.1.20 (2016-03-31)

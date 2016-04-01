@@ -144,6 +144,7 @@ class ConstrainTypesBehavior(object):
             if hasattr(self.context, 'immediately_addable_types'):
                 return self._filterByDefaults(
                     self.context.immediately_addable_types, context)
+            return default_addable
         elif mode == ACQUIRE:
             parent = self.context.__parent__
             parent_constrain_adapter = ISelectableConstrainTypes(parent, None)
