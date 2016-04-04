@@ -55,7 +55,7 @@ The *IRelatedItems* schema looks like this:
 
 .. code-block:: python
 
-    form plone.autoform.interfaces import IFormFieldProvider
+    from plone.autoform.interfaces import IFormFieldProvider
     from plone.autoform.directives import form
     from plone.formwidget.contenttree import ObjPathSourceBinder
     from plone.supermodel import model
