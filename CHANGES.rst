@@ -10,7 +10,8 @@ Incompatibilities:
 
 New:
 
-- *add item here*
+- Assign short names for all behaviors as supported by plone.behavior.
+  [jensens]
 
 Fixes:
 
