@@ -27,6 +27,9 @@ Fixes:
 
 Fixes:
 
+- Docs: Overhaul of chapter form-schema-hints.rst
+  [jensens]
+
 - Use the type ID in HTML classes in the type listing rather than titles.
   [davidjb]
 
