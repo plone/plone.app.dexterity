@@ -1,11 +1,10 @@
 Form Configuration with Schema Hints using Directives
 =====================================================
 
-Dexterity uses the directives in `plone.autoform`_ and `plone.supermodel`_ package to configure its `z3c.form`_-based add and edit forms.
-
+Dexterity uses the directives in `plone.autoform <http://pypi.python.org/pypi/plone.autoform>`_ and `plone.supermodel <http://pypi.python.org/pypi/plone.supermodel>`_ package to configure its `z3c.form <http://docs.zope.org/z3c.form>`_-based add and edit forms.
 A directive annotates a schema with “form hints”, which are used to configure the form when it gets generated from the schema.
 
-The easiest way to apply form hints in Python code is to use the directives from `plone.autoform` and `plone.supermodel`.
+The easiest way to apply form hints in Python code is to use the directives from `plone.autoform <http://pypi.python.org/pypi/plone.autoform>`_ and `plone.supermodel <http://pypi.python.org/pypi/plone.supermodel>`_.
 For the directives to work, the schema must derive from *plone.supermodel.model.Schema*.
 
 Directives can be placed anywhere in the class body (annotations are made directly on the class).
@@ -33,11 +32,11 @@ Each directive can be used zero or more times.
 
 There are two kinds of directives:
 
-- appereance related directives
+- appearance related directives
 - security related directives
 
 
-Appeareance Related Directives
+Appearance Related Directives
 ------------------------------
 
 *plone.autoform.directives* provides these:
@@ -53,7 +52,7 @@ mode              Set the widget mode for one or more fields.
                   Pass the field name as a key and the string ‘input’, ‘display’ or ‘hidden’ as the value.
 order\_before     Specify that a given field should be rendered before another.
                   Pass the field name as a key and name of the other field as a value.
-                  If the other field is in a supplementary schema (i.e. one from a behaviour),
+                  If the other field is in a supplementary schema (i.e. one from a behavior),
                   its name will be e.g. “IOtherSchema.otherFieldName”.
                   Alternatively, pass the string “\*” to put a field first in the form.
 order\_after      The inverse of order\_before(), putting a field after another.
@@ -129,7 +128,7 @@ The code sample below illustrates each of these directives:
         )
 
         # This field is moved before the 'description' field of the standard
-        # IBasic behaviour, if this is in use.
+        # IBasic behavior, if this is in use.
 
         directives.order_before(importantNote='IBasic.description')
         importantNote = schema.TextLine(
@@ -173,6 +172,3 @@ The code sample below illustrates each of these directives:
             required=False,
         )
 
-.. _plone.autoform: http://pypi.python.org/pypi/plone.autoform
-.. _plone.supermodel: http://pypi.python.org/pypi/plone.supermodel
-.. _z3c.form: http://docs.zope.org/z3c.form
