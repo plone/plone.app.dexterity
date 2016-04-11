@@ -15,6 +15,9 @@ New:
 
 Fixes:
 
+- Remove dups from TTW behavior FTI editor.
+  [jensens]
+
 - Fix problem in ConstrainTypesBehavior: 
   when mode was ENABLED but only setLocallyAllowedTypes were set, 
   then getImmediatelyAddableTypes returned None, 

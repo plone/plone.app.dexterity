@@ -244,7 +244,7 @@ We should be providing a link back to the fields editor::
 Enabling a behavior
 -------------------
 
-For each content type, a number of behaviors may be enabled.  Let's disable a
+For each content type, a number of behaviors may be enabled. Let's disable a
 behavior for 'plonista' and make sure that the change is reflected on the
 FTI::
 
@@ -252,7 +252,7 @@ FTI::
   >>> browser.url
   'http://nohost/plone/dexterity-types/plonista/@@behaviors'
 
-  >>> browser.getControl(name='form.widgets.plone.app.dexterity.behaviors.metadata.IDublinCore:list').value = []
+  >>> browser.getControl(name='form.widgets.plone.dublincore:list').value = []
   >>> browser.getControl('Save').click()
   >>> portal.portal_types.plonista.behaviors
   ['plone.app.content.interfaces.INameFromTitle']
