@@ -4,10 +4,6 @@ Changelog
 2.2.0 (unreleased)
 ------------------
 
-Incompatibilities:
-
-- *add item here*
-
 New:
 
 - Assign short names for all behaviors as supported by plone.behavior.
