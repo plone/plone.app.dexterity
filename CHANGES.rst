@@ -18,11 +18,14 @@ Fixes:
 - Remove dups from TTW behavior FTI editor.
   [jensens]
 
-- Fix problem in ConstrainTypesBehavior: 
-  when mode was ENABLED but only setLocallyAllowedTypes were set, 
-  then getImmediatelyAddableTypes returned None, 
+- Fix problem in ConstrainTypesBehavior:
+  when mode was ENABLED but only setLocallyAllowedTypes were set,
+  then getImmediatelyAddableTypes returned None,
   but all consuming code expect it to return a list
   [jensens]
+
+- Lookup of Content Type from MIME-Type for using right Plone Content Type to store Images (especially Tiff) correct as Images not Files.
+  [loechel]
 
 
 2.1.20 (2016-03-31)

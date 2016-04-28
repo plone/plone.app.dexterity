@@ -24,7 +24,7 @@ class DXFileFactory(object):
 
     def __call__(self, name, content_type, data):
         ctr = getToolByName(self.context, 'content_type_registry')
-        type_ = ctr.findTypeName(name.lower(), '', '') or 'File'
+        type_ = ctr.findTypeName(name.lower(), content_type, data) or 'File'
 
         name = name.decode("utf8")
 
