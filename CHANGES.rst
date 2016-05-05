@@ -10,7 +10,9 @@ New:
 
 Fixes:
 
-- *add item here*
+- fix constraints multiple acquisition (cherry picked from master, commit hash
+  12ab473b4d3e8c051e0b0d30b7a341dae597c8d4)
+  [cekk]
 
 
 2.0.17 (2015-10-28)
