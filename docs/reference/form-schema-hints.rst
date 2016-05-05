@@ -51,12 +51,19 @@ omitted           Omit one or more fields from forms. Takes a sequence of field 
 mode              Set the widget mode for one or more fields.
                   Pass the field name as a key and the string ‘input’, ‘display’ or ‘hidden’ as the value.
 order\_before     Specify that a given field should be rendered before another.
+                  Fields can only be ordered if they are in the same fieldset,
+                  otherwise order directive is ignored.
                   Pass the field name as a key and name of the other field as a value.
                   If the other field is in a supplementary schema (i.e. one from a behavior),
-                  its name will be e.g. “IOtherSchema.otherFieldName”.
-                  Alternatively, pass the string “\*” to put a field first in the form.
+                  its name will be e.g. ``IOtherSchema.other_field_name``.
+                  If the other field is from the same schema,
+                  its name can be abbreviated by a leading dot e.g. ``.other_field_name``.
+                  If the other field is is used without a prefix,
+                  its is looked up from the main schema e.g. ``other_field_name``.
+                  Alternatively, pass the string “\*” to put a field first in the fieldsets form.
 order\_after      The inverse of order\_before(), putting a field after another.
-                  Passing “\*” will put the field at the end of the form.
+                  It works almost similar to ``order_before``,
+                  except  passing “\*” will put the field at the end of the fieldsets form.
 ================= ======================================================================================================
 
 *plone.supermodel.directives* provides these:
