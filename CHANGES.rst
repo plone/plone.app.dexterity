@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.2.1 (unreleased)
+2.3.0 (unreleased)
 ------------------
 
 Breaking changes:
@@ -10,7 +10,10 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+- The defaults of exclude from navigation is no obtained from an adapter.
+  It still defaults to False. An alternative adapter which defaults to True is
+  provided but not registered. Custom adapters are possible too.
+  [jensens]
 
 Bug fixes:
 
