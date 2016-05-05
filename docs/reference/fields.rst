@@ -170,10 +170,22 @@ RichText  RichTextValue  Stores a ``RichTextValue``, which encapsulates a raw te
                          and a cached copy of the raw text transformed to the default output MIME type.
 ========= ============== ====================================================================================== ==================
 
+Fields in `plone.schema`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+See `plone.schema`_  for more details.
+
+========= ============== ====================================================================================== ==================
+Name      Type           Description                                                                            Properties
+========= ============== ====================================================================================== ==================
+Email     str            A field containing an email address                                                    IField, IMinMaxLen
+========= ============== ====================================================================================== ==================
+
 .. _creating schemata: ../schema-driven-types.html#the-schema
 .. _plone.app.textfield: http://pypi.python.org/pypi/plone.app.textfield
 .. _plone.formwidget.namedfile: http://pypi.python.org/pypi/plone.formwidget.namedfile
 .. _plone.namedfile: http://pypi.python.org/pypi/plone.namedfile
+.. _plone.schema: http://pypi.python.org/pypi/plone.schema
 .. _vocabularies: ../advanced/vocabularies.html
 .. _z3c.relationfield: http://pypi.python.org/pypi/z3c.relationfield
 .. _zope.schema: http://pypi.python.org/pypi/zope.schema
