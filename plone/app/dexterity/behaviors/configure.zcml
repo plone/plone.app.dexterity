@@ -88,6 +88,10 @@
       description="Allow items to be excluded from navigation"
       provides=".exclfromnav.IExcludeFromNavigation"
       />
+  <adapter
+      for="*"
+      factory=".exclfromnav.default_exclude_false"
+      />
 
   <!-- Next previous -->
   <plone:behavior
