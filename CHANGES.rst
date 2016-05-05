@@ -10,9 +10,10 @@ Breaking changes:
 
 New features:
 
-- The defaults of exclude from navigation is no obtained from an adapter.
-  It still defaults to False. An alternative adapter which defaults to True is
-  provided but not registered. Custom adapters are possible too.
+- The defaults of exclude from navigation is now obtained from a contextaware default factory, which value is obtained from an adapter.
+  The default adapter returns False.
+  An alternative adapter which defaults to True is provided but not registered.
+  This change makes it possible to provide a custom context specific implementation.
   [jensens]
 
 Bug fixes:
