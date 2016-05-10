@@ -4,14 +4,10 @@ Changelog
 2.0.18 (unreleased)
 -------------------
 
-New:
-
-- *add item here*
-
 Fixes:
 
-- fix constraints multiple acquisition (cherry picked from master, commit hash
-  12ab473b4d3e8c051e0b0d30b7a341dae597c8d4)
+- Fixed constraints multiple acquisition (cherry picked from
+  `master <https://github.com/plone/plone.app.dexterity/commit/12ab473b4d3e8c051e0b0d30b7a341dae597c8d4>`_).
   [cekk]
 
 
