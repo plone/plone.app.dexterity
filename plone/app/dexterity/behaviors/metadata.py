@@ -368,10 +368,11 @@ class Basic(MetadataBase):
         # See http://bo.geekworld.dk/diazo-bug-on-html5-validation-errors/
 
         if '\n' in value:
-            value = value.replace('\n', '')
-
-        if '\r' in value:
-            value = value.replace('\r', '')
+            value = value.replace('\n', ' ')
+            if '\r' in value:
+                value = value.replace('\r', '')
+        elif '\r' in value:
+            value = value.replace('\r', ' ')
 
         self.context.description = value
 
