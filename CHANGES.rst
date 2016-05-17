@@ -16,6 +16,9 @@ New features:
   This change makes it possible to provide a custom context specific implementation.
   [jensens]
 
+- Documentation: Shortnames added and some missing behaviors added.
+  [jensens]
+
 Bug fixes:
 
 - *add item here*
