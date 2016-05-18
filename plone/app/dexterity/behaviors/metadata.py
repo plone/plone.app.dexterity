@@ -366,13 +366,8 @@ class Basic(MetadataBase):
         # If description is containing linefeeds the HTML
         # validation can break.
         # See http://bo.geekworld.dk/diazo-bug-on-html5-validation-errors/
-
-        if '\n' in value:
-            value = value.replace('\n', ' ')
-            if '\r' in value:
-                value = value.replace('\r', '')
-        elif '\r' in value:
-            value = value.replace('\r', ' ')
+        # Remember: \r\n - Windows, \r - OS X, \n - Linux/Unix
+        value = value.replace('\r\n', ' ').replace('\r', ' ').replace('\n', ' ')  # noqa
 
         self.context.description = value
 
