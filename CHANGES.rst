@@ -21,7 +21,9 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Linebreaks in description are replaced with a space instead of vanishing it.
+  Thus an editor can use them w/o having word glued together afterwards.
+  [jensens]
 
 
 2.2.0 (2016-04-28)
