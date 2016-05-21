@@ -4,10 +4,6 @@ Changelog
 2.3.0 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
 - The defaults of exclude from navigation is now obtained from a contextaware default factory, which value is obtained from an adapter.
