@@ -60,4 +60,12 @@
       handler=".to2004.remove_cr_and_lf_description"
       />
 
+  <genericsetup:upgradeStep
+      source="2004"
+      destination="2005"
+      title="Remove dexterity-types from portal_actions"
+      profile="plone.app.dexterity:default"
+      handler=".to2005.cleanup_portal_actions"
+      />
+
 </configure>

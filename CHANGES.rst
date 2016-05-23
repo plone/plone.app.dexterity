@@ -14,7 +14,10 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Removed ``dexterity-types`` from portal_actions.  This is set
+  correctly in ``controlpanel.xml``.
+  Issue https://github.com/plone/plone.app.dexterity/issues/218
+  [maurits]
 
 
 2.3.0 (2016-05-21)
