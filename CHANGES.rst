@@ -4,14 +4,6 @@ Changelog
 2.3.1 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Removed ``dexterity-types`` from portal_actions.  This is set
