@@ -29,12 +29,6 @@ from zope.publisher.interfaces.browser import IBrowserPublisher
 import urllib
 
 
-HELP = """<p>Content types show up on Plone's 'Add Item' menu and allow
-you to store custom data in your site.</p>
-
-<p>Click the "Add Content Type" button to begin creating
-a new content type with its own fields.</p>"""
-
 ALLOWED_FIELDS = [
     u'plone.app.textfield.RichText',
     u'plone.namedfile.field.NamedBlobImage',
@@ -198,7 +192,10 @@ class TypesListing(crud.CrudForm):
                      u'your site.')
         else:
             return _('help_addcontenttype_button',
-                     default=HELP)
+                     default= u'Content types show up on Plone's \"Add Item\" menu and allow '
+                              u'you to store custom data in your site. Click the \"Add Content '
+                              u'Type\" button to begin creating a new content type with its '
+                              u'own fields.')
 
     template = ViewPageTemplateFile('types_listing.pt')
     view_schema = field.Fields(ITypeSettings).select('title', 'description')
