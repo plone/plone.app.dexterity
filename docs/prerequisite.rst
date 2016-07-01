@@ -1,17 +1,21 @@
 Prerequisites
 ==============
 
+This portion of the Dexterity documentation is mainly intended to illuminate Dexterity features.
+If you would like an in-depth, step-by-step approach, we recommend you work through the `Mastering Plone <https://training.plone.org/>`_ training.
+
 **Setting up a Dexterity project**
 
 Preparing a development environment
 -----------------------------------
 
-First, get a working Plone installation. If you don't already have one, the easiest way to do so is to use one of Plone's installers. Note that for development purposes, you may use a `standalone` (non-ZEO), non-root install.
+First, get a working Plone installation.
+If you don't already have one, the easiest way to do so is to use one of Plone's installers.
+Note that for development purposes, you may use a `standalone` (non-ZEO), non-root install.
 
-Second, add our standard development tools. If you've used one of our
-installers, developer tool configurations are in a separate file,
-``develop.cfg``. Once your site is running, you may activate the development
-configuration by using the command:
+Second, add our standard development tools.
+If you've used one of our installers, developer tool configurations are in a separate file, ``develop.cfg``.
+Once your site is running, you may activate the development configuration by using the command:
 
 .. code-block:: console
 
@@ -27,7 +31,9 @@ The key tools that you'll need, both supplied by develop.cfg, are:
 
 .. note::
 
-If you've created yor own buildout.cfg file rather than using one of the installers, you'll need to add an equivalent development configuration. The easiest way to do so is to pick up a copy from the `Unified Installer's github repository <https://github.com/plone/Installers-UnifiedInstaller/blob/master/base_skeleton/develop.cfg>`_. To pick up mr.bob and the Plone templates alone, just add a mrbob part to your buildout:
+If you've created yor own buildout.cfg file rather than using one of the installers, you'll need to add an equivalent development configuration.
+The easiest way to do so is to pick up a copy from the `Unified Installer's github repository <https://github.com/plone/Installers-UnifiedInstaller/blob/master/base_skeleton/develop.cfg>`_.
+To pick up mr.bob and the Plone templates alone, just add a mrbob part to your buildout:
 
 
 .. code-block:: ini
@@ -47,16 +53,17 @@ Creating a package
 
 .. note::
 
-    We're going to build a package named example.conference. You may find a completed version of it in the `Collective repository <https://github.com/collective/example.conference>`_.
+    We're going to build a package named example.conference.
+    You may find a completed version of it in the `Collective repository <https://github.com/collective/example.conference>`_.
 
 Typically, our content types will live in a separate package to our theme and other customisations.
 
-To create a new package, we can start with *mrbob* and the ``dexterity``
-template.
+To create a new package, we can start with *mrbob* and the ``dexterity`` template.
 
 .. note::
 
-    Nothing that we're doing actually requires mrbob or the bobtemplates.plone skeleton package. It's just a quick way of getting started.
+    Nothing that we're doing actually requires mrbob or the bobtemplates.plone skeleton package.
+    It's just a quick way of getting started.
 
 We run the following from the ``src/`` directory
 
@@ -64,9 +71,12 @@ We run the following from the ``src/`` directory
 
   $ ../bin/mrbob -O example.conference bobtemplates:plone_addon
 
-Choose to create a "Dexterity" package and specify your target version of Plone. Otherwise, you may accept all the default suggestions. This will create a directory named ``example.conference`` inside ./src.
+Choose to create a "Dexterity" package; specify "Program" for your content-type name; and specify your target version of Plone.
+Otherwise, you may accept the default suggestions.
+This will create a directory named ``example.conference`` inside ./src.
 
-Now, take a look at the setup.py file in your new package. Edit the `author,` `author_email` and `description` fields as you wish. Note a couple of parts of the generated setup.py file:
+Now, take a look at the setup.py file in your new package. Edit the `author,` `author_email` and `description` fields as you wish.
+Note a couple of parts of the generated setup.py file:
 
 .. code-block:: python
 
@@ -82,7 +92,8 @@ Now, take a look at the setup.py file in your new package. Edit the `author,` `a
           target = plone
           """,
 
-The addition of `plone.app.dexterity` to our install requirements assures that we'll have Dexterity loaded -- even in older version of Plone.The specification of `plone` as a z3c.autoinclude.plugin entry point ensures that we won't need to separately specify our zcml in buildout.
+The addition of `plone.app.dexterity` to our install requirements assures that we'll have Dexterity loaded -- even in older version of Plone.
+The specification of `plone` as a z3c.autoinclude.plugin entry point ensures that we won't need to separately specify our zcml in buildout.
 
 Now, let's take a look at ``configure.zcml`` in the examples/conference directory of our project. Again, we want to note a few parts:
 
