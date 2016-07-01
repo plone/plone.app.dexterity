@@ -106,10 +106,10 @@ The top part of the file should look like:
         )
 
         details = RichText(
-                title=_(u'Details'),
-                description=_(u'Details about the program.'),
-                required=False,
-            )
+            title=_(u'Details'),
+            description=_(u'Details about the program.'),
+            required=False,
+        )
 
 
 If you haven't developed for Plone before, take special note of the ``from example.conference import MessageFactory as _`` code.
@@ -136,7 +136,7 @@ Save program.py.
 
 .. code-block:: python
 
-    from example.conference import MessageFactory as _
+    from example.conference import _
     from plone.app.textfield import RichText
     from plone.supermodel import model
     from zope import schema
@@ -207,10 +207,10 @@ Look in the ``types.xml`` file in your packages ``example/conference/profiles/de
     </object>
 
 Note that the type name should be unique.
-If it isn't, use the package name as a prefix and the type name in lowercase to create a unique name.
+If it isn't, use the package name as a prefix and the type name create a unique name.
 It is important that the ``meta_type`` is *Dexterity FTI*.
 The FTI specification is what makes this a Dexterity file type.
-The `types/`` file name must matche the type name, but all lower-case.
+The `types/`` file name must matche the type name.
 
 Let's take a look at a ``types/`` XML file.
 The ``Session`` type, in ``session.xml``, should look like this:
