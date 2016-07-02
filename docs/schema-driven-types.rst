@@ -207,7 +207,7 @@ Look in the ``types.xml`` file in your packages ``example/conference/profiles/de
     </object>
 
 Note that the type name should be unique.
-If it isn't, use the package name as a prefix and the type name create a unique name.
+If it isn't, use the package name as a prefix and the type name to create a unique name.
 It is important that the ``meta_type`` is *Dexterity FTI*.
 The FTI specification is what makes this a Dexterity file type.
 The `types/`` file name must matche the type name.
@@ -218,45 +218,64 @@ The ``Session`` type, in ``session.xml``, should look like this:
 .. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <object name="Program" meta_type="Dexterity FTI" i18n:domain="example.conference"
+    <object name="Session" meta_type="Dexterity FTI" i18n:domain="example.conference"
        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-
-      <!-- Basic Metadata -->
       <property name="title" i18n:translate="">Session</property>
-      <property name="description" i18n:translate="">A Conference Session</property>
+      <property name="description"
+        i18n:translate="">Conference Session</property>
+
+      <!-- content-type icon -->
       <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+
+      <!-- factory name; usually the same as type name -->
       <property name="factory">Session</property>
-      <property name="add_view_expr">string:${folder_url}/++add++Program</property>
+
+      <!-- URL TALES expression to add an item TTW -->
+      <property name="add_view_expr">string:${folder_url}/++add++Session</property>
+
       <property name="link_target"></property>
       <property name="immediate_view">view</property>
 
+      <!-- Is this item addable globally, or is it restricted? -->
       <property name="global_allow">False</property>
 
+      <!-- If we're a container, should we filter addable content types? -->
       <property name="filter_content_types">True</property>
-      <property name="allowed_content_types"></property>
+      <!-- If filtering, what's allowed -->
+      <property name="allowed_content_types">
+      </property>
+
       <property name="allow_discussion">False</property>
 
+      <!-- what are our available view methods, and what's the default? -->
       <property name="default_view">view</property>
+      <!-- the view methods below will be selectable via the display tab -->
       <property name="view_methods">
         <element value="view"/>
       </property>
       <property name="default_view_fallback">False</property>
 
+      <!-- permission required to add an item of this type -->
       <property name="add_permission">cmf.AddPortalContent</property>
 
-      <!-- schema and class used for content items -->
-      <property name="schema">example.conference.program.ISession</property>
+      <!-- Python class for content items of this sort -->
       <property name="klass">plone.dexterity.content.Item</property>
 
-      <!-- Behaviors -->
+      <!-- Dexterity behaviours for this type -->
       <property name="behaviors">
         <element value="plone.app.content.interfaces.INameFromTitle"/>
       </property>
 
+      <!-- If defined by a schema interface, dotted name of schema class -->
+      <property name="schema">example.conference.session.ISession</property>
+
+      <!-- Or, we could have the supermodel XML here in escaped XML -->
       <property name="model_source"></property>
+
+      <!-- Or, we could point to a supermodel XML file -->
       <property name="model_file"></property>
 
-      <!-- Method aliases -->
+      <!-- Action aliases; rarely changed -->
       <alias from="(Default)" to="(dynamic view)"/>
       <alias from="edit" to="@@edit"/>
       <alias from="sharing" to="@@sharing"/>
@@ -272,6 +291,8 @@ The ``Session`` type, in ``session.xml``, should look like this:
         <permission value="Modify portal content"/>
       </action>
     </object>
+
+
 
 Note that the ``icon_expr`` and ``global_allow`` declarations have changed from the original.
 
