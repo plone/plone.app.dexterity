@@ -188,14 +188,16 @@ class TypesListing(crud.CrudForm):
     @lazy_property
     def description(self):
         if self.get_items():
-            return _(u'The following custom content types are available for '
-                     u'your site.')
-        else:
-            return _('help_addcontenttype_button',
-                     default= u'Content types show up on Plone's \"Add Item\" menu and allow '
-                              u'you to store custom data in your site. Click the \"Add Content '
-                              u'Type\" button to begin creating a new content type with its '
-                              u'own fields.')
+            return _(
+                u'The following custom content types are available for your '
+                u'site.'
+            )
+        return _(
+            'help_addcontenttype_button',
+            default= u'Content types show up on Plone\'s "Add Item" menu and '
+                     u'allow you to store custom data in your site. Click the '
+                     u'"Add Content Type" button to begin creating a new '
+                     u'content type with its own fields.')
 
     template = ViewPageTemplateFile('types_listing.pt')
     view_schema = field.Fields(ITypeSettings).select('title', 'description')
