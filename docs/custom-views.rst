@@ -18,11 +18,6 @@ You can register a view for your schema interface, and it will be available on y
 If the view is named *view*, it will be the default view, at least if you use the standard FTI configuration.
 This is because the FTI’s ``default_view`` property is set to ``view``, and ``view`` is in the list of ``view_methods.``
 
-.. note::
-
-    ``addcontent`` will have created a "SampleView" class in each content type's .py file. Just rename it to "View" to follow the example.
-
-
 First create a view registration with a ``<browser:page />`` ZCML directive in your ```configure.zcml`` file:
 
 .. code-block:: xml

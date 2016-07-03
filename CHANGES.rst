@@ -16,6 +16,11 @@ Bug fixes:
 
 - *add item here*
 
+Documentation changes:
+
+- Revised tutorial sections to use mr.bob and bobtemplates.plone rather than ZopeSkel.
+  [smcmahon]
+
 
 2.3.1 (2016-06-07)
 ------------------
