@@ -28,7 +28,7 @@ Copy that file to ``program.py`` in the same directory.
 In ``interfaces.py``, delete the ``IProgram`` class.
 In ``program.py``, delete the ``IExampleConferenceLayer`` class.
 
-In your package's src/collective/example/profiles/default/types directory, you should find a file named ``Program.xml``.
+In your package's src/example/conference/profiles/default/types directory, you should find a file named ``Program.xml``.
 Find the line that reads:
 
 .. code-block:: xml
