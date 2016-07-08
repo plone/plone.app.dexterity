@@ -14,20 +14,20 @@ from zope.component import adapts
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility
 from zope.deprecation import deprecated
-from zope.interface import implements
+from zope.interface import implementer
 from zope.publisher.browser import TestRequest
 from zope.security.interfaces import IPermission
 
 
+@implementer(IWidgetsLayer)
 class MockRequest(TestRequest):
-    implements(IWidgetsLayer)
+    pass
 
 
+@implementer(IFieldPermissionChecker)
 class DXFieldPermissionChecker(object):
     """
     """
-
-    implements(IFieldPermissionChecker)
     adapts(IDexterityContent)
 
     DEFAULT_PERMISSION = 'Modify portal content'
