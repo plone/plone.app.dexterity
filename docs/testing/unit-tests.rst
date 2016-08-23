@@ -125,7 +125,7 @@ To run the tests, we can do:
 
 .. code-block:: console
 
-    $ ./bin/text example.conference
+    $ ./bin/test example.conference
 
 Hopefully it should show five passing tests.
 
