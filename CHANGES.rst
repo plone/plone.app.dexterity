@@ -14,7 +14,10 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- TTW behaviors selection of the name is now bound to the registration,
+  prior it was bound to the interface.
+  But interfaces may be used by more than one registered behavior.
+  [jensens]
 
 
 2.3.2 (2016-08-12)

@@ -91,14 +91,14 @@ class TypeBehaviorsForm(form.EditForm):
     @property
     def fields(self):
         counts = Counter(
-            [reg.interface for name, reg in getUtilitiesFor(IBehavior)]
+            [id(reg) for name, reg in getUtilitiesFor(IBehavior)]
         )
         fields = []
         for name, reg in getUtilitiesFor(IBehavior):
             if name in TTW_BEHAVIOR_BLACKLIST:
                 # skip blacklisted
                 continue
-            with_name = counts[reg.interface] == 2
+            with_name = counts[id(reg)] > 1
             if with_name and reg.name != name:
                 continue
             fname = reg.name if reg.name else name
