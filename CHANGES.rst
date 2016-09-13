@@ -4,14 +4,6 @@ Changelog
 2.3.3 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - TTW behaviors selection of the name is now bound to the registration,
