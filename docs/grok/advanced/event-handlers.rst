@@ -91,7 +91,7 @@ definition::
         for user_info in matching_users:
             email = user_info.get('email', None)
             if email is not None:
-                mail_host.secureSend(message, email, sender, subject)
+                mail_host.send(message, email, sender, subject)
 
 There are many ways to improve this rather simplistic event handler, but
 it illustrates how events can be used. The first argument to

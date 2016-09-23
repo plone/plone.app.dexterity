@@ -32,10 +32,10 @@ In our example product, we have an event handler like this:
         for user_info in matching_users:
             email = user_info.get('email', None)
             if email is not None:
-                mail_host.secureSend(message, email, sender, subject)
+                mail_host.send(message, email, sender, subject)
 
 If we want to test that this sends the right kind of email message,
-we’ll need to somehow inspect what is passed to *secureSend()*. The only
+we’ll need to somehow inspect what is passed to *send()*. The only
 way to do that is to replace the *MailHost*object that is acquired when
 *getToolByName(presenter, ‘MailHost’)* is called, with something that
 performs that assertion for us.
@@ -146,7 +146,7 @@ As an example test case, consider the following class in
 
             mail_host_mock = self.mocker.mock()
             self.mock_tool(mail_host_mock, 'MailHost')
-            self.expect(mail_host_mock.secureSend(message, email, sender, subject))
+            self.expect(mail_host_mock.send(message, email, sender, subject))
 
 
             # put mock framework into replay mode
@@ -193,8 +193,8 @@ get your head around what’s going on here. Let’s run though the test:
    *plone.mocktestcase* documentation to see the various other types of
    assertions you can make.
 -  The most important mock assertion is the line
-   *self.expect(mail\_host\_mock.secureSend(message, email, sender,
-   subject))*. This asserts that the *secureSend()* method gets called
+   *self.expect(mail\_host\_mock.send(message, email, sender,
+   subject))*. This asserts that the *send()* method gets called
    with the required message, recipient address, sender address and
    subject, exactly once.
 -  We then put the mock into replay mode, using *self.replay()*. Up
