@@ -14,7 +14,9 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Replaced ``secureSend`` with ``send`` in documentation.
+  ``secureSend`` has long been deprecated.
+  [maurits]
 
 
 2.3.3 (2016-09-14)
