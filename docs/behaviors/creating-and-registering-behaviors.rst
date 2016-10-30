@@ -45,7 +45,7 @@ It looks like this:
 We first include the *plone.behavior meta.zcml* file, so that we get access to the *<plone:behavior />* ZCML directive.
 
 The behavior itself is registered with the *<plone:behavior />* directive.
-We set a *title* and a *description*, and then speicfy the **behavior interface** with the *provides* attribute.
+We set a *title* and a *description*, and then specify the **behavior interface** with the *provides* attribute.
 This attribute is required, and is used to construct the unique name for the behavior.
 In this case, the behavior name is *collective.gtags.behaviors.ITags*, the full dotted name to the behavior interface.
 When the behavior is enabled for a type, it will be possible to adapt instances of that type to *ITags*.
@@ -121,7 +121,7 @@ See the `Dexterity Developer Manual`_ for more information about setting form hi
 
 If your behavior does not provide form fields, you can just derive from *zope.interface.Interface* and omit the *alsoProvides()* line.
 
-Next, we write the class that implements the behavior adapter and acts the adapter factory.
+Next, we write the class that implements the behavior adapter and acts as the adapter factory.
 Notice how it implements the behavior interface (*ITags*), and adapts a broad interface *(IDublinCore*).
 The behavior cannot be enabled on types not supporting this interface.
 In many cases, you will omit the *adapter()* line, provided your behavior is generic enough to work on any context.
