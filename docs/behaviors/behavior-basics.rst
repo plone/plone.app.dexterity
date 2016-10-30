@@ -7,7 +7,7 @@ Before we dive into the practical examples, we need to explain a few of the conc
 
 At the most basic level, a behavior is like a ‘conditional’ adapter.
 For a Dexterity content type, the default condition is, "is this behavior listed in the *behaviors* property in the FTI?"
-But the condition itself is an adapter, in rare cases this can be overruled.
+But the condition itself is an adapter; in rare cases this can be overruled.
 When a behavior is enabled for a particular object, it will be possible to adapt that object to the behavior’s interface.
 If the behavior is disabled, adaptation will fail.
 
