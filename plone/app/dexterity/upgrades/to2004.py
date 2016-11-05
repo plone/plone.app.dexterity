@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from plone.dexterity.interfaces import IDexterityFTI
+from Products.CMFCore.utils import getToolByName
 
 
 def remove_cr_and_lf_description(context):

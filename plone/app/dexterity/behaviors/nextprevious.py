@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from Acquisition import aq_base
-from zope.component import getUtility
-from Products.CMFCore.interfaces import IContentish
 from plone.app.dexterity import _
 from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.supermodel import model
 from plone.registry.interfaces import IRegistry
+from plone.supermodel import model
+from Products.CMFCore.interfaces import IContentish
 from z3c.form import widget
 from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.component import adapter
-from zope.interface import Interface
+from zope.component import getUtility
 from zope.interface import implementer
+from zope.interface import Interface
 from zope.interface import provider
 
 

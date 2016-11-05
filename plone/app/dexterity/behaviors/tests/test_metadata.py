@@ -64,6 +64,7 @@ class TestDCFieldProperty(unittest.TestCase):
 
     def _makeOne(self):
         class Dummy(object):
+
             def addCreator(self, creator=None):
                 self.creators = (creator or 'dummy_user', )
 

@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.interfaces._content import IFolderish
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import utils as ploneutils
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
+from Products.CMFCore.interfaces._content import IFolderish
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import utils as ploneutils
 from thread import allocate_lock
 from zope.component import adapter
 from zope.container.interfaces import INameChooser
 from zope.interface import implementer
+
 import transaction
+
 
 upload_lock = allocate_lock()
 
@@ -26,7 +28,7 @@ class DXFileFactory(object):
         ctr = getToolByName(self.context, 'content_type_registry')
         type_ = ctr.findTypeName(name.lower(), content_type, data) or 'File'
 
-        name = name.decode("utf8")
+        name = name.decode('utf8')
 
         chooser = INameChooser(self.context)
 

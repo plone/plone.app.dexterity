@@ -2,6 +2,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
+
 # constants for enableConstrain. Copied from AT
 ACQUIRE = -1  # acquire locallyAllowedTypes from parent (default)
 DISABLED = 0  # use default behavior of PortalFolder which uses the FTI info
@@ -103,9 +104,8 @@ class ConstrainTypesBehavior(object):
                     context), context)
             return [t for t in default_addable if t.getId() in return_tids]
         else:
-            raise Exception(
-                "Wrong constraint setting. %i is an invalid value",
-                mode)
+            msg = 'Wrong constraint setting. %i is an invalid value'
+            raise Exception(msg, mode)
 
     def getLocallyAllowedTypes(self, context=None):
         """
@@ -120,7 +120,7 @@ class ConstrainTypesBehavior(object):
         defaults = [t.getId() for t in self.getDefaultAddableTypes()]
         for type_ in types:
             if type_ not in defaults:
-                raise ValueError("%s is not a valid type id", type_)
+                raise ValueError('%s is not a valid type id', type_)
         self.context.locally_allowed_types = types
 
     def getImmediatelyAddableTypes(self, context=None):
@@ -154,13 +154,12 @@ class ConstrainTypesBehavior(object):
                 parent_constrain_adapter.getImmediatelyAddableTypes(
                     context), context)
         else:
-            raise Exception(
-                "Wrong constraint setting. %i is an invalid value",
-                mode)
+            msg = 'Wrong constraint setting. %i is an invalid value'
+            raise Exception(msg, mode)
 
     def setImmediatelyAddableTypes(self, types):
         defaults = [t.getId() for t in self.getDefaultAddableTypes()]
         for type_ in types:
             if type_ not in defaults:
-                raise ValueError("%s is not a valid type id", type_)
+                raise ValueError('%s is not a valid type id', type_)
         self.context.immediately_addable_types = types

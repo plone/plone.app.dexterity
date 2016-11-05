@@ -5,6 +5,7 @@ from plone.app.dexterity.tests.test_constrains import add_item_type
 from xml.dom.minidom import parseString
 from xml.parsers.expat import ExpatError
 from zope.component import getMultiAdapter
+
 import StringIO
 import unittest
 import zipfile
@@ -43,7 +44,8 @@ class TestExportXMLValidity(unittest.TestCase):
             try:
                 parseString(file_xml)
             except ExpatError as e:
-                self.fail("Parsing XML failed with ExpatError: " + e.message)
+                msg = 'Parsing XML failed with ExpatError: {0}'
+                self.fail(msg.format(e.message))
 
 
 def test_suite():

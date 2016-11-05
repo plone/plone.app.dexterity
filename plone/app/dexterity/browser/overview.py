@@ -3,7 +3,8 @@ from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity.interfaces import ITypeSettings
 from Products.CMFCore.interfaces import IFolderish
-from z3c.form import form, field
+from z3c.form import field
+from z3c.form import form
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.dottedname.resolve import resolve as resolveDottedName
 

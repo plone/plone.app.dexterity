@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
 """ Support for importing Dexterity types from GS zip file.
 """
+from cStringIO import StringIO
 # XXX: need to make exceptions more specific, shorten messages
 from DateTime.DateTime import DateTime
-from Products.CMFCore.utils import getToolByName
-from Products.GenericSetup.context import BaseContext
-from Products.GenericSetup.interfaces import IImportContext
-from cStringIO import StringIO
 from lxml import etree
 from plone.app.dexterity import _
 from plone.namedfile.field import NamedFile
 from plone.z3cform.layout import wrap_form
+from Products.CMFCore.utils import getToolByName
+from Products.GenericSetup.context import BaseContext
+from Products.GenericSetup.interfaces import IImportContext
 from z3c.form import field
 from z3c.form import form
 from zipfile import BadZipfile
 from zipfile import ZipFile
+from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import Invalid
-from zope.interface import implementer
 from zope.interface import invariant
 from zope.site.hooks import getSite
+
 import os.path
 import zope.schema
 
@@ -74,11 +75,12 @@ class ITypeProfileImport(Interface):
                         'Types in archive must be only Dexterity types.'
                     ),)
                 if attribs['name'] in existing_types:
-                    raise Invalid(_(
+                    msg = (
                         u'One or more types in the import archive is an '
                         u'existing type. Delete "%s" if you '
-                        u'really wish to replace it.' % attribs['name']
-                    ),)
+                        u'really wish to replace it.'
+                    )
+                    raise Invalid(_(msg, attribs['name']), )
 
 
 @implementer(ITypeProfileImport)

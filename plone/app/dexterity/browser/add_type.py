@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity import _
 from plone.app.dexterity.interfaces import ITypeSettings
 from plone.dexterity.fti import DexterityFTI
 from plone.z3cform.layout import wrap_form
+from Products.CMFCore.utils import getToolByName
 from z3c.form import field
 from z3c.form import form
 
@@ -24,7 +24,7 @@ class TypeAddForm(form.AddForm):
         if data['description']:
             data['description'] = data['description'].encode('utf8')
         data['i18n_domain'] = 'plone'
-        data['behaviors'] = "\n".join([
+        data['behaviors'] = '\n'.join([
             'plone.app.dexterity.behaviors.metadata.IDublinCore',
             'plone.app.content.interfaces.INameFromTitle',
         ])
@@ -50,7 +50,7 @@ class TypeAddForm(form.AddForm):
     def nextURL(self):
         url = self.context.absolute_url()
         if self.fti_id is not None:
-            url += '/%s/@@fields' % self.fti_id
+            url += '/{0}/@@fields'.format(self.fti_id)
         return url
 
 TypeAddFormPage = wrap_form(TypeAddForm)

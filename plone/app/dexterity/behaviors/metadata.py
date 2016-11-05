@@ -1,7 +1,6 @@
+# -*- coding: utf-8 -*-
 from AccessControl.SecurityManagement import getSecurityManager
 from DateTime import DateTime
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from datetime import datetime
 from plone.app.dexterity import _
 from plone.app.z3cform.widget import AjaxSelectFieldWidget
@@ -12,6 +11,8 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.utils import safe_unicode
 from plone.supermodel import model
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
 from z3c.form.widget import ComputedWidgetAttribute
@@ -24,6 +25,7 @@ from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.schema.interfaces import ISequence
 from zope.schema.interfaces import IText
+
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
 # content edit forms.
@@ -128,8 +130,8 @@ class ICategorization(model.Schema):
 
 
 class EffectiveAfterExpires(Invalid):
-    __doc__ = _("error_invalid_publication",
-                default=u"Invalid effective or expires date")
+    __doc__ = _('error_invalid_publication',
+                default=u'Invalid effective or expires date')
 
 
 @provider(IFormFieldProvider)
@@ -145,8 +147,8 @@ class IPublication(model.Schema):
         title=_(u'label_effective_date', u'Publishing Date'),
         description=_(
             u'help_effective_date',
-            default=u"If this date is in the future, the content will "
-                    u"not show up in listings and searches until this date."),
+            default=u'If this date is in the future, the content will '
+                    u'not show up in listings and searches until this date.'),
         required=False
     )
     directives.widget('effective', DatetimeFieldWidget)
@@ -155,8 +157,8 @@ class IPublication(model.Schema):
         title=_(u'label_expiration_date', u'Expiration Date'),
         description=_(
             u'help_expiration_date',
-            default=u"When this date is reached, the content will no"
-                    u"longer be visible in listings and searches."),
+            default=u'When this date is reached, the content will no'
+                    u'longer be visible in listings and searches.'),
         required=False
     )
     directives.widget('expires', DatetimeFieldWidget)
@@ -165,8 +167,8 @@ class IPublication(model.Schema):
     def validate_start_end(data):
         if data.effective and data.expires and data.effective > data.expires:
             raise EffectiveAfterExpires(
-                _("error_expiration_must_be_after_effective_date",
-                  default=u"Expiration date must be after publishing date.")
+                _('error_expiration_must_be_after_effective_date',
+                  default=u'Expiration date must be after publishing date.')
             )
 
     directives.omitted('effective', 'expires')
@@ -191,9 +193,9 @@ class IOwnership(model.Schema):
         title=_(u'label_creators', u'Creators'),
         description=_(
             u'help_creators',
-            default=u"Persons responsible for creating the content of "
-                    u"this item. Please enter a list of user names, one "
-                    u"per line. The principal creator should come first."
+            default=u'Persons responsible for creating the content of '
+                    u'this item. Please enter a list of user names, one '
+                    u'per line. The principal creator should come first.'
         ),
         value_type=schema.TextLine(),
         required=False,
@@ -209,9 +211,9 @@ class IOwnership(model.Schema):
         title=_(u'label_contributors', u'Contributors'),
         description=_(
             u'help_contributors',
-            default=u"The names of people that have contributed "
-                    u"to this item. Each contributor should "
-                    u"be on a separate line."),
+            default=u'The names of people that have contributed '
+                    u'to this item. Each contributor should '
+                    u'be on a separate line.'),
         value_type=schema.TextLine(),
         required=False,
         missing_value=(),

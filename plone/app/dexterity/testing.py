@@ -23,13 +23,13 @@ DEXTERITY_FIXTURE = DexterityFixture()
 
 DEXTERITY_INTEGRATION_TESTING = IntegrationTesting(
     bases=(DEXTERITY_FIXTURE,),
-    name="dexterity:Integration"
+    name='dexterity:Integration'
 )
 DEXTERITY_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(DEXTERITY_FIXTURE,),
-    name="dexterity:Functional"
+    name='dexterity:Functional'
 )
 DEXTERITY_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(DEXTERITY_FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
-    name="dexterity:Acceptance"
+    name='dexterity:Acceptance'
 )

@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
-from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity import _
 from plone.app.widgets.interfaces import IFileFactory
+from Products.CMFCore.utils import getToolByName
 from z3c.form import validator
 from zope import schema
 from zope.interface import Attribute
 from zope.interface import Interface
 from zope.interface import Invalid
 from zope.publisher.interfaces.browser import IBrowserPage
+
 import re
 
 
@@ -103,8 +104,8 @@ class TypeIdValidator(validator.SimpleFieldValidator):
 
         ttool = getToolByName(self.context, 'portal_types')
         if value in ttool.objectIds():
-            raise Invalid(_(u"There is already a content type named '${name}'",
-                          mapping={'name': value}))
+            msg = u"There is already a content type named '${name}'"
+            raise Invalid(_(msg, mapping={'name': value}))
 
 validator.WidgetValidatorDiscriminators(
     TypeIdValidator,
@@ -123,9 +124,8 @@ class TypeTitleValidator(validator.SimpleFieldValidator):
                 continue
 
             if existing_fti.Title() == value:
-                raise Invalid(
-                    _(u"There is already a content type named '${name}'",
-                      mapping={'name': value}))
+                msg = u"There is already a content type named '${name}'"
+                raise Invalid(_(msg, mapping={'name': value}))
 
 validator.WidgetValidatorDiscriminators(
     TypeTitleValidator,
