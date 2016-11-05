@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from collections import Counter
-from operator import attrgetter
 from copy import deepcopy
+from operator import attrgetter
 from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity.interfaces import ITypeSchemaContext
 from plone.behavior.interfaces import IBehavior
-from plone.behavior.registration import lookup_behavior_registration
 from plone.behavior.registration import BehaviorRegistrationNotFound
+from plone.behavior.registration import lookup_behavior_registration
 from plone.dexterity.fti import DexterityFTIModificationDescription
 from z3c.form import field
 from z3c.form import form
@@ -18,6 +18,7 @@ from zope.component import adapter
 from zope.component import getUtilitiesFor
 from zope.lifecycleevent import modified
 
+
 TTW_BEHAVIOR_BLACKLIST = [
     # skip deprecated behavior
     'plone.app.dexterity.behaviors.related.IRelatedItems',
@@ -25,7 +26,7 @@ TTW_BEHAVIOR_BLACKLIST = [
 
 
 def behaviorConfigurationModified(object, event):
-    description = DexterityFTIModificationDescription("behaviors", "")
+    description = DexterityFTIModificationDescription('behaviors', '')
     modified(object.fti, description)
 
 

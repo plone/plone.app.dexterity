@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 from plone.app.content.browser.vocabulary import VocabularyView
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.app.widgets.testing import PLONEAPPWIDGETS_DX_INTEGRATION_TESTING
 from plone.app.widgets.testing import TestRequest
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
+from plone.dexterity.browser.add import DefaultAddForm
+from plone.dexterity.browser.add import DefaultAddView
 from plone.dexterity.fti import DexterityFTI
-from plone.dexterity.browser.add import DefaultAddForm, DefaultAddView
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
@@ -19,6 +20,7 @@ from zope.component import provideAdapter
 from zope.component.globalregistry import base
 from zope.globalrequest import setRequest
 from zope.interface import Interface
+
 import json
 import unittest
 
@@ -70,9 +72,10 @@ def _enable_custom_widget(field):
 
 
 def _disable_custom_widget(field):
-        base.unregisterAdapter(
-            required=(getSpecification(field), IWidgetsLayer,),
-            provided=IFieldWidget)
+    base.unregisterAdapter(
+        required=(getSpecification(field), IWidgetsLayer, ),
+        provided=IFieldWidget,
+    )
 
 
 class DexterityVocabularyPermissionTests(unittest.TestCase):
@@ -108,8 +111,10 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
             'field': 'allowed_field',
         })
         data = json.loads(view())
-        self.assertEquals(len(data['results']),
-                          len(self.portal.portal_types.objectIds()))
+        self.assertEqual(
+            len(data['results']),
+            len(self.portal.portal_types.objectIds()),
+        )
 
     def test_vocabulary_field_wrong_vocabulary_disallowed(self):
         view = VocabularyView(self.portal.test_dx, self.request)
@@ -118,7 +123,7 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
             'field': 'allowed_field',
         })
         data = json.loads(view())
-        self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
+        self.assertEqual(data['error'], 'Vocabulary lookup not allowed')
 
     def test_vocabulary_field_disallowed(self):
         view = VocabularyView(self.portal.test_dx, self.request)
@@ -127,7 +132,7 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
             'field': 'disallowed_field',
         })
         data = json.loads(view())
-        self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
+        self.assertEqual(data['error'], 'Vocabulary lookup not allowed')
 
     def test_vocabulary_field_default_permission(self):
         view = VocabularyView(self.portal.test_dx, self.request)
@@ -139,13 +144,15 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
         # default edit permission is tested (Modify portal content)
         setRoles(self.portal, TEST_USER_ID, ['Member'])
         data = json.loads(view())
-        self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
+        self.assertEqual(data['error'], 'Vocabulary lookup not allowed')
 
         setRoles(self.portal, TEST_USER_ID, ['Editor'])
         # Now access should be allowed, but the vocabulary does not exist
         data = json.loads(view())
-        self.assertEquals(len(data['results']),
-                          len(self.portal.portal_types.objectIds()))
+        self.assertEqual(
+            len(data['results']),
+            len(self.portal.portal_types.objectIds()),
+        )
 
     def test_vocabulary_field_default_permission_wrong_vocab(self):
         view = VocabularyView(self.portal.test_dx, self.request)
@@ -156,7 +163,7 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Editor'])
         # Now access should be allowed, but the vocabulary does not exist
         data = json.loads(view())
-        self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
+        self.assertEqual(data['error'], 'Vocabulary lookup not allowed')
 
     def test_vocabulary_missing_field(self):
         view = VocabularyView(self.portal.test_dx, self.request)
@@ -175,11 +182,13 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
             'field': 'custom_widget_field',
         })
         data = json.loads(view())
-        self.assertEquals(len(data['results']),
-                          len(self.portal.portal_types.objectIds()))
+        self.assertEqual(
+            len(data['results']),
+            len(self.portal.portal_types.objectIds()),
+        )
         self.request.form['name'] = 'plone.app.vocabularies.Fake'
         data = json.loads(view())
-        self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
+        self.assertEqual(data['error'], 'Vocabulary lookup not allowed')
 
     def test_vocabulary_on_adapted_widget(self):
         _enable_custom_widget(IMockSchema['adapted_widget_field'])
@@ -189,12 +198,14 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
             'field': 'adapted_widget_field',
         })
         data = json.loads(view())
-        self.assertEquals(len(data['results']),
-                          len(self.portal.portal_types.objectIds()))
+        self.assertEqual(
+            len(data['results']),
+            len(self.portal.portal_types.objectIds()),
+        )
 
         self.request.form['name'] = 'plone.app.vocabularies.Fake'
         data = json.loads(view())
-        self.assertEquals(data['error'], 'Vocabulary lookup not allowed')
+        self.assertEqual(data['error'], 'Vocabulary lookup not allowed')
         _disable_custom_widget(IMockSchema['adapted_widget_field'])
 
     def test_vocabulary_field_allowed_from_add_view(self):
@@ -206,8 +217,10 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
             'field': 'allowed_field',
         })
         data = json.loads(view())
-        self.assertEquals(len(data['results']),
-                          len(self.portal.portal_types.objectIds()))
+        self.assertEqual(
+            len(data['results']),
+            len(self.portal.portal_types.objectIds()),
+        )
 
     def test_vocabulary_field_allowed_from_add_form(self):
         add_form = DefaultAddForm(self.portal, self.request)
@@ -218,5 +231,7 @@ class DexterityVocabularyPermissionTests(unittest.TestCase):
             'field': 'allowed_field',
         })
         data = json.loads(view())
-        self.assertEquals(len(data['results']),
-                          len(self.portal.portal_types.objectIds()))
+        self.assertEqual(
+            len(data['results']),
+            len(self.portal.portal_types.objectIds()),
+        )

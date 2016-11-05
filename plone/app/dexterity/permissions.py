@@ -8,8 +8,8 @@ from plone.autoform.utils import resolveDottedName
 from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.utils import iterSchemata
 from plone.supermodel.utils import mergedTaggedValueDict
-from z3c.form.interfaces import IForm
 from z3c.form.interfaces import IFieldWidget
+from z3c.form.interfaces import IForm
 from zope.component import adapts
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility

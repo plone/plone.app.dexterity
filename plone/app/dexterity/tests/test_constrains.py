@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from plone.app.content.browser.constraintypes import IConstrainForm
 from plone.app.dexterity.behaviors import constrains
 from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
+from plone.app.testing import login
+from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
-from plone.app.testing import login
-from plone.app.testing import setRoles
 from plone.dexterity.fti import DexterityFTI
 from plone.testing.z2 import Browser
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from zope.interface.exceptions import Invalid
+
 import unittest
 
 
@@ -58,9 +59,12 @@ class DocumentIntegrationTest(unittest.TestCase):
 
         self.types_tool = getToolByName(self.portal, 'portal_types')
         folder_type = self.types_tool.getTypeInfo(self.folder)
-        self.default_types = [t for t in self.types_tool.listTypeInfo() if
-                              t.isConstructionAllowed(self.folder)
-                              and folder_type.allowType(t.getId())]
+        self.default_types = [
+            t
+            for t in self.types_tool.listTypeInfo()
+            if t.isConstructionAllowed(self.folder) and
+            folder_type.allowType(t.getId())
+        ]
         assert len(self.default_types) > 1
         self.types_id_subset = [t.getId() for t in self.default_types][:1]
 
@@ -85,7 +89,7 @@ class DocumentIntegrationTest(unittest.TestCase):
     def test_constrainTypesModeInvalidSet(self):
         behavior = ISelectableConstrainTypes(self.folder)
         self.assertRaises(
-            ValueError, behavior.setConstrainTypesMode, "INVALID")
+            ValueError, behavior.setConstrainTypesMode, 'INVALID')
 
     def test_canSetConstrainTypesMode(self):
         behavior = ISelectableConstrainTypes(self.folder)
@@ -300,7 +304,7 @@ class DocumentIntegrationTest(unittest.TestCase):
 
         behavior = ISelectableConstrainTypes(self.inner_folder)
         behavior.setConstrainTypesMode(constrains.ACQUIRE)
-        self.assertEquals(
+        self.assertEqual(
             self.types_id_subset,
             [x.getId() for x in behavior.allowedContentTypes()]
         )
@@ -355,7 +359,7 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         self.browser.handleErrors = False
         self.browser.addHeader(
             'Authorization',
-            'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+            'Basic {0}:{1}'.format(SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
         )
 
     def test_folder_view(self):
@@ -365,10 +369,12 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
 
     def test_folder_restrictions_view(self):
         self.browser.open(self.folder_url + '/folder_constraintypes_form')
-        self.assertTrue("Restrict what types" in self.browser.contents)
-        self.assertTrue("// Custom form constraints for constrain form" in
-                        self.browser.contents)
-        self.assertTrue("current_prefer_form" in self.browser.contents)
+        self.assertIn('Restrict what types', self.browser.contents)
+        self.assertIn(
+            '// Custom form constraints for constrain form',
+            self.browser.contents,
+        )
+        self.assertIn('current_prefer_form', self.browser.contents)
 
     def test_form_save_restrictions(self):
         self.browser.open(self.folder_url)
@@ -377,23 +383,23 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         def ctrl(name):
             return self.browser.getControl(name=name)
 
-        self.browser.getControl("Type restrictions").value = ['1']
-        ctrl("form.widgets.allowed_types:list").value = ["Document", "Folder"]
-        ctrl("form.widgets.secondary_types:list").value = ["Document"]
-        self.browser.getControl("Save").click()
+        self.browser.getControl('Type restrictions').value = ['1']
+        ctrl('form.widgets.allowed_types:list').value = ['Document', 'Folder']
+        ctrl('form.widgets.secondary_types:list').value = ['Document']
+        self.browser.getControl('Save').click()
         aspect = ISelectableConstrainTypes(self.folder)
         self.assertEqual(1, aspect.getConstrainTypesMode())
         self.assertEqual(
-            ["Document", "Folder"],
+            ['Document', 'Folder'],
             aspect.getLocallyAllowedTypes()
         )
-        self.assertEqual(["Folder"], aspect.getImmediatelyAddableTypes())
+        self.assertEqual(['Folder'], aspect.getImmediatelyAddableTypes())
 
     def test_form_bad_save(self):
         aspect = ISelectableConstrainTypes(self.folder)
         constraint_before = aspect.getConstrainTypesMode()
-        assert constraint_before != 1, ("Default constraint should not be 1. "
-                                        "Test is outdated.")
+        assert constraint_before != 1, ('Default constraint should not be 1. '
+                                        'Test is outdated.')
 
         self.browser.open(self.folder_url)
         self.browser.getLink('Restrictions').click()
@@ -401,13 +407,13 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         def ctrl(name):
             return self.browser.getControl(name=name)
 
-        self.browser.getControl("Type restrictions").value = ['1']
-        ctrl("form.widgets.allowed_types:list").value = ["Document"]
-        ctrl("form.widgets.secondary_types:list").value = [
-            "Document",
-            "Folder"
+        self.browser.getControl('Type restrictions').value = ['1']
+        ctrl('form.widgets.allowed_types:list').value = ['Document']
+        ctrl('form.widgets.secondary_types:list').value = [
+            'Document',
+            'Folder'
         ]
-        self.browser.getControl("Save").click()
+        self.browser.getControl('Save').click()
         self.assertEqual(constraint_before, aspect.getConstrainTypesMode())
         self.assertTrue('Error' in self.browser.contents)
 
@@ -432,7 +438,7 @@ class ConstrainControlFunctionalText(unittest.TestCase):
         self.browser.handleErrors = False
         self.browser.addHeader(
             'Authorization',
-            'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+            'Basic {0}:{1}'.format(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ),
         )
 
     def test_overview_folder_view(self):

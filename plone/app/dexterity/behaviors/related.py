@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """BBB import for 'Related Items' behavior that was moved to
 plone.app.relationfield in Dexterity 2.0.
 """

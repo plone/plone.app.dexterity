@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
-from Products.Five import BrowserView
 from lxml import etree
 from plone.app.dexterity import _
 from plone.supermodel.parser import SupermodelParseError
+from Products.Five import BrowserView
 from zope.component import queryMultiAdapter
+
 import json
 import plone.supermodel
+
 
 NAMESPACE = '{http://namespaces.plone.org/supermodel/schema}'
 
@@ -21,7 +23,7 @@ class ModelEditorView(BrowserView):
 
 def authorized(context, request):
     authenticator = queryMultiAdapter((context, request),
-                                      name=u"authenticator")
+                                      name=u'authenticator')
     return authenticator and authenticator.verify()
 
 
@@ -44,7 +46,9 @@ class AjaxSaveHandler(BrowserView):
             except etree.XMLSyntaxError, e:
                 return json.dumps({
                     'success': False,
-                    'message': "XMLSyntaxError: %s" % e.message.encode('utf8')
+                    'message': 'XMLSyntaxError: {0}'.format(
+                        e.message.encode('utf8')
+                    )
                 })
 
             # a little more sanity checking, look at first two element levels
@@ -65,12 +69,12 @@ class AjaxSaveHandler(BrowserView):
             # can supermodel parse it?
             # This is mainly good for catching bad dotted names.
             try:
-                plone.supermodel.loadString(source, policy=u"dexterity")
+                plone.supermodel.loadString(source, policy=u'dexterity')
             except SupermodelParseError, e:
                 message = e.args[0].replace('\n  File "<unknown>"', '')
                 return json.dumps({
                     'success': False,
-                    'message': u"SuperModelParseError: %s" % message
+                    'message': u'SuperModelParseError: {0}'.format(message)
                 })
 
             # clean up formatting sins
@@ -85,4 +89,4 @@ class AjaxSaveHandler(BrowserView):
             fti.manage_changeProperties(model_source=source)
 
             self.request.response.setHeader('Content-Type', 'application/json')
-            return json.dumps({'success': True, 'message': _(u"Saved")})
+            return json.dumps({'success': True, 'message': _(u'Saved')})

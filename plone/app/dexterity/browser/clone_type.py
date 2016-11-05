@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity import _
 from plone.app.dexterity.interfaces import ITypeSettings
 from plone.dexterity.fti import DexterityFTI
 from plone.z3cform.layout import wrap_form
-from z3c.form import form
+from Products.CMFCore.utils import getToolByName
 from z3c.form import field
+from z3c.form import form
 
 
 class TypeCloneForm(form.AddForm):

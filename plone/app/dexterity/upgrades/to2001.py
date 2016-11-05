@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from plone.dexterity.interfaces import IDexterityContent
 from plone.uuid.handlers import addAttributeUUID
 from plone.uuid.interfaces import IUUID
+from Products.CMFCore.utils import getToolByName
 
 
 def add_missing_uuids(context):

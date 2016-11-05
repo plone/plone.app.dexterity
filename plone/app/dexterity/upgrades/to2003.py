@@ -2,6 +2,7 @@
 from Acquisition import aq_base
 from Products.CMFCore.utils import getToolByName
 
+
 BAD_GUY = ('zope.intid.interfaces.IIntIds', '')
 
 

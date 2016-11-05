@@ -14,8 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
-
+- Update code to follow Plone styleguide.
+  [gforcada]
 
 2.3.4 (2016-10-03)
 ------------------

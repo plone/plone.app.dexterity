@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from Products.CMFPlone.utils import safe_hasattr
 from plone.app.content.interfaces import INameFromTitle
 from plone.rfc822.interfaces import IPrimaryFieldInfo
+from Products.CMFPlone.utils import safe_hasattr
 from zope.component import adapter
-from zope.interface import Interface
 from zope.interface import implementer
+from zope.interface import Interface
 
 
 class INameFromFileName(Interface):

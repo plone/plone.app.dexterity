@@ -1,10 +1,14 @@
-import unittest
-from plone.app.testing import setRoles, login, logout, TEST_USER_ID
+# -*- coding: utf-8 -*-
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
-
 from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
+from plone.app.testing import login
+from plone.app.testing import logout
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.dexterity.fti import DexterityFTI
 from Products.CMFCore.utils import getToolByName
+
+import unittest
 
 
 class NextPreviousBase:
@@ -32,7 +36,7 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.wf = getToolByName(self.portal, "portal_workflow")
+        self.wf = getToolByName(self.portal, 'portal_workflow')
         self.wf.setDefaultChain('simple_publication_workflow')
         self.portal.acl_users._doAddUser('user_std', 'secret', ['Member'], [])
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
@@ -67,13 +71,13 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         container = self.portal[self.portal.invokeFactory(
             self._portal_type, 'case3')]
         for id in range(1, 4):
-            container.invokeFactory('Document', 'subDoc%d' % id)
+            container.invokeFactory('Document', 'subDoc{0}'.format(id))
 
         from OFS.Folder import manage_addFolder
         manage_addFolder(container, 'notacontentishtype')
 
         for id in range(5, 6):
-            container.invokeFactory('Document', 'subDoc%d' % id)
+            container.invokeFactory('Document', 'subDoc{0}'.format(id))
 
         adapter = INextPreviousProvider(container)
         # text data for next/previous items
@@ -108,9 +112,9 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         for id in range(1, 7):
             doc = container[container.invokeFactory(
-                'Document', 'subDoc%d' % id)]
+                'Document', 'subDoc{0}'.format(id))]
             if id in [2, 4, 5]:
-                self.wf.doActionFor(doc, "publish")
+                self.wf.doActionFor(doc, 'publish')
 
         # Member should only see the published items
         logout()
@@ -132,9 +136,9 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         for id in range(1, 7):
             doc = container[container.invokeFactory(
-                'Document', 'subDoc%d' % id)]
+                'Document', 'subDoc{0}'.format(id))]
             if id in [2, 4, 5]:
-                self.wf.doActionFor(doc, "publish")
+                self.wf.doActionFor(doc, 'publish')
 
         # Member should only see the published items
         logout()
@@ -161,7 +165,7 @@ class NextPreviousToggleTests(NextPreviousBase, unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.wf = getToolByName(self.portal, "portal_workflow")
+        self.wf = getToolByName(self.portal, 'portal_workflow')
         self.portal.acl_users._doAddUser('user_std', 'secret', ['Member'], [])
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self._setupFTI()

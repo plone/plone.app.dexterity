@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.testing import z2
+
 import transaction
 import unittest
 
@@ -21,8 +23,8 @@ class TestShortNameBehavior(unittest.TestCase):
         # prepare browser
         self.browser = z2.Browser(self.layer['app'])
         self.browser.addHeader(
-            'Authorization', 'Basic %s:%s'
-            % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+            'Authorization',
+            'Basic {0}:{1}'.format(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, )
         )
         self.browser.open('http://nohost/plone')
 

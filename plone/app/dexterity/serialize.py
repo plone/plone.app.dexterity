@@ -49,4 +49,4 @@ def serializeSchema(schema):
         syncSchema(schema, model.schemata[schemaName], overwrite=True)
         fti.model_source = serializeModel(model)
     else:
-        raise TypeError("Changes to non-dynamic schemata not yet supported.")
+        raise TypeError('Changes to non-dynamic schemata not yet supported.')

@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 from OFS.SimpleItem import SimpleItem
-from Products.CMFCore.utils import getToolByName
-from Products.Five.browser.pagetemplatefile \
-    import ViewPageTemplateFile as FiveViewPageTemplateFile
-from ZPublisher.BaseRequest import DefaultPublishTraverse
 from plone.app.dexterity import _
 from plone.app.dexterity.browser.utils import UTF8Property
 from plone.app.dexterity.interfaces import ITypeSchemaContext
@@ -16,6 +12,8 @@ from plone.schemaeditor.browser.schema.traversal import SchemaContext
 from plone.z3cform import layout
 from plone.z3cform.crud import crud
 from plone.z3cform.layout import FormWrapper
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as FiveViewPageTemplateFile  # noqa
 from z3c.form import button
 from z3c.form import field
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
@@ -26,6 +24,8 @@ from zope.component import getAllUtilitiesRegisteredFor
 from zope.component import getUtility
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserPublisher
+from ZPublisher.BaseRequest import DefaultPublishTraverse
+
 import urllib
 
 
@@ -76,33 +76,38 @@ class TypeEditForm(crud.EditForm):
             self.status = _(u'Please select a single type to clone.')
         elif len(selected) == 1:
             id = selected[0][0]
-            url = '%s/%s/@@clone' % (self.context.context.absolute_url(), id)
+            url = '{0}/{1}/@@clone'.format(
+                self.context.context.absolute_url(),
+                id
+            )
             self.request.response.redirect(url)
         else:
             self.status = _(u'Please select a type to clone.')
 
     @button.buttonAndHandler(_(u'Export Type Profiles'))
     def handleExport(self, action):
-        selected = ",".join([items[0] for items in self.selected_items()])
+        selected = ','.join([items[0] for items in self.selected_items()])
 
         if len(selected) == 0:
             self.status = _(u'Please select types to export.')
         elif len(selected) > 0:
-            url = '%s/@@types-export?selected=%s' % \
-                (self.context.context.absolute_url(),
-                 urllib.quote(selected))
+            url = '{0}/@@types-export?selected={1}'.format(
+                self.context.context.absolute_url(),
+                urllib.quote(selected),
+            )
             self.request.response.redirect(url)
 
     @button.buttonAndHandler(_(u'Export Schema Models'))
     def handleExportModels(self, action):
-        selected = ",".join([items[0] for items in self.selected_items()])
+        selected = ','.join([items[0] for items in self.selected_items()])
 
         if len(selected) == 0:
             self.status = _(u'Please select types to export.')
         elif len(selected) > 0:
-            url = '%s/@@models-export?selected=%s' % \
-                (self.context.context.absolute_url(),
-                 urllib.quote(selected))
+            url = '{0}/@@models-export?selected={1}'.format(
+                self.context.context.absolute_url(),
+                urllib.quote(selected)
+            )
             self.request.response.redirect(url)
 
 
@@ -110,7 +115,7 @@ class TypesEditFormWrapper(FormWrapper):
     """ Render Plone frame around our form with little modifications """
 
     form = TypeEditForm
-    index = FiveViewPageTemplateFile("typesformwrapper.pt")
+    index = FiveViewPageTemplateFile('typesformwrapper.pt')
 
 
 @adapter(IDexterityFTI)
@@ -194,10 +199,10 @@ class TypesListing(crud.CrudForm):
             )
         return _(
             'help_addcontenttype_button',
-            default= u'Content types show up on Plone\'s "Add Item" menu and '
-                     u'allow you to store custom data in your site. Click the '
-                     u'"Add Content Type" button to begin creating a new '
-                     u'content type with its own fields.')
+            default=u'Content types show up on Plone\'s "Add Item" menu and '
+            u'allow you to store custom data in your site. Click the '
+            u'"Add Content Type" button to begin creating a new '
+            u'content type with its own fields.')
 
     template = ViewPageTemplateFile('types_listing.pt')
     view_schema = field.Fields(ITypeSettings).select('title', 'description')
