@@ -157,7 +157,7 @@ class IPublication(model.Schema):
         title=_(u'label_expiration_date', u'Expiration Date'),
         description=_(
             u'help_expiration_date',
-            default=u'When this date is reached, the content will no'
+            default=u'When this date is reached, the content will no '
                     u'longer be visible in listings and searches.'),
         required=False
     )
