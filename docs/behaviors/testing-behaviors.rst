@@ -239,7 +239,12 @@ Lets say you want to test your dexterity type when a behavior is enabled or disa
             self.assertNotIn('<meta http-equiv="refresh" content="5" />', view())
 
 
-The methods ``_enable_refresh_behavior`` and ``_disable_refresh_behavior`` are using the ``IDexterityFTI``, to get the Factory Type Information for the dexterity type, in this case ``collective.cover.content``. Then the FTI of ``collective.cover.content`` is used by both methods to get a list of behaviors enabled. To enable it the desired behavior it is added to the FTI behaviors, ``behaviors.append(IRefresh.__identifier__)``. To disable it the behavior is removed from the FTI behaviors, ``behaviors.remove(IRefresh.__identifier__)``. The resulting behaviors list is assigned to the behaviors attribute of the FTI as a tuple, ``fti.behaviors = tuple(behaviors)``. Finally, to make the changes effective, the schema cache must be invalidated, ``notify(SchemaInvalidatedEvent('collective.cover.content'))``.
+The methods ``_enable_refresh_behavior`` and ``_disable_refresh_behavior`` are using the ``IDexterityFTI``, to get the Factory Type Information for the dexterity type, in this case ``collective.cover.content``.
+Then the FTI of ``collective.cover.content`` is used by both methods to get a list of behaviors enabled.
+To enable it the desired behavior it is added to the FTI behaviors, ``behaviors.append(IRefresh.__identifier__)``.
+To disable it the behavior is removed from the FTI behaviors, ``behaviors.remove(IRefresh.__identifier__)``.
+The resulting behaviors list is assigned to the behaviors attribute of the FTI as a tuple, ``fti.behaviors = tuple(behaviors)``.
+Finally, to make the changes effective, the schema cache must be invalidated, ``notify(SchemaInvalidatedEvent('collective.cover.content'))``.
 
 A note about marker interfaces
 ------------------------------
