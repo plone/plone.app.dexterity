@@ -173,6 +173,74 @@ To run the test, we can use the usual test runner:
 
     $ ./bin/instance test -s collective.gtags
 
+Testing a dexterity type with a behavior
+----------------------------------------
+
+Lets say you want to test your dexterity type when a behavior is enabled or disabled, note that not all behaviors are enabled by default. To do this you will need to setup the behavior in your test. There is an example of this kind of test in the collective.cover product. There is a behavior that adds the capability for the cover page to refresh itself. The test check to see if the behavior effect on the page is not present, then enables the behavior, check its effect and then disables it again. Here is the code:
+
+.. code-block:: python
+
+    # -*- coding: utf-8 -*-
+    from collective.cover.behaviors.interfaces import IRefresh
+    from collective.cover.interfaces import ICoverLayer
+    from collective.cover.testing import INTEGRATION_TESTING
+    from plone import api
+    from plone.behavior.interfaces import IBehavior
+    from plone.dexterity.interfaces import IDexterityFTI
+    from plone.dexterity.schema import SchemaInvalidatedEvent
+    from zope.component import queryUtility
+    from zope.event import notify
+    from zope.interface import alsoProvides
+
+    import unittest
+
+
+    class RefreshBehaviorTestCase(unittest.TestCase):
+
+        layer = INTEGRATION_TESTING
+
+        def _enable_refresh_behavior(self):
+            fti = queryUtility(IDexterityFTI, name='collective.cover.content')
+            behaviors = list(fti.behaviors)
+            behaviors.append(IRefresh.__identifier__)
+            fti.behaviors = tuple(behaviors)
+            # invalidate schema cache
+            notify(SchemaInvalidatedEvent('collective.cover.content'))
+
+        def _disable_refresh_behavior(self):
+            fti = queryUtility(IDexterityFTI, name='collective.cover.content')
+            behaviors = list(fti.behaviors)
+            behaviors.remove(IRefresh.__identifier__)
+            fti.behaviors = tuple(behaviors)
+            # invalidate schema cache
+            notify(SchemaInvalidatedEvent('collective.cover.content'))
+
+        def setUp(self):
+            self.portal = self.layer['portal']
+            self.request = self.layer['request']
+            alsoProvides(self.request, ICoverLayer)
+            with api.env.adopt_roles(['Manager']):
+                self.cover = api.content.create(
+                    self.portal, 'collective.cover.content', 'c1')
+
+        def test_refresh_registration(self):
+            registration = queryUtility(IBehavior, name=IRefresh.__identifier__)
+            self.assertIsNotNone(registration)
+
+        def test_refresh_behavior(self):
+            view = api.content.get_view(u'view', self.cover, self.request)
+            self.assertNotIn('<meta http-equiv="refresh" content="300" />', view())
+            self._enable_refresh_behavior()
+            self.cover.enable_refresh = True
+            self.assertIn('<meta http-equiv="refresh" content="300" />', view())
+            self.cover.ttl = 5
+            self.assertIn('<meta http-equiv="refresh" content="5" />', view())
+            self._disable_refresh_behavior()
+            self.assertNotIn('<meta http-equiv="refresh" content="5" />', view())
+
+
+The methods ``_enable_refresh_behavior`` and ``_disable_refresh_behavior`` are using the ``IDexterityFTI``, to get the Factory Type Information for the dexterity type, in this case ``collective.cover.content``. Then the FTI of ``collective.cover.content`` is used by both methods to get a list of behaviors enabled. To enable it the desired behavior it is added to the FTI behaviors, ``behaviors.append(IRefresh.__identifier__)``. To disable it the behavior is removed from the FTI behaviors, ``behaviors.remove(IRefresh.__identifier__)``. The resulting behaviors list is assigned to the behaviors attribute of the FTI as a tuple, ``fti.behaviors = tuple(behaviors)``. Finally, to make the changes effective, the schema cache must be invalidated, ``notify(SchemaInvalidatedEvent('collective.cover.content'))``.
+
 A note about marker interfaces
 ------------------------------
 
