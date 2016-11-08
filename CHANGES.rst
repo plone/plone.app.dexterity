@@ -17,6 +17,9 @@ Bug fixes:
 - Update code to follow Plone styleguide.
   [gforcada]
 
+- Documentation: Add dexterity test example using a behavior.
+  [ramiroluz]
+
 2.3.4 (2016-10-03)
 ------------------
 
