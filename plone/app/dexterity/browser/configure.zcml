@@ -21,9 +21,17 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      name="folder_listing"
+      class=".folder_listing.FolderView"
+      template="folder_listing.pt"
+      permission="zope2.View"
+      />
+
   <configure zcml:condition="have plone-51">
     <browser:page
-        for="Products.CMFCore.interfaces.IFolderish"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         name="folder_listing"
         class=".folder_listing.FolderView"
         template="folder_listing.pt"

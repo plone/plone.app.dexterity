@@ -20,7 +20,7 @@ Bug fixes:
 - Documentation: Add dexterity test example using a behavior.
   [ramiroluz]
 
-- For Plone 5.1, add a generic version of the folder_listing view
+- Add a generic version of the folder_listing view
   so that the container view can use it even without plone.app.contenttypes
   (such as in tests using the DEXTERITY_FIXTURE)
   [davisagli]
