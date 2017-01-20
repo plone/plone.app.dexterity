@@ -4,17 +4,12 @@ Changelog
 2.3.6 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Add generic version of folder_listing view & macro. Only registered for
+  Plone 5.1, to avoid taking precedence over skin layer templates for
+  Archetypes content in Plone 5.0
+  [davisagli]
 
 
 2.3.5 (2016-11-18)
