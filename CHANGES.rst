@@ -14,7 +14,9 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Do not import ``IFileFactory`` in interfaces from plone.app.widgets.
+  It is only imported over there.
+  [jensens]
 
 
 2.3.6 (2017-01-20)

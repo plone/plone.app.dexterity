@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from plone.app.dexterity import _
-from plone.app.widgets.interfaces import IFileFactory
 from Products.CMFCore.utils import getToolByName
 from z3c.form import validator
 from zope import schema
+from zope.filerepresentation.interfaces import IFileFactory
 from zope.interface import Attribute
 from zope.interface import Interface
 from zope.interface import Invalid
@@ -29,6 +29,7 @@ class ITypeSchemaContext(Interface):
 class InvalidIdError(schema.ValidationError):
     __doc__ = _(
         u'Please use only letters, numbers and the following characters: .-_')
+
 
 # a letter followed by letters, numbers, period, hyphen, or underscore
 ID_RE = re.compile(r'^[a-z][\w\d\.-]*$')
@@ -107,6 +108,7 @@ class TypeIdValidator(validator.SimpleFieldValidator):
             msg = u"There is already a content type named '${name}'"
             raise Invalid(_(msg, mapping={'name': value}))
 
+
 validator.WidgetValidatorDiscriminators(
     TypeIdValidator,
     field=ITypeSettings['id']
@@ -126,6 +128,7 @@ class TypeTitleValidator(validator.SimpleFieldValidator):
             if existing_fti.Title() == value:
                 msg = u"There is already a content type named '${name}'"
                 raise Invalid(_(msg, mapping={'name': value}))
+
 
 validator.WidgetValidatorDiscriminators(
     TypeTitleValidator,
