@@ -39,6 +39,11 @@ class TestBasic(unittest.TestCase):
         b.context.description = u'foo'
         self.assertEqual(u'foo', b.description)
 
+    def test_description_remains_newlines(self):
+        b = self._makeOne()
+        b.description = u'foo\r\nbar\nbaz\r'
+        self.assertEqual(u'foo\r\nbar\nbaz\r', b.context.description)
+
 
 class TestCategorization(unittest.TestCase):
 
