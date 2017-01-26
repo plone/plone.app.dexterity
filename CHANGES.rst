@@ -1,12 +1,14 @@
 Changelog
 =========
 
-2.3.7 (unreleased)
+2.4.0 (unreleased)
 ------------------
 
 Breaking changes:
 
-- *add item here*
+- When setting the Description field, do not remove new lines but keep the input as-is.
+  Instead remove new lines in the plone.dexterity ``Description`` metadata accessor.
+  [thet]
 
 New features:
 

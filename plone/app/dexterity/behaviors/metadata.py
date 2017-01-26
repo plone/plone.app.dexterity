@@ -365,12 +365,6 @@ class Basic(MetadataBase):
         if isinstance(value, str):
             raise ValueError('Description must be unicode.')
 
-        # If description is containing linefeeds the HTML
-        # validation can break.
-        # See http://bo.geekworld.dk/diazo-bug-on-html5-validation-errors/
-        # Remember: \r\n - Windows, \r - OS X, \n - Linux/Unix
-        value = value.replace('\r\n', ' ').replace('\r', ' ').replace('\n', ' ')  # noqa
-
         self.context.description = value
 
     description = property(_get_description, _set_description)
