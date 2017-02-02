@@ -20,6 +20,8 @@ Bug fixes:
   It is only imported over there.
   [jensens]
 
+- Fix tests when using zope.testbrowser 5.0 [davisagli]
+
 
 2.3.6 (2017-01-20)
 ------------------
