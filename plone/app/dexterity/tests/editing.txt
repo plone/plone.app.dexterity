@@ -291,7 +291,7 @@ Cloning a content type
 A content type can be cloned.
 
   >>> browser.open('http://nohost/plone/dexterity-types')
-  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').controls[0].selected = True
   >>> browser.getControl('Clone').click()
   >>> browser.url
   'http://nohost/plone/dexterity-types/plonista/@@clone'
@@ -340,7 +340,7 @@ To avoid confusion, the title must also be unique.
 Similar checks are performed when cloning.
 
   >>> browser.open('http://nohost/plone/dexterity-types')
-  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').controls[0].selected = True
   >>> browser.getControl('Clone').click()
   >>> browser.getControl('Type Name').value = 'foobar'
   >>> browser.getControl('Short Name').value = 'plonista'
@@ -351,7 +351,7 @@ Similar checks are performed when cloning.
   True
 
   >>> browser.open('http://nohost/plone/dexterity-types')
-  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').controls[0].selected = True
   >>> browser.getControl('Clone').click()
   >>> browser.getControl('Type Name').value = 'Plonista'
   >>> browser.getControl('Short Name').value = 'foobar'
@@ -410,7 +410,7 @@ We can control which content types are allowed to be added into the
 container::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista-folder')
-  >>> browser.getControl('Some content types').click()
+  >>> browser.getControl('Some content types', index=0).click()
   >>> select = browser.getControl(name="form.widgets.allowed_content_types:list")
   >>> select
   <ListControl name='form.widgets.allowed_content_types:list' type='select'>
@@ -441,7 +441,7 @@ Removing a content type
 We can also delete a content type via the configlet::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
-  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').value = ['0']
+  >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').controls[0].selected = True
   >>> browser.getControl('Delete').click()
 
 Now the FTI for the type should no longer be present in portal_types::
@@ -470,8 +470,8 @@ their checkboxes, push the export types button, and get a download for a
 zip archive containing files ready to drop into our profile::
 
     >>> browser.open('http://nohost/plone/dexterity-types')
-    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']
-    >>> browser.getControl(name='crud-edit.plonista-folder.widgets.select:list').value = ['0']
+    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').controls[0].selected = True
+    >>> browser.getControl(name='crud-edit.plonista-folder.widgets.select:list').controls[0].selected = True
     >>> browser.getControl('Export Type Profiles').click()
     >>> browser.url
     'http://nohost/plone/dexterity-types/@@types-export?selected=plonista2%2Cplonista-folder'
@@ -499,8 +499,8 @@ their checkboxes, push the export models button, and get a download for a
 zip archive containing supermodel xml files::
 
     >>> browser.open('http://nohost/plone/dexterity-types')
-    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']
-    >>> browser.getControl(name='crud-edit.plonista-folder.widgets.select:list').value = ['0']
+    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').controls[0].selected = True
+    >>> browser.getControl(name='crud-edit.plonista-folder.widgets.select:list').controls[0].selected = True
     >>> browser.getControl('Export Schema Models').click()
     >>> browser.url
     'http://nohost/plone/dexterity-types/@@models-export?selected=plonista2%2Cplonista-folder'
@@ -528,7 +528,7 @@ If there's only one item selected, we get a single XML file rather than a zip
 file::
 
     >>> browser.open('http://nohost/plone/dexterity-types')
-    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').value = ['0']
+    >>> browser.getControl(name='crud-edit.plonista2.widgets.select:list').controls[0].selected = True
     >>> browser.getControl('Export Schema Models').click()
     >>> browser.url
     'http://nohost/plone/dexterity-types/@@models-export?selected=plonista2'

@@ -37,9 +37,9 @@ appropriately::
 
   >>> browser.open('http://nohost/plone/++add++file_type')
   >>> browser.getControl('Title').value = 'A test file'
-  >>> from cStringIO import StringIO
+  >>> from io import BytesIO
   >>> browser.getControl(name="form.widgets.file").add_file(
-  ...     StringIO('File contents'), 'text/plain', 'foo.txt')
+  ...     BytesIO(b'File contents'), 'text/plain', 'foo.txt')
   >>> browser.getControl('Save').click()
   >>> browser.url
   'http://nohost/plone/foo.txt/view'
