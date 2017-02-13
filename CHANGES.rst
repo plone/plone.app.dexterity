@@ -10,10 +10,6 @@ Breaking changes:
   Instead remove new lines in the plone.dexterity ``Description`` metadata accessor.
   [thet]
 
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Do not import ``IFileFactory`` in interfaces from plone.app.widgets.
