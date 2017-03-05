@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Made exclude_from_nav optional. Fixed #101
+  [jaroel]
 
 
 2.4.0 (2017-02-12)
