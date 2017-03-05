@@ -60,6 +60,7 @@ class IExcludeFromNavigation(model.Schema):
                     u'navigation tree'
         ),
         defaultFactory=default_exclude,
+        required=False,
     )
 
     directives.omitted('exclude_from_nav')
