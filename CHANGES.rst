@@ -10,7 +10,11 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+- remove deprecated getIcon() from documentation 
+  add docu for plone.app.contenttypes.behaviors.thumb_icon.IThumbIconHandling 
+  see PLIP https://github.com/plone/Products.CMFPlone/issues/1734
+  [fgrcon]
+  
 
 Bug fixes:
 
