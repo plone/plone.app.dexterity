@@ -4,14 +4,6 @@ Changelog
 2.4.1 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Made exclude_from_nav optional. Fixed #101
