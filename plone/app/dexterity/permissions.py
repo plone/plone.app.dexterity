@@ -109,6 +109,8 @@ class DXFieldPermissionChecker(object):
 class GenericFormFieldPermissionChecker(DXFieldPermissionChecker):
     """Permission checker for when we just have an add view"""
 
+    DEFAULT_PERMISSION = 'Add portal content'
+
     def __init__(self, view):
         if getattr(view, 'form_instance', None) is not None:
             view = view.form_instance

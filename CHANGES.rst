@@ -14,7 +14,14 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Cleanup code of ``permissions.py`` (ZCA-decorator, reduce complexity)
+  [jensens]
+
+- Fix issue with field permissions check on add forms when the parent has no "Modify portal content" permission.
+  New: For add forms use the "Add portal content" permission as default field permission.
+  As great side effect vocabularies for i.e. AjaxSelectWidget from ``plone.app.content``,
+  which are using the check, are working on add forms in a context w/o "Modify portal content".
+  [jensens]
 
 
 2.4.1 (2017-03-26)
