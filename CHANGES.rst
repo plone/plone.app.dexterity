@@ -23,6 +23,9 @@ Bug fixes:
   which are using the check, are working on add forms in a context w/o "Modify portal content".
   [jensens]
 
+- JavaScript formating according to style guides.
+  [thet]
+
 
 2.4.1 (2017-03-26)
 ------------------
