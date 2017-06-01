@@ -44,4 +44,5 @@ plone.richtext                  plone.app.contenttypes.behaviors.richtext.IRichT
 plone.selectablecontrainstypes  Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes  Folder Addable Constrains: Restrict the content types that can be added to folderish content
 plone.shortname                 plone.app.dexterity.behaviors.id.IShortName                        Short name: Gives the ability to rename an item from its edit form.
 plone.tableofcontents           plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents  Table of contents.
+plone.thumb_icon                plone.app.contenttypes.behaviors.thumb_icon.IThumbIconHandling     Adds options to suppress thumbs(preview images) and/or icons and to override thumb size in listings or tables.
 =============================== ================================================================== =====================================================================================================

@@ -10,7 +10,9 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+  add documentation for plone.app.contenttypes.behaviors.thumb_icon.IThumbIconHandling 
+  see PLIP https://github.com/plone/Products.CMFPlone/issues/1734
+  [fgrcon]
 
 Bug fixes:
 
@@ -30,6 +32,8 @@ Bug fixes:
   As great side effect vocabularies for i.e. AjaxSelectWidget from ``plone.app.content``,
   which are using the check, are working on add forms in a context w/o "Modify portal content".
   [jensens]
+- removed deprecated getIcon() from documentation 
+  [fgrcon]
 
 - JavaScript formating according to style guides.
   [thet]
