@@ -38,8 +38,6 @@ class DXFileFactory(object):
 
         newid = chooser.chooseName(name, self.context.aq_parent)
         try:
-            transaction.begin()
-
             # Try to determine which kind of NamedBlob we need
             # This will suffice for standard p.a.contenttypes File/Image
             # and any other custom type that would have 'File' or 'Image' in
@@ -73,7 +71,6 @@ class DXFileFactory(object):
 
             obj.title = name
             obj.reindexObject()
-            transaction.commit()
 
         finally:
             upload_lock.release()

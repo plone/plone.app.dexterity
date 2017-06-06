@@ -10,13 +10,16 @@ Breaking changes:
 
 New features:
 
-  add documentation for plone.app.contenttypes.behaviors.thumb_icon.IThumbIconHandling 
+  add documentation for plone.app.contenttypes.behaviors.thumb_icon.IThumbIconHandling
   see PLIP https://github.com/plone/Products.CMFPlone/issues/1734
   [fgrcon]
 
 Bug fixes:
 
-- *add item here*
+- Remove the transaction.begin call before creating a dx object,
+  remove the transaction.commit call after creating a dx object.
+  Fixes #243.
+  [ale-rt]
 
 
 2.4.2 (2017-05-24)
@@ -32,7 +35,7 @@ Bug fixes:
   As great side effect vocabularies for i.e. AjaxSelectWidget from ``plone.app.content``,
   which are using the check, are working on add forms in a context w/o "Modify portal content".
   [jensens]
-- removed deprecated getIcon() from documentation 
+- removed deprecated getIcon() from documentation
   [fgrcon]
 
 - JavaScript formating according to style guides.
