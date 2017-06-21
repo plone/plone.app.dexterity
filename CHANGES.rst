@@ -16,6 +16,9 @@ New features:
 
 Bug fixes:
 
+- fix typo in deprecation message
+  [tkimnguyen]
+  
 - Remove the transaction.begin call before creating a dx object,
   remove the transaction.commit call after creating a dx object.
   Fixes #243.
