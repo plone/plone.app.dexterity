@@ -117,7 +117,7 @@ class ICategorization(model.Schema):
 
     language = schema.Choice(
         title=_(u'label_language', default=u'Language'),
-        vocabulary='plone.app.vocabularies.AvailableContentLanguages',
+        vocabulary='plone.app.vocabularies.SupportedContentLanguages',
         required=False,
         missing_value='',
         defaultFactory=default_language,

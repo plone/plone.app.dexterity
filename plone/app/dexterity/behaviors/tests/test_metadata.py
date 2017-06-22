@@ -1,4 +1,14 @@
 # -*- coding: utf-8 -*-
+from plone.app.dexterity.behaviors.metadata import ICategorization
+from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
+from plone.app.testing import login
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
+from zope.schema.interfaces import ConstraintNotSatisfied
+
 import unittest
 
 
@@ -63,6 +73,41 @@ class TestCategorization(unittest.TestCase):
         b = self._makeOne()
         b.context.subject = (u'føø',)
         self.assertEqual((u'føø',), b.subjects)
+
+
+class CategorizationIntegrationTests(unittest.TestCase):
+    layer = DEXTERITY_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        login(self.portal, TEST_USER_NAME)
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+    def test_categorization_language(self):
+        """The vocabulary of the language field in the ICategorization
+        behavior should only allow to set, what was configured in
+        ``plone.available_languages`` registry setting.
+        """
+        # set available languages
+        registry = getUtility(IRegistry)
+        registry['plone.available_languages'] = ['hu', 'sl']
+
+        self.portal.invokeFactory('Folder', 'test')
+        ob = self.portal.test
+        cat = ICategorization(ob)
+
+        cat.language = 'hu'
+        self.assertEqual(ob.language, 'hu')
+
+        cat.language = 'sl'
+        self.assertEqual(ob.language, 'sl')
+
+        with self.assertRaises(ConstraintNotSatisfied):
+            cat.language = 'de'
+
+        with self.assertRaises(ConstraintNotSatisfied):
+            cat.language = 'en'
 
 
 class TestDCFieldProperty(unittest.TestCase):
