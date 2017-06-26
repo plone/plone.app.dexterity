@@ -4,10 +4,6 @@ Changelog
 2.4.3 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
   add documentation for plone.app.contenttypes.behaviors.thumb_icon.IThumbIconHandling
