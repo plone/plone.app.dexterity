@@ -28,6 +28,9 @@ New features:
 
 Bug fixes:
 
+- The ``ICategorization`` behavior should only expose those content languages which are configured instead of all available languages.
+  [thet]
+
 - fix typo in deprecation message
   [tkimnguyen]
   
