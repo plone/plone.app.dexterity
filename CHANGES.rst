@@ -1,21 +1,14 @@
 Changelog
 =========
 
-2.4.4 (unreleased)
+2.4.4 (2017-07-03)
 ------------------
-
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
 
 Bug fixes:
 
-- *add item here*
-
+ - The ``ICategorization`` behavior should only expose those content languages which
+   are configured instead of all available languages.
+   [thetet]
 
 2.4.3 (2017-06-26)
 ------------------
