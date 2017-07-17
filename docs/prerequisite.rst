@@ -135,7 +135,7 @@ The ``include package=".browser"`` directive loads additional ZCML configuration
 
 Finally, we register a GenericSetup profile to make the type installable, which we will build up over the next several sections.
 
-When you've got your project tuned up, return to your buildout/instance directory and edit buildout.cfg to add ``example.conference`` to your eggs list and ``src/example.conference`` to your develop sources list::
+When you've got your project tuned up, return to your buildout/instance directory and edit buildout.cfg to add ``example.conference`` to your eggs list and ``src/example.conference`` to your develop sources list:
 
 .. code-block:: ini
 
