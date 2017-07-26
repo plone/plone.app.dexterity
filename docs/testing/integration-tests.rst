@@ -363,52 +363,7 @@ column and the custom workflow::
     def test_suite():
         return unittest.defaultTestLoader.loadTestsFromName(__name__)
 
-Faster tests with Roadrunner
-----------------------------
-
-.. warning::
-    Roadrunner development halted in 2009. The following is only useful if you
-    are using Plone 3.x.
-
-You will have noticed that running unit tests was much quicker than
-running integration tests. That is unfortunate, but to be expected: the
-integration test setup basically requires starting all of Zope and
-configuring a Plone site.
-
-Luckily, there is a tool that we can use to speed things up, and if
-you’ve been following along the tutorial, you already have it in your
-buildout: `Roadrunner`_.
-This is a command that takes the place of ``./bin/instance test`` that
-preloads the Zope environment and allows you to re-run tests much faster.
-
-To run our tests with roadrunner, we would do:
-
-.. code-block:: console
-
-    $ ./bin/roadrunner -s example.conference
-
-This runs the tests once, and then drops to the Roadrunner prompt:
-
-.. code-block:: console
-
-    rr>
-
-Simply hitting enter here, or typing a command like
-``test -s example.conference`` will re-run your tests,
-this time taking much less time.
-
-Roadrunner works best when you are adding and debugging your tests.
-For example, it’s a very quick way to get to a ``pdb`` prompt: just set a
-breakpoint in your test with ``import pdb; pdb.set_trace()`` and re-run
-it in roadrunner.
-You can then step into your test code and the code under test.
-
-Roadrunner should pick up changes to your tests automatically. However,
-it may not pick up changes to your application code, grokked components
-or ZCML files. If it doesn’t, you’ll need to exit the Roadrunner prompt
-and restart.
 
 .. _collective.testcaselayer: http://pypi.python.org/pypi/collective.testcaselayer
 .. _plone.app.testing: http://pypi.python.org/pypi/plone.app.testing
-.. _Roadrunner: http://pypi.python.org/pypi/roadrunner
 .. _testing tutorial: /external/plone.app.testing/docs/source/index
