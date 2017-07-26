@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Modernized the ``vocabularies`` documentation.
+  [jensens]
 
 
 2.4.4 (2017-07-03)
