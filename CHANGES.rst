@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Update Dutch translations by merging them from Plone 5.1's locales.
+  [fredvd]
 
 
 2.0.18 (2016-05-10)

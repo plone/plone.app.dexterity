@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-06 15:36+0000\n"
+"POT-Creation-Date: 2017-08-04 13:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,267 +15,342 @@ msgstr ""
 "Domain: plone.app.dexterity\n"
 "X-Is-Fallback-For: nl-be nl-nl\n"
 
-#: ../interfaces.py:87
+#: ../interfaces.py:90
 msgid "# of items"
-msgstr ""
+msgstr "aantal items"
 
 #: ../browser/add_type.py:12
 msgid "Add Content Type"
-msgstr ""
+msgstr "Voeg contenttype toe"
 
-#: ../browser/types_listing.pt:82
+#: ../browser/types_listing.pt:84
 msgid "Add New Content Type…"
-msgstr ""
+msgstr "Voeg contenttype toe"
+
+#: ../configure.zcml:41
+msgid "Adds Dexterity-based Folder and Document types for testing."
+msgstr "Voegt Dexterity-gebaseeerde Map en Pagina-types toe voor testdoeleinden."
 
 msgid "Adds Dublin Core metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
-msgstr ""
+msgstr "Voegt standaardvelden voor metadata toe (combinatie van Basis metadata + Categorisatie + Publicatieperiode + Auteurinformatie)"
 
 msgid "Adds a title and description"
-msgstr ""
+msgstr "Voegt velden toe voor titel en omschrijving."
 
 msgid "Adds creator, contributor, and rights fields"
-msgstr ""
+msgstr "Voegt velden toe voor auteur, mede-auteur en rechthebbende."
+
+#: ../behaviors/configure.zcml:40
+msgid "Adds creator, contributor, and rights fields."
+msgstr "Voegt velden toe voor auteur, mede-auteur en rechthebbende."
+
+#: ../behaviors/configure.zcml:33
+msgid "Adds effective date and expiration date fields."
+msgstr "Voeg velden toe voor ingangs- en verloopdatum"
+
+#: ../behaviors/configure.zcml:26
+msgid "Adds keywords and language fields."
+msgstr "Voegt velden toe voor trefwoorden en taal."
 
 msgid "Adds keywords and language setting"
-msgstr ""
+msgstr "Voegt velden toe voor trefwoorden en taal."
 
-#: ../behaviors/discussion.py:30
+#: ../behaviors/configure.zcml:51
+msgid "Adds standard metadata fields (equals Basic metadata + Categorization + Effective range + Ownership)"
+msgstr "Voegt standaardvelden voor metadata toe (combinatie van Basis metadata + Categorisatie + Publicatieperiode + Auteurinformatie)"
+
+#: ../behaviors/configure.zcml:19
+msgid "Adds title and description fields."
+msgstr "Voegt velden toe voor titel en omschrijving."
+
+#: ../behaviors/configure.zcml:95
+#: ../behaviors/discussion.py:27
 msgid "Allow discussion"
-msgstr ""
+msgstr "Reacties toestaan"
 
-#: ../behaviors/discussion.py:31
+#: ../behaviors/discussion.py:28
 msgid "Allow discussion for this content object."
-msgstr ""
+msgstr "Reacties toestaan voor dit item."
 
+#: ../behaviors/configure.zcml:95
+msgid "Allow discussion on this item"
+msgstr "Reacties toestaan voor dit item."
+
+#: ../behaviors/configure.zcml:81
 msgid "Allow items to be excluded from navigation"
-msgstr ""
+msgstr "Voegt de functie toe om items uit te sluiten van navigatie"
 
+#: ../behaviors/configure.zcml:88
 msgid "Allow items to have next previous navigation enabled"
-msgstr ""
+msgstr "voegt de functie toe om vorige/volgende navigatie in te schakelen"
 
-#: ../interfaces.py:75
+#: ../interfaces.py:78
 msgid "Allowed Content Types"
-msgstr ""
+msgstr "Toegestane contenttypes"
 
 msgid "Assign an effective and/or expiration date"
-msgstr ""
+msgstr "Voeg velden toe voor ingangs- en verloopdatum"
 
+#: ../behaviors/configure.zcml:58
 msgid "Automatically generate short URL name for content based on its initial title"
-msgstr ""
+msgstr "Genereer de verkorte naam voor dit item automatisch op basis van de titel (alleen bij het aanmaken)"
 
+#: ../behaviors/configure.zcml:65
 msgid "Automatically generate short URL name for content based on its primary field file name"
-msgstr ""
+msgstr "Genereer de verkorte naam voor dit item automatisch op basis van de bestandnaam (alleen bij het aanmaken)"
 
+#: ../behaviors/configure.zcml:19
 msgid "Basic metadata"
-msgstr ""
+msgstr "Algemene metadata"
 
-#: ../browser/behaviors.py:58
+#: ../browser/behaviors.py:59
 #: ../browser/layout.py:16
 msgid "Behaviors"
-msgstr ""
+msgstr "Uitbreidingen"
 
-#: ../browser/behaviors.py:60
+#: ../browser/behaviors.py:61
 msgid "Behaviors successfully updated."
-msgstr ""
+msgstr "Uitbreidingen zijn bijgewerkt"
+
+#: ../behaviors/configure.zcml:26
+msgid "Categorization"
+msgstr "Categorisatie"
 
 #: ../browser/types.py:58
 msgid "Clone"
-msgstr ""
+msgstr "Klonen"
 
-#: ../browser/clone_type.py:11
+#: ../browser/clone_type.py:12
 msgid "Clone Content Type"
-msgstr ""
+msgstr "Kloon Contenttype"
 
+#: ../configure.zcml:32
 msgid "Configures various components needed for full Dexterity support."
-msgstr ""
+msgstr "Stelt diverse onderdelen in voor volledige Dexterity-ondersteuning."
 
-#: ../interfaces.py:57
+#: ../interfaces.py:59
 msgid "Container"
-msgstr ""
+msgstr "Container"
 
-#: ../interfaces.py:52
+#: ../behaviors/configure.zcml:33
+msgid "Date range"
+msgstr "Datumreeks"
+
+#: ../interfaces.py:54
 msgid "Description"
-msgstr ""
+msgstr "Beschrijving"
 
-#: ../browser/types.py:247
+#: ../browser/types.py:249
+#: ../configure.zcml:32
 #: ../profiles/default/actions.xml
-#: ../profiles/default/controlpanel.xml
 msgid "Dexterity Content Types"
-msgstr ""
+msgstr "Dexterity contenttypes"
 
-#: ../browser/types.py:214
+#: ../browser/types.py:216
 msgid "Dexterity content types"
-msgstr ""
+msgstr "Dexterity contenttypes"
 
+#: ../behaviors/configure.zcml:51
 msgid "Dublin Core metadata"
-msgstr ""
+msgstr "Dublin Core metadata"
 
 msgid "Effective range"
-msgstr ""
+msgstr "Publicatieperiode"
 
+#: ../behaviors/configure.zcml:107
 msgid "Enable next previous navigation for all items of this type"
-msgstr ""
+msgstr "Activeer vorige/volgende navigatie voor alle items van dit contenttype"
 
+#: ../browser/modeleditor.py:57
+msgid "Error: all model elements must be 'schema'"
+msgstr "Fout: alle model-elementen moeten 'schema' zijn"
+
+#: ../browser/modeleditor.py:51
+msgid "Error: root tag must be 'model'"
+msgstr "Fout: root element moet 'model' zijn"
+
+#: ../behaviors/configure.zcml:81
 msgid "Exclude From navigation"
-msgstr ""
+msgstr "Sluit uit van de navigatiestructuur"
 
 #: ../browser/types.py:83
 msgid "Export Schema Models"
-msgstr ""
+msgstr "Exporteer schema-modellen"
 
 #: ../browser/types.py:71
 msgid "Export Type Profiles"
-msgstr ""
+msgstr "Exporteer contenttype-profielen"
 
-#: ../browser/fields.py:9
+#: ../browser/fields.py:34
 #: ../browser/layout.py:15
 msgid "Fields"
-msgstr ""
+msgstr "Velden"
 
-#: ../interfaces.py:64
+#: ../interfaces.py:67
 msgid "Filter Contained Types"
-msgstr ""
+msgstr "Filter ingesloten contenttypes"
 
-#: ../interfaces.py:58
+#: ../behaviors/configure.zcml:118
+msgid "Folder Addable Constrains"
+msgstr "Beperkingen voor toevoegen aan map"
+
+#: ../interfaces.py:60
 msgid "Items of this type will be able to contain other items."
-msgstr ""
+msgstr "Items van dit contenttype kunnen andere items bevatten."
 
+#: ../behaviors/configure.zcml:74
 msgid "Make all items of this type a navigation root"
-msgstr ""
+msgstr "Maak alle items van dit type een nieuwe navigatie root"
 
+#: ../behaviors/configure.zcml:65
 msgid "Name from file name"
-msgstr ""
+msgstr "Naam van bestandsnaam"
 
+#: ../behaviors/configure.zcml:58
 msgid "Name from title"
-msgstr ""
+msgstr "Naam van titel"
 
+#: ../behaviors/configure.zcml:74
 msgid "Navigation root"
-msgstr ""
+msgstr "Navigatie hoofdmap"
 
+#: ../behaviors/configure.zcml:107
 msgid "Next previous navigation"
-msgstr ""
+msgstr "Vorige/volgende navigatie"
 
+#: ../behaviors/configure.zcml:88
 msgid "Next previous navigation toggle"
-msgstr ""
+msgstr "vorige/volgende navigatie-instelling"
 
-#: ../behaviors/discussion.py:17
+#: ../behaviors/discussion.py:14
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
-#: ../browser/behaviors.py:61
+#: ../browser/behaviors.py:62
 msgid "No changes were made."
-msgstr ""
+msgstr "Er werden geen wijzigingen gedaan."
 
 #: ../browser/layout.py:14
-#: ../browser/overview.py:32
+#: ../browser/overview.py:33
 msgid "Overview"
-msgstr ""
+msgstr "Overzicht"
+
+#: ../behaviors/configure.zcml:40
+msgid "Ownership"
+msgstr "Eigenaar"
 
 #: ../browser/types.py:63
 msgid "Please select a single type to clone."
-msgstr ""
+msgstr "Kies één contenttype om te klonen."
 
 #: ../browser/types.py:69
 msgid "Please select a type to clone."
-msgstr ""
+msgstr "Kies een contenttype om te klonen."
 
 #: ../browser/types.py:76
 msgid "Please select types to export."
-msgstr ""
+msgstr "Kies contenttypes om te exporteren."
 
 #: ../interfaces.py:25
 msgid "Please use only letters, numbers, and the following characters: .-_"
-msgstr ""
+msgstr "Gebruik alleen cijfers, letters en de volgende karakters: .-_"
 
-#: ../browser/behaviors.py:59
+#: ../behaviors/configure.zcml:118
+msgid "Restrict the content types that can be added to folderish content"
+msgstr "Beperk de contenttypes die men kan toevoegen aan items met mapfunctionaliteit"
+
+#: ../browser/modeleditor.py:83
+msgid "Saved"
+msgstr "Opgeslagen"
+
+#: ../browser/behaviors.py:60
 msgid "Select the behaviors to enable for this content type."
-msgstr ""
+msgstr "Selecteer de extra funcie"
 
-#: ../behaviors/discussion.py:25
-#: ../behaviors/exclfromnav.py:13
-#: ../behaviors/nextprevious.py:27
+#: ../behaviors/discussion.py:22
+#: ../behaviors/exclfromnav.py:16
+#: ../behaviors/nextprevious.py:30
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
-#: ../interfaces.py:45
+#: ../interfaces.py:47
 msgid "Short Name"
-msgstr ""
+msgstr "Verkorte naam"
 
-#: ../browser/types.py:176
+#: ../browser/types.py:178
 msgid "The following custom content types are available for your site."
-msgstr ""
+msgstr "De volgende maatwerk contenttypes zijn beschikbaar voor uw website."
 
-#: ../interfaces.py:98
+#: ../interfaces.py:101
 msgid "There is already a content type named '${name}'"
-msgstr ""
+msgstr "Er bestaat al een item met de naam ${name} in deze map."
 
-#: ../interfaces.py:41
+#: ../interfaces.py:43
 msgid "Type Name"
-msgstr ""
+msgstr "Naam type"
 
 #: ../browser/add_type.py:47
 msgid "Type added successfully."
-msgstr ""
+msgstr "Type is toegevoegd"
 
-#: ../browser/clone_type.py:28
+#: ../browser/clone_type.py:31
 msgid "Type cloned successfully."
-msgstr ""
+msgstr "Type is gekloond"
 
-#: ../interfaces.py:46
+#: ../interfaces.py:48
 msgid "Used for programmatic access to the type."
-msgstr ""
+msgstr "Wordt gebruikt voor programmatoegang tot het type"
 
-#: ../behaviors/discussion.py:16
+#: ../behaviors/discussion.py:13
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #. Default: "Click the \"Add Content Type\" button to begin creating  a new custom content type."
-#: ../browser/types.py:179
+#: ../browser/types.py:181
 msgid "help_addcontenttype_button"
-msgstr ""
+msgstr "Contenttypes zijn te selecteren in het 'inhoud toevoegen'-menu, hiermee kunt u eigen (maatwerk)gegevens opslaan in de website. Klik op de \"Voeg contenttype toe\" knop om een nieuw contenttype te maken."
 
 #. Default: "If selected, this item will not appear in the navigation tree"
-#: ../behaviors/exclfromnav.py:18
+#: ../behaviors/exclfromnav.py:25
 msgid "help_exclude_from_nav"
-msgstr ""
+msgstr "Indien geselecteerd, wordt het item niet getoond in de navigatiestructuur"
 
 #. Default: "This enables next/previous widget on content items contained in this folder."
-#: ../behaviors/nextprevious.py:32
+#: ../behaviors/nextprevious.py:38
 msgid "help_nextprevious"
-msgstr ""
+msgstr "Dit activeert vorige/volgende navigatie op items die zich in deze map bevinden."
 
 #. Default: "All content types"
 #: ../browser/overview.pt:24
 msgid "label_all_content_types"
-msgstr ""
+msgstr "Alle contenttypes"
 
 #. Default: "Contained items"
 #: ../browser/overview.pt:9
 msgid "label_contained_items"
-msgstr ""
+msgstr "Ingesloten items"
 
 #. Default: "Exclude from navigation"
-#: ../behaviors/exclfromnav.py:17
+#: ../behaviors/exclfromnav.py:21
 msgid "label_exclude_from_nav"
-msgstr ""
+msgstr "Sluit uit van navigatie"
 
 #. Default: "Items of this type can act as a folder containing other items.What content types should be allowed inside?"
-#: ../interfaces.py:65
+#: ../interfaces.py:68
 msgid "label_filter_contained_types"
-msgstr ""
+msgstr "Items van dit types zijn ook een map kunnen andere items bevatten. Welke andere contenttypes zijn in dit contenttype toegestaan"
 
 #. Default: "Enable next previous navigation"
-#: ../behaviors/nextprevious.py:31
+#: ../behaviors/nextprevious.py:34
 msgid "label_nextprevious"
-msgstr ""
+msgstr "Activeer vorige/volgende navigatie"
 
 #. Default: "No content types"
 #: ../browser/overview.pt:18
 msgid "label_no_content_types"
-msgstr ""
+msgstr "Geen contenttypes"
 
 #. Default: "Some content types:"
 #: ../browser/overview.pt:30
 msgid "label_some_content_types"
-msgstr ""
-
+msgstr "Bepaalde contenttypes"
