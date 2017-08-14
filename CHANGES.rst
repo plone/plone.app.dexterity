@@ -4,14 +4,6 @@ Changelog
 2.0.19 (unreleased)
 -------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Update Dutch translations by merging them from Plone 5.1's locales.
