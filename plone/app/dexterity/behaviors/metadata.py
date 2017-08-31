@@ -208,7 +208,7 @@ class IOwnership(model.Schema):
     )
 
     contributors = schema.Tuple(
-        title=_(u'label_contributors', u'Contributors'),
+        title=_(u'contributors', u'Contributors'),
         description=_(
             u'help_contributors',
             default=u'The names of people that have contributed '
