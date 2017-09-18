@@ -14,7 +14,9 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Make sure robot autologin test fixture is not accidentally torn down
+  when the Dexterity fixture's ZODB sandbox is reverted.
+  [davisagli]
 
 
 2.4.6 (2017-09-03)
@@ -23,7 +25,7 @@ Bug fixes:
 Bug fixes:
 
 - Uniformity with the "Contributors" label.
-  [arsenico13] 
+  [arsenico13]
 
 
 2.4.5 (2017-08-27)
