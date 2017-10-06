@@ -39,7 +39,6 @@ from zope.schema.interfaces import IText
 def default_language(context):
     # If we are adding a new object, context will be the folderish object where
     # this new content is being added
-    # import pdb; pdb.set_trace()
     language = None
 
     # Try to get the language from context or parent(s)

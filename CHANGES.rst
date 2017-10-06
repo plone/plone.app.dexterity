@@ -14,6 +14,10 @@ New features:
 
 Bug fixes:
 
+- Don't acquire lanuage from portal root default_language for ICategorization.language.
+  Fixes https://github.com/plone/plone.app.dexterity/issues/258
+  [jaroel]
+
 - Make sure robot autologin test fixture is not accidentally torn down
   when the Dexterity fixture's ZODB sandbox is reverted.
   [davisagli]
