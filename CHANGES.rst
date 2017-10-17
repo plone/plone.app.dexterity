@@ -4,14 +4,6 @@ Changelog
 2.4.7 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Make sure robot autologin test fixture is not accidentally torn down
