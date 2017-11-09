@@ -38,7 +38,7 @@ In it, add a ``presenter.xml`` file with the contents:
           <description>Please upload an image.</description>
           <required>False</required>
           <title>Photo</title>
-        </field>I
+        </field>
       </schema>
     </model>
 
