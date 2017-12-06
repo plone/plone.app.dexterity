@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Do not acquire ``constrain_types_mode`` from parent when not defined
+  [frapell]
 
 
 2.3.7 (2017-02-05)
