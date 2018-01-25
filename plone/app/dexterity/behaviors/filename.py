@@ -6,6 +6,8 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
 
+import six
+
 
 class INameFromFileName(Interface):
     """Marker interface to enable name from filename behavior"""
@@ -20,7 +22,7 @@ class NameFromFileName(object):
         if info is None:
             return None
         filename = getattr(info.value, 'filename', None)
-        if not isinstance(filename, basestring) or not filename:
+        if not isinstance(filename, six.string_types) or not filename:
             return None
         instance = super(NameFromFileName, cls).__new__(cls)
         instance.title = filename

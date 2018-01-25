@@ -8,7 +8,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.context import TarballExportContext
-from StringIO import StringIO
+from six import StringIO
 from zipfile import ZipFile
 
 import time

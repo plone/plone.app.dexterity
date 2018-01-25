@@ -14,6 +14,7 @@ from plone.z3cform.crud import crud
 from plone.z3cform.layout import FormWrapper
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as FiveViewPageTemplateFile  # noqa
+from six.moves import urllib
 from z3c.form import button
 from z3c.form import field
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
@@ -25,8 +26,6 @@ from zope.component import getUtility
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from ZPublisher.BaseRequest import DefaultPublishTraverse
-
-import urllib
 
 
 ALLOWED_FIELDS = [
@@ -93,7 +92,7 @@ class TypeEditForm(crud.EditForm):
         elif len(selected) > 0:
             url = '{0}/@@types-export?selected={1}'.format(
                 self.context.context.absolute_url(),
-                urllib.quote(selected),
+                urllib.parse.quote(selected),
             )
             self.request.response.redirect(url)
 
@@ -106,7 +105,7 @@ class TypeEditForm(crud.EditForm):
         elif len(selected) > 0:
             url = '{0}/@@models-export?selected={1}'.format(
                 self.context.context.absolute_url(),
-                urllib.quote(selected)
+                urllib.parse.quote(selected)
             )
             self.request.response.redirect(url)
 
@@ -233,7 +232,7 @@ class TypesListing(crud.CrudForm):
         if field == 'title':
             return '{0}/{1}'.format(
                 self.context.absolute_url(),
-                urllib.quote(item.__name__)
+                urllib.parse.quote(item.__name__)
             )
 
 # Create a form wrapper so the form gets layout.

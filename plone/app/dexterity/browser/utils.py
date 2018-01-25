@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import six
 
 
 class UTF8Property(object):
@@ -13,6 +14,6 @@ class UTF8Property(object):
         return value
 
     def __set__(self, inst, value):
-        if isinstance(value, unicode):
+        if isinstance(value, six.text_type):
             value = value.encode('utf8')
         setattr(inst.context, self.name, value)

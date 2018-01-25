@@ -19,6 +19,9 @@ from zope.publisher.browser import TestRequest
 from zope.security.interfaces import IPermission
 
 
+import six
+
+
 @implementer(IWidgetsLayer)
 class MockRequest(TestRequest):
     pass
@@ -50,7 +53,7 @@ class DXFieldPermissionChecker(object):
             widgets = mergedTaggedValueDict(schema, WIDGETS_KEY)
             widget = widgets.get(field.getName())
             if widget:
-                if isinstance(widget, basestring):
+                if isinstance(widget, six.string_types):
                     widget = resolveDottedName(widget)
                 if widget:
                     widget = widget(field, self._request)

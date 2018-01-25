@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """ Support for importing Dexterity types from GS zip file.
 """
-from cStringIO import StringIO
 # XXX: need to make exceptions more specific, shorten messages
 from DateTime.DateTime import DateTime
 from lxml import etree
@@ -11,6 +10,7 @@ from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.interfaces import IImportContext
+from six.moves import cStringIO as StringIO
 from z3c.form import field
 from z3c.form import form
 from zipfile import BadZipfile
