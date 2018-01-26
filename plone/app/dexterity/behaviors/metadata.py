@@ -26,6 +26,8 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.schema.interfaces import ISequence
 from zope.schema.interfaces import IText
 
+import six
+
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
 # content edit forms.
@@ -354,7 +356,7 @@ class Basic(MetadataBase):
 
     def _set_title(self, value):
         if isinstance(value, str):
-            raise ValueError('Title must be unicode.')
+            raise ValueError('Title must be six.text_type.')
         self.context.title = value
     title = property(_get_title, _set_title)
 
@@ -363,7 +365,7 @@ class Basic(MetadataBase):
 
     def _set_description(self, value):
         if isinstance(value, str):
-            raise ValueError('Description must be unicode.')
+            raise ValueError('Description must be six.text_type.')
 
         self.context.description = value
 

@@ -63,6 +63,7 @@ setup(
         'Products.CMFPlone>=4.0b1',
         'Products.GenericSetup',
         'setuptools',
+        'six',
         'Zope2',
         'zope.browserpage',
         'zope.interface',

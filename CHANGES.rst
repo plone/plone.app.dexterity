@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Python 2 / 3 compatible imports.
+  [vincero]
 
 
 2.4.7 (2017-10-17)

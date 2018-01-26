@@ -6,7 +6,7 @@ from xml.dom.minidom import parseString
 from xml.parsers.expat import ExpatError
 from zope.component import getMultiAdapter
 
-import StringIO
+import six
 import unittest
 import zipfile
 
@@ -34,7 +34,7 @@ class TestExportXMLValidity(unittest.TestCase):
             (dexterity_control_panel, self.request), name='types-export')
 
         # export the 'item' type and try to parse all XMLs
-        fd = StringIO.StringIO(types_export_view.__call__())
+        fd = six.StringIO(types_export_view.__call__())
         archive = zipfile.ZipFile(fd, mode='r')
         filenames = archive.namelist()
         for filename in filenames:
