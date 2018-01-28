@@ -43,14 +43,22 @@ class TestUpgrades(unittest.TestCase):
         self.assertEqual(uuid2, uuid, 'Upgrade changes existing uuids.')
 
     def test_upgrade_2003(self):
-        qi = self.layer['portal'].portal_quickinstaller
-        from Products.CMFQuickInstallerTool.InstalledProduct import \
-            InstalledProduct
+        from plone.app.dexterity.upgrades.to2003 import fix_installed_products
+        from Products.CMFCore.utils import getToolByName
+        try:
+            from Products.CMFQuickInstallerTool.InstalledProduct import \
+                InstalledProduct
+        except ImportError:
+            # nothing to test
+            return
+        qi = getToolByName(self.layer['portal'], 'portal_quickinstaller', None)
+        if qi is None:
+            # nothing to test
+            return
         ip = InstalledProduct('foo')
         ip.utilities = [('zope.intid.interfaces.IIntIds', '')]
         qi._setObject('foo', ip)
 
-        from plone.app.dexterity.upgrades.to2003 import fix_installed_products
         fix_installed_products(self.layer['portal'])
 
         self.assertEqual([], ip.utilities)

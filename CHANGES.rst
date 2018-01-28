@@ -14,6 +14,9 @@ New features:
 
 Bug fixes:
 
+- Do not fail in upgrade step or tests when portal_quickinstaller is not there.
+  [maurits]
+
 - Python 2 / 3 compatible imports.
   [vincero]
 

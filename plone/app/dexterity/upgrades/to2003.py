@@ -7,7 +7,10 @@ BAD_GUY = ('zope.intid.interfaces.IIntIds', '')
 
 
 def fix_installed_products(context):
-    qi = getToolByName(context, 'portal_quickinstaller')
+    qi = getToolByName(context, 'portal_quickinstaller', None)
+    if qi is None:
+        # Nothing to do.
+        return
     for installed_product in qi.objectValues(spec='Installed Product'):
         if installed_product.getId() == 'plone.app.intid':
             continue
