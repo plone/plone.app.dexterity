@@ -360,7 +360,7 @@ Testing the type
 
 With a schema and FTI for each type, and our GenericSetup profile registered in ``configure.zcml``, we should be able to test our type.
 Make sure that you have run a buildout, and then start ``./bin/instance fg`` as normal.
-Add a Plone site, and go to the :guilabel:`portal_quickinstaller` in the ZMI.
+Add a Plone site, and go to the Add-ons control panel.
 You should see your package there and be able to install it.
 
 Once installed, you should be able to add objects of the new content types.
@@ -370,10 +370,10 @@ If Zope doesn’t start up:
 -  Look for error messages on the console, and make sure you start in the foreground with ``./bin/instance fg``.
    You could have a syntax error or a ZCML error.
 
-If you don’t see your package in :guilabel:`portal_quickinstaller`:
+If you don’t see your package in the Add-ons control panel:
 
 -  Ensure that the package is either checked out by ``mr.developer`` or that you have a ``develop`` line in ``buildout.cfg`` to load it as a develop egg.
-  ``develop = src/*`` should suffice, but you can also add the package explicitly, e.g. with``develop = src/example.conference.``
+   ``develop = src/*`` should suffice, but you can also add the package explicitly, e.g. with``develop = src/example.conference.``
 -  Ensure that the package is actually loaded as an egg. It should be referenced in the ``eggs`` section under ``[instance]`` .
 -  You can check that the package is correctly configured in the buildout by looking at the generated ``bin/instance`` script  (``bin\instance-script.py`` on Windows).
    There should be a line for your package in the list of eggs at the top of the file.
@@ -382,7 +382,7 @@ If you don’t see your package in :guilabel:`portal_quickinstaller`:
    However, the easiest way with    Plone 3.3 and later is to add the ``z3c.autoinclude.plugin`` entry point to ``setup.py``.
 -  Ensure that you have added a ``<genericsetup:registerProfile />`` stanza to ``configure.zcml``.
 
-If the package fails to install in ``portal_quickinstaller``:
+If the package fails to install in the Add-ons control panel:
 
 -  Look for errors in the :guilabel:`error_log` at the root of the Plone site, in your console, or in your log files.
 -  Check the syntax and placement of the profile files. Remember that you need a ``types.xml`` listing your types, and corresponding files in ``types/*.xml``.
