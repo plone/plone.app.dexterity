@@ -4,14 +4,6 @@ Changelog
 2.4.8 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Do not fail in upgrade step or tests when portal_quickinstaller is not there.
