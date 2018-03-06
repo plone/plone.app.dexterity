@@ -2,7 +2,7 @@
 <div class="portalMessage" tal:condition="view/status" tal:content="view/status"></div>
 
 <form action="." method="post" tal:attributes="action request/getURL; enctype view/enctype">
-<tal:widgets repeat="widget view/widgets/values">
+<tal:widgets repeat="widget view/widgets/values|nothing">
 
   <div class="field"
        tal:define="error widget/error;
