@@ -10,13 +10,13 @@
 <metal:main fill-slot="content-core">
 <metal:content-core define-macro="content-core">
 
-  <tal:block repeat="widget view/widgets/values">
+  <tal:block repeat="widget view/widgets/values|nothing">
       <tal:block tal:condition="python:widget.__name__ not in ('IBasic.title', 'IBasic.description', 'title', 'description',)">
           <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
       </tal:block>
   </tal:block>
 
-  <fieldset tal:repeat="group view/groups"
+  <fieldset tal:repeat="group view/groups|nothing"
             tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
       <legend tal:content="group/label" />
       <tal:block tal:repeat="widget group/widgets/values">
@@ -26,7 +26,7 @@
 
   <fieldset id="folder-listing">
       <legend i18n:translate="" i18n:domain="plone">Contents</legend>
-      <tal:block define="view nocall:context/folder_listing; listing_macro view/macros/listing">
+      <tal:block define="view nocall:context/folder_listing; listing_macro view/macros/listing|view/index/macros/listing">
           <metal:use_macro use-macro="listing_macro" />
       </tal:block>
   </fieldset>

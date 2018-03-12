@@ -14,7 +14,9 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Don't break if types are without widgets or groups.
+  Fixes an error with displaying TTW Dexterity types via plone.app.contenttypes full_view. 
+  [thet]
 
 
 2.4.8 (2018-02-04)
