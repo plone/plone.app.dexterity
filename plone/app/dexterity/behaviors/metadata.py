@@ -26,7 +26,7 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.schema.interfaces import ISequence
 from zope.schema.interfaces import IText
 
-import six
+from six.moves import map
 
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
@@ -302,7 +302,7 @@ class DCFieldProperty(object):
         if isinstance(attribute, DateTime):
             # Ensure datetime value is stripped of any timezone and seconds
             # so that it can be compared with the value returned by the widget
-            return datetime(*map(int, attribute.parts()[:6]))
+            return datetime(*list(map(int, attribute.parts()[:6])))
 
         if attribute is None:
             return
