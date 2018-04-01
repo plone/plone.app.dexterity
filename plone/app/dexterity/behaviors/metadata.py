@@ -27,6 +27,7 @@ from zope.schema.interfaces import ISequence
 from zope.schema.interfaces import IText
 
 from six.moves import map
+import six
 
 
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
@@ -355,8 +356,8 @@ class Basic(MetadataBase):
         return self.context.title
 
     def _set_title(self, value):
-        if isinstance(value, str):
-            raise ValueError('Title must be six.text_type.')
+        if not isinstance(value, six.text_type):
+            raise ValueError('Title must be text.')
         self.context.title = value
     title = property(_get_title, _set_title)
 
@@ -364,8 +365,8 @@ class Basic(MetadataBase):
         return self.context.description
 
     def _set_description(self, value):
-        if isinstance(value, str):
-            raise ValueError('Description must be six.text_type.')
+        if not isinstance(value, six.text_type):
+            raise ValueError('Description must be text.')
 
         self.context.description = value
 
