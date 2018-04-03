@@ -4,14 +4,6 @@ Changelog
 2.4.9 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Don't break if types are without widgets or groups.
