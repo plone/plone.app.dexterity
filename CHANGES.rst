@@ -14,6 +14,9 @@ New features:
 
 Bug fixes:
 
+- Python 3 fixes.
+  [pbauer]
+
 - Do not fail in upgrade step or tests when portal_quickinstaller is not there.
   [maurits]
 
