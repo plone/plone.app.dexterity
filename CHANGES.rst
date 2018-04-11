@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.4.8 (unreleased)
-------------------
+2.4.10 (unreleased)
+-------------------
 
 Breaking changes:
 
@@ -16,6 +16,22 @@ Bug fixes:
 
 - Python 3 fixes.
   [pbauer]
+
+
+2.4.9 (2018-04-03)
+------------------
+
+Bug fixes:
+
+- Don't break if types are without widgets or groups.
+  Fixes an error with displaying TTW Dexterity types via plone.app.contenttypes full_view. 
+  [thet]
+
+
+2.4.8 (2018-02-04)
+------------------
+
+Bug fixes:
 
 - Do not fail in upgrade step or tests when portal_quickinstaller is not there.
   [maurits]

@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '2.4.8.dev0'
+version = '2.4.10.dev0'
 
 short_description = (
     'Dexterity is a content type framework for CMF  applications, '
@@ -25,6 +25,7 @@ setup(
     classifiers=[
         'Framework :: Plone',
         'Framework :: Plone :: 5.1',
+        'License :: OSI Approved :: GNU General Public License (GPL)',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
         'Topic :: Software Development :: Libraries :: Python Modules',
