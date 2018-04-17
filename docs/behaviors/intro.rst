@@ -20,7 +20,7 @@ Behaviors are normally used when:
    Behaviors allow you to write a schema and associated components (e.g. adapters, event handlers, views, viwelets) once and re-use them easily.
 -  A more experienced developer is making functionality available for re-use by less experienced integrators.
    For example, a behavior can be packaged up and release as an add-on product.
-   Integators can then install that product and use the behavior in their own types, either in code or through-the-web.
+   Integrators can then install that product and use the behavior in their own types, either in code or through-the-web.
 
 This manual is aimed at developers who want to write new behaviors.
 This is a slightly more advanced topic than the writing of custom content types.
