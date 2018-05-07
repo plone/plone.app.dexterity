@@ -106,7 +106,7 @@ class TypeBehaviorsForm(form.EditForm):
             if with_name and reg.name != name:
                 continue
             fname = reg.name if reg.name else name
-            if isinstance(fname, six.text_type):
+            if six.PY2 and isinstance(fname, six.text_type):
                 fname = fname.encode('utf8')
             fields.append(
                 schema.Bool(

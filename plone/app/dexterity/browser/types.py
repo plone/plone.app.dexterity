@@ -218,11 +218,11 @@ class TypesListing(crud.CrudForm):
         ftis = getAllUtilitiesRegisteredFor(IDexterityFTI)
         return [(fti.__name__, fti) for fti in ftis]
 
-    def remove(self, (id, item)):
+    def remove(self, id_and_item):
         """ Remove a content type.
         """
         ttool = getToolByName(self.context, 'portal_types')
-        ttool.manage_delObjects([id])
+        ttool.manage_delObjects([id_and_item[0]])
 
     def link(self, item, field):
         """Generate links to the edit page for each type.

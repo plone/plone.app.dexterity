@@ -26,6 +26,7 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.schema.interfaces import ISequence
 from zope.schema.interfaces import IText
 
+from six.moves import map
 import six
 
 
@@ -302,7 +303,7 @@ class DCFieldProperty(object):
         if isinstance(attribute, DateTime):
             # Ensure datetime value is stripped of any timezone and seconds
             # so that it can be compared with the value returned by the widget
-            return datetime(*map(int, attribute.parts()[:6]))
+            return datetime(*list(map(int, attribute.parts()[:6])))
 
         if attribute is None:
             return
@@ -355,8 +356,8 @@ class Basic(MetadataBase):
         return self.context.title
 
     def _set_title(self, value):
-        if isinstance(value, str):
-            raise ValueError('Title must be six.text_type.')
+        if not isinstance(value, six.text_type):
+            raise ValueError('Title must be text.')
         self.context.title = value
     title = property(_get_title, _set_title)
 
@@ -364,8 +365,8 @@ class Basic(MetadataBase):
         return self.context.description
 
     def _set_description(self, value):
-        if isinstance(value, str):
-            raise ValueError('Description must be six.text_type.')
+        if not isinstance(value, six.text_type):
+            raise ValueError('Description must be text.')
 
         self.context.description = value
 

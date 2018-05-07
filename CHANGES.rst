@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Python 3 fixes.
+  [pbauer]
 
 
 2.4.9 (2018-04-03)
