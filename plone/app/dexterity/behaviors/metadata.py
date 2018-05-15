@@ -309,13 +309,15 @@ class DCFieldProperty(object):
             return
 
         if IText.providedBy(self._field):
-            return attribute.decode('utf-8')
+            if six.PY2:
+                return attribute.decode('utf-8')
 
         if ISequence.providedBy(self._field):
             if IText.providedBy(self._field.value_type):
-                return type(attribute)(
-                    item.decode('utf-8') for item in attribute
-                )
+                if six.PY2:
+                    return type(attribute)(
+                        item.decode('utf-8') for item in attribute
+                    )
 
         return attribute
 
@@ -331,13 +333,15 @@ class DCFieldProperty(object):
                              value.hour, value.minute)
         elif value is not None:
             if IText.providedBy(self._field):
-                value = value.encode('utf-8')
+                if six.PY2:
+                    value = value.encode('utf-8')
 
             elif ISequence.providedBy(self._field):
                 if IText.providedBy(self._field.value_type):
-                    value = type(value)(
-                        item.encode('utf-8') for item in value
-                    )
+                    if six.PY2:
+                        value = type(value)(
+                            item.encode('utf-8') for item in value
+                        )
 
         if self._set_name:
             getattr(inst.context, self._set_name)(value)
