@@ -9,6 +9,7 @@ from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from zope.schema.interfaces import ConstraintNotSatisfied
 
+import six
 import unittest
 
 
@@ -26,9 +27,11 @@ class TestBasic(unittest.TestCase):
         b.title = u'foo'
         self.assertEqual(u'foo', b.context.title)
 
+    @unittest.skipUnless(six.PY2, 'Only for py2')
     def test_title_setter_rejects_bytestrings(self):
         b = self._makeOne()
-        self.assertRaises(ValueError, setattr, b, 'title', 'føø')
+        with self.assertRaises(ValueError):
+            setattr(b, 'title', 'føø')
 
     def test_title_getter(self):
         b = self._makeOne()
@@ -40,9 +43,11 @@ class TestBasic(unittest.TestCase):
         b.description = u'foo'
         self.assertEqual(u'foo', b.context.description)
 
+    @unittest.skipUnless(six.PY2, 'Only for py2')
     def test_description_setter_rejects_bytestrings(self):
         b = self._makeOne()
-        self.assertRaises(ValueError, setattr, b, 'description', 'føø')
+        with self.assertRaises(ValueError):
+            setattr(b, 'description', 'føø')
 
     def test_description_getter(self):
         b = self._makeOne()
