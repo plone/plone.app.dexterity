@@ -17,6 +17,8 @@ Bug fixes:
 - Python 3 fixes.
   [pbauer]
 
+- Use API method for form buttons
+  [tomgross]
 
 2.4.9 (2018-04-03)
 ------------------

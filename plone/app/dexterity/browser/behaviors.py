@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from collections import Counter
-from copy import deepcopy
 from operator import attrgetter
 from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
@@ -86,7 +85,7 @@ class TypeBehaviorsForm(form.EditForm):
     description = _(u'Select the behaviors to enable for this content type.')
     successMessage = _(u'Behaviors successfully updated.')
     noChangesMessage = _(u'No changes were made.')
-    buttons = deepcopy(form.EditForm.buttons)
+    buttons = form.EditForm.buttons.copy()
     buttons['apply'].title = _(u'Save')
 
     def getContent(self):
