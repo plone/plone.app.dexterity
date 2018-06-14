@@ -94,4 +94,4 @@ link disappear::
   >>> next = browser.getLink('Next')
   Traceback (most recent call last):
   ...
-  LinkNotFoundError
+  zope.testbrowser.browser.LinkNotFoundError

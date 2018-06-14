@@ -199,32 +199,32 @@ First, prove this won't work without an authenticator
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something')
   Traceback (most recent call last):
   ...
-  Unauthorized: Unauthorized()
+  AccessControl.unauthorized.Unauthorized: Unauthorized()
 
 Check rejection of bad XML "something"::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something&_authenticator=%s' % authenticator)
-  >>> print browser.contents
+  >>> print(browser.contents)
   {"message": "XMLSyntaxError: Start tag expected, '<' not found, line 1, column 1", "success": false}
 
 We should refuse source that doesn't have `model` for the root tag::
 
   >>> bad_source = model_source.replace('model', 'mode')
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
-  >>> print browser.contents
+  >>> print(browser.contents)
   {"message": "Error: root tag must be 'model'", "success": false}
 
 Likewise, only `schema` tags are allowed inside the model::
 
   >>> bad_source = model_source.replace('schema>', 'scheme>')
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
-  >>> print browser.contents
+  >>> print(browser.contents)
   {"message": "Error: all model elements must be 'schema'", "success": false}
 
 Should work with real XML
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(model_source), authenticator))
-  >>> print browser.contents
+  >>> print(browser.contents)
   {"message": "Saved", "success": true}
 
 That response should have a JSON content type::
@@ -428,7 +428,7 @@ Now only the allowed types may be added::
   >>> browser.getLink(url='Folder')
   Traceback (most recent call last):
   ...
-  LinkNotFound...
+  zope.testbrowser.browser.LinkNotFoundError...
 
   >>> browser.getLink(url='Document').click()
   >>> browser.getControl('Title').value = 'Foo Plonista Page'
@@ -459,7 +459,7 @@ But actually trying to view the type will now cause an error, as expected::
   >>> browser.open('http://nohost/plone/martin-aspeli/view')
   Traceback (most recent call last):
   ...
-  ComponentLookupError...
+  zope.interface.interfaces.ComponentLookupError...
 
 
 Dexterity Types Export
@@ -482,16 +482,17 @@ zip archive containing files ready to drop into our profile::
     >>> browser.headers['content-disposition']
     'attachment; filename=dexterity_export-....zip'
 
-    >>> import StringIO, zipfile
-    >>> fd = StringIO.StringIO(browser.contents)
+    >>> import zipfile
+    >>> import six
+    >>> fd = six.BytesIO(browser.contents)
     >>> archive = zipfile.ZipFile(fd, mode='r')
     >>> archive.namelist()
     ['types.xml', 'types/plonista2.xml', 'types/plonista-folder.xml']
 
     >>> types_xml = archive.read('types.xml')
-    >>> '<object name="plonista2" meta_type="Dexterity FTI"/>' in types_xml
+    >>> b'<object name="plonista2" meta_type="Dexterity FTI"/>' in types_xml
     True
-    >>> '<object name="plonista-folder" meta_type="Dexterity FTI"/>' in types_xml
+    >>> b'<object name="plonista-folder" meta_type="Dexterity FTI"/>' in types_xml
     True
 
 Try out the models export button. We should be able to select our types from
@@ -511,13 +512,15 @@ zip archive containing supermodel xml files::
     >>> browser.headers['content-disposition']
     'attachment; filename=dexterity_models-....zip'
 
-    >>> import StringIO, zipfile
-    >>> fd = StringIO.StringIO(browser.contents)
+    >>> import zipfile
+    >>> import six
+    >>> fd = six.BytesIO(browser.contents)
     >>> archive = zipfile.ZipFile(fd, mode='r')
     >>> archive.namelist()
     ['models/plonista2.xml', 'models/plonista-folder.xml']
 
-    >>> print archive.read('models/plonista2.xml')
+    >>> from Products.CMFPlone.utils import safe_unicode
+    >>> print(safe_unicode(archive.read('models/plonista2.xml')))
     <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
@@ -539,7 +542,7 @@ file::
     >>> browser.headers['content-disposition']
     'attachment; filename=plonista2.xml'
 
-    >>> print browser.contents
+    >>> print(safe_unicode(browser.contents))
     <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
