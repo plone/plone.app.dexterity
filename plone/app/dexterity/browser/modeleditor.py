@@ -4,6 +4,7 @@ from lxml import etree
 from plone.app.dexterity import _
 from plone.supermodel.parser import SupermodelParseError
 from Products.Five import BrowserView
+from Products.CMFPlone.utils import safe_unicode
 from zope.component import queryMultiAdapter
 
 import json
@@ -47,7 +48,7 @@ class AjaxSaveHandler(BrowserView):
                 return json.dumps({
                     'success': False,
                     'message': 'XMLSyntaxError: {0}'.format(
-                        e.message.encode('utf8')
+                        safe_unicode(e.args[0])
                     )
                 })
 

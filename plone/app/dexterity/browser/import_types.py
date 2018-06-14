@@ -146,7 +146,7 @@ class ZipFileImportContext(BaseContext):
             filename = '/'.join((subdir, filename))
 
         try:
-            file = self._archive.open(filename, 'rU')
+            file = self._archive.open(filename, 'r')
         except KeyError:
             return None
 
