@@ -199,7 +199,7 @@ First, prove this won't work without an authenticator
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something')
   Traceback (most recent call last):
   ...
-  AccessControl.unauthorized.Unauthorized: Unauthorized()
+  AccessControl.unauthorized.Unauthorized: ...
 
 Check rejection of bad XML "something"::
 

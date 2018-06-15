@@ -21,10 +21,11 @@ tests = (
 class Py23DocChecker(doctest.OutputChecker):
     def check_output(self, want, got, optionflags):
         if six.PY2:
-            got = re.sub('zExceptions.NotFound', 'NotFound', got)
-            got = re.sub('zope.interface.interfaces.ComponentLookupError', 'ComponentLookupError', got)
-            got = re.sub('zope.testbrowser.browser.LinkNotFoundError', 'LinkNotFoundError', got)
-            got = re.sub("u'(.*?)'", "'\\1'", want)
+            want = re.sub('zExceptions.NotFound', 'NotFound', want)
+            want = re.sub('zope.interface.interfaces.ComponentLookupError', 'ComponentLookupError', want)
+            want = re.sub('zope.testbrowser.browser.LinkNotFoundError', 'LinkNotFoundError', want)
+            want = re.sub('AccessControl.unauthorized.Unauthorized', 'Unauthorized', want)
+            got = re.sub("u'(.*?)'", "'\\1'", got)
             want = re.sub("b'(.*?)'", "'\\1'", want)
         return doctest.OutputChecker.check_output(self, want, got, optionflags)
 
