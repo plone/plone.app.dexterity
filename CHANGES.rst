@@ -4,14 +4,6 @@ Changelog
 2.4.10 (unreleased)
 -------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Python 3 fixes.
