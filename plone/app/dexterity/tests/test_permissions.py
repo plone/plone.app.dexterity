@@ -6,7 +6,6 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.app.widgets.testing import PLONEAPPWIDGETS_DX_INTEGRATION_TESTING
-from plone.app.widgets.testing import TestRequest
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.dexterity.browser.add import DefaultAddForm
@@ -20,6 +19,7 @@ from zope.component import provideAdapter
 from zope.component.globalregistry import base
 from zope.globalrequest import setRequest
 from zope.interface import Interface
+from zope.publisher.browser import TestRequest
 
 import json
 import unittest
