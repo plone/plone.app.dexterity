@@ -37,6 +37,7 @@ ALLOWED_FIELDS = [
     u'z3c.relationfield.schema.RelationList',
     u'zope.schema._bootstrapfields.Bool',
     u'zope.schema._bootstrapfields.Int',
+    u'plone.schema.jsonfield.JSONField',
     u'zope.schema._bootstrapfields.Password',
     u'zope.schema._bootstrapfields.Text',
     u'zope.schema._bootstrapfields.TextLine',

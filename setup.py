@@ -58,6 +58,7 @@ setup(
         'plone.autoform >=1.1dev',
         'plone.contentrules',
         'plone.portlets',
+        'plone.schema>=1.1.0',
         'plone.supermodel>=1.1dev',
         'plone.z3cform>=0.6.0',
         'Products.CMFCore',

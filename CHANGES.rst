@@ -4,17 +4,13 @@ Changelog
 2.4.11 (unreleased)
 -------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
-- *add item here*
+- Add plone.schema>=1.1.0 as minimal dependency in setup.py.
+  [timo]
 
-Bug fixes:
-
-- *add item here*
+- Add JSONField that has been added to plone.schema 1.1.0 to ALLOWED_FIELDS in types.py.
+  [timo]
 
 
 2.4.10 (2018-06-18)
