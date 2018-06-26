@@ -15,11 +15,11 @@ from z3c.form import field
 from z3c.form import form
 from zipfile import BadZipfile
 from zipfile import ZipFile
+from zope.component.hooks import getSite
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import Invalid
 from zope.interface import invariant
-from zope.site.hooks import getSite
 
 import os.path
 import zope.schema

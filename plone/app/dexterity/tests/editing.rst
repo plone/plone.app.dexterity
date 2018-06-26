@@ -57,7 +57,7 @@ The new type should have the dublin core behavior assigned by default::
   >>> 'document_icon' in plonista.getIconExprObject().text
   True
 
-The listing needs to not break if a type description was stored encoded.
+The listing needs to not break if a type description was stored encoded::
 
   >>> plonista.description = '\xc3\xbc'
   >>> transaction.commit()
@@ -67,7 +67,7 @@ The listing needs to not break if a type description was stored encoded.
 
 The listing should also feature a CSS class for display in the listing
 using the short name. Add a new content type to ensure the short name
-is present on the page:
+is present on the page::
 
   >>> browser.open('http://nohost/plone/dexterity-types')
   >>> browser.getLink('Add New Content Type').click()
@@ -110,7 +110,7 @@ schema for the 'plonista' type we just created::
   'http://nohost/plone/dexterity-types/plonista/@@fields'
 
 Demonstrate that all the registered field types can be added edited
-and saved.
+and saved::
 
   >>> from zope import component
   >>> from plone.i18n.normalizer.interfaces import IIDNormalizer
@@ -148,10 +148,10 @@ Editing the XML model directly
 Much of what the XML model editor does is happening in JavaScript, but we can
 still test the Zope side.
 
-Get some tools.
+Get some tools::
 
   >>> from cgi import escape
-  >>> from urllib import quote_plus
+  >>> from six.moves.urllib.parse import quote_plus
 
 We should be able to navigate to the modeleditor view by clicking a
 button on the field list form::
@@ -204,28 +204,34 @@ First, prove this won't work without an authenticator
 Check rejection of bad XML "something"::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something&_authenticator=%s' % authenticator)
-  >>> print(browser.contents)
-  {"message": "XMLSyntaxError: Start tag expected, '<' not found, line 1, column 1", "success": false}
+  >>> from pprint import pprint
+  >>> import json
+  >>> pprint(json.loads(browser.contents))
+  {'message': "XMLSyntaxError: Start tag expected, '<' not found, line 1, column "
+                  '1',
+       'success': False}
 
 We should refuse source that doesn't have `model` for the root tag::
 
   >>> bad_source = model_source.replace('model', 'mode')
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
-  >>> print(browser.contents)
-  {"message": "Error: root tag must be 'model'", "success": false}
+  >>> pprint(json.loads(browser.contents))
+  {'message': "Error: root tag must be 'model'", 'success': False}
 
 Likewise, only `schema` tags are allowed inside the model::
 
   >>> bad_source = model_source.replace('schema>', 'scheme>')
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
-  >>> print(browser.contents)
-  {"message": "Error: all model elements must be 'schema'", "success": false}
+  >>> pprint(json.loads(browser.contents))
+  {'message': "Error: all model elements must be 'schema'", 'success': False}
 
 Should work with real XML
 
+::
+
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(model_source), authenticator))
-  >>> print(browser.contents)
-  {"message": "Saved", "success": true}
+  >>> pprint(json.loads(browser.contents))
+  {'message': 'Saved', 'success': True}
 
 That response should have a JSON content type::
 
@@ -265,6 +271,8 @@ If a type's schema is not stored as XML in its FTI's schema property, it cannot
 currently be edited through the web.  However, the fields of the schema can at
 least be listed.
 
+::
+
   >>> from zope.interface import Interface
   >>> from zope import schema
   >>> import plone.app.dexterity.tests
@@ -288,7 +296,7 @@ We should not be offering the 'Edit XML' button::
 Cloning a content type
 ----------------------
 
-A content type can be cloned.
+A content type can be cloned::
 
   >>> browser.open('http://nohost/plone/dexterity-types')
   >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').controls[0].selected = True
@@ -314,7 +322,7 @@ Validation to prevent duplicate content types
 ---------------------------------------------
 
 A new content type cannot be created if its name is the same as an existing
-content type.
+content type::
 
   >>> browser.getLink('Add New Content Type').click()
   >>> browser.getControl('Type Name').value = 'foobar'
@@ -325,7 +333,7 @@ content type.
   >>> "There is already a content type named 'plonista'" in browser.contents
   True
 
-To avoid confusion, the title must also be unique.
+To avoid confusion, the title must also be unique::
 
   >>> browser.open('http://nohost/plone/dexterity-types')
   >>> browser.getLink('Add New Content Type').click()
@@ -337,7 +345,7 @@ To avoid confusion, the title must also be unique.
   >>> "There is already a content type named 'Plonista'" in browser.contents
   True
 
-Similar checks are performed when cloning.
+Similar checks are performed when cloning::
 
   >>> browser.open('http://nohost/plone/dexterity-types')
   >>> browser.getControl(name='crud-edit.plonista.widgets.select:list').controls[0].selected = True
@@ -392,7 +400,7 @@ We can configure the plonista-folder to allow contained content types::
   >>> browser.getControl('All content types').click()
   >>> browser.getControl('Apply').click()
 
-If we add a plonista-folder, we can then add other content items inside it.
+If we add a plonista-folder, we can then add other content items inside it::
 
   >>> browser.open('http://nohost/plone')
   >>> browser.getLink('Plonista Folder').click()

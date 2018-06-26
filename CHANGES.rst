@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Python 3 fixes.
+  [jensens]
 
 
 2.5.0 (2018-06-24)

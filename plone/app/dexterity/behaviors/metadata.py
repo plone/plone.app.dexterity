@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from AccessControl.SecurityManagement import getSecurityManager
-from DateTime import DateTime
 from datetime import datetime
+from DateTime import DateTime
 from plone.app.dexterity import _
 from plone.app.z3cform.widget import AjaxSelectFieldWidget
 from plone.app.z3cform.widget import DatetimeFieldWidget
@@ -13,6 +13,7 @@ from plone.dexterity.utils import safe_unicode
 from plone.supermodel import model
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from six.moves import map
 from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
 from z3c.form.widget import ComputedWidgetAttribute
@@ -26,7 +27,6 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.schema.interfaces import ISequence
 from zope.schema.interfaces import IText
 
-from six.moves import map
 import six
 
 

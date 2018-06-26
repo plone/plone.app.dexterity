@@ -18,7 +18,6 @@ from zope.component import adapter
 from zope.component import getUtilitiesFor
 from zope.lifecycleevent import modified
 
-
 import six
 
 

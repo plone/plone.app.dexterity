@@ -3,13 +3,14 @@ from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 from plone.testing import layered
 
 import doctest
-import unittest
 import re
 import six
+import unittest
+
 
 tests = (
     'discussion.txt',
-    'editing.txt',
+    'editing.rst',
     'namefromtitle.txt',
     'metadata.txt',
     'nextprevious.txt',
