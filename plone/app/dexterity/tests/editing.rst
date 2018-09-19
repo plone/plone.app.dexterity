@@ -204,26 +204,27 @@ First, prove this won't work without an authenticator
 Check rejection of bad XML "something"::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something&_authenticator=%s' % authenticator)
-  >>> from pprint import pprint
   >>> import json
-  >>> pprint(json.loads(browser.contents))
-  {'message': "XMLSyntaxError: Start tag expected, '<' not found, line 1, column "
-                  '1',
-       'success': False}
+  >>> result = json.loads(browser.contents)
+  >>> u"XMLSyntaxError: Start tag expected" in result['message']
+  True
 
 We should refuse source that doesn't have `model` for the root tag::
 
   >>> bad_source = model_source.replace('model', 'mode')
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
-  >>> pprint(json.loads(browser.contents))
-  {'message': "Error: root tag must be 'model'", 'success': False}
+  >>> from pprint import pprint
+  >>> result = json.loads(browser.contents)
+  >>> u"Error: root tag must be 'model'" in result['message']
+  True
 
 Likewise, only `schema` tags are allowed inside the model::
 
   >>> bad_source = model_source.replace('schema>', 'scheme>')
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
-  >>> pprint(json.loads(browser.contents))
-  {'message': "Error: all model elements must be 'schema'", 'success': False}
+  >>> result = json.loads(browser.contents)
+  >>> u"Error: all model elements must be 'schema'" in result['message']
+  True
 
 Should work with real XML
 
