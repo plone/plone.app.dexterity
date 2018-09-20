@@ -18,7 +18,7 @@ Bug fixes:
   [jensens]
 
 - Python 3 fixes.
-  [jensens]
+  [jensens, pbauer]
 
 
 2.5.0 (2018-06-24)
