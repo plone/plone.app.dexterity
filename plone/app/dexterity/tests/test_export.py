@@ -34,7 +34,8 @@ class TestExportXMLValidity(unittest.TestCase):
             (dexterity_control_panel, self.request), name='types-export')
 
         # export the 'item' type and try to parse all XMLs
-        fd = six.StringIO(types_export_view.__call__())
+        output = types_export_view.__call__()
+        fd = six.BytesIO(output)
         archive = zipfile.ZipFile(fd, mode='r')
         filenames = archive.namelist()
         for filename in filenames:
@@ -45,7 +46,7 @@ class TestExportXMLValidity(unittest.TestCase):
                 parseString(file_xml)
             except ExpatError as e:
                 msg = 'Parsing XML failed with ExpatError: {0}'
-                self.fail(msg.format(e.message))
+                self.fail(msg.format(e.args[0]))
 
 
 def test_suite():

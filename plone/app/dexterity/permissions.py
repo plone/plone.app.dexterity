@@ -18,7 +18,6 @@ from zope.interface import implementer
 from zope.publisher.browser import TestRequest
 from zope.security.interfaces import IPermission
 
-
 import six
 
 

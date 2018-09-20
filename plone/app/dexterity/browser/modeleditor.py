@@ -3,6 +3,7 @@ from AccessControl import Unauthorized
 from lxml import etree
 from plone.app.dexterity import _
 from plone.supermodel.parser import SupermodelParseError
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from zope.component import queryMultiAdapter
 
@@ -47,7 +48,7 @@ class AjaxSaveHandler(BrowserView):
                 return json.dumps({
                     'success': False,
                     'message': 'XMLSyntaxError: {0}'.format(
-                        e.message.encode('utf8')
+                        safe_unicode(e.args[0])
                     )
                 })
 

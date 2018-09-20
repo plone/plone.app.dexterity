@@ -10,16 +10,16 @@ from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.interfaces import IImportContext
-from six.moves import cStringIO as StringIO
+from six import BytesIO
 from z3c.form import field
 from z3c.form import form
 from zipfile import BadZipfile
 from zipfile import ZipFile
+from zope.component.hooks import getSite
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import Invalid
 from zope.interface import invariant
-from zope.site.hooks import getSite
 
 import os.path
 import zope.schema
@@ -41,7 +41,7 @@ class ITypeProfileImport(Interface):
             # let required validator handle this
             return None
         try:
-            archive = ZipFile(StringIO(data.profile_file.data), 'r')
+            archive = ZipFile(BytesIO(data.profile_file.data), 'r')
         except BadZipfile:
             raise Invalid(
                 _(u"Error: The file submitted must be a zip archive."),
@@ -58,7 +58,7 @@ class ITypeProfileImport(Interface):
                 )
 
         # check XML for basic integrity
-        with archive.open('types.xml', 'rU') as f:
+        with archive.open('types.xml', 'r') as f:
             source = f.read()
             root = etree.fromstring(source)
             if root.tag != 'object':
@@ -146,7 +146,7 @@ class ZipFileImportContext(BaseContext):
             filename = '/'.join((subdir, filename))
 
         try:
-            file = self._archive.open(filename, 'rU')
+            file = self._archive.open(filename, 'r')
         except KeyError:
             return None
 

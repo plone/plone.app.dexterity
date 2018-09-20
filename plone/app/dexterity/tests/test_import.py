@@ -27,7 +27,7 @@ class TestDexterityTypesImport(unittest.TestCase):
             'import',
             'dexterity_export.zip',
         )
-        f = open(zname, 'r')
+        f = open(zname, 'rb')
         icontext = ZipFileImportContext(types_tool, f)
 
         types_xml = icontext.readDataFile('types.xml')
@@ -74,7 +74,7 @@ class TestDexterityTypesImport(unittest.TestCase):
             'import',
             'dexterity_export.zip'
         )
-        with open(zname, 'r') as f:
+        with open(zname, 'rb') as f:
             icontext = ZipFileImportContext(types_tool, f)
             handler(icontext)
 
@@ -88,7 +88,7 @@ class TestDexterityTypesImport(unittest.TestCase):
         # it would be importing existing types.
         # This is tested in an invariant.
         data = TypeProfileImport(profile_file=plone.namedfile.NamedFile())
-        with open(zname, 'r') as f:
+        with open(zname, 'rb') as f:
             data.profile_file.data = f.read()
         self.assertRaises(
             zope.interface.Invalid,

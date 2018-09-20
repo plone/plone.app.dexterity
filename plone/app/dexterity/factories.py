@@ -28,7 +28,7 @@ class DXFileFactory(object):
         ctr = getToolByName(self.context, 'content_type_registry')
         type_ = ctr.findTypeName(name.lower(), content_type, data) or 'File'
 
-        name = name.decode('utf8')
+        name = ploneutils.safe_unicode(name)
 
         chooser = INameChooser(self.context)
 
@@ -44,7 +44,7 @@ class DXFileFactory(object):
             # its type name
             # XXX heuristics are harmful behavior, here a better implemenation
             #     is needed
-            filename = ploneutils.safe_unicode(name)
+            filename = name
             if 'Image' in type_:
                 image = NamedBlobImage(
                     data=data,

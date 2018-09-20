@@ -14,7 +14,11 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Remove bbb for MessageFactory import.
+  [jensens]
+
+- Python 3 fixes.
+  [jensens, pbauer]
 
 
 2.5.0 (2018-06-24)

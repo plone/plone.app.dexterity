@@ -49,7 +49,7 @@ should return a boolean ``True`` or ``False``.
 
    Hint: The constraint function does not have access to the context, but
    if you need to acquire a tool, you can use the
-   ``zope.app.component.hooks.getSite()`` method to obtain the site root.
+   ``zope.component.hooks.getSite()`` method to obtain the site root.
 
 To use the constraint, pass the function as the ``constraint`` argument to
 the field constructor, e.g.::

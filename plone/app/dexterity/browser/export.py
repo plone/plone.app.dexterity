@@ -5,10 +5,12 @@
 from lxml import etree
 from plone.supermodel import serializeModel
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_encode
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.context import TarballExportContext
-from six import StringIO
+from six import BytesIO
 from zipfile import ZipFile
 
 import time
@@ -29,7 +31,7 @@ class SelectiveZipExportContext(TarballExportContext):
         self._archive_filename = (base_name + '-%4d%02d%02d%02d%02d%02d.zip'
                                   % timestamp[:6])
 
-        self._archive_stream = StringIO()
+        self._archive_stream = BytesIO()
         self._archive = ZipFile(self._archive_stream, 'w')
 
     def writeDataFile(self, filename, text, content_type, subdir=None):
@@ -51,11 +53,12 @@ class SelectiveZipExportContext(TarballExportContext):
             # Add a marker for ZopeSkel additions
             root.append(etree.Comment(' -*- extra stuff goes here -*- '))
             # minor prettifying
-            text = '<?xml version="1.0"?>\n{0}'.format(etree.tostring(root))
+            root_str = safe_unicode(etree.tostring(root))
+            text = '<?xml version="1.0"?>\n{0}'.format(root_str)
             text = text.replace('<!--', ' <!--')
             text = text.replace('-->', '-->\n')
 
-        self._archive.writestr(filename, text)
+        self._archive.writestr(filename, safe_encode(text))
 
 
 class TypesExport(BrowserView):
@@ -116,7 +119,7 @@ class ModelsExport(BrowserView):
             archive_filename = ('dexterity_models-%4d%02d%02d%02d%02d%02d.zip'
                                 % timestamp[:6])
 
-            archive_stream = StringIO()
+            archive_stream = BytesIO()
             archive = ZipFile(archive_stream, 'w')
 
             for item in items:
