@@ -4,14 +4,6 @@ Changelog
 2.5.1 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Remove bbb for MessageFactory import.
