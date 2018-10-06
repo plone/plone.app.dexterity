@@ -35,9 +35,8 @@ class DXFileFactory(object):
         # otherwise I get ZPublisher.Conflict ConflictErrors
         # when uploading multiple files
         upload_lock.acquire()
-
-        newid = chooser.chooseName(name, self.context.aq_parent)
         try:
+            newid = chooser.chooseName(name, self.context.aq_parent)
             # Try to determine which kind of NamedBlob we need
             # This will suffice for standard p.a.contenttypes File/Image
             # and any other custom type that would have 'File' or 'Image' in
