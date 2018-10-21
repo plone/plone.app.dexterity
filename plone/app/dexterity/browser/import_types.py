@@ -11,6 +11,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.interfaces import IImportContext
 from six import BytesIO
+from six import StringIO
 from z3c.form import field
 from z3c.form import form
 from zipfile import BadZipfile
@@ -126,6 +127,7 @@ class TypeProfileImportForm(form.AddForm):
     def nextURL(self):
         url = self.context.absolute_url()
         return url
+
 
 TypeProfileImportFormPage = wrap_form(TypeProfileImportForm)
 
