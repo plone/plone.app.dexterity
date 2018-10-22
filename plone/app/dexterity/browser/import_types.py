@@ -115,7 +115,7 @@ class TypeProfileImportForm(form.AddForm):
         types_tool = getToolByName(self.context, 'portal_types')
         import_context = ZipFileImportContext(
             types_tool,
-            StringIO(profile_import.profile_file.data)
+            BytesIO(profile_import.profile_file.data)
         )
         # run the profile
         setup_tool = getToolByName(self.context, 'portal_setup')
@@ -126,6 +126,7 @@ class TypeProfileImportForm(form.AddForm):
     def nextURL(self):
         url = self.context.absolute_url()
         return url
+
 
 TypeProfileImportFormPage = wrap_form(TypeProfileImportForm)
 
