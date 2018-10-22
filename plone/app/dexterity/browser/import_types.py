@@ -11,7 +11,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.interfaces import IImportContext
 from six import BytesIO
-from six import StringIO
 from z3c.form import field
 from z3c.form import form
 from zipfile import BadZipfile
@@ -116,7 +115,7 @@ class TypeProfileImportForm(form.AddForm):
         types_tool = getToolByName(self.context, 'portal_types')
         import_context = ZipFileImportContext(
             types_tool,
-            StringIO(profile_import.profile_file.data)
+            BytesIO(profile_import.profile_file.data)
         )
         # run the profile
         setup_tool = getToolByName(self.context, 'portal_setup')

@@ -1,0 +1,1 @@
+Import Type Profile fails because code was using StringIO instead of ByteIO
