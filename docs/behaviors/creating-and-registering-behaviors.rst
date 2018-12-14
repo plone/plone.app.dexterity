@@ -38,6 +38,7 @@ It looks like this:
             description="Use the Dublin Core Subject (keywords) field for Google Code like tags."
             provides=".behaviors.ITags"
             factory=".behaviors.Tags"
+            marker=".behaviors.Tags"
             />
 
     </configure>
@@ -51,7 +52,7 @@ In this case, the behavior name is *collective.gtags.behaviors.ITags*, the full 
 When the behavior is enabled for a type, it will be possible to adapt instances of that type to *ITags*.
 That adaptation will invoke the factory specified by the *factory* attribute.
 
-The *behaviors.py* module looks like this:
+The *behaviors.py* module looks like this, it was slightly adjusted for documentation purposes:
 
 .. code-block:: python
 
@@ -61,11 +62,11 @@ The *behaviors.py* module looks like this:
     standard Subject field.
     """
 
-    from Products.CMFCore.interfaces import IDublinCore
-    from collective.gtags import MessageFactory as _
-    from collective.gtags.field import Tags
-    from plone.autoform import directives
+    from plone.dexterity.interfaces import DexterityContent
+    # if your package was made with mr.bob, add your MessageFactory like this:
+    from collective.mypackage import _
     from plone.autoform.interfaces import IFormFieldProvider
+    from plone.supermodel import directives
     from plone.supermodel import model
     from zope.component import adapter
     from zope.interface import implementer
@@ -92,7 +93,7 @@ The *behaviors.py* module looks like this:
 
 
     @implementer(ITags)
-    @adapter(IDublinCore)
+    @adapter(IDexterityContent)
     class Tags(object):
         """Store tags in the Dublin Core metadata Subject field. This makes
         tags easy to search for.
@@ -101,6 +102,7 @@ The *behaviors.py* module looks like this:
         def __init__(self, context):
             self.context = context
 
+        # the properties below are not necessary the first time when you just want to see your added field(s)
         @property
         def tags(self):
             return set(self.context.Subject())
@@ -115,14 +117,14 @@ Here, we define a single attribute, *tags*, but we could also have added methods
 Naturally, these need to be implemented by the behavior adapter.
 
 Since we want this behavior to provide form fields, we derive the behavior interface from *model.Schema* and set form hints using
-*plone.autoform.directives*.
+*plone.supermodel.directives*.
 We also mark the *ITags* interface with *IFormFieldProvider* to signal that it should be processed for form fields by the standard forms.
 See the `Dexterity Developer Manual`_ for more information about setting form hints in schema interfaces.
 
 If your behavior does not provide form fields, you can just derive from *zope.interface.Interface* and omit the *alsoProvides()* line.
 
 Next, we write the class that implements the behavior adapter and acts as the adapter factory.
-Notice how it implements the behavior interface (*ITags*), and adapts a broad interface *(IDublinCore*).
+Notice how it implements the behavior interface (*ITags*), and adapts a broad interface *(IDexterityContent*).
 The behavior cannot be enabled on types not supporting this interface.
 In many cases, you will omit the *adapter()* line, provided your behavior is generic enough to work on any context.
 
