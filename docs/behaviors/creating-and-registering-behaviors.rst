@@ -38,7 +38,7 @@ It looks like this:
             description="Use the Dublin Core Subject (keywords) field for Google Code like tags."
             provides=".behaviors.ITags"
             factory=".behaviors.Tags"
-            marker=".behaviors.Tags"
+            marker=".behaviors.ITagsMarker"
             />
 
     </configure>
@@ -52,7 +52,7 @@ In this case, the behavior name is *collective.gtags.behaviors.ITags*, the full 
 When the behavior is enabled for a type, it will be possible to adapt instances of that type to *ITags*.
 That adaptation will invoke the factory specified by the *factory* attribute.
 
-The *behaviors.py* module looks like this, it was slightly adjusted for documentation purposes:
+The *behaviors.py* module looks like this:
 
 .. code-block:: python
 
