@@ -8,6 +8,14 @@ Changelog
 
 .. towncrier release notes start
 
+2.3.8 (2019-01-08)
+------------------
+
+Bug fixes:
+
+
+- Release upload lock when name chooser fails. [maurits] (#276)
+
 
 2.3.7 (2017-02-05)
 ------------------
