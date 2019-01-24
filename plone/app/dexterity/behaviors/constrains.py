@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+from Products.CMFPlone.utils import base_hasattr
 
 
 # constants for enableConstrain. Copied from AT
@@ -21,7 +22,7 @@ class ConstrainTypesBehavior(object):
         and can be adapted to ISelectableConstrainTypes.
         Else it is DISABLED
         """
-        if hasattr(self.context, 'constrain_types_mode'):
+        if base_hasattr(self.context, 'constrain_types_mode'):
             return self.context.constrain_types_mode
         parent = self.context.__parent__
         if not parent:
