@@ -1,21 +1,22 @@
 Changelog
 =========
 
-2.3.8 (unreleased)
+.. You should *NOT* be adding new change log entries to this file.
+   You should create a file in the news directory instead.
+   For helpful instructions, please see:
+   https://github.com/plone/plone.releaser/blob/master/ADD-A-NEWS-ITEM.rst
+
+.. towncrier release notes start
+
+2.3.8 (2019-01-08)
 ------------------
-
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
 
 Bug fixes:
 
 - Do not acquire ``constrain_types_mode`` from parent when not defined
   [frapell]
+
+- Release upload lock when name chooser fails. [maurits] (#276)
 
 
 2.3.7 (2017-02-05)
