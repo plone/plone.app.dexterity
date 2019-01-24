@@ -13,8 +13,6 @@ Changelog
 
 Bug fixes:
 
-- Do not acquire ``constrain_types_mode`` from parent when not defined
-  [frapell]
 
 - Release upload lock when name chooser fails. [maurits] (#276)
 
