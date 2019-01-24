@@ -81,6 +81,19 @@ class DocumentIntegrationTest(unittest.TestCase):
             constrains.DISABLED, behavior1.getConstrainTypesMode())
         self.assertEqual(constrains.ACQUIRE, behavior2.getConstrainTypesMode())
 
+    def test_constrainTypesAcquireDoesNotMatchParent(self):
+        """
+        The inner folder should return constrains.ACQUIRE and not the actual value of its parent
+        """
+        behavior1 = ISelectableConstrainTypes(self.folder)
+        behavior2 = ISelectableConstrainTypes(self.inner_folder)
+
+        behavior1.setConstrainTypesMode(constrains.DISABLED)
+        self.assertEqual(constrains.ACQUIRE, behavior2.getConstrainTypesMode())
+
+        behavior1.setConstrainTypesMode(constrains.ENABLED)
+        self.assertEqual(constrains.ACQUIRE, behavior2.getConstrainTypesMode())
+
     def test_constrainTypesModeValidSet(self):
         behavior = ISelectableConstrainTypes(self.folder)
         behavior.setConstrainTypesMode(constrains.ENABLED)
