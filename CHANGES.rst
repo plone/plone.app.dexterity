@@ -8,6 +8,18 @@ Changelog
 
 .. towncrier release notes start
 
+2.5.3 (2019-02-08)
+------------------
+
+Bug fixes:
+
+
+- Release upload lock when name chooser fails. [maurits] (#276)
+- Import Type Profile fails because code was using StringIO instead of ByteIO
+  (#279)
+- Do not acquire ``constrain_types_mode`` from parent when not defined
+  [frapell] (#284)
+
 
 2.5.1 (2018-09-23)
 ------------------
