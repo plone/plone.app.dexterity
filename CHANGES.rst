@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+2.3.9 (2019-03-26)
+------------------
+
+Bug fixes:
+
+
+- Do not acquire ``constrain_types_mode`` from parent when not defined
+  [frapell] (#284)
+
+
 2.3.8 (2019-01-08)
 ------------------
 
