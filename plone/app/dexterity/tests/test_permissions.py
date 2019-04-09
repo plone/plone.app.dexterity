@@ -4,7 +4,7 @@ from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
-from plone.app.z3cform.interfaces import IPloneFormLayer
+from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.app.widgets.testing import PLONEAPPWIDGETS_DX_INTEGRATION_TESTING
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
@@ -52,7 +52,6 @@ class IMockSchema(Interface):
     custom_widget_field = schema.TextLine()
     adapted_widget_field = schema.TextLine()
 
-
 IMockSchema.setTaggedValue(WRITE_PERMISSIONS_KEY, {
     'allowed_field': u'zope2.View',
     'disallowed_field': u'zope2.ViewManagementScreens',
@@ -67,14 +66,14 @@ IMockSchema.setTaggedValue(WIDGETS_KEY, {
 def _enable_custom_widget(field):
     provideAdapter(
         _custom_field_widget,
-        adapts=(getSpecification(field), IPloneFormLayer),
+        adapts=(getSpecification(field), IWidgetsLayer),
         provides=IFieldWidget
     )
 
 
 def _disable_custom_widget(field):
     base.unregisterAdapter(
-        required=(getSpecification(field), IPloneFormLayer, ),
+        required=(getSpecification(field), IWidgetsLayer, ),
         provided=IFieldWidget,
     )
 
