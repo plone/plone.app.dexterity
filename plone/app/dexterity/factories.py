@@ -11,6 +11,8 @@ from zope.component import adapter
 from zope.container.interfaces import INameChooser
 from zope.interface import implementer
 
+import transaction
+
 
 upload_lock = allocate_lock()
 
