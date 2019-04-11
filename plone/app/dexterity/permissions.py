@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
-from plone.app.widgets.interfaces import IFieldPermissionChecker
-from plone.app.widgets.interfaces import IWidgetsLayer
+from plone.app.z3cform.interfaces import IPloneFormLayer
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.autoform.utils import resolveDottedName
@@ -20,8 +19,14 @@ from zope.security.interfaces import IPermission
 
 import six
 
+try:
+    from plone.app.z3cform.interfaces import IFieldPermissionChecker
+except ImportError:
+    # bbb for < plone 5.2rc2
+    from plone.app.widgets.interfaces import IFieldPermissionChecker
 
-@implementer(IWidgetsLayer)
+
+@implementer(IPloneFormLayer)
 class MockRequest(TestRequest):
     pass
 
