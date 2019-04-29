@@ -8,6 +8,24 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.0 (2019-04-29)
+------------------
+
+New features:
+
+
+- ``IWidgetsLayer`` is no longer needed, use ``IPloneFormLayer`` instead.
+  Import ``IFieldPermissionChecker`` from ``plone.app.z3cform`` instead of ``plone.app.widgets``.
+  [jensens] (#268)
+
+
+Bug fixes:
+
+
+- Speed up traversal by marking main_template as a browser-view.
+  [pbauer] (#289)
+
+
 2.5.3 (2019-02-08)
 ------------------
 
