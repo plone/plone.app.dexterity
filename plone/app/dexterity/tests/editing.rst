@@ -52,7 +52,7 @@ Now we should also have a 'plonista' FTI in portal_types::
 The new type should have the dublin core behavior assigned by default::
 
   >>> plonista = portal.portal_types.plonista
-  >>> 'plone.app.dexterity.behaviors.metadata.IDublinCore' in plonista.behaviors
+  >>> 'plone.dublincore' in plonista.behaviors
   True
   >>> 'document_icon' in plonista.getIconExprObject().text
   True
@@ -262,7 +262,7 @@ FTI::
   >>> browser.getControl(name='form.widgets.plone.dublincore:list').value = []
   >>> browser.getControl('Save').click()
   >>> portal.portal_types.plonista.behaviors
-  ['plone.app.content.interfaces.INameFromTitle']
+  ['plone.namefromtitle']
 
 
 Viewing a non-editable schema
