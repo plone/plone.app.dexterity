@@ -25,8 +25,8 @@ class TypeAddForm(form.AddForm):
             data['description'] = data['description'].encode('utf8')
         data['i18n_domain'] = 'plone'
         data['behaviors'] = '\n'.join([
-            'plone.app.dexterity.behaviors.metadata.IDublinCore',
-            'plone.app.content.interfaces.INameFromTitle',
+            'plone.dublincore',
+            'plone.namefromtitle',
         ])
         data['model_source'] = """
 <model xmlns="http://namespaces.plone.org/supermodel/schema">
