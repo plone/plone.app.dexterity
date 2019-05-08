@@ -261,8 +261,8 @@ FTI::
 
   >>> browser.getControl(name='form.widgets.plone.dublincore:list').value = []
   >>> browser.getControl('Save').click()
-  >>> portal.portal_types.plonista.behaviors
-  ['plone.namefromtitle']
+  >>> 'plone.namefromtitle' in portal.portal_types.plonista.behaviors
+  True
 
 
 Viewing a non-editable schema
