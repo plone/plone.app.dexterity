@@ -53,15 +53,24 @@ class BehaviorConfigurationAdapter(object):
         behaviors = list(self.fti.behaviors)
         reg = lookup_behavior_registration(name=name)
         iid = reg.interface.__identifier__
-        if reg.name and iid in self.fti.behaviors:
-            behaviors.remove(iid)
+
+        if reg.name:
+            # behavior has a name -> use it
+            # but first remove the dotted behavior if present
+            if iid in self.fti.behaviors:
+                behaviors.remove(iid)
+            # prepare named behavior for add/remove
             bname = reg.name.encode('utf8')
         else:
+            # no name found -> prepare dotted behavior for add/remove instead
             bname = iid
+
+        # add/remove bname if based on value True false
         if value and bname not in behaviors:
             behaviors.append(bname)
         elif not value and bname in behaviors:
             behaviors.remove(bname)
+
         self.fti.behaviors = behaviors
 
     def __iter__(self):
