@@ -135,9 +135,9 @@ The code sample below illustrates each of these directives:
         )
 
         # This field is moved before the 'description' field of the standard
-        # IBasic behavior, if this is in use.
+        # IDublinCore behavior, if this is in use.
 
-        directives.order_before(importantNote='IBasic.description')
+        directives.order_before(importantNote='IDublinCore.description')
         importantNote = schema.TextLine(
             title=u'Important note',
         )
