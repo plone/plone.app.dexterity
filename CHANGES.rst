@@ -8,6 +8,17 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.1 (2019-05-21)
+------------------
+
+Bug fixes:
+
+
+- Moved TTW creation of content types to use and add/remove named behaviors. [iham] (#290)
+- Improper naming issue resolved,IBasic.description must be IDublinCore.description
+  [Ritwik Agarwal] (#294)
+
+
 2.6.0 (2019-04-29)
 ------------------
 
