@@ -264,17 +264,6 @@ FTI::
   >>> 'plone.namefromtitle' in portal.portal_types.plonista.behaviors
   True
 
-Let's enable one that is not enable and make sure that
-the change is reflected on the FTI::
-
-  >>> sorted(portal.portal_types.plonista.behaviors)
-  ['plone.dublincore', 'plone.namefromtitle']
-  >>> 'plone.versioning' in portal.portal_types.plonista.behaviors
-  False
-  >>> browser.getControl(name='form.widgets.plone.versioning:list').value = "selected"
-  >>> browser.getControl('Save').click()
-  >>> sorted(portal.portal_types.plonista.behaviors)
-  ['plone.dublincore', 'plone.namefromtitle', 'plone.versioning']
 
 Viewing a non-editable schema
 -----------------------------
@@ -568,3 +557,4 @@ file::
       ...
       </schema>
     </model>
+
