@@ -62,7 +62,7 @@ class BehaviorConfigurationAdapter(object):
         iid = reg.interface.__identifier__
         return (
             iid in self.fti.behaviors or
-            reg.name.encode('utf8') in self.fti.behaviors
+            safe_nativestring(reg.name) in self.fti.behaviors
         )
 
     def __setattr__(self, name, value):
@@ -98,7 +98,7 @@ class BehaviorConfigurationAdapter(object):
                 # ignore wrong names
                 continue
             if reg.name:
-                yield reg.name.encode('utf8')
+                yield safe_nativestring(reg.name)
             else:
                 yield name
 
@@ -129,9 +129,7 @@ class TypeBehaviorsForm(form.EditForm):
             with_name = counts[id(reg)] > 1
             if with_name and reg.name != name:
                 continue
-            fname = reg.name if reg.name else name
-            if six.PY2 and isinstance(fname, six.text_type):
-                fname = fname.encode('utf8')
+            fname = safe_nativestring(reg.name if reg.name else name)
             fields.append(
                 schema.Bool(
                     __name__=fname,
