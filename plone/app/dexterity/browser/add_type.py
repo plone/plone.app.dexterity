@@ -7,6 +7,24 @@ from Products.CMFCore.utils import getToolByName
 from z3c.form import field
 from z3c.form import form
 
+try:
+    from Products.CMFPlone.utils import safe_nativestring
+except ImportError:
+    # Not needed for Products.CMFPlone >= 5.2a1
+    from Products.CMFPlone.utils import safe_encode
+    from Products.CMFPlone.utils import safe_unicode
+
+    import six
+
+    def safe_nativestring(value, encoding='utf-8'):
+        """Convert a value to str in py2 and to text in py3
+        """
+        if six.PY2 and isinstance(value, six.text_type):
+            value = safe_encode(value, encoding)
+        if not six.PY2 and isinstance(value, six.binary_type):
+            value = safe_unicode(value, encoding)
+        return value
+
 
 class TypeAddForm(form.AddForm):
 
@@ -20,9 +38,9 @@ class TypeAddForm(form.AddForm):
 
         fti = DexterityFTI(id)
         fti.id = id
-        data['title'] = data['title'].encode('utf8')
+        data['title'] = safe_nativestring(data['title'])
         if data['description']:
-            data['description'] = data['description'].encode('utf8')
+            data['description'] = safe_nativestring(data['description'])
         data['i18n_domain'] = 'plone'
         data['behaviors'] = '\n'.join([
             'plone.dublincore',

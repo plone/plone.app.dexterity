@@ -21,6 +21,23 @@ from zope.lifecycleevent import modified
 import six
 
 
+try:
+    from Products.CMFPlone.utils import safe_nativestring
+except ImportError:
+    # Not needed for Products.CMFPlone >= 5.2a1
+    from Products.CMFPlone.utils import safe_encode
+    from Products.CMFPlone.utils import safe_unicode
+
+    def safe_nativestring(value, encoding='utf-8'):
+        """Convert a value to str in py2 and to text in py3
+        """
+        if six.PY2 and isinstance(value, six.text_type):
+            value = safe_encode(value, encoding)
+        if not six.PY2 and isinstance(value, six.binary_type):
+            value = safe_unicode(value, encoding)
+        return value
+
+
 TTW_BEHAVIOR_BLACKLIST = [
     # skip deprecated behavior
     'plone.app.dexterity.behaviors.related.IRelatedItems',
@@ -45,7 +62,7 @@ class BehaviorConfigurationAdapter(object):
         iid = reg.interface.__identifier__
         return (
             iid in self.fti.behaviors or
-            reg.name.encode('utf8') in self.fti.behaviors
+            safe_nativestring(reg.name) in self.fti.behaviors
         )
 
     def __setattr__(self, name, value):
@@ -53,14 +70,13 @@ class BehaviorConfigurationAdapter(object):
         behaviors = list(self.fti.behaviors)
         reg = lookup_behavior_registration(name=name)
         iid = reg.interface.__identifier__
-
         if reg.name:
             # behavior has a name -> use it
             # but first remove the dotted behavior if present
             if iid in self.fti.behaviors:
                 behaviors.remove(iid)
             # prepare named behavior for add/remove
-            bname = reg.name.encode('utf8')
+            bname = safe_nativestring(reg.name)
         else:
             # no name found -> prepare dotted behavior for add/remove instead
             bname = iid
@@ -82,7 +98,7 @@ class BehaviorConfigurationAdapter(object):
                 # ignore wrong names
                 continue
             if reg.name:
-                yield reg.name.encode('utf8')
+                yield safe_nativestring(reg.name)
             else:
                 yield name
 
@@ -113,9 +129,7 @@ class TypeBehaviorsForm(form.EditForm):
             with_name = counts[id(reg)] > 1
             if with_name and reg.name != name:
                 continue
-            fname = reg.name if reg.name else name
-            if six.PY2 and isinstance(fname, six.text_type):
-                fname = fname.encode('utf8')
+            fname = safe_nativestring(reg.name if reg.name else name)
             fields.append(
                 schema.Bool(
                     __name__=fname,
