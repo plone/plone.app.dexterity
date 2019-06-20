@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.2 (2019-06-19)
+------------------
+
+Bug fixes:
+
+
+- Update docu for creating dexterity behaviors (#281)
+
+
 2.6.1 (2019-05-21)
 ------------------
 
