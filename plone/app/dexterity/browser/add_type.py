@@ -4,9 +4,26 @@ from plone.app.dexterity.interfaces import ITypeSettings
 from plone.dexterity.fti import DexterityFTI
 from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_nativestring
 from z3c.form import field
 from z3c.form import form
+
+try:
+    from Products.CMFPlone.utils import safe_nativestring
+except ImportError:
+    # Not needed for Products.CMFPlone >= 5.2a1
+    from Products.CMFPlone.utils import safe_encode
+    from Products.CMFPlone.utils import safe_unicode
+
+    import six
+
+    def safe_nativestring(value, encoding='utf-8'):
+        """Convert a value to str in py2 and to text in py3
+        """
+        if six.PY2 and isinstance(value, six.text_type):
+            value = safe_encode(value, encoding)
+        if not six.PY2 and isinstance(value, six.binary_type):
+            value = safe_unicode(value, encoding)
+        return value
 
 
 class TypeAddForm(form.AddForm):
