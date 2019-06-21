@@ -151,9 +151,9 @@ still test the Zope side.
 Get some tools::
 
   >>> try:
-  >>>     from html import escape
-  >>> except ImportError:
-  >>>     from cgi import escape
+  ...     from html import escape
+  ... except ImportError:
+  ...     from cgi import escape
   >>> from six.moves.urllib.parse import quote_plus
 
 We should be able to navigate to the modeleditor view by clicking a
