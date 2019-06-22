@@ -150,7 +150,10 @@ still test the Zope side.
 
 Get some tools::
 
-  >>> from cgi import escape
+  >>> try:
+  ...     from html import escape
+  ... except ImportError:
+  ...     from cgi import escape
   >>> from six.moves.urllib.parse import quote_plus
 
 We should be able to navigate to the modeleditor view by clicking a
@@ -184,7 +187,7 @@ Return to our view and find the XML model source in a div, ready for the Ace edi
   True
 
   >>> model_source = portal.portal_types.plonista.model_source
-  >>> escaped_model_source = escape(model_source)
+  >>> escaped_model_source = escape(model_source, quote=False)
   >>> escaped_model_source in browser.contents
   True
 
