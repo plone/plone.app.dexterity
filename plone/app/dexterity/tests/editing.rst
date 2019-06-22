@@ -187,7 +187,7 @@ Return to our view and find the XML model source in a div, ready for the Ace edi
   True
 
   >>> model_source = portal.portal_types.plonista.model_source
-  >>> escaped_model_source = escape(model_source)
+  >>> escaped_model_source = escape(model_source, quote=False)
   >>> escaped_model_source in browser.contents
   True
 
