@@ -8,6 +8,17 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.3 (2019-06-27)
+------------------
+
+Bug fixes:
+
+
+- Update docu for creating dexterity behaviors (#281)
+- The @@behaviors form was wrongly encoding the added behavior names on Python3 [ale-rt] (#296)
+- Fix tests in Python 3.8 [pbauer] (#298)
+
+
 2.6.2 (2019-06-19)
 ------------------
 
