@@ -204,7 +204,7 @@ To do so, we turn our ``IContextSourceBinder`` into a class that is initialised 
             return SimpleVocabulary(terms)
 
 Again, the source is set using the ``source`` argument to the ``Choice``
-constructor::
+constructor:
 
 .. code-block:: python
 
