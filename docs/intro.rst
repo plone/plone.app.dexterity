@@ -54,4 +54,7 @@ Some of the main differences include:
 * It is possible to extend the schemata of existing Archetypes types with the archetypes.schemaextender product, although this adds some performance overhead and relies on a somewhat awkward programming technique. Dexterity types were built to be extensible from the beginning, and it is possible to declaratively turn on or off aspects of a type (such as Dublin Core metadata, locking support, ratings, tagging, etc) with re-usable "behaviors".
 * Dexterity is built from the ground up to support through-the-web type creation. There are products that achieve the same thing with Archetypes types, but they have to work around a number of limitations in the design of Archetypes that make them somewhat brittle or slow. Dexterity also allows types to be developed jointly through-the-web and on the filesystem. For example, a schema can be written in Python and then extended through the web.
 
-As of version 5 of Plone, Dexterity is the preferred way of creating content types.  Additionally, Archetypes was removed from Plone core in 5.2.  It can still be added to Plone to support Archetypes-based add-ons, but it will not function when running Plone using Python 3.   If you are considering upgrading to Plone 5 and Python 3, you are reading the right documentation.
+As of version 5 of Plone, Dexterity is the preferred way of creating content types.
+Additionally, Archetypes was removed from Plone core in 5.2.  
+Archetypes can still be added to Plone 5 to support Archetypes-based add-ons, but it will not function when running Plone using Python 3.
+
