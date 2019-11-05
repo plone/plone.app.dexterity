@@ -69,7 +69,7 @@ We run the following from the ``src/`` directory
 
 .. code-block:: console
 
-  $ ../bin/mrbob -O example.conference bobtemplates:plone_addon
+  $ ../bin/mrbob bobtemplates.plone:addon -O example.conference
 
 Choose to create a "Dexterity" package; specify "Program" for your content-type name; and specify your target version of Plone.
 Otherwise, you may accept the default suggestions.
