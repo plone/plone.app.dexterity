@@ -8,6 +8,17 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.4 (2019-11-25)
+------------------
+
+Bug fixes:
+
+
+- Use https links to documentation. [vincentfretin] (#299)
+- Update documentation introduction w/r/t archetypes (#301) (#302)
+- Fix mr.bob command in documentation (#305)
+
+
 2.6.3 (2019-06-27)
 ------------------
 
