@@ -1,1 +1,0 @@
-Make sure getNextItem function returns None if position can not be looked up. [timo]

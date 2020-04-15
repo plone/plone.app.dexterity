@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.5 (2020-04-15)
+------------------
+
+Bug fixes:
+
+
+- Make sure getNextItem function returns None if position can not be looked up. [timo] (#308)
+
+
 2.6.4 (2019-11-25)
 ------------------
 
