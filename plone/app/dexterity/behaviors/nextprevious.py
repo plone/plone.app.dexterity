@@ -98,8 +98,6 @@ class NextPreviousBase(object):
             return None
         order_reversed = list(reversed(self.order))
         pos = order_reversed.index(obj.getId())
-        if not pos:
-            return None
         for oid in order_reversed[pos + 1:]:
             data = self.getData(self.context[oid])
             if data:
