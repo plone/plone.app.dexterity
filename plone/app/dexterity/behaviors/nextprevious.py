@@ -85,7 +85,7 @@ class NextPreviousBase(object):
         if not self.order:
             return None
         pos = self.context.getObjectPosition(obj.getId())
-        if not pos:
+        if pos is None:
             return None
         for oid in self.order[pos + 1:]:
             data = self.getData(self.context[oid])
