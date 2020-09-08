@@ -43,7 +43,8 @@ class INextPreviousToggle(model.Schema):
             default=u'This enables next/previous widget on content items ' +
                     u'contained in this folder.'
         ),
-        default=False
+        default=False,
+        required=False,
     )
 
     directives.omitted('nextPreviousEnabled')
