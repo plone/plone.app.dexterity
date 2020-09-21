@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.6 (2020-09-21)
+------------------
+
+Bug fixes:
+
+
+- Do not require nextPreviousEnabled (#312)
+
+
 2.6.5 (2020-04-15)
 ------------------
 
