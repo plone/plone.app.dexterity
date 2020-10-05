@@ -129,6 +129,7 @@ and saved::
   ...     browser.getControl('Field type').getControl(
   ...         value=factory.title).selected = True
   ...     browser.getControl('Add').click()
+  ...     schema = plonista.lookupSchema()
   ...     assert browser.url == "http://nohost/plone/dexterity-types/plonista/@@add-field", (
   ...         "Couldn't successfully add %r" % name)
   ...     assert field_id in schema, '%r not in %r' % (
