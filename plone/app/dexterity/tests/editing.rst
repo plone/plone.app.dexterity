@@ -116,7 +116,6 @@ and saved::
   >>> from plone.i18n.normalizer.interfaces import IIDNormalizer
   >>> from plone.schemaeditor import interfaces
   >>> normalizer = component.getUtility(IIDNormalizer)
-  >>> schema = plonista.lookupSchema()
   >>> for name, factory in sorted(component.getUtilitiesFor(
   ...     interfaces.IFieldFactory)):
   ...     if hasattr(factory, 'protected') and factory.protected(None):
