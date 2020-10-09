@@ -101,7 +101,6 @@ and saved.
   >>> from plone.i18n.normalizer.interfaces import IIDNormalizer
   >>> from plone.schemaeditor import interfaces
   >>> normalizer = component.getUtility(IIDNormalizer)
-  >>> schema = plonista.lookupSchema()
   >>> for name, factory in sorted(component.getUtilitiesFor(
   ...     interfaces.IFieldFactory)):
   ...     browser.open(schemaeditor_url)
@@ -113,6 +112,7 @@ and saved.
   ...         value=getattr(factory.title, 'default', '') or factory.title
   ...         ).selected = True
   ...     browser.getControl('Add').click()
+  ...     schema = plonista.lookupSchema()
   ...     assert browser.url == schemaeditor_url, (
   ...         "Couldn't successfully add %r" % name)
   ...     assert field_id in schema, '%r not in %r' % (
