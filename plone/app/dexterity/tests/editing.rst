@@ -116,11 +116,16 @@ and saved::
   >>> from plone.i18n.normalizer.interfaces import IIDNormalizer
   >>> from plone.schemaeditor import interfaces
   >>> normalizer = component.getUtility(IIDNormalizer)
+  >>> import time
   >>> for name, factory in sorted(component.getUtilitiesFor(
   ...     interfaces.IFieldFactory)):
   ...     if hasattr(factory, 'protected') and factory.protected(None):
   ...         continue
   ...     browser.open(schemaeditor_url)
+  ...     # If two changes happen in the same second, the schema lookup will find an old schema,
+  ...     # so we sleep till the next second.
+  ...     now = time.time()
+  ...     time.sleep(int(now) + 1 - now)
   ...     browser.getLink('Add new field').click()
   ...     browser.getControl('Title').value = name
   ...     field_id = normalizer.normalize(name).replace('-', '_')
