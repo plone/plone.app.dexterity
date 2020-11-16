@@ -42,8 +42,12 @@ class AjaxSaveHandler(BrowserView):
         source = self.request.form.get('source')
         if source:
             # Is it valid XML?
+            # Some safety measures.
+            # We do not want to load entities, especially file:/// entities.
+            # Also discard processing instructions.
+            parser = etree.XMLParser(resolve_entities=False, remove_pis=True)
             try:
-                root = etree.fromstring(source)
+                root = etree.fromstring(source, parser=parser)
             except etree.XMLSyntaxError as e:
                 return json.dumps({
                     'success': False,
