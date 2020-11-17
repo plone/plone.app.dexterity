@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.8 (2020-11-17)
+------------------
+
+Bug fixes:
+
+
+- For increased security, in the modeleditor do not resolve entities, and remove processing instructions.
+  [maurits] (#3209)
+
+
 2.6.7 (2020-10-30)
 ------------------
 
