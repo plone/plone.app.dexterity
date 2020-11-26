@@ -5,7 +5,7 @@
       appId="Plone"
       category="plone-content"
       condition_expr=""
-      icon_expr="string:$portal_url/document_icon.png"
+      icon_expr="string:controlpanel/dexterity"
       title="Dexterity Content Types"
       url_expr="string:${portal_url}/@@dexterity-types"
       visible="True"
