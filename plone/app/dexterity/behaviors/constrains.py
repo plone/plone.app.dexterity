@@ -27,9 +27,10 @@ class ConstrainTypesBehavior(object):
         parent = self.context.__parent__
         if not parent:
             return DISABLED
-        if base_hasattr(parent, "portal_type"):
-            if self.context.portal_type != parent.portal_type:
-                return DISABLED
+        if not base_hasattr(parent, "portal_type"):
+            return DISABLED
+        if self.context.portal_type != parent.portal_type:
+            return DISABLED
         if not ISelectableConstrainTypes(parent, None):
             return DISABLED
         return ACQUIRE
