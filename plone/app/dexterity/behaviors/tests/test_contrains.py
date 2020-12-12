@@ -1,14 +1,4 @@
 # -*- coding: utf-8 -*-
-from plone.app.dexterity.behaviors.metadata import ICategorization
-from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
-from plone.app.testing import login
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
-from plone.registry.interfaces import IRegistry
-from zope.component import getUtility
-from zope.schema.interfaces import ConstraintNotSatisfied
-
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from plone.app.dexterity.behaviors.constrains import (
     ConstrainTypesBehavior,
