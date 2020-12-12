@@ -46,6 +46,7 @@ class TestConstrains(unittest.TestCase):
 
     def test_parent_same_portal_type_with_constrain(self):
         parent = Dummy()
+        parent.portal_type = "my type"
         alsoProvides(parent, ISelectableConstrainTypes)
 
         context = Dummy()
@@ -56,6 +57,7 @@ class TestConstrains(unittest.TestCase):
 
     def test_parent_same_portal_type_not_constrained(self):
         parent = Dummy()
+        parent.portal_type = "my type"
 
         context = Dummy()
         context.__parent__ = parent
@@ -65,6 +67,7 @@ class TestConstrains(unittest.TestCase):
 
     def test_parent_different_portal_type_with_constrain(self):
         parent = Dummy()
+        parent.portal_type = "other type"
         alsoProvides(parent, ISelectableConstrainTypes)
 
         context = Dummy()
@@ -75,6 +78,7 @@ class TestConstrains(unittest.TestCase):
 
     def test_parent_different_portal_type_not_constrained(self):
         parent = Dummy()
+        parent.portal_type = "other type"
 
         context = Dummy()
         context.__parent__ = parent
