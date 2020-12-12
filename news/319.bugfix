@@ -1,0 +1,1 @@
+Fix the constraint types mode calculation, disabling acquisition and gracefully checking for the existence of a portal type attribute in the container
