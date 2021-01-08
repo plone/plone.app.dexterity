@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.9 (2021-01-08)
+------------------
+
+Bug fixes:
+
+
+- Fix the constraint types mode calculation, disabling acquisition and gracefully checking for the existence of a portal type attribute in the container (#319)
+
+
 2.6.8 (2020-11-17)
 ------------------
 
