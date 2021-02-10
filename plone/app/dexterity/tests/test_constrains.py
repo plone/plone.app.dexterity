@@ -428,7 +428,7 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         ]
         self.browser.getControl('Save').click()
         self.assertEqual(constraint_before, aspect.getConstrainTypesMode())
-        self.assertTrue('Error' in self.browser.contents)
+        self.assertTrue('There were some errors' in self.browser.contents)
 
 
 class ConstrainControlFunctionalText(unittest.TestCase):
