@@ -68,4 +68,11 @@
       handler=".to2005.cleanup_portal_actions"
       />
 
+  <genericsetup:upgradeDepends
+      source="2005"
+      destination="2006"
+      profile="plone.app.dexterity:default"
+      title="Update controlpanel icon"
+      import_steps="controlpanel" />
+
 </configure>
