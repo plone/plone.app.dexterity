@@ -31,8 +31,8 @@ We can see this type in the addable types at the root of the site::
     True
     >>> browser.getControl("metadatad_type").click()
     >>> browser.getControl("Add").click()
-    >>> browser.getControl(name="form.widgets.IDublinCore.title").value = "My Object"
-    >>> browser.getControl(name="form.widgets.IDublinCore.description").value = "Lorem ipsum"
+    >>> browser.getControl(name="form.widgets.title").value = "My Object"
+    >>> browser.getControl(name="form.widgets.description").value = "Lorem ipsum"
     >>> browser.getControl(name="form.buttons.save").click()
     >>> browser.url
     'http://nohost/plone/metadatad_type/view'
