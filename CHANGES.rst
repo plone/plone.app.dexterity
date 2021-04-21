@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0a1 (2021-04-20)
+--------------------
+
+Breaking changes:
+
+
+- Update for Plone 6 with Bootstrap markup
+  [petschki, agitator] (#322)
+
+
 2.6.9 (2021-01-08)
 ------------------
 
