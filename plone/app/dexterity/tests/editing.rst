@@ -104,7 +104,7 @@ schema for the 'plonista' type we just created::
 
   >>> browser.open('http://nohost/plone/@@dexterity-types')
   >>> browser.getLink('Plonista').click()
-  >>> browser.getLink('Fields').click()
+  >>> browser.getLink(url='/@@fields').click()
   >>> schemaeditor_url = browser.url
   >>> schemaeditor_url
   'http://nohost/plone/dexterity-types/plonista/@@fields'
