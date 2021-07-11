@@ -70,10 +70,15 @@ We run the following from the ``src/`` directory
 .. code-block:: console
 
   $ ../bin/mrbob bobtemplates.plone:addon -O example.conference
+ 
+and specify your target version of Plone and python. This will create a directory named ``example.conference`` inside ./src with the basic structure of a generic addon.
+Now `"refine" <https://github.com/plone/bobtemplates.plone#provided-subtemplates>`_ it for the creation of a content type
 
-Choose to create a "Dexterity" package; specify "Program" for your content-type name; and specify your target version of Plone.
-Otherwise, you may accept the default suggestions.
-This will create a directory named ``example.conference`` inside ./src.
+.. code-block:: console
+
+  $ ../bin/mrbob bobtemplates.plone:content_type -O example.conference
+
+Specify "Program" for your content-type name and "Container" as Dexterity base class (remember that Programs will contain Sessions). Choose not to use XML Model for this example.
 
 Now, take a look at the setup.py file in your new package. Edit the `author,` `author_email` and `description` fields as you wish.
 Note a couple of parts of the generated setup.py file:
