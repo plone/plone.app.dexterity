@@ -71,7 +71,8 @@ We run the following from the ``src/`` directory
 
   $ ../bin/mrbob bobtemplates.plone:addon -O example.conference
  
-and specify your target version of Plone and python. This will create a directory named ``example.conference`` inside ./src with the basic structure of a generic addon.
+and specify your target version of Plone and python. 
+This will create a directory named ``example.conference`` inside ./src with the basic structure of a generic addon.
 Now `"refine" <https://github.com/plone/bobtemplates.plone#provided-subtemplates>`_ it for the creation of a content type
 
 .. code-block:: console
