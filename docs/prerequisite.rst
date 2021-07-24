@@ -79,7 +79,8 @@ Now `"refine" <https://github.com/plone/bobtemplates.plone#provided-subtemplates
 
   $ ../bin/mrbob bobtemplates.plone:content_type -O example.conference
 
-Specify "Program" for your content-type name and "Container" as Dexterity base class (remember that Programs will contain Sessions). Choose not to use XML Model for this example.
+Specify "Program" for your content-type name and "Container" as Dexterity base class (remember that Programs will contain Sessions). 
+Choose not to use XML Model for this example.
 
 Now, take a look at the setup.py file in your new package. Edit the `author,` `author_email` and `description` fields as you wish.
 Note a couple of parts of the generated setup.py file:
