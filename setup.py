@@ -67,7 +67,6 @@ setup(
         'plone.supermodel>=1.1dev',
         'plone.z3cform>=0.6.0',
         'Products.CMFCore',
-        'Products.CMFPlone>=4.0b1',
         'Products.GenericSetup',
         'setuptools',
         'six',
