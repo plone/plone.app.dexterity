@@ -273,7 +273,7 @@ class TypesContext(SimpleItem):
 
         # make sure that breadcrumbs will be correct
         self.id = None
-        self.Title = lambda: _(u'Dexterity Content Types')
+        self.Title = lambda: _(u'Content Types')
 
         # turn off green edit border for anything in the type control panel
         request.set('disable_border', 1)

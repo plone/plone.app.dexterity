@@ -19,8 +19,8 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="Dexterity Content Types"
-      description="Configures various components needed for full Dexterity support."
+      title="Content Types"
+      description="Plone core content types configuration."
       directory="profiles/default"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
