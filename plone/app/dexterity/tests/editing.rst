@@ -24,7 +24,7 @@ can navigate to the configlet via the control panel::
 
   >>> browser.open('http://nohost/plone')
   >>> browser.getLink('Site Setup').click()
-  >>> browser.getLink('Dexterity Content Types').click()
+  >>> browser.getLink('Content Types').click()
   >>> browser.url
   'http://nohost/plone/@@dexterity-types'
   >>> 'Dexterity Content Types' in browser.contents
