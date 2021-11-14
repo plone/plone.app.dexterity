@@ -27,7 +27,7 @@ can navigate to the configlet via the control panel::
   >>> browser.getLink('Content Types').click()
   >>> browser.url
   'http://nohost/plone/@@dexterity-types'
-  >>> 'Dexterity Content Types' in browser.contents
+  >>> 'Content Types' in browser.contents
   True
 
 Adding a content type
