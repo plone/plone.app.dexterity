@@ -450,8 +450,7 @@ container::
 
 Now only the allowed types may be added::
 
-  >>> browser.open('http://nohost/plone')
-  >>> browser.getLink('Plonista Folder 1').click()
+  >>> browser.open('http://nohost/plone/plonista-folder-1')
 
   >>> browser.getLink(url='Folder')
   Traceback (most recent call last):
