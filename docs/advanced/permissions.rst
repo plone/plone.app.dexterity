@@ -115,7 +115,7 @@ Simple example protecting a field to be readable for Site Administrators only::
 
     from zope import schema
     from plone.supermodel import model
-    from plone.autoform.directives import read_permission
+    from plone.autoform.directives import read_permission, write_permission
 
     class IExampleProtectedInformation(model):
 
