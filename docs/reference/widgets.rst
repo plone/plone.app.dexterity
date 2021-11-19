@@ -26,7 +26,7 @@ The table below shows some commonly used custom widgets.
  CheckBoxFieldWidget            z3c.form.browser.checkbox         Collection                   A set of checkboxes. Used for Set or Frozenset fields with a Choice value_type and a vocabulary.
 ============================== ================================= ============================ =============================================================================================================================================================
 
-.. _z3c.form documentation: http://docs.zope.org/z3c.form/widget.html
+.. _z3c.form documentation: https://z3cform.readthedocs.io/en/latest/widgets/index.html
 .. _schema introduction: ../schema-driven-types.html#the-schema
 .. _vocabularies: ../advanced/vocabularies.html
 
