@@ -8,6 +8,18 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0a4 (2021-11-23)
+--------------------
+
+Bug fixes:
+
+
+- Rename "Dexterity Content Types" to just "Content Types"
+  [timo] (#331)
+- Fix broken test for https://github.com/plone/plone.app.contenttypes/pull/624
+  [agitator] (#333)
+
+
 3.0.0a3 (2021-09-15)
 --------------------
 
