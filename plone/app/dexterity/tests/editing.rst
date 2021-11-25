@@ -169,23 +169,11 @@ button on the field list form::
   >>> browser.url
   'http://nohost/plone/dexterity-types/plonista/@@modeleditor'
 
-We should be telling the browser to load our keys resources::
-
-  >>> browser.contents
-  '...<script...src="http://nohost/plone/++plone++static/components/ace-builds/src/ace.js"...'
-
-  >>> browser.contents
-  '...<script...src="http://nohost/plone/++resource++plone.app.dexterity.modeleditor.js"...'
-
-Both of those should be available::
-
-  browser.open('http://nohost/plone/++plone++static/components/ace-builds/src/ace.js')
-  browser.open('http://nohost/plone/++resource++plone.app.dexterity.modeleditor.js')
-
-Return to our view and find the XML model source in a div, ready for the Ace editor::
+Go there and find the XML model source in a textarea, ready to be edited
+(with JavaScript enabled, this should show pat-code-editor instead of the textarea)::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor')
-  >>> '<div id="modelEditor">' in browser.contents
+  >>> '<textarea...name="source">' in browser.contents
   True
 
   >>> '&lt;schema&gt;' in browser.contents
@@ -200,52 +188,50 @@ There should be an authenticator in the `save` form::
 
   >>> authenticator = browser.getControl(name="_authenticator", index=0).value
 
-Save is via AJAX. Let's check the save view's functionality.
+
 
 First, prove this won't work without an authenticator
 
-  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something')
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=something')
   Traceback (most recent call last):
   ...
   AccessControl.unauthorized.Unauthorized: ...
 
 Check rejection of bad XML "something"::
 
-  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=something&_authenticator=%s' % authenticator)
-  >>> import json
-  >>> result = json.loads(browser.contents)
-  >>> u"XMLSyntaxError: Start tag expected" in result['message']
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=something&_authenticator=%s' % authenticator)
+  >>> u"statusmessage-error" in browser.contents
+  True
+  >>> u"XMLSyntaxError: Start tag expected" in browser.contents
   True
 
 We should refuse source that doesn't have `model` for the root tag::
 
   >>> bad_source = model_source.replace('model', 'mode')
-  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
-  >>> from pprint import pprint
-  >>> result = json.loads(browser.contents)
-  >>> u"Error: root tag must be 'model'" in result['message']
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
+  >>> u"statusmessage-error" in browser.contents
+  True
+  >>> u"Error: root tag must be 'model'" in browser.contents
   True
 
 Likewise, only `schema` tags are allowed inside the model::
 
   >>> bad_source = model_source.replace('schema>', 'scheme>')
-  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
-  >>> result = json.loads(browser.contents)
-  >>> u"Error: all model elements must be 'schema'" in result['message']
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=%s&_authenticator=%s' % (quote_plus(bad_source), authenticator))
+  >>> u"statusmessage-error" in browser.contents
+  True
+  >>> u"Error: all model elements must be 'schema'" in browser.contents
   True
 
 Should work with real XML
 
 ::
 
-  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@model-edit-save?source=%s&_authenticator=%s' % (quote_plus(model_source), authenticator))
-  >>> pprint(json.loads(browser.contents))
-  {'message': 'Saved', 'success': True}
-
-That response should have a JSON content type::
-
-  >>> browser.headers['content-type']
-  'application/json'
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=%s&_authenticator=%s' % (quote_plus(model_source), authenticator))
+  >>> u"statusmessage-info" in browser.contents
+  True
+  >>> u"Changes saved." in browser.contents
+  True
 
 We should be providing a link back to the fields editor::
 

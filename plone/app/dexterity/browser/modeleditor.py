@@ -3,95 +3,98 @@ from AccessControl import Unauthorized
 from lxml import etree
 from plone.app.dexterity import _
 from plone.supermodel.parser import SupermodelParseError
+from Products.CMFPlone.utils import safe_bytes
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryMultiAdapter
 
-import json
+import html
 import plone.supermodel
 
 
-NAMESPACE = '{http://namespaces.plone.org/supermodel/schema}'
+NAMESPACE = "{http://namespaces.plone.org/supermodel/schema}"
 
 
 class ModelEditorView(BrowserView):
-    """Editor view.
-    """
+    """Editor view."""
 
-    def modelSource(self):
-        return self.context.fti.model_source
+    @property
+    def model_source(self):
+        # Return modified source from textarea or the original FTI source.
+        return self.request.form.get("source") or self.context.fti.model_source
 
-
-def authorized(context, request):
-    authenticator = queryMultiAdapter((context, request),
-                                      name=u'authenticator')
-    return authenticator and authenticator.verify()
-
-
-class AjaxSaveHandler(BrowserView):
-    """Handle AJAX save posts.
-    """
+    def authorized(self, context, request):
+        authenticator = queryMultiAdapter((context, request), name=u"authenticator")
+        return authenticator and authenticator.verify()
 
     def __call__(self):
-        """Handle AJAX save post.
-        """
+        """View and eventually save the form."""
 
-        if not authorized(self.context, self.request):
-            raise Unauthorized
+        save = "form.button.save" in self.request.form
+        source = self.request.form.get("source")
+        if save and source:
 
-        source = self.request.form.get('source')
-        if source:
+            # First, check for authenticator
+            if not self.authorized(self.context, self.request):
+                raise Unauthorized
+
             # Is it valid XML?
             # Some safety measures.
             # We do not want to load entities, especially file:/// entities.
             # Also discard processing instructions.
+            #
+            source = safe_bytes(source)
             parser = etree.XMLParser(resolve_entities=False, remove_pis=True)
             try:
                 root = etree.fromstring(source, parser=parser)
             except etree.XMLSyntaxError as e:
-                return json.dumps({
-                    'success': False,
-                    'message': 'XMLSyntaxError: {0}'.format(
-                        safe_unicode(e.args[0])
-                    )
-                })
+                IStatusMessage(self.request).addStatusMessage(
+                    "XMLSyntaxError: {0}".format(html.escape(safe_unicode(e.args[0]))),
+                    "error",
+                )
+                return super().__call__()
 
             # a little more sanity checking, look at first two element levels
-            if root.tag != NAMESPACE + 'model':
-                return json.dumps({
-                    'success': False,
-                    'message': _(u"Error: root tag must be 'model'")
-                })
+            if root.tag != NAMESPACE + "model":
+                IStatusMessage(self.request).addStatusMessage(
+                    _(u"Error: root tag must be 'model'"),
+                    "error",
+                )
+                return super().__call__()
+
             for element in root.getchildren():
-                if element.tag != NAMESPACE + 'schema':
-                    return json.dumps({
-                        'success': False,
-                        'message': _(
-                            u"Error: all model elements must be 'schema'"
-                        )
-                    })
+                if element.tag != NAMESPACE + "schema":
+                    IStatusMessage(self.request).addStatusMessage(
+                        _(u"Error: all model elements must be 'schema'"),
+                        "error",
+                    )
+                    return super().__call__()
 
             # can supermodel parse it?
             # This is mainly good for catching bad dotted names.
             try:
-                plone.supermodel.loadString(source, policy=u'dexterity')
+                plone.supermodel.loadString(source, policy=u"dexterity")
             except SupermodelParseError as e:
-                message = e.args[0].replace('\n  File "<unknown>"', '')
-                return json.dumps({
-                    'success': False,
-                    'message': u'SuperModelParseError: {0}'.format(message)
-                })
+                message = e.args[0].replace('\n  File "<unknown>"', "")
+                IStatusMessage(self.request).addStatusMessage(
+                    u"SuperModelParseError: {0}".format(html.escape(message)),
+                    "error",
+                )
+                return super().__call__()
 
             # clean up formatting sins
             source = etree.tostring(
-                root,
-                pretty_print=True,
-                xml_declaration=True,
-                encoding='utf8'
+                root, pretty_print=True, xml_declaration=True, encoding="utf8"
             )
-            # and save to FTI
+
+            # Save to FTI and also allow to clear the source
             fti = self.context.fti
             fti.manage_changeProperties(model_source=source)
 
-            self.request.response.setHeader('Content-Type', 'application/json')
-            return json.dumps({'success': True, 'message': _(u'Saved')})
+            IStatusMessage(self.request).addStatusMessage(
+                _("Changes saved."),
+                "info",
+            )
+
+        return super().__call__()

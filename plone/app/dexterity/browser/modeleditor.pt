@@ -9,12 +9,6 @@
 <body>
 <article metal:fill-slot="prefs_configlet_main">
 <tal:main-macro metal:define-macro="main">
-  <tal:comment tal:condition="python:False">
-    prefs_main_template doesn't have the style_slot
-  </tal:comment>
-  <style type="text/css"
-      tal:content="string:@import url(${portal_url}/++resource++plone.app.dexterity.modeleditor.css);"
-      />
 
   <header id="page-intro">
    <a href=""
@@ -23,6 +17,7 @@
         i18n:translate="label_back_to_schemaeditor">
             Back to the schema editor
     </a>
+
     <h1 class="documentFirstHeading"
         i18n:translate="heading_model_edit">Edit field model for
       <span i18n:name="name" tal:content="context/Title">name</span>
@@ -38,40 +33,31 @@
    </header>
 
   <div id="rules-editor">
-    <div class="portalMessage info">
-      <span id="messagespan" style="display:none">
-        &nbsp;
-      </span>&nbsp;
-    </div>
 
-    <form id="saveform"
-        tal:attributes="action string:${context/absolute_url}/@@model-edit-save"
+    <form
+        class="modeleditor__form"
+        action="${context/absolute_url}/@@modeleditor"
+        method="POST"
         tal:define="authenticator context/@@authenticator/authenticator | nothing">
+      
       <input tal:replace="structure authenticator" />
-      <input type="hidden" id="savesource" name="source" value="" />
-      <div class="mb-3">
-         <button class="btn btn-primary" type="submit" name="form.button.save" disabled="disabled" i18n:translate="">Save</button>
 
-      </div>
+      <textarea
+          name="source"
+          class="modeleditor__source pat-code-editor--"
+          data-pat-code-editor="language: xml; theme: dark">${view/model_source}</textarea>
+
+      <br />
+      
+      <button
+          class="btn btn-primary"
+          type="submit"
+          name="form.button.save" 
+          i18n:translate="">Save</button>
+
     </form>
 
-    <div id="modelEditor" tal:content="view/modelSource" />
   </div>
-
-  <tal:comment tal:condition="python:False">
-      prefs_main_template doesn't have the head_javascript_slot
-  </tal:comment>
-
-  <script src="++plone++static/components/ace-builds/src/ace.js"
-      type="text/javascript"
-      charset="utf-8"
-      tal:attributes="src string:${portal_url}/++plone++static/components/ace-builds/src/ace.js"
-      ></script>
-  <script src="++resource++plone.schemaeditor/modeleditor.js"
-      type="text/javascript"
-      charset="utf-8"
-      tal:attributes="src string:${portal_url}/++resource++plone.app.dexterity.modeleditor.js"
-      ></script>
 
 </tal:main-macro>
 </article>
