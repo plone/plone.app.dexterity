@@ -20,6 +20,11 @@ class ModelEditorView(BrowserView):
     """Editor view."""
 
     @property
+    def escaped_model_source(self):
+        # Return the HTML escaped model source.
+        return html.escape(self.model_source, False)
+
+    @property
     def model_source(self):
         # Return modified source from textarea or the original FTI source.
         return self.request.form.get("source") or self.context.fti.model_source
