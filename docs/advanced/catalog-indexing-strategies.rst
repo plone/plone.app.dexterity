@@ -285,7 +285,7 @@ Some of the more commonly used metadata columns are:
 For more information about catalog indexes and searching, see the
 `ZCatalog chapter in the Zope 2 book`_.
 
-.. _ZCatalog chapter in the Zope 2 book: http://docs.zope.org/zope2/zope2book/SearchingZCatalog.html
+.. _ZCatalog chapter in the Zope 2 book: https://zope.readthedocs.io/en/latest/zopebook/SearchingZCatalog.html
 
 .. _plone.indexer: http://pypi.python.org/pypi/plone.indexer
 
