@@ -22,13 +22,13 @@
 
     <div class="widget">
       <input type="text" tal:replace="structure widget/render" />
-      <div class="form-control"><small class="form-text text-muted"
+      <div class="form-text"
         tal:define="description widget/field/description"
         i18n:translate=""
         tal:content="description"
         tal:condition="python:description and not hidden"
-        >field description</small>
-        </div>
+        >field description
+      </div>
     </div>
   </div>
 
