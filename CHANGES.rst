@@ -8,6 +8,18 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0a5 (2022-01-07)
+--------------------
+
+Bug fixes:
+
+
+- Use the shared 'Plone test setup' and 'Plone test teardown' keywords in Robot tests.
+  [Rotonen] (#292)
+- Fix form text.
+  [agitator] (#336)
+
+
 3.0.0a4 (2021-11-23)
 --------------------
 
