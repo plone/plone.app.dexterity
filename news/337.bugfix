@@ -1,0 +1,2 @@
+Fix warning about legacy version specifiers in setup.py.
+[maurits]
