@@ -10,7 +10,7 @@ To demonstrate this, we'll need a logged in test browser::
   >>> portal = layer['portal']
   >>> setRoles(portal, TEST_USER_ID, ['Manager'])
   >>> import transaction; transaction.commit()
-  >>> from plone.testing.z2 import Browser
+  >>> from plone.testing.zope import Browser
   >>> browser = Browser(layer['app'])
   >>> browser.handleErrors = False
   >>> browser.addHeader('Authorization', 'Basic %s:%s' % (TEST_USER_NAME, TEST_USER_PASSWORD,))
@@ -155,11 +155,8 @@ still test the Zope side.
 
 Get some tools::
 
-  >>> try:
-  ...     from html import escape
-  ... except ImportError:
-  ...     from cgi import escape
-  >>> from six.moves.urllib.parse import quote_plus
+  >>> from html import escape
+  >>> from urllib.parse import quote_plus
 
 We should be able to navigate to the modeleditor view by clicking a
 button on the field list form::
@@ -173,15 +170,16 @@ Go there and find the XML model source in a textarea, ready to be edited
 (with JavaScript enabled, this should show pat-code-editor instead of the textarea)::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor')
-  >>> '<textarea...name="source">' in browser.contents
+  >>> '<textarea name="source"' in browser.contents
   True
 
-  >>> '&lt;schema&gt;' in browser.contents
+  >>> '&amp;lt;schema&amp;gt;' in browser.contents
   True
 
   >>> model_source = portal.portal_types.plonista.model_source
   >>> escaped_model_source = escape(model_source, quote=False)
-  >>> escaped_model_source in browser.contents
+  >>> again_escaped_model_source = escape(escaped_model_source, quote=False)
+  >>> again_escaped_model_source in browser.contents
   True
 
 There should be an authenticator in the `save` form::
