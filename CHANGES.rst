@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0a6 (2022-01-19)
+--------------------
+
+Bug fixes:
+
+
+- Fix warning about legacy version specifiers in setup.py.
+  [maurits] (#337)
+
+
 3.0.0a5 (2022-01-07)
 --------------------
 
