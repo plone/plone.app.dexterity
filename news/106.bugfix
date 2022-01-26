@@ -1,0 +1,2 @@
+Depend on `plone.namedfile` core instead of its empty `[scales]` extra.
+[maurits]
