@@ -51,7 +51,7 @@ setup(
         'plone.behavior>=1.0',
         'plone.dexterity>=2.2.2',
         'plone.formwidget.namedfile',
-        'plone.namedfile[scales]>=1.0.0',
+        'plone.namedfile>=1.0.0',
         'plone.rfc822',
         'plone.schemaeditor >1.3.3',
         # Plone/Zope core
