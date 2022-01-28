@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.10 (2022-01-28)
+-------------------
+
+Bug fixes:
+
+
+- Depend on `plone.namedfile` core instead of its empty `[scales]` extra.
+  [maurits] (#106)
+
+
 2.6.9 (2021-01-08)
 ------------------
 
