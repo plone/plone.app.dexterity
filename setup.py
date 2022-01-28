@@ -48,10 +48,10 @@ setup(
     install_requires=[
         # Dexterity
         'plone.app.textfield',
-        'plone.behavior>=1.0b5',
-        'plone.dexterity >= 2.2.2dev',
+        'plone.behavior>=1.0',
+        'plone.dexterity >= 2.2.2',
         'plone.formwidget.namedfile',
-        'plone.namedfile[scales] >=1.0b5dev-r36016',
+        'plone.namedfile >= 1.0.0',
         'plone.rfc822',
         'plone.schemaeditor >1.3.3',
         # Plone/Zope core
@@ -64,10 +64,10 @@ setup(
         'plone.contentrules',
         'plone.portlets',
         'plone.schema>=1.1.0',
-        'plone.supermodel>=1.1dev',
+        'plone.supermodel>=1.1',
         'plone.z3cform>=0.6.0',
         'Products.CMFCore',
-        'Products.CMFPlone>=4.0b1',
+        'Products.CMFPlone>=4.0',
         'Products.GenericSetup',
         'setuptools',
         'six',
@@ -78,7 +78,7 @@ setup(
         'zope.deprecation',
         'zope.schema',
         'zope.publisher',
-        'z3c.form>=3.0.0a1',
+        'z3c.form>=3.0.0',
     ],
     extras_require={
         'test': [
@@ -88,7 +88,7 @@ setup(
         'grok': [
             'five.grok',
             'plone.directives.dexterity',
-            'plone.directives.form >=1.1dev',
+            'plone.directives.form >=1.1',
         ],
         'relations': [
             'plone.app.relationfield',
