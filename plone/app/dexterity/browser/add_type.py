@@ -55,7 +55,7 @@ class TypeAddForm(form.AddForm):
 
         data['klass'] = 'plone.dexterity.content.Container'
         data['filter_content_types'] = True
-        data['icon_expr'] = 'string:${portal_url}/document_icon.png'
+        data['icon_expr'] = 'string:file-earmark-text'
         fti.manage_changeProperties(**data)
         return fti
 

@@ -93,7 +93,7 @@ For the *Presenter* type, we have ``example.conference.presenter.xml``:
       <!-- Basic metadata -->
       <property name="title" i18n:translate="">Presenter</property>
       <property name="description" i18n:translate="">Conference Presenter</property>
-      <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+      <property name="icon_expr">string:file-earmark-text</property>
       <property name="factory">Presenter</property>
       <property name="global_allow">True</property>
       <property name="filter_content_types">True</property>

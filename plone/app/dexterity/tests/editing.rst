@@ -54,7 +54,7 @@ The new type should have the dublin core behavior assigned by default::
   >>> plonista = portal.portal_types.plonista
   >>> 'plone.dublincore' in plonista.behaviors
   True
-  >>> 'document_icon' in plonista.getIconExprObject().text
+  >>> 'file-earmark-text' in plonista.getIconExprObject().text
   True
 
 The listing needs to not break if a type description was stored encoded::
@@ -411,7 +411,7 @@ using the Container base class::
   >>> pf = getattr(portal.portal_types, 'plonista-folder')
   >>> pf.klass
   'plone.dexterity.content.Container'
-  >>> 'document_icon' in pf.getIconExprObject().text
+  >>> 'file-earmark-text' in pf.getIconExprObject().text
   True
 
 We can configure the plonista-folder to allow contained content types::
