@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0a8 (2022-02-24)
+--------------------
+
+Bug fixes:
+
+
+- Update the new type icon to svg, the old one was png and the expression as url does not work anymore (must be a icon resolver compatible name).
+  [yurj] (#340)
+
+
 3.0.0a7 (2022-01-28)
 --------------------
 
