@@ -69,7 +69,6 @@ setup(
         'Products.CMFCore',
         'Products.GenericSetup',
         'setuptools',
-        'six',
         'Zope2',
         'zope.browserpage',
         'zope.interface',
