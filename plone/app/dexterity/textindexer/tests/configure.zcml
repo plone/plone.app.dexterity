@@ -1,0 +1,68 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone"
+           i18n_domain="plone.app.dexterity.textindexer">
+
+    <plone:behavior
+          title="simple behavior"
+          description=""
+          provides=".behaviors.ISimpleBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+    <plone:behavior
+          title="list behavior"
+          description=""
+          provides=".behaviors.IListBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+    <plone:behavior
+          title="int behavior"
+          description=""
+          provides=".behaviors.IIntBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+    <plone:behavior
+          title="richtext behavior"
+          description=""
+          provides=".behaviors.IRichTextBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+    <plone:behavior
+          title="empty richtext behavior"
+          description=""
+          provides=".behaviors.IEmptyRichTextBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+    <plone:behavior
+          title="tuple behavior"
+          description=""
+          provides=".behaviors.ITupleBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+    <plone:behavior
+          title="tuple choice behavior"
+          description=""
+          provides=".behaviors.ITupleChoiceBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+    <plone:behavior
+          title="inherited behavior"
+          description=""
+          provides=".behaviors.IInheritedBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+    <plone:behavior
+          title="missing field behavior"
+          description=""
+          provides=".behaviors.IMissingFieldBehavior"
+          for="plone.dexterity.interfaces.IDexterityContent"
+          />
+
+</configure>

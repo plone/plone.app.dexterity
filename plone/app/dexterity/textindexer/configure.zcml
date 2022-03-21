@@ -1,0 +1,62 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           xmlns:plone="http://namespaces.plone.org/plone"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           i18n_domain="plone.app.dexterity.textindexer">
+
+    <!-- marker behavior for enabling indexer -->
+    <plone:behavior
+          title="Dynamic SearchableText indexer behavior"
+          name="plone.textindexer"
+          description="Enables the dynamic SearchableText indexer for a content type"
+          provides="plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer"
+          />
+
+    <utility
+        factory=".supermodel.IndexerSchema"
+        name="plone.textindexer.indexer"
+        />
+
+    <adapter
+        factory="plone.app.dexterity.textindexer.indexer.dynamic_searchable_text_indexer"
+        name="SearchableText" />
+
+    <!-- field converters -->
+    <adapter
+        factory="plone.app.dexterity.textindexer.converters.DefaultDexterityTextIndexFieldConverter"
+        />
+
+    <adapter
+        zcml:condition="installed plone.namedfile"
+        factory="plone.app.dexterity.textindexer.converters.NamedfileFieldConverter"
+        />
+
+    <adapter
+        zcml:condition="installed plone.app.textfield"
+        factory="plone.app.dexterity.textindexer.converters.DexterityRichTextIndexFieldConverter"
+        />
+
+    <adapter
+        factory="plone.app.dexterity.textindexer.converters.IntFieldConverter"
+        />
+
+    <adapter
+        factory="plone.app.dexterity.textindexer.converters.TupleFieldConverter"
+        />
+
+    <!-- plone.schemaeditor adapter -->
+    <adapter
+        provides="plone.schemaeditor.interfaces.IFieldEditorExtender"
+        for="plone.schemaeditor.interfaces.ISchemaContext
+             zope.schema.interfaces.IField"
+        name="plone.schemaeditor.searchabletext"
+        factory=".schemaeditor.get_searchabletext_schema"
+        />
+
+    <adapter
+        provides=".schemaeditor.ISearchableTextField"
+        for="zope.schema.interfaces.IField"
+        factory=".schemaeditor.SearchableTextField"
+        />
+
+</configure>
