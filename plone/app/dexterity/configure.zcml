@@ -37,6 +37,7 @@
 
   <include package=".browser" />
   <include package=".behaviors" />
+  <include package=".textindexer" />
   <include package=".upgrades" />
 
   <include file="events.zcml" />
