@@ -17,7 +17,6 @@ from zope.interface import implementer
 from zope.publisher.browser import TestRequest
 from zope.security.interfaces import IPermission
 
-import six
 
 try:
     from plone.app.z3cform.interfaces import IFieldPermissionChecker
@@ -57,7 +56,7 @@ class DXFieldPermissionChecker(object):
             widgets = mergedTaggedValueDict(schema, WIDGETS_KEY)
             widget = widgets.get(field.getName())
             if widget:
-                if isinstance(widget, six.string_types):
+                if isinstance(widget, str):
                     widget = resolveDottedName(widget)
                 if widget:
                     widget = widget(field, self._request)
