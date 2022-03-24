@@ -3,7 +3,7 @@ from DateTime import DateTime
 from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
-from plone.testing import z2
+from plone.testing.zope import Browser
 
 import transaction
 import unittest
@@ -21,7 +21,7 @@ class TestShortNameBehavior(unittest.TestCase):
         transaction.commit()
 
         # prepare browser
-        self.browser = z2.Browser(self.layer['app'])
+        self.browser = Browser(self.layer['app'])
         self.browser.addHeader(
             'Authorization',
             'Basic {0}:{1}'.format(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, )

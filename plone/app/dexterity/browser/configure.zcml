@@ -127,11 +127,6 @@
       permission="plone.schemaeditor.ManageSchemata"
       />
 
-  <browser:resource
-      name="plone.app.dexterity.types_listing.js"
-      file="types_listing.js"
-      />
-
   <configure zcml:condition="installed plone.resourceeditor">
     <browser:page
         name="modeleditor"
@@ -140,23 +135,6 @@
         permission="plone.schemaeditor.ManageSchemata"
         template="modeleditor.pt"
         />
-
-    <browser:page
-        name="model-edit-save"
-        for="plone.schemaeditor.interfaces.ISchemaContext"
-        class=".modeleditor.AjaxSaveHandler"
-        permission="plone.schemaeditor.ManageSchemata"
-        />
-
-    <browser:resource
-      name="plone.app.dexterity.modeleditor.css"
-      file="modeleditor.css"
-      />
-
-    <browser:resource
-      name="plone.app.dexterity.modeleditor.js"
-      file="modeleditor.js"
-      />
   </configure>
 
 </configure>
