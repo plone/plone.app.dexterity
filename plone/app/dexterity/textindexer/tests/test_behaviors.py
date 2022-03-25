@@ -2,8 +2,8 @@
 """Containing a tests suite for testing the behaviors.
 """
 
-from collective.dexteritytextindexer import testing
-from collective.dexteritytextindexer.directives import searchable
+from plone.app.dexterity.textindexer import testing
+from plone.app.dexterity.textindexer.directives import searchable
 from plone.supermodel import model
 from plone.testing import layered
 from zope import schema

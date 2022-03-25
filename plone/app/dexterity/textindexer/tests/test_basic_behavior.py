@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective.dexteritytextindexer.tests.helpers import get_searchable_fields
+from plone.app.dexterity.textindexer.tests.helpers import get_searchable_fields
 from plone.app.dexterity.behaviors.metadata import IBasic
 from unittest import TestCase
 

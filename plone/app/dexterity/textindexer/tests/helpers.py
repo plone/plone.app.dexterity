@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective.dexteritytextindexer.directives import SEARCHABLE_KEY
+from plone.app.dexterity.textindexer.directives import SEARCHABLE_KEY
 from plone.supermodel.utils import mergedTaggedValueList
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Contains different behaviors needed for testing.
 """
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
@@ -14,7 +14,7 @@ class ISimpleBehavior(model.Schema):
     """Simple behavior containing simple text line fields.
     """
 
-    dexteritytextindexer.searchable('foo')
+    textindexer.searchable('foo')
     foo = schema.TextLine(title=u'Foo')
 
     bar = schema.TextLine(title=u'Bar')
@@ -25,7 +25,7 @@ class IListBehavior(model.Schema):
     """More advanced behavior with a list of fields.
     """
 
-    dexteritytextindexer.searchable('list_field')
+    textindexer.searchable('list_field')
 
     list_field = schema.List(
         title=u'List field',
@@ -38,7 +38,7 @@ class IIntBehavior(model.Schema):
     """Basic behavior with a integer field.
     """
 
-    dexteritytextindexer.searchable('int_field')
+    textindexer.searchable('int_field')
     int_field = schema.Int(title=u'Int')
 
 
@@ -47,7 +47,7 @@ class IRichTextBehavior(model.Schema):
     """Basic behavior with a rich-text field.
     """
 
-    dexteritytextindexer.searchable('richtext_field')
+    textindexer.searchable('richtext_field')
     richtext_field = RichText(
         title=u'Body text',
         default_mime_type='text/html',
@@ -61,10 +61,10 @@ class IEmptyRichTextBehavior(model.Schema):
     """Behavior with a rich-text field without a default value.
     """
 
-    dexteritytextindexer.searchable('foo')
+    textindexer.searchable('foo')
     foo = schema.TextLine(title=u'Foo')
 
-    dexteritytextindexer.searchable('empty_richtext_field')
+    textindexer.searchable('empty_richtext_field')
     empty_richtext_field = RichText(
         title=u'Body text',
         default_mime_type='text/html',
@@ -77,7 +77,7 @@ class ITupleBehavior(model.Schema):
     """Basic behavior with a tuple field.
     """
 
-    dexteritytextindexer.searchable('tuple_field')
+    textindexer.searchable('tuple_field')
     tuple_field = schema.Tuple(
         title=u'Tuple',
         value_type=schema.TextLine(),
@@ -91,7 +91,7 @@ class ITupleChoiceBehavior(model.Schema):
     """Basic behavior with a tuple choice field.
     """
 
-    dexteritytextindexer.searchable('tuple_choice_field')
+    textindexer.searchable('tuple_choice_field')
     tuple_choice_field = schema.Tuple(
         title=u'Tuple choice',
         value_type=schema.Choice(
@@ -113,7 +113,7 @@ class IMissingFieldBehavior(model.Schema):
     """A behavior defining a field as searchable which does not exist.
     """
 
-    dexteritytextindexer.searchable('foo')
+    textindexer.searchable('foo')
     foo = schema.TextLine(title=u'Foo')
 
-    dexteritytextindexer.searchable('bar')
+    textindexer.searchable('bar')
