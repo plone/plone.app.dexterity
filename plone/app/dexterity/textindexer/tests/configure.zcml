@@ -1,6 +1,6 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:plone="http://namespaces.plone.org/plone"
-           i18n_domain="collective.dexteritytextindexer">
+           i18n_domain="plone.app.dexterity.textindexer">
 
     <plone:behavior
           title="simple behavior"

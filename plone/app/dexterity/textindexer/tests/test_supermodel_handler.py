@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from collective.dexteritytextindexer.directives import SEARCHABLE_KEY
-from collective.dexteritytextindexer.supermodel import IndexerSchema
+from plone.app.dexterity.textindexer.directives import SEARCHABLE_KEY
+from plone.app.dexterity.textindexer.supermodel import IndexerSchema
 from plone.supermodel.utils import ns
 from xml.etree import ElementTree
 from zope.interface import Interface

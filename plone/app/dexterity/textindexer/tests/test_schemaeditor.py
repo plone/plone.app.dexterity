@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from collective.dexteritytextindexer.testing import TEXT_INDEXER_FUNCTIONAL_TESTING  # noqa
+from plone.app.dexterity.textindexer.testing import TEXT_INDEXER_FUNCTIONAL_TESTING  # noqa
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -40,7 +40,7 @@ class TestSchemaEditor(unittest.TestCase):
         fti = DexterityFTI(str('with_behavior'), title='With Behavior')
         fti.behaviors = (
             'plone.app.dexterity.behaviors.metadata.IBasic',
-            'collective.dexteritytextindexer.behavior.IDexterityTextIndexer'
+            'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer'
         )
         fti.model_source = u"""\
 <model xmlns="http://namespaces.plone.org/supermodel/schema">
