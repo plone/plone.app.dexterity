@@ -4,9 +4,6 @@
            xmlns:zcml="http://namespaces.zope.org/zcml"
            i18n_domain="plone.app.dexterity.textindexer">
 
-    <include package="plone.behavior" file="meta.zcml" />
-    <include package="plone.dexterity" />
-
     <!-- marker behavior for enabling indexer -->
     <plone:behavior
           title="Dynamic SearchableText indexer behavior"
