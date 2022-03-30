@@ -17,7 +17,7 @@ _ = MessageFactory('plone.app.dexterity.textindexer')
 
 class ISearchableTextField(Interface):
     searchable = schema.Bool(
-        title=_(u'Searchable'),
+        title=_('Searchable'),
         required=False
     )
 
@@ -67,7 +67,7 @@ class SearchableTextField(object):
 @implementer(IFieldEditorExtender)
 def get_searchabletext_schema(schema_context, field):
     behavior = \
-        'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer'
+        'plone.textindexer'
     fti = getattr(schema_context, 'fti', None)
     if fti and behavior in getattr(fti, 'behaviors', []):
         return ISearchableTextField
