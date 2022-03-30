@@ -22,7 +22,6 @@ from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 
 import logging
-import six
 
 
 LOGGER = logging.getLogger('plone.app.dexterity.textindexer')
@@ -86,10 +85,6 @@ def dynamic_searchable_text_indexer(obj):
             if not value:
                 continue
 
-            # be sure that it is utf-8 encoded
-            if six.PY2 and isinstance(value, six.text_type):
-                value = value.encode('utf-8')
-
             # only accept strings
             assert isinstance(value, str), 'expected converted ' + \
                 'value of IDexterityTextIndexFieldConverter to be a str'
@@ -106,10 +101,6 @@ def dynamic_searchable_text_indexer(obj):
         # if no value was returned, we don't need to index anything.
         if not extended_value:
             continue
-
-        # be sure that it is utf-8 encoded
-        if six.PY2 and isinstance(extended_value, six.text_type):
-            extended_value = extended_value.encode('utf-8')
 
         # only accept strings
         assert isinstance(extended_value, str), 'expected converted ' + \

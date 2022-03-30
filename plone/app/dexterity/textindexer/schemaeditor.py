@@ -17,7 +17,7 @@ _ = MessageFactory('plone.app.dexterity.textindexer')
 
 class ISearchableTextField(Interface):
     searchable = schema.Bool(
-        title=_(u'Searchable'),
+        title=_('Searchable'),
         required=False
     )
 
