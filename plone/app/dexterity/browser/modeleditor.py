@@ -2,6 +2,7 @@
 from AccessControl import Unauthorized
 from lxml import etree
 from plone.app.dexterity import _
+from plone.supermodel import serializeModel
 from plone.supermodel.parser import SupermodelParseError
 from Products.CMFPlone.utils import safe_bytes
 from Products.CMFPlone.utils import safe_unicode
@@ -27,7 +28,13 @@ class ModelEditorView(BrowserView):
     @property
     def model_source(self):
         # Return modified source from textarea or the original FTI source.
-        return self.request.form.get("source") or self.context.fti.model_source
+        source = self.request.form.get("source") or self.context.fti.model_source
+        if source:
+            return source
+
+        # or serialize the model file
+        model = self.context.fti.lookupModel()
+        return serializeModel(model)
 
     def authorized(self, context, request):
         authenticator = queryMultiAdapter((context, request), name=u"authenticator")
