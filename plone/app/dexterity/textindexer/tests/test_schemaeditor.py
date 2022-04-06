@@ -22,7 +22,7 @@ class TestSchemaEditor(unittest.TestCase):
         # Define new portal type without behavior
         fti = DexterityFTI(str('without_behavior'), title='Without Behavior')
         fti.behaviors = (
-            'plone.app.dexterity.behaviors.metadata.IBasic',
+            'plone.basic',
         )
         fti.model_source = u"""\
 <model xmlns="http://namespaces.plone.org/supermodel/schema">
@@ -39,8 +39,8 @@ class TestSchemaEditor(unittest.TestCase):
         # Define new portal type with behavior
         fti = DexterityFTI(str('with_behavior'), title='With Behavior')
         fti.behaviors = (
-            'plone.app.dexterity.behaviors.metadata.IBasic',
-            'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer'
+            'plone.basic',
+            'plone.textindexer'
         )
         fti.model_source = u"""\
 <model xmlns="http://namespaces.plone.org/supermodel/schema">

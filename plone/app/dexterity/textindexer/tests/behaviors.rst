@@ -34,7 +34,7 @@ First test it with a simple behavior::
     >>> from plone.app.dexterity.textindexer.tests.behaviors import ISimpleBehavior
     >>> fti = DexterityFTI('SimpleFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.ISimpleBehavior',
     ... )
     >>> portal.portal_types._setObject('SimpleFTI', fti)
@@ -75,7 +75,7 @@ Does a list work?
     >>> from plone.app.dexterity.textindexer.tests.behaviors import IListBehavior
     >>> fti = DexterityFTI('ListFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.IListBehavior',
     ... )
     >>> portal.portal_types._setObject('ListFTI', fti)
@@ -99,7 +99,7 @@ Do ints work?
     >>> from plone.app.dexterity.textindexer.tests.behaviors import IIntBehavior
     >>> fti = DexterityFTI('IntFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.IIntBehavior',
     ... )
     >>> portal.portal_types._setObject('IntFTI', fti)
@@ -127,7 +127,7 @@ Do rich-text fields work?
     >>> from plone.app.textfield.value import RichTextValue
     >>> fti = DexterityFTI('RichTextFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.IRichTextBehavior',
     ... )
     >>> portal.portal_types._setObject('RichTextFTI', fti)
@@ -159,7 +159,7 @@ Values are not duplicated in SearchableText when field comes from real interface
     >>> from plone.app.dexterity.textindexer.tests.behaviors import ISimpleBehavior
     >>> fti = DexterityFTI('SimpleFTI2')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.ISimpleBehavior',
     ... )
     >>> fti.model_source = '<model xmlns="http://namespaces.plone.org/supermodel/schema" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone"><schema based-on="plone.app.dexterity.textindexer.tests.test_behaviors.ITestingSchema"></schema></model>'
@@ -183,7 +183,7 @@ Do empty rich-text fields work?
     >>> from plone.app.dexterity.textindexer.tests.behaviors import IEmptyRichTextBehavior
     >>> fti = DexterityFTI('EmptyRichTextFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.IEmptyRichTextBehavior',
     ... )
     >>> portal.portal_types._setObject('EmptyRichTextFTI', fti)
@@ -209,7 +209,7 @@ Do tuple fields work?
     >>> from plone.app.dexterity.textindexer.tests.behaviors import IRichTextBehavior
     >>> fti = DexterityFTI('TupleFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.ITupleBehavior',
     ... )
     >>> portal.portal_types._setObject('TupleFTI', fti)
@@ -234,7 +234,7 @@ Do tuple fields with choice values work?
     >>> from plone.app.dexterity.textindexer.tests.behaviors import IRichTextBehavior
     >>> fti = DexterityFTI('TupleChoiceFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.ITupleChoiceBehavior',
     ... )
     >>> portal.portal_types._setObject('TupleChoiceFTI', fti)
@@ -264,7 +264,7 @@ When a schema marks a field as searchable which does not exist it should:
     >>> from plone.app.dexterity.textindexer.tests.behaviors import IMissingFieldBehavior
     >>> fti = DexterityFTI('MissingFieldFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.IMissingFieldBehavior',
     ... )
     >>> portal.portal_types._setObject('MissingFieldFTI', fti)
@@ -289,7 +289,7 @@ it's superclass::
     >>> from plone.app.dexterity.textindexer.tests.behaviors import IInheritedBehavior
     >>> fti = DexterityFTI('InheritedFTI')
     >>> fti.behaviors = (
-    ...     'plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer',
+    ...     'plone.textindexer',
     ...     'plone.app.dexterity.textindexer.tests.behaviors.IInheritedBehavior',
     ... )
     >>> portal.portal_types._setObject('InheritedFTI', fti)
