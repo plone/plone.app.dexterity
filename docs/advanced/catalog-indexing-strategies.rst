@@ -14,7 +14,7 @@ Plone's main index is called *SearchableText*. This is the index which is search
 
 So, you may need to explicitly add fields to SearchableText if you wish their information to be findable via the main search. There are all sorts of highly customizable ways to do this, but the easiest is to use the `plone.app.dexterity.textindexer  <https://github.com/collective/plone.app.dexterity.textindexer>`_ add-on package.
 
-Add ``plone.app.dexterity.textindexer`` to your buildout and you will gain a new Dexterity behavior that will allow you to easily add fields to SearchableText. Once you turn on this behavior, you will then need to specify fields for addition to SearchableText.
+Add ``plone.app.dexterity`` to your buildout and you will gain the new Dexterity behavior `plone.textindexer` that will allow you to easily add fields to SearchableText. Once you turn on this behavior, you will then need to specify fields for addition to SearchableText.
 
 .. note::
 
