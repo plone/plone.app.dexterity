@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
 from lxml import etree
 from plone.app.dexterity import _
+from plone.base.utils import safe_bytes
+from plone.base.utils import safe_text
+from plone.supermodel import loadString
 from plone.supermodel import serializeModel
 from plone.supermodel.parser import SupermodelParseError
-from Products.CMFPlone.utils import safe_bytes
-from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryMultiAdapter
 
 import html
-import plone.supermodel
 
 
 NAMESPACE = "{http://namespaces.plone.org/supermodel/schema}"
@@ -62,7 +61,7 @@ class ModelEditorView(BrowserView):
                 root = etree.fromstring(source, parser=parser)
             except etree.XMLSyntaxError as e:
                 IStatusMessage(self.request).addStatusMessage(
-                    "XMLSyntaxError: {0}".format(html.escape(safe_unicode(e.args[0]))),
+                    "XMLSyntaxError: {0}".format(html.escape(safe_text(e.args[0]))),
                     "error",
                 )
                 return super().__call__()
@@ -86,7 +85,7 @@ class ModelEditorView(BrowserView):
             # can supermodel parse it?
             # This is mainly good for catching bad dotted names.
             try:
-                plone.supermodel.loadString(source, policy=u"dexterity")
+                loadString(source, policy=u"dexterity")
             except SupermodelParseError as e:
                 message = e.args[0].replace('\n  File "<unknown>"', "")
                 IStatusMessage(self.request).addStatusMessage(
