@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Contains the indexer and some helper methods for indexing.
 """
 
@@ -24,12 +23,11 @@ from zope.interface import alsoProvides
 import logging
 
 
-LOGGER = logging.getLogger('plone.app.dexterity.textindexer')
+LOGGER = logging.getLogger("plone.app.dexterity.textindexer")
 
 
-class FakeView(object):
-    """This fake view is used for enabled z3c forms z2 mode on.
-    """
+class FakeView:
+    """This fake view is used for enabled z3c forms z2 mode on."""
 
     def __init__(self, context, request):
         self.context = context
@@ -38,8 +36,7 @@ class FakeView(object):
 
 @indexer(IDexterityTextIndexer)
 def dynamic_searchable_text_indexer(obj):
-    """Dynamic searchable text indexer.
-    """
+    """Dynamic searchable text indexer."""
     # if the object does not provide a request, get one.
     # This happens when running scripts (bin/instance run script.py)
     try:
@@ -61,8 +58,7 @@ def dynamic_searchable_text_indexer(obj):
 
             # we need the form-field, not the schema-field we
             # already have..
-            form_field = Field(field, interface=field.interface,
-                               prefix='')
+            form_field = Field(field, interface=field.interface, prefix="")
 
             # get the widget
             try:
@@ -74,8 +70,8 @@ def dynamic_searchable_text_indexer(obj):
 
             # get the converter for this field / widget
             converter = getMultiAdapter(
-                (obj, field, widget),
-                interfaces.IDexterityTextIndexFieldConverter)
+                (obj, field, widget), interfaces.IDexterityTextIndexFieldConverter
+            )
 
             # convert the field value
             value = converter.convert()
@@ -86,16 +82,16 @@ def dynamic_searchable_text_indexer(obj):
                 continue
 
             # only accept strings
-            assert isinstance(value, str), 'expected converted ' + \
-                'value of IDexterityTextIndexFieldConverter to be a str'
+            assert isinstance(value, str), (
+                "expected converted "
+                + "value of IDexterityTextIndexFieldConverter to be a str"
+            )
 
             indexed.append(value)
 
     # after converting all fields, run additional
     # IDynamicTextIndexExtender adapters.
-    for _name, adapter in getAdapters(
-        (obj,), interfaces.IDynamicTextIndexExtender
-    ):
+    for _name, adapter in getAdapters((obj,), interfaces.IDynamicTextIndexExtender):
         extended_value = adapter()
 
         # if no value was returned, we don't need to index anything.
@@ -103,12 +99,13 @@ def dynamic_searchable_text_indexer(obj):
             continue
 
         # only accept strings
-        assert isinstance(extended_value, str), 'expected converted ' + \
-            'value of IDynamicTextIndexExtender to be a str'
+        assert isinstance(extended_value, str), (
+            "expected converted " + "value of IDynamicTextIndexExtender to be a str"
+        )
 
         indexed.append(extended_value)
 
-    return ' '.join(indexed)
+    return " ".join(indexed)
 
 
 def get_field_widget(obj, field, request):
@@ -117,16 +114,15 @@ def get_field_widget(obj, field, request):
     The `field` should be a z3c form field, not a zope schema field.
     """
 
-    assert IField.providedBy(field), 'field is not a form field'
+    assert IField.providedBy(field), "field is not a form field"
 
     if field.widgetFactory.get(DISPLAY_MODE) is not None:
         factory = field.widgetFactory.get(DISPLAY_MODE)
         widget = factory(field.field, request)
     else:
-        widget = getMultiAdapter(
-            (field.field, request), IFieldWidget)
-    widget.name = '' + field.__name__  # prefix not needed
-    widget.id = widget.name.replace('.', '-')
+        widget = getMultiAdapter((field.field, request), IFieldWidget)
+    widget.name = "" + field.__name__  # prefix not needed
+    widget.id = widget.name.replace(".", "-")
     widget.context = obj
     alsoProvides(widget, IContextAware)
     widget.mode = DISPLAY_MODE
@@ -150,7 +146,7 @@ def get_searchable_contexts_and_fields(obj):
         for _i, name, _v in tagged_values:
             field = schema.getFields(schemata).get(name)
             if not field:
-                dottedname = '.'.join((schemata.__module__, schemata.__name__))
+                dottedname = ".".join((schemata.__module__, schemata.__name__))
                 logging.error('%s has no field "%s"', dottedname, name)
 
             elif field not in fields:

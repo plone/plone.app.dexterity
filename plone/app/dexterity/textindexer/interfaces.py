@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 IDexterityTextIndexFieldConverter  field converter adapter interface
 IDynamicTextIndexExtender          dynmaic text extender adapter interface
@@ -8,8 +7,8 @@ from zope.interface import Interface
 
 
 # Supermodel namespace and prefix
-INDEXER_NAMESPACE = 'http://namespaces.plone.org/supermodel/indexer'
-INDEXER_PREFIX = 'indexer'
+INDEXER_NAMESPACE = "http://namespaces.plone.org/supermodel/indexer"
+INDEXER_PREFIX = "indexer"
 
 
 class IDexterityTextIndexFieldConverter(Interface):
@@ -19,8 +18,7 @@ class IDexterityTextIndexFieldConverter(Interface):
     """
 
     def __init__(self, context, field, widget):
-        """The multi-adpater adapts the context, the field and the widget.
-        """
+        """The multi-adpater adapts the context, the field and the widget."""
 
     def convert(self):
         """Returns a string containing the words to index. Translatable

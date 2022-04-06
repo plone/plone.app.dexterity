@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Testing setup providing layers and fixtures
 TextIndexerLayer                   basic text indexer layer
 TEXT_INDEXER_FIXTURE               text indexer fixture
@@ -22,36 +21,36 @@ class TextIndexerLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def __init__(self, *args, **kwargs):
-        super(TextIndexerLayer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.log = None
         self.log_handler = None
 
     def setUpZope(self, app, configurationContext):
-        """After setting up zope, load all necessary zcml files.
-        """
+        """After setting up zope, load all necessary zcml files."""
         import plone.app.dexterity.textindexer
+
         self.loadZCML(
-            package=plone.app.dexterity.textindexer,
-            context=configurationContext)
+            package=plone.app.dexterity.textindexer, context=configurationContext
+        )
         import plone.app.dexterity.textindexer.tests
+
         self.loadZCML(
-            package=plone.app.dexterity.textindexer.tests,
-            context=configurationContext)
+            package=plone.app.dexterity.textindexer.tests, context=configurationContext
+        )
 
     def setUpPloneSite(self, portal):
-        """After setting up plone, give Manager role to the test user.
-        """
-        setRoles(portal, TEST_USER_ID, ['Manager'])
+        """After setting up plone, give Manager role to the test user."""
+        setRoles(portal, TEST_USER_ID, ["Manager"])
 
     def testSetUp(self):
-        super(TextIndexerLayer, self).testSetUp()
+        super().testSetUp()
         self.log = StringIO()
         self.log_handler = logging.StreamHandler(self.log)
         logging.root.addHandler(self.log_handler)
-        self['read_log'] = self.read_log
+        self["read_log"] = self.read_log
 
     def testTearDown(self):
-        super(TextIndexerLayer, self).testTearDown()
+        super().testTearDown()
         logging.root.removeHandler(self.log_handler)
 
     def read_log(self):
@@ -61,8 +60,8 @@ class TextIndexerLayer(PloneSandboxLayer):
 
 TEXT_INDEXER_FIXTURE = TextIndexerLayer()
 TEXT_INTEXER_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(TEXT_INDEXER_FIXTURE,),
-    name='plone.app.dexterity.textindexer:Integration')
+    bases=(TEXT_INDEXER_FIXTURE,), name="plone.app.dexterity.textindexer:Integration"
+)
 
 
 class TextIndexerFunctionalLayer(PloneSandboxLayer):
@@ -71,17 +70,16 @@ class TextIndexerFunctionalLayer(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import plone.app.dexterity
-        self.loadZCML(
-            package=plone.app.dexterity,
-            context=configurationContext)
+
+        self.loadZCML(package=plone.app.dexterity, context=configurationContext)
 
     def setUpPloneSite(self, portal):
-        self.applyProfile(portal, 'plone.app.dexterity:default')
+        self.applyProfile(portal, "plone.app.dexterity:default")
 
 
 TEXT_INDEXER_FUNCTIONAL_FIXTURE = TextIndexerFunctionalLayer()
 
 TEXT_INDEXER_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(TEXT_INDEXER_FUNCTIONAL_FIXTURE,),
-    name='plone.app.dexterity.textindexer:Functional'
+    name="plone.app.dexterity.textindexer:Functional",
 )

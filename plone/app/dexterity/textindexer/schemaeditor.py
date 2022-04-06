@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity.textindexer.directives import SEARCHABLE_KEY
 from plone.app.dexterity.textindexer.interfaces import INDEXER_NAMESPACE
 from plone.app.dexterity.textindexer.interfaces import INDEXER_PREFIX
@@ -12,19 +11,16 @@ from zope.interface import Interface
 from zope.schema.interfaces import IField
 
 
-_ = MessageFactory('plone.app.dexterity.textindexer')
+_ = MessageFactory("plone.app.dexterity.textindexer")
 
 
 class ISearchableTextField(Interface):
-    searchable = schema.Bool(
-        title=_('Searchable'),
-        required=False
-    )
+    searchable = schema.Bool(title=_("Searchable"), required=False)
 
 
 @adapter(IField)
 @implementer(ISearchableTextField)
-class SearchableTextField(object):
+class SearchableTextField:
 
     namespace = INDEXER_NAMESPACE
     prefix = INDEXER_PREFIX
@@ -37,7 +33,7 @@ class SearchableTextField(object):
         tagged_value = self.schema.queryTaggedValue(SEARCHABLE_KEY, [])
 
         name = self.field.__name__
-        value = (Interface, name, 'true')
+        value = (Interface, name, "true")
 
         return value in tagged_value
 
@@ -45,8 +41,8 @@ class SearchableTextField(object):
         tagged_value = self.schema.queryTaggedValue(SEARCHABLE_KEY, [])
 
         name = self.field.__name__
-        new_value = (Interface, name, bool(value) and 'true' or 'false')
-        old_value = (Interface, name, bool(value) and 'false' or 'true')
+        new_value = (Interface, name, bool(value) and "true" or "false")
+        old_value = (Interface, name, bool(value) and "false" or "true")
 
         while old_value in tagged_value:
             tagged_value.remove(old_value)
@@ -66,8 +62,7 @@ class SearchableTextField(object):
 @adapter(ISchemaContext, IField)
 @implementer(IFieldEditorExtender)
 def get_searchabletext_schema(schema_context, field):
-    behavior = \
-        'plone.textindexer'
-    fti = getattr(schema_context, 'fti', None)
-    if fti and behavior in getattr(fti, 'behaviors', []):
+    behavior = "plone.textindexer"
+    fti = getattr(schema_context, "fti", None)
+    if fti and behavior in getattr(fti, "behaviors", []):
         return ISearchableTextField
