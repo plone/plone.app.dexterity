@@ -12,9 +12,9 @@ Making content searchable
 
 Plone's main index is called *SearchableText*. This is the index which is searched when you use the main portal search. Fields in your custom content types are not necessarily added to SearchableText. Fields added via Dublin-core behaviors are automatically part of SearchableText; others are not.
 
-So, you may need to explicitly add fields to SearchableText if you wish their information to be findable via the main search. There are all sorts of highly customizable ways to do this, but the easiest is to use the `plone.app.dexterity.textindexer  <https://github.com/collective/plone.app.dexterity.textindexer>`_ add-on package.
+So, you may need to explicitly add fields to SearchableText if you wish their information to be findable via the main search. There are all sorts of highly customizable ways to do this, but the easiest is to use the the behavior ``plone.textindexer`` that is shipped with plone.app.dexterity.
 
-Add ``plone.app.dexterity`` to your buildout and you will gain the new Dexterity behavior `plone.textindexer` that will allow you to easily add fields to SearchableText. Once you turn on this behavior, you will then need to specify fields for addition to SearchableText.
+It allows you to easily add fields to SearchableText. Once you turn on this behavior, you will then need to specify fields for addition to SearchableText.
 
 .. note::
 
@@ -22,7 +22,7 @@ Add ``plone.app.dexterity`` to your buildout and you will gain the new Dexterity
 
 Once you have turned on the indexer behavior, edit the XML field model to add ``indexer:searchable="true"`` to the ``field`` tag for each field you wish to add to the SearchableText index.
 
-See the `plone.app.dexterity.textindexer  <https://github.com/collective/plone.app.dexterity.textindexer>`_ package documentation for details and for information on how to use it via Python schema.
+See the `/backend/indexing  <https://6-dev-docs.plone.org/backend/indexing>`_ package documentation for details and for information on how to use it via Python schema.
 
 
 Creating and using custom indexes
