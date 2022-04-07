@@ -8,6 +8,37 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0a9 (2022-04-07)
+--------------------
+
+Breaking changes:
+
+
+- Remove JavaScript from this package and move it to Mockup.
+  [thet]
+
+  Modeleditor: Use pat-code-editor from Patternslib instead ACE.
+  Make the model editing form usable without JavaScript.
+  Allow editing the form even with XML errors to be able to fix the problem.
+  [thet] (#334)
+
+
+New features:
+
+
+- PLIP 2780: Move features of collective.dexteritytextindexer to core.
+  [zworkb] (#2780)
+
+
+Bug fixes:
+
+
+- Remove deprecation warnings after PLIP 3395, some black & isort, some six removal.
+  [jensens] (#345)
+- Modeleditor: when there is no model_source yet, show the model_file.
+  [maurits] (#3473)
+
+
 3.0.0a8 (2022-02-24)
 --------------------
 

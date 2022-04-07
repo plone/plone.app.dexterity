@@ -1,7 +1,0 @@
-Remove JavaScript from this package and move it to Mockup.
-[thet]
-
-Modeleditor: Use pat-code-editor from Patternslib instead ACE.
-Make the model editing form usable without JavaScript.
-Allow editing the form even with XML errors to be able to fix the problem.
-[thet]
