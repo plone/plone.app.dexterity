@@ -4,11 +4,11 @@ NamedfileFieldConverter                    an optional namedfile field
 converter only enabled when plone.namedfile is installed
 """
 
-from plone import api
 from plone.app.dexterity.textindexer import interfaces
 from plone.app.textfield.interfaces import IRichText
 from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.interfaces import INamedFileField
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from z3c.form.interfaces import IWidget
 from ZODB.POSException import ConflictError
@@ -40,7 +40,7 @@ class DefaultDexterityTextIndexFieldConverter:
     def convert(self):
         """Convert the adapted field value to text/plain for indexing"""
         html = self.widget.render().strip()
-        transforms = api.portal.get_tool("portal_transforms")
+        transforms = getToolByName(self.context, "portal_transforms")
         stream = transforms.convertTo("text/plain", html, mimetype="text/html")
         return stream.getData().strip()
 
@@ -63,7 +63,7 @@ class DexterityRichTextIndexFieldConverter:
         if textvalue is None:
             return ""
         html = safe_unicode(textvalue.output)
-        transforms = api.portal.get_tool("portal_transforms")
+        transforms = getToolByName(self.context, "portal_transforms")
         stream = transforms.convertTo("text/plain", html, mimetype=textvalue.mimeType)
         return stream.getData().strip()
 
@@ -87,7 +87,7 @@ class NamedfileFieldConverter(DefaultDexterityTextIndexFieldConverter):
             return data.data
 
         # if there is no path to text/plain, do nothing
-        transforms = api.portal.get_tool("portal_transforms")
+        transforms = getToolByName(self.context, "portal_transforms")
 
         # pylint: disable=W0212
         # W0212: Access to a protected member _findPath of a client class
