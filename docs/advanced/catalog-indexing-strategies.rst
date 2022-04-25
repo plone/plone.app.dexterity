@@ -18,7 +18,7 @@ It allows you to easily add fields to SearchableText. Once you turn on this beha
 
 .. note::
 
-    Note that if you turn on the ``Dynamic SearchableText indexer behavior`` for a content type, then you must specify all fields that need SearchableText indexing. Dublin core fields like Title and Description are no longer automatically handled.
+    Note that if you turn on the ``Full-Text Indexing`` behavior for a content type, then you must specify all fields that need SearchableText indexing. Dublin core fields like Title and Description are no longer automatically handled.
 
 Once you have turned on the indexer behavior, edit the XML field model to add ``indexer:searchable="true"`` to the ``field`` tag for each field you wish to add to the SearchableText index.
 

@@ -6,9 +6,9 @@
 
     <!-- marker behavior for enabling indexer -->
     <plone:behavior
-          title="Dynamic SearchableText indexer behavior"
+          title="Full-Text Indexing"
           name="plone.textindexer"
-          description="Enables the dynamic SearchableText indexer for a content type"
+          description="Enables the enhanced full-text indexing for a content type ('plone.textindexer'). If a field is marked 'searchable', its content gets added to the 'SearchableText' index in the catalog."
           provides="plone.app.dexterity.textindexer.behavior.IDexterityTextIndexer"
           />
 
