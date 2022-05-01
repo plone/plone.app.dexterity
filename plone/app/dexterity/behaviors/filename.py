@@ -16,17 +16,16 @@ class INameFromFileName(Interface):
 @implementer(INameFromTitle)
 @adapter(INameFromFileName)
 class NameFromFileName(object):
-
     def __new__(cls, context):
         info = IPrimaryFieldInfo(context, None)
         if info is None:
             return None
-        filename = getattr(info.value, 'filename', None)
+        filename = getattr(info.value, "filename", None)
         if not isinstance(filename, six.string_types) or not filename:
             return None
         instance = super(NameFromFileName, cls).__new__(cls)
         instance.title = filename
-        if safe_hasattr(context, 'title') and not context.title:
+        if safe_hasattr(context, "title") and not context.title:
             context.title = filename
         return instance
 

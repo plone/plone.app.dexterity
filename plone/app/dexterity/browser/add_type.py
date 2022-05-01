@@ -17,9 +17,8 @@ except ImportError:
 
     import six
 
-    def safe_nativestring(value, encoding='utf-8'):
-        """Convert a value to str in py2 and to text in py3
-        """
+    def safe_nativestring(value, encoding="utf-8"):
+        """Convert a value to str in py2 and to text in py3"""
         if six.PY2 and isinstance(value, six.text_type):
             value = safe_encode(value, encoding)
         if not six.PY2 and isinstance(value, six.binary_type):
@@ -29,39 +28,43 @@ except ImportError:
 
 class TypeAddForm(form.AddForm):
 
-    label = _(u'Add Content Type')
-    fields = field.Fields(ITypeSettings).select('title', 'id', 'description')
-    id = 'add-type-form'
+    label = _(u"Add Content Type")
+    fields = field.Fields(ITypeSettings).select("title", "id", "description")
+    id = "add-type-form"
     fti_id = None
 
     def create(self, data):
-        id = data.pop('id')
+        id = data.pop("id")
 
         fti = DexterityFTI(id)
         fti.id = id
-        data['title'] = safe_nativestring(data['title'])
-        if data['description']:
-            data['description'] = safe_nativestring(data['description'])
-        data['i18n_domain'] = 'plone'
-        data['behaviors'] = '\n'.join([
-            'plone.dublincore',
-            'plone.namefromtitle',
-        ])
-        data['model_source'] = """
+        data["title"] = safe_nativestring(data["title"])
+        if data["description"]:
+            data["description"] = safe_nativestring(data["description"])
+        data["i18n_domain"] = "plone"
+        data["behaviors"] = "\n".join(
+            [
+                "plone.dublincore",
+                "plone.namefromtitle",
+            ]
+        )
+        data[
+            "model_source"
+        ] = """
 <model xmlns="http://namespaces.plone.org/supermodel/schema">
     <schema>
     </schema>
 </model>
 """
 
-        data['klass'] = 'plone.dexterity.content.Container'
-        data['filter_content_types'] = True
-        data['icon_expr'] = 'string:file-earmark-text'
+        data["klass"] = "plone.dexterity.content.Container"
+        data["filter_content_types"] = True
+        data["icon_expr"] = "string:file-earmark-text"
         fti.manage_changeProperties(**data)
         return fti
 
     def add(self, fti):
-        ttool = getToolByName(self.context, 'portal_types')
+        ttool = getToolByName(self.context, "portal_types")
         ttool._setObject(fti.id, fti)
         self.fti_id = fti.id
         self.status = _(u"Type added successfully.")
@@ -69,7 +72,8 @@ class TypeAddForm(form.AddForm):
     def nextURL(self):
         url = self.context.absolute_url()
         if self.fti_id is not None:
-            url += '/{0}/@@fields'.format(self.fti_id)
+            url += "/{0}/@@fields".format(self.fti_id)
         return url
+
 
 TypeAddFormPage = wrap_form(TypeAddForm)

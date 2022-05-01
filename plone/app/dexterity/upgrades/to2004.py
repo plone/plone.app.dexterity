@@ -7,8 +7,8 @@ def remove_cr_and_lf_description(context):
     types = []
 
     behaviors = [
-        'plone.app.dexterity.behaviors.metadata.IBasic',
-        'plone.app.dexterity.behaviors.metadata.IDublinCore'
+        "plone.app.dexterity.behaviors.metadata.IBasic",
+        "plone.app.dexterity.behaviors.metadata.IDublinCore",
     ]
 
     context = context.aq_parent
@@ -18,18 +18,16 @@ def remove_cr_and_lf_description(context):
             if behavior in fti.behaviors:
                 types.append(name)
 
-    catalog = getToolByName(context, 'portal_catalog')
+    catalog = getToolByName(context, "portal_catalog")
 
     for portal_type in types:
-        brains = catalog.searchResults(
-            portal_type=portal_type
-        )
+        brains = catalog.searchResults(portal_type=portal_type)
 
         for brain in brains:
             obj = brain.getObject()
 
-            if '\n' in obj.description:
-                obj.description = obj.description.replace('\n', '')
+            if "\n" in obj.description:
+                obj.description = obj.description.replace("\n", "")
 
-            if '\r' in obj.description:
-                obj.description = obj.description.replace('\r', '')
+            if "\r" in obj.description:
+                obj.description = obj.description.replace("\r", "")

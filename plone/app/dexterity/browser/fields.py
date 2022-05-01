@@ -14,19 +14,19 @@ import pkg_resources
 
 
 class EnhancedSchemaListing(SchemaListing):
-
     def handleModelEdit(self, action):
-        self.request.response.redirect('@@modeleditor')
+        self.request.response.redirect("@@modeleditor")
 
-if pkg_resources.get_distribution('plone.resourceeditor'):
-    but = button.Button('modeleditor', title=u'Edit XML Field Model')
+
+if pkg_resources.get_distribution("plone.resourceeditor"):
+    but = button.Button("modeleditor", title=u"Edit XML Field Model")
     EnhancedSchemaListing.buttons += button.Buttons(but)
     handler = button.Handler(but, EnhancedSchemaListing.handleModelEdit)
     EnhancedSchemaListing.handlers.addHandler(but, handler)
 
 
 class TypeFieldsPage(TypeFormLayout):
-    label = _(u'Fields')
+    label = _(u"Fields")
 
     @property
     def form(self):

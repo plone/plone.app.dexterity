@@ -7,7 +7,7 @@ from zope.component import queryUtility
 
 
 def serializeSchemaContext(schema_context, event=None):
-    """ Serializes the schema associated with a schema context.
+    """Serializes the schema associated with a schema context.
 
     The serialized schema is saved to the model_source property of the FTI
     associated with the schema context.
@@ -24,13 +24,13 @@ def serializeSchemaContext(schema_context, event=None):
 
 
 def serializeSchema(schema):
-    """ Finds the FTI and model associated with a schema, and synchronizes
-        the schema to the FTI model_source attribute.
+    """Finds the FTI and model associated with a schema, and synchronizes
+    the schema to the FTI model_source attribute.
 
-        This method only works for schemas that were created from an FTI's
-        model_source property
+    This method only works for schemas that were created from an FTI's
+    model_source property
 
-        BBB - deprecated
+    BBB - deprecated
     """
 
     # determine portal_type
@@ -49,4 +49,4 @@ def serializeSchema(schema):
         syncSchema(schema, model.schemata[schemaName], overwrite=True)
         fti.model_source = serializeModel(model)
     else:
-        raise TypeError('Changes to non-dynamic schemata not yet supported.')
+        raise TypeError("Changes to non-dynamic schemata not yet supported.")

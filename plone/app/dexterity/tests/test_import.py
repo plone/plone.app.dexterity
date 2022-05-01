@@ -19,38 +19,30 @@ class TestDexterityTypesImport(unittest.TestCase):
     layer = DEXTERITY_INTEGRATION_TESTING
 
     def testZipFileImportContext(self):
-        portal = self.layer['portal']
-        types_tool = getToolByName(portal, 'portal_types')
+        portal = self.layer["portal"]
+        types_tool = getToolByName(portal, "portal_types")
 
         zname = os.path.join(
             os.path.dirname(__file__),
-            'import',
-            'dexterity_export.zip',
+            "import",
+            "dexterity_export.zip",
         )
-        f = open(zname, 'rb')
+        f = open(zname, "rb")
         icontext = ZipFileImportContext(types_tool, f)
 
-        types_xml = icontext.readDataFile('types.xml')
+        types_xml = icontext.readDataFile("types.xml")
         self.assertTrue(
             types_xml,
-            msg='Unable to read types.xml in sample import file',
+            msg="Unable to read types.xml in sample import file",
         )
 
-        self.assertTrue(
-            isinstance(
-                icontext.getLastModified('types.xml'),
-                DateTime
-            )
-        )
+        self.assertTrue(isinstance(icontext.getLastModified("types.xml"), DateTime))
+
+        self.assertEqual(set(icontext.listDirectory("")), set(["types", "types.xml"]))
 
         self.assertEqual(
-            set(icontext.listDirectory('')),
-            set(['types', 'types.xml'])
-        )
-
-        self.assertEqual(
-            set(icontext.listDirectory('types')),
-            set(['test_type_two.xml', 'test_type_one.xml'])
+            set(icontext.listDirectory("types")),
+            set(["test_type_two.xml", "test_type_one.xml"]),
         )
 
         # test importIsTypesOnly check
@@ -59,41 +51,36 @@ class TestDexterityTypesImport(unittest.TestCase):
         f.close()
 
     def testSampleImportStep(self):
-        """ Import our sample file
-        """
+        """Import our sample file"""
 
-        portal = self.layer['portal']
-        setup_tool = getToolByName(portal, 'portal_setup')
-        types_tool = getToolByName(portal, 'portal_types')
+        portal = self.layer["portal"]
+        setup_tool = getToolByName(portal, "portal_setup")
+        types_tool = getToolByName(portal, "portal_types")
         old_types = set(types_tool.listContentTypes())
 
-        handler = setup_tool.getImportStep(u'typeinfo')
+        handler = setup_tool.getImportStep(u"typeinfo")
 
         zname = os.path.join(
-            os.path.dirname(__file__),
-            'import',
-            'dexterity_export.zip'
+            os.path.dirname(__file__), "import", "dexterity_export.zip"
         )
-        with open(zname, 'rb') as f:
+        with open(zname, "rb") as f:
             icontext = ZipFileImportContext(types_tool, f)
             handler(icontext)
 
         # Our types list should have our two new types
         self.assertEqual(
             set(types_tool.listContentTypes()) - old_types,
-            set(['test_type_one', 'test_type_two'])
+            set(["test_type_one", "test_type_two"]),
         )
 
         # Trying to import now should fail, since
         # it would be importing existing types.
         # This is tested in an invariant.
         data = TypeProfileImport(profile_file=plone.namedfile.NamedFile())
-        with open(zname, 'rb') as f:
+        with open(zname, "rb") as f:
             data.profile_file.data = f.read()
         self.assertRaises(
-            zope.interface.Invalid,
-            ITypeProfileImport.validateInvariants,
-            data
+            zope.interface.Invalid, ITypeProfileImport.validateInvariants, data
         )
 
 

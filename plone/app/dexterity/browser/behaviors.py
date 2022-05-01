@@ -28,9 +28,8 @@ except ImportError:
     from Products.CMFPlone.utils import safe_encode
     from Products.CMFPlone.utils import safe_unicode
 
-    def safe_nativestring(value, encoding='utf-8'):
-        """Convert a value to str in py2 and to text in py3
-        """
+    def safe_nativestring(value, encoding="utf-8"):
+        """Convert a value to str in py2 and to text in py3"""
         if six.PY2 and isinstance(value, six.text_type):
             value = safe_encode(value, encoding)
         if not six.PY2 and isinstance(value, six.binary_type):
@@ -40,29 +39,28 @@ except ImportError:
 
 TTW_BEHAVIOR_BLACKLIST = [
     # skip deprecated behavior
-    'plone.app.dexterity.behaviors.related.IRelatedItems',
+    "plone.app.dexterity.behaviors.related.IRelatedItems",
 ]
 
 
 def behaviorConfigurationModified(object, event):
-    description = DexterityFTIModificationDescription('behaviors', '')
+    description = DexterityFTIModificationDescription("behaviors", "")
     modified(object.fti, description)
 
 
 @adapter(ITypeSchemaContext)
 class BehaviorConfigurationAdapter(object):
-
     def __init__(self, context):
-        self.__dict__['context'] = context
-        self.__dict__['fti'] = self.context.fti
+        self.__dict__["context"] = context
+        self.__dict__["fti"] = self.context.fti
 
     def __getattr__(self, name):
         # be sure to get a valid value
         reg = lookup_behavior_registration(name=name)
         iid = reg.interface.__identifier__
         return (
-            iid in self.fti.behaviors or
-            safe_nativestring(reg.name) in self.fti.behaviors
+            iid in self.fti.behaviors
+            or safe_nativestring(reg.name) in self.fti.behaviors
         )
 
     def __setattr__(self, name, value):
@@ -105,22 +103,20 @@ class BehaviorConfigurationAdapter(object):
 
 class TypeBehaviorsForm(form.EditForm):
 
-    template = ViewPageTemplateFile('behaviors.pt')
-    label = _(u'Behaviors')
-    description = _(u'Select the behaviors to enable for this content type.')
-    successMessage = _(u'Behaviors successfully updated.')
-    noChangesMessage = _(u'No changes were made.')
+    template = ViewPageTemplateFile("behaviors.pt")
+    label = _(u"Behaviors")
+    description = _(u"Select the behaviors to enable for this content type.")
+    successMessage = _(u"Behaviors successfully updated.")
+    noChangesMessage = _(u"No changes were made.")
     buttons = deepcopy(form.EditForm.buttons)
-    buttons['apply'].title = _(u'Save')
+    buttons["apply"].title = _(u"Save")
 
     def getContent(self):
         return BehaviorConfigurationAdapter(self.context)
 
     @property
     def fields(self):
-        counts = Counter(
-            [id(reg) for name, reg in getUtilitiesFor(IBehavior)]
-        )
+        counts = Counter([id(reg) for name, reg in getUtilitiesFor(IBehavior)])
         fields = []
         for name, reg in getUtilitiesFor(IBehavior):
             if name in TTW_BEHAVIOR_BLACKLIST:
@@ -135,10 +131,10 @@ class TypeBehaviorsForm(form.EditForm):
                     __name__=fname,
                     title=reg.title,
                     description=reg.description,
-                    required=False
+                    required=False,
                 )
             )
-        form_fields = field.Fields(*sorted(fields, key=attrgetter('title')))
+        form_fields = field.Fields(*sorted(fields, key=attrgetter("title")))
         for ff in form_fields.values():
             ff.widgetFactory = SingleCheckBoxFieldWidget
         return form_fields
@@ -146,4 +142,4 @@ class TypeBehaviorsForm(form.EditForm):
 
 class TypeBehaviorsPage(TypeFormLayout):
     form = TypeBehaviorsForm
-    label = _(u'Behaviors')
+    label = _(u"Behaviors")

@@ -18,13 +18,12 @@ upload_lock = allocate_lock()
 @adapter(IFolderish)
 @implementer(IDXFileFactory)
 class DXFileFactory(object):
-
     def __init__(self, context):
         self.context = context
 
     def __call__(self, name, content_type, data):
-        ctr = getToolByName(self.context, 'content_type_registry')
-        type_ = ctr.findTypeName(name.lower(), content_type, data) or 'File'
+        ctr = getToolByName(self.context, "content_type_registry")
+        type_ = ctr.findTypeName(name.lower(), content_type, data) or "File"
 
         name = ploneutils.safe_unicode(name)
 
@@ -42,29 +41,18 @@ class DXFileFactory(object):
             # XXX heuristics are harmful behavior, here a better implemenation
             #     is needed
             filename = name
-            if 'Image' in type_:
+            if "Image" in type_:
                 image = NamedBlobImage(
-                    data=data,
-                    filename=filename,
-                    contentType=content_type
+                    data=data, filename=filename, contentType=content_type
                 )
                 obj = createContentInContainer(
-                    self.context, type_,
-                    id=newid,
-                    image=image
+                    self.context, type_, id=newid, image=image
                 )
             else:
                 file = NamedBlobFile(
-                    data=data,
-                    filename=filename,
-                    contentType=content_type
+                    data=data, filename=filename, contentType=content_type
                 )
-                obj = createContentInContainer(
-                    self.context,
-                    type_,
-                    id=newid,
-                    file=file
-                )
+                obj = createContentInContainer(self.context, type_, id=newid, file=file)
 
             obj.title = name
             obj.reindexObject()

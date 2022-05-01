@@ -33,10 +33,9 @@ class MockRequest(TestRequest):
 @adapter(IDexterityContent)
 @implementer(IFieldPermissionChecker)
 class DXFieldPermissionChecker(object):
-    """
-    """
+    """ """
 
-    DEFAULT_PERMISSION = 'Modify portal content'
+    DEFAULT_PERMISSION = "Modify portal content"
 
     def __init__(self, context):
         self.context = context
@@ -48,10 +47,9 @@ class DXFieldPermissionChecker(object):
     def _validate_vocabulary_name(self, schema, field, vocabulary_name):
         if not vocabulary_name:
             return True
-        if (
-            vocabulary_name != getattr(field, 'vocabulary', None) and
-            vocabulary_name != getattr(field, 'vocabularyName', None)
-        ):
+        if vocabulary_name != getattr(
+            field, "vocabulary", None
+        ) and vocabulary_name != getattr(field, "vocabularyName", None):
             # Determine the widget to check for vocabulary there
             widgets = mergedTaggedValueDict(schema, WIDGETS_KEY)
             widget = widgets.get(field.getName())
@@ -62,13 +60,10 @@ class DXFieldPermissionChecker(object):
                     widget = widget(field, self._request)
             else:
                 # default widget
-                widget = queryMultiAdapter(
-                    (field, self._request),
-                    IFieldWidget
-                )
+                widget = queryMultiAdapter((field, self._request), IFieldWidget)
             if widget:
                 widget.update()
-            if getattr(widget, 'vocabulary', None) != vocabulary_name:
+            if getattr(widget, "vocabulary", None) != vocabulary_name:
                 return False
         return True
 
@@ -83,24 +78,14 @@ class DXFieldPermissionChecker(object):
             # match the vocabulary name for the field or widget,
             # fail.
             field = schema[field_name]
-            if not self._validate_vocabulary_name(
-                schema,
-                field,
-                vocabulary_name
-            ):
+            if not self._validate_vocabulary_name(schema, field, vocabulary_name):
                 return False
             # Create mapping of all schema permissions
-            permissions = mergedTaggedValueDict(
-                schema,
-                WRITE_PERMISSIONS_KEY
-            )
+            permissions = mergedTaggedValueDict(schema, WRITE_PERMISSIONS_KEY)
             permission_name = permissions.get(field_name, None)
             if permission_name is not None:
                 # if we have explicit permissions, check them
-                permission = queryUtility(
-                    IPermission,
-                    name=permission_name
-                )
+                permission = queryUtility(IPermission, name=permission_name)
                 if permission:
                     return checker(permission.title, context)
 
@@ -108,19 +93,19 @@ class DXFieldPermissionChecker(object):
             # specified, fall back to the default edit permission
             return checker(self.DEFAULT_PERMISSION, context)
         else:
-            raise AttributeError('No such field: {0}'.format(field_name))
+            raise AttributeError("No such field: {0}".format(field_name))
 
 
 @adapter(IForm)
 class GenericFormFieldPermissionChecker(DXFieldPermissionChecker):
     """Permission checker for when we just have an add view"""
 
-    DEFAULT_PERMISSION = 'Add portal content'
+    DEFAULT_PERMISSION = "Add portal content"
 
     def __init__(self, view):
-        if getattr(view, 'form_instance', None) is not None:
+        if getattr(view, "form_instance", None) is not None:
             view = view.form_instance
-        if getattr(view, 'create', None):
+        if getattr(view, "create", None):
             content = view.create({})
             self.context = content.__of__(view.context)
         else:
@@ -130,7 +115,7 @@ class GenericFormFieldPermissionChecker(DXFieldPermissionChecker):
         self.view = view
 
     def _get_schemata(self):
-        if getattr(self.view, 'create', None):
+        if getattr(self.view, "create", None):
             return iterSchemata(self.context)
         return [self.view.schema]
 
@@ -138,7 +123,8 @@ class GenericFormFieldPermissionChecker(DXFieldPermissionChecker):
 # BBB: Old name to match prior more limited function
 DXAddViewFieldPermissionChecker = GenericFormFieldPermissionChecker
 deprecated(
-    'DXAddViewFieldPermissionChecker',
-    'plone.app.dexterity.permissions.DXAddViewFieldPermissionChecker has been '
-    'replaced with GenericFormFieldPermissionChecker, please update any '
-    'imports.')
+    "DXAddViewFieldPermissionChecker",
+    "plone.app.dexterity.permissions.DXAddViewFieldPermissionChecker has been "
+    "replaced with GenericFormFieldPermissionChecker, please update any "
+    "imports.",
+)

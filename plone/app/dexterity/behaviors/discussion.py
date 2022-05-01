@@ -11,29 +11,31 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
-options = SimpleVocabulary([
-    SimpleTerm(value=True, title=_(u'Yes')),
-    SimpleTerm(value=False, title=_(u'No')),
-])
+options = SimpleVocabulary(
+    [
+        SimpleTerm(value=True, title=_(u"Yes")),
+        SimpleTerm(value=False, title=_(u"No")),
+    ]
+)
 
 
 @provider(IFormFieldProvider)
 class IAllowDiscussion(model.Schema):
 
     model.fieldset(
-        'settings',
+        "settings",
         label=_(u"Settings"),
-        fields=['allow_discussion'],
+        fields=["allow_discussion"],
     )
 
     allow_discussion = schema.Choice(
-        title=_(u'Allow discussion'),
-        description=_(u'Allow discussion for this content object.'),
+        title=_(u"Allow discussion"),
+        description=_(u"Allow discussion for this content object."),
         vocabulary=options,
         required=False,
         default=None,
     )
 
-    directives.omitted('allow_discussion')
-    directives.no_omit(IEditForm, 'allow_discussion')
-    directives.no_omit(IAddForm, 'allow_discussion')
+    directives.omitted("allow_discussion")
+    directives.no_omit(IEditForm, "allow_discussion")
+    directives.no_omit(IAddForm, "allow_discussion")

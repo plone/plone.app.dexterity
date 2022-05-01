@@ -13,23 +13,19 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 
 
 class IExcludeFromNavigationDefault(Interface):
-
     def __call__():
-        """boolean if item is by default excluded from navigation or not.
-        """
+        """boolean if item is by default excluded from navigation or not."""
 
 
 @implementer(IExcludeFromNavigationDefault)
 def default_exclude_false(context):
-    """provide a default adapter with the standard uses
-    """
+    """provide a default adapter with the standard uses"""
     return False
 
 
 @implementer(IExcludeFromNavigationDefault)
 def default_exclude_true(context):
-    """provide a alternative adapter with opposite default as standard
-    """
+    """provide a alternative adapter with opposite default as standard"""
     return True
 
 
@@ -40,29 +36,21 @@ def default_exclude(context):
 
 @provider(IFormFieldProvider)
 class IExcludeFromNavigation(model.Schema):
-    """Behavior interface to exclude items from navigation.
-    """
+    """Behavior interface to exclude items from navigation."""
 
-    model.fieldset(
-        'settings',
-        label=_(u"Settings"),
-        fields=['exclude_from_nav']
-    )
+    model.fieldset("settings", label=_(u"Settings"), fields=["exclude_from_nav"])
 
     exclude_from_nav = schema.Bool(
-        title=_(
-            u'label_exclude_from_nav',
-            default=u'Exclude from navigation'
-        ),
+        title=_(u"label_exclude_from_nav", default=u"Exclude from navigation"),
         description=_(
-            u'help_exclude_from_nav',
-            default=u'If selected, this item will not appear in the '
-                    u'navigation tree'
+            u"help_exclude_from_nav",
+            default=u"If selected, this item will not appear in the "
+            u"navigation tree",
         ),
         defaultFactory=default_exclude,
         required=False,
     )
 
-    directives.omitted('exclude_from_nav')
-    directives.no_omit(IEditForm, 'exclude_from_nav')
-    directives.no_omit(IAddForm, 'exclude_from_nav')
+    directives.omitted("exclude_from_nav")
+    directives.no_omit(IEditForm, "exclude_from_nav")
+    directives.no_omit(IAddForm, "exclude_from_nav")

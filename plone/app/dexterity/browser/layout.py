@@ -6,12 +6,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 class TypeFormLayout(FormWrapper):
 
-    index = ViewPageTemplateFile('tabbed_forms.pt')
+    index = ViewPageTemplateFile("tabbed_forms.pt")
 
     @property
     def tabs(self):
         return (
-            (_('Overview'), '@@overview'),
-            (_('Fields'), '@@fields'),
-            (_('Behaviors'), '@@behaviors'),
+            (_("Overview"), "@@overview"),
+            (_("Fields"), "@@fields"),
+            (_("Behaviors"), "@@behaviors"),
         )

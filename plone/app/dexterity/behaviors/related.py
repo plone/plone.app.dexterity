@@ -13,6 +13,5 @@ from zope.component import queryUtility
 
 def related_items_behavior_BBB():
     return queryUtility(
-        IBehavior,
-        name=u'plone.app.relationfield.behavior.IRelatedItems'
+        IBehavior, name=u"plone.app.relationfield.behavior.IRelatedItems"
     )
