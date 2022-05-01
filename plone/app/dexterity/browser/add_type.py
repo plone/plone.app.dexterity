@@ -1,9 +1,9 @@
 from plone.app.dexterity import _
 from plone.app.dexterity.interfaces import ITypeSettings
+from plone.base.utils import safe_text
 from plone.dexterity.fti import DexterityFTI
 from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_nativestring
 from z3c.form import field
 from z3c.form import form
 
@@ -20,9 +20,9 @@ class TypeAddForm(form.AddForm):
 
         fti = DexterityFTI(id)
         fti.id = id
-        data["title"] = safe_nativestring(data["title"])
+        data["title"] = safe_text(data["title"])
         if data["description"]:
-            data["description"] = safe_nativestring(data["description"])
+            data["description"] = safe_text(data["description"])
         data["i18n_domain"] = "plone"
         data["behaviors"] = "\n".join(
             [

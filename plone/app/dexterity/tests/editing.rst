@@ -530,8 +530,8 @@ zip archive containing supermodel xml files::
     >>> archive.namelist()
     ['models/plonista2.xml', 'models/plonista-folder.xml']
 
-    >>> from Products.CMFPlone.utils import safe_unicode
-    >>> print(safe_unicode(archive.read('models/plonista2.xml')))
+    >>> from plone.base.utils import safe_text
+    >>> print(safe_text(archive.read('models/plonista2.xml')))
     <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
@@ -553,7 +553,7 @@ file::
     >>> browser.headers['content-disposition']
     'attachment; filename=plonista2.xml'
 
-    >>> print(safe_unicode(browser.contents))
+    >>> print(safe_text(browser.contents))
     <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...

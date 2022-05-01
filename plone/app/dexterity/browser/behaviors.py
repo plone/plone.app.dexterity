@@ -8,7 +8,7 @@ from plone.behavior.interfaces import IBehavior
 from plone.behavior.registration import BehaviorRegistrationNotFound
 from plone.behavior.registration import lookup_behavior_registration
 from plone.dexterity.fti import DexterityFTIModificationDescription
-from Products.CMFPlone.utils import safe_nativestring
+from plone.base.utils import safe_text
 from z3c.form import field
 from z3c.form import form
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
@@ -42,7 +42,7 @@ class BehaviorConfigurationAdapter:
         iid = reg.interface.__identifier__
         return (
             iid in self.fti.behaviors
-            or safe_nativestring(reg.name) in self.fti.behaviors
+            or safe_text(reg.name) in self.fti.behaviors
         )
 
     def __setattr__(self, name, value):
@@ -56,7 +56,7 @@ class BehaviorConfigurationAdapter:
             if iid in self.fti.behaviors:
                 behaviors.remove(iid)
             # prepare named behavior for add/remove
-            bname = safe_nativestring(reg.name)
+            bname = safe_text(reg.name)
         else:
             # no name found -> prepare dotted behavior for add/remove instead
             bname = iid
@@ -78,7 +78,7 @@ class BehaviorConfigurationAdapter:
                 # ignore wrong names
                 continue
             if reg.name:
-                yield safe_nativestring(reg.name)
+                yield safe_text(reg.name)
             else:
                 yield name
 
@@ -107,7 +107,7 @@ class TypeBehaviorsForm(form.EditForm):
             with_name = counts[id(reg)] > 1
             if with_name and reg.name != name:
                 continue
-            fname = safe_nativestring(reg.name if reg.name else name)
+            fname = safe_text(reg.name if reg.name else name)
             fields.append(
                 schema.Bool(
                     __name__=fname,

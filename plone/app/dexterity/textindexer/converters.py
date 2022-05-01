@@ -6,10 +6,10 @@ converter only enabled when plone.namedfile is installed
 
 from plone.app.dexterity.textindexer import interfaces
 from plone.app.textfield.interfaces import IRichText
+from plone.base.utils import safe_text
 from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.interfaces import INamedFileField
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
 from z3c.form.interfaces import IWidget
 from ZODB.POSException import ConflictError
 from zope.component import adapter
@@ -62,7 +62,7 @@ class DexterityRichTextIndexFieldConverter:
         textvalue = self.field.get(self.context)
         if textvalue is None:
             return ""
-        html = safe_unicode(textvalue.output)
+        html = safe_text(textvalue.output)
         transforms = getToolByName(self.context, "portal_transforms")
         stream = transforms.convertTo("text/plain", html, mimetype=textvalue.mimeType)
         return stream.getData().strip()

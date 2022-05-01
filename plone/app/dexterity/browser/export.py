@@ -3,10 +3,10 @@
 # removing unselected type information from its output.
 from io import BytesIO
 from lxml import etree
+from plone.base.utils import safe_bytes
+from plone.base.utils import safe_text
 from plone.supermodel import serializeModel
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_encode
-from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.context import TarballExportContext
@@ -52,12 +52,12 @@ class SelectiveZipExportContext(TarballExportContext):
             # Add a marker for ZopeSkel additions
             root.append(etree.Comment(" -*- extra stuff goes here -*- "))
             # minor prettifying
-            root_str = safe_unicode(etree.tostring(root))
+            root_str = safe_text(etree.tostring(root))
             text = f'<?xml version="1.0"?>\n{root_str}'
             text = text.replace("<!--", " <!--")
             text = text.replace("-->", "-->\n")
 
-        self._archive.writestr(filename, safe_encode(text))
+        self._archive.writestr(filename, safe_bytes(text))
 
 
 class TypesExport(BrowserView):

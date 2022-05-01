@@ -1,6 +1,6 @@
+from plone.base.interfaces.constrains import ISelectableConstrainTypes
+from plone.base.utils import base_hasattr
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
-from Products.CMFPlone.utils import base_hasattr
 
 
 # constants for enableConstrain. Copied from AT

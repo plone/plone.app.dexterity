@@ -31,7 +31,7 @@
 
   <configure zcml:condition="have plone-51">
     <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        for="plone.base.interfaces.IPloneSiteRoot"
         name="folder_listing"
         class=".folder_listing.FolderView"
         template="folder_listing.pt"
@@ -52,7 +52,7 @@
 
   <browser:page
       name="dexterity-types"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      for="plone.base.interfaces.IPloneSiteRoot"
       class=".types.TypesContext"
       permission="plone.schemaeditor.ManageSchemata"
       allowed_interface="OFS.interfaces.IItem" />

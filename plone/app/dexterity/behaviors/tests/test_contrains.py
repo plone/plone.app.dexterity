@@ -1,7 +1,7 @@
 from plone.app.dexterity.behaviors.constrains import ACQUIRE
 from plone.app.dexterity.behaviors.constrains import ConstrainTypesBehavior
 from plone.app.dexterity.behaviors.constrains import DISABLED
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+from plone.base.interfaces.constrains import ISelectableConstrainTypes
 from zope.interface import alsoProvides
 
 import unittest
