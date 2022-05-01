@@ -123,9 +123,9 @@ and saved::
   ...         continue
   ...     browser.open(schemaeditor_url)
   ...     # If two changes happen in the same second, the schema lookup will find an old schema,
-  ...     # so we sleep till the next second.
+  ...     # so we sleep short.
   ...     now = time.time()
-  ...     time.sleep(int(now) + 1 - now)
+  ...     time.sleep(0.1)
   ...     browser.getLink('Add new field').click()
   ...     browser.getControl('Title').value = name
   ...     field_id = normalizer.normalize(name).replace('-', '_')
