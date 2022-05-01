@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # @@types-export view for dexterity types configlet. View support for the
 # "Export" button. This is done by repurposing the GS typeinfo export and
 # removing unselected type information from its output.
@@ -24,7 +23,7 @@ class SelectiveZipExportContext(TarballExportContext):
         self.typelist = typelist
         self.filenames = ["types.xml"]
         for tn in typelist:
-            self.filenames.append("types/{0}.xml".format(tn))
+            self.filenames.append(f"types/{tn}.xml")
 
         timestamp = time.gmtime()
         self._archive_filename = (
@@ -54,7 +53,7 @@ class SelectiveZipExportContext(TarballExportContext):
             root.append(etree.Comment(" -*- extra stuff goes here -*- "))
             # minor prettifying
             root_str = safe_unicode(etree.tostring(root))
-            text = '<?xml version="1.0"?>\n{0}'.format(root_str)
+            text = f'<?xml version="1.0"?>\n{root_str}'
             text = text.replace("<!--", " <!--")
             text = text.replace("-->", "-->\n")
 
@@ -70,15 +69,13 @@ class TypesExport(BrowserView):
 
         items = self.request.selected.split(",")
         context = SelectiveZipExportContext(ps, items, base_name="dexterity_export")
-        handler = ps.getExportStep(u"typeinfo")
+        handler = ps.getExportStep("typeinfo")
         handler(context)
 
         filename = context.getArchiveFilename()
 
         RESPONSE.setHeader("Content-type", "application/zip")
-        RESPONSE.setHeader(
-            "Content-disposition", "attachment; filename={0}".format(filename)
-        )
+        RESPONSE.setHeader("Content-disposition", f"attachment; filename={filename}")
 
         return context.getArchive()
 
@@ -98,12 +95,12 @@ class ModelsExport(BrowserView):
             # return a single XML file
 
             item = items[0]
-            filename = "{0}.xml".format(item)
+            filename = f"{item}.xml"
             text = serializeModel(pt[item].lookupModel())
 
             RESPONSE.setHeader("Content-type", "application/xml")
             RESPONSE.setHeader(
-                "Content-disposition", "attachment; filename={0}".format(filename)
+                "Content-disposition", f"attachment; filename={filename}"
             )
 
             return text
@@ -120,7 +117,7 @@ class ModelsExport(BrowserView):
             archive = ZipFile(archive_stream, "w")
 
             for item in items:
-                filename = "models/{0}.xml".format(item)
+                filename = f"models/{item}.xml"
                 text = serializeModel(pt[item].lookupModel())
                 archive.writestr(filename, text)
 
@@ -129,7 +126,7 @@ class ModelsExport(BrowserView):
             RESPONSE.setHeader("Content-type", "application/zip")
             RESPONSE.setHeader(
                 "Content-disposition",
-                "attachment; filename={0}".format(archive_filename),
+                f"attachment; filename={archive_filename}",
             )
 
             return archive_stream.getvalue()

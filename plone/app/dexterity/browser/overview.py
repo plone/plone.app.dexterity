@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity.interfaces import ITypeSettings
@@ -32,4 +31,4 @@ class TypeOverviewForm(form.EditForm):
 
 class TypeOverviewPage(TypeFormLayout):
     form = TypeOverviewForm
-    label = _(u"Overview")
+    label = _("Overview")

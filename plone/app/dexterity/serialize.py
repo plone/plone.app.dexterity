@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.schema import splitSchemaName
 from plone.supermodel import serializeModel

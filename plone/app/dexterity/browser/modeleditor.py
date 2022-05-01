@@ -36,7 +36,7 @@ class ModelEditorView(BrowserView):
         return serializeModel(model)
 
     def authorized(self, context, request):
-        authenticator = queryMultiAdapter((context, request), name=u"authenticator")
+        authenticator = queryMultiAdapter((context, request), name="authenticator")
         return authenticator and authenticator.verify()
 
     def __call__(self):
@@ -61,7 +61,7 @@ class ModelEditorView(BrowserView):
                 root = etree.fromstring(source, parser=parser)
             except etree.XMLSyntaxError as e:
                 IStatusMessage(self.request).addStatusMessage(
-                    "XMLSyntaxError: {0}".format(html.escape(safe_text(e.args[0]))),
+                    f"XMLSyntaxError: {html.escape(safe_text(e.args[0]))}",
                     "error",
                 )
                 return super().__call__()
@@ -69,7 +69,7 @@ class ModelEditorView(BrowserView):
             # a little more sanity checking, look at first two element levels
             if root.tag != NAMESPACE + "model":
                 IStatusMessage(self.request).addStatusMessage(
-                    _(u"Error: root tag must be 'model'"),
+                    _("Error: root tag must be 'model'"),
                     "error",
                 )
                 return super().__call__()
@@ -77,7 +77,7 @@ class ModelEditorView(BrowserView):
             for element in root.getchildren():
                 if element.tag != NAMESPACE + "schema":
                     IStatusMessage(self.request).addStatusMessage(
-                        _(u"Error: all model elements must be 'schema'"),
+                        _("Error: all model elements must be 'schema'"),
                         "error",
                     )
                     return super().__call__()
@@ -85,11 +85,11 @@ class ModelEditorView(BrowserView):
             # can supermodel parse it?
             # This is mainly good for catching bad dotted names.
             try:
-                loadString(source, policy=u"dexterity")
+                loadString(source, policy="dexterity")
             except SupermodelParseError as e:
                 message = e.args[0].replace('\n  File "<unknown>"', "")
                 IStatusMessage(self.request).addStatusMessage(
-                    u"SuperModelParseError: {0}".format(html.escape(message)),
+                    f"SuperModelParseError: {html.escape(message)}",
                     "error",
                 )
                 return super().__call__()

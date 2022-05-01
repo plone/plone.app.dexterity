@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.schemaeditor.browser.schema.listing import ReadOnlySchemaListing
@@ -19,14 +18,14 @@ class EnhancedSchemaListing(SchemaListing):
 
 
 if pkg_resources.get_distribution("plone.resourceeditor"):
-    but = button.Button("modeleditor", title=u"Edit XML Field Model")
+    but = button.Button("modeleditor", title="Edit XML Field Model")
     EnhancedSchemaListing.buttons += button.Buttons(but)
     handler = button.Handler(but, EnhancedSchemaListing.handleModelEdit)
     EnhancedSchemaListing.handlers.addHandler(but, handler)
 
 
 class TypeFieldsPage(TypeFormLayout):
-    label = _(u"Fields")
+    label = _("Fields")
 
     @property
     def form(self):

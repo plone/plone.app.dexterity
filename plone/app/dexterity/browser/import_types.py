@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """ Support for importing Dexterity types from GS zip file.
 """
 # XXX: need to make exceptions more specific, shorten messages
@@ -29,7 +28,7 @@ class ITypeProfileImport(Interface):
     """Fields for a zip import form"""
 
     profile_file = NamedFile(
-        title=_(u"Type profiles archive file"),
+        title=_("Type profiles archive file"),
         required=True,
     )
 
@@ -43,7 +42,7 @@ class ITypeProfileImport(Interface):
             archive = ZipFile(BytesIO(data.profile_file.data), "r")
         except BadZipfile:
             raise Invalid(
-                _(u"Error: The file submitted must be a zip archive."),
+                _("Error: The file submitted must be a zip archive."),
             )
         name_list = archive.namelist()
         for fname in name_list:
@@ -55,8 +54,8 @@ class ITypeProfileImport(Interface):
             ):
                 raise Invalid(
                     _(
-                        u"Error: The file submitted must be a zip archive "
-                        u"containing only type profile information."
+                        "Error: The file submitted must be a zip archive "
+                        "containing only type profile information."
                     )
                 )
 
@@ -65,7 +64,7 @@ class ITypeProfileImport(Interface):
             source = f.read()
             root = etree.fromstring(source)
             if root.tag != "object":
-                raise Invalid(_(u"types.xml in archive is invalid."))
+                raise Invalid(_("types.xml in archive is invalid."))
 
         # check against existing types; don't allow overwrites
         site = getSite()
@@ -79,9 +78,9 @@ class ITypeProfileImport(Interface):
                     )
                 if attribs["name"] in existing_types:
                     msg = (
-                        u"One or more types in the import archive is an "
-                        u'existing type. Delete "%s" if you '
-                        u"really wish to replace it."
+                        "One or more types in the import archive is an "
+                        'existing type. Delete "%s" if you '
+                        "really wish to replace it."
                     )
                     raise Invalid(
                         _(msg, attribs["name"]),
@@ -89,7 +88,7 @@ class ITypeProfileImport(Interface):
 
 
 @implementer(ITypeProfileImport)
-class TypeProfileImport(object):
+class TypeProfileImport:
     form_fields = field.Fields(ITypeProfileImport)
     profile_file = zope.schema.fieldproperty.FieldProperty(
         ITypeProfileImport["profile_file"]
@@ -101,13 +100,13 @@ class TypeProfileImport(object):
 
 class TypeProfileImportForm(form.AddForm):
 
-    label = _(u"Import Content Types")
+    label = _("Import Content Types")
     description = _(
-        u"You may import types by uploading a zip archive containing type "
-        u"profiles. The import archive should contain a types.xml file and a "
-        u"types directory containing one or more Dexterity type information "
-        u"files. For a sample, create a content type and export it from the "
-        u"Dexterity Content Types page."
+        "You may import types by uploading a zip archive containing type "
+        "profiles. The import archive should contain a types.xml file and a "
+        "types directory containing one or more Dexterity type information "
+        "files. For a sample, create a content type and export it from the "
+        "Dexterity Content Types page."
     )
     fields = field.Fields(ITypeProfileImport)
     id = "import-types-form"
@@ -123,9 +122,9 @@ class TypeProfileImportForm(form.AddForm):
         )
         # run the profile
         setup_tool = getToolByName(self.context, "portal_setup")
-        handler = setup_tool.getImportStep(u"typeinfo")
+        handler = setup_tool.getImportStep("typeinfo")
         handler(import_context)
-        self.status = _(u"Imported successfully.")
+        self.status = _("Imported successfully.")
 
     def nextURL(self):
         url = self.context.absolute_url()
@@ -140,7 +139,7 @@ class ZipFileImportContext(BaseContext):
     """GS Import context for a ZipFile"""
 
     def __init__(self, tool, archive_bits, encoding=None, should_purge=False):
-        super(ZipFileImportContext, self).__init__(tool, encoding)
+        super().__init__(tool, encoding)
         self._archive = ZipFile(archive_bits, "r")
         self._should_purge = bool(should_purge)
         self.name_list = self._archive.namelist()

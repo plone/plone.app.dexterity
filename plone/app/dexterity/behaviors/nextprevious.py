@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from Acquisition import aq_base
 from plone.app.dexterity import _
@@ -29,14 +28,14 @@ class INextPreviousEnabled(Interface):
 class INextPreviousToggle(model.Schema):
     """Behavior interface to enable next previous navigation per item."""
 
-    model.fieldset("settings", label=_(u"Settings"), fields=["nextPreviousEnabled"])
+    model.fieldset("settings", label=_("Settings"), fields=["nextPreviousEnabled"])
 
     nextPreviousEnabled = schema.Bool(
-        title=_(u"label_nextprevious", default=u"Enable next previous navigation"),
+        title=_("label_nextprevious", default="Enable next previous navigation"),
         description=_(
-            u"help_nextprevious",
-            default=u"This enables next/previous widget on content items "
-            + u"contained in this folder.",
+            "help_nextprevious",
+            default="This enables next/previous widget on content items "
+            + "contained in this folder.",
         ),
         default=False,
         required=False,
@@ -62,7 +61,7 @@ DefaultNextPreviousEnabled = widget.ComputedWidgetAttribute(
 
 
 # This is taken from plone.app.folder
-class NextPreviousBase(object):
+class NextPreviousBase:
     """adapter for acting as a next/previous provider"""
 
     def __init__(self, context):

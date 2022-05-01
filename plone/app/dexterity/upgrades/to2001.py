@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.dexterity.interfaces import IDexterityContent
 from plone.uuid.handlers import addAttributeUUID
 from plone.uuid.interfaces import IUUID

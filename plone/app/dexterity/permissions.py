@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from plone.app.z3cform.interfaces import IPloneFormLayer
 from plone.autoform.interfaces import WIDGETS_KEY
@@ -32,7 +31,7 @@ class MockRequest(TestRequest):
 
 @adapter(IDexterityContent)
 @implementer(IFieldPermissionChecker)
-class DXFieldPermissionChecker(object):
+class DXFieldPermissionChecker:
     """ """
 
     DEFAULT_PERMISSION = "Modify portal content"
@@ -93,7 +92,7 @@ class DXFieldPermissionChecker(object):
             # specified, fall back to the default edit permission
             return checker(self.DEFAULT_PERMISSION, context)
         else:
-            raise AttributeError("No such field: {0}".format(field_name))
+            raise AttributeError(f"No such field: {field_name}")
 
 
 @adapter(IForm)

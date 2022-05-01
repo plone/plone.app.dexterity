@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity import _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
@@ -38,14 +37,13 @@ def default_exclude(context):
 class IExcludeFromNavigation(model.Schema):
     """Behavior interface to exclude items from navigation."""
 
-    model.fieldset("settings", label=_(u"Settings"), fields=["exclude_from_nav"])
+    model.fieldset("settings", label=_("Settings"), fields=["exclude_from_nav"])
 
     exclude_from_nav = schema.Bool(
-        title=_(u"label_exclude_from_nav", default=u"Exclude from navigation"),
+        title=_("label_exclude_from_nav", default="Exclude from navigation"),
         description=_(
-            u"help_exclude_from_nav",
-            default=u"If selected, this item will not appear in the "
-            u"navigation tree",
+            "help_exclude_from_nav",
+            default="If selected, this item will not appear in the " "navigation tree",
         ),
         defaultFactory=default_exclude,
         required=False,

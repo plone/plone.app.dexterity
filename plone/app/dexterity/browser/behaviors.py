@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collections import Counter
 from copy import deepcopy
 from operator import attrgetter
@@ -30,9 +29,9 @@ except ImportError:
 
     def safe_nativestring(value, encoding="utf-8"):
         """Convert a value to str in py2 and to text in py3"""
-        if six.PY2 and isinstance(value, six.text_type):
+        if six.PY2 and isinstance(value, str):
             value = safe_encode(value, encoding)
-        if not six.PY2 and isinstance(value, six.binary_type):
+        if not six.PY2 and isinstance(value, bytes):
             value = safe_unicode(value, encoding)
         return value
 
@@ -49,7 +48,7 @@ def behaviorConfigurationModified(object, event):
 
 
 @adapter(ITypeSchemaContext)
-class BehaviorConfigurationAdapter(object):
+class BehaviorConfigurationAdapter:
     def __init__(self, context):
         self.__dict__["context"] = context
         self.__dict__["fti"] = self.context.fti
@@ -104,12 +103,12 @@ class BehaviorConfigurationAdapter(object):
 class TypeBehaviorsForm(form.EditForm):
 
     template = ViewPageTemplateFile("behaviors.pt")
-    label = _(u"Behaviors")
-    description = _(u"Select the behaviors to enable for this content type.")
-    successMessage = _(u"Behaviors successfully updated.")
-    noChangesMessage = _(u"No changes were made.")
+    label = _("Behaviors")
+    description = _("Select the behaviors to enable for this content type.")
+    successMessage = _("Behaviors successfully updated.")
+    noChangesMessage = _("No changes were made.")
     buttons = deepcopy(form.EditForm.buttons)
-    buttons["apply"].title = _(u"Save")
+    buttons["apply"].title = _("Save")
 
     def getContent(self):
         return BehaviorConfigurationAdapter(self.context)
@@ -142,4 +141,4 @@ class TypeBehaviorsForm(form.EditForm):
 
 class TypeBehaviorsPage(TypeFormLayout):
     form = TypeBehaviorsForm
-    label = _(u"Behaviors")
+    label = _("Behaviors")

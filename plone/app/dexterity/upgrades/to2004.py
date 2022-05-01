@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.dexterity.interfaces import IDexterityFTI
 from Products.CMFCore.utils import getToolByName
 

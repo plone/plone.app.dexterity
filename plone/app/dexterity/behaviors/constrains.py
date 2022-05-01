@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.CMFPlone.utils import base_hasattr
@@ -10,7 +9,7 @@ DISABLED = 0  # use default behavior of PortalFolder which uses the FTI info
 ENABLED = 1  # allow types from locallyAllowedTypes only
 
 
-class ConstrainTypesBehavior(object):
+class ConstrainTypesBehavior:
     def __init__(self, context):
         self.context = context
 

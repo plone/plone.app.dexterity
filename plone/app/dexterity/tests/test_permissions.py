@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.content.browser.vocabulary import VocabularyView
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -54,10 +53,10 @@ class IMockSchema(Interface):
 IMockSchema.setTaggedValue(
     WRITE_PERMISSIONS_KEY,
     {
-        "allowed_field": u"zope2.View",
-        "disallowed_field": u"zope2.ViewManagementScreens",
-        "custom_widget_field": u"zope2.View",
-        "adapted_widget_field": u"zope2.View",
+        "allowed_field": "zope2.View",
+        "disallowed_field": "zope2.ViewManagementScreens",
+        "custom_widget_field": "zope2.View",
+        "adapted_widget_field": "zope2.View",
     },
 )
 IMockSchema.setTaggedValue(

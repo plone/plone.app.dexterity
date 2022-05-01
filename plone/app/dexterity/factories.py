@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobFile
@@ -17,7 +16,7 @@ upload_lock = allocate_lock()
 
 @adapter(IFolderish)
 @implementer(IDXFileFactory)
-class DXFileFactory(object):
+class DXFileFactory:
     def __init__(self, context):
         self.context = context
 

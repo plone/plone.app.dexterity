@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Plone Developer Manual documentation build configuration file, created by
 # sphinx-quickstart on Sun Aug 16 13:38:00 2009.
@@ -43,8 +42,8 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"Dexterity Developer Manual"
-copyright = u"Plone community and other individual contributors"
+project = "Dexterity Developer Manual"
+copyright = "Plone community and other individual contributors"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -185,8 +184,8 @@ latex_documents = [
     (
         "index",
         "DexterityDeveloperManual.tex",
-        u"Dexterity Developer Manual",
-        u"Plone community and individual contributors",
+        "Dexterity Developer Manual",
+        "Plone community and individual contributors",
         "manual",
     ),
 ]

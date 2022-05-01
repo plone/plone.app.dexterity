@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 from plone.app.testing import SITE_OWNER_NAME
@@ -24,7 +23,7 @@ class TestShortNameBehavior(unittest.TestCase):
         self.browser = Browser(self.layer["app"])
         self.browser.addHeader(
             "Authorization",
-            "Basic {0}:{1}".format(
+            "Basic {}:{}".format(
                 SITE_OWNER_NAME,
                 SITE_OWNER_PASSWORD,
             ),

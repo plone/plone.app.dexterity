@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity import _
 from plone.app.dexterity.interfaces import ITypeSettings
 from plone.dexterity.fti import DexterityFTI
@@ -19,16 +18,16 @@ except ImportError:
 
     def safe_nativestring(value, encoding="utf-8"):
         """Convert a value to str in py2 and to text in py3"""
-        if six.PY2 and isinstance(value, six.text_type):
+        if six.PY2 and isinstance(value, str):
             value = safe_encode(value, encoding)
-        if not six.PY2 and isinstance(value, six.binary_type):
+        if not six.PY2 and isinstance(value, bytes):
             value = safe_unicode(value, encoding)
         return value
 
 
 class TypeAddForm(form.AddForm):
 
-    label = _(u"Add Content Type")
+    label = _("Add Content Type")
     fields = field.Fields(ITypeSettings).select("title", "id", "description")
     id = "add-type-form"
     fti_id = None
@@ -67,12 +66,12 @@ class TypeAddForm(form.AddForm):
         ttool = getToolByName(self.context, "portal_types")
         ttool._setObject(fti.id, fti)
         self.fti_id = fti.id
-        self.status = _(u"Type added successfully.")
+        self.status = _("Type added successfully.")
 
     def nextURL(self):
         url = self.context.absolute_url()
         if self.fti_id is not None:
-            url += "/{0}/@@fields".format(self.fti_id)
+            url += f"/{self.fti_id}/@@fields"
         return url
 
 

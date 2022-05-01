@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity import _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
@@ -13,8 +12,8 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 options = SimpleVocabulary(
     [
-        SimpleTerm(value=True, title=_(u"Yes")),
-        SimpleTerm(value=False, title=_(u"No")),
+        SimpleTerm(value=True, title=_("Yes")),
+        SimpleTerm(value=False, title=_("No")),
     ]
 )
 
@@ -24,13 +23,13 @@ class IAllowDiscussion(model.Schema):
 
     model.fieldset(
         "settings",
-        label=_(u"Settings"),
+        label=_("Settings"),
         fields=["allow_discussion"],
     )
 
     allow_discussion = schema.Choice(
-        title=_(u"Allow discussion"),
-        description=_(u"Allow discussion for this content object."),
+        title=_("Allow discussion"),
+        description=_("Allow discussion for this content object."),
         vocabulary=options,
         required=False,
         default=None,

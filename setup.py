@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from setuptools import find_packages
 from setuptools import setup
 
@@ -11,7 +10,7 @@ short_description = (
     "alternative to Archetypes that is more light-weight and modular."
 )
 
-long_description = "{0}\n{1}\n{2}".format(
+long_description = "{}\n{}\n{}".format(
     open("README.rst").read(),
     open("RELEASE_NOTES.rst").read(),
     open("CHANGES.rst").read(),

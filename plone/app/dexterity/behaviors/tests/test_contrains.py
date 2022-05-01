@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity.behaviors.constrains import ACQUIRE
 from plone.app.dexterity.behaviors.constrains import ConstrainTypesBehavior
 from plone.app.dexterity.behaviors.constrains import DISABLED

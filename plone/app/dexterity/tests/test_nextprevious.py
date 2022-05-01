@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
 from plone.app.testing import login
@@ -69,14 +68,14 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
     def testNextPreviousItems(self):
         container = self.portal[self.portal.invokeFactory(self._portal_type, "case3")]
         for id in range(1, 4):
-            container.invokeFactory("Document", "subDoc{0}".format(id))
+            container.invokeFactory("Document", f"subDoc{id}")
 
         from OFS.Folder import manage_addFolder
 
         manage_addFolder(container, "notacontentishtype")
 
         for id in range(5, 6):
-            container.invokeFactory("Document", "subDoc{0}".format(id))
+            container.invokeFactory("Document", f"subDoc{id}")
 
         adapter = INextPreviousProvider(container)
         # text data for next/previous items
@@ -109,7 +108,7 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         # published objects [subDoc2, subDoc4, subDoc5]
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
         for id in range(1, 7):
-            doc = container[container.invokeFactory("Document", "subDoc{0}".format(id))]
+            doc = container[container.invokeFactory("Document", f"subDoc{id}")]
             if id in [2, 4, 5]:
                 self.wf.doActionFor(doc, "publish")
 
@@ -131,7 +130,7 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         # published objects [subDoc2, subDoc4, subDoc5]
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
         for id in range(1, 7):
-            doc = container[container.invokeFactory("Document", "subDoc{0}".format(id))]
+            doc = container[container.invokeFactory("Document", f"subDoc{id}")]
             if id in [2, 4, 5]:
                 self.wf.doActionFor(doc, "publish")
 

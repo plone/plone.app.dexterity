@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity import _
 from plone.app.dexterity.interfaces import ITypeSettings
 from plone.dexterity.fti import DexterityFTI
@@ -10,7 +9,7 @@ from z3c.form import form
 
 class TypeCloneForm(form.AddForm):
 
-    label = _(u"Clone Content Type")
+    label = _("Clone Content Type")
     fields = field.Fields(ITypeSettings).select("title", "id")
     id = "clone-type-form"
 
@@ -31,7 +30,7 @@ class TypeCloneForm(form.AddForm):
     def add(self, fti):
         ttool = getToolByName(self.context, "portal_types")
         ttool._setObject(fti.id, fti)
-        self.status = _(u"Type cloned successfully.")
+        self.status = _("Type cloned successfully.")
 
     def nextURL(self):
         return self.context.aq_parent.absolute_url()

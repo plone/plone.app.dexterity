@@ -62,15 +62,15 @@ def default_language(context):
 class IBasic(model.Schema):
 
     # default fieldset
-    title = schema.TextLine(title=_(u"label_title", default=u"Title"), required=True)
+    title = schema.TextLine(title=_("label_title", default="Title"), required=True)
 
     description = schema.Text(
-        title=_(u"label_description", default=u"Summary"),
+        title=_("label_description", default="Summary"),
         description=_(
-            u"help_description", default=u"Used in item listings and search results."
+            "help_description", default="Used in item listings and search results."
         ),
         required=False,
-        missing_value=u"",
+        missing_value="",
     )
 
     directives.order_before(description="*")
@@ -87,15 +87,15 @@ class ICategorization(model.Schema):
     # categorization fieldset
     model.fieldset(
         "categorization",
-        label=_(u"label_schema_categorization", default=u"Categorization"),
+        label=_("label_schema_categorization", default="Categorization"),
         fields=["subjects", "language"],
     )
 
     subjects = schema.Tuple(
-        title=_(u"label_tags", default=u"Tags"),
+        title=_("label_tags", default="Tags"),
         description=_(
-            u"help_tags",
-            default=u"Tags are commonly used for ad-hoc organization of " + u"content.",
+            "help_tags",
+            default="Tags are commonly used for ad-hoc organization of " + "content.",
         ),
         value_type=schema.TextLine(),
         required=False,
@@ -106,7 +106,7 @@ class ICategorization(model.Schema):
     )
 
     language = schema.Choice(
-        title=_(u"label_language", default=u"Language"),
+        title=_("label_language", default="Language"),
         vocabulary="plone.app.vocabularies.SupportedContentLanguages",
         required=False,
         missing_value="",
@@ -121,7 +121,7 @@ class ICategorization(model.Schema):
 
 class EffectiveAfterExpires(Invalid):
     __doc__ = _(
-        "error_invalid_publication", default=u"Invalid effective or expires date"
+        "error_invalid_publication", default="Invalid effective or expires date"
     )
 
 
@@ -130,27 +130,27 @@ class IPublication(model.Schema):
     # dates fieldset
     model.fieldset(
         "dates",
-        label=_(u"label_schema_dates", default=u"Dates"),
+        label=_("label_schema_dates", default="Dates"),
         fields=["effective", "expires"],
     )
 
     effective = schema.Datetime(
-        title=_(u"label_effective_date", u"Publishing Date"),
+        title=_("label_effective_date", "Publishing Date"),
         description=_(
-            u"help_effective_date",
-            default=u"If this date is in the future, the content will "
-            u"not show up in listings and searches until this date.",
+            "help_effective_date",
+            default="If this date is in the future, the content will "
+            "not show up in listings and searches until this date.",
         ),
         required=False,
     )
     directives.widget("effective", DatetimeFieldWidget)
 
     expires = schema.Datetime(
-        title=_(u"label_expiration_date", u"Expiration Date"),
+        title=_("label_expiration_date", "Expiration Date"),
         description=_(
-            u"help_expiration_date",
-            default=u"When this date is reached, the content will no "
-            u"longer be visible in listings and searches.",
+            "help_expiration_date",
+            default="When this date is reached, the content will no "
+            "longer be visible in listings and searches.",
         ),
         required=False,
     )
@@ -162,7 +162,7 @@ class IPublication(model.Schema):
             raise EffectiveAfterExpires(
                 _(
                     "error_expiration_must_be_after_effective_date",
-                    default=u"Expiration date must be after publishing date.",
+                    default="Expiration date must be after publishing date.",
                 )
             )
 
@@ -177,17 +177,17 @@ class IOwnership(model.Schema):
     # ownership fieldset
     model.fieldset(
         "ownership",
-        label=_("label_schema_ownership", default=u"Ownership"),
+        label=_("label_schema_ownership", default="Ownership"),
         fields=["creators", "contributors", "rights"],
     )
 
     creators = schema.Tuple(
-        title=_(u"label_creators", u"Creators"),
+        title=_("label_creators", "Creators"),
         description=_(
-            u"help_creators",
-            default=u"Persons responsible for creating the content of "
-            u"this item. Please enter a list of user names, one "
-            u"per line. The principal creator should come first.",
+            "help_creators",
+            default="Persons responsible for creating the content of "
+            "this item. Please enter a list of user names, one "
+            "per line. The principal creator should come first.",
         ),
         value_type=schema.TextLine(),
         required=False,
@@ -198,12 +198,12 @@ class IOwnership(model.Schema):
     )
 
     contributors = schema.Tuple(
-        title=_(u"contributors", u"Contributors"),
+        title=_("contributors", "Contributors"),
         description=_(
-            u"help_contributors",
-            default=u"The names of people that have contributed "
-            u"to this item. Each contributor should "
-            u"be on a separate line.",
+            "help_contributors",
+            default="The names of people that have contributed "
+            "to this item. Each contributor should "
+            "be on a separate line.",
         ),
         value_type=schema.TextLine(),
         required=False,
@@ -214,11 +214,10 @@ class IOwnership(model.Schema):
     )
 
     rights = schema.Text(
-        title=_(u"label_copyrights", default=u"Rights"),
+        title=_("label_copyrights", default="Rights"),
         description=_(
-            u"help_copyrights",
-            default=u"Copyright statement or other rights information on this "
-            u"item.",
+            "help_copyrights",
+            default="Copyright statement or other rights information on this " "item.",
         ),
         required=False,
     )
@@ -248,7 +247,7 @@ class IDublinCore(IOwnership, IPublication, ICategorization, IBasic):
 
 
 @adapter(IDexterityContent)
-class MetadataBase(object):
+class MetadataBase:
     """This adapter uses DCFieldProperty to store metadata directly on an
     object using the standard CMF DefaultDublinCoreImpl getters and
     setters.
@@ -261,7 +260,7 @@ class MetadataBase(object):
 _marker = object()
 
 
-class DCFieldProperty(object):
+class DCFieldProperty:
     """Computed attributes based on schema fields.
     Based on zope.schema.fieldproperty.FieldProperty.
     """
@@ -373,7 +372,7 @@ class Ownership(MetadataBase):
     )
 
     def __init__(self, *args, **kwargs):
-        super(Ownership, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.context.addCreator()
 
 

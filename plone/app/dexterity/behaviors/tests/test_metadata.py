@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity.behaviors.metadata import ICategorization
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 from plone.app.testing import login
@@ -15,7 +14,7 @@ import unittest
 
 class TestBasic(unittest.TestCase):
     def _makeOne(self):
-        class Dummy(object):
+        class Dummy:
             pass
 
         dummy = Dummy()
@@ -25,8 +24,8 @@ class TestBasic(unittest.TestCase):
 
     def test_title_setter(self):
         b = self._makeOne()
-        b.title = u"foo"
-        self.assertEqual(u"foo", b.context.title)
+        b.title = "foo"
+        self.assertEqual("foo", b.context.title)
 
     @unittest.skipUnless(six.PY2, "Only for py2")
     def test_title_setter_rejects_bytestrings(self):
@@ -36,13 +35,13 @@ class TestBasic(unittest.TestCase):
 
     def test_title_getter(self):
         b = self._makeOne()
-        b.context.title = u"foo"
-        self.assertEqual(u"foo", b.title)
+        b.context.title = "foo"
+        self.assertEqual("foo", b.title)
 
     def test_description_setter(self):
         b = self._makeOne()
-        b.description = u"foo"
-        self.assertEqual(u"foo", b.context.description)
+        b.description = "foo"
+        self.assertEqual("foo", b.context.description)
 
     @unittest.skipUnless(six.PY2, "Only for py2")
     def test_description_setter_rejects_bytestrings(self):
@@ -52,18 +51,18 @@ class TestBasic(unittest.TestCase):
 
     def test_description_getter(self):
         b = self._makeOne()
-        b.context.description = u"foo"
-        self.assertEqual(u"foo", b.description)
+        b.context.description = "foo"
+        self.assertEqual("foo", b.description)
 
     def test_description_remains_newlines(self):
         b = self._makeOne()
-        b.description = u"foo\r\nbar\nbaz\r"
-        self.assertEqual(u"foo\r\nbar\nbaz\r", b.context.description)
+        b.description = "foo\r\nbar\nbaz\r"
+        self.assertEqual("foo\r\nbar\nbaz\r", b.context.description)
 
 
 class TestCategorization(unittest.TestCase):
     def _makeOne(self):
-        class Dummy(object):
+        class Dummy:
             pass
 
         dummy = Dummy()
@@ -73,13 +72,13 @@ class TestCategorization(unittest.TestCase):
 
     def test_subjects_setter(self):
         b = self._makeOne()
-        b.subjects = (u"føø",)
-        self.assertEqual((u"føø",), b.context.subject)
+        b.subjects = ("føø",)
+        self.assertEqual(("føø",), b.context.subject)
 
     def test_subjects_getter(self):
         b = self._makeOne()
-        b.context.subject = (u"føø",)
-        self.assertEqual((u"føø",), b.subjects)
+        b.context.subject = ("føø",)
+        self.assertEqual(("føø",), b.subjects)
 
 
 class CategorizationIntegrationTests(unittest.TestCase):
@@ -119,7 +118,7 @@ class CategorizationIntegrationTests(unittest.TestCase):
 
 class TestDCFieldProperty(unittest.TestCase):
     def _makeOne(self):
-        class Dummy(object):
+        class Dummy:
             def addCreator(self, creator=None):
                 self.creators = (creator or "dummy_user",)
 
@@ -142,20 +141,20 @@ class TestDCFieldProperty(unittest.TestCase):
 
     def test_sequence_text_setter(self):
         b = self._makeOne()
-        b.creators = (u"føø",)
+        b.creators = ("føø",)
         self.assertEqual(("føø",), b.context.creators)
 
     def test_sequence_text_getter(self):
         b = self._makeOne()
         b.context.creators = ("føø",)
-        self.assertEqual((u"føø",), b.creators)
+        self.assertEqual(("føø",), b.creators)
 
     def test_text_setter(self):
         b = self._makeOne()
-        b.rights = u"føø"
+        b.rights = "føø"
         self.assertEqual("føø", b.context.rights)
 
     def test_text_getter(self):
         b = self._makeOne()
         b.context.rights = "føø"
-        self.assertEqual(u"føø", b.rights)
+        self.assertEqual("føø", b.rights)

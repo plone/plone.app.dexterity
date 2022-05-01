@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 
 import unittest

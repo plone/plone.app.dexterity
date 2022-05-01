@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.content.browser.constraintypes import IConstrainForm
 from plone.app.dexterity.behaviors import constrains
 from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
@@ -328,7 +327,7 @@ class DocumentIntegrationTest(unittest.TestCase):
         )
 
     def test_formschemainvariants(self):
-        class Data(object):
+        class Data:
             allowed_types = []
             secondary_types = []
 
@@ -365,7 +364,7 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
         self.browser.handleErrors = False
         self.browser.addHeader(
             "Authorization",
-            "Basic {0}:{1}".format(
+            "Basic {}:{}".format(
                 SITE_OWNER_NAME,
                 SITE_OWNER_PASSWORD,
             ),
@@ -443,7 +442,7 @@ class ConstrainControlFunctionalText(unittest.TestCase):
         self.browser.handleErrors = False
         self.browser.addHeader(
             "Authorization",
-            "Basic {0}:{1}".format(
+            "Basic {}:{}".format(
                 SITE_OWNER_NAME,
                 SITE_OWNER_PASSWORD,
             ),

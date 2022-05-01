@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
@@ -19,19 +18,19 @@ class IShortName(model.Schema):
 
     model.fieldset(
         "settings",
-        label=_(u"Settings"),
+        label=_("Settings"),
         fields=["id"],
     )
 
     id = schema.ASCIILine(
-        title=_(u"Short name"),
-        description=_(u"This name will be displayed in the URL."),
+        title=_("Short name"),
+        description=_("This name will be displayed in the URL."),
         required=False,
     )
     directives.write_permission(id="cmf.AddPortalContent")
 
 
-class ShortName(object):
+class ShortName:
     def __init__(self, context):
         self.context = context
 
