@@ -4,11 +4,11 @@ from operator import attrgetter
 from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity.interfaces import ITypeSchemaContext
+from plone.base.utils import safe_text
 from plone.behavior.interfaces import IBehavior
 from plone.behavior.registration import BehaviorRegistrationNotFound
 from plone.behavior.registration import lookup_behavior_registration
 from plone.dexterity.fti import DexterityFTIModificationDescription
-from plone.base.utils import safe_text
 from z3c.form import field
 from z3c.form import form
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
@@ -40,10 +40,7 @@ class BehaviorConfigurationAdapter:
         # be sure to get a valid value
         reg = lookup_behavior_registration(name=name)
         iid = reg.interface.__identifier__
-        return (
-            iid in self.fti.behaviors
-            or safe_text(reg.name) in self.fti.behaviors
-        )
+        return iid in self.fti.behaviors or safe_text(reg.name) in self.fti.behaviors
 
     def __setattr__(self, name, value):
         # add or remove the behavior based on the value from the form

@@ -1,0 +1,6 @@
+Code Style: isort + black.
+Pyupgrade and six removal.
+Short name usage of behaviors in tests.
+Sleep in editing.rst reduced (saves 10sec in tests).
+Use plone.base.
+[jensens]

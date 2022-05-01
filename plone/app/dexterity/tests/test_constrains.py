@@ -7,10 +7,10 @@ from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
+from plone.base.interfaces.constrains import ISelectableConstrainTypes
 from plone.dexterity.fti import DexterityFTI
 from plone.testing.zope import Browser
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from zope.interface.exceptions import Invalid
 
 import unittest
@@ -22,8 +22,8 @@ def add_folder_type(portal):
     fti.klass = "plone.dexterity.content.Container"
     fti.filter_content_types = False
     fti.behaviors = (
-        "Products.CMFPlone.interfaces.constrains." "ISelectableConstrainTypes",
-        "plone.app.dexterity.behaviors.metadata.IBasic",
+        "plone.constraintypes",
+        "plone.basic",
     )
     return fti
 
@@ -33,7 +33,7 @@ def add_item_type(portal):
     portal.portal_types._setObject("item", fti)
     fti.klass = "plone.dexterity.content.Item"
     fti.filter_content_types = False
-    fti.behaviors = "plone.app.dexterity.behaviors.metadata.IBasic"
+    fti.behaviors = "plone.basic"
     return fti
 
 
@@ -67,7 +67,7 @@ class DocumentIntegrationTest(unittest.TestCase):
 
     def test_behavior_added(self):
         self.assertIn(
-            "Products.CMFPlone.interfaces." "constrains.ISelectableConstrainTypes",
+            "plone.constraintypes",
             self.types_tool.getTypeInfo(self.folder).behaviors,
         )
         self.assertTrue(ISelectableConstrainTypes(self.folder))
