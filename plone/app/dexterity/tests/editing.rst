@@ -122,8 +122,8 @@ and saved::
   ...     if hasattr(factory, 'protected') and factory.protected(None):
   ...         continue
   ...     browser.open(schemaeditor_url)
-  ...     # If two changes happen in the same second, the schema lookup will find an old schema,
-  ...     # so we sleep short.
+  ...     # If two changes happen in the same moment, the schema lookup will find an old schema,
+  ...     # so we sleep shortly.
   ...     now = time.time()
   ...     time.sleep(0.1)
   ...     browser.getLink('Add new field').click()
