@@ -494,8 +494,8 @@ zip archive containing files ready to drop into our profile::
     'attachment; filename=dexterity_export-....zip'
 
     >>> import zipfile
-    >>> import six
-    >>> fd = six.BytesIO(browser.contents)
+    >>> import io
+    >>> fd = io.BytesIO(browser.contents)
     >>> archive = zipfile.ZipFile(fd, mode='r')
     >>> archive.namelist()
     ['types.xml', 'types/plonista2.xml', 'types/plonista-folder.xml']
@@ -524,8 +524,8 @@ zip archive containing supermodel xml files::
     'attachment; filename=dexterity_models-....zip'
 
     >>> import zipfile
-    >>> import six
-    >>> fd = six.BytesIO(browser.contents)
+    >>> import io
+    >>> fd = io.BytesIO(browser.contents)
     >>> archive = zipfile.ZipFile(fd, mode='r')
     >>> archive.namelist()
     ['models/plonista2.xml', 'models/plonista-folder.xml']

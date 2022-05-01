@@ -1,6 +1,7 @@
 # @@types-export view for dexterity types configlet. View support for the
 # "Export" button. This is done by repurposing the GS typeinfo export and
 # removing unselected type information from its output.
+from io import BytesIO
 from lxml import etree
 from plone.supermodel import serializeModel
 from Products.CMFCore.utils import getToolByName
@@ -9,7 +10,6 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.context import TarballExportContext
-from six import BytesIO
 from zipfile import ZipFile
 
 import time

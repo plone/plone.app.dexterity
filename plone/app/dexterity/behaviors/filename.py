@@ -5,8 +5,6 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
 
-import six
-
 
 class INameFromFileName(Interface):
     """Marker interface to enable name from filename behavior"""

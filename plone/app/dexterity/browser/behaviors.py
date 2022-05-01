@@ -8,6 +8,7 @@ from plone.behavior.interfaces import IBehavior
 from plone.behavior.registration import BehaviorRegistrationNotFound
 from plone.behavior.registration import lookup_behavior_registration
 from plone.dexterity.fti import DexterityFTIModificationDescription
+from Products.CMFPlone.utils import safe_nativestring
 from z3c.form import field
 from z3c.form import form
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
@@ -16,24 +17,6 @@ from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapter
 from zope.component import getUtilitiesFor
 from zope.lifecycleevent import modified
-
-import six
-
-
-try:
-    from Products.CMFPlone.utils import safe_nativestring
-except ImportError:
-    # Not needed for Products.CMFPlone >= 5.2a1
-    from Products.CMFPlone.utils import safe_encode
-    from Products.CMFPlone.utils import safe_unicode
-
-    def safe_nativestring(value, encoding="utf-8"):
-        """Convert a value to str in py2 and to text in py3"""
-        if six.PY2 and isinstance(value, str):
-            value = safe_encode(value, encoding)
-        if not six.PY2 and isinstance(value, bytes):
-            value = safe_unicode(value, encoding)
-        return value
 
 
 TTW_BEHAVIOR_BLACKLIST = [

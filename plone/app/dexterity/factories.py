@@ -1,3 +1,4 @@
+from _thread import allocate_lock
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobFile
@@ -5,7 +6,6 @@ from plone.namedfile.file import NamedBlobImage
 from Products.CMFCore.interfaces._content import IFolderish
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils as ploneutils
-from six.moves._thread import allocate_lock
 from zope.component import adapter
 from zope.container.interfaces import INameChooser
 from zope.interface import implementer

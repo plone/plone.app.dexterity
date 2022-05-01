@@ -2,6 +2,7 @@
 """
 # XXX: need to make exceptions more specific, shorten messages
 from DateTime.DateTime import DateTime
+from io import BytesIO
 from lxml import etree
 from plone.app.dexterity import _
 from plone.namedfile.field import NamedFile
@@ -9,7 +10,6 @@ from plone.z3cform.layout import wrap_form
 from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.context import BaseContext
 from Products.GenericSetup.interfaces import IImportContext
-from six import BytesIO
 from z3c.form import field
 from z3c.form import form
 from zipfile import BadZipfile

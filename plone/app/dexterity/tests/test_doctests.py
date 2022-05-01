@@ -3,7 +3,6 @@ from plone.testing import layered
 
 import doctest
 import re
-import six
 import unittest
 
 
@@ -18,26 +17,6 @@ tests = (
 )
 
 
-class Py23DocChecker(doctest.OutputChecker):
-    def check_output(self, want, got, optionflags):
-        if six.PY2:
-            want = re.sub("zExceptions.NotFound", "NotFound", want)
-            want = re.sub(
-                "zope.interface.interfaces.ComponentLookupError",
-                "ComponentLookupError",
-                want,
-            )
-            want = re.sub(
-                "zope.testbrowser.browser.LinkNotFoundError", "LinkNotFoundError", want
-            )
-            want = re.sub(
-                "AccessControl.unauthorized.Unauthorized", "Unauthorized", want
-            )
-            got = re.sub("u'(.*?)'", "'\\1'", got)
-            want = re.sub("b'(.*?)'", "'\\1'", want)
-        return doctest.OutputChecker.check_output(self, want, got, optionflags)
-
-
 def test_suite():
     suite = unittest.TestSuite()
     OPTIONFLAGS = doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE
@@ -48,7 +27,6 @@ def test_suite():
                     testfile,
                     optionflags=OPTIONFLAGS,
                     # package='plone.app.dexterity.tests',
-                    checker=Py23DocChecker(),
                 ),
                 layer=DEXTERITY_FUNCTIONAL_TESTING,
             )
