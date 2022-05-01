@@ -9,10 +9,11 @@ class TestUpgrades(unittest.TestCase):
     layer = DEXTERITY_INTEGRATION_TESTING
 
     def test_add_missing_uuids(self):
+        from plone.app.dexterity.upgrades.to2001 import add_missing_uuids
         from plone.dexterity.fti import DexterityFTI
         from plone.dexterity.utils import createContentInContainer
-        from plone.app.dexterity.upgrades.to2001 import add_missing_uuids
-        from plone.uuid.interfaces import IUUID, ATTRIBUTE_NAME
+        from plone.uuid.interfaces import ATTRIBUTE_NAME
+        from plone.uuid.interfaces import IUUID
 
         # create a type and item and remove its UUID
         self.layer['portal'].portal_types._setObject(
@@ -46,8 +47,7 @@ class TestUpgrades(unittest.TestCase):
         from plone.app.dexterity.upgrades.to2003 import fix_installed_products
         from Products.CMFCore.utils import getToolByName
         try:
-            from Products.CMFQuickInstallerTool.InstalledProduct import \
-                InstalledProduct
+            from Products.CMFQuickInstallerTool.InstalledProduct import InstalledProduct
         except ImportError:
             # nothing to test
             return

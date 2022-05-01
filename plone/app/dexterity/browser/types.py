@@ -13,7 +13,9 @@ from plone.z3cform import layout
 from plone.z3cform.crud import crud
 from plone.z3cform.layout import FormWrapper
 from Products.CMFCore.utils import getToolByName
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as FiveViewPageTemplateFile  # noqa
+from Products.Five.browser.pagetemplatefile import (
+    ViewPageTemplateFile as FiveViewPageTemplateFile,
+)  # noqa
 from six.moves import urllib
 from z3c.form import button
 from z3c.form import field
