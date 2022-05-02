@@ -31,5 +31,5 @@ type title is
 
 type id should become
   [Arguments]  ${id}
-  Focus  form-widgets-id
+  Set Focus To Element  form-widgets-id
   Wait until keyword succeeds  10  1  Textfield Value Should Be  form-widgets-id  ${id}
