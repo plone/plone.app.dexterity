@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
-from plone.app.dexterity.behaviors.constrains import (
-    ConstrainTypesBehavior,
-    DISABLED,
-    ACQUIRE,
-)
+from plone.app.dexterity.behaviors.constrains import ACQUIRE
+from plone.app.dexterity.behaviors.constrains import ConstrainTypesBehavior
+from plone.app.dexterity.behaviors.constrains import DISABLED
+from plone.base.interfaces.constrains import ISelectableConstrainTypes
 from zope.interface import alsoProvides
 
 import unittest

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """BBB import for 'Related Items' behavior that was moved to
 plone.app.relationfield in Dexterity 2.0.
 """
@@ -13,6 +12,5 @@ from zope.component import queryUtility
 
 def related_items_behavior_BBB():
     return queryUtility(
-        IBehavior,
-        name=u'plone.app.relationfield.behavior.IRelatedItems'
+        IBehavior, name="plone.app.relationfield.behavior.IRelatedItems"
     )

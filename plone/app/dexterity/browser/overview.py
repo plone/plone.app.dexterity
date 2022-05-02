@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.dexterity import _
 from plone.app.dexterity.browser.layout import TypeFormLayout
 from plone.app.dexterity.interfaces import ITypeSettings
@@ -11,7 +10,7 @@ from zope.dottedname.resolve import resolve as resolveDottedName
 
 class TypeOverviewForm(form.EditForm):
     enableCSRFProtection = True
-    template = ViewPageTemplateFile('overview.pt')
+    template = ViewPageTemplateFile("overview.pt")
 
     @property
     def fields(self):
@@ -19,11 +18,11 @@ class TypeOverviewForm(form.EditForm):
         # remove the field for filtering contained content types
         klass = resolveDottedName(self.context.fti.klass)
         fields = field.Fields(ITypeSettings)
-        filtered = fields.select('title', 'description',
-                                 'allowed_content_types',
-                                 'filter_content_types')
+        filtered = fields.select(
+            "title", "description", "allowed_content_types", "filter_content_types"
+        )
         if not IFolderish.implementedBy(klass):
-            del filtered['filter_content_types']
+            del filtered["filter_content_types"]
         return filtered
 
     def getContent(self):
@@ -32,4 +31,4 @@ class TypeOverviewForm(form.EditForm):
 
 class TypeOverviewPage(TypeFormLayout):
     form = TypeOverviewForm
-    label = _(u'Overview')
+    label = _("Overview")

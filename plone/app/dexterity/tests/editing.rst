@@ -122,10 +122,10 @@ and saved::
   ...     if hasattr(factory, 'protected') and factory.protected(None):
   ...         continue
   ...     browser.open(schemaeditor_url)
-  ...     # If two changes happen in the same second, the schema lookup will find an old schema,
-  ...     # so we sleep till the next second.
+  ...     # If two changes happen in the same moment, the schema lookup will find an old schema,
+  ...     # so we sleep shortly.
   ...     now = time.time()
-  ...     time.sleep(int(now) + 1 - now)
+  ...     time.sleep(0.1)
   ...     browser.getLink('Add new field').click()
   ...     browser.getControl('Title').value = name
   ...     field_id = normalizer.normalize(name).replace('-', '_')
@@ -494,8 +494,8 @@ zip archive containing files ready to drop into our profile::
     'attachment; filename=dexterity_export-....zip'
 
     >>> import zipfile
-    >>> import six
-    >>> fd = six.BytesIO(browser.contents)
+    >>> import io
+    >>> fd = io.BytesIO(browser.contents)
     >>> archive = zipfile.ZipFile(fd, mode='r')
     >>> archive.namelist()
     ['types.xml', 'types/plonista2.xml', 'types/plonista-folder.xml']
@@ -524,14 +524,14 @@ zip archive containing supermodel xml files::
     'attachment; filename=dexterity_models-....zip'
 
     >>> import zipfile
-    >>> import six
-    >>> fd = six.BytesIO(browser.contents)
+    >>> import io
+    >>> fd = io.BytesIO(browser.contents)
     >>> archive = zipfile.ZipFile(fd, mode='r')
     >>> archive.namelist()
     ['models/plonista2.xml', 'models/plonista-folder.xml']
 
-    >>> from Products.CMFPlone.utils import safe_unicode
-    >>> print(safe_unicode(archive.read('models/plonista2.xml')))
+    >>> from plone.base.utils import safe_text
+    >>> print(safe_text(archive.read('models/plonista2.xml')))
     <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...
@@ -553,7 +553,7 @@ file::
     >>> browser.headers['content-disposition']
     'attachment; filename=plonista2.xml'
 
-    >>> print(safe_unicode(browser.contents))
+    >>> print(safe_text(browser.contents))
     <model...xmlns="http://namespaces.plone.org/supermodel/schema"...>
       <schema>
       ...

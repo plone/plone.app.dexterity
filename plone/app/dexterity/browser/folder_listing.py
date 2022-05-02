@@ -10,13 +10,13 @@ from zope.component import getUtility
 
 class FolderView(BrowserView):
     def __init__(self, context, request):
-        super(FolderView, self).__init__(context, request)
+        super().__init__(context, request)
 
-        self.plone_view = getMultiAdapter((context, request), name=u"plone")
+        self.plone_view = getMultiAdapter((context, request), name="plone")
         self.portal_state = getMultiAdapter(
-            (context, request), name=u"plone_portal_state"
+            (context, request), name="plone_portal_state"
         )
-        self.pas_member = getMultiAdapter((context, request), name=u"pas_member")
+        self.pas_member = getMultiAdapter((context, request), name="pas_member")
 
         limit_display = getattr(self.request, "limit_display", None)
         limit_display = int(limit_display) if limit_display is not None else 20
@@ -89,5 +89,5 @@ class FolderView(BrowserView):
     def no_items_message(self):
         return _(
             "description_no_items_in_folder",
-            default=u"There are currently no items in this folder.",
+            default="There are currently no items in this folder.",
         )

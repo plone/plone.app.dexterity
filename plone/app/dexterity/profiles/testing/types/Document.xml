@@ -19,10 +19,10 @@
   <property name="add_permission">cmf.AddPortalContent</property>
   <property name="klass">plone.dexterity.content.Item</property>
   <property name="behaviors">
-    <element value="plone.app.content.interfaces.INameFromTitle" />
-    <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion" />
-    <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
-    <element value="plone.app.dexterity.behaviors.metadata.IDublinCore" />
+    <element value="plone.namefromtitle" />
+    <element value="plone.allowdiscussion" />
+    <element value="plone.excludefromnavigation" />
+    <element value="plone.dublincore" />
   </property>
   <property name="schema">zope.interface.Interface</property>
   <alias from="(Default)" to="(dynamic view)" />

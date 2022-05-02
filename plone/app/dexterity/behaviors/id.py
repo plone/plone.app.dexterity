@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
@@ -18,21 +17,20 @@ import transaction
 class IShortName(model.Schema):
 
     model.fieldset(
-        'settings',
-        label=_(u"Settings"),
-        fields=['id'],
+        "settings",
+        label=_("Settings"),
+        fields=["id"],
     )
 
     id = schema.ASCIILine(
-        title=_(u'Short name'),
-        description=_(u'This name will be displayed in the URL.'),
+        title=_("Short name"),
+        description=_("This name will be displayed in the URL."),
         required=False,
     )
-    directives.write_permission(id='cmf.AddPortalContent')
+    directives.write_permission(id="cmf.AddPortalContent")
 
 
-class ShortName(object):
-
+class ShortName:
     def __init__(self, context):
         self.context = context
 
@@ -49,7 +47,7 @@ class ShortName(object):
             context.id = value
             return
         new_id = INameChooser(parent).chooseName(value, context)
-        if getattr(aq_base(context), 'id', None):
+        if getattr(aq_base(context), "id", None):
             transaction.savepoint()
             locked = False
             lockable = ILockable(context, None)
@@ -61,4 +59,5 @@ class ShortName(object):
                 lockable.lock()
         else:
             context.id = new_id
+
     id = property(_get_id, _set_id)

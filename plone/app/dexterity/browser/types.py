@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from OFS.SimpleItem import SimpleItem
 from plone.app.dexterity import _
 from plone.app.dexterity.browser.utils import UTF8Property
@@ -13,8 +12,9 @@ from plone.z3cform import layout
 from plone.z3cform.crud import crud
 from plone.z3cform.layout import FormWrapper
 from Products.CMFCore.utils import getToolByName
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile as FiveViewPageTemplateFile  # noqa
-from six.moves import urllib
+from Products.Five.browser.pagetemplatefile import (
+    ViewPageTemplateFile as FiveViewPageTemplateFile,
+)
 from z3c.form import button
 from z3c.form import field
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
@@ -27,33 +27,35 @@ from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from ZPublisher.BaseRequest import DefaultPublishTraverse
 
+import urllib
+
 
 ALLOWED_FIELDS = [
-    u'plone.app.textfield.RichText',
-    u'plone.namedfile.field.NamedBlobImage',
-    u'plone.namedfile.field.NamedBlobFile',
-    u'plone.schema.email.Email',
-    u'z3c.relationfield.schema.RelationChoice',
-    u'z3c.relationfield.schema.RelationList',
-    u'zope.schema._bootstrapfields.Bool',
-    u'zope.schema._bootstrapfields.Int',
-    u'plone.schema.jsonfield.JSONField',
-    u'zope.schema._bootstrapfields.Password',
-    u'zope.schema._bootstrapfields.Text',
-    u'zope.schema._bootstrapfields.TextLine',
-    u'zope.schema._field.Choice',
-    u'zope.schema._field.Date',
-    u'zope.schema._field.Datetime',
-    u'zope.schema._field.Float',
-    u'zope.schema._field.Set',
-    u'zope.schema._field.URI',
+    "plone.app.textfield.RichText",
+    "plone.namedfile.field.NamedBlobImage",
+    "plone.namedfile.field.NamedBlobFile",
+    "plone.schema.email.Email",
+    "z3c.relationfield.schema.RelationChoice",
+    "z3c.relationfield.schema.RelationList",
+    "zope.schema._bootstrapfields.Bool",
+    "zope.schema._bootstrapfields.Int",
+    "plone.schema.jsonfield.JSONField",
+    "zope.schema._bootstrapfields.Password",
+    "zope.schema._bootstrapfields.Text",
+    "zope.schema._bootstrapfields.TextLine",
+    "zope.schema._field.Choice",
+    "zope.schema._field.Date",
+    "zope.schema._field.Datetime",
+    "zope.schema._field.Float",
+    "zope.schema._field.Set",
+    "zope.schema._field.URI",
 ]
 
 
 class TypeEditSubForm(crud.EditSubForm):
-    """ Content type edit subform. Just here to use a custom template.
-    """
-    template = ViewPageTemplateFile('types_listing_row.pt')
+    """Content type edit subform. Just here to use a custom template."""
+
+    template = ViewPageTemplateFile("types_listing_row.pt")
 
 
 class TypeEditForm(crud.EditForm):
@@ -65,63 +67,58 @@ class TypeEditForm(crud.EditForm):
     label = None
     editsubform_factory = TypeEditSubForm
 
-    buttons = crud.EditForm.buttons.copy().omit('edit')
+    buttons = crud.EditForm.buttons.copy().omit("edit")
     handlers = crud.EditForm.handlers.copy()
 
-    @button.buttonAndHandler(_(u'Clone'))
+    @button.buttonAndHandler(_("Clone"))
     def handleClone(self, action):
         selected = self.selected_items()
 
         if len(selected) > 1:
-            self.status = _(u'Please select a single type to clone.')
+            self.status = _("Please select a single type to clone.")
         elif len(selected) == 1:
             id = selected[0][0]
-            url = '{0}/{1}/@@clone'.format(
-                self.context.context.absolute_url(),
-                id
-            )
+            url = f"{self.context.context.absolute_url()}/{id}/@@clone"
             self.request.response.redirect(url)
         else:
-            self.status = _(u'Please select a type to clone.')
+            self.status = _("Please select a type to clone.")
 
-    @button.buttonAndHandler(_(u'Export Type Profiles'))
+    @button.buttonAndHandler(_("Export Type Profiles"))
     def handleExport(self, action):
-        selected = ','.join([items[0] for items in self.selected_items()])
+        selected = ",".join([items[0] for items in self.selected_items()])
 
         if len(selected) == 0:
-            self.status = _(u'Please select types to export.')
+            self.status = _("Please select types to export.")
         elif len(selected) > 0:
-            url = '{0}/@@types-export?selected={1}'.format(
+            url = "{}/@@types-export?selected={}".format(
                 self.context.context.absolute_url(),
                 urllib.parse.quote(selected),
             )
             self.request.response.redirect(url)
 
-    @button.buttonAndHandler(_(u'Export Schema Models'))
+    @button.buttonAndHandler(_("Export Schema Models"))
     def handleExportModels(self, action):
-        selected = ','.join([items[0] for items in self.selected_items()])
+        selected = ",".join([items[0] for items in self.selected_items()])
 
         if len(selected) == 0:
-            self.status = _(u'Please select types to export.')
+            self.status = _("Please select types to export.")
         elif len(selected) > 0:
-            url = '{0}/@@models-export?selected={1}'.format(
-                self.context.context.absolute_url(),
-                urllib.parse.quote(selected)
+            url = "{}/@@models-export?selected={}".format(
+                self.context.context.absolute_url(), urllib.parse.quote(selected)
             )
             self.request.response.redirect(url)
 
 
 class TypesEditFormWrapper(FormWrapper):
-    """ Render Plone frame around our form with little modifications """
+    """Render Plone frame around our form with little modifications"""
 
     form = TypeEditForm
-    index = FiveViewPageTemplateFile('typesformwrapper.pt')
+    index = FiveViewPageTemplateFile("typesformwrapper.pt")
 
 
 @adapter(IDexterityFTI)
 @implementer(ITypeSettings)
-class TypeSettingsAdapter(object):
-
+class TypeSettingsAdapter:
     def __init__(self, context):
         self.context = context
 
@@ -129,8 +126,8 @@ class TypeSettingsAdapter(object):
     def id(self):
         return self.context.getId()
 
-    title = UTF8Property('title')
-    description = UTF8Property('description')
+    title = UTF8Property("title")
+    description = UTF8Property("description")
 
     @property
     def container(self):
@@ -147,65 +144,64 @@ class TypeSettingsAdapter(object):
             self.context.filter_content_types = True
 
     allowed_content_types = property(
-        _get_allowed_content_types, _set_allowed_content_types)
+        _get_allowed_content_types, _set_allowed_content_types
+    )
 
     def _get_filter_content_types(self):
         value = self.context.filter_content_types
         if not value:
-            return 'all'
+            return "all"
         elif value and not self.allowed_content_types:
-            return 'none'
+            return "none"
         else:
-            return 'some'
+            return "some"
 
     def _set_filter_content_types(self, value):
-        if value == 'none':
+        if value == "none":
             self.context.filter_content_types = True
             self.context.allowed_content_types = ()
-        elif value == 'all':
+        elif value == "all":
             self.context.filter_content_types = False
-        elif value == 'some':
+        elif value == "some":
             self.context.filter_content_types = True
 
     filter_content_types = property(
-        _get_filter_content_types, _set_filter_content_types)
+        _get_filter_content_types, _set_filter_content_types
+    )
 
 
 @adapter(IDexterityFTI)
 @implementer(ITypeStats)
-class TypeStatsAdapter(object):
-
+class TypeStatsAdapter:
     def __init__(self, context):
         self.context = context
 
     @property
     def item_count(self):
-        catalog = getToolByName(self.context, 'portal_catalog')
-        lengths = dict(
-            catalog.Indexes['portal_type'].uniqueValues(withLengths=True))
+        catalog = getToolByName(self.context, "portal_catalog")
+        lengths = dict(catalog.Indexes["portal_type"].uniqueValues(withLengths=True))
         return lengths.get(self.context.getId(), 0)
 
 
 class TypesListing(crud.CrudForm):
-    """ The combined content type edit + add forms.
-    """
+    """The combined content type edit + add forms."""
 
     @lazy_property
     def description(self):
         if self.get_items():
             return _(
-                u'The following custom content types are available for your '
-                u'site.'
+                "The following custom content types are available for your " "site."
             )
         return _(
-            'help_addcontenttype_button',
-            default=u'Content types show up on Plone\'s "Add Item" menu and '
-            u'allow you to store custom data in your site. Click the '
-            u'"Add Content Type" button to begin creating a new '
-            u'content type with its own fields.')
+            "help_addcontenttype_button",
+            default='Content types show up on Plone\'s "Add Item" menu and '
+            "allow you to store custom data in your site. Click the "
+            '"Add Content Type" button to begin creating a new '
+            "content type with its own fields.",
+        )
 
-    template = ViewPageTemplateFile('types_listing.pt')
-    view_schema = field.Fields(ITypeSettings).select('title', 'description')
+    template = ViewPageTemplateFile("types_listing.pt")
+    view_schema = field.Fields(ITypeSettings).select("title", "description")
     view_schema += field.Fields(ITypeStats)
     addform_factory = crud.NullForm
     editform_factory = TypeEditForm
@@ -220,9 +216,8 @@ class TypesListing(crud.CrudForm):
         return [(fti.__name__, fti) for fti in ftis]
 
     def remove(self, id_and_item):
-        """ Remove a content type.
-        """
-        ttool = getToolByName(self.context, 'portal_types')
+        """Remove a content type."""
+        ttool = getToolByName(self.context, "portal_types")
         ttool.manage_delObjects([id_and_item[0]])
 
     def link(self, item, field):
@@ -230,28 +225,28 @@ class TypesListing(crud.CrudForm):
 
         (But only for types with schemata that can be edited through the web.)
         """
-        if field == 'title':
-            return '{0}/{1}'.format(
-                self.context.absolute_url(),
-                urllib.parse.quote(item.__name__)
+        if field == "title":
+            return "{}/{}".format(
+                self.context.absolute_url(), urllib.parse.quote(item.__name__)
             )
+
 
 # Create a form wrapper so the form gets layout.
 TypesListingPage = layout.wrap_form(
-    TypesListing, __wrapper_class=TypesEditFormWrapper,
-    label=_(u'Content Types'))
+    TypesListing, __wrapper_class=TypesEditFormWrapper, label=_("Content Types")
+)
 
 
 @implementer(ITypeSchemaContext)
 class TypeSchemaContext(SchemaContext):
 
     fti = None
-    schemaName = u''
-    schemaEditorView = 'fields'
+    schemaName = ""
+    schemaEditorView = "fields"
     allowedFields = ALLOWED_FIELDS
 
     def browserDefault(self, request):
-        return self, ('@@overview',)
+        return self, ("@@overview",)
 
     @property
     def additionalSchemata(self):
@@ -269,14 +264,14 @@ class TypesContext(SimpleItem):
     """
 
     def __init__(self, context, request):
-        super(TypesContext, self).__init__(context, request)
+        super().__init__(context, request)
 
         # make sure that breadcrumbs will be correct
         self.id = None
-        self.Title = lambda: _(u'Content Types')
+        self.Title = lambda: _("Content Types")
 
         # turn off green edit border for anything in the type control panel
-        request.set('disable_border', 1)
+        request.set("disable_border", 1)
 
     def publishTraverse(self, request, name):
         """Traverse to a schema context.
@@ -290,16 +285,14 @@ class TypesContext(SimpleItem):
         try:
             fti = getUtility(IDexterityFTI, name=name)
         except ComponentLookupError:
-            return DefaultPublishTraverse(self, request).publishTraverse(
-                request,
-                name
-            )
+            return DefaultPublishTraverse(self, request).publishTraverse(request, name)
 
         schema = fti.lookupSchema()
         schema_context = TypeSchemaContext(
-            schema, request, name=name, title=fti.title).__of__(self)
+            schema, request, name=name, title=fti.title
+        ).__of__(self)
         schema_context.fti = fti
-        schema_context.schemaName = u''
+        schema_context.schemaName = ""
         return schema_context
 
     def browserDefault(self, request):
@@ -308,4 +301,4 @@ class TypesContext(SimpleItem):
         If we aren't traversing to a schema beneath the types configlet,
         we actually want to see the TypesListingPage.
         """
-        return self, ('@@edit',)
+        return self, ("@@edit",)
