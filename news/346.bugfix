@@ -1,3 +1,0 @@
-Replaced use of ``plone.api``.
-That should not be done in Plone core.
-[maurits]

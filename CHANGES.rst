@@ -8,6 +8,32 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0a10 (2022-05-09)
+---------------------
+
+Breaking changes:
+
+
+- Code Style: isort + black.
+  Pyupgrade and six removal.
+  Short name usage of behaviors in tests.
+  Sleep in editing.rst reduced (saves 10sec in tests).
+  Use plone.base.
+  [jensens] (#348)
+
+
+Bug fixes:
+
+
+- Make compatible with robotframework 3-5.
+  [maurits] (#5)
+- Replaced use of ``plone.api``.
+  That should not be done in Plone core.
+  [maurits] (#346)
+- Better naming and description of `plone.textindexer` in behaviors control panel.
+  [jensens] (#347)
+
+
 3.0.0a9 (2022-04-07)
 --------------------
 
