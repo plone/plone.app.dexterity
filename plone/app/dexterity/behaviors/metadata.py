@@ -38,22 +38,26 @@ def default_language(context):
     # this new content is being added
     language = None
 
-    if context is not None and not IPloneSiteRoot.providedBy(context):
-        language = context.Language()
+    # Try to get the language from context or parent(s)
+    while not language and context is not None and not IPloneSiteRoot.providedBy(context):
+        language = getattr(context.aq_base, 'language', None)
+
         if not language:
             # If we are here, it means we were editing an object that didn't
             # have its language set or that the container where we were adding
             # the new content didn't have a language set. So we check its
-            # parent, unless we are at site's root, in which case we get site's
-            # default language
-            if not IPloneSiteRoot.providedBy(context.aq_parent):
-                language = context.aq_parent.Language()
+            # parent.
+            context = context.__parent__
+
+    language_tool = getToolByName(getSite(), 'portal_languages')
+    default_language = language_tool.getDefaultLanguage()
 
     if not language:
-        # Finally, if we still don't have a language, then just use site's
-        # default
-        pl = getToolByName(getSite(), "portal_languages")
-        language = pl.getDefaultLanguage()
+        language = default_language
+
+    # Is the language supported/enabled at all?
+    if language not in language_tool.getAvailableLanguages():
+        language = default_language
 
     return language
 
