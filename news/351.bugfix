@@ -1,0 +1,3 @@
+Don't acquire lanuage from portal root default_language for ICategorization.language.
+Fixes https://github.com/plone/plone.app.dexterity/issues/258
+[jaroel]
