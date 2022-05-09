@@ -45,25 +45,24 @@ def default_language(context):
     language = None
 
     # Try to get the language from context or parent(s)
-    while context is not None and not IPloneSiteRoot.providedBy(context):
-        try:
-            # Use aq_base so the .language attribute isn't acquired from root
-            language = context.aq_base.Language()
-        except AttributeError:  # Accesses .language
+    while not language and context is not None and not IPloneSiteRoot.providedBy(context):
+        language = getattr(context.aq_base, 'language', None)
+
+        if not language:
             # If we are here, it means we were editing an object that didn't
             # have its language set or that the container where we were adding
             # the new content didn't have a language set. So we check its
             # parent.
             context = context.__parent__
 
-    pl = getToolByName(getSite(), 'portal_languages')
-    default_language = pl.getDefaultLanguage()
+    language_tool = getToolByName(getSite(), 'portal_languages')
+    default_language = language_tool.getDefaultLanguage()
 
     if not language:
         language = default_language
 
     # Is the language supported/enabled at all?
-    if language not in pl.getAvailableLanguages():
+    if language not in language_tool.getAvailableLanguages():
         language = default_language
 
     return language
