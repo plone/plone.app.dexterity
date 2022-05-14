@@ -8,6 +8,17 @@ Changelog
 
 .. towncrier release notes start
 
+2.6.11 (2022-05-14)
+-------------------
+
+Bug fixes:
+
+
+- Don't acquire lanuage from portal root default_language for ICategorization.language.
+  Fixes https://github.com/plone/plone.app.dexterity/issues/258
+  [jaroel] (#351)
+
+
 2.6.10 (2022-01-28)
 -------------------
 
