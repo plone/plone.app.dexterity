@@ -75,4 +75,11 @@
       title="Update controlpanel icon"
       import_steps="controlpanel" />
 
+  <genericsetup:upgradeDepends
+      source="2006"
+      destination="2007"
+      profile="plone.app.dexterity:default"
+      title="Rename Dexterity control panel"
+      import_steps="controlpanel" />
+
 </configure>

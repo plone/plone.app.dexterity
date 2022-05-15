@@ -1,15 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_controlpanel" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone" purge="False">
-  <configlet
-      action_id="dexterity-types"
-      appId="Plone"
-      category="plone-content"
-      condition_expr=""
-      icon_expr="string:gem"
-      title="Dexterity Content Types"
-      url_expr="string:${portal_url}/@@dexterity-types"
-      visible="True"
-      i18n:attributes="title">
+  <configlet action_id="dexterity-types" appId="Plone" category="plone-content" condition_expr="" icon_expr="string:gem" title="Content Types" url_expr="string:${portal_url}/@@dexterity-types" visible="True" i18n:attributes="title">
     <permission>Manage portal</permission>
   </configlet>
 </object>
