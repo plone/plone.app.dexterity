@@ -8,6 +8,19 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0a11 (2022-05-24)
+---------------------
+
+Bug fixes:
+
+
+- Rename "Dexterity Content Types" to just "Content Types"
+  [tisto] (#331)
+- Don't acquire lanuage from portal root default_language for ICategorization.language.
+  Fixes https://github.com/plone/plone.app.dexterity/issues/258
+  [jaroel] (#350)
+
+
 3.0.0a10 (2022-05-09)
 ---------------------
 
