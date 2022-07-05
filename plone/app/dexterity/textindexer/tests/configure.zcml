@@ -3,6 +3,7 @@
            i18n_domain="plone.app.dexterity.textindexer">
 
     <plone:behavior
+          name="tests.textindexer.simple_behavior"
           title="simple behavior"
           description=""
           provides=".behaviors.ISimpleBehavior"
@@ -10,6 +11,7 @@
           />
 
     <plone:behavior
+          name="tests.textindexer.list_behavior"
           title="list behavior"
           description=""
           provides=".behaviors.IListBehavior"
@@ -17,6 +19,7 @@
           />
 
     <plone:behavior
+          name="tests.textindexer.int_behavior"
           title="int behavior"
           description=""
           provides=".behaviors.IIntBehavior"
@@ -24,6 +27,7 @@
           />
 
     <plone:behavior
+          name="tests.textindexer.richtext_behavior"
           title="richtext behavior"
           description=""
           provides=".behaviors.IRichTextBehavior"
@@ -31,6 +35,7 @@
           />
 
     <plone:behavior
+          name="tests.textindexer.empty_richtext_behavior"
           title="empty richtext behavior"
           description=""
           provides=".behaviors.IEmptyRichTextBehavior"
@@ -38,6 +43,7 @@
           />
 
     <plone:behavior
+          name="tests.textindexer.tuple_behavior"
           title="tuple behavior"
           description=""
           provides=".behaviors.ITupleBehavior"
@@ -45,6 +51,7 @@
           />
 
     <plone:behavior
+          name="tests.textindexer.tuple_choice_behavior"
           title="tuple choice behavior"
           description=""
           provides=".behaviors.ITupleChoiceBehavior"
@@ -52,6 +59,7 @@
           />
 
     <plone:behavior
+          name="tests.textindexer.inherited_behavior"
           title="inherited behavior"
           description=""
           provides=".behaviors.IInheritedBehavior"
@@ -59,6 +67,7 @@
           />
 
     <plone:behavior
+          name="tests.textindexer.missing_field_behavior"
           title="missing field behavior"
           description=""
           provides=".behaviors.IMissingFieldBehavior"
