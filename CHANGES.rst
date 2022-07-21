@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0b1 (2022-07-21)
+--------------------
+
+Bug fixes:
+
+
+- Tests: add names to behaviors.
+  [maurits] (#169)
+
+
 3.0.0a11 (2022-05-24)
 ---------------------
 
