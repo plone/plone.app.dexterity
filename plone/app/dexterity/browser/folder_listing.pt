@@ -41,7 +41,7 @@
                       <a tal:attributes="href item_link;
                                          class string:$item_type_class $item_wf_state_class url;
                                          title item_type"
-                          tal:content="item_title">
+                          tal:content="python: item_title or item_id">
 
                              Item Title
                       </a>
