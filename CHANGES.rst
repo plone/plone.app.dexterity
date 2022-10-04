@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0b2 (2022-10-04)
+--------------------
+
+Bug fixes:
+
+
+- Fix folder_listing to show the content ID if no title is available. [jensens] (#353)
+
+
 3.0.0b1 (2022-07-21)
 --------------------
 
