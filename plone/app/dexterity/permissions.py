@@ -1,4 +1,5 @@
 from AccessControl import getSecurityManager
+from plone.app.z3cform.interfaces import IFieldPermissionChecker
 from plone.app.z3cform.interfaces import IPloneFormLayer
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
@@ -15,13 +16,6 @@ from zope.deprecation import deprecated
 from zope.interface import implementer
 from zope.publisher.browser import TestRequest
 from zope.security.interfaces import IPermission
-
-
-try:
-    from plone.app.z3cform.interfaces import IFieldPermissionChecker
-except ImportError:
-    # bbb for < plone 5.2rc2
-    from plone.app.widgets.interfaces import IFieldPermissionChecker
 
 
 @implementer(IPloneFormLayer)
