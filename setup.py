@@ -45,6 +45,7 @@ setup(
     namespace_packages=["plone", "plone.app"],
     include_package_data=True,
     zip_safe=False,
+    python_requires=">=3.8",
     install_requires=[
         # Dexterity
         "plone.app.textfield",
