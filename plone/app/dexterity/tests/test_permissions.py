@@ -3,8 +3,8 @@ from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
-from plone.app.widgets.testing import PLONEAPPWIDGETS_DX_INTEGRATION_TESTING
 from plone.app.z3cform.interfaces import IPloneFormLayer
+from plone.app.z3cform.tests.layer import PAZ3CForm_INTEGRATION_TESTING
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.dexterity.browser.add import DefaultAddForm
@@ -87,7 +87,7 @@ def _disable_custom_widget(field):
 
 class DexterityVocabularyPermissionTests(unittest.TestCase):
 
-    layer = PLONEAPPWIDGETS_DX_INTEGRATION_TESTING
+    layer = PAZ3CForm_INTEGRATION_TESTING
 
     def setUp(self):
         self.request = TestRequest(environ={"HTTP_ACCEPT_LANGUAGE": "en"})
