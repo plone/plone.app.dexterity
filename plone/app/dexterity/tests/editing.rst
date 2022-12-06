@@ -178,6 +178,8 @@ Go there and find the XML model source in a textarea, ready to be edited
 
   >>> model_source = portal.portal_types.plonista.model_source
   >>> escaped_model_source = escape(model_source, quote=False)
+  >>> escaped_model_source in browser.contents
+  False
   >>> again_escaped_model_source = escape(escaped_model_source, quote=False)
   >>> again_escaped_model_source in browser.contents
   True
@@ -221,14 +223,67 @@ Likewise, only `schema` tags are allowed inside the model::
   >>> u"Error: all model elements must be 'schema'" in browser.contents
   True
 
-Should work with real XML
+Should work with real, escaped XML::
 
-::
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=%s&_authenticator=%s' % (quote_plus(escaped_model_source), authenticator))
+  >>> u"statusmessage-info" in browser.contents
+  True
+  >>> u"Changes saved." in browser.contents
+  True
+
+portal.portal_types.plonista.model_source will not be exactly the same as the original model_source.
+It may start with an xml declaration (<?xml version='1.0' encoding='utf8'?>)
+and end with an extra newline.  But it will contain the original::
+
+  >>> model_source in portal.portal_types.plonista.model_source
+  True
+
+We used to test with unescaped XML which may have been what was really happening in a previous code editor.
+So let's test this for good measure as well::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=%s&_authenticator=%s' % (quote_plus(model_source), authenticator))
   >>> u"statusmessage-info" in browser.contents
   True
   >>> u"Changes saved." in browser.contents
+  True
+  >>> model_source in portal.portal_types.plonista.model_source
+  True
+
+Let's add a default to the rich text field: this needs to be escaped in the original source.
+
+::
+
+  >>> title_marker = '<title>plone.app.textfield.RichText</title>'
+  >>> paragraph = escape('<p>Hello</p>')
+  >>> default_property = f'<default>{paragraph}</default>'
+  >>> title_marker in model_source
+  True
+  >>> model_source = model_source.replace(title_marker, title_marker + '\n' + default_property)
+  >>> escaped_model_source = escape(model_source, quote=False)
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=%s&_authenticator=%s' % (quote_plus(escaped_model_source), authenticator))
+  >>> u"statusmessage-info" in browser.contents
+  True
+  >>> u"Changes saved." in browser.contents
+  True
+  >>> model_source in portal.portal_types.plonista.model_source
+  True
+  >>> default_property in portal.portal_types.plonista.model_source
+  True
+
+Let's check that all still works when we include the xml declaration in the source.
+
+  >>> model_source = portal.portal_types.plonista.model_source
+  >>> '<?xml' in model_source
+  True
+  >>> escaped_model_source = escape(model_source, quote=False)
+  >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor?form.button.save=&source=%s&_authenticator=%s' % (quote_plus(escaped_model_source), authenticator))
+  >>> u"statusmessage-info" in browser.contents
+  True
+  >>> u"Changes saved." in browser.contents
+  True
+  >>> model_source in portal.portal_types.plonista.model_source
+  True
+  >>> model_source == portal.portal_types.plonista.model_source
   True
 
 We should be providing a link back to the fields editor::

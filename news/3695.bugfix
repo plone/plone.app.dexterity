@@ -1,0 +1,2 @@
+Fix ``XMLSyntaxError`` when saving model source in the modeleditor.
+[maurits]
