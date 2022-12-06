@@ -27,13 +27,42 @@ class ModelEditorView(BrowserView):
     @property
     def model_source(self):
         # Return modified source from textarea or the original FTI source.
-        source = self.request.form.get("source") or self.context.fti.model_source
+        source = self._unescaped_source_from_request() or self.context.fti.model_source
         if source:
             return source
 
         # or serialize the model file
         model = self.context.fti.lookupModel()
         return serializeModel(model)
+
+    def _unescaped_source_from_request(self):
+        """Unescape the source from the request.
+
+        We expect that the source we get from the request is escaped html.
+        If we pass this directly to the lxml parser, we get:
+        Error: XMLSyntaxError: Start tag expected
+        See https://github.com/plone/Products.CMFPlone/issues/3695
+        So we need to unescape it.
+
+        There is a danger that we unescape too much.  If we somehow get already
+        unescaped xml, this may contain escaped html.  If we then call html.unescape,
+        this html gets unescaped, which is not what we want.
+        The source likely starts with one of these strings:
+
+          &lt;?xml
+          &lt;model
+
+        We check if it starts with '&lt;' and we only unescape then.
+        """
+        source = self.request.form.get("source")
+        if not source:
+            return
+        # If you let the source start with spaces, it actually becomes invisible
+        # in the code editor.  So strip it to be safe.
+        source = source.strip()
+        if source.startswith("&lt;"):
+            source = html.unescape(source)
+        return source
 
     def authorized(self, context, request):
         authenticator = queryMultiAdapter((context, request), name="authenticator")
@@ -43,7 +72,7 @@ class ModelEditorView(BrowserView):
         """View and eventually save the form."""
 
         save = "form.button.save" in self.request.form
-        source = self.request.form.get("source")
+        source = self._unescaped_source_from_request()
         if save and source:
 
             # First, check for authenticator
