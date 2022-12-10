@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.2 (2022-12-10)
+------------------
+
+Bug fixes:
+
+
+- Fix ``XMLSyntaxError`` when saving model source in the modeleditor.
+  [maurits] (#3695)
+
+
 3.0.1 (2022-12-02)
 ------------------
 
