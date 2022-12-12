@@ -8,6 +8,21 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.3 (2022-12-12)
+------------------
+
+Bug fixes:
+
+
+- Modeleditor: Don't double escape the xml.
+
+  Use the page template's structure keyword when inserting the escaped HTML into
+  the modeleditor's textarea. This allows the source code pattern to properly
+  parse and display the XML for editing.
+
+  Fixes: #357 (#358)
+
+
 3.0.2 (2022-12-10)
 ------------------
 
