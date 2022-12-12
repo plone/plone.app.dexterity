@@ -173,15 +173,12 @@ Go there and find the XML model source in a textarea, ready to be edited
   >>> '<textarea name="source"' in browser.contents
   True
 
-  >>> '&amp;lt;schema&amp;gt;' in browser.contents
+  >>> '&lt;schema&gt;' in browser.contents
   True
 
   >>> model_source = portal.portal_types.plonista.model_source
   >>> escaped_model_source = escape(model_source, quote=False)
   >>> escaped_model_source in browser.contents
-  False
-  >>> again_escaped_model_source = escape(escaped_model_source, quote=False)
-  >>> again_escaped_model_source in browser.contents
   True
 
 There should be an authenticator in the `save` form::
