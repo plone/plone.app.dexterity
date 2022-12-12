@@ -44,8 +44,8 @@
 
       <textarea
           name="source"
-          class="modeleditor__source pat-code-editor"
-          data-pat-code-editor="language: xml; theme: okaidia">${view/escaped_model_source}</textarea>
+          class="modeleditor__source pat-code-editor language-xml"
+          tal:content="structure view/escaped_model_source"></textarea>
 
       <br />
       
