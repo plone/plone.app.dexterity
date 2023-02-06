@@ -9,6 +9,7 @@ from plone.supermodel.parser import SupermodelParseError
 from Products.Five import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import queryMultiAdapter
+from zope.deprecation import deprecate
 
 import html
 
@@ -20,6 +21,11 @@ class ModelEditorView(BrowserView):
     """Editor view."""
 
     @property
+    @deprecate(
+        """`ModelEditorView.escaped_model_source` is deprecated will be removed
+in Plone 7. Use `model_source` without the `structure` TALES expression
+instead."""
+    )
     def escaped_model_source(self):
         # Return the HTML escaped model source.
         return html.escape(self.model_source, False)
@@ -74,7 +80,6 @@ class ModelEditorView(BrowserView):
         save = "form.button.save" in self.request.form
         source = self._unescaped_source_from_request()
         if save and source:
-
             # First, check for authenticator
             if not self.authorized(self.context, self.request):
                 raise Unauthorized
