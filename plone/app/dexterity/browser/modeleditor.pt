@@ -45,7 +45,7 @@
       <textarea
           name="source"
           class="modeleditor__source pat-code-editor language-xml"
-          tal:content="structure view/escaped_model_source"></textarea>
+          tal:content="view/model_source"></textarea>
 
       <br />
       
