@@ -30,6 +30,15 @@ instead."""
         # Return the HTML escaped model source.
         return html.escape(self.model_source, False)
 
+    @deprecate(
+        """`ModelEditorView.modelSource` is deprecated and will be removed in
+Plone 7. Use `model_source` instead.
+"""
+    )
+    def modelSource(self):
+        # BBB
+        return self.model_source
+
     @property
     def model_source(self):
         # Return modified source from textarea or the original FTI source.
