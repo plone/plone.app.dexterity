@@ -8,6 +8,22 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.4 (2023-02-08)
+------------------
+
+Bug fixes:
+
+
+- Restore and deprecate "ModelEditorView.modelSource".
+  It will be removed in Plone 7.
+  [thet] (#359)
+- Deprecate ModelEditorView.escaped_model_source which is not needed anymore.
+  It will be removed in Plone 7.
+  [thet] (#359)
+- Use the tal engine to escape HTML via non-structure variable insertion.
+  [thet] (#359)
+
+
 3.0.3 (2022-12-12)
 ------------------
 
