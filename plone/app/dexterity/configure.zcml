@@ -7,10 +7,6 @@
     i18n_domain="plone"
     >
 
-  <include
-      package="plone.app.imaging"
-      zcml:condition="installed plone.app.imaging"
-      />
   <include package="plone.app.vocabularies" />
   <include package="plone.app.z3cform" />
   <include package="plone.app.textfield" />
