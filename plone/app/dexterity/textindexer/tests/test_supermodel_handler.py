@@ -106,5 +106,5 @@ class TestIndexerSchema(unittest.TestCase):
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestIndexerSchema))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestIndexerSchema))
     return suite
