@@ -44,7 +44,7 @@ They are all object events.
     The name the item held in the container is available as ``oldName``.
 
 ``OFS.interfaces.IObjectWillBeRemovedEvent``
-    fired before an object is removed. Until here no deletion has happend.
+    fired before an object is removed. Until here no deletion has happened.
     It is also fired on move of an object (copy/paste).
 
 ``zope.lifecycleevent.interfaces.IObjectMovedEvent``

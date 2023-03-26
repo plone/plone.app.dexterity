@@ -37,7 +37,7 @@ class DXFileFactory:
             # This will suffice for standard p.a.contenttypes File/Image
             # and any other custom type that would have 'File' or 'Image' in
             # its type name
-            # XXX heuristics are harmful behavior, here a better implemenation
+            # XXX heuristics are harmful behavior, here a better implementation
             #     is needed
             filename = name
             if "Image" in type_:

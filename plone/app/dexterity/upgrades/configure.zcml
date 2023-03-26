@@ -54,7 +54,7 @@
       />
 
   <genericsetup:upgradeStep
-      title="Remove line feeds and carrige returns from the description"
+      title="Remove line feeds and carriage returns from the description"
       profile="plone.app.dexterity:default"
       source="2003"
       destination="2004"

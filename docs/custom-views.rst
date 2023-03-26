@@ -67,7 +67,7 @@ You can add any methods to the view.
 They will be available to the template via the ``view`` variable.
 The content object is available via ``context``.
 
-Finaly add a template in ``templates/programview.pt``:
+Finally add a template in ``templates/programview.pt``:
 
 .. code-block:: html
 
