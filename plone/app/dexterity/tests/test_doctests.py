@@ -2,7 +2,6 @@ from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 from plone.testing import layered
 
 import doctest
-import re
 import unittest
 
 
