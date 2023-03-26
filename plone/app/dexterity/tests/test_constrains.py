@@ -38,7 +38,6 @@ def add_item_type(portal):
 
 
 class DocumentIntegrationTest(unittest.TestCase):
-
     layer = DEXTERITY_INTEGRATION_TESTING
 
     def setUp(self):
@@ -342,7 +341,6 @@ class DocumentIntegrationTest(unittest.TestCase):
 
 
 class FolderConstrainViewFunctionalText(unittest.TestCase):
-
     layer = DEXTERITY_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -422,7 +420,6 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
 
 
 class ConstrainControlFunctionalText(unittest.TestCase):
-
     layer = DEXTERITY_FUNCTIONAL_TESTING
 
     def setUp(self):

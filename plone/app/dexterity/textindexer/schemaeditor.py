@@ -21,7 +21,6 @@ class ISearchableTextField(Interface):
 @adapter(IField)
 @implementer(ISearchableTextField)
 class SearchableTextField:
-
     namespace = INDEXER_NAMESPACE
     prefix = INDEXER_PREFIX
 

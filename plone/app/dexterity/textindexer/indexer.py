@@ -55,7 +55,6 @@ def dynamic_searchable_text_indexer(obj):
 
     for _storage, fields in get_searchable_contexts_and_fields(obj):
         for field in fields:
-
             # we need the form-field, not the schema-field we
             # already have..
             form_field = Field(field, interface=field.interface, prefix="")

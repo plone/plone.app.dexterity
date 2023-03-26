@@ -17,7 +17,6 @@ import logging
 
 
 class TextIndexerLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_FIXTURE,)
 
     def __init__(self, *args, **kwargs):
@@ -65,7 +64,6 @@ TEXT_INTEXER_INTEGRATION_TESTING = IntegrationTesting(
 
 
 class TextIndexerFunctionalLayer(PloneSandboxLayer):
-
     defaultBases = (TEXT_INDEXER_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):

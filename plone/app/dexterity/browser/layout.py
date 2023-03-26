@@ -4,7 +4,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class TypeFormLayout(FormWrapper):
-
     index = ViewPageTemplateFile("tabbed_forms.pt")
 
     @property

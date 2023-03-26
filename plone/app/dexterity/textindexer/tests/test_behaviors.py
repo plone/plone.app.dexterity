@@ -26,6 +26,5 @@ def test_suite():
 
 
 class ITestingSchema(model.Schema):
-
     searchable("testing_field")
     testing_field = schema.TextLine(title="Testing field")

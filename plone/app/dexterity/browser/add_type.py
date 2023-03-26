@@ -9,7 +9,6 @@ from z3c.form import form
 
 
 class TypeAddForm(form.AddForm):
-
     label = _("Add Content Type")
     fields = field.Fields(ITypeSettings).select("title", "id", "description")
     id = "add-type-form"

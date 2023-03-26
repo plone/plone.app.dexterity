@@ -81,7 +81,6 @@ class BehaviorConfigurationAdapter:
 
 
 class TypeBehaviorsForm(form.EditForm):
-
     template = ViewPageTemplateFile("behaviors.pt")
     label = _("Behaviors")
     description = _("Select the behaviors to enable for this content type.")

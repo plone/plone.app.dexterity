@@ -20,7 +20,6 @@ options = SimpleVocabulary(
 
 @provider(IFormFieldProvider)
 class IAllowDiscussion(model.Schema):
-
     model.fieldset(
         "settings",
         label=_("Settings"),

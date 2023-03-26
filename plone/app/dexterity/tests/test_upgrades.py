@@ -4,7 +4,6 @@ import unittest
 
 
 class TestUpgrades(unittest.TestCase):
-
     layer = DEXTERITY_INTEGRATION_TESTING
 
     def test_add_missing_uuids(self):

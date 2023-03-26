@@ -8,7 +8,6 @@ from z3c.form import form
 
 
 class TypeCloneForm(form.AddForm):
-
     label = _("Clone Content Type")
     fields = field.Fields(ITypeSettings).select("title", "id")
     id = "clone-type-form"
