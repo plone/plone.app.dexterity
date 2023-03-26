@@ -2,36 +2,37 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml"
-    i18n_domain="plone">
+    i18n_domain="plone"
+    >
 
   <!-- Default view for Dexterity types in Plone  4 -->
   <browser:page
-      for="plone.dexterity.interfaces.IDexterityItem"
       name="view"
+      for="plone.dexterity.interfaces.IDexterityItem"
       class="plone.dexterity.browser.view.DefaultView"
       template="item.pt"
       permission="zope2.View"
       />
 
   <browser:page
-      for="plone.dexterity.interfaces.IDexterityContainer"
       name="view"
+      for="plone.dexterity.interfaces.IDexterityContainer"
       class="plone.dexterity.browser.view.DefaultView"
       template="container.pt"
       permission="zope2.View"
       />
 
   <browser:page
-      for="plone.dexterity.interfaces.IDexterityContainer"
       name="folder_listing"
+      for="plone.dexterity.interfaces.IDexterityContainer"
       class=".folder_listing.FolderView"
       template="folder_listing.pt"
       permission="zope2.View"
       />
 
   <browser:page
-      for="plone.base.interfaces.IPloneSiteRoot"
       name="folder_listing"
+      for="plone.base.interfaces.IPloneSiteRoot"
       class=".folder_listing.FolderView"
       template="folder_listing.pt"
       permission="zope2.View"
@@ -41,9 +42,9 @@
   <browser:viewlet
       name="plone.app.dexterity.defaultpagewarning"
       view="plone.dexterity.interfaces.IDexterityEditForm"
+      manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
       template="default_page_warning.pt"
       permission="cmf.ModifyPortalContent"
-      manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
       />
 
   <!-- Control panel -->
@@ -52,8 +53,9 @@
       name="dexterity-types"
       for="plone.base.interfaces.IPloneSiteRoot"
       class=".types.TypesContext"
+      allowed_interface="OFS.interfaces.IItem"
       permission="plone.schemaeditor.ManageSchemata"
-      allowed_interface="OFS.interfaces.IItem" />
+      />
 
   <adapter
       factory=".types.TypeSettingsAdapter"
@@ -71,7 +73,8 @@
       name="edit"
       for="plone.app.dexterity.interfaces.ITypesContext"
       class=".types.TypesListingPage"
-      permission="plone.schemaeditor.ManageSchemata" />
+      permission="plone.schemaeditor.ManageSchemata"
+      />
 
   <browser:page
       name="add-type"
@@ -91,25 +94,29 @@
       name="overview"
       for="plone.app.dexterity.interfaces.ITypeSchemaContext"
       class=".overview.TypeOverviewPage"
-      permission="plone.schemaeditor.ManageSchemata" />
+      permission="plone.schemaeditor.ManageSchemata"
+      />
 
   <browser:page
       name="fields"
       for="plone.app.dexterity.interfaces.ITypeSchemaContext"
       class=".fields.TypeFieldsPage"
-      permission="plone.schemaeditor.ManageSchemata" />
+      permission="plone.schemaeditor.ManageSchemata"
+      />
 
   <browser:page
       name="behaviors"
       for="plone.app.dexterity.interfaces.ITypeSchemaContext"
       class=".behaviors.TypeBehaviorsPage"
-      permission="plone.schemaeditor.ManageSchemata" />
+      permission="plone.schemaeditor.ManageSchemata"
+      />
 
   <browser:page
       name="clone"
       for="plone.app.dexterity.interfaces.ITypeSchemaContext"
       class=".clone_type.TypeCloneFormPage"
-      permission="plone.schemaeditor.ManageSchemata" />
+      permission="plone.schemaeditor.ManageSchemata"
+      />
 
   <browser:page
       name="types-export"
@@ -130,8 +137,8 @@
         name="modeleditor"
         for="plone.schemaeditor.interfaces.ISchemaContext"
         class=".modeleditor.ModelEditorView"
-        permission="plone.schemaeditor.ManageSchemata"
         template="modeleditor.pt"
+        permission="plone.schemaeditor.ManageSchemata"
         />
   </configure>
 
