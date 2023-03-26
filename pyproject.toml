@@ -60,6 +60,7 @@ Zope = [
   'Products.CMFDynamicViewFTI', 'zope.deprecation',
 ]
 python-dateutil = ['dateutil']
+ignore-packages = ["plone.app.relationfield", "plone.directives.form", "plone.directives.dexterity", "five.grok", "plone.app.intid", "plone.contentrules", "plone.schema", "z3c.relationfield"]
 
 [tool.codespell]
 ignore-words-list = "discreet,hove"
