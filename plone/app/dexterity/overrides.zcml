@@ -1,8 +1,12 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:zcml="http://namespaces.zope.org/zcml">
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    >
 
-  <includeOverrides package="plone.app.z3cform" file="overrides.zcml" />
+  <includeOverrides
+      package="plone.app.z3cform"
+      file="overrides.zcml"
+      />
 
 </configure>

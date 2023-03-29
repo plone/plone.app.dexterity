@@ -1,6 +1,4 @@
-from zope.i18nmessageid import MessageFactory as ZMessageFactory
-
-import warnings
+from zope.i18nmessageid import MessageFactory
 
 
-_ = ZMessageFactory("plone")
+_ = MessageFactory("plone")

@@ -55,7 +55,6 @@ def dynamic_searchable_text_indexer(obj):
 
     for _storage, fields in get_searchable_contexts_and_fields(obj):
         for field in fields:
-
             # we need the form-field, not the schema-field we
             # already have..
             form_field = Field(field, interface=field.interface, prefix="")
@@ -65,7 +64,7 @@ def dynamic_searchable_text_indexer(obj):
                 widget = get_field_widget(obj, form_field, request)
             except TypeError:
                 # Some times the field value is wrong, then the converter
-                # failes. We should not fail, so we catch this error.
+                # fails. We should not fail, so we catch this error.
                 continue
 
             # get the converter for this field / widget

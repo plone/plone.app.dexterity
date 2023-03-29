@@ -12,7 +12,7 @@ def remove_cr_and_lf_description(context):
 
     context = context.aq_parent
     sm = context.getSiteManager()
-    for (name, fti) in sm.getUtilitiesFor(IDexterityFTI):
+    for name, fti in sm.getUtilitiesFor(IDexterityFTI):
         for behavior in behaviors:
             if behavior in fti.behaviors:
                 types.append(name)

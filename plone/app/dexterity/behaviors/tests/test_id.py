@@ -9,7 +9,6 @@ import unittest
 
 
 class TestShortNameBehavior(unittest.TestCase):
-
     layer = DEXTERITY_FUNCTIONAL_TESTING
 
     def setUp(self):

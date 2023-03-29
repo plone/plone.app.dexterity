@@ -1,77 +1,79 @@
-<configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:plone="http://namespaces.plone.org/plone"
-           i18n_domain="plone.app.dexterity.textindexer">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone.app.dexterity.textindexer"
+    >
 
-    <plone:behavior
-          name="tests.textindexer.simple_behavior"
-          title="simple behavior"
-          description=""
-          provides=".behaviors.ISimpleBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.simple_behavior"
+      title="simple behavior"
+      description=""
+      provides=".behaviors.ISimpleBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <plone:behavior
-          name="tests.textindexer.list_behavior"
-          title="list behavior"
-          description=""
-          provides=".behaviors.IListBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.list_behavior"
+      title="list behavior"
+      description=""
+      provides=".behaviors.IListBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <plone:behavior
-          name="tests.textindexer.int_behavior"
-          title="int behavior"
-          description=""
-          provides=".behaviors.IIntBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.int_behavior"
+      title="int behavior"
+      description=""
+      provides=".behaviors.IIntBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <plone:behavior
-          name="tests.textindexer.richtext_behavior"
-          title="richtext behavior"
-          description=""
-          provides=".behaviors.IRichTextBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.richtext_behavior"
+      title="richtext behavior"
+      description=""
+      provides=".behaviors.IRichTextBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <plone:behavior
-          name="tests.textindexer.empty_richtext_behavior"
-          title="empty richtext behavior"
-          description=""
-          provides=".behaviors.IEmptyRichTextBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.empty_richtext_behavior"
+      title="empty richtext behavior"
+      description=""
+      provides=".behaviors.IEmptyRichTextBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <plone:behavior
-          name="tests.textindexer.tuple_behavior"
-          title="tuple behavior"
-          description=""
-          provides=".behaviors.ITupleBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.tuple_behavior"
+      title="tuple behavior"
+      description=""
+      provides=".behaviors.ITupleBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <plone:behavior
-          name="tests.textindexer.tuple_choice_behavior"
-          title="tuple choice behavior"
-          description=""
-          provides=".behaviors.ITupleChoiceBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.tuple_choice_behavior"
+      title="tuple choice behavior"
+      description=""
+      provides=".behaviors.ITupleChoiceBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <plone:behavior
-          name="tests.textindexer.inherited_behavior"
-          title="inherited behavior"
-          description=""
-          provides=".behaviors.IInheritedBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.inherited_behavior"
+      title="inherited behavior"
+      description=""
+      provides=".behaviors.IInheritedBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
-    <plone:behavior
-          name="tests.textindexer.missing_field_behavior"
-          title="missing field behavior"
-          description=""
-          provides=".behaviors.IMissingFieldBehavior"
-          for="plone.dexterity.interfaces.IDexterityContent"
-          />
+  <plone:behavior
+      name="tests.textindexer.missing_field_behavior"
+      title="missing field behavior"
+      description=""
+      provides=".behaviors.IMissingFieldBehavior"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
 </configure>

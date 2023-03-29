@@ -7,7 +7,6 @@ from zope import schema
 
 
 class IExample(model.Schema):
-
     foo = schema.TextLine(title="foo")
 
 

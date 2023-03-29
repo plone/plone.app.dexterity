@@ -1,6 +1,6 @@
 """
 IDexterityTextIndexFieldConverter  field converter adapter interface
-IDynamicTextIndexExtender          dynmaic text extender adapter interface
+IDynamicTextIndexExtender          dynamic text extender adapter interface
 """
 
 from zope.interface import Interface

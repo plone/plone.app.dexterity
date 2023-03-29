@@ -1,65 +1,79 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    lang="en"
-    metal:use-macro="context/prefs_main_template/macros/master"
-    i18n:domain="plone">
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="plone"
+>
 
-<body>
-<article metal:fill-slot="prefs_configlet_main">
-<tal:main-macro metal:define-macro="main">
+  <body>
+    <article metal:fill-slot="prefs_configlet_main">
+      <tal:main-macro metal:define-macro="main">
 
-  <header id="page-intro">
-   <a href=""
-        class="link-parent"
-        tal:attributes="href string:${context/absolute_url}/@@fields"
-        i18n:translate="label_back_to_schemaeditor">
+        <header id="page-intro">
+          <a class="link-parent"
+             href=""
+             tal:attributes="
+               href string:${context/absolute_url}/@@fields;
+             "
+             i18n:translate="label_back_to_schemaeditor"
+          >
             Back to the schema editor
-    </a>
+          </a>
 
-    <h1 class="documentFirstHeading"
-        i18n:translate="heading_model_edit">Edit field model for
-      <span i18n:name="name" tal:content="context/Title">name</span>
-    </h1>
+          <h1 class="documentFirstHeading"
+              i18n:translate="heading_model_edit"
+          >Edit field model for
+            <span tal:content="context/Title"
+                  i18n:name="name"
+            >name</span>
+          </h1>
 
-    <p class="description" i18n:translate="description_model_edit">
+          <p class="description"
+             i18n:translate="description_model_edit"
+          >
       This form allows you to directly edit the XML representation
       of the field list. This makes it possible to add annotations for fieldsets,
-      validation and widgets. See the <a
-      href="https://docs.plone.org/external/plone.app.dexterity/docs/reference/dexterity-xml.html">Dexterity XML</a>
-      section of the <a href="https://docs.plone.org/external/plone.app.dexterity/docs/index.html">Dexterity Developer Manual</a> for details.
-    </p>
-   </header>
+      validation and widgets. See the
+            <a href="https://docs.plone.org/external/plone.app.dexterity/docs/reference/dexterity-xml.html">Dexterity XML</a>
+      section of the
+            <a href="https://docs.plone.org/external/plone.app.dexterity/docs/index.html">Dexterity Developer Manual</a>
+             for details.
+          </p>
+        </header>
 
-  <div id="rules-editor">
+        <div id="rules-editor">
 
-    <form
-        class="modeleditor__form"
-        action="${context/absolute_url}/@@modeleditor"
-        method="POST"
-        tal:define="authenticator context/@@authenticator/authenticator | nothing">
-      
-      <input tal:replace="structure authenticator" />
+          <form class="modeleditor__form"
+                action="${context/absolute_url}/@@modeleditor"
+                method="POST"
+                tal:define="
+                  authenticator context/@@authenticator/authenticator | nothing;
+                "
+          >
 
-      <textarea
-          name="source"
-          class="modeleditor__source pat-code-editor language-xml"
-          tal:content="view/model_source"></textarea>
+            <input tal:replace="structure authenticator" />
 
-      <br />
-      
-      <button
-          class="btn btn-primary"
-          type="submit"
-          name="form.button.save" 
-          i18n:translate="">Save</button>
+            <textarea class="modeleditor__source pat-code-editor language-xml"
+                      name="source"
+                      tal:content="view/model_source"
+            ></textarea>
 
-    </form>
+            <br />
 
-  </div>
+            <button class="btn btn-primary"
+                    name="form.button.save"
+                    type="submit"
+                    i18n:translate=""
+            >Save</button>
 
-</tal:main-macro>
-</article>
-</body>
+          </form>
+
+        </div>
+
+      </tal:main-macro>
+    </article>
+  </body>
 </html>

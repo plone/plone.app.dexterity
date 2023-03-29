@@ -99,7 +99,6 @@ class TypeProfileImport:
 
 
 class TypeProfileImportForm(form.AddForm):
-
     label = _("Import Content Types")
     description = _(
         "You may import types by uploading a zip archive containing type "
@@ -145,7 +144,6 @@ class ZipFileImportContext(BaseContext):
         self.name_list = self._archive.namelist()
 
     def readDataFile(self, filename, subdir=None):
-
         if subdir is not None:
             filename = "/".join((subdir, filename))
 

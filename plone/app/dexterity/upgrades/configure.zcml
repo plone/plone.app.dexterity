@@ -1,85 +1,88 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    >
 
   <genericsetup:upgradeStep
-      source="0.1"
-      destination="1"
       title="Install plone.app.z3cform browser layer"
       profile="plone.app.dexterity:default"
+      source="0.1"
+      destination="1"
       handler=".to1.install_z3cform_profile"
       />
 
   <genericsetup:upgradeStep
-      source="1"
-      destination="5"
       title="Unregister schemaeditor.css"
       profile="plone.app.dexterity:default"
+      source="1"
+      destination="5"
       handler=".to2.remove_stylesheet"
       />
 
   <!-- Dexterity 2.0 -->
 
   <genericsetup:upgradeStep
-      source="5"
-      destination="2000"
       title="Remove overlays.css from CSS registry"
       profile="plone.app.dexterity:default"
+      source="5"
+      destination="2000"
       handler=".to2000.remove_overlays_css"
       />
 
   <genericsetup:upgradeStep
-      source="2000"
-      destination="2001"
       title="Add missing UUIDs to Dexterity content"
       profile="plone.app.dexterity:default"
+      source="2000"
+      destination="2001"
       handler=".to2001.add_missing_uuids"
       />
 
   <genericsetup:upgradeStep
-      source="2000"
-      destination="2002"
       title="Install JQuery Tools date picker resources"
       profile="plone.app.dexterity:default"
+      source="2000"
+      destination="2002"
       handler=".to2002.install_datepicker_profile"
       />
 
   <genericsetup:upgradeStep
-      source="2002"
-      destination="2003"
       title="Make sure uninstalling products won't destroy the intid catalog"
       profile="plone.app.dexterity:default"
+      source="2002"
+      destination="2003"
       handler=".to2003.fix_installed_products"
       />
 
   <genericsetup:upgradeStep
+      title="Remove line feeds and carriage returns from the description"
+      profile="plone.app.dexterity:default"
       source="2003"
       destination="2004"
-      title="Remove line feeds and carrige returns from the description"
-      profile="plone.app.dexterity:default"
       handler=".to2004.remove_cr_and_lf_description"
       />
 
   <genericsetup:upgradeStep
-      source="2004"
-      destination="2005"
       title="Remove dexterity-types from portal_actions"
       profile="plone.app.dexterity:default"
+      source="2004"
+      destination="2005"
       handler=".to2005.cleanup_portal_actions"
       />
 
   <genericsetup:upgradeDepends
+      title="Update controlpanel icon"
+      profile="plone.app.dexterity:default"
       source="2005"
       destination="2006"
-      profile="plone.app.dexterity:default"
-      title="Update controlpanel icon"
-      import_steps="controlpanel" />
+      import_steps="controlpanel"
+      />
 
   <genericsetup:upgradeDepends
+      title="Rename Dexterity control panel"
+      profile="plone.app.dexterity:default"
       source="2006"
       destination="2007"
-      profile="plone.app.dexterity:default"
-      title="Rename Dexterity control panel"
-      import_steps="controlpanel" />
+      import_steps="controlpanel"
+      />
 
 </configure>

@@ -1,10 +1,21 @@
-<configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:zcml="http://namespaces.zope.org/zcml">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    >
 
-  <include package="plone.dexterity" file="meta.zcml" />
-  <include zcml:condition="installed plone.directives.dexterity"
-           package="plone.directives.dexterity" file="meta.zcml" />
-  <include zcml:condition="installed plone.directives.form"
-           package="plone.directives.form" file="meta.zcml" />
+  <include
+      package="plone.dexterity"
+      file="meta.zcml"
+      />
+  <include
+      package="plone.directives.dexterity"
+      file="meta.zcml"
+      zcml:condition="installed plone.directives.dexterity"
+      />
+  <include
+      package="plone.directives.form"
+      file="meta.zcml"
+      zcml:condition="installed plone.directives.form"
+      />
 
 </configure>
