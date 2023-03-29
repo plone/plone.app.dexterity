@@ -304,3 +304,36 @@ it's superclass::
     <Item at /plone/inheritedfti>
     >>> getSearchableText(obj1)
     ['foo', 'value']
+
+
+Test, if an indexable file has been indexed::
+
+    >>> from plone.app.dexterity.textindexer.tests.behaviors import INamedFileFieldBehavior
+    >>> from plone.namedfile.file import NamedFile
+    >>> import os
+
+    >>> fti = DexterityFTI('NamedFileFTI')
+    >>> fti.behaviors = (
+    ...     'plone.textindexer',
+    ...     'plone.app.dexterity.textindexer.tests.behaviors.INamedFileFieldBehavior',
+    ... )
+    >>> portal.portal_types._setObject('NamedFileFTI', fti)
+    'NamedFileFTI'
+    >>> schema = fti.lookupSchema()
+
+    >>> obj_txtfile = createContentInContainer(portal, 'NamedFileFTI',
+    ...                                 checkContstraints=False,
+    ...                                 foo=NamedFile(b"foo bar", "text/plain", "foo.txt"))
+    >>> obj_txtfile
+    <Item at /plone/namedfilefti>
+    >>> getSearchableText(obj_txtfile)
+    ['foo', 'bar']
+
+    >>> with open(os.path.join(os.path.dirname(__file__), "file.pdf"), "rb") as f:
+    ...     foo_pdf = NamedFile(f.read(), "application/pdf", "foo.pdf")
+
+    >>> obj_pdffile = createContentInContainer(portal, 'NamedFileFTI',
+    ...                                 checkContstraints=False,
+    ...                                 foo=foo_pdf)
+    >>> getSearchableText(obj_pdffile)
+    ['test', 'plone', 'app', 'dexterity']

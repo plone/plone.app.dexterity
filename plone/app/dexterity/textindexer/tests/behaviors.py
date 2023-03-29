@@ -3,6 +3,7 @@
 from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.namedfile.field import NamedFile
 from plone.supermodel import model
 from zope import schema
 from zope.interface import provider
@@ -110,3 +111,10 @@ class IMissingFieldBehavior(model.Schema):
     foo = schema.TextLine(title="Foo")
 
     textindexer.searchable("bar")
+
+
+@provider(IFormFieldProvider)
+class INamedFileFieldBehavior(model.Schema):
+    """ a behavior with indexable file content """
+    textindexer.searchable("foo")
+    foo = NamedFile(title="Indexable File")
