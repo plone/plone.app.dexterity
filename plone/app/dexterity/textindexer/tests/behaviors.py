@@ -115,6 +115,7 @@ class IMissingFieldBehavior(model.Schema):
 
 @provider(IFormFieldProvider)
 class INamedFileFieldBehavior(model.Schema):
-    """ a behavior with indexable file content """
+    """a behavior with indexable file content"""
+
     textindexer.searchable("foo")
     foo = NamedFile(title="Indexable File")
