@@ -170,7 +170,7 @@ Go there and find the XML model source in a textarea, ready to be edited
 (with JavaScript enabled, this should show pat-code-editor instead of the textarea)::
 
   >>> browser.open('http://nohost/plone/dexterity-types/plonista/@@modeleditor')
-  >>> '<textarea name="source"' in browser.contents
+  >>> '<textarea class="modeleditor__source pat-code-editor language-xml" name="source">' in browser.contents
   True
 
   >>> '&lt;schema&gt;' in browser.contents

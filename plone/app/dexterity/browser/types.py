@@ -239,7 +239,6 @@ TypesListingPage = layout.wrap_form(
 
 @implementer(ITypeSchemaContext)
 class TypeSchemaContext(SchemaContext):
-
     fti = None
     schemaName = ""
     schemaEditorView = "fields"

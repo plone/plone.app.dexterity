@@ -15,7 +15,6 @@ import transaction
 
 @provider(IFormFieldProvider)
 class IShortName(model.Schema):
-
     model.fieldset(
         "settings",
         label=_("Settings"),

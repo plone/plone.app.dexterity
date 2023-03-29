@@ -95,7 +95,7 @@ Bug fixes:
 
 - Rename "Dexterity Content Types" to just "Content Types"
   [tisto] (#331)
-- Don't acquire lanuage from portal root default_language for ICategorization.language.
+- Don't acquire language from portal root default_language for ICategorization.language.
   Fixes https://github.com/plone/plone.app.dexterity/issues/258
   [jaroel] (#350)
 
@@ -492,7 +492,7 @@ Bug fixes:
 - removed deprecated getIcon() from documentation
   [fgrcon]
 
-- JavaScript formating according to style guides.
+- JavaScript formatting according to style guides.
   [thet]
 
 
@@ -875,7 +875,7 @@ Fixes:
 - Add validator to ensure expires date is after effective date.
   [benniboy]
 
-- Remove line feeds and carrige returns from meta description and
+- Remove line feeds and carriage returns from meta description and
   added upgrade step to do it for existing content
   [bosim]
 

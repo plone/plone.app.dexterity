@@ -12,7 +12,6 @@ import unittest
 
 
 class TestSchemaEditor(unittest.TestCase):
-
     layer = TEXT_INDEXER_FUNCTIONAL_TESTING
 
     def setUp(self):

@@ -4,7 +4,6 @@ import unittest
 
 
 class TestUpgrades(unittest.TestCase):
-
     layer = DEXTERITY_INTEGRATION_TESTING
 
     def test_add_missing_uuids(self):
@@ -39,24 +38,3 @@ class TestUpgrades(unittest.TestCase):
         add_missing_uuids(self.layer["portal"])
         uuid2 = IUUID(page, None)
         self.assertEqual(uuid2, uuid, "Upgrade changes existing uuids.")
-
-    def test_upgrade_2003(self):
-        from plone.app.dexterity.upgrades.to2003 import fix_installed_products
-        from Products.CMFCore.utils import getToolByName
-
-        try:
-            from Products.CMFQuickInstallerTool.InstalledProduct import InstalledProduct
-        except ImportError:
-            # nothing to test
-            return
-        qi = getToolByName(self.layer["portal"], "portal_quickinstaller", None)
-        if qi is None:
-            # nothing to test
-            return
-        ip = InstalledProduct("foo")
-        ip.utilities = [("zope.intid.interfaces.IIntIds", "")]
-        qi._setObject("foo", ip)
-
-        fix_installed_products(self.layer["portal"])
-
-        self.assertEqual([], ip.utilities)

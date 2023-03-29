@@ -39,8 +39,10 @@ def default_language(context):
     language = None
 
     # Try to get the language from context or parent(s)
-    while not language and context is not None and not IPloneSiteRoot.providedBy(context):
-        language = getattr(context.aq_base, 'language', None)
+    while (
+        not language and context is not None and not IPloneSiteRoot.providedBy(context)
+    ):
+        language = getattr(context.aq_base, "language", None)
 
         if not language:
             # If we are here, it means we were editing an object that didn't
@@ -49,7 +51,7 @@ def default_language(context):
             # parent.
             context = context.__parent__
 
-    language_tool = getToolByName(getSite(), 'portal_languages')
+    language_tool = getToolByName(getSite(), "portal_languages")
     default_language = language_tool.getDefaultLanguage()
 
     if not language:
@@ -64,7 +66,6 @@ def default_language(context):
 
 @provider(IFormFieldProvider)
 class IBasic(model.Schema):
-
     # default fieldset
     title = schema.TextLine(title=_("label_title", default="Title"), required=True)
 
@@ -87,7 +88,6 @@ class IBasic(model.Schema):
 
 @provider(IFormFieldProvider)
 class ICategorization(model.Schema):
-
     # categorization fieldset
     model.fieldset(
         "categorization",
@@ -177,7 +177,6 @@ class IPublication(model.Schema):
 
 @provider(IFormFieldProvider)
 class IOwnership(model.Schema):
-
     # ownership fieldset
     model.fieldset(
         "ownership",

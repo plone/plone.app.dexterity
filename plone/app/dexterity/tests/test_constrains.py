@@ -38,7 +38,6 @@ def add_item_type(portal):
 
 
 class DocumentIntegrationTest(unittest.TestCase):
-
     layer = DEXTERITY_INTEGRATION_TESTING
 
     def setUp(self):
@@ -342,7 +341,6 @@ class DocumentIntegrationTest(unittest.TestCase):
 
 
 class FolderConstrainViewFunctionalText(unittest.TestCase):
-
     layer = DEXTERITY_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -422,7 +420,6 @@ class FolderConstrainViewFunctionalText(unittest.TestCase):
 
 
 class ConstrainControlFunctionalText(unittest.TestCase):
-
     layer = DEXTERITY_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -462,20 +459,20 @@ class ConstrainControlFunctionalText(unittest.TestCase):
 
     def test_overview_folder_item_view(self):
         # First we access folder content types and check
-        # that is possible to fiter content types (as it is a container)
+        # that is possible to filter content types (as it is a container)
         url = "/dexterity-types/folder/@@overview"
         self.browser.open(self.portal_url + url)
         self.assertTrue("Filter Contained Types" in self.browser.contents)
         self.assertTrue("No content types" in self.browser.contents)
 
         # Then we access item content types and check
-        # that is NOT possible to fiter content types
+        # that is NOT possible to filter content types
         url = "/dexterity-types/item/@@overview"
         self.browser.open(self.portal_url + url)
         self.assertFalse("Filter Contained Types" in self.browser.contents)
         self.assertFalse("No content types" in self.browser.contents)
 
-        # Acessing folder content types again
+        # Accessing folder content types again
         # and it should be possible to filter content types
         url = "/dexterity-types/folder/@@overview"
         self.browser.open(self.portal_url + url)

@@ -86,7 +86,6 @@ def _disable_custom_widget(field):
 
 
 class DexterityVocabularyPermissionTests(unittest.TestCase):
-
     layer = PAZ3CForm_INTEGRATION_TESTING
 
     def setUp(self):

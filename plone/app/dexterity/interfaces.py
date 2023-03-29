@@ -85,7 +85,6 @@ class ITypeSettings(Interface):
 
 
 class ITypeStats(Interface):
-
     item_count = schema.Int(
         title=_("# of items"),
     )

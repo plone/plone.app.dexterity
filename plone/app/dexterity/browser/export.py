@@ -17,7 +17,6 @@ import time
 
 class SelectiveZipExportContext(TarballExportContext):
     def __init__(self, tool, typelist, encoding=None, base_name="setup_tool"):
-
         BaseContext.__init__(self, tool, encoding)
 
         self.typelist = typelist

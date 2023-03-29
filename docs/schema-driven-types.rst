@@ -315,7 +315,7 @@ The important lines here are:
    These are usually derived from Item or Container.
 -  We specify the name of an add permission.
    The default ``cmf.AddPortalContent`` should be used unless you configure a custom permission.
-   Custom permissions are convered later in this manual.
+   Custom permissions are converted later in this manual.
 -  We add a *behavior*.
    Behaviors are re-usable aspects providing semantics and/or schema fields.
    Here, we add the ``INameFromTitle`` behavior, which will give our content object a readable id based on the ``title`` property. We’ll cover other behaviors later.
