@@ -335,5 +335,12 @@ Test, if an indexable file has been indexed::
     >>> obj_pdffile = createContentInContainer(portal, 'NamedFileFTI',
     ...                                 checkContstraints=False,
     ...                                 foo=foo_pdf)
-    >>> getSearchableText(obj_pdffile)
-    ['test', 'plone', 'app', 'dexterity']
+
+Check if we have `pdftotext` binary. Otherwise the indexed test is empty::
+
+    >>> indexed_text = getSearchableText(obj_pdffile)
+    >>> has_pdftotext = "pdf_to_text" in portal.portal_transforms
+    >>> expected_text = ['test', 'plone', 'app', 'dexterity'] if has_pdftotext else []
+    >>> expected_text == indexed_text
+    True
+
