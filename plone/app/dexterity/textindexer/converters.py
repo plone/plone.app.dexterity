@@ -84,7 +84,7 @@ class NamedfileFieldConverter(DefaultDexterityTextIndexFieldConverter):
 
         # if data is already in text/plain, just return it
         if data.contentType == "text/plain":
-            return data.data
+            return safe_text(data.data)
 
         # if there is no path to text/plain, do nothing
         transforms = getToolByName(self.context, "portal_transforms")
@@ -103,7 +103,7 @@ class NamedfileFieldConverter(DefaultDexterityTextIndexFieldConverter):
                 mimetype=data.contentType,
                 filename=data.filename,
             )
-            return datastream.getData()
+            return safe_text(datastream.getData())
 
         except (ConflictError, KeyboardInterrupt):
             raise
