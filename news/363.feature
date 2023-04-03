@@ -1,0 +1,1 @@
+Content types control panel: Add schema identifier to behavior description. @ksuess, @stevepiercy
