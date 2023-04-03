@@ -108,7 +108,7 @@ class TypeBehaviorsForm(form.EditForm):
                 schema.Bool(
                     __name__=fname,
                     title=reg.title,
-                    description=reg.description,
+                    description=f"{reg.description} ({reg.interface.__identifier__})",
                     required=False,
                 )
             )
