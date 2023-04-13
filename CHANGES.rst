@@ -8,6 +8,23 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.5 (2023-04-14)
+------------------
+
+Bug fixes:
+
+
+- Fix for searchable Named(Blob)File indexer. Safely convert to str.
+  [petschki] (#362)
+
+
+Internal:
+
+
+- Update configuration files.
+  [plone devs] (#47959565)
+
+
 3.0.4 (2023-02-08)
 ------------------
 

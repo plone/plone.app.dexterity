@@ -1,2 +1,0 @@
-Fix for searchable Named(Blob)File indexer. Safely convert to str.
-[petschki]
