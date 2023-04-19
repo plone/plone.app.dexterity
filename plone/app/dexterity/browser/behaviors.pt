@@ -4,6 +4,21 @@
        tal:content="view/status"
   ></div>
 
+  <table class="table" >
+    <thead>
+      <tr>
+        <th class="w-25">
+        </th>
+        <th class="w-25">
+          <span i18n:translate="label_name_of_behavior">Name of behavior</span>
+        </th>
+        <th>
+          <span i18n:translate="label_interface_of_behavior">Interface of behavior</span>
+        </th>
+      </tr>
+    </thead>
+  </table>
+
   <form action="."
         method="post"
         tal:attributes="
@@ -12,47 +27,75 @@
         "
   >
     <tal:widgets repeat="widget view/widgets/values|nothing">
-
-      <div class="field"
-           tal:define="
-             error widget/error;
-             hidden python:widget.mode == 'hidden';
-           "
-           tal:attributes="
-             class python:'mb-3 field' + (error and 'alert alert-warning' or '');
-           "
+      <tal:define 
+        tal:define="
+        behavior_name python: widget.field.__name__;
+        behavior_reg python: view.behaviors[behavior_name];
+        "  
       >
-
-        <span class="fieldRequired"
-              title="Required"
-              tal:condition="python:widget.required and not hidden"
-              i18n:attributes="title title_required;"
-              i18n:translate="label_required"
+        <div class="field"
+            tal:define="
+              error widget/error;
+              hidden python:widget.mode == 'hidden';
+            "
+            tal:attributes="
+              class python:'mb-3 field' + (error and 'alert alert-warning' or '');
+            "
         >
-      (Required)
-        </span>
 
-        <div tal:condition="error"
-             tal:content="structure error/render"
-        >
-      Error
-        </div>
+          <span class="fieldRequired"
+                title="Required"
+                tal:condition="python:widget.required and not hidden"
+                i18n:attributes="title title_required;"
+                i18n:translate="label_required"
+          >
+        (Required)
+          </span>
 
-        <div class="widget">
-          <input type="text"
-                 tal:replace="structure widget/render"
-          />
-          <div class="form-text"
-               tal:define="
-                 description widget/field/description;
-               "
-               tal:condition="python:description and not hidden"
-               tal:content="description"
-               i18n:translate=""
-          >field description
+          <div tal:condition="error"
+              tal:content="structure error/render"
+          >
+        Error
+          </div>
+
+          <div class="widget">
+            <table class="table table-borderless table-sm" >
+              <tbody>
+                <tr>
+                  <td class="w-25">
+                    <input
+                      type="text"
+                      tal:replace="structure widget/render"
+                    />
+                  </td>
+                  <td
+                    class="w-25"
+                    tal:content="behavior_name"
+                  >name of behavior</td>
+                  <td
+                    tal:content="python:behavior_reg.interface.__identifier__"
+                  >interface of behavior</td>
+                </tr>
+                <tr
+                  tal:define="description widget/field/description;"
+                  tal:condition="python:description and not hidden"
+                  >
+                  <td colspan="3">
+                    <span
+                      class="form-text"
+                      tal:content="description"
+                      i18n:translate=""
+                    >field description
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
+      
+      </tal:define>
+
 
     </tal:widgets>
     <metal:actions metal:use-macro="context/@@ploneform-macros/actions" />
