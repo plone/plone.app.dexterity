@@ -4,7 +4,7 @@
        tal:content="view/status"
   ></div>
 
-  <table class="table" >
+  <table class="table">
     <thead>
       <tr>
         <th class="w-25">
@@ -27,20 +27,18 @@
         "
   >
     <tal:widgets repeat="widget view/widgets/values|nothing">
-      <tal:define 
-        tal:define="
-        behavior_name python: widget.field.__name__;
-        behavior_reg python: view.behaviors[behavior_name];
-        "  
-      >
+      <tal:define tal:define="
+                    behavior_name python: widget.field.__name__;
+                    behavior_reg python: view.behaviors[behavior_name];
+                  ">
         <div class="field"
-            tal:define="
-              error widget/error;
-              hidden python:widget.mode == 'hidden';
-            "
-            tal:attributes="
-              class python:'mb-3 field' + (error and 'alert alert-warning' or '');
-            "
+             tal:define="
+               error widget/error;
+               hidden python:widget.mode == 'hidden';
+             "
+             tal:attributes="
+               class python:'mb-3 field' + (error and 'alert alert-warning' or '');
+             "
         >
 
           <span class="fieldRequired"
@@ -53,38 +51,34 @@
           </span>
 
           <div tal:condition="error"
-              tal:content="structure error/render"
+               tal:content="structure error/render"
           >
         Error
           </div>
 
           <div class="widget">
-            <table class="table table-borderless table-sm" >
+            <table class="table table-borderless table-sm">
               <tbody>
                 <tr>
                   <td class="w-25">
-                    <input
-                      type="text"
-                      tal:replace="structure widget/render"
+                    <input type="text"
+                           tal:replace="structure widget/render"
                     />
                   </td>
-                  <td
-                    class="w-25"
-                    tal:content="behavior_name"
+                  <td class="w-25"
+                      tal:content="behavior_name"
                   >name of behavior</td>
-                  <td
-                    tal:content="python:behavior_reg.interface.__identifier__"
-                  >interface of behavior</td>
+                  <td tal:content="python:behavior_reg.interface.__identifier__">interface of behavior</td>
                 </tr>
-                <tr
-                  tal:define="description widget/field/description;"
-                  tal:condition="python:description and not hidden"
-                  >
+                <tr tal:define="
+                      description widget/field/description;
+                    "
+                    tal:condition="python:description and not hidden"
+                >
                   <td colspan="3">
-                    <span
-                      class="form-text"
-                      tal:content="description"
-                      i18n:translate=""
+                    <span class="form-text"
+                          tal:content="description"
+                          i18n:translate=""
                     >field description
                     </span>
                   </td>
@@ -93,7 +87,7 @@
             </table>
           </div>
         </div>
-      
+
       </tal:define>
 
 
