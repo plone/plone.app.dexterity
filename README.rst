@@ -6,7 +6,8 @@
 Introduction
 ============
 
-Dexterity wants to make some things really easy. These are:
+Dexterity wants to make some things really easy.
+These are:
 
 * Create a "real" content type entirely through-the-web without having to
   know programming.
