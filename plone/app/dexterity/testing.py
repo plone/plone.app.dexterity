@@ -3,16 +3,13 @@ from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.testing.zope import WSGI_SERVER_FIXTURE
+from zope.interface import directlyProvides
 
 
 class DexterityFixture(PloneSandboxLayer):
     defaultBases = (AUTOLOGIN_LIBRARY_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        import plone.schema
-
-        self.loadZCML(package=plone.schema, context=configurationContext)
-
         import plone.app.dexterity
 
         self.loadZCML(name="meta.zcml", package=plone.app.dexterity)

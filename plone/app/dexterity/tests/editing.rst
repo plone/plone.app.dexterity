@@ -8,6 +8,9 @@ To demonstrate this, we'll need a logged in test browser::
 
   >>> from plone.app.testing import TEST_USER_ID, TEST_USER_NAME, TEST_USER_PASSWORD, setRoles
   >>> portal = layer['portal']
+  >>> from plone.schema.interfaces import IFormLayer
+  >>> from zope.interface import alsoProvides
+  >>> alsoProvides(portal.REQUEST, IFormLayer)
   >>> setRoles(portal, TEST_USER_ID, ['Manager'])
   >>> import transaction; transaction.commit()
   >>> from plone.testing.zope import Browser
