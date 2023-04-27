@@ -90,8 +90,6 @@ setup(
             "plone.i18n",
             "plone.testing",
             "robotsuite",
-            "plone.schema[schemaeditor]",
-            "plone.schema[supermodel]",
         ],
         "grok": [
             "five.grok",

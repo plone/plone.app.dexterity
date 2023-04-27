@@ -9,10 +9,6 @@ class DexterityFixture(PloneSandboxLayer):
     defaultBases = (AUTOLOGIN_LIBRARY_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        import plone.schema
-
-        self.loadZCML(package=plone.schema, context=configurationContext)
-
         import plone.app.dexterity
 
         self.loadZCML(name="meta.zcml", package=plone.app.dexterity)
