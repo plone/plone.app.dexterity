@@ -93,6 +93,22 @@ class TypeBehaviorsForm(form.EditForm):
         return BehaviorConfigurationAdapter(self.context)
 
     @property
+    def behaviors(self):
+        """Return dict of (behavior name, reg)"""
+        counts = Counter([id(reg) for name, reg in getUtilitiesFor(IBehavior)])
+        behavs = {}
+        for name, reg in getUtilitiesFor(IBehavior):
+            if name in TTW_BEHAVIOR_BLACKLIST:
+                # skip blacklisted
+                continue
+            with_name = counts[id(reg)] > 1
+            if with_name and reg.name != name:
+                continue
+            fname = safe_text(reg.name if reg.name else name)
+            behavs[fname] = reg
+        return behavs
+
+    @property
     def fields(self):
         counts = Counter([id(reg) for name, reg in getUtilitiesFor(IBehavior)])
         fields = []
