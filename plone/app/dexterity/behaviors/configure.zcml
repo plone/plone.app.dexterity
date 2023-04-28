@@ -82,7 +82,7 @@
       name="plone.navigationroot"
       title="Navigation root"
       description="Make all items of this type a navigation root"
-      provides="plone.app.layout.navigation.interfaces.INavigationRoot"
+      provides="plone.base.interfaces.INavigationRoot"
       />
 
   <!-- Exclude from navigation -->
