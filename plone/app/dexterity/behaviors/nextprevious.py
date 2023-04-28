@@ -1,7 +1,6 @@
 from AccessControl import getSecurityManager
 from Acquisition import aq_base
 from plone.app.dexterity import _
-from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.registry.interfaces import IRegistry
@@ -120,6 +119,31 @@ class NextPreviousBase:
             portal_type=ptype,
         )
 
+
+class INextPreviousProvider(Interface):
+    """A folderish component capable of describing the next and previous
+    item relative to a particular id.
+    """
+
+    enabled = schema.Bool(title="True if next/previous behaviour is enabled")
+
+    def getNextItem(obj):
+        """Returns information about next item in the container relative to
+        the given object.
+
+        This is a dict with the following keys:
+
+            - id, the id of the object
+            - url, the url of the object
+            - title, the title of the object
+            - description, a description of the object
+            - portal_type, the object's portal type
+        """
+
+    def getPreviousItem(obj):
+        """Returns the previous item in the container relative to the given
+        object
+        """
 
 @implementer(INextPreviousProvider)
 @adapter(INextPreviousToggle)
