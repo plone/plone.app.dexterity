@@ -145,6 +145,7 @@ class INextPreviousProvider(Interface):
         object
         """
 
+
 @implementer(INextPreviousProvider)
 @adapter(INextPreviousToggle)
 class NextPreviousToggle(NextPreviousBase):
