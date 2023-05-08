@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+3.1.0 (2023-05-08)
+------------------
+
+New features:
+
+
+- Content types control panel: Show behavior name and interface. @ksuess, @stevepiercy (#363)
+
+
 3.0.5 (2023-04-14)
 ------------------
 
