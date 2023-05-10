@@ -234,7 +234,7 @@ class IOwnership(model.Schema):
 def creatorsDefault(data):
     user = getSecurityManager().getUser()
     # NB: CMF users are UTF-8 encoded bytes, decode them before inserting
-    return user and (safe_unicode(user.getId()),)
+    return user and user.getId() and (safe_unicode(user.getId()),)
 
 
 CreatorsDefaultValue = ComputedWidgetAttribute(
