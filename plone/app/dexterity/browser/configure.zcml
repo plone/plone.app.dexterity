@@ -38,15 +38,6 @@
       permission="zope2.View"
       />
 
-  <!-- warning when editing default pages -->
-  <browser:viewlet
-      name="plone.app.dexterity.defaultpagewarning"
-      view="plone.dexterity.interfaces.IDexterityEditForm"
-      manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
-      template="default_page_warning.pt"
-      permission="cmf.ModifyPortalContent"
-      />
-
   <!-- Control panel -->
 
   <browser:page

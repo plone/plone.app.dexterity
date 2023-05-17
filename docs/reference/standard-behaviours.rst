@@ -27,7 +27,7 @@ plone.namefromfilename          plone.app.dexterity.behaviors.filename.INameFrom
 plone.namefromtitle             plone.app.content.interfaces.INameFromTitle                        Name from title:
                                                                                                    Automatically generate short URL name for content based on its initial title.
                                                                                                    Not a form field provider.
-plone.navigationroot            plone.app.layout.navigation.interfaces.INavigationRoot             Navigation root:
+plone.navigationroot            plone.base.interfaces.INavigationRoot                              Navigation root:
                                                                                                    Make all items of this type a navigation root.
                                                                                                    Not a form field provider.
 plone.nextpreviousenabled       plone.app.dexterity.behaviors.nextprevious.INextPreviousEnabled    Next previous navigation:

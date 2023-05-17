@@ -1,5 +1,5 @@
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
-from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
+from plone.app.dexterity.nextprevious import INextPreviousProvider
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
