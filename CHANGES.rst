@@ -8,6 +8,19 @@ Changelog
 
 .. towncrier release notes start
 
+3.1.1 (2023-05-22)
+------------------
+
+Bug fixes:
+
+
+- Fix transitive circular dependency on `plone.app.layout`.
+  Use moved imports in `plone.base`.
+  Move `plone.app.layout.nextprevious.interfaces.INextPreviousProvider` to `.behaviors.nextprevious`.
+  Move defaultpage warning viewlet to `plone.app.layout`.
+  [@jensens] (fix-circular-dep-palayout)
+
+
 3.1.0 (2023-05-08)
 ------------------
 

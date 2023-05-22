@@ -1,5 +1,0 @@
-Fix transitive circular dependency on `plone.app.layout`.
-Use moved imports in `plone.base`.
-Move `plone.app.layout.nextprevious.interfaces.INextPreviousProvider` to `.behaviors.nextprevious`.
-Move defaultpage warning viewlet to `plone.app.layout`.
-[@jensens]
