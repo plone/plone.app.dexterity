@@ -63,7 +63,6 @@ setup(
         "lxml",
         "plone.base",
         "plone.app.content",
-        "plone.app.layout",
         "plone.app.uuid",
         "plone.app.z3cform>=1.1.0",
         "plone.autoform>=1.1",
@@ -94,6 +93,7 @@ setup(
             "plone.i18n",
             "plone.testing",
             "robotsuite",
+            "plone.api",
         ],
         "grok": [
             "five.grok",
