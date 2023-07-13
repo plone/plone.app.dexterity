@@ -1,8 +1,6 @@
 # Generated from:
 # https://github.com/plone/meta/tree/master/config/default
-[bdist_wheel]
-universal = 0
-
+# See the inline comments on how to expand/tweak this configuration file
 [flake8]
 doctests = 1
 ignore =
@@ -17,9 +15,10 @@ ignore =
 per-file-ignores =
     plone/app/dexterity/textindexer/__init__.py:F401
 
-[check-manifest]
-ignore =
-    .editorconfig
-    .meta.toml
-    .pre-commit-config.yaml
-    tox.ini
+##
+# Add extra configuration options in .meta.toml:
+#  [flake8]
+#  extra_lines = """
+#  _your own configuration lines_
+#  """
+##

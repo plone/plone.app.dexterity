@@ -1,3 +1,4 @@
+from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
 
@@ -10,10 +11,10 @@ short_description = (
     "alternative to Archetypes that is more light-weight and modular."
 )
 
-long_description = "{}\n{}\n{}".format(
-    open("README.rst").read(),
-    open("RELEASE_NOTES.rst").read(),
-    open("CHANGES.rst").read(),
+long_description = (
+    f"{Path('README.rst').read_text()}\n"
+    f"{Path('RELEASE_NOTES.rst').read_text()}\n"
+    f"{Path('CHANGES.rst').read_text()}"
 )
 
 setup(
@@ -21,6 +22,9 @@ setup(
     version=version,
     description=short_description,
     long_description=long_description,
+    long_description_content_type="text/x-rst",
+    # Get more strings from
+    # https://pypi.org/classifiers/
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
@@ -59,7 +63,6 @@ setup(
         "lxml",
         "plone.base",
         "plone.app.content",
-        "plone.app.layout",
         "plone.app.uuid",
         "plone.app.z3cform>=1.1.0",
         "plone.autoform>=1.1",
@@ -90,6 +93,7 @@ setup(
             "plone.i18n",
             "plone.testing",
             "robotsuite",
+            "plone.api",
         ],
         "grok": [
             "five.grok",
