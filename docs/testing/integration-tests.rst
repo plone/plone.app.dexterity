@@ -11,7 +11,7 @@ very least.
 To help manage test setup, we’ll make use of the Zope test runner’s
 concept of *layers*.
 Layers allow common test setup (such as configuring a Plone site and
-installing a product) to take place once and be re-used by multiple test
+installing a product) to take place once and be reused by multiple test
 cases.
 Those test cases can still modify the environment, but their changes will be
 torn down and the environment reset to the layer’s initial state between

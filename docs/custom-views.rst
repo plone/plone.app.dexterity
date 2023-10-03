@@ -206,7 +206,7 @@ Display view
 In the previous section, we created a browser view.
 This kind of view is the most common.
 Sometimes we want to make use of the widgets and information in the type’s schema more directly.
-For example to invoke transforms or re-use more complex HTML.
+For example to invoke transforms or reuse more complex HTML.
 
 To do this, you can use a *display view*.
 This is really just a view base class that knows about the schema of a type.

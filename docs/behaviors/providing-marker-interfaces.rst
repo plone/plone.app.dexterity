@@ -65,7 +65,7 @@ The ZCML registration looks like this:
             />
 
 Notice the use of the *AnnotationStorage* factory.
-This is a re-usable factory that can be used to easily create behaviors from schema interfaces that store their values in annotations.
+This is a reusable factory that can be used to easily create behaviors from schema interfaces that store their values in annotations.
 We’ll describe this in more detail later.
 We could just as easily have provided our own factory in this example.
 
@@ -226,6 +226,6 @@ This is quite a complex behavior, but hopefully you can see what’s going on:
 -  Similarly, we register a multi-adapter to *IIndexer*, as provided by *plone.indexer*.
 
 Although this behavior provides a lot of functionality, it is no more difficult for integrators to use than any other:
-they would simply list the behavior interface (*iz.behaviors.reviewers.IReviewers* in this case) in the FTI, and all this functionality comes to life. This is the true power of behaviors: developers can bundle up complex functionality into re-usable behaviors, which can then be enabled on a per-type basis by integrators (or the same developers in lazier moments).
+they would simply list the behavior interface (*iz.behaviors.reviewers.IReviewers* in this case) in the FTI, and all this functionality comes to life. This is the true power of behaviors: developers can bundle up complex functionality into reusable behaviors, which can then be enabled on a per-type basis by integrators (or the same developers in lazier moments).
 
 .. _plone.pony: http://pypi.python.org/pypi/plone.pony

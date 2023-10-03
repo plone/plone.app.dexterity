@@ -5,7 +5,7 @@ Introduction
 
 This manual should teach you everything you need to know to write your own behaviors, but not how to integrate them into another framework.
 
-*Behaviors* are re-usable bundles of functionality that can be enabled or disabled on a per-content type basis.
+*Behaviors* are reusable bundles of functionality that can be enabled or disabled on a per-content type basis.
 Examples might include:
 
 -  A set of form fields (on standard add and edit forms),
@@ -17,8 +17,8 @@ You would typically not write a behavior as a one-off.
 Behaviors are normally used when:
 
 -  You want to share fields and functionality across multiple types easily.
-   Behaviors allow you to write a schema and associated components (e.g. adapters, event handlers, views, viwelets) once and re-use them easily.
--  A more experienced developer is making functionality available for re-use by less experienced integrators.
+   Behaviors allow you to write a schema and associated components (e.g. adapters, event handlers, views, viwelets) once and reuse them easily.
+-  A more experienced developer is making functionality available for reuse by less experienced integrators.
    For example, a behavior can be packaged up and release as an add-on product.
    Integrators can then install that product and use the behavior in their own types, either in code or through-the-web.
 

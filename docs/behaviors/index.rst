@@ -1,7 +1,7 @@
 Behaviors
 ==========
 
-**How to create re-usable behaviors for Dexterity types**
+**How to create reusable behaviors for Dexterity types**
 
 .. toctree::
    :maxdepth: 2
