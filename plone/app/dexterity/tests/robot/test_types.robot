@@ -1,8 +1,7 @@
 *** Settings *****************************************************************
 
-Resource  plone/app/robotframework/keywords.robot
-Resource  plone/app/robotframework/saucelabs.robot
-Resource  plone/app/robotframework/selenium.robot
+Resource  plone/app/robotframework/browser.robot
+Resource  plone/app/robotframework/user.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
@@ -23,13 +22,13 @@ Scenario: type title is normalized
 
 adding a new content type
   Go to  ${PLONE_URL}/@@dexterity-types
-  Click Overlay Button  Add New Content Type…
+  Click  "Add New Content Type…"
 
 type title is
   [Arguments]  ${title}
-  Input text  form-widgets-title  ${title}
+  Fill text  id=form-widgets-title  ${title}
 
 type id should become
   [Arguments]  ${id}
-  Set Focus To Element  form-widgets-id
-  Wait until keyword succeeds  10  1  Textfield Value Should Be  form-widgets-id  ${id}
+  Focus  id=form-widgets-id
+  Get text  id=form-widgets-id  ==  ${id}
