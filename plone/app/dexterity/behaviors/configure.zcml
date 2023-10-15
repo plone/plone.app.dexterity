@@ -64,7 +64,7 @@
       name="plone.namefromtitle"
       title="Name from title"
       description="Automatically generate short URL name for content based on its initial title"
-      provides="plone.app.content.interfaces.INameFromTitle"
+      provides="plone.base.interfaces.INameFromTitle"
       />
 
   <!-- File-name-to-id -->

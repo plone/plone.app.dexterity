@@ -1,4 +1,4 @@
-from plone.app.content.interfaces import INameFromTitle
+from plone.base.interfaces import INameFromTitle
 from plone.base.utils import safe_hasattr
 from plone.rfc822.interfaces import IPrimaryFieldInfo
 from zope.component import adapter
