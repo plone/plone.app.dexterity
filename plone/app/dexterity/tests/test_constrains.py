@@ -1,4 +1,3 @@
-from plone.app.content.browser.constraintypes import IConstrainForm
 from plone.app.dexterity.behaviors import constrains
 from plone.app.dexterity.testing import DEXTERITY_FUNCTIONAL_TESTING
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
@@ -11,7 +10,6 @@ from plone.base.interfaces.constrains import ISelectableConstrainTypes
 from plone.dexterity.fti import DexterityFTI
 from plone.testing.zope import Browser
 from Products.CMFCore.utils import getToolByName
-from zope.interface.exceptions import Invalid
 
 import unittest
 
@@ -324,20 +322,6 @@ class DocumentIntegrationTest(unittest.TestCase):
         self.assertEqual(
             self.types_id_subset, [x.getId() for x in behavior.allowedContentTypes()]
         )
-
-    def test_formschemainvariants(self):
-        class Data:
-            allowed_types = []
-            secondary_types = []
-
-        bad = Data()
-        bad.allowed_types = []
-        bad.secondary_types = ["1"]
-        good = Data()
-        good.allowed_types = ["1"]
-        good.secondary_types = []
-        self.assertTrue(IConstrainForm.validateInvariants(good) is None)
-        self.assertRaises(Invalid, IConstrainForm.validateInvariants, bad)
 
 
 class FolderConstrainViewFunctionalText(unittest.TestCase):

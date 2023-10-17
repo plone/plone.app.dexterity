@@ -1,0 +1,3 @@
+Move some tests to `plone.app.content` to avoid
+a circular dependency with that package.
+[gforcada]
