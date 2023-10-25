@@ -8,6 +8,19 @@ Changelog
 
 .. towncrier release notes start
 
+3.1.2 (2023-10-25)
+------------------
+
+Internal:
+
+
+- Update configuration files.
+  [plone devs] (55bda5c9)
+- Move some tests to `plone.app.content` to avoid
+  a circular dependency with that package.
+  [gforcada] (#3858)
+
+
 3.1.1 (2023-05-22)
 ------------------
 
