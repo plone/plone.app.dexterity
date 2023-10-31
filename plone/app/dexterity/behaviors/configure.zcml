@@ -61,6 +61,12 @@
 
   <configure zcml:condition="installed plone.app.content">
     <!-- Title-to-id -->
+    <!-- Note: we must keep `plone.app.content.interfaces.INameFromTitle` as
+         `provides`, instead of the new location in `plone.base`,
+         as long as we want to avoid breaking sites that have the old interface
+         in the behaviors list of a portal_type, instead of the named behavior.
+         See https://github.com/plone/plone.app.dexterity/pull/379
+         -->
     <plone:behavior
         name="plone.namefromtitle"
         title="Name from title"
