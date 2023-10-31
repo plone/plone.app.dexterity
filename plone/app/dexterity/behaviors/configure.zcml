@@ -59,23 +59,25 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       />
 
-  <!-- Title-to-id -->
-  <plone:behavior
-      name="plone.namefromtitle"
-      title="Name from title"
-      description="Automatically generate short URL name for content based on its initial title"
-      provides="plone.app.content.interfaces.INameFromTitle"
-      />
+  <configure zcml:condition="installed plone.app.content">
+    <!-- Title-to-id -->
+    <plone:behavior
+        name="plone.namefromtitle"
+        title="Name from title"
+        description="Automatically generate short URL name for content based on its initial title"
+        provides="plone.app.content.interfaces.INameFromTitle"
+        />
 
-  <!-- File-name-to-id -->
-  <plone:behavior
-      name="plone.namefromfilename"
-      title="Name from file name"
-      description="Automatically generate short URL name for content based on its primary field file name"
-      provides=".filename.INameFromFileName"
-      />
+    <!-- File-name-to-id -->
+    <plone:behavior
+        name="plone.namefromfilename"
+        title="Name from file name"
+        description="Automatically generate short URL name for content based on its primary field file name"
+        provides=".filename.INameFromFileName"
+        />
 
-  <adapter factory=".filename.NameFromFileName" />
+    <adapter factory=".filename.NameFromFileName" />
+  </configure>
 
   <!-- Navigation root -->
   <plone:behavior

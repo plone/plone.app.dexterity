@@ -1,0 +1,3 @@
+Make the dependency on ``plone.app.content`` conditional.
+This is for ``INameFromTitle``, which we want to move to ``plone.base``.
+[maurits]

@@ -62,7 +62,6 @@ setup(
         # Plone/Zope core
         "lxml",
         "plone.base",
-        "plone.app.content",
         "plone.app.uuid",
         "plone.app.z3cform>=1.1.0",
         "plone.autoform>=1.1",
