@@ -92,7 +92,7 @@ Zope = [
   'Products.CMFCore', 'Products.CMFDynamicViewFTI',
 ]
 python-dateutil = ['dateutil']
-ignore-packages = ['plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield']
+ignore-packages = ['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield']
 
 ##
 # Add extra configuration options in .meta.toml:
