@@ -66,6 +66,7 @@ setup(
         "plone.app.z3cform>=1.1.0",
         "plone.autoform>=1.1",
         "plone.contentrules",
+        "plone.portlets",
         "plone.schema>=1.1.0",
         "plone.supermodel>=1.1",
         "plone.z3cform>=0.6.0",
