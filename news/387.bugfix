@@ -1,1 +1,1 @@
-Remove a DeprecationWarning from a moved p.a.widgets import. [@jensens]
+Remove a DeprecationWarning from a moved p.a.z3cform.widgets import. [@jensens]
