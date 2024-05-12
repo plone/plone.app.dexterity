@@ -2,9 +2,9 @@ from AccessControl.SecurityManagement import getSecurityManager
 from datetime import datetime
 from DateTime import DateTime
 from plone.app.dexterity import _
-from plone.app.z3cform.widget import AjaxSelectFieldWidget
-from plone.app.z3cform.widget import DatetimeFieldWidget
-from plone.app.z3cform.widget import SelectFieldWidget
+from plone.app.z3cform.widgets.datetime import DatetimeFieldWidget
+from plone.app.z3cform.widgets.select import AjaxSelectFieldWidget
+from plone.app.z3cform.widgets.select import Select2FieldWidget
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.base.interfaces.siteroot import IPloneSiteRoot
@@ -116,7 +116,7 @@ class ICategorization(model.Schema):
         missing_value="",
         defaultFactory=default_language,
     )
-    directives.widget("language", SelectFieldWidget)
+    directives.widget("language", Select2FieldWidget)
 
     directives.omitted("subjects", "language")
     directives.no_omit(IEditForm, "subjects", "language")
