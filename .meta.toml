@@ -3,7 +3,7 @@
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "6e36bcc4"
+commit-id = "5d669ee9"
 
 [pyproject]
 codespell_ignores = "hove"
@@ -14,3 +14,6 @@ extra_lines = """
 per-file-ignores =
     plone/app/dexterity/textindexer/__init__.py:F401
 """
+
+[tox]
+constraints_file = "https://dist.plone.org/release/6.1-dev/constraints.txt"
