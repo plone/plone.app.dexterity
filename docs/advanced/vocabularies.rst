@@ -224,7 +224,7 @@ Named vocabularies
 ~~~~~~~~~~~~~~~~~~~~
 
 Context source binders are great for simple dynamic vocabularies.
-They are also re-usable, since you can import the source from a single location and use it in multiple instances.
+They are also reusable, since you can import the source from a single location and use it in multiple instances.
 
 Sometimes, however, we want to provide an additional level of decoupling, by using *named* vocabularies.
 These are similar to context source binders,

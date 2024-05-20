@@ -8,6 +8,30 @@ Changelog
 
 .. towncrier release notes start
 
+3.2.0 (2023-11-03)
+------------------
+
+Internal:
+
+
+- Make the dependency on ``plone.app.content`` conditional.
+  This is for ``INameFromTitle``, which we want to move to ``plone.base``.
+  [maurits] (#3858)
+
+
+3.1.2 (2023-10-25)
+------------------
+
+Internal:
+
+
+- Update configuration files.
+  [plone devs] (55bda5c9)
+- Move some tests to `plone.app.content` to avoid
+  a circular dependency with that package.
+  [gforcada] (#3858)
+
+
 3.1.1 (2023-05-22)
 ------------------
 

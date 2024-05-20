@@ -1,6 +1,7 @@
 """BBB import for 'Related Items' behavior that was moved to
 plone.app.relationfield in Dexterity 2.0.
 """
+
 try:
     from plone.app.relationfield.behavior import IRelatedItems  # noqa
 except ImportError:

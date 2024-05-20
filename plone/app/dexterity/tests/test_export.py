@@ -1,4 +1,5 @@
 """Test the @@types-export view."""
+
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 from plone.app.dexterity.tests.test_constrains import add_item_type
 from xml.dom.minidom import parseString

@@ -1,4 +1,5 @@
 """Test the types import."""
+
 from DateTime.DateTime import DateTime
 from plone.app.dexterity.browser.import_types import ITypeProfileImport
 from plone.app.dexterity.browser.import_types import TypeProfileImport

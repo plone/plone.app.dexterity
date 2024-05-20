@@ -3,7 +3,7 @@ Using behaviors
 
 **Finding and adding behaviors**
 
-Dexterity introduces the concept of *behaviors* – re-usable bundles of
+Dexterity introduces the concept of *behaviors* – reusable bundles of
 functionality and/or form fields which can be turned on or off on a
 per-type basis.
 

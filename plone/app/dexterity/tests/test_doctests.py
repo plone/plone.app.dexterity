@@ -8,7 +8,6 @@ import unittest
 tests = (
     "discussion.txt",
     "editing.rst",
-    "namefromtitle.txt",
     "metadata.txt",
     "nextprevious.txt",
     "filename.txt",

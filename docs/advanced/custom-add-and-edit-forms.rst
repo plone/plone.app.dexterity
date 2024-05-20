@@ -91,7 +91,7 @@ it needs to know which ``portal_type`` to use.
 
 You should realise that the FTIs in the ``portal_types`` tool can be
 modified through the web.
-It is even possible to create new types through the web that re-use existing
+It is even possible to create new types through the web that reuse existing
 classes and factories.
 
 For this reason, add forms are looked up via a namespace traversal
