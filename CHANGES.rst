@@ -8,6 +8,22 @@ Changelog
 
 .. towncrier release notes start
 
+4.0.0 (2024-05-30)
+------------------
+
+Bug fixes:
+
+
+- Remove a DeprecationWarning from a moved p.a.z3cform.widgets import. [@jensens] (#387)
+
+
+Internal:
+
+
+- Update configuration files.
+  [plone devs] (6e36bcc4)
+
+
 3.2.0 (2023-11-03)
 ------------------
 
