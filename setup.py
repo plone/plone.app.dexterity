@@ -88,7 +88,6 @@ setup(
         "test": [
             "plone.app.robotframework",
             "plone.app.testing",
-            "plone.app.discussion",
             "plone.i18n",
             "plone.testing",
             "robotsuite",

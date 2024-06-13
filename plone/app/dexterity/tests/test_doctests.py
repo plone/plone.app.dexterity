@@ -6,7 +6,6 @@ import unittest
 
 
 tests = (
-    "discussion.txt",
     "editing.rst",
     "metadata.txt",
     "nextprevious.txt",

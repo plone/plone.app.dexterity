@@ -1,0 +1,3 @@
+`plone.app.discussion` is now a core addon.
+The `plone.discussion` behavior class was moved over there.
+[@jensens]
