@@ -113,14 +113,6 @@
       provides=".nextprevious.INextPreviousToggle"
       />
 
-  <!--Allow discussion -->
-  <plone:behavior
-      name="plone.allowdiscussion"
-      title="Allow discussion"
-      description="Allow discussion on this item"
-      provides=".discussion.IAllowDiscussion"
-      />
-
   <adapter factory=".nextprevious.NextPreviousToggle" />
 
   <adapter
