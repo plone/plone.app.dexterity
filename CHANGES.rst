@@ -8,6 +8,18 @@ Changelog
 
 .. towncrier release notes start
 
+4.0.1 (2024-09-03)
+------------------
+
+Breaking changes:
+
+
+- `plone.app.discussion` is now a core addon.
+  The `plone.discussion` behavior class was moved over there.
+  This is the real reason that 4.0.0 was a breaking release: this is for Plone 6.1 only.
+  [@jensens] (#371)
+
+
 4.0.0 (2024-05-30)
 ------------------
 
