@@ -8,6 +8,22 @@ Changelog
 
 .. towncrier release notes start
 
+3.2.1 (2024-12-16)
+------------------
+
+Internal:
+
+
+- Update configuration files.
+  [plone devs] (6e36bcc4)
+
+
+Tests
+
+
+- port robot tests, use browser library [1letter] (#398)
+
+
 3.2.0 (2023-11-03)
 ------------------
 
