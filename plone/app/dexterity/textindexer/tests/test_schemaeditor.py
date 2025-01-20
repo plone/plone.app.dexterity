@@ -5,7 +5,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.dexterity.fti import DexterityFTI
-from plone.testing.z2 import Browser
+from plone.testing.zope import Browser
 
 import transaction
 import unittest
