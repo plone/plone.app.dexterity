@@ -1,5 +1,4 @@
-"""Dynamic SearchableText index for dexterity content types
-"""
+"""Dynamic SearchableText index for dexterity content types"""
 
 from plone.app.dexterity.behaviors.metadata import IBasic
 from plone.app.dexterity.textindexer import utils

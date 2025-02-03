@@ -1,5 +1,4 @@
-"""Contains the indexer and some helper methods for indexing.
-"""
+"""Contains the indexer and some helper methods for indexing."""
 
 from plone.app.dexterity.textindexer import interfaces
 from plone.app.dexterity.textindexer.behavior import IDexterityTextIndexer
