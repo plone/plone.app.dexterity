@@ -1,5 +1,4 @@
-""" Support for importing Dexterity types from GS zip file.
-"""
+"""Support for importing Dexterity types from GS zip file."""
 
 # XXX: need to make exceptions more specific, shorten messages
 from DateTime.DateTime import DateTime

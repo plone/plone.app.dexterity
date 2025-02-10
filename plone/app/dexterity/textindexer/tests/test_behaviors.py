@@ -1,5 +1,4 @@
-"""Containing a tests suite for testing the behaviors.
-"""
+"""Containing a tests suite for testing the behaviors."""
 
 from plone.app.dexterity.textindexer import testing
 from plone.app.dexterity.textindexer.directives import searchable
