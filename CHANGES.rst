@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+4.0.5 (2025-06-05)
+------------------
+
+Bug fixes:
+
+
+- Re-enable subjects into SearchableText indexing. [cekk] (#407)
+
+
 4.0.4 (2025-03-11)
 ------------------
 
