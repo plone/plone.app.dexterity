@@ -80,10 +80,12 @@ class NextPreviousEnabledTests(NextPreviousBase, unittest.TestCase):
         adapter = INextPreviousProvider(container)
         # text data for next/previous items
         next = adapter.getNextItem(container.subDoc2)
+        self.assertEqual(next["obj"], container.subDoc3)
         self.assertEqual(next["id"], "subDoc3")
         self.assertEqual(next["portal_type"], "Document")
         self.assertEqual(next["url"], container.subDoc3.absolute_url())
         previous = adapter.getPreviousItem(container.subDoc2)
+        self.assertEqual(previous["obj"], container.subDoc1)
         self.assertEqual(previous["id"], "subDoc1")
         self.assertEqual(previous["portal_type"], "Document")
         self.assertEqual(previous["url"], container.subDoc1.absolute_url())

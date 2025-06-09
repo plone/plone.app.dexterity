@@ -112,6 +112,7 @@ class NextPreviousBase:
         if ptype in self.vat:  # "use view action in listings"
             url += "/view"
         return dict(
+            obj=obj,
             id=obj.getId(),
             url=url,
             title=obj.Title(),
@@ -133,6 +134,7 @@ class INextPreviousProvider(Interface):
 
         This is a dict with the following keys:
 
+            - obj, the object itself
             - id, the id of the object
             - url, the url of the object
             - title, the title of the object
