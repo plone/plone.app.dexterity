@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+4.1.0 (2025-06-10)
+------------------
+
+New features:
+
+
+- Include `obj` in the results from the `INextPreviousProvider` adapter. @davisagli
+
+
 4.0.5 (2025-06-05)
 ------------------
 
