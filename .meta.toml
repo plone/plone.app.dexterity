@@ -3,7 +3,7 @@
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "015cfbf7"
+commit-id = "2.0.1.dev0"
 
 [pyproject]
 codespell_ignores = "hove"
@@ -12,8 +12,8 @@ dependencies_ignores = "['plone.app.content', 'plone.app.relationfield', 'plone.
 [flake8]
 extra_lines = """
 per-file-ignores =
-    plone/app/dexterity/textindexer/__init__.py:F401
+    src/plone/app/dexterity/textindexer/__init__.py:F401
 """
 
 [tox]
-constraints_file = "https://dist.plone.org/release/6.1-dev/constraints.txt"
+test_matrix = { "6.2" = ["3.13", "3.12", "3.11", "3.10"], "6.1" = ["3.13", "3.12", "3.11", "3.10"] }
