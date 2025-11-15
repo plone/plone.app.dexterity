@@ -67,7 +67,6 @@ setup(
         "plone.supermodel>=1.1",
         "plone.z3cform>=0.6.0",
         "Products.GenericSetup",
-        "setuptools",
         "Zope",
         "zope.browserpage",
         "z3c.form>=3.0.0",
