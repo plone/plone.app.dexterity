@@ -4,7 +4,6 @@ from plone.testing import layered
 import doctest
 import unittest
 
-
 tests = (
     "editing.rst",
     "metadata.txt",

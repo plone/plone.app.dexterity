@@ -8,7 +8,6 @@ from plone.app.dexterity.textindexer.directives import SEARCHABLE_KEY
 from plone.app.dexterity.textindexer.interfaces import IDexterityTextIndexFieldConverter
 from plone.app.dexterity.textindexer.interfaces import IDynamicTextIndexExtender
 
-
 utils.searchable(IBasic, "title")
 utils.searchable(IBasic, "description")
 utils.searchable(ICategorization, "subjects")

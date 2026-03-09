@@ -29,7 +29,6 @@ from ZPublisher.BaseRequest import DefaultPublishTraverse
 
 import urllib
 
-
 ALLOWED_FIELDS = [
     "plone.app.textfield.RichText",
     "plone.namedfile.field.NamedBlobImage",

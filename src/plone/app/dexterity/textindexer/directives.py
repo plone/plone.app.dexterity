@@ -2,7 +2,6 @@ from plone.supermodel.directives import MetadataListDirective
 from zope.interface import Interface
 from zope.interface.interfaces import IInterface
 
-
 SEARCHABLE_KEY = "plone.app.dexterity.textindexer.searchable"
 
 

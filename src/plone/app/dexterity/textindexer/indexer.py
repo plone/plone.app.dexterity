@@ -21,7 +21,6 @@ from zope.interface import alsoProvides
 
 import logging
 
-
 LOGGER = logging.getLogger("plone.app.dexterity.textindexer")
 
 
