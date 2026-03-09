@@ -5,7 +5,6 @@ IDynamicTextIndexExtender          dynamic text extender adapter interface
 
 from zope.interface import Interface
 
-
 # Supermodel namespace and prefix
 INDEXER_NAMESPACE = "http://namespaces.plone.org/supermodel/indexer"
 INDEXER_PREFIX = "indexer"

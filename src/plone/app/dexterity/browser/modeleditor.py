@@ -13,7 +13,6 @@ from zope.deprecation import deprecate
 
 import html
 
-
 NAMESPACE = "{http://namespaces.plone.org/supermodel/schema}"
 
 
@@ -21,20 +20,16 @@ class ModelEditorView(BrowserView):
     """Editor view."""
 
     @property
-    @deprecate(
-        """`ModelEditorView.escaped_model_source` is deprecated will be removed
+    @deprecate("""`ModelEditorView.escaped_model_source` is deprecated will be removed
 in Plone 7. Use `model_source` without the `structure` TALES expression
-instead."""
-    )
+instead.""")
     def escaped_model_source(self):
         # Return the HTML escaped model source.
         return html.escape(self.model_source, False)
 
-    @deprecate(
-        """`ModelEditorView.modelSource` is deprecated and will be removed in
+    @deprecate("""`ModelEditorView.modelSource` is deprecated and will be removed in
 Plone 7. Use `model_source` instead.
-"""
-    )
+""")
     def modelSource(self):
         # BBB
         return self.model_source
