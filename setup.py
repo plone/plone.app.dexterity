@@ -1,7 +1,6 @@
 from pathlib import Path
 from setuptools import setup
 
-
 version = "5.0.0a2.dev0"
 
 short_description = (
