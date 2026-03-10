@@ -61,7 +61,11 @@ class DexterityRichTextIndexFieldConverter:
         textvalue = self.field.get(self.context)
         if textvalue is None:
             return ""
-        html = safe_text(textvalue.output)
+        # Before you think about switching raw/output or
+        # mimeType/outputMimeType, first read
+        # https://github.com/plone/Products.CMFPlone/issues/2066
+        # And https://github.com/plone/plone.app.dexterity/issues/423
+        html = safe_text(textvalue.raw)
         transforms = getToolByName(self.context, "portal_transforms")
         stream = transforms.convertTo("text/plain", html, mimetype=textvalue.mimeType)
         return stream.getData().strip()
