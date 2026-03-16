@@ -8,6 +8,22 @@ Changelog
 
 .. towncrier release notes start
 
+4.1.2 (2026-03-16)
+------------------
+
+Bug fixes:
+
+
+- Use raw rich text value instead of output when indexing.  [maurits] (#423)
+
+
+Internal:
+
+
+- Update configuration files.
+  [plone devs]
+
+
 4.1.1 (2025-09-11)
 ------------------
 

@@ -1,1 +1,0 @@
-Use raw rich text value instead of output when indexing.  [maurits]
