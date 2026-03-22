@@ -2,7 +2,6 @@ from AccessControl.SecurityManagement import getSecurityManager
 from datetime import datetime
 from DateTime import DateTime
 from plone.app.dexterity import _
-from plone.app.z3cform.widgets.datetime import DatetimeFieldWidget
 from plone.app.z3cform.widgets.select import AjaxSelectFieldWidget
 from plone.app.z3cform.widgets.select import Select2FieldWidget
 from plone.autoform import directives
@@ -146,7 +145,6 @@ class IPublication(model.Schema):
         ),
         required=False,
     )
-    directives.widget("effective", DatetimeFieldWidget)
 
     expires = schema.Datetime(
         title=_("label_expiration_date", "Expiration Date"),
@@ -157,7 +155,6 @@ class IPublication(model.Schema):
         ),
         required=False,
     )
-    directives.widget("expires", DatetimeFieldWidget)
 
     @invariant
     def validate_start_end(data):
