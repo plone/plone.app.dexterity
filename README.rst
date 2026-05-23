@@ -85,7 +85,7 @@ Please read the `installation guide`_ to get Dexterity up and running.
 Then log in to Plone, go to Site Setup, and go to the ``Dexterity Types``
 control panel to get started creating content types through the web.
 
-Or read the `Dexterity Developer Manual`_ to get started developing
+Or read the documentation to get started developing
 Dexterity content types on the filesystem.
 
 The 2.0.x release series of Dexterity is compatible with
