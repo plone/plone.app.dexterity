@@ -107,18 +107,16 @@ Documentation
 
 Various documentation is available:
 
-* `Dexterity Developer Manual`_
-* `How to create reusable behaviors for Dexterity types`_
-
-.. _`Dexterity Developer Manual`: http://docs.plone.org/external/plone.app.dexterity/docs/index.html
-.. _`How to create reusable behaviors for Dexterity types`: http://docs.plone.org/external/plone.app.dexterity/docs/behaviors/index.html
+* `Content Types <https://6.docs.plone.org/backend/content-types/index.html>`_
+* `Behaviors <https://6.docs.plone.org/backend/behaviors.html>`_
 
 The following documents are not Dexterity-specific, but will likely be useful
-to users of Dexterity:
+to developers of Dexterity content types:
 
-* `Schema-driven forms manual`_
-
-.. _`Schema-driven forms manual`: http://docs.plone.org/develop/addons/schema-driven-forms/index.html
+* `Schemas <https://6.docs.plone.org/backend/schemas.html>`_
+* `Fields <https://6.docs.plone.org/backend/fields.html>`_
+* `Widgets <https://6.docs.plone.org/backend/widgets.html>`_
+* `Forms <https://6.docs.plone.org/classic-ui/forms.html>`_
 
 
 Issue tracker
