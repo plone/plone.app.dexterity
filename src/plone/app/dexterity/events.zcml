@@ -10,10 +10,15 @@
       handler=".serialize.serializeSchemaContext"
       />
 
+  <!-- Moved to plone.app.layout.dexterity (configure.zcml): the
+       BehaviorConfigurationAdapter class and behaviorConfigurationModified
+       handler now live there. -->
+  <!--
   <subscriber
       for=".browser.behaviors.BehaviorConfigurationAdapter
            zope.lifecycleevent.IObjectModifiedEvent"
       handler=".browser.behaviors.behaviorConfigurationModified"
       />
+  -->
 
 </configure>

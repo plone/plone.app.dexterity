@@ -1,15 +1,10 @@
-from plone.app.dexterity import _
-from plone.z3cform.layout import FormWrapper
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+import zope.deferredimport
 
 
-class TypeFormLayout(FormWrapper):
-    index = ViewPageTemplateFile("tabbed_forms.pt")
+zope.deferredimport.initialize()
 
-    @property
-    def tabs(self):
-        return (
-            (_("Overview"), "@@overview"),
-            (_("Fields"), "@@fields"),
-            (_("Behaviors"), "@@behaviors"),
-        )
+zope.deferredimport.deprecated(
+    "Please use from plone.app.layout.dexterity.layout import "
+    "TypeFormLayout instead.",
+    TypeFormLayout="plone.app.layout.dexterity.layout:TypeFormLayout",
+)
