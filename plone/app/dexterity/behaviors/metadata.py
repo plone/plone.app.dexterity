@@ -2,6 +2,8 @@ from AccessControl.SecurityManagement import getSecurityManager
 from datetime import datetime
 from DateTime import DateTime
 from plone.app.dexterity import _
+from plone.app.dexterity.config import MAX_DESCRIPTION_LENGTH
+from plone.app.dexterity.config import MAX_TITLE_LENGTH
 from plone.app.z3cform.widget import AjaxSelectFieldWidget
 from plone.app.z3cform.widget import DatetimeFieldWidget
 from plone.app.z3cform.widget import SelectFieldWidget
@@ -66,7 +68,21 @@ def default_language(context):
 @provider(IFormFieldProvider)
 class IBasic(model.Schema):
     # default fieldset
-    title = schema.TextLine(title=_("label_title", default="Title"), required=True)
+
+    # max_length keeps the site responsive: title and description are rendered
+    # in listings, navigation, and the ZMI, so very large values slow down
+    # many pages at once.  To raise or remove the limit in a downstream package:
+    #
+    #   from plone.app.dexterity.behaviors.metadata import IBasic
+    #   IBasic["title"].max_length = 5000        # or None to remove
+    #   IBasic["description"].max_length = 50000  # same pattern for description
+    #
+    # Place this in your package's __init__.py or any other Python module loaded at startup.
+    title = schema.TextLine(
+        title=_("label_title", default="Title"),
+        required=True,
+        max_length=MAX_TITLE_LENGTH,
+    )
 
     description = schema.Text(
         title=_("label_description", default="Summary"),
@@ -75,6 +91,7 @@ class IBasic(model.Schema):
         ),
         required=False,
         missing_value="",
+        max_length=MAX_DESCRIPTION_LENGTH,
     )
 
     directives.order_before(description="*")
