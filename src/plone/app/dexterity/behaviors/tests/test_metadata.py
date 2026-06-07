@@ -47,6 +47,52 @@ class TestBasic(unittest.TestCase):
         self.assertEqual("foo\r\nbar\nbaz\r", b.context.description)
 
 
+class TestIBasicMaxLength(unittest.TestCase):
+    def test_title_max_length(self):
+        from plone.app.dexterity.behaviors.metadata import IBasic
+
+        self.assertEqual(IBasic["title"].max_length, 1024)
+
+    def test_description_max_length(self):
+        from plone.app.dexterity.behaviors.metadata import IBasic
+
+        self.assertEqual(IBasic["description"].max_length, 10000)
+
+    def test_title_too_long_fails_validation(self):
+        from plone.app.dexterity.behaviors.metadata import IBasic
+        from zope.schema import ValidationError
+
+        with self.assertRaises(ValidationError):
+            IBasic["title"].validate("x" * 1025)
+
+    def test_description_too_long_fails_validation(self):
+        from plone.app.dexterity.behaviors.metadata import IBasic
+        from zope.schema import ValidationError
+
+        with self.assertRaises(ValidationError):
+            IBasic["description"].validate("x" * 10001)
+
+    def test_title_at_max_length_passes(self):
+        from plone.app.dexterity.behaviors.metadata import IBasic
+
+        IBasic["title"].validate("x" * 1024)  # must not raise
+
+    def test_description_at_max_length_passes(self):
+        from plone.app.dexterity.behaviors.metadata import IBasic
+
+        IBasic["description"].validate("x" * 10000)  # must not raise
+
+    def test_title_max_length_can_be_overridden(self):
+        from plone.app.dexterity.behaviors.metadata import IBasic
+
+        original = IBasic["title"].max_length
+        try:
+            IBasic["title"].max_length = 5000
+            IBasic["title"].validate("x" * 5000)  # must not raise
+        finally:
+            IBasic["title"].max_length = original
+
+
 class TestCategorization(unittest.TestCase):
     def _makeOne(self):
         class Dummy:
