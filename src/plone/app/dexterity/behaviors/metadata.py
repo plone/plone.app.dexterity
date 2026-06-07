@@ -65,7 +65,19 @@ def default_language(context):
 @provider(IFormFieldProvider)
 class IBasic(model.Schema):
     # default fieldset
-    title = schema.TextLine(title=_("label_title", default="Title"), required=True)
+
+    # max_length keeps the site responsive: title and description are rendered
+    # in listings, navigation, and the ZMI, so very large values slow down
+    # many pages at once.  To raise or remove the limit in a downstream package:
+    #
+    #   from plone.app.dexterity.behaviors.metadata import IBasic
+    #   IBasic["title"].max_length = 5000        # or None to remove
+    #   IBasic["description"].max_length = 50000  # same pattern for description
+    #
+    # Place this in your package's __init__.py or any other Python module loaded at startup.
+    title = schema.TextLine(
+        title=_("label_title", default="Title"), required=True, max_length=1024
+    )
 
     description = schema.Text(
         title=_("label_description", default="Summary"),
@@ -74,6 +86,7 @@ class IBasic(model.Schema):
         ),
         required=False,
         missing_value="",
+        max_length=10000,
     )
 
     directives.order_before(description="*")
