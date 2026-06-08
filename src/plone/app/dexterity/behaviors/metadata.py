@@ -78,7 +78,9 @@ class IBasic(model.Schema):
     #
     # Place this in your package's __init__.py or any other Python module loaded at startup.
     title = schema.TextLine(
-        title=_("label_title", default="Title"), required=True, max_length=MAX_TITLE_LENGTH
+        title=_("label_title", default="Title"),
+        required=True,
+        max_length=MAX_TITLE_LENGTH,
     )
 
     description = schema.Text(
