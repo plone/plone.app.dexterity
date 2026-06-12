@@ -1,5 +1,4 @@
-"""Contains different behaviors needed for testing.
-"""
+"""Contains different behaviors needed for testing."""
 
 from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText

@@ -18,7 +18,6 @@ from zope.component import adapter
 from zope.component import getUtilitiesFor
 from zope.lifecycleevent import modified
 
-
 TTW_BEHAVIOR_BLACKLIST = [
     # skip deprecated behavior
     "plone.app.dexterity.behaviors.related.IRelatedItems",
