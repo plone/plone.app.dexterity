@@ -7,7 +7,7 @@ commit-id = "2.9.1.dev0"
 
 [pyproject]
 codespell_ignores = "hove"
-dependencies_ignores = "['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield']"
+dependencies_ignores = "['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield', 'setuptools']"
 
 [flake8]
 extra_lines = """
