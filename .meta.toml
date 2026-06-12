@@ -15,6 +15,15 @@ per-file-ignores =
     plone/app/dexterity/textindexer/__init__.py:F401
 """
 
+[github]
+jobs = [
+   "qa",
+   "coverage",
+   "dependencies",
+   "release_ready",
+# no circular on 6.0
+   ]
+
 [tox]
 test_matrix = { "6.0" = ["*"] }
 envlist_lines = """
