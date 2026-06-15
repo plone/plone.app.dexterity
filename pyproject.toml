@@ -1,8 +1,10 @@
 # Generated from:
-# https://github.com/plone/meta/tree/main/src/plone/meta/default
+# https://github.com/plone/meta/tree/2.x/src/plone/meta/default
 # See the inline comments on how to expand/tweak this configuration file
 [build-system]
-requires = ["setuptools>=68.2,<80", "wheel"]
+requires = ["setuptools>=68.2,<82", "wheel"]
+
+
 
 [tool.towncrier]
 directory = "news/"
@@ -120,7 +122,7 @@ Zope = [
 ]
 python-dateutil = ['dateutil']
 pytest-plone = ['pytest', 'zope.pytestlayer', 'plone.testing', 'plone.app.testing']
-ignore-packages = ['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield']
+ignore-packages = ['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield', 'setuptools']
 
 ##
 # Add extra configuration options in .meta.toml:
