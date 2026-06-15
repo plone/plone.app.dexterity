@@ -24,8 +24,8 @@ from plone.dexterity.utils import iterSchemataForType
 
 log = logging.getLogger("plone.app.dexterity.warmup")
 
-ENABLED_ENV = "DEXTERITY_WARMER_ENABLED"
-BUDGET_ENV = "DEXTERITY_WARMER_BUDGET_SECONDS"
+DEXTERITY_WARMER_ENABLED = "DEXTERITY_WARMER_ENABLED"
+DEXTERITY_WARMER_BUDGET_SECONDS = "DEXTERITY_WARMER_BUDGET_SECONDS"
 DEFAULT_BUDGET = 30.0
 
 
@@ -90,3 +90,49 @@ def warm_all(app, budget_seconds=DEFAULT_BUDGET):
     finally:
         setSite(previous_site)
     return report
+
+
+def _enabled():
+    return os.environ.get(DEXTERITY_WARMER_ENABLED, "true").strip().lower() not in (
+        "0",
+        "false",
+        "no",
+        "off",
+    )
+
+
+def _budget():
+    try:
+        return float(os.environ.get(DEXTERITY_WARMER_BUDGET_SECONDS, DEFAULT_BUDGET))
+    except (TypeError, ValueError):
+        return DEFAULT_BUDGET
+
+
+@adapter(IDatabaseOpenedWithRoot)
+def warm_on_startup(event):
+    """Synchronously warm all Plone sites at process startup.
+
+    Best-effort: any failure is logged and swallowed so process startup always
+    proceeds. Runs before the WSGI server starts serving, so a container's
+    readiness probe only passes once warming is done.
+    """
+    if not _enabled():
+        log.info("Dexterity cache warmer disabled via %s", DEXTERITY_WARMER_ENABLED)
+        return
+    connection = event.database.open()
+    try:
+        app = connection.root()["Application"]
+        report = warm_all(app, budget_seconds=_budget())
+        log.info(
+            "Dexterity cache warmer: %d types, %d schemata, %d errors in %.2fs",
+            len(report.warmed_types),
+            report.schemata,
+            len(report.errors),
+            report.duration,
+        )
+        if report.errors:
+            log.warning("Dexterity cache warmer errors: %r", report.errors)
+    except Exception:  # noqa: BLE001 - never block startup
+        log.exception("Dexterity cache warmer failed; continuing startup")
+    finally:
+        connection.close()

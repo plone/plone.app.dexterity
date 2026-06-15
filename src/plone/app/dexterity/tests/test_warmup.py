@@ -93,3 +93,38 @@ class WarmAllTest(unittest.TestCase):
         _add_dexterity_type(self.portal, "warmtype2")
         report = warm_all(self.app)
         self.assertIn("warmtype2", report.warmed_types)
+
+
+class WarmSubscriberTest(unittest.TestCase):
+    layer = DEXTERITY_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+    def _make_event(self):
+        # minimal IDatabaseOpenedWithRoot-shaped event with the test ZODB
+        db = self.portal._p_jar.db()
+
+        class _Event:
+            database = db
+
+        return _Event()
+
+    def test_subscriber_disabled_is_noop(self):
+        import os
+        from plone.app.dexterity.warmup import warm_on_startup, DEXTERITY_WARMER_ENABLED
+
+        os.environ[DEXTERITY_WARMER_ENABLED] = "false"
+        try:
+            # disabled: must be a no-op and must not raise
+            warm_on_startup(self._make_event())
+        finally:
+            del os.environ[DEXTERITY_WARMER_ENABLED]
+
+    def test_subscriber_enabled_runs_without_error(self):
+        from plone.app.dexterity.warmup import warm_on_startup
+
+        # default-enabled: opens a fresh connection, warms the layer's committed
+        # Plone site, and must not raise.
+        warm_on_startup(self._make_event())
