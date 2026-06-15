@@ -1,11 +1,11 @@
-import unittest
-
-from zope.interface import Interface
-from zope import schema as zs
-
-from plone.app.testing import setRoles, TEST_USER_ID
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.dexterity.fti import DexterityFTI
+from zope import schema as zs
+from zope.interface import Interface
+
+import unittest
 
 
 class IWarmTestSchema(Interface):
@@ -112,8 +112,10 @@ class WarmSubscriberTest(unittest.TestCase):
         return _Event()
 
     def test_subscriber_disabled_is_noop(self):
+        from plone.app.dexterity.warmup import DEXTERITY_WARMER_ENABLED
+        from plone.app.dexterity.warmup import warm_on_startup
+
         import os
-        from plone.app.dexterity.warmup import warm_on_startup, DEXTERITY_WARMER_ENABLED
 
         os.environ[DEXTERITY_WARMER_ENABLED] = "false"
         try:

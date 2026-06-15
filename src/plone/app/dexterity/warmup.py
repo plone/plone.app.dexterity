@@ -8,19 +8,20 @@ first real render does not pay that cost.
 See the design doc: 2026-06-15-dexterity-cache-warmer-design.
 """
 
-import logging
-import os
-import time
-from dataclasses import dataclass, field
-
-from zope.component import adapter
-from zope.component.hooks import getSite, setSite
-from zope.processlifetime import IDatabaseOpenedWithRoot
-
-from Products.CMFCore.utils import getToolByName
+from dataclasses import dataclass
+from dataclasses import field
 from plone.base.interfaces import IPloneSiteRoot
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.utils import iterSchemataForType
+from Products.CMFCore.utils import getToolByName
+from zope.component import adapter
+from zope.component.hooks import getSite
+from zope.component.hooks import setSite
+from zope.processlifetime import IDatabaseOpenedWithRoot
+
+import logging
+import os
+import time
 
 log = logging.getLogger("plone.app.dexterity.warmup")
 
