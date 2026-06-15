@@ -70,3 +70,23 @@ def warm_site(site, deadline=None):
             report.errors.append((portal_type, repr(exc)))
     report.duration = time.monotonic() - start
     return report
+
+
+def warm_all(app, budget_seconds=DEFAULT_BUDGET):
+    """Warm every Plone site found directly under the Zope app root.
+
+    ``setSite`` is set around each site so CA/utility lookups resolve, and restored
+    afterwards. A single ``budget_seconds`` deadline is shared across all sites.
+    """
+    report = WarmReport()
+    deadline = time.monotonic() + budget_seconds if budget_seconds else None
+    previous_site = getSite()
+    try:
+        for obj in app.objectValues():
+            if not IPloneSiteRoot.providedBy(obj):
+                continue
+            setSite(obj)
+            report.merge(warm_site(obj, deadline=deadline))
+    finally:
+        setSite(previous_site)
+    return report

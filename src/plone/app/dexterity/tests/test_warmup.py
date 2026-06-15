@@ -45,3 +45,51 @@ class WarmSiteTest(unittest.TestCase):
         self.assertIs(SCHEMA_CACHE.get("warmtype"), IWarmTestSchema)
         # behavior schemata were yielded too (>1 schema for the type)
         self.assertGreaterEqual(report.schemata, 2)
+
+
+class WarmErrorIsolationTest(unittest.TestCase):
+    layer = DEXTERITY_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+    def test_one_failing_type_does_not_stop_the_rest(self):
+        from plone.app.dexterity import warmup
+
+        _add_dexterity_type(self.portal, "goodtype")
+        _add_dexterity_type(self.portal, "badtype")
+
+        real = warmup.iterSchemataForType
+
+        def fake(portal_type):
+            if portal_type == "badtype":
+                raise RuntimeError("boom")
+            return real(portal_type)
+
+        warmup.iterSchemataForType = fake
+        try:
+            report = warmup.warm_site(self.portal)
+        finally:
+            warmup.iterSchemataForType = real
+
+        self.assertIn("goodtype", report.warmed_types)
+        self.assertNotIn("badtype", report.warmed_types)
+        self.assertEqual(len(report.errors), 1)
+        self.assertEqual(report.errors[0][0], "badtype")
+
+
+class WarmAllTest(unittest.TestCase):
+    layer = DEXTERITY_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        self.app = self.layer["app"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+    def test_warm_all_finds_the_plone_site(self):
+        from plone.app.dexterity.warmup import warm_all
+
+        _add_dexterity_type(self.portal, "warmtype2")
+        report = warm_all(self.app)
+        self.assertIn("warmtype2", report.warmed_types)
