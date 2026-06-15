@@ -10,7 +10,6 @@ from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema.interfaces import IField
 
-
 _ = MessageFactory("plone.app.dexterity.textindexer")
 
 

@@ -9,7 +9,6 @@ from zope.interface import provider
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
-
 options = SimpleVocabulary(
     [
         SimpleTerm(value=True, title=_("Yes")),

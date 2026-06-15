@@ -1,5 +1,4 @@
-"""Contains the indexer and some helper methods for indexing.
-"""
+"""Contains the indexer and some helper methods for indexing."""
 
 from plone.app.dexterity.textindexer import interfaces
 from plone.app.dexterity.textindexer.behavior import IDexterityTextIndexer
@@ -21,7 +20,6 @@ from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 
 import logging
-
 
 LOGGER = logging.getLogger("plone.app.dexterity.textindexer")
 

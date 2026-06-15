@@ -2,7 +2,6 @@ from Products.CMFCore.utils import getToolByName
 
 import logging
 
-
 logger = logging.getLogger("plone.app.dexterity")
 
 

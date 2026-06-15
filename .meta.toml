@@ -1,16 +1,34 @@
 # Generated from:
-# https://github.com/plone/meta/tree/main/config/default
+# https://github.com/plone/meta/tree/2.x/src/plone/meta/default
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "6e36bcc4"
+commit-id = "2.9.1.dev0"
 
 [pyproject]
 codespell_ignores = "hove"
-dependencies_ignores = "['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield']"
+dependencies_ignores = "['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield', 'setuptools']"
 
 [flake8]
 extra_lines = """
 per-file-ignores =
     plone/app/dexterity/textindexer/__init__.py:F401
+"""
+
+[github]
+jobs = [
+   "qa",
+   "coverage",
+   "dependencies",
+   "release_ready",
+# no circular on 6.0
+   ]
+
+[tox]
+test_matrix = { "6.0" = ["*"] }
+envlist_lines = """
+# Add envs to prevent python-check-versions to complain,
+# which would force us to set requires_python to 3.9+,
+# which I don't want to do in a bugfix release.
+    py38-plone60
 """

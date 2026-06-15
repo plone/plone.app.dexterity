@@ -23,7 +23,6 @@ from zope.interface import invariant
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
 
-
 # Behavior interfaces to display Dublin Core metadata fields on Dexterity
 # content edit forms.
 #

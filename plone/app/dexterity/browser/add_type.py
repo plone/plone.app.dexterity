@@ -29,9 +29,7 @@ class TypeAddForm(form.AddForm):
                 "plone.namefromtitle",
             ]
         )
-        data[
-            "model_source"
-        ] = """
+        data["model_source"] = """
 <model xmlns="http://namespaces.plone.org/supermodel/schema">
     <schema>
     </schema>

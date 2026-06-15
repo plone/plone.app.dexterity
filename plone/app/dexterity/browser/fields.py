@@ -6,7 +6,6 @@ from plone.schemaeditor.browser.schema.listing import ReadOnlySchemaListing
 from plone.schemaeditor.browser.schema.listing import SchemaListing
 from z3c.form import button
 
-
 try:
     distribution("plone.resourceeditor")
     HAS_RESOURCEEDITOR = True

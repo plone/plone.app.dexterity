@@ -123,7 +123,7 @@ of the transformation parameters change. However, as we will see below,
 it is possible to apply a different transformation on demand should you
 need to.
 
-The code snippet belows shows how a ``RichTextValue`` object can be
+The code snippet below shows how a ``RichTextValue`` object can be
 constructed in code. In this case, we have a raw input string of type
 ``text/plain`` that will be transformed to a default output of
 ``text/html``. (Note that we would normally look up the default output

@@ -35,7 +35,7 @@ For developers, Dexterity promises:
 
 * the ability to create content types more quickly and easily, and with less boilerplate and repetition, than what is possible with Archetypes or plain CMF types
 * content objects with a smaller runtime footprint, to improve performance
-* types that use the now-standard zope.interface/zope.schema style of schema, and more broadly support modern idioms that sit a little awkardly with Archetypes and its ilk
+* types that use the now-standard zope.interface/zope.schema style of schema, and more broadly support modern idioms that sit a little awkwardly with Archetypes and its ilk
 
 How is Dexterity different from Archetypes
 ++++++++++++++++++++++++++++++++++++++++++

@@ -1,8 +1,10 @@
 # Generated from:
-# https://github.com/plone/meta/tree/main/config/default
+# https://github.com/plone/meta/tree/2.x/src/plone/meta/default
 # See the inline comments on how to expand/tweak this configuration file
 [build-system]
-requires = ["setuptools>=68.2,<77"]
+requires = ["setuptools>=68.2,<83", "wheel"]
+
+
 
 [tool.towncrier]
 directory = "news/"
@@ -37,7 +39,7 @@ showcontent = true
 
 [[tool.towncrier.type]]
 directory = "tests"
-name = "Tests"
+name = "Tests:"
 showcontent = true
 
 ##
@@ -60,7 +62,7 @@ profile = "plone"
 ##
 
 [tool.black]
-target-version = ["py38"]
+target-version = ["py39"]
 
 ##
 # Add extra configuration options in .meta.toml:
@@ -71,7 +73,7 @@ target-version = ["py38"]
 ##
 
 [tool.codespell]
-ignore-words-list = "discreet,hove"
+ignore-words-list = "discreet,assertin,thet,hove"
 skip = "*.po,"
 ##
 # Add extra configuration options in .meta.toml:
@@ -119,7 +121,8 @@ Zope = [
   'Products.CMFCore', 'Products.CMFDynamicViewFTI',
 ]
 python-dateutil = ['dateutil']
-ignore-packages = ['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield']
+pytest-plone = ['pytest', 'zope.pytestlayer', 'plone.testing', 'plone.app.testing']
+ignore-packages = ['plone.app.content', 'plone.app.relationfield', 'plone.directives.form', 'plone.directives.dexterity', 'five.grok', 'plone.app.intid', 'plone.contentrules', 'plone.schema', 'z3c.relationfield', 'setuptools']
 
 ##
 # Add extra configuration options in .meta.toml:
@@ -134,19 +137,26 @@ ignore-packages = ['plone.app.content', 'plone.app.relationfield', 'plone.direct
 [tool.check-manifest]
 ignore = [
     ".editorconfig",
+    ".flake8",
     ".meta.toml",
     ".pre-commit-config.yaml",
-    "tox.ini",
-    ".flake8",
+    "dependabot.yml",
     "mx.ini",
+    "tox.ini",
 
 ]
+
 ##
 # Add extra configuration options in .meta.toml:
 #  [pyproject]
 #  check_manifest_ignores = """
 #      "*.map.js",
 #      "*.pyc",
+#  """
+#  check_manifest_extra_lines = """
+#  ignore-bad-ideas = [
+#      "some/test/file/PKG-INFO",
+#  ]
 #  """
 ##
 
