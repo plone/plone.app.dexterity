@@ -1,4 +1,5 @@
 from plone.app.content.interfaces import INameFromTitle
+from plone.app.dexterity.config import MAX_TITLE_LENGTH
 from plone.base.utils import safe_hasattr
 from plone.rfc822.interfaces import IPrimaryFieldInfo
 from zope.component import adapter
@@ -23,7 +24,7 @@ class NameFromFileName:
         instance = super().__new__(cls)
         instance.title = filename
         if safe_hasattr(context, "title") and not context.title:
-            context.title = filename
+            context.title = filename[:MAX_TITLE_LENGTH]
         return instance
 
     def __init__(self, context):
