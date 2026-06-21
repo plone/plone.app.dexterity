@@ -1,9 +1,10 @@
-class UTF8Property:
-    def __init__(self, name):
-        self.name = name
+import zope.deferredimport
 
-    def __get__(self, inst, type=None):
-        return getattr(inst.context, self.name)
 
-    def __set__(self, inst, value):
-        setattr(inst.context, self.name, value)
+zope.deferredimport.initialize()
+
+zope.deferredimport.deprecated(
+    "Please use from plone.app.layout.dexterity.utils import "
+    "UTF8Property instead.",
+    UTF8Property="plone.app.layout.dexterity.utils:UTF8Property",
+)
