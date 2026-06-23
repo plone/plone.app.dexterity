@@ -1,0 +1,1 @@
+Add an optional startup cache warmer (``plone.app.dexterity.warmup``) that proactively builds every Dexterity type's schema and behavior schemata at process start, removing the cold first-render penalty.  Opt out via the ``DEXTERITY_WARMER_ENABLED`` environment variable; time-bounded by ``DEXTERITY_WARMER_BUDGET_SECONDS`` (default 30).  [jensens]
