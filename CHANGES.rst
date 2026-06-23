@@ -8,6 +8,28 @@ Changelog
 
 .. towncrier release notes start
 
+5.0.1 (2026-06-23)
+------------------
+
+Bug fixes:
+
+
+- Added ``max_length`` constraints to the ``title`` (1024 characters) and
+  ``description`` (10000 characters) fields of the ``IBasic`` behavior.
+  Very long values slow down the site because these fields are rendered in
+  listings, navigation, and the management interface.
+  Developers who need higher limits can override the fields in a downstream
+  package::
+
+      from plone.app.dexterity.behaviors.metadata import IBasic
+      IBasic["title"].max_length = 5000        # or None to remove the limit
+      IBasic["description"].max_length = 50000  # same pattern for description
+
+  Place this in your package's ``__init__.py`` or any other Python module loaded at startup.
+
+  See `security advisory <https://github.com/plone/plone.app.dexterity/security/advisories/GHSA-5426-92w4-wvhv>`_. (#433)
+
+
 5.0.0 (2026-05-14)
 ------------------
 
