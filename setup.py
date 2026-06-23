@@ -2,7 +2,7 @@ from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
 
-version = "3.2.3"
+version = "3.2.4.dev0"
 
 short_description = (
     "Dexterity is a content type framework for CMF  applications, "
