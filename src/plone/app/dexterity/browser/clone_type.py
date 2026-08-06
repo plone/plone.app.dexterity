@@ -1,38 +1,11 @@
-from plone.app.dexterity import _
-from plone.app.dexterity.interfaces import ITypeSettings
-from plone.dexterity.fti import DexterityFTI
-from plone.z3cform.layout import wrap_form
-from Products.CMFCore.utils import getToolByName
-from z3c.form import field
-from z3c.form import form
+import zope.deferredimport
 
 
-class TypeCloneForm(form.AddForm):
-    label = _("Clone Content Type")
-    fields = field.Fields(ITypeSettings).select("title", "id")
-    id = "clone-type-form"
+zope.deferredimport.initialize()
 
-    def create(self, data):
-        type_id = data.pop("id")
-        props = dict(self.context.fti.propertyItems())
-        # make sure we don't share the factory
-        if props["factory"] == self.context.fti.getId():
-            del props["factory"]
-
-        props["title"] = data["title"]
-        props["add_view_expr"] = props["add_view_expr"].replace(
-            self.context.fti.getId(), type_id
-        )
-        fti = DexterityFTI(type_id, **props)
-        return fti
-
-    def add(self, fti):
-        ttool = getToolByName(self.context, "portal_types")
-        ttool._setObject(fti.id, fti)
-        self.status = _("Type cloned successfully.")
-
-    def nextURL(self):
-        return self.context.aq_parent.absolute_url()
-
-
-TypeCloneFormPage = wrap_form(TypeCloneForm)
+zope.deferredimport.deprecated(
+    "Please use from plone.app.layout.dexterity.clone_type import "
+    "TypeCloneForm, TypeCloneFormPage instead.",
+    TypeCloneForm="plone.app.layout.dexterity.clone_type:TypeCloneForm",
+    TypeCloneFormPage="plone.app.layout.dexterity.clone_type:TypeCloneFormPage",
+)

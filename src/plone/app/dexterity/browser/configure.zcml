@@ -5,7 +5,13 @@
     i18n_domain="plone"
     >
 
+  <!-- The views below have been moved to plone.app.layout.dexterity (see
+       plone/app/layout/dexterity/configure.zcml). They are kept here
+       commented out for reference; the Python classes remain importable
+       from this package via zope.deferredimport shims. -->
+
   <!-- Default view for Dexterity types in Plone  4 -->
+  <!--
   <browser:page
       name="view"
       for="plone.dexterity.interfaces.IDexterityItem"
@@ -37,9 +43,11 @@
       template="folder_listing.pt"
       permission="zope2.View"
       />
+  -->
 
   <!-- Control panel -->
 
+  <!--
   <browser:page
       name="dexterity-types"
       for="plone.base.interfaces.IPloneSiteRoot"
@@ -122,7 +130,9 @@
       class=".export.ModelsExport"
       permission="plone.schemaeditor.ManageSchemata"
       />
+  -->
 
+  <!--
   <configure zcml:condition="installed plone.resourceeditor">
     <browser:page
         name="modeleditor"
@@ -132,5 +142,6 @@
         permission="plone.schemaeditor.ManageSchemata"
         />
   </configure>
+  -->
 
 </configure>
