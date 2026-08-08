@@ -4,7 +4,109 @@
 [build-system]
 requires = ["setuptools>=68.2,<83", "wheel"]
 
+# START-MARKER-MANUAL-CONFIG
+# Anything from here until END-MARKER-MANUAL-CONFIG
+# will be kept by plone.meta
 
+[project]
+name = "plone.app.dexterity"
+version = "5.0.3.dev0"
+description = "Dexterity is a content type framework for CMF  applications, with particular emphasis on Plone. It can be viewed as an alternative to Archetypes that is more light-weight and modular."
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Plone",
+    "Framework :: Plone :: 6.2",
+    "Framework :: Plone :: Core",
+    "Framework :: Zope :: 5",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+license = "GPL-2.0-only"
+dynamic = ["readme"]
+requires-python = ">=3.10"
+authors = [
+    {name = "Martin Aspeli, David Glick, et al",email = "dexterity-development@googlegroups.com"},
+]
+maintainers = [
+    {name = "Plone Foundation and contributors",email = "plone-developers@lists.sourceforge.net"},
+]
+dependencies = [
+    "Products.GenericSetup",
+    "Products.statusmessages",
+    "Zope",
+    "lxml",
+    "plone.app.textfield",
+    "plone.app.uuid",
+    "plone.app.vocabularies",
+    "plone.app.z3cform>=4.6.0",
+    "plone.autoform",
+    "plone.base",
+    "plone.behavior",
+    "plone.contentrules",
+    "plone.dexterity",
+    "plone.formwidget.namedfile",
+    "plone.indexer",
+    "plone.locking",
+    "plone.namedfile",
+    "plone.portlets",
+    "plone.registry",
+    "plone.rfc822",
+    "plone.schema",
+    "plone.schemaeditor",
+    "plone.supermodel",
+    "plone.uuid",
+    "plone.z3cform",
+    "z3c.form",
+    "zope.browserpage",
+    "zope.cachedescriptors",
+    "zope.dottedname",
+    "zope.filerepresentation",
+]
+keywords = [
+    "plone",
+    "ttw",
+    "dexterity",
+    "schema",
+    "interface",
+]
+
+[project.entry-points."plone.autoinclude.plugin"]
+target = "plone"
+
+[project.optional-dependencies]
+test = [
+    "plone.api",
+    "plone.app.robotframework",
+    "plone.app.testing",
+    "plone.i18n",
+    "plone.testing",
+    "robotsuite",
+]
+grok = [
+    "five.grok",
+    "plone.directives.dexterity",
+    "plone.directives.form>=1.1",
+]
+relations = [
+    "plone.app.intid",
+    "plone.app.relationfield",
+    "z3c.relationfield",
+]
+
+[project.urls]
+Source = "https://github.com/plone/plone.app.dexterity"
+Issues = "https://github.com/plone/Products.CMFPlone/issues"
+Changelog = "https://github.com/plone/plone.app.dexterity/blob/master/CHANGES.rst"
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "RELEASE_NOTES.rst", "CHANGES.rst"]}
+# END-MARKER-MANUAL-CONFIG
 
 [tool.towncrier]
 directory = "news/"
