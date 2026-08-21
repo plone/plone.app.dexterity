@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+5.0.2 (2026-08-21)
+------------------
+
+Bug fixes:
+
+
+- Fix deprecated import of the IAllowDiscussion behavior from plone.app.discussion. @davisagli (#449)
+
+
 5.0.1 (2026-06-23)
 ------------------
 
