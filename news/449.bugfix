@@ -1,0 +1,1 @@
+Fix deprecated import of the IAllowDiscussion behavior from plone.app.discussion. @davisagli
