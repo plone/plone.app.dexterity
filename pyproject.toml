@@ -38,9 +38,7 @@ maintainers = [
 ]
 dependencies = [
     "Products.GenericSetup",
-    "Products.statusmessages",
     "Zope",
-    "lxml",
     "plone.app.textfield",
     "plone.app.uuid",
     "plone.app.vocabularies",
@@ -63,9 +61,6 @@ dependencies = [
     "plone.uuid",
     "plone.z3cform",
     "z3c.form",
-    "zope.browserpage",
-    "zope.cachedescriptors",
-    "zope.dottedname",
     "zope.filerepresentation",
 ]
 keywords = [
