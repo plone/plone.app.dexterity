@@ -20,6 +20,12 @@
   <include package="plone.dexterity" />
   <include package="plone.behavior" />
 
+  <!-- Proactively warm Dexterity schema/behavior caches at process startup. -->
+  <subscriber
+      for="zope.processlifetime.IDatabaseOpenedWithRoot"
+      handler=".warmup.warm_on_startup"
+      />
+
   <genericsetup:registerProfile
       name="default"
       title="Dexterity Content Types"
