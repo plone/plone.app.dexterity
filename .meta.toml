@@ -3,7 +3,7 @@
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "2.8.0"
+commit-id = "2.11.1"
 
 [pyproject]
 codespell_ignores = "hove"
@@ -16,4 +16,4 @@ per-file-ignores =
 """
 
 [tox]
-test_matrix = {"6.2" = ["*"]}
+test_matrix = {"6.3" = ["*"]}
