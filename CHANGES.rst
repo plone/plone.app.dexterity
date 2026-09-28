@@ -8,6 +8,25 @@ Changelog
 
 .. towncrier release notes start
 
+6.0.0a1 (2026-09-28)
+--------------------
+
+Breaking changes:
+
+
+- Move plone.app.dexterity views to plone.app.layout
+  [frapell] (#3953)
+
+
+Internal:
+
+
+- Move package metadata from ``setup.py`` to ``pyproject.toml``.
+  [plone devs]
+- Update configuration files.
+  [plone devs]
+
+
 5.0.2 (2026-08-21)
 ------------------
 
