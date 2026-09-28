@@ -38,7 +38,6 @@
       directory="profiles/testing"
       />
 
-  <include package=".browser" />
   <include package=".behaviors" />
   <include package=".textindexer" />
   <include package=".upgrades" />
