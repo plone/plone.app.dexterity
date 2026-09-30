@@ -387,10 +387,6 @@ class Ownership(MetadataBase):
         IOwnership["rights"], get_name="Rights", set_name="setRights"
     )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.context.addCreator()
-
 
 class DublinCore(Basic, Categorization, Publication, Ownership):
     pass
