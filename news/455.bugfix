@@ -1,0 +1,1 @@
+Stopped the ``Ownership`` behavior from assigning a creator and marking the object modified merely because ``IOwnership``/``IDublinCore`` was adapted for reading, which could turn a plain GET into an unexpected write and trip ``plone.protect``. @afonsojanu

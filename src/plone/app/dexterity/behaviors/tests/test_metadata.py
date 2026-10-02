@@ -1,4 +1,5 @@
 from plone.app.dexterity.behaviors.metadata import ICategorization
+from plone.app.dexterity.behaviors.metadata import IOwnership
 from plone.app.dexterity.testing import DEXTERITY_INTEGRATION_TESTING
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -147,6 +148,43 @@ class CategorizationIntegrationTests(unittest.TestCase):
 
         with self.assertRaises(ConstraintNotSatisfied):
             cat.language = "en"
+
+
+class OwnershipIntegrationTests(unittest.TestCase):
+    layer = DEXTERITY_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        login(self.portal, TEST_USER_NAME)
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+
+    def test_adapting_ownership_does_not_mutate_creatorless_content(self):
+        # Content that ends up without any creator (for instance because it
+        # was created through a bulk import that bypasses the normal
+        # add form) must stay untouched when its metadata is merely read,
+        # e.g. while serializing it for a GET request. Adapting the
+        # Ownership/DublinCore behavior used to unconditionally assign the
+        # current user as creator as a side effect of the adapter's
+        # __init__, which turned a read into a write and could make
+        # plone.protect abort the transaction on plain GET requests.
+        self.portal.invokeFactory("Folder", "no-creator")
+        obj = self.portal["no-creator"]
+        obj.setCreators(())
+        obj._p_changed = False
+        self.assertEqual(obj.listCreators(), ())
+
+        IOwnership(obj)
+
+        self.assertEqual(
+            obj.listCreators(),
+            (),
+            "adapting the Ownership behavior must not assign a creator",
+        )
+        self.assertFalse(
+            obj._p_changed,
+            "adapting the Ownership behavior must not mark the object as " "modified",
+        )
 
 
 class TestDCFieldProperty(unittest.TestCase):
