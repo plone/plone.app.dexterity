@@ -183,8 +183,7 @@ class OwnershipIntegrationTests(unittest.TestCase):
         )
         self.assertFalse(
             obj._p_changed,
-            "adapting the Ownership behavior must not mark the object as "
-            "modified",
+            "adapting the Ownership behavior must not mark the object as " "modified",
         )
 
 
