@@ -1,0 +1,1 @@
+Temporarily disable the circular dependencies CI job: this package is part of the cycle caused by the portlets merge, see plone/Products.CMFPlone#4137. @jensens
