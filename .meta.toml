@@ -17,3 +17,14 @@ per-file-ignores =
 
 [tox]
 test_matrix = {"6.3" = ["*"]}
+
+[github]
+# Temporary: this package is part of the dependency cycle caused by the
+# portlets merge (plone/Products.CMFPlone#4137, step 1).  Step 2 resolves it;
+# re-enable the "circular" job then.
+jobs = [
+    "qa",
+    "coverage",
+    "dependencies",
+    "release_ready",
+    ]
