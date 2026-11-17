@@ -47,7 +47,10 @@
   <class class="plone.dexterity.content.DexterityContent">
     <!-- Make Dexterity types portlet- and content rule aware -->
     <implements interface="plone.portlets.interfaces.ILocalPortletAssignable" />
-    <implements interface="plone.contentrules.engine.interfaces.IRuleAssignable" />
+    <implements
+        interface="plone.contentrules.engine.interfaces.IRuleAssignable"
+        zcml:condition="installed plone.contentrules"
+        />
     <!-- Make it possible to traverse to image scales on Dexterity content -->
     <implements interface="plone.namedfile.interfaces.IImageScaleTraversable" />
   </class>
